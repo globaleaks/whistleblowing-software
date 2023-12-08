@@ -33,8 +33,9 @@ if test -e "/usr/share/globaleaks/default" ; then
     . "/usr/share/globaleaks/default"
 fi
 
+REACHABLE_VIA_WEB=1
 if [[ -f /var/globaleaks/globaleaks.db && "$(gl-admin getvar reachable_via_web 2>1&)" == "False" ]]; then
-    TOR_SANDBOXING=1
+    REACHABLE_VIA_WEB=0
 fi
 
 if test -e "/etc/default/globaleaks" ; then
@@ -99,7 +100,7 @@ network_sandboxing_start()
         exit 1
     fi
 
-    # remove all rules with the comment: "globaleaks-network-sandboxing"
+    # remove all rules with the comment: "globaleaks"
     iptables-save | grep -v "globaleaks" | iptables-restore
     ip6tables-save | grep -v "globaleaks" | ip6tables-restore
 
@@ -117,32 +118,16 @@ network_sandboxing_start()
         return
     fi
 
-    # OUTBOUND
-    if [[ "$TOR_SANDBOXING" -eq "1" ]]; then
-        declare -a PORTS=("80" "443")
-        for PORT in "${PORTS[@]}"; do
-            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
-            iptables -m comment --comment "globaleaks" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
-            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -s ::1 -j ACCEPT
-            ip6tables -m comment --comment "globaleaks" -A INPUT -p tcp -d :: --dport $PORT -j DROP
-        done
+    iptables -m comment --comment "globaleaks" -A INPUT -m mark --mark 1 -j REJECT
+    ip6tables -m comment --comment "globaleaks" -A INPUT -m mark --mark 1 -j REJECT
 
-        # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
-        iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d 127.0.0.1 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -d ::1 -j ACCEPT
-        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport 9050 -j ACCEPT
-        iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
-        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-    else
-        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
+    iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
+    ip6tables -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
 
-        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
+    iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
+    ip6tables -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
 
+    if [[ "$REACHABLE_VIA_WEB" -eq "1" ]]; then
         iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
         ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 
@@ -154,26 +139,7 @@ network_sandboxing_start()
 
         iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
         ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
-
-        # Enable enstablished connections, new connections on used tcp and udp ports
-        iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
-        ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
-
-        declare -a PORTS=("25" "80" "53" "443" "465" "587" "9050")
-        for PORT in "${PORTS[@]}"; do
-            iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
-            ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport $PORT -j ACCEPT
-        done
-
-        declare -a PORTS=("53")
-        for PORT in "${PORTS[@]}"; do
-            iptables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
-            ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
-        done
     fi
-
-    iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-    ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
@@ -187,7 +153,7 @@ network_sandboxing_stop()
 
     log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
-    # remove all rules with the comment: "globaleaks-network-sandboxing"
+    # remove all rules with the comment: "globaleaks"
     iptables-save | grep -v "globaleaks" | iptables-restore
     ip6tables-save | grep -v "globaleaks" | ip6tables-restore
 
@@ -270,9 +236,7 @@ case "$1" in
 
     log_action_begin_msg "Starting $DESC"
 
-    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        network_sandboxing_start
-    fi
+    network_sandboxing_start
 
     globaleaks_start
 
@@ -280,10 +244,7 @@ case "$1" in
   stop)
     log_action_begin_msg "Stopping $DESC"
 
-
-    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        network_sandboxing_stop
-    fi
+    network_sandboxing_stop
 
     globaleaks_stop
     ;;
