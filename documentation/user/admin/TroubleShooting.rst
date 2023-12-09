@@ -7,7 +7,7 @@ If you encounter any issue and you are not able to to run GlobaLeaks:
 
 - Be sure to strictly follow the Installation Guide for installation
 - Be sure to satisfy the Technical Requirements for hardware and operating system version.
-- Search on the support forum to check if a user has already encountered your issue: https://forum.globaleaks.org
+- Search on the support forum to check if a user has already encountered your issue: https://github.com/orgs/globaleaks/discussions
 - Report the issue on the official software ticking system: https://github.com/globaleaks/GlobaLeaks/issues
 
 Useful Debugging Commands
@@ -51,10 +51,3 @@ There are a few useful logs and corresponding log files when GlobaLeaks is insta
 
 
 The verbosity is configurable via the web interface of the software inside Advanced Settings.
-
-
-**Tor:**
-
-::
-
-  /var/log/tor/log iptables: /var/log/syslog AppArmor: /var/log/kern.log
