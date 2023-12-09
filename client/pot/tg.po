@@ -551,6 +551,9 @@ msgstr "Санаи эҷод"
 msgid "Last access"
 msgstr "Дастрасии охирин"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Дастрасии охирини хабардиҳанда"
 
@@ -574,6 +577,9 @@ msgstr "Захира кардан"
 
 msgid "Cancel"
 msgstr "Бекор кардан"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Ҳолатҳоро гузориш додан"
@@ -1095,6 +1101,9 @@ msgstr "Шартҳои хизматрасониро фаъол сохтан"
 msgid "Title"
 msgstr "Унвон"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Номи ҷамъиятӣ"
 
@@ -1152,8 +1161,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Ба функсияҳои зерин дастрасии маъмурии корбар додан:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Санаи дархост"
@@ -1200,6 +1215,18 @@ msgstr "Матне, ки баъди аз ҷониби корбар интихо�
 msgid "Assign score points"
 msgstr "Холҳоро муқаррар кардан"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Ҳолат:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Шумо мутмаъин ҳастед?"
 
@@ -1222,6 +1249,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Инро нусхабардорӣ кунед ва дар ҷои амн нигоҳ доред. Агар шумо гузарвожаи худро гум кунед, барои барқарор кардани дастрасӣ ба аккаунти шумо бидуни талафи маълумот, лозим мешавад."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Барои нусха ном ворид кунед"
@@ -1294,6 +1328,9 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Гузарвожаи ҷорӣ"
 
@@ -1344,6 +1381,15 @@ msgstr "Андоза:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Суроға"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Гирандагон аз шумо дархост кардаанд саволномаи иловагиро пур намоед."
 
@@ -1370,9 +1416,6 @@ msgstr "Ҷавобҳои саволнома"
 
 msgid "Step"
 msgstr "Қадам"
-
-msgid "Status:"
-msgstr "Ҳолат:"
 
 msgid "Files attached by recipients"
 msgstr "Файлҳое, ки аз ҷониби гирандагон замима шудаанд"
@@ -1468,20 +1511,11 @@ msgstr "Агар давоми 24 соат фаъол нагардад, барн�
 msgid "Sign up"
 msgstr "Қайди ном шудан"
 
-msgid "Invalid phone number"
-msgstr "Рақами телефони нодуруст"
-
 msgid "Invalid confirmation"
 msgstr "Тасдиқи нодуруст"
 
-msgid "Address"
-msgstr "Суроға"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Рақами телефони нодуруст"
 
 msgid "Site"
 msgstr ""

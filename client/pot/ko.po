@@ -544,6 +544,9 @@ msgstr "생성 날짜"
 msgid "Last access"
 msgstr "마지막 액세스"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "마지막 내부 고발자 액세스"
 
@@ -567,6 +570,9 @@ msgstr "저장"
 
 msgid "Cancel"
 msgstr "취소"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "상태 보고"
@@ -1088,6 +1094,9 @@ msgstr "서비스 약관 허용"
 msgid "Title"
 msgstr "제목"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "공개 이름"
 
@@ -1145,8 +1154,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "관리자가 다음 기능을 액세스하도록 허용:"
+
+msgid "Statistics"
+msgstr "통계"
 
 msgid "Request date"
 msgstr "요청 날짜"
@@ -1193,6 +1208,18 @@ msgstr "사용자가 옵션을 선택한 후 표시되는 텍스트압나더,"
 msgid "Assign score points"
 msgstr "점수 포인트 할당"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "상태"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "계속하시겠습니까?"
 
@@ -1215,6 +1242,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호를 잊어버릴 경우 데이터를 손실하지 않으며 계정에 다시 액세스하는 데 필요합니다."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "사본 이름 입력"
@@ -1287,6 +1321,9 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "현재 비밀번호"
 
@@ -1337,6 +1374,15 @@ msgstr "크기:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "주소"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "세금 코드"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다."
 
@@ -1363,9 +1409,6 @@ msgstr "설문 조사 답변"
 
 msgid "Step"
 msgstr "단계"
-
-msgid "Status:"
-msgstr "상태"
 
 msgid "Files attached by recipients"
 msgstr "수신자별 첨부 파일"
@@ -1461,20 +1504,11 @@ msgstr "24시간 이내에 활성화되지 않으면 플랫폼이 자동으로 �
 msgid "Sign up"
 msgstr "가입"
 
-msgid "Invalid phone number"
-msgstr "유효하지 않은 전화번호"
-
 msgid "Invalid confirmation"
 msgstr "유효하지 않은 확인"
 
-msgid "Address"
-msgstr "주소"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "세금 코드"
+msgid "Invalid phone number"
+msgstr "유효하지 않은 전화번호"
 
 msgid "Site"
 msgstr "사이트"

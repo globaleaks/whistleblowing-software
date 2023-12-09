@@ -557,6 +557,9 @@ msgstr "Data de creació"
 msgid "Last access"
 msgstr "Últim accés"
 
+msgid "Receivers"
+msgstr "Receptors"
+
 msgid "Whistleblower's last access"
 msgstr "Últim accés de l'Informant"
 
@@ -580,6 +583,9 @@ msgstr "Guardar"
 
 msgid "Cancel"
 msgstr "Cancel·la"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Estat de les denúncies."
@@ -1101,6 +1107,9 @@ msgstr "Activar els termes del servei"
 msgid "Title"
 msgstr "Títol"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Nom públic"
 
@@ -1158,8 +1167,14 @@ msgstr "Donar a aquest usuari la capacitat de concedir accés a les denúncies"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Donar a aquest usuari la capacitat de transferir denúncies a altres usuaris"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Donar a aquest usuari accés administratiu a les funcions següents:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1206,6 +1221,18 @@ msgstr "Text que es mostra després de que l'usuari ha seleccionat l'opció"
 msgid "Assign score points"
 msgstr "Assigna puntuació"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Estat:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Està vosté segur?"
 
@@ -1228,6 +1255,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu la contrasenya per recuperar l’accés al vostre compte sense pèrdues de dades."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
@@ -1300,6 +1334,9 @@ msgstr "Només es pot accedir a aquest recurs mitjançant la xarxa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La sol·licitud de pujada excedeix el limit de dades"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr " Contrasenya actual"
 
@@ -1350,6 +1387,15 @@ msgstr "Tamany:"
 msgid "Access date"
 msgstr "Data d'accés"
 
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Fiscal code"
+msgstr "Codi postal"
+
+msgid "Tax code"
+msgstr "Codi tributari"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Els receptors han solicitat que vosté reompliga un qüestionari addicional."
 
@@ -1376,9 +1422,6 @@ msgstr "Respostes del qüestionari"
 
 msgid "Step"
 msgstr "Pas"
-
-msgid "Status:"
-msgstr "Estat:"
 
 msgid "Files attached by recipients"
 msgstr "Arxius adjuntats pels destinataris"
@@ -1474,20 +1517,11 @@ msgstr "Si no s'activa dins de les properes 24 hores, la plataforma serà autom�
 msgid "Sign up"
 msgstr "Registrar‐se"
 
-msgid "Invalid phone number"
-msgstr "Número de telèfon no vàlid"
-
 msgid "Invalid confirmation"
 msgstr "Confirmació invàlida"
 
-msgid "Address"
-msgstr "Adreça"
-
-msgid "Fiscal code"
-msgstr "Codi postal"
-
-msgid "Tax code"
-msgstr "Codi tributari"
+msgid "Invalid phone number"
+msgstr "Número de telèfon no vàlid"
 
 msgid "Site"
 msgstr "Lloc"

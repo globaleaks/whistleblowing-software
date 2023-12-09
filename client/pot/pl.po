@@ -563,6 +563,9 @@ msgstr "Data utworzenia"
 msgid "Last access"
 msgstr "Ostatnia wizyta"
 
+msgid "Receivers"
+msgstr "Odbiorcy"
+
 msgid "Whistleblower's last access"
 msgstr "WB Ostatnio Zalogowany"
 
@@ -586,6 +589,9 @@ msgstr "Zapisz"
 
 msgid "Cancel"
 msgstr "Anuluj"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Statusy zgłoszeń"
@@ -1107,6 +1113,9 @@ msgstr "Włącz warunki świadczenia usług"
 msgid "Title"
 msgstr "Tytuł"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Publiczna nazwa"
 
@@ -1164,8 +1173,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Daj użytkownikowi dostęp administracyjny do poniższych funkcji:"
+
+msgid "Statistics"
+msgstr "Statystyki"
 
 msgid "Request date"
 msgstr "Data żądania"
@@ -1212,6 +1227,18 @@ msgstr "Tekst pokazywany po wybraniu tej opcji przez użytkownika."
 msgid "Assign score points"
 msgstr "Przypisz punkty"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
@@ -1234,6 +1261,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Zrób kopię i zapisz w bezpiecznym miejscu. Potrzebny będzie jak zapomnisz hasła, po to, by odzyskać konto bez utraty danych."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Wpisz nazwę kopii"
@@ -1306,6 +1340,9 @@ msgstr "Dostęp do zasobów możliwy tylko poprzez sieć Tor."
 msgid "The upload request exceeds the size limit"
 msgstr "Żądanie wysłania przekracza limit rozmiaru"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Obecne hasło"
 
@@ -1356,6 +1393,15 @@ msgstr "Wielkość:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Kod podatkowy"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Odbiorcy proszą cię byś wypełnił/a dodatkową ankietę."
 
@@ -1382,9 +1428,6 @@ msgstr "Odpowiedzi ankiety"
 
 msgid "Step"
 msgstr "Krok"
-
-msgid "Status:"
-msgstr "Status"
 
 msgid "Files attached by recipients"
 msgstr "Pliki załączone przez odbiorców"
@@ -1480,20 +1523,11 @@ msgstr "Jeśli platforma nie zostanie aktywowana w ciągu 24 godzin to zostanie 
 msgid "Sign up"
 msgstr "Zarejestruj się"
 
-msgid "Invalid phone number"
-msgstr "Nieprawidłowy numer telefonu"
-
 msgid "Invalid confirmation"
 msgstr "Nieprawidłowe potwierdzenie"
 
-msgid "Address"
-msgstr "Adres"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Kod podatkowy"
+msgid "Invalid phone number"
+msgstr "Nieprawidłowy numer telefonu"
 
 msgid "Site"
 msgstr "Strona"

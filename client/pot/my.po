@@ -544,6 +544,9 @@ msgstr "ဖန်တီးသည့်နေ့စွဲ"
 msgid "Last access"
 msgstr "နောက်ဆုံး အသုံးပြုခြင်း"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "သတင်းပေးသူ၏ နောက်ဆုံး အသုံးပြုခြင်း"
 
@@ -567,6 +570,9 @@ msgstr "သိမ်းမည်"
 
 msgid "Cancel"
 msgstr "ပယ်ဖျက်မည်"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "အစီရင်ခံစာ အခြေအနေများ"
@@ -1088,6 +1094,9 @@ msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းမျာ�
 msgid "Title"
 msgstr "ခေါင်းစဉ်"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "အများဆိုင် အမည်"
 
@@ -1145,8 +1154,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "အသုံးပြုသူအား အောက်ပါလုပ်ဆောင်ချက်များကို ထိန်းချုပ် အသုံးပြုခွင့်ပေးပါ။"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "တောင်းဆိုသည့် နေ့စွဲ"
@@ -1193,6 +1208,18 @@ msgstr "အသုံးပြုသူ ရွေးချယ်စရာကိ�
 msgid "Assign score points"
 msgstr "ရမှတ်များကို သတ်မှတ်ပါ"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "အခြေအနေ -"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "သေချာပါသလား။"
 
@@ -1215,6 +1242,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "၎င်းကို ကူးယူ၍ လုံခြုံသော နေရာတွင် သိမ်းထားပါ။ သင့်စကားဝှက် ပျောက်သွားလျှင် အချက်အလက် ဆုံးရှုံးမှု မရှိဘဲ သင့်အကောင့်ကို အသုံးပြုခွင့် ပြန်ရရန်အတွက် ၎င်းကို လိုအပ်ပါမည်။"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "မိတ္တူအတွက် အမည်တစ်ခု ရိုက်ထည့်ပါ"
@@ -1287,6 +1321,9 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "လက်ရှိ စကားဝှက်"
 
@@ -1337,6 +1374,15 @@ msgstr "အရွယ်အစား - "
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "လိပ်စာ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "အခွန် ကုဒ်"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
 
@@ -1363,9 +1409,6 @@ msgstr "မေးခွန်းလွှာ အဖြေများ"
 
 msgid "Step"
 msgstr "အဆင့်"
-
-msgid "Status:"
-msgstr "အခြေအနေ -"
 
 msgid "Files attached by recipients"
 msgstr "လက်ခံသူများက တွဲကပ်သော ဖိုင်များ"
@@ -1461,20 +1504,11 @@ msgstr "၂၄ နာရီအတွင်း သက်ဝင်မလုပ်�
 msgid "Sign up"
 msgstr "အကောင့်ဖွင့်ရန်"
 
-msgid "Invalid phone number"
-msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
-
 msgid "Invalid confirmation"
 msgstr "အတည်ပြုချက် မမှန်ကန်ပါ"
 
-msgid "Address"
-msgstr "လိပ်စာ"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "အခွန် ကုဒ်"
+msgid "Invalid phone number"
+msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
 
 msgid "Site"
 msgstr "ဝက်ဘ်ဆိုက်"

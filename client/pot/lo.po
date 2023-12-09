@@ -543,6 +543,9 @@ msgstr "ວັນທີສ້າງ"
 msgid "Last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍຂອງຜູ້ແຈ້ງເບາະແສ"
 
@@ -566,6 +569,9 @@ msgstr "ບັນທຶກ"
 
 msgid "Cancel"
 msgstr "ຍົກເລີກ"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "ລາຍງານສະຖານະ"
@@ -1087,6 +1093,9 @@ msgstr "ເປີດນຳໃຊ້ຂໍ້ກຳນົດໃນການບໍ
 msgid "Title"
 msgstr "ຫົວຂໍ້"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "ຊື່ສາທາລະນະ"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ທີ່ເປັນຜູ້ເບິ່ງແຍງລະບົບເຂົ້າເຖິງຄຸນສົມບັດຕ່າງໆຕໍ່ໄປນີ້:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "ວັນທີຮ້ອງຂໍ"
@@ -1192,6 +1207,18 @@ msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງໃຫ້ເຫັນ
 msgid "Assign score points"
 msgstr "ກຳນົດຈຸດໃຫ້ຄະແນນ"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "ສະຖານະ:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ເຮັດການສຳເນົາ ແລະ ຈັດເກັບໄວ້ໃນບ່ອນທີ່ມີຄວາມປອດໄພ. ມັນຈະມີຄວາມຈຳເປັນຖ້າທ່ານລືມລະຫັດຜ່ານຂອງທ່ານເພື່ອກູ້ຄືນການເຂົ້າເຖິງບັນຊີຂອງທ່ານໂດຍທີ່ຂໍ້ມູນຈະບໍ່ສູນຫາຍ."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ປ້ອນຊື່ສຳລັບການສຳເນົາ"
@@ -1286,6 +1320,9 @@ msgstr "ສາມາດເຂົ້າເຖິງແຫຼ່ງຂໍ້ມູ
 msgid "The upload request exceeds the size limit"
 msgstr "ຄຳຮ້ອງຂໍການອັບໂຫຼດເກີນຂີດຈຳກັດຂອງຂະໜາດ"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "ລະ​ຫັດ​ຜ່ານປະ​ຈຸ​ບັນ"
 
@@ -1336,6 +1373,15 @@ msgstr "ຂະໜາດ:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "ທີ່ຢູ່"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "ລະຫັດອາກອນ"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
 
@@ -1362,9 +1408,6 @@ msgstr "ຄຳຕອບແບບສອບຖາມ"
 
 msgid "Step"
 msgstr "ຂັ້ນຕອນ"
-
-msgid "Status:"
-msgstr "ສະຖານະ:"
 
 msgid "Files attached by recipients"
 msgstr "ໄຟລ໌ທີ່ຜູ້ຮັບຄັດຕິດມາ"
@@ -1460,20 +1503,11 @@ msgstr "ຖ້າບໍ່ເປີດໃຊ້ງານພາຍໃນ 24 ຊ�
 msgid "Sign up"
 msgstr "ລົງທະບຽນ"
 
-msgid "Invalid phone number"
-msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
-
 msgid "Invalid confirmation"
 msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
 
-msgid "Address"
-msgstr "ທີ່ຢູ່"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "ລະຫັດອາກອນ"
+msgid "Invalid phone number"
+msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
 
 msgid "Site"
 msgstr "ເວັບໄຊຕ໌"

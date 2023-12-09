@@ -560,6 +560,9 @@ msgstr "תאריך יצירה"
 msgid "Last access"
 msgstr "גישה אחרונה"
 
+msgid "Receivers"
+msgstr "נמענים"
+
 msgid "Whistleblower's last access"
 msgstr ""
 
@@ -583,6 +586,9 @@ msgstr "שמור"
 
 msgid "Cancel"
 msgstr "בטל"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "מעמדי דוח"
@@ -1104,6 +1110,9 @@ msgstr "אפשר תנאיי שירות"
 msgid "Title"
 msgstr "כותרת"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "שם ציבורי"
 
@@ -1161,8 +1170,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr ""
+
+msgid "Statistics"
+msgstr "סטטיסטיקה"
 
 msgid "Request date"
 msgstr "תאריך בקשה"
@@ -1209,6 +1224,18 @@ msgstr ""
 msgid "Assign score points"
 msgstr "הקצאת נקודות ציון"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "מצב"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
@@ -1230,6 +1257,13 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
@@ -1303,6 +1337,9 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "סיסמה נוכחית"
 
@@ -1353,6 +1390,15 @@ msgstr "גודל:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1379,9 +1425,6 @@ msgstr "תשובות לשאלון"
 
 msgid "Step"
 msgstr "צעד"
-
-msgid "Status:"
-msgstr "מצב"
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -1477,20 +1520,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "הירשם"
 
-msgid "Invalid phone number"
-msgstr "מספר טלפון בלתי תקף"
-
 msgid "Invalid confirmation"
 msgstr "אישור בלתי תקף"
 
-msgid "Address"
-msgstr "כתובת"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "מספר טלפון בלתי תקף"
 
 msgid "Site"
 msgstr "אתר"

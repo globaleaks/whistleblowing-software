@@ -545,6 +545,9 @@ msgstr "உருவாக்கிய தேதி"
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr ""
 
@@ -568,6 +571,9 @@ msgstr "சேமி"
 
 msgid "Cancel"
 msgstr "நிராகரி"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr ""
@@ -1089,6 +1095,9 @@ msgstr "சேவை விதிமுறைகளை இயக்கு"
 msgid "Title"
 msgstr "தலைப்பு"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr ""
 
@@ -1146,7 +1155,13 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
+msgstr ""
+
+msgid "Statistics"
 msgstr ""
 
 msgid "Request date"
@@ -1194,6 +1209,18 @@ msgstr ""
 msgid "Assign score points"
 msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
@@ -1215,6 +1242,13 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
@@ -1288,6 +1322,9 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "தற்போதைய கடவுச்சொல்"
 
@@ -1338,6 +1375,15 @@ msgstr "அளவு:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "முகவரி"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
 
@@ -1364,9 +1410,6 @@ msgstr "கேள்வித்தாள் பதில்களை"
 
 msgid "Step"
 msgstr "படி"
-
-msgid "Status:"
-msgstr ""
 
 msgid "Files attached by recipients"
 msgstr "பெறுநர்கள் இணைத்த கோப்புகள்"
@@ -1462,20 +1505,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "டிஜிட்டல் கையெழுத்திட செய்க"
 
-msgid "Invalid phone number"
-msgstr "தவறான தொலைபேசி எண்"
-
 msgid "Invalid confirmation"
 msgstr ""
 
-msgid "Address"
-msgstr "முகவரி"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "தவறான தொலைபேசி எண்"
 
 msgid "Site"
 msgstr "தளம்"

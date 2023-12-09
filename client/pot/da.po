@@ -508,7 +508,7 @@ msgid "Recipients only"
 msgstr "Kun modtagere"
 
 msgid "Me only"
-msgstr ""
+msgstr "Kun mig"
 
 msgid "File a report"
 msgstr "Indsend en rapportering"
@@ -552,6 +552,9 @@ msgstr "Oprettelsesdato"
 msgid "Last access"
 msgstr "Seneste login"
 
+msgid "Receivers"
+msgstr "Modtagere"
+
 msgid "Whistleblower's last access"
 msgstr "Whistleblowerens seneste adgang"
 
@@ -575,6 +578,9 @@ msgstr "Gem"
 
 msgid "Cancel"
 msgstr "Annullér"
+
+msgid "Scadenza (giorni)"
+msgstr "Scadenza (giorni)"
 
 msgid "Report statuses"
 msgstr "Status for indsendelser"
@@ -613,7 +619,7 @@ msgid "Select all recipients by default"
 msgstr "Vælg alle modtagere som standard"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Maksimalt antal modtagere der kan vælges:"
+msgstr "Maksimalt antal modtagere, der kan vælges:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
@@ -863,7 +869,7 @@ msgid "Min"
 msgstr "Min"
 
 msgid "Max"
-msgstr "Max"
+msgstr "Maks"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1014,7 +1020,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "Kundesupport link"
 
 msgid "Disable the privacy panel"
 msgstr "Deaktiver privatlivspanelet"
@@ -1096,6 +1102,9 @@ msgstr "Aktivér servicebetingelserne"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Analyst"
+msgstr "Analyst"
+
 msgid "Public name"
 msgstr "Offentligt navn"
 
@@ -1153,8 +1162,14 @@ msgstr "Giv denne bruger mulighed for at give brugere adgang til rapporter"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Giv denne bruger mulighed for at overføre rapporter til andre brugere"
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Tillad denne bruger at genåbne håndtering af en rapport"
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Giv brugere administrative adgang til følgende funktioner:"
+
+msgid "Statistics"
+msgstr "Statistik"
 
 msgid "Request date"
 msgstr "Anmod om dato"
@@ -1201,6 +1216,18 @@ msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
 msgid "Assign score points"
 msgstr "Tildel pointtal"
 
+msgid "Change status"
+msgstr "Skift status"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr "Understatus:"
+
+msgid "Motivation:"
+msgstr "Motivation:"
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1223,6 +1250,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Lav en kopi og gem den et sikkert sted. Den vil være nødvendig for at gendanne adgangen til din konto uden datatab hvis du mister din adgangskode."
+
+msgid "Attention"
+msgstr "Bemærk"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Af sikkerhedsgrunde skal din kvitteringskode til din rapport ændres."
 
 msgid "Enter a name for the copy"
 msgstr "Indtast et navn på kopien"
@@ -1295,6 +1329,9 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Du handler på vegne af en whistleblower"
+
 msgid "Current password"
 msgstr "Nuværende password"
 
@@ -1345,6 +1382,15 @@ msgstr "Størrelse:"
 msgid "Access date"
 msgstr "Adgangsdato"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr "Finanskode"
+
+msgid "Tax code"
+msgstr "Skattekode"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
 
@@ -1371,9 +1417,6 @@ msgstr "Svar på spørgeskemaet"
 
 msgid "Step"
 msgstr "Trin"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Filer der er vedhæftet af modtagere"
@@ -1469,20 +1512,11 @@ msgstr "Hvis ikke aktiveret indenfor 24 timer vil platformen automatisk blive sl
 msgid "Sign up"
 msgstr "Tilmeld"
 
-msgid "Invalid phone number"
-msgstr "Forkert telefonnummer"
-
 msgid "Invalid confirmation"
 msgstr "Forkert bekræftelse"
 
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Fiscal code"
-msgstr "Finanskode"
-
-msgid "Tax code"
-msgstr "Skattekode"
+msgid "Invalid phone number"
+msgstr "Forkert telefonnummer"
 
 msgid "Site"
 msgstr "Side"
@@ -1534,7 +1568,7 @@ msgid "Recipients selected:"
 msgstr "Valgte modtagere:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Du har nået det maksimale antal modtagere der kan vælges."
+msgstr "Du har nået det maksimale antal modtagere, der kan vælges."
 
 msgid "You must select at least one recipient."
 msgstr "Du skal vælge mindst en modtager."
@@ -1644,7 +1678,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Hvilket udfald ønsker du at opnå med vores hjælp?"
 
 msgid "Would you like to tell us who you are?"
-msgstr ""
+msgstr "Vil du gerne fortælle os hvem du er?"
 
 msgid "First name"
 msgstr "Fornavn"
@@ -1662,7 +1696,7 @@ msgid "Other"
 msgstr "Andet"
 
 msgid "Specify"
-msgstr ""
+msgstr "Angiv"
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"

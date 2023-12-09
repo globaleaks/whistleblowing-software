@@ -587,6 +587,9 @@ msgstr "Datum van aanmaken"
 msgid "Last access"
 msgstr "Laatste toegang"
 
+msgid "Receivers"
+msgstr "Ontvangers"
+
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"
 
@@ -610,6 +613,9 @@ msgstr "Bewaar"
 
 msgid "Cancel"
 msgstr "Annuleren"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Status van de inzending"
@@ -1131,6 +1137,9 @@ msgstr "Gebruiksvoorwaarden inschakelen"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Publieke naam"
 
@@ -1188,8 +1197,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Geef de gebruiker beheerderstoegang tot de volgende functies:"
+
+msgid "Statistics"
+msgstr "Statistieken"
 
 msgid "Request date"
 msgstr "Aanvraagdatum"
@@ -1236,6 +1251,18 @@ msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
 msgid "Assign score points"
 msgstr "Scorepunten toekennen"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -1258,6 +1285,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Maak een kopie en sla deze in een veilige plaats op. Als je je wachtwoord kwijtraakt zal je dit nodig hebben om de toegang tot je account te herstellen zonder het verlies van data."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
@@ -1330,6 +1364,9 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Huidig wachtwoord"
 
@@ -1380,6 +1417,15 @@ msgstr "Grootte:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "BTW-code / Belastingwetgeving"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
 
@@ -1406,9 +1452,6 @@ msgstr "Antwoorden vragenformulier"
 
 msgid "Step"
 msgstr "Stap"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Bestanden die door ontvangers zijn toegevoegd"
@@ -1504,20 +1547,11 @@ msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wor
 msgid "Sign up"
 msgstr "Aanmelden"
 
-msgid "Invalid phone number"
-msgstr "Ongeldig telefoonnummer"
-
 msgid "Invalid confirmation"
 msgstr "Bevestiging ongeldig"
 
-msgid "Address"
-msgstr "Adres"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "BTW-code / Belastingwetgeving"
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
 
 msgid "Site"
 msgstr "Site"

@@ -548,6 +548,9 @@ msgstr "Izveidošanas datums"
 msgid "Last access"
 msgstr "Pēdējā piekļuve"
 
+msgid "Receivers"
+msgstr "Saņēmēji"
+
 msgid "Whistleblower's last access"
 msgstr "Trauksmes cēlēja pēdēja piekļuve"
 
@@ -571,6 +574,9 @@ msgstr "Saglabāt"
 
 msgid "Cancel"
 msgstr "Atcelt"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Ziņojuma statusi"
@@ -1092,6 +1098,9 @@ msgstr "Iespējot pakalpojumu sniegšanas noteikumus"
 msgid "Title"
 msgstr "Virsraksts"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Publiskais nosaukums"
 
@@ -1149,8 +1158,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Piešķirt lietotājam administratīvo piekļuvi šādām funkcijām:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Pieprasījuma datums"
@@ -1197,6 +1212,18 @@ msgstr "Teksts tiek parādīts pēc tam, kad lietotājs ir izvēlējies iespēju
 msgid "Assign score points"
 msgstr "Piešķiriet punktus"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Statuss:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Esiet pārliecināts?"
 
@@ -1219,6 +1246,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Izveidojiet kopiju un uzglabājiet to drošā vietā. Ja pazaudēsiet paroli, tas būs nepieciešams, lai bez datu zaudēšanas atgūtu piekļuvi savam kontam."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Ievadiet kopijas nosaukumu"
@@ -1291,6 +1325,9 @@ msgstr "Saturam var piekļūt tikai Tor tīklā"
 msgid "The upload request exceeds the size limit"
 msgstr "Augšupielādes pieprasījums pārsniedz maksimālo pieļaujamo izmēru"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Pašreizējā parole"
 
@@ -1341,6 +1378,15 @@ msgstr "Izmērs:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adrese"
+
+msgid "Fiscal code"
+msgstr "Fiskālais kods"
+
+msgid "Tax code"
+msgstr "Nodokļu maksātāja kods"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saņēmēji ir lūguši jūs aizpildīt papildu aptauju."
 
@@ -1367,9 +1413,6 @@ msgstr "Aptaujas atbildes"
 
 msgid "Step"
 msgstr "Solis"
-
-msgid "Status:"
-msgstr "Statuss:"
 
 msgid "Files attached by recipients"
 msgstr "Saņēmēju pievienotie faili"
@@ -1465,20 +1508,11 @@ msgstr "Ja platforma netiks aktivizēta 24 stundu laikā, tā tiks automātiski 
 msgid "Sign up"
 msgstr "Pierakstīties"
 
-msgid "Invalid phone number"
-msgstr "Nederīgs tālruņa numurs"
-
 msgid "Invalid confirmation"
 msgstr "Nederīgs apstiprinājums"
 
-msgid "Address"
-msgstr "Adrese"
-
-msgid "Fiscal code"
-msgstr "Fiskālais kods"
-
-msgid "Tax code"
-msgstr "Nodokļu maksātāja kods"
+msgid "Invalid phone number"
+msgstr "Nederīgs tālruņa numurs"
 
 msgid "Site"
 msgstr "Vietne"

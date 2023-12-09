@@ -553,6 +553,9 @@ msgstr "Dátum vytvorenia"
 msgid "Last access"
 msgstr "Posledný prístup"
 
+msgid "Receivers"
+msgstr "Príjemcovia"
+
 msgid "Whistleblower's last access"
 msgstr "Posledný prístup oznamovateľa"
 
@@ -576,6 +579,9 @@ msgstr "Uložiť"
 
 msgid "Cancel"
 msgstr "Zrušiť"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Stav podania"
@@ -1097,6 +1103,9 @@ msgstr "Povoliť zmluvné podmienky"
 msgid "Title"
 msgstr "Názov"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Verejné meno"
 
@@ -1154,8 +1163,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Poskytnite používateľovi administratívny prístup k nasledujúcim funkciám:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Dátum žiadosti"
@@ -1202,6 +1217,18 @@ msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností
 msgid "Assign score points"
 msgstr "Prideliť bodové skóre"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Stav"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ste si istý?"
 
@@ -1224,6 +1251,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Vytvorte kópiu a uložte ju na bezpečnom mieste. Ak stratíte heslo, budete môcť obnoviť prístup k svojmu účtu bez straty dát."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Zadajte názov kópie"
@@ -1296,6 +1330,9 @@ msgstr "Zdroj je prístupný iba v rámci siete Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Žiadosť na upload prekročila veľkostné limity"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Aktuálne heslo"
 
@@ -1346,6 +1383,15 @@ msgstr "Veľkosť:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "DIČ"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
 
@@ -1372,9 +1418,6 @@ msgstr "Odpovede z dotazníkov"
 
 msgid "Step"
 msgstr "Krok"
-
-msgid "Status:"
-msgstr "Stav"
 
 msgid "Files attached by recipients"
 msgstr "Prílohy od príjemcov"
@@ -1470,20 +1513,11 @@ msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky o
 msgid "Sign up"
 msgstr "Zaregistrovať sa"
 
-msgid "Invalid phone number"
-msgstr "Neplatné telefónne číslo"
-
 msgid "Invalid confirmation"
 msgstr "Neplatné potvrdenie"
 
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "DIČ"
+msgid "Invalid phone number"
+msgstr "Neplatné telefónne číslo"
 
 msgid "Site"
 msgstr "Stránka"

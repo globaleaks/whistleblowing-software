@@ -547,6 +547,9 @@ msgstr "កាលបរិច្ឆេទបង្កើត"
 msgid "Last access"
 msgstr "ចូលប្រើប្រាស់ចុងក្រោយ"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "ការចូលប្រើប្រាស់ចុងកក្រោយរបស់អ្នករាយការណ៍"
 
@@ -570,6 +573,9 @@ msgstr "រក្សាទុក"
 
 msgid "Cancel"
 msgstr "បោះបង់"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "ស្ថានភាពរបាយការណ៍"
@@ -1091,6 +1097,9 @@ msgstr "បើកលក្ខខណ្ឌនៃសេវាកម្ម"
 msgid "Title"
 msgstr "ចំណង​ជើង"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "ឈ្មោះសាធារណៈ"
 
@@ -1148,8 +1157,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ផ្តល់សិទ្ធអ្នកប្រើប្រាស់ចូលគ្រប់គ្រង​មុខងារដូចខាងក្រោម៖"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "កាលបរិច្ឆេទស្នើសុំ"
@@ -1196,6 +1211,18 @@ msgstr "អក្សរបង្ហាញ បន្ទាប់ពីអ្ន�
 msgid "Assign score points"
 msgstr "កំណត់ពិន្ទុ"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "ស្ថានភាព៖"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
 
@@ -1218,6 +1245,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ចំលង និងរក្សាទុកនៅកន្លែងសុវត្ថិភាព។ វាមានសារៈសំខាន់ បើអ្នកបាត់បង់ពាក្យសម្ងាត់ ដើម្បីជួយអ្នកក្នុងការចូលប្រើប្រាស់គណនីឡើងវិញ ដោយមិនបាត់បង់ទិន្នន័យ។"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "វាយបញ្ចូលឈ្មោះសម្រាប់ការចម្លង"
@@ -1290,6 +1324,9 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "ពាក្យសម្ងាត់បច្ចុប្បន្ន"
 
@@ -1340,6 +1377,15 @@ msgstr "ទំហំ៖"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "អាសយដ្ឋាន"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "លេខពន្ធ"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "អ្នកទទួលបានស្នើសុំអ្នកឲ្យបំពេញកម្រងសំណួរបន្ថែម។"
 
@@ -1366,9 +1412,6 @@ msgstr "ចម្លើយកម្រងសំណួរ"
 
 msgid "Step"
 msgstr "ជំហាន"
-
-msgid "Status:"
-msgstr "ស្ថានភាព៖"
 
 msgid "Files attached by recipients"
 msgstr "ឯកសារភ្ជាប់ដោយអ្នកទទួល"
@@ -1464,20 +1507,11 @@ msgstr "បើមិនដាក់ដំណើរការក្នុងពេ
 msgid "Sign up"
 msgstr "ចុះឈ្មោះ"
 
-msgid "Invalid phone number"
-msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
-
 msgid "Invalid confirmation"
 msgstr "ការបញ្ជាក់មិនត្រឹមត្រូវ"
 
-msgid "Address"
-msgstr "អាសយដ្ឋាន"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "លេខពន្ធ"
+msgid "Invalid phone number"
+msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
 
 msgid "Site"
 msgstr "តំបន់​បណ្ដាញ"

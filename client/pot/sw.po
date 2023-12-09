@@ -543,6 +543,9 @@ msgstr ""
 msgid "Last access"
 msgstr "Mara ya mwisho kuingia"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
 
@@ -566,6 +569,9 @@ msgstr "Hifadhi"
 
 msgid "Cancel"
 msgstr "futa"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Hali ya ripoti"
@@ -1087,6 +1093,9 @@ msgstr "Wezesha masharti ya huduma"
 msgid "Title"
 msgstr "Kichwa"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Jina la umma"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Mtumiaji ana ufikiaji wa kiutawala kwa huduma zifuatazo"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Omba tarehe"
@@ -1192,6 +1207,18 @@ msgstr "Maandishi yanayoonyeshwa baada ya mtumiaji kuchagua chaguo."
 msgid "Assign score points"
 msgstr "Weka alama za kupata"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Hali:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Una uhakika?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tengeneza nakala na uihifadhi mahali salama. Itakuwa muhimu ikiwa utapoteza\n\nneno lako la siri kupata ufikiaji wa akaunti yako bila kupoteza data."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Ingiza jina la nakala"
@@ -1286,6 +1320,9 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Neno la siri la sasa"
 
@@ -1336,6 +1373,15 @@ msgstr "Ukubwa:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Anwani"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Nambari ya ushuru"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
@@ -1362,9 +1408,6 @@ msgstr "Majibu ya dodoso"
 
 msgid "Step"
 msgstr "Hatua"
-
-msgid "Status:"
-msgstr "Hali:"
 
 msgid "Files attached by recipients"
 msgstr ""
@@ -1460,20 +1503,11 @@ msgstr "Kama haitahaishwa ndani ya masaa 24, jukwaa litafutwa automatiki."
 msgid "Sign up"
 msgstr "Sajili"
 
-msgid "Invalid phone number"
-msgstr "Namba ya simu batili"
-
 msgid "Invalid confirmation"
 msgstr "Uthibitisho batili"
 
-msgid "Address"
-msgstr "Anwani"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Nambari ya ushuru"
+msgid "Invalid phone number"
+msgstr "Namba ya simu batili"
 
 msgid "Site"
 msgstr ""

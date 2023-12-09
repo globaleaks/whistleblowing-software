@@ -570,6 +570,9 @@ msgstr "Oluşturulma tarihi"
 msgid "Last access"
 msgstr "Son erişilme"
 
+msgid "Receivers"
+msgstr "Alıcılar"
+
 msgid "Whistleblower's last access"
 msgstr "Muhbirin son erişme zamanı"
 
@@ -593,6 +596,9 @@ msgstr "Kaydet"
 
 msgid "Cancel"
 msgstr "İptal"
+
+msgid "Scadenza (giorni)"
+msgstr "Geçerlilik sonu (gün)"
 
 msgid "Report statuses"
 msgstr "İhbar durumları"
@@ -1114,6 +1120,9 @@ msgstr "Hizmet koşulları kullanılsın"
 msgid "Title"
 msgstr "Başlık"
 
+msgid "Analyst"
+msgstr "İnceleyen"
+
 msgid "Public name"
 msgstr "Herkese açık ad"
 
@@ -1171,8 +1180,14 @@ msgstr "Bu kullanıcı başka kullanıcılara ihbarlara erişme izni verebilsin"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Bu kullanıcı ihbarları başka kullanıcılara aktarabilsin"
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Bu kullanıcı bir ihbarın yönetimini yeniden açabilsin "
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Kullanıcıya şu özellikler için yönetici izni verilsin:"
+
+msgid "Statistics"
+msgstr "İstatistikler"
 
 msgid "Request date"
 msgstr "İstek tarihi"
@@ -1219,6 +1234,18 @@ msgstr "Kullanıcı seçeneği seçtikten sonra görüntülenecek metin."
 msgid "Assign score points"
 msgstr "Değerlendirmeleri ata"
 
+msgid "Change status"
+msgstr "Durumu değiştir"
+
+msgid "Status:"
+msgstr "Durum"
+
+msgid "Substatus:"
+msgstr "Alt durum:"
+
+msgid "Motivation:"
+msgstr "Amaç:"
+
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
 
@@ -1241,6 +1268,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Bir kopyasını alın ve güvenli bir yerde saklayın. Parolanızı unutursanız, veri kaybı yaşamadan hesabınıza erişmek için bu anahtara gerek duyacaksınız."
+
+msgid "Attention"
+msgstr "Dikkat"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Güvenlik nedeniyle ihbarınızın güvenlik kodunun değiştirilmesi gerekiyor."
 
 msgid "Enter a name for the copy"
 msgstr "Kopya için bir ad yazın"
@@ -1313,6 +1347,9 @@ msgstr "Kaynağa yalnızca Tor ağı üzerinden erişilebilir"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme isteğinin boyutu sınırı aşıyor"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Bir muhbir adına işlem yapıyorsunuz."
+
 msgid "Current password"
 msgstr "Geçerli parola"
 
@@ -1363,6 +1400,15 @@ msgstr "Boyutu:"
 msgid "Access date"
 msgstr "Erişilme tarihi"
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr "Sicil numarası"
+
+msgid "Tax code"
+msgstr "Vergi numarası"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar bir de anket doldurmanızı istiyor."
 
@@ -1389,9 +1435,6 @@ msgstr "Anket yanıtları"
 
 msgid "Step"
 msgstr "Adım"
-
-msgid "Status:"
-msgstr "Durum"
 
 msgid "Files attached by recipients"
 msgstr "Alıcılar tarafından eklenmiş dosyalar"
@@ -1487,20 +1530,11 @@ msgstr "Platform 24 saat içinde etkinleştirilmezse otomatik olarak silinir."
 msgid "Sign up"
 msgstr "Hesap aç"
 
-msgid "Invalid phone number"
-msgstr "Telefon numarası geçersiz"
-
 msgid "Invalid confirmation"
 msgstr "Doğrulama geçersiz"
 
-msgid "Address"
-msgstr "Adres"
-
-msgid "Fiscal code"
-msgstr "Sicil numarası"
-
-msgid "Tax code"
-msgstr "Vergi numarası"
+msgid "Invalid phone number"
+msgstr "Telefon numarası geçersiz"
 
 msgid "Site"
 msgstr "Site"

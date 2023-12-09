@@ -548,6 +548,9 @@ msgstr "އުފެއްދި ތާރީޚް"
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "ވިސްލްބްލޯވަރގެ އެންމެ ފަހުގެ އެކްސެސް"
 
@@ -571,6 +574,9 @@ msgstr "ސޭވް"
 
 msgid "Cancel"
 msgstr "ކެންސަލްކުރަން"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "ރިޕޯޓް ސްޓޭޓަސެސް"
@@ -1092,6 +1098,9 @@ msgstr "ޚިދުމަތުގެ އިޤްރާރު އެނޭބަލްކުރުމަށް"
 msgid "Title"
 msgstr "ލަގަބު"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr " އާންމު ނަން"
 
@@ -1149,8 +1158,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
@@ -1197,6 +1212,18 @@ msgstr "ޔޫސަރ ވަކި ކަމެއް އިޚްތިޔާރު ކުރެއްވުމ
 msgid "Assign score points"
 msgstr "ސްކޯ ޕޮއިންޓް އެސައިން ކުރެއްވުމަށް"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "ސްޓޭޓަސް:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
 
@@ -1219,6 +1246,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ކޮޕީއެއް ހައްދާފައި ރައްކާތެރިކޮށް ބަހައްޓަން އިލްތިމާސްކުރަން. ޕާސްވާޑް ހަނދާންނެތިއްޖެނަމަ ނުވަތަ އެކައުންޓަށް ލިބިފައިވާ އެކްސެސް ގެއްލިއްޖެނަމަ، ހުރިހާ މައުލޫމާތާއެކު އަލުން އެކައުންޓް ހޯދަން މި މައުލޫއްމާތު ބޭނުންވާނެ"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
@@ -1291,6 +1325,9 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ލިމިޓަވުރެ ބޮޑު"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "މިހާރު ބޭނުންކުރާ ޕާސްވޯޑް"
 
@@ -1341,6 +1378,15 @@ msgstr "ސައިޒު:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "ްއެޑްރެސް"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr " އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް ރިސިޕިއަންޓުން އެދިއްޖެ. "
 
@@ -1367,9 +1413,6 @@ msgstr "ސާރވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
 
 msgid "Step"
 msgstr "ފިޔަވަޅު"
-
-msgid "Status:"
-msgstr "ސްޓޭޓަސް:"
 
 msgid "Files attached by recipients"
 msgstr "ރިސިޕިއަންޓުން ހިމަނާފައިވާ ފައިލްތައް"
@@ -1465,20 +1508,11 @@ msgstr "24 ގަޑިއިރުގެ ތެރޭގައި އެކްޓިވޭޓް ނުކުރ
 msgid "Sign up"
 msgstr "ހިދުމަތަށް އެދިލެއްވުން"
 
-msgid "Invalid phone number"
-msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
-
 msgid "Invalid confirmation"
 msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
 
-msgid "Address"
-msgstr "ްއެޑްރެސް"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
 msgid "Site"
 msgstr ""

@@ -550,6 +550,9 @@ msgstr "Yaradılma tarixi"
 msgid "Last access"
 msgstr "Son giriş "
 
+msgid "Receivers"
+msgstr "Alıcılar"
+
 msgid "Whistleblower's last access"
 msgstr "Məlumatlandıranın son girişi"
 
@@ -573,6 +576,9 @@ msgstr "Yadda saxla"
 
 msgid "Cancel"
 msgstr "Ləğv et"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Hesabatın statusu"
@@ -1094,6 +1100,9 @@ msgstr "Qaydaları aktiv edin"
 msgid "Title"
 msgstr "Başlıq"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "İctimai ad"
 
@@ -1151,8 +1160,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "İstifadəçiyə aşağıdakılar üçün inzibatçı icazəsi ver:"
+
+msgid "Statistics"
+msgstr "Statistikalar"
 
 msgid "Request date"
 msgstr "Tələb olunan tarix"
@@ -1199,6 +1214,18 @@ msgstr "İstifadəçi seçimini etdikdən sonra görünən mətn."
 msgid "Assign score points"
 msgstr "Xalları təyin edin"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Əminsinizmi?"
 
@@ -1221,6 +1248,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Nüsxəsini çıxarıb, təhlükəsiz yerdə saxlayın. Beləcə, parol itəndə hesabınızı, məlumatlarınızı itirmədən qaytara biləcəksiniz."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nüsxə üçün ad əlavə edin"
@@ -1293,6 +1327,9 @@ msgstr "Resursa giriş yalnız Tor şəbəkəsi vasitəsiylə mümkündür"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükləmə tələbi ölçü həddini aşır"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "İndiki şifrə"
 
@@ -1343,6 +1380,15 @@ msgstr "Ölçü:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Ünvan"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
 
@@ -1369,9 +1415,6 @@ msgstr "Sorğunun cavabları"
 
 msgid "Step"
 msgstr "Mərhələ"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Alıcıların yüklədiyi fayllar"
@@ -1467,20 +1510,11 @@ msgstr "Platforma 24 saat ərzində aktivləşdirilməsə, avtomatik ləğv olun
 msgid "Sign up"
 msgstr "Qeydiyyat"
 
-msgid "Invalid phone number"
-msgstr "Səhv telefon nömrəsi"
-
 msgid "Invalid confirmation"
 msgstr "Səhv təsdiqləmə"
 
-msgid "Address"
-msgstr "Ünvan"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Səhv telefon nömrəsi"
 
 msgid "Site"
 msgstr "Sayt"

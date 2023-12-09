@@ -559,6 +559,9 @@ msgstr "Data creării"
 msgid "Last access"
 msgstr "Ultima accesare"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Ultima accesare de către avertizorul de integritate"
 
@@ -582,6 +585,9 @@ msgstr "Salvează"
 
 msgid "Cancel"
 msgstr "Anulează"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Statusuri sesizare"
@@ -1103,6 +1109,9 @@ msgstr "Activează termenii de utilizare"
 msgid "Title"
 msgstr "Titlu"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Nume public"
 
@@ -1160,8 +1169,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Permite utilizatorului acces administrativ la următoarele instrumente:"
+
+msgid "Statistics"
+msgstr "Statistici"
 
 msgid "Request date"
 msgstr "Data solicitării"
@@ -1208,6 +1223,18 @@ msgstr "Acest text apare după ce utilizatorul a selectat varianta."
 msgid "Assign score points"
 msgstr "Atribuie puncte pentru evaluare"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ești sigur(ă)?"
 
@@ -1230,6 +1257,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Notează și pune cheia într-un loc sigur. Vei avea nevoie de ea dacă îți pierzi parola și vrei să îți recuperezi accesul la cont fără a pierde datele."
+
+msgid "Attention"
+msgstr "Atenție"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Introdu un nume pentru copie"
@@ -1302,6 +1336,9 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Parolă curentă"
 
@@ -1352,6 +1389,15 @@ msgstr "Dimensiune:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresă"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Cod fiscal"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Destinatarii ți-au solicitat să completezi un chestionar suplimentar."
 
@@ -1378,9 +1424,6 @@ msgstr "Răspunsuri la chestionar"
 
 msgid "Step"
 msgstr "Etapa"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Fișiere atașate de către destinatari"
@@ -1476,20 +1519,11 @@ msgstr "Dacă nu este activată în 24 de ore, platforma va fi ștearsă în mod
 msgid "Sign up"
 msgstr "Cont nou"
 
-msgid "Invalid phone number"
-msgstr "Număr de telefon invalid"
-
 msgid "Invalid confirmation"
 msgstr "Confirmare invalidă"
 
-msgid "Address"
-msgstr "Adresă"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Cod fiscal"
+msgid "Invalid phone number"
+msgstr "Număr de telefon invalid"
 
 msgid "Site"
 msgstr "Sait"

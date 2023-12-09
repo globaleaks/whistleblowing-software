@@ -559,6 +559,9 @@ msgstr "Daty namoronana azy"
 msgid "Last access"
 msgstr "Dernier accès"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr ""
 
@@ -582,6 +585,9 @@ msgstr "Enregistrer"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "États de envois"
@@ -1103,6 +1109,9 @@ msgstr "Activer les conditions générales d’utilisation"
 msgid "Title"
 msgstr "Titre"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr ""
 
@@ -1160,7 +1169,13 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
+msgstr ""
+
+msgid "Statistics"
 msgstr ""
 
 msgid "Request date"
@@ -1208,6 +1223,18 @@ msgstr ""
 msgid "Assign score points"
 msgstr "Attribuer un pointage"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Êtes-vous certain ?"
 
@@ -1229,6 +1256,13 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
@@ -1302,6 +1336,9 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Mot de passe actuel"
 
@@ -1352,6 +1389,15 @@ msgstr "Taille :"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
@@ -1378,9 +1424,6 @@ msgstr "Valin'ireo fanontaniana"
 
 msgid "Step"
 msgstr "Étape"
-
-msgid "Status:"
-msgstr ""
 
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
@@ -1476,20 +1519,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "Inscription"
 
-msgid "Invalid phone number"
-msgstr "Le numéro de téléphone est invalide"
-
 msgid "Invalid confirmation"
 msgstr ""
 
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Le numéro de téléphone est invalide"
 
 msgid "Site"
 msgstr ""

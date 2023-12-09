@@ -570,6 +570,9 @@ msgstr "تاریخ ایجاد "
 msgid "Last access"
 msgstr "آخرین دسترسی"
 
+msgid "Receivers"
+msgstr "دریافت‌کننده‌ها"
+
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر"
 
@@ -593,6 +596,9 @@ msgstr "ذخیره"
 
 msgid "Cancel"
 msgstr "لغو"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "وضعیت‌های گزارش"
@@ -1114,6 +1120,9 @@ msgstr "فعال کردن شرایط خدمات"
 msgid "Title"
 msgstr "عنوان"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "نام عمومی"
 
@@ -1171,8 +1180,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "به کاربر دسترسی مدیریتی به ویژگی‌های زیر را بدهید:"
+
+msgid "Statistics"
+msgstr "آمار"
 
 msgid "Request date"
 msgstr "تاریخ درخواست"
@@ -1219,6 +1234,18 @@ msgstr "متن نمایش داده شده بعد از اینکه کاربر گز
 msgid "Assign score points"
 msgstr "تخصیص امتیازها"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "وضعیت:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
@@ -1241,6 +1268,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "یک کپی تهیه کرده و آن را در مکانی ایمن نگه‌داری نمایید. اگر گذرواژهٔ خود را فراموش کردید، برای بازیابی دسترسی به حساب خود بدون از دست دادن اطلاعات به آن نیاز خواهید داشت."
+
+msgid "Attention"
+msgstr "توجه"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای نسخهٔ کپی"
@@ -1313,6 +1347,9 @@ msgstr "منبع فقط از طریق شبکهٔ Tor قابل دسترس است"
 msgid "The upload request exceeds the size limit"
 msgstr "درخواست بارگذاری از محدودهٔ حجم مجاز بیشتر است"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "گذرواژهٔ فعلی"
 
@@ -1363,6 +1400,15 @@ msgstr "حجم:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Fiscal code"
+msgstr "کد مالی"
+
+msgid "Tax code"
+msgstr "شماره مالیات"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "گیرندگان از شما درخواست کردند تا یک پرسش‌نامهٔ اضافی را پر کنید."
 
@@ -1389,9 +1435,6 @@ msgstr "پاسخ‌های پرسش‌نامه"
 
 msgid "Step"
 msgstr "مرحله"
-
-msgid "Status:"
-msgstr "وضعیت:"
 
 msgid "Files attached by recipients"
 msgstr "فایل‌های پیوست شده از سوی گیرندگان"
@@ -1487,20 +1530,11 @@ msgstr "در صورتی که طی ۲۴ ساعت ساعت فعال نشود پل�
 msgid "Sign up"
 msgstr "نام‌نویسی"
 
-msgid "Invalid phone number"
-msgstr "شماره‌تلفن نامعتبر"
-
 msgid "Invalid confirmation"
 msgstr "تأیید نامعتبر"
 
-msgid "Address"
-msgstr "آدرس"
-
-msgid "Fiscal code"
-msgstr "کد مالی"
-
-msgid "Tax code"
-msgstr "شماره مالیات"
+msgid "Invalid phone number"
+msgstr "شماره‌تلفن نامعتبر"
 
 msgid "Site"
 msgstr "پایگاه"

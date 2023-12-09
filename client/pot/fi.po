@@ -553,6 +553,9 @@ msgstr "Luontipäivämäärä"
 msgid "Last access"
 msgstr "Viimeisin käyttö"
 
+msgid "Receivers"
+msgstr "Vastaanottajat"
+
 msgid "Whistleblower's last access"
 msgstr "Vihjeenantajan viimeisin kirjautumisajankohta"
 
@@ -576,6 +579,9 @@ msgstr "Tallenna"
 
 msgid "Cancel"
 msgstr "Peru"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Ilmoitusten vaiheet"
@@ -1097,6 +1103,9 @@ msgstr "Ota käyttöön palvelun käyttöehdot"
 msgid "Title"
 msgstr "Otsikko"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Julkinen nimi"
 
@@ -1154,8 +1163,14 @@ msgstr "Anna käyttäjälle mahdollisuus myöntää käyttöoikeuksia ilmoituksi
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Anna käyttäjälle mahdollisuus siirtää ilmoituksia toisille käyttäjille"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Anna käyttäjälle ylläpito-oikeudet seuraaviin toimintoihin:"
+
+msgid "Statistics"
+msgstr "Tilastot"
 
 msgid "Request date"
 msgstr "Pyynnön päiväys"
@@ -1202,6 +1217,18 @@ msgstr "Näytettävä teksti kun käyttäjä on tehnyt valinnan."
 msgid "Assign score points"
 msgstr "Määritä pistemäärät"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Tila:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
@@ -1224,6 +1251,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tee kopio ja säilytä se turvallisessa paikassa. Se on tarpeen, jos kadotat salasanasi, jotta voit palauttaa tilisi käyttöoikeuden ilman tietojen menetystä."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Anna kopiolle nimi"
@@ -1296,6 +1330,9 @@ msgstr "Resurssia voi käyttää vain Tor-verkon kautta"
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Nykyinen salasana"
 
@@ -1346,6 +1383,15 @@ msgstr "Koko:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Osoite"
+
+msgid "Fiscal code"
+msgstr "Verotunnus"
+
+msgid "Tax code"
+msgstr "Veronumero"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään lisäkyselylomakkeen."
 
@@ -1372,9 +1418,6 @@ msgstr "Saapuneet vihjeet"
 
 msgid "Step"
 msgstr "Vaihe"
-
-msgid "Status:"
-msgstr "Tila:"
 
 msgid "Files attached by recipients"
 msgstr "Vastaanottajien liittämät tiedostot"
@@ -1470,20 +1513,11 @@ msgstr "Sivusto tuhotaan automaattisesti, mikäli tunnusta ei aktivoida 24 tunni
 msgid "Sign up"
 msgstr "Rekisteröidy"
 
-msgid "Invalid phone number"
-msgstr "Puhelinnumero ei kelpaa"
-
 msgid "Invalid confirmation"
 msgstr "Virheellinen varmistus"
 
-msgid "Address"
-msgstr "Osoite"
-
-msgid "Fiscal code"
-msgstr "Verotunnus"
-
-msgid "Tax code"
-msgstr "Veronumero"
+msgid "Invalid phone number"
+msgstr "Puhelinnumero ei kelpaa"
 
 msgid "Site"
 msgstr "Sivusto"

@@ -543,6 +543,9 @@ msgstr "د جوړولو نېټه"
 msgid "Last access"
 msgstr "وروستی لاسرسی"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "د افشاګر وروستی لاسرسی"
 
@@ -566,6 +569,9 @@ msgstr "ثبت کول"
 
 msgid "Cancel"
 msgstr "لغوه کول"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "د وضعیتونو رپوټ کول"
@@ -1087,6 +1093,9 @@ msgstr "د خدمت د شرایطو فعالول"
 msgid "Title"
 msgstr "عنوان"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "عام نوم"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "کارن ته د لاندې فیچرونو په اړه  اداري لاسرسی ورکړئ:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "د غوښتنې نېټه"
@@ -1192,6 +1207,18 @@ msgstr "کله چې کارن غوراوی وټاکه نو دا متن ښودل �
 msgid "Assign score points"
 msgstr "د امتیازاتو د نمرو اختصاص"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "وضعیت:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "ایا ډاډه یاست؟"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "کاپي يې کړئ او په خوندي ځای کې یې زیرمه کړئ. که چیرته تاسې خپل پټ نوم له لاسه ورکړ نو خپل اکاونټ ته پرته له دې چې اطلاعات له لاسه ورکړئ د لاسرسي د بیرته تر لاسه کولو لپاره به اړین وي."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "د کاپي لپاره یو نوم دننه کړئ"
@@ -1286,6 +1320,9 @@ msgstr "سرچینو ته یوازې کېدای شي د Tor د شبکې له ل�
 msgid "The upload request exceeds the size limit"
 msgstr "د پورته کولو غوښتنه د ټاکل شوي اندازې له حد څخه زیاته ده"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "اوسنی پټ نوم"
 
@@ -1336,6 +1373,15 @@ msgstr "اندازه:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تر لاسه کوونکو له تاسې غوښتي تر څو یو اضافي پوښتنلیک ډک کړي."
 
@@ -1362,9 +1408,6 @@ msgstr "د پوښتنلیک ځوابونه"
 
 msgid "Step"
 msgstr "ګام"
-
-msgid "Status:"
-msgstr "وضعیت:"
 
 msgid "Files attached by recipients"
 msgstr "د تر لاسه کوونکو له خوا ضمیمه شوي فایلونه"
@@ -1460,20 +1503,11 @@ msgstr "که چیرته په 24 ساعتونو کې دننه فعال نشي ن�
 msgid "Sign up"
 msgstr "نوم لیکنه"
 
-msgid "Invalid phone number"
-msgstr "ناسمه د ټلیفون شمېره"
-
 msgid "Invalid confirmation"
 msgstr "ناسم تصدیق"
 
-msgid "Address"
-msgstr ""
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "ناسمه د ټلیفون شمېره"
 
 msgid "Site"
 msgstr ""

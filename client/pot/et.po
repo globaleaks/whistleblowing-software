@@ -544,6 +544,9 @@ msgstr "Loomise kuupäev:"
 msgid "Last access"
 msgstr "Viimane sisselogimine"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Vihjeandja viimane sisselogimine"
 
@@ -567,6 +570,9 @@ msgstr "Salvesta"
 
 msgid "Cancel"
 msgstr "Tühista"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Teavituste staatused"
@@ -1088,6 +1094,9 @@ msgstr "Luba teenusetingimused"
 msgid "Title"
 msgstr "Pealkiri"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Avalik nimi"
 
@@ -1145,8 +1154,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Anna kasutajale administraatori õigused järgmiste funktsioonide suhtes:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Taotluse kuupäev"
@@ -1193,6 +1208,18 @@ msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
 msgid "Assign score points"
 msgstr "Punktide andmine"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Staatus:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Kas olete kindel?"
 
@@ -1215,6 +1242,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tehke sellest koopia ja hoidke seda kindlas kohas. Seda läheb vaja parooli kaotamise korral, et saaksite juurdepääsu kontole taastada ilma andmeid kaotamata."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Sisestage koopia nimi"
@@ -1287,6 +1321,9 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Senine parool"
 
@@ -1337,6 +1374,15 @@ msgstr "Maht:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Aadress"
+
+msgid "Fiscal code"
+msgstr "Itaalia maksukood"
+
+msgid "Tax code"
+msgstr "Maksukood"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
@@ -1363,9 +1409,6 @@ msgstr "Ankeetide vastused"
 
 msgid "Step"
 msgstr "Etapp"
-
-msgid "Status:"
-msgstr "Staatus:"
 
 msgid "Files attached by recipients"
 msgstr "Saajate lisatud failid"
@@ -1461,20 +1504,11 @@ msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaat
 msgid "Sign up"
 msgstr "Registreeru"
 
-msgid "Invalid phone number"
-msgstr "Vigane telefoninumber"
-
 msgid "Invalid confirmation"
 msgstr "Kehtetu kinnitus"
 
-msgid "Address"
-msgstr "Aadress"
-
-msgid "Fiscal code"
-msgstr "Itaalia maksukood"
-
-msgid "Tax code"
-msgstr "Maksukood"
+msgid "Invalid phone number"
+msgstr "Vigane telefoninumber"
 
 msgid "Site"
 msgstr "Sait"

@@ -550,6 +550,9 @@ msgstr "তৈরির তারিখ"
 msgid "Last access"
 msgstr "শেষবার প্রবেশ"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
 
@@ -573,6 +576,9 @@ msgstr "সংরক্ষণ করুন"
 
 msgid "Cancel"
 msgstr "বাতিল"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "স্ট্যাটাস রিপোর্ট করুন"
@@ -1094,6 +1100,9 @@ msgstr "পরিষেবার শর্তাদি সক্ষম করু
 msgid "Title"
 msgstr "শিরোনাম"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "প্রকাশ্য নাম"
 
@@ -1151,8 +1160,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ব্যবহারকারীকে নিম্নলিখিত বৈশিষ্ট্যগুলিতে প্রশাসনিক অ্যাক্সেস দিন:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "অনুরোধের তারিখ"
@@ -1199,6 +1214,18 @@ msgstr "ব্যবহারকারী বিকল্প নির্বা�
 msgid "Assign score points"
 msgstr "স্কোর পয়েন্ট বরাদ্দ করুন"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "অবস্থা:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "আপনি কি নিশ্চিত?"
 
@@ -1221,6 +1248,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "একটি অনুলিপি তৈরি করুন এবং এটি একটি নিরাপদ স্থানে সংরক্ষণ করুন। আপনি যদি পাসওয়ার্ড হারিয়ে ফেলেন তবে তথ্যের ক্ষতি ছাড়াই আপনার অ্যাকাউন্টে অ্যাক্সেস পুনরুদ্ধার করতে এটি প্রয়োজনীয় হবে।"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "অনুলিপিটির জন্য একটি নাম লিখুন"
@@ -1293,6 +1327,9 @@ msgstr "কেবলমাত্র টর নেটওয়ার্কের 
 msgid "The upload request exceeds the size limit"
 msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "বর্তমান পাসওয়ার্ড"
 
@@ -1343,6 +1380,15 @@ msgstr "আকার:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "ঠিকানা:"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "টিন নাম্বার"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
 
@@ -1369,9 +1415,6 @@ msgstr "প্রশ্নের উত্তরসমূহ"
 
 msgid "Step"
 msgstr "পদক্ষেপ"
-
-msgid "Status:"
-msgstr "অবস্থা:"
 
 msgid "Files attached by recipients"
 msgstr "প্রাপকদের দ্বারা সংযুক্ত ফাইল"
@@ -1467,20 +1510,11 @@ msgstr "২৪ ঘন্টার মধ্যে সক্রিয় না �
 msgid "Sign up"
 msgstr "সাইন আপ"
 
-msgid "Invalid phone number"
-msgstr "ফোন নাম্বার সঠিক নয়"
-
 msgid "Invalid confirmation"
 msgstr "অবৈধ নিশ্চিতকরণ"
 
-msgid "Address"
-msgstr "ঠিকানা:"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "টিন নাম্বার"
+msgid "Invalid phone number"
+msgstr "ফোন নাম্বার সঠিক নয়"
 
 msgid "Site"
 msgstr "ওয়েবসাইট"

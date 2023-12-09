@@ -543,6 +543,9 @@ msgstr "შექმნის თარიღი"
 msgid "Last access"
 msgstr "ბოლო შესვლა"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "ინსტრუქტორის ბოლო წვდომა"
 
@@ -566,6 +569,9 @@ msgstr "შენახვა"
 
 msgid "Cancel"
 msgstr "გაუქმება"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "სტატუსების ანგარიში"
@@ -1087,6 +1093,9 @@ msgstr "მომსახურების პირობების ჩა�
 msgid "Title"
 msgstr "სათაური"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "საჯარო სახელი"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "მომხმარებლისთვის ადმინისტრაციული წვდომის მიცემა შემდეგი ფუნქციებისთვის"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "თარიღის მოთხოვნა"
@@ -1192,6 +1207,18 @@ msgstr "ტექსტი გამოჩნდება მას შემდ
 msgid "Assign score points"
 msgstr "ქულათა რაოდენობის მინიჭება"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "სტატუსი:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "გააკეთეთ ასლი და შეინახეთ უსაფრთხო ადგილას. ის საჭირო იქნება თქვენი პაროლის დაკარგვის შემთხვევაში თქვენს ანგარიშზე წვდომის აღსადგენად მონაცემების დაკარგვის გარეშე. "
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "შეიყვანეთ სახელი ასლისთვის"
@@ -1286,6 +1320,9 @@ msgstr "რესურსზე წვდომა შესაძლებე�
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვის მოთხოვნა აღემატება ზომის ლიმიტს"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "მიმდინარე პაროლი"
 
@@ -1336,6 +1373,15 @@ msgstr "ზომა:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "მისამართი"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "მიმღებებმა მოითხოვეს, რომ თქვენ შეავსოთ დამატებითი კითხვარი."
 
@@ -1362,9 +1408,6 @@ msgstr "კითხვარის პასუხები"
 
 msgid "Step"
 msgstr "ნაბიჯი"
-
-msgid "Status:"
-msgstr "სტატუსი:"
 
 msgid "Files attached by recipients"
 msgstr "მიმღების მიერ ატვირთული ფაილები"
@@ -1460,20 +1503,11 @@ msgstr "თუ პლატფორმა არ გააქტიურდე
 msgid "Sign up"
 msgstr "შექმნა"
 
-msgid "Invalid phone number"
-msgstr "არასწორი ტელეფონის ნომერი"
-
 msgid "Invalid confirmation"
 msgstr "არასწორი დადასტურება"
 
-msgid "Address"
-msgstr "მისამართი"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "არასწორი ტელეფონის ნომერი"
 
 msgid "Site"
 msgstr "საიტი"

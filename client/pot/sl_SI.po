@@ -505,7 +505,7 @@ msgid "Recipients only"
 msgstr "Samo prejemniki"
 
 msgid "Me only"
-msgstr ""
+msgstr "Samo jaz"
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -549,6 +549,9 @@ msgstr "Datum vnosa"
 msgid "Last access"
 msgstr "Zadnji dostop"
 
+msgid "Receivers"
+msgstr "Prejemniki"
+
 msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
 
@@ -572,6 +575,9 @@ msgstr "Shrani"
 
 msgid "Cancel"
 msgstr "Prekliči"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Statusi prijav"
@@ -1093,6 +1099,9 @@ msgstr "Omogoči pogoje uporabe"
 msgid "Title"
 msgstr "Naslov"
 
+msgid "Analyst"
+msgstr "Analitik"
+
 msgid "Public name"
 msgstr "Javno ime"
 
@@ -1150,8 +1159,14 @@ msgstr "Uporabniku omogoči, da odobri dostop do prijav."
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Uporabniku omogoči, da prenese prijave drugim uporabnikom."
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Dovolite temu uporabniku, da ponovno odpre upravljanje prijave"
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Omogoči uporabniku dostop do naslednjih funkcij:"
+
+msgid "Statistics"
+msgstr "Statistika"
 
 msgid "Request date"
 msgstr "Datum zahtevka"
@@ -1198,6 +1213,18 @@ msgstr "Besedilo se prikaže, ko uporabnik izbere možnost. "
 msgid "Assign score points"
 msgstr "Dodelite ocenjevalne točke"
 
+msgid "Change status"
+msgstr "Spremeni status"
+
+msgid "Status:"
+msgstr "Stanje:"
+
+msgid "Substatus:"
+msgstr "Podstatus:"
+
+msgid "Motivation:"
+msgstr "Razlog:"
+
 msgid "Are you sure?"
 msgstr "Ali ste prepričani? "
 
@@ -1220,6 +1247,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Naredite kopijo in jo shranite na varno mesto. Potrebovali jo boste za obnovitev dostopa do svojega računa, če izgubite/pozabite geslo, hkrati pa ne boste izgubili podatkov."
+
+msgid "Attention"
+msgstr "Pozor"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Zaradi varnostnih razlogov je treba spremeniti potrditveno kodo vaše prijave."
 
 msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
@@ -1257,7 +1291,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "S potrditvijo boste določili opomnik na izbrani datum:"
 
 msgid "Transfer access"
-msgstr "Dostop do prenosa"
+msgstr "Prenesi dostop drugemu prejemniku"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "To je demo platforma, ne uporabljajte je za oddajanje resničnih prijav. "
@@ -1291,6 +1325,9 @@ msgstr "Ta vir je dostopen le prek Tor omrežja"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahteva za prenos presega omejitev velikosti"
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Delujete v imenu prijavitelja nepravilnosti."
 
 msgid "Current password"
 msgstr "Trenutno geslo"
@@ -1342,6 +1379,15 @@ msgstr "Velikost"
 msgid "Access date"
 msgstr "Datum dostopa"
 
+msgid "Address"
+msgstr "Naslov"
+
+msgid "Fiscal code"
+msgstr "Matična številka"
+
+msgid "Tax code"
+msgstr "Davčna številka"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Prejemniki vas prosijo, da izpolnite dodatni vprašalnik."
 
@@ -1368,9 +1414,6 @@ msgstr "Odgovori iz vprašalnika"
 
 msgid "Step"
 msgstr "Korak"
-
-msgid "Status:"
-msgstr "Stanje:"
 
 msgid "Files attached by recipients"
 msgstr "Datoteke, ki jih je dodal prejemnik"
@@ -1466,20 +1509,11 @@ msgstr "Če platforme ne boste aktivirali v roku 24 ur, bo ta samodejno izbrisan
 msgid "Sign up"
 msgstr "Registracija"
 
-msgid "Invalid phone number"
-msgstr "Neveljavna telefonska številka"
-
 msgid "Invalid confirmation"
 msgstr "Neveljavna potrditev"
 
-msgid "Address"
-msgstr "Naslov"
-
-msgid "Fiscal code"
-msgstr "Matična številka"
-
-msgid "Tax code"
-msgstr "Davčna številka"
+msgid "Invalid phone number"
+msgstr "Neveljavna telefonska številka"
 
 msgid "Site"
 msgstr "Spletno mesto "
@@ -1659,7 +1693,7 @@ msgid "Other"
 msgstr "Drugo"
 
 msgid "Specify"
-msgstr ""
+msgstr "Dodajte podrobnejšo razlago"
 
 msgid "Dear {RecipientName},"
 msgstr "Spoštovani {RecipientName},"

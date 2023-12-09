@@ -558,6 +558,9 @@ msgstr "Ngày thành lập"
 msgid "Last access"
 msgstr "Lần truy cập cuối"
 
+msgid "Receivers"
+msgstr "Người nhận"
+
 msgid "Whistleblower's last access"
 msgstr "Lần truy cập cuối của người tố giác"
 
@@ -581,6 +584,9 @@ msgstr "Lưu"
 
 msgid "Cancel"
 msgstr "Hủy bỏ"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Trạng thái của báo cáo"
@@ -1102,6 +1108,9 @@ msgstr "Bật mở điều khoản dịch vụ"
 msgid "Title"
 msgstr "Tựa đề"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Tên công khai"
 
@@ -1159,8 +1168,14 @@ msgstr "Cho người dùng này khả năng cho phép người dùng khác truy 
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Cho người dùng này khả năng chuyển giao báo cáo cho người dùng khác"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Cho người dùng quyền quản trị để truy cập đến những tính năng sau: "
+
+msgid "Statistics"
+msgstr "Thống kê"
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
@@ -1207,6 +1222,18 @@ msgstr "Văn bản hiển thị sau khi người dùng đã lựa tùy chọn"
 msgid "Assign score points"
 msgstr "Ấn định điểm"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Trạng thái"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
@@ -1229,6 +1256,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Làm một bản sao và lưu trữ ở nơi an toàn. Nếu bạn mất mật khẩu nó sẽ giúp bạn khôi phục lại tài khoản và dữ liệu."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nhập tên cho bản sao"
@@ -1301,6 +1335,9 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Mật khẩu hiện tại"
 
@@ -1351,6 +1388,15 @@ msgstr "Kích thước:"
 msgid "Access date"
 msgstr "Ngày truy cập"
 
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Fiscal code"
+msgstr "Mã số tài khóa"
+
+msgid "Tax code"
+msgstr "Mã số thuế"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
 
@@ -1377,9 +1423,6 @@ msgstr "Trả lời cho bảng câu hỏi"
 
 msgid "Step"
 msgstr "Bước"
-
-msgid "Status:"
-msgstr "Trạng thái"
 
 msgid "Files attached by recipients"
 msgstr "Tập tin do người nhận đính kèm"
@@ -1475,20 +1518,11 @@ msgstr "Nếu không được kích hoạt trong vòng 24 giờ, hệ thống s�
 msgid "Sign up"
 msgstr "Đăng ký"
 
-msgid "Invalid phone number"
-msgstr "Số điện thoại không hợp lệ"
-
 msgid "Invalid confirmation"
 msgstr "Xác nhận không hợp lệ"
 
-msgid "Address"
-msgstr "Địa chỉ"
-
-msgid "Fiscal code"
-msgstr "Mã số tài khóa"
-
-msgid "Tax code"
-msgstr "Mã số thuế"
+msgid "Invalid phone number"
+msgstr "Số điện thoại không hợp lệ"
 
 msgid "Site"
 msgstr "Trang web"

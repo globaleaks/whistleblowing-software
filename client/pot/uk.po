@@ -564,6 +564,9 @@ msgstr "Дата Створення"
 msgid "Last access"
 msgstr "Останній вхід"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Останній доступ Інформатора"
 
@@ -587,6 +590,9 @@ msgstr "Зберегти"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Статуси звітів"
@@ -1108,6 +1114,9 @@ msgstr "Включити умови використання"
 msgid "Title"
 msgstr "Заголовок"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Публічне ім'я"
 
@@ -1165,8 +1174,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Надайте користувачеві адміністративний доступ до таких функцій:"
+
+msgid "Statistics"
+msgstr "Статистика"
 
 msgid "Request date"
 msgstr "Дата запиту"
@@ -1213,6 +1228,18 @@ msgstr "Текст, що показується після вибору опці
 msgid "Assign score points"
 msgstr "Оцінити"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
@@ -1235,6 +1262,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Зробіть копію і помістіть її в безпечне місце. Вона знадобиться для відновлення доступу до облікового запису без втрати даних, якщо ви втратите свій пароль."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Введіть ім'я копії"
@@ -1307,6 +1341,9 @@ msgstr "Ресурс доступний лише через браузер Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Завантаження перевищує дозволений розмір"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Поточний пароль"
 
@@ -1357,6 +1394,15 @@ msgstr "Розмір:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Отримувачі попросили вас заповнити додаткову анкету."
 
@@ -1383,9 +1429,6 @@ msgstr "Відповіді на питання анкети"
 
 msgid "Step"
 msgstr "Крок"
-
-msgid "Status:"
-msgstr "Статус"
 
 msgid "Files attached by recipients"
 msgstr "Файли, прикріплені отримувачами"
@@ -1481,20 +1524,11 @@ msgstr "Якщо не активувати платформу протягом 2
 msgid "Sign up"
 msgstr "Зареєструватися"
 
-msgid "Invalid phone number"
-msgstr "Недійсний номер телефону"
-
 msgid "Invalid confirmation"
 msgstr "Помилка підтвердження"
 
-msgid "Address"
-msgstr "Адреса"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Недійсний номер телефону"
 
 msgid "Site"
 msgstr "Сайт"
