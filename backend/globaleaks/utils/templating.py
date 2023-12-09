@@ -8,15 +8,15 @@ import re
 
 from datetime import datetime, timedelta
 
-from twisted.internet.abstract import isIPAddress
-
 from globaleaks import __version__
 from globaleaks.rest import errors
 from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.sock import isIPAddress
 from globaleaks.utils.utility import datetime_to_pretty_str, \
     datetime_to_day_str, \
     bytes_to_pretty_str, \
     ISO8601_to_pretty_str
+
 
 node_keywords = [
     '{NodeName}',
