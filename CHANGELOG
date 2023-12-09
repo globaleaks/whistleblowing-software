@@ -1,3 +1,14 @@
+Changes in version 4.13.19
+    Correct audio player in relation to handling of multiple recordings
+    Modify report print to unroll tabs and export completed data
+    Reimplement CI on the base of Github Actions
+    During wizard register hostname only if it is not an IP
+    Revise firewalling rules in relation to Tor malfunctions
+    When creating a new channel always assign the 'default' questionnaire
+    Fix issues: #3790, #3794
+    Update translations
+    [doc] Revise documentation about Continuous Integration
+
 Changes in version 4.13.18
     Fix download of recipient files by whistleblowers
     Deprecate Accessibility Declaration feature;
