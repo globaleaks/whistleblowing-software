@@ -553,6 +553,9 @@ msgstr "วันที่สร้าง"
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
 
+msgid "Receivers"
+msgstr "ผู้รับแจ้งเบาะแส"
+
 msgid "Whistleblower's last access"
 msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
 
@@ -576,6 +579,9 @@ msgstr "บันทึก"
 
 msgid "Cancel"
 msgstr "ยกเลิก"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "สถานะรายงาน"
@@ -1097,6 +1103,9 @@ msgstr "เปิดใช้ข้อตกลงในการให้บร
 msgid "Title"
 msgstr "ชื่อเรื่อง"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "ชื่อสาธารณะ"
 
@@ -1154,8 +1163,14 @@ msgstr "ให้ผู้ใช้คนนี้สามารถมอบส
 msgid "Give this user ability to transfer reports to other users"
 msgstr "ให้ผู้ใช้คนนี้สามารถโอนรายงานไปยังผู้ใช้คนอื่นได้"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "วันที่ร้องขอ"
@@ -1202,6 +1217,18 @@ msgstr "ข้อความแสดงหลังจากผู้ใช้
 msgid "Assign score points"
 msgstr "กำหนดแต้มคะแนน"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "สถานะ:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
@@ -1224,6 +1251,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ทำสำเนาและเก็บไว้ในที่ปลอดภัย ข้อมูลนี้มีความจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณโดยไม่มีข้อมูลสูญหาย"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ใส่ชื่อสำหรับสำเนา"
@@ -1296,6 +1330,9 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "รหัสผ่านปัจจุบัน"
 
@@ -1346,6 +1383,15 @@ msgstr "ขนาด:"
 msgid "Access date"
 msgstr "วันที่เข้าถึง"
 
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "Fiscal code"
+msgstr "รหัสการเงิน"
+
+msgid "Tax code"
+msgstr "เลขประจำตัวผู้เสียภาษี"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
 
@@ -1372,9 +1418,6 @@ msgstr "คำตอบของแบบสอบถาม"
 
 msgid "Step"
 msgstr "ขั้นตอน"
-
-msgid "Status:"
-msgstr "สถานะ:"
 
 msgid "Files attached by recipients"
 msgstr "แฟ้มที่แนบมาโดยผู้รับ"
@@ -1470,20 +1513,11 @@ msgstr "ถ้าคุณไม่ได้ยืนยันการเปิ
 msgid "Sign up"
 msgstr "ลงชื่อสมัคร"
 
-msgid "Invalid phone number"
-msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
-
 msgid "Invalid confirmation"
 msgstr "การยืนยันไม่ถูกต้อง"
 
-msgid "Address"
-msgstr "ที่อยู่"
-
-msgid "Fiscal code"
-msgstr "รหัสการเงิน"
-
-msgid "Tax code"
-msgstr "เลขประจำตัวผู้เสียภาษี"
+msgid "Invalid phone number"
+msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Site"
 msgstr "เว็บไซต์"

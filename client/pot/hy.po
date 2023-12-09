@@ -545,6 +545,9 @@ msgstr "Ստեղծման ամսաթիվ"
 msgid "Last access"
 msgstr "Վերջին մուտք"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Ազդարարի վերջին մուտքը"
 
@@ -568,6 +571,9 @@ msgstr "Պահպանել"
 
 msgid "Cancel"
 msgstr "Չեղարկել"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Հաղորդել կարգավիճակների մասին"
@@ -1089,6 +1095,9 @@ msgstr "Ակտիվացնել օգտագործման պայմանները"
 msgid "Title"
 msgstr "Վերնագիր"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Հանրային անուն"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Օգտատերերի համար հասանելի դարձնել հետևյալ գործառույթները."
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Պահանջել ամսաթիվ"
@@ -1194,6 +1209,18 @@ msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբեր�
 msgid "Assign score points"
 msgstr "Գնահատել"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Կարգավիճակ՝"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Համոզվա՞ծ եք։"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Պատճենեք և պահեք այն ապահով վայրում: Այն անհրաժեշտ կլինի օգտահաշվի տվյալները վերականգնելու համար, եթե դուք կորցնեք Ձեր գաղտնաբառը։"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Մուտքագրեք պատճենի անունը"
@@ -1288,6 +1322,9 @@ msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջո�
 msgid "The upload request exceeds the size limit"
 msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Ընթացիկ գաղտնաբառ"
 
@@ -1338,6 +1375,15 @@ msgstr "Չափ՝"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Հասցե"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
 
@@ -1364,9 +1410,6 @@ msgstr "Հարցաշարի պատասխաններ"
 
 msgid "Step"
 msgstr "Քայլ"
-
-msgid "Status:"
-msgstr "Կարգավիճակ՝"
 
 msgid "Files attached by recipients"
 msgstr "Հասցեատերերի կողմից կցված ֆայլեր"
@@ -1462,20 +1505,11 @@ msgstr "Եթե այն 24 ժամվա ընթացքում ակտիվացված չլ
 msgid "Sign up"
 msgstr "Գրանցվել"
 
-msgid "Invalid phone number"
-msgstr "Հեռախոսահամարն անվավեր է"
-
 msgid "Invalid confirmation"
 msgstr "Վավերացումն անհաջող էր"
 
-msgid "Address"
-msgstr "Հասցե"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Հեռախոսահամարն անվավեր է"
 
 msgid "Site"
 msgstr "Կայք"

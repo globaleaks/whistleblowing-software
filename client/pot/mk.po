@@ -545,6 +545,9 @@ msgstr "Датум на создавање"
 msgid "Last access"
 msgstr "Последен пристап"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Последен пристап на свиркачот"
 
@@ -568,6 +571,9 @@ msgstr "Зачувај"
 
 msgid "Cancel"
 msgstr "Откажи"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Извештај за статуси"
@@ -1089,6 +1095,9 @@ msgstr "Овозможи услови за користење"
 msgid "Title"
 msgstr "Наслов"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Јавно име"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Дади му на корисникот администраторски прситап до следниве својства:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Датум на барање"
@@ -1194,6 +1209,18 @@ msgstr "Текст прикажан откако корисникот ја из�
 msgid "Assign score points"
 msgstr "Додели поени"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Дали сте сигурни?"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Направете копија и складирајте ја на безбедно место. Тоа ќе биде потребно доколку ја загубите лозинката да го вратите назад пристапот до вашата сметка без загуба на податоци."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Внесете име за копијата"
@@ -1288,6 +1322,9 @@ msgstr "На ресурсот може да му биде пристапено �
 msgid "The upload request exceeds the size limit"
 msgstr "Барањето за прикачувања го надмина ограничувањето за големина"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Сегашна лозинка"
 
@@ -1338,6 +1375,15 @@ msgstr "Големина:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Даночен код"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Примачите ви побараа да пополните дополнителен прашалник."
 
@@ -1364,9 +1410,6 @@ msgstr "Одговори на прашалник"
 
 msgid "Step"
 msgstr "Чекор"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "Прикачени датотеки од примачи"
@@ -1462,20 +1505,11 @@ msgstr "Ако платформата не биде активирана за 24
 msgid "Sign up"
 msgstr "Регистрирај се"
 
-msgid "Invalid phone number"
-msgstr "Невалиден телефонски број"
-
 msgid "Invalid confirmation"
 msgstr "Невалидна потврда"
 
-msgid "Address"
-msgstr "Адреса"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Даночен код"
+msgid "Invalid phone number"
+msgstr "Невалиден телефонски број"
 
 msgid "Site"
 msgstr ""

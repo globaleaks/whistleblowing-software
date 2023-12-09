@@ -548,6 +548,9 @@ msgstr "Döredilen senesi"
 msgid "Last access"
 msgstr "Iň soňky giriş"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Gizlin habar yetirijiniň soňky girişi"
 
@@ -571,6 +574,9 @@ msgstr "Ýazdyr"
 
 msgid "Cancel"
 msgstr "Goýbolsun et"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Statuslary hasabat ber"
@@ -1092,6 +1098,9 @@ msgstr "Hyzmat şertlerine rugsat beriň"
 msgid "Title"
 msgstr "Sözbaşy"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Umumy ady"
 
@@ -1149,8 +1158,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Ulanyja aşakdaky aýratynlyklara administratiw ygtyýar ber:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Talap senesi"
@@ -1197,6 +1212,18 @@ msgstr "Ulanyjy opsiýany saýlandan soň görkezilen tekst."
 msgid "Assign score points"
 msgstr "Hasap ballaryny belläň "
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ynamyňyz barmy?"
 
@@ -1219,6 +1246,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Göçürip alyň we howpsuz ýerde saklaň. Maglumat ýitirilmezden hasabyňyza girmegi dikeltmek üçin parolyňyzy ýitirseňiz zerur bolar."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Göçürmäniň adyny giriziň"
@@ -1291,6 +1325,9 @@ msgstr "Resurslara diňe Tor ulgamy arkaly girip bolýar"
 msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Hazirki parolyňyz"
 
@@ -1341,6 +1378,15 @@ msgstr "Ölçegi:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alyjylar goşmaça sowalnama doldurmagyňyzy haýyş etdiler."
 
@@ -1367,9 +1413,6 @@ msgstr "Sowalnama jogaplary"
 
 msgid "Step"
 msgstr "Ädim"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Alyjylar tarapyndan berkidilen faýllar"
@@ -1465,20 +1508,11 @@ msgstr "24 sagadyň dowamynda işjeňleşdirilmese, platforma awtomatiki usulda 
 msgid "Sign up"
 msgstr "Ýazyl"
 
-msgid "Invalid phone number"
-msgstr "Nädogry telefon belgisi"
-
 msgid "Invalid confirmation"
 msgstr "Nädogry tassyklama"
 
-msgid "Address"
-msgstr ""
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Nädogry telefon belgisi"
 
 msgid "Site"
 msgstr ""

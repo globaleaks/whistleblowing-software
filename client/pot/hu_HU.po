@@ -561,6 +561,9 @@ msgstr "Létrehozás ideje"
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
 
+msgid "Receivers"
+msgstr "Fogadók"
+
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
 
@@ -584,6 +587,9 @@ msgstr "Mentés"
 
 msgid "Cancel"
 msgstr "Mégse"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Jelentés állapotok"
@@ -1105,6 +1111,9 @@ msgstr "Felhasználási feltételek engedélyezése"
 msgid "Title"
 msgstr "Cím"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Nyilvános elnevezés"
 
@@ -1162,8 +1171,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "A felhasználónak adminisztratív jogok adása a következő funkciókra:"
+
+msgid "Statistics"
+msgstr "Statisztikák"
 
 msgid "Request date"
 msgstr "Kérés dátuma"
@@ -1210,6 +1225,18 @@ msgstr "Megjelenített szöveg, miután a felhasználó kiválasztotta az opció
 msgid "Assign score points"
 msgstr "Pontszám hozzárendelése"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Állapot:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Biztosan?"
 
@@ -1232,6 +1259,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Készítsen róla egy másolatot és tárolja biztonságos helyen.  Ha elveszti jelszavát, akkor az adatvesztés nélküli helyreállításhoz szükséges."
+
+msgid "Attention"
+msgstr "Figyelem"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Adja meg a másolat nevét"
@@ -1304,6 +1338,9 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Jelenlegi jelszó"
 
@@ -1354,6 +1391,15 @@ msgstr "Méret"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Cím"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Adókód"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
@@ -1380,9 +1426,6 @@ msgstr "Kérdőív válaszok"
 
 msgid "Step"
 msgstr "Lépés"
-
-msgid "Status:"
-msgstr "Állapot:"
 
 msgid "Files attached by recipients"
 msgstr "Címzettek csatolt fájljai"
@@ -1478,20 +1521,11 @@ msgstr "Ha 24 órán belül nem aktiválja a platformot, az automatikusan törl�
 msgid "Sign up"
 msgstr "Feliratkozás"
 
-msgid "Invalid phone number"
-msgstr "Érvénytelen telefonszám"
-
 msgid "Invalid confirmation"
 msgstr "Érvénytelen megerősítés"
 
-msgid "Address"
-msgstr "Cím"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Adókód"
+msgid "Invalid phone number"
+msgstr "Érvénytelen telefonszám"
 
 msgid "Site"
 msgstr "Oldal"

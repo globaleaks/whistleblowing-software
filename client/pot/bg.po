@@ -553,6 +553,9 @@ msgstr "Дата на създаване"
 msgid "Last access"
 msgstr "Последен достъп"
 
+msgid "Receivers"
+msgstr "Получатели"
+
 msgid "Whistleblower's last access"
 msgstr "Последен достъп от подалия сигнал"
 
@@ -576,6 +579,9 @@ msgstr "Записване"
 
 msgid "Cancel"
 msgstr "Отмяна"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Статуси на сигналите"
@@ -1097,6 +1103,9 @@ msgstr "Активиране на условията за използване �
 msgid "Title"
 msgstr "Заглавие"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Публично име"
 
@@ -1154,8 +1163,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Осигуряване на потребителя на административен достъп до следните функции:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дата на заявката"
@@ -1202,6 +1217,18 @@ msgstr "Текст, който се показва, след като потре
 msgid "Assign score points"
 msgstr "Задаване на точки за оценката"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Наистина ли го искате?"
 
@@ -1224,6 +1251,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Направете копие и го съхранявайте на сигурно място. Ако загубите паролата си, копието ще Ви е нужно, за да възстановите достъпа до акаунта си без загуба на данни."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Въведете име за копието"
@@ -1296,6 +1330,9 @@ msgstr "Достъп до ресурса може да се осъществи �
 msgid "The upload request exceeds the size limit"
 msgstr "Заявеният за качване файл превишава ограничението за размер"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Текуща парола"
 
@@ -1346,6 +1383,15 @@ msgstr "Размер:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получателите Ви са поискали попълните допълнителен въпросник."
 
@@ -1372,9 +1418,6 @@ msgstr "Отговори на въпросника"
 
 msgid "Step"
 msgstr "Стъпка"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "Файлове, прикачени от получателите"
@@ -1470,20 +1513,11 @@ msgstr "Ако не я активирате до 24 ч, платформата �
 msgid "Sign up"
 msgstr "Регистриране"
 
-msgid "Invalid phone number"
-msgstr "Невалиден телефонен номер"
-
 msgid "Invalid confirmation"
 msgstr "Невалидно потвърждение"
 
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Невалиден телефонен номер"
 
 msgid "Site"
 msgstr "Страница"

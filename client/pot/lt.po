@@ -543,6 +543,9 @@ msgstr "Sukūrimo data"
 msgid "Last access"
 msgstr "Paskutinis prisijungimas"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Paskutinis pranešėjo prisijungimas"
 
@@ -566,6 +569,9 @@ msgstr "Įrašyti"
 
 msgid "Cancel"
 msgstr "Atšaukti"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Pranešimo statusai"
@@ -1087,6 +1093,9 @@ msgstr "Įgalinti paslaugų sąlygas"
 msgid "Title"
 msgstr "Antraštė"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Viešas pavadinimas"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Suteikite naudotojui administracinę prieigą prie šių funkcijų:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Prašymo data"
@@ -1192,6 +1207,18 @@ msgstr "Tekstas rodomas, kai naudotojas pasirenka parinktį."
 msgid "Assign score points"
 msgstr "Priskirti vertinimo taškus"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Būsena:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ar tikrai?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Padarykite kopiją ir laikykite ją saugioje vietoje. Jei prarasite slaptažodį, jos reikės, kad atgautumėte prieigą prie savo paskyros, neprarasdami duomenų."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Įveskite kopijos pavadinimą"
@@ -1286,6 +1320,9 @@ msgstr "Resursą galima pasiekti tik per „Tor“ tinklą"
 msgid "The upload request exceeds the size limit"
 msgstr "Įkeliamas prašymas viršija dydžio limitą"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Dabartinis slaptažodis"
 
@@ -1336,6 +1373,15 @@ msgstr "Dydis:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresas"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Mokesčių kodas"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Gavėjai paprašė jūsų užpildyti papildomą klausimyną."
 
@@ -1362,9 +1408,6 @@ msgstr "Klausimyno atsakymai"
 
 msgid "Step"
 msgstr "Žingsnis"
-
-msgid "Status:"
-msgstr "Būsena:"
 
 msgid "Files attached by recipients"
 msgstr "Gavėjų pridėti failai"
@@ -1460,20 +1503,11 @@ msgstr "Jei platforma neaktyvinsite per 24 valandas, ji bus automatiškai ištri
 msgid "Sign up"
 msgstr "Registruotis"
 
-msgid "Invalid phone number"
-msgstr "Neteisingas telefono numeris"
-
 msgid "Invalid confirmation"
 msgstr "Netinkamas patvirtinimas"
 
-msgid "Address"
-msgstr "Adresas"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Mokesčių kodas"
+msgid "Invalid phone number"
+msgstr "Neteisingas telefono numeris"
 
 msgid "Site"
 msgstr "Tinklapis"

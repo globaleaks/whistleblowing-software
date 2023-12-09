@@ -592,6 +592,9 @@ msgstr "تاريخ الانشاء"
 msgid "Last access"
 msgstr "آخر دخول"
 
+msgid "Receivers"
+msgstr "المرسل إليهم"
+
 msgid "Whistleblower's last access"
 msgstr "ﺁخر دخول لـ WB"
 
@@ -615,6 +618,9 @@ msgstr "حفظ"
 
 msgid "Cancel"
 msgstr "إلغاء"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "تقرير الحالات"
@@ -1136,6 +1142,9 @@ msgstr "تمكين شروط الخدمة"
 msgid "Title"
 msgstr "العنوان"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "الاسم العام"
 
@@ -1193,8 +1202,14 @@ msgstr "منح المستخدِم الحق في منح إذن الوصول إل�
 msgid "Give this user ability to transfer reports to other users"
 msgstr "منح المستخدِم إمنح المستخدِم الحق نقل التقارير لمستخدِمين آخرين"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
@@ -1241,6 +1256,18 @@ msgstr "النص الذى يظهر بعد أن ينتقى المستخدم ال�
 msgid "Assign score points"
 msgstr "تخصيص نقاط المجموع"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "الحالة:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
 
@@ -1263,6 +1290,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "اعمل نسخة منه وخزنها فى مكان آمن. اذا فقدت كلمة السر سيكون مهما لاسترداد الدخول إلى حسابك دون فقدان أى بيانات."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "أدخل اسما من أجل النسخة"
@@ -1335,6 +1369,9 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "كلمة السر الحالية"
 
@@ -1385,6 +1422,15 @@ msgstr "حجم:"
 msgid "Access date"
 msgstr "تاريخ الوصول"
 
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Fiscal code"
+msgstr "الكود الضريبي"
+
+msgid "Tax code"
+msgstr "رمز الضريبة"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "طلب المستلمون منك إكمال استبيان إضافي."
 
@@ -1411,9 +1457,6 @@ msgstr "إجابات الاستبيان"
 
 msgid "Step"
 msgstr "خطوة"
-
-msgid "Status:"
-msgstr "الحالة:"
 
 msgid "Files attached by recipients"
 msgstr "الملفات المرفقة من قبل المتلقّين"
@@ -1509,20 +1552,11 @@ msgstr "إذا لم يتم التفعيل في خلال 24 ساعة، سيتم �
 msgid "Sign up"
 msgstr "تسجيل"
 
-msgid "Invalid phone number"
-msgstr "رقم هاتف غير صالح"
-
 msgid "Invalid confirmation"
 msgstr "تأكيد غير صالح"
 
-msgid "Address"
-msgstr "العنوان"
-
-msgid "Fiscal code"
-msgstr "الكود الضريبي"
-
-msgid "Tax code"
-msgstr "رمز الضريبة"
+msgid "Invalid phone number"
+msgstr "رقم هاتف غير صالح"
 
 msgid "Site"
 msgstr "موقع"

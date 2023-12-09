@@ -543,6 +543,9 @@ msgstr "Tarikh penciptaan"
 msgid "Last access"
 msgstr "Akses terakhir"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir pemberi maklumat"
 
@@ -566,6 +569,9 @@ msgstr "Simpan"
 
 msgid "Cancel"
 msgstr "Batalkan"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Status laporan"
@@ -1087,6 +1093,9 @@ msgstr "Dayakan terma perkhidmatan"
 msgid "Title"
 msgstr "Tajuk"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Nama awam"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Berikan akses pentadbiran pengguna kepada ciri berikut:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Tarikh permintaan"
@@ -1192,6 +1207,18 @@ msgstr "Teks ditunjukkan selepas pengguna telah memilih pilihan."
 msgid "Assign score points"
 msgstr "Tetapkan mata markah"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Adakah anda pasti?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia diperlukan jika anda kehilangan kata laluan anda untuk memulihkan akses kepada akaun anda tanpa kehilangan data."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Masukkan nama untuk salinan"
@@ -1286,6 +1320,9 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Kata laluan semasa"
 
@@ -1336,6 +1373,15 @@ msgstr "Saiz:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Kod cukai"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
@@ -1362,9 +1408,6 @@ msgstr "Jawapan soal selidik"
 
 msgid "Step"
 msgstr "Langkah"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Fail dilampirkan oleh penerima"
@@ -1460,20 +1503,11 @@ msgstr "Jika tidak diaktifkan dalam masa 24 jam, platform akan dipadam secara au
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Invalid phone number"
-msgstr "Nombor telefon tidak sah"
-
 msgid "Invalid confirmation"
 msgstr "Pengesahan tidak sah"
 
-msgid "Address"
-msgstr "Alamat"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Kod cukai"
+msgid "Invalid phone number"
+msgstr "Nombor telefon tidak sah"
 
 msgid "Site"
 msgstr "Laman"

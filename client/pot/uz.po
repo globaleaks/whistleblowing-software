@@ -545,6 +545,9 @@ msgstr "Yaratilgan sanasi"
 msgid "Last access"
 msgstr "Oxirgi ochilgan vaqti"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Oshkor qiluvchining oxirgi kirgan vaqti"
 
@@ -568,6 +571,9 @@ msgstr "Saqlash"
 
 msgid "Cancel"
 msgstr "Bekor qilish"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Anonim xabarlar holati"
@@ -1089,6 +1095,9 @@ msgstr "Xizmat shartlarini yoqish"
 msgid "Title"
 msgstr "Sarlavha"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Rasmiy nomi"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Foydalanuvchiga quyidagi funksiyalarni boshqarish vakolatini berish:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Soʻrov sanasi"
@@ -1194,6 +1209,18 @@ msgstr "Foydalanuvchi parametr tanlaganidan keyin chiqadigan matn."
 msgid "Assign score points"
 msgstr "Ballarni belgilash"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Holati:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ishonchingiz komilmi?"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Uni nusxalang va ishonchli joyda saqlang. U parol unutilganda hisobni xavfsiz tiklash uchun kerak boʻladi."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nusxa nomini kiriting"
@@ -1288,6 +1322,9 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Joriy parol"
 
@@ -1338,6 +1375,15 @@ msgstr "Hajmi:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Manzili"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
 
@@ -1364,9 +1410,6 @@ msgstr "Savolnomaga javoblar"
 
 msgid "Step"
 msgstr "Qadam"
-
-msgid "Status:"
-msgstr "Holati:"
 
 msgid "Files attached by recipients"
 msgstr "Qabul qiluvchilar biriktirgan fayllar"
@@ -1462,20 +1505,11 @@ msgstr "Agar platforma 24 soat ichida aktivatsiya qilinmasa, u avtomatik oʻchir
 msgid "Sign up"
 msgstr "Roʻyxatdan oʻtish"
 
-msgid "Invalid phone number"
-msgstr "Telefon raqami yaroqsiz"
-
 msgid "Invalid confirmation"
 msgstr "Yaroqsiz tasdiqlash"
 
-msgid "Address"
-msgstr "Manzili"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Telefon raqami yaroqsiz"
 
 msgid "Site"
 msgstr ""

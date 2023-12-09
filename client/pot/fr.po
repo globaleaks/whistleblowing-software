@@ -581,6 +581,9 @@ msgstr "Date de création"
 msgid "Last access"
 msgstr "Dernier accès"
 
+msgid "Receivers"
+msgstr "Destinataires"
+
 msgid "Whistleblower's last access"
 msgstr "Dernière connexion du lanceur d'alerte"
 
@@ -604,6 +607,9 @@ msgstr "Enregistrer"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "États des signalements"
@@ -1125,6 +1131,9 @@ msgstr "Activer les conditions générales d’utilisation"
 msgid "Title"
 msgstr "Titre"
 
+msgid "Analyst"
+msgstr "Analyste"
+
 msgid "Public name"
 msgstr "Nom public"
 
@@ -1182,8 +1191,14 @@ msgstr "Donner à cet utilisateur la possibilité d’accorder l’accès des ut
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Donner à cet utilisateur la possibilité de transférer des signalements à d’autres utilisateurs "
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Permettre à cet utilisateur de rouvrir la gestion d’un rapport."
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Donner à l’utilisateur un accès d’administration aux fonctions suivantes :"
+
+msgid "Statistics"
+msgstr "Statistiques"
 
 msgid "Request date"
 msgstr "Date de la demande"
@@ -1230,6 +1245,18 @@ msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option."
 msgid "Assign score points"
 msgstr "Attribuer un pointage"
 
+msgid "Change status"
+msgstr "Changer l’état"
+
+msgid "Status:"
+msgstr "État :"
+
+msgid "Substatus:"
+msgstr "Sous-état :"
+
+msgid "Motivation:"
+msgstr "Motivation :"
+
 msgid "Are you sure?"
 msgstr "Confirmez-vous ?"
 
@@ -1252,6 +1279,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Copiez-la et gardez-la en lieu sûr. Si vous perdiez votre mot de passe, vous en auriez besoin afin de recouvrer l’accès à votre compte, sans perte de données."
+
+msgid "Attention"
+msgstr "Attention"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Pour des raisons de sécurité, le code de reçu de votre rapport doit être changé."
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
@@ -1324,6 +1358,9 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Vous agissez pour le compte d’un lanceur d’alerte."
+
 msgid "Current password"
 msgstr "Mot de passe actuel"
 
@@ -1374,6 +1411,15 @@ msgstr "Taille :"
 msgid "Access date"
 msgstr "Date d’accès"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr "Code fiscal"
+
+msgid "Tax code"
+msgstr "Code des impôts"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
@@ -1400,9 +1446,6 @@ msgstr "Réponses au questionnaire"
 
 msgid "Step"
 msgstr "Étape"
-
-msgid "Status:"
-msgstr "État :"
 
 msgid "Files attached by recipients"
 msgstr "Pièces jointes par les destinataires"
@@ -1498,20 +1541,11 @@ msgstr "Si elle n’est pas activée dans les 24 heures, la plateforme sera supp
 msgid "Sign up"
 msgstr "Inscription"
 
-msgid "Invalid phone number"
-msgstr "Le numéro de téléphone est invalide"
-
 msgid "Invalid confirmation"
 msgstr "La confirmation est invalide"
 
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Fiscal code"
-msgstr "Code fiscal"
-
-msgid "Tax code"
-msgstr "Code des impôts"
+msgid "Invalid phone number"
+msgstr "Le numéro de téléphone est invalide"
 
 msgid "Site"
 msgstr "Site"

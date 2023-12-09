@@ -564,6 +564,9 @@ msgstr "创建日期"
 msgid "Last access"
 msgstr "上次访问"
 
+msgid "Receivers"
+msgstr "接收者"
+
 msgid "Whistleblower's last access"
 msgstr "揭发者上次访问"
 
@@ -587,6 +590,9 @@ msgstr "保存"
 
 msgid "Cancel"
 msgstr "取消"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "报告状态"
@@ -1108,6 +1114,9 @@ msgstr "启用服务条款"
 msgid "Title"
 msgstr "标题"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "公开名称"
 
@@ -1165,8 +1174,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "对于以下功能，授予用户管理员权限："
+
+msgid "Statistics"
+msgstr "统计"
 
 msgid "Request date"
 msgstr "请求日期"
@@ -1213,6 +1228,18 @@ msgstr "用户选择该选项之后显示的文本。"
 msgid "Assign score points"
 msgstr "分配分数"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "状态："
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "是否确定？"
 
@@ -1235,6 +1262,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "请制作副本并妥善保存。如果密码丢失，为了恢复帐户而不丢失数据，这是必不可少的。"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "输入副本的名称"
@@ -1307,6 +1341,9 @@ msgstr "资源仅可通过 Tor 网络访问"
 msgid "The upload request exceeds the size limit"
 msgstr "上传请求超过文件大小限制"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "当前密码"
 
@@ -1357,6 +1394,15 @@ msgstr "大小："
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "地址"
+
+msgid "Fiscal code"
+msgstr "税控码"
+
+msgid "Tax code"
+msgstr "税码"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收人已请求您填写附加问卷。"
 
@@ -1383,9 +1429,6 @@ msgstr "问卷答案"
 
 msgid "Step"
 msgstr "步骤"
-
-msgid "Status:"
-msgstr "状态："
 
 msgid "Files attached by recipients"
 msgstr "接收人附加的文件"
@@ -1481,20 +1524,11 @@ msgstr "如果未在 24 小时内完成激活，平台将自动删除。"
 msgid "Sign up"
 msgstr "注册"
 
-msgid "Invalid phone number"
-msgstr "无效的电话号码"
-
 msgid "Invalid confirmation"
 msgstr "无效确认"
 
-msgid "Address"
-msgstr "地址"
-
-msgid "Fiscal code"
-msgstr "税控码"
-
-msgid "Tax code"
-msgstr "税码"
+msgid "Invalid phone number"
+msgstr "无效的电话号码"
 
 msgid "Site"
 msgstr "站点"

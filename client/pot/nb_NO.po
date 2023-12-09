@@ -545,6 +545,9 @@ msgstr "Opprettelsesdato"
 msgid "Last access"
 msgstr "Siste tilgang"
 
+msgid "Receivers"
+msgstr "Mottakere"
+
 msgid "Whistleblower's last access"
 msgstr "Siste tilgang til fløyteblåseren"
 
@@ -568,6 +571,9 @@ msgstr "Lagre"
 
 msgid "Cancel"
 msgstr "Avbryt"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Rapporter statuser"
@@ -1089,6 +1095,9 @@ msgstr "Aktiver servicevilkår"
 msgid "Title"
 msgstr "Tittel"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Offentlig navn"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Gi brukeren administrativ tilgang til følgende funksjoner:"
+
+msgid "Statistics"
+msgstr "Statistikk"
 
 msgid "Request date"
 msgstr "Forespør dato"
@@ -1194,6 +1209,18 @@ msgstr "Tekst som vises etter at alternativet har blitt valgt av brukeren."
 msgid "Assign score points"
 msgstr "Tildel poeng"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Ta en kopi og lagre den på et trygt sted. Du vil trenge dette i tilfelle du mister ditt passord for å kunne gjenopprette tilgangen til din konto uten tap av data."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Skriv inn et navn på kopien"
@@ -1288,6 +1322,9 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Gjeldende passord"
 
@@ -1338,6 +1375,15 @@ msgstr "Størrelse:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
@@ -1364,9 +1410,6 @@ msgstr "Svar oppgitt for spørreskjema"
 
 msgid "Step"
 msgstr "Steg"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Filer vedlagt av mottakere"
@@ -1462,20 +1505,11 @@ msgstr "Hvis aktivering ikke skjer innen 24 timer, vil plattformen slettes autom
 msgid "Sign up"
 msgstr "Registrer deg"
 
-msgid "Invalid phone number"
-msgstr "Ugyldig telefonnummer"
-
 msgid "Invalid confirmation"
 msgstr "Ugyldig bekreftelse"
 
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Ugyldig telefonnummer"
 
 msgid "Site"
 msgstr "Side"

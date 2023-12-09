@@ -545,6 +545,9 @@ msgstr "Жасалған күні"
 msgid "Last access"
 msgstr "Соңғы қатынасу"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Хабарлаушының соңғы рет қатынасуы"
 
@@ -568,6 +571,9 @@ msgstr "Сақтау"
 
 msgid "Cancel"
 msgstr "Бас тарту"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Есептің күйлері"
@@ -1089,6 +1095,9 @@ msgstr "Қызмет көрсету шарттарын қосу"
 msgid "Title"
 msgstr "Атауы"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Жалпы атауы"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Пайдаланушыға келесі мүмкіндіктерге әкімшілік рұқсат беру:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Сұратым күні"
@@ -1194,6 +1209,18 @@ msgstr "Пайдаланушы опцияны таңдағаннан кейін 
 msgid "Assign score points"
 msgstr "Ұпайларды тағайындау"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Күйі:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Сенімдісіз бе?"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Көшірмені жасап, оны қауіпсіз жерде сақтаңыз. Бұл құпиясөзіңізді жоғалтқан кезде, ешқандай деректеріңізді жоғалтпай, есептік жазбаңызға қатынасуыңыз үшін қажет."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Көшірменің атауын енгізіңіз"
@@ -1288,6 +1322,9 @@ msgstr "Ресурстарға Tor желісі арқылы ғана қол ж�
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктеу сұранысы шекті мөлшерден асып тұр"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Ағымдағы құпиясөз"
 
@@ -1338,6 +1375,15 @@ msgstr "Өлшемі:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алушылар сізден қосымша сауалнаманы толтыруды сұрады."
 
@@ -1364,9 +1410,6 @@ msgstr "Сауалнама жауаптары"
 
 msgid "Step"
 msgstr "Қадам"
-
-msgid "Status:"
-msgstr "Күйі:"
 
 msgid "Files attached by recipients"
 msgstr "Алушылар тіркеген файлдар"
@@ -1462,20 +1505,11 @@ msgstr "Егер 24 сағат ішінде іске қосылмаса, пла�
 msgid "Sign up"
 msgstr "Тіркелу"
 
-msgid "Invalid phone number"
-msgstr "Телефон нөмірі жарамсыз"
-
 msgid "Invalid confirmation"
 msgstr "Растау жарамсыз"
 
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Телефон нөмірі жарамсыз"
 
 msgid "Site"
 msgstr ""

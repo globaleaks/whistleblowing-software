@@ -561,6 +561,9 @@ msgstr "Sortze-data"
 msgid "Last access"
 msgstr "Azken sarrera"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Salatzailearen azken sarrera"
 
@@ -584,6 +587,9 @@ msgstr "Gorde"
 
 msgid "Cancel"
 msgstr "Utzi"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Salaketa baten egoerak"
@@ -1105,6 +1111,9 @@ msgstr "Aktibatu zerbitzuen terminoak"
 msgid "Title"
 msgstr "Izenburua"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Izen publikoa"
 
@@ -1162,8 +1171,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Eman erabiltzaileari hurrengo ezaugarrietara sarbide administratiboa."
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Eskatu data"
@@ -1210,6 +1225,18 @@ msgstr "Erabiltzaileak aukera hautatu ondoren erakutsitako testua."
 msgid "Assign score points"
 msgstr "Esleitu puntuak"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Egoera:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Ziur zaude?"
 
@@ -1232,6 +1259,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Egin kopia bat eta gorde ezazu toki seguruan. Pasahitza galduz gero beharko duzu datuak galdu gabe berriz sartu ahal izateko."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Idatzi izena kopiarentzat"
@@ -1304,6 +1338,9 @@ msgstr "Baliabide honetan Tor saretik bakarrik sar daiteke"
 msgid "The upload request exceeds the size limit"
 msgstr "Igo nahi duzun fitxategiak zilegi den tamaina maximoa gainditzen du."
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Egungo pasahitza"
 
@@ -1354,6 +1391,15 @@ msgstr "Tamaina:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Helbidea"
+
+msgid "Fiscal code"
+msgstr "Kode fiskala"
+
+msgid "Tax code"
+msgstr "Zergen kodea"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Hartzaileek beste galdekizun gehigarri bat betetzea eskatzen dizute."
 
@@ -1380,9 +1426,6 @@ msgstr "Galdekizuna erantzutea"
 
 msgid "Step"
 msgstr "Urratsa"
-
-msgid "Status:"
-msgstr "Egoera:"
 
 msgid "Files attached by recipients"
 msgstr "Hartzaileek erantsitako fitxategiak"
@@ -1478,20 +1521,11 @@ msgstr "Hurrengo 24 orduetan aktibatzen ez bada, plataforma automatikoki ezabatu
 msgid "Sign up"
 msgstr "Erregistratu"
 
-msgid "Invalid phone number"
-msgstr "Telefono zenbakiak ez du balio."
-
 msgid "Invalid confirmation"
 msgstr "Berrespenak ez du balio"
 
-msgid "Address"
-msgstr "Helbidea"
-
-msgid "Fiscal code"
-msgstr "Kode fiskala"
-
-msgid "Tax code"
-msgstr "Zergen kodea"
+msgid "Invalid phone number"
+msgstr "Telefono zenbakiak ez du balio."
 
 msgid "Site"
 msgstr "Lekua"

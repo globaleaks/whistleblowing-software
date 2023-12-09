@@ -548,6 +548,9 @@ msgstr "Datum kreiranja"
 msgid "Last access"
 msgstr "Posljednji pristup"
 
+msgid "Receivers"
+msgstr "Primaoci"
+
 msgid "Whistleblower's last access"
 msgstr "WB Zadnji pristup"
 
@@ -571,6 +574,9 @@ msgstr "Sačuvaj"
 
 msgid "Cancel"
 msgstr "Odustanite"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Prijavite statuse"
@@ -1092,6 +1098,9 @@ msgstr "Omogućite uslove korištenja"
 msgid "Title"
 msgstr "Naslov"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Javno ime"
 
@@ -1149,8 +1158,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Dajte korisniku administratorski pristup sljedećim opcijama:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Datum zahtjeva"
@@ -1197,6 +1212,18 @@ msgstr "Tekst koji se prikazuje nakon što je korisnik odabrao opciju."
 msgid "Assign score points"
 msgstr "Dodijelite poene"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
 
@@ -1219,6 +1246,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Napravite kopiju i spremite je na sigurno mjesto. Trebat će vam u slučaju da izgubitelozinku da biste obnovili pristup vašem accountu bez gubitka podataka."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Upišite ime za kopiju"
@@ -1291,6 +1325,9 @@ msgstr "Ovom resursu je moguće pristupiti samo preko Tor mreže"
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za upload premašuje dozvoljenu veličinu"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Sadašnja lozinka"
 
@@ -1341,6 +1378,15 @@ msgstr "Veličina"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Porezni broj"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Primaoci će biti zamoljeni da ispune dodatni upitnik."
 
@@ -1367,9 +1413,6 @@ msgstr "Odgovori na upitnik"
 
 msgid "Step"
 msgstr "Korak"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Datoteke koje je priložio primalac"
@@ -1465,20 +1508,11 @@ msgstr "Ukoliko je ne aktivirate unutar 24 sata, platforma će automatski biti o
 msgid "Sign up"
 msgstr "Prijavite se"
 
-msgid "Invalid phone number"
-msgstr "Broj telefona nije važeći"
-
 msgid "Invalid confirmation"
 msgstr "Potvrda nije važeća"
 
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Porezni broj"
+msgid "Invalid phone number"
+msgstr "Broj telefona nije važeći"
 
 msgid "Site"
 msgstr ""

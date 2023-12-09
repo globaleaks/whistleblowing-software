@@ -544,6 +544,9 @@ msgstr "Дата стварэння"
 msgid "Last access"
 msgstr "Апошні доступ"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Апошні заход на платформу выкрывальніка"
 
@@ -567,6 +570,9 @@ msgstr "Захаваць"
 
 msgid "Cancel"
 msgstr "Адмяніць"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Статусы справаздачы"
@@ -1088,6 +1094,9 @@ msgstr "Уключыць умовы выкарыстання"
 msgid "Title"
 msgstr "Загаловак"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Публічнае імя"
 
@@ -1145,8 +1154,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Даць карыстальніку адміністратарскі доступ да наступных функцый:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дата запыту"
@@ -1193,6 +1208,18 @@ msgstr "Тэкст, які паказваецца пасля таго, як ка
 msgid "Assign score points"
 msgstr "Налічыць балы"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Упэўненыя?"
 
@@ -1215,6 +1242,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Зрабіце копію і захавайце яе ў бяспечным месцы. Гэта будзе неабходна, калі вы згубіце пароль, каб аднавіць доступ да ўліковага запісу без страты дадзеных."
+
+msgid "Attention"
+msgstr "Увага"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Увесці назву для копіі"
@@ -1287,6 +1321,9 @@ msgstr "Даступ да рэсурсу можна атрымаць тольк�
 msgid "The upload request exceeds the size limit"
 msgstr "Файл для загрузкі перавышае максімальны памер"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Цяперашні пароль"
 
@@ -1337,6 +1374,15 @@ msgstr "Памер:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адрас"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Атрымальнікі зрабілі вам запыт запоўніць дадатковую анкету."
 
@@ -1363,9 +1409,6 @@ msgstr "Адказы на пытанні анкеты"
 
 msgid "Step"
 msgstr "Крок"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "Файлы, далучаныя атрымальнікамі"
@@ -1461,20 +1504,11 @@ msgstr "Калі яе не актываваць на працягу 24 гадз�
 msgid "Sign up"
 msgstr "Зарэгістравацца"
 
-msgid "Invalid phone number"
-msgstr "Несапраўдны нумар тэлефону"
-
 msgid "Invalid confirmation"
 msgstr "Несапраўднае пацверджанне"
 
-msgid "Address"
-msgstr "Адрас"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Несапраўдны нумар тэлефону"
 
 msgid "Site"
 msgstr "Сайт"

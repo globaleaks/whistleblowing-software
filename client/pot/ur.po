@@ -555,6 +555,9 @@ msgstr "تاریخِ تخلیق"
 msgid "Last access"
 msgstr "آخری رسائی"
 
+msgid "Receivers"
+msgstr "وصول کنندگان"
+
 msgid "Whistleblower's last access"
 msgstr "مخبر کی آخری رسائی "
 
@@ -578,6 +581,9 @@ msgstr "محفوظ"
 
 msgid "Cancel"
 msgstr "تسنیخ"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "اسٹیٹس کی اطلاع دیں۔ "
@@ -1099,6 +1105,9 @@ msgstr "سروس کی شرائط کو فعال کریں۔ "
 msgid "Title"
 msgstr "عنوان"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Public name"
 
@@ -1156,8 +1165,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "صارف کو درج ذیل خصوصیات تک انتظامی رسائی دیں: "
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "تاریخ کی گذارش"
@@ -1204,6 +1219,18 @@ msgstr "صارف کے آپشن کو منتخب کرنے کے بعد متن ظا�
 msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "حالت:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
 
@@ -1226,6 +1253,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ایک کاپی بنائیں اور اسے محفوظ جگہ پر اسٹور کریں۔ اگر آپ اپنا پاس ورڈ کھو دیتے ہیں تو ڈیٹا ضائع کیے بغیر اپنے اکاؤنٹ تک رسائی بحال کرنے کے لیے یہ ضروری ہوگا۔ "
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "کاپی کا نام درج کریں۔ "
@@ -1298,6 +1332,9 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "موجودہ پاسورڈ"
 
@@ -1348,6 +1385,15 @@ msgstr "Size:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "پتہ"
+
+msgid "Fiscal code"
+msgstr "مالیاتی کوڈ "
+
+msgid "Tax code"
+msgstr "ٹیکس کوڈ "
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "وصول کنندگان نے آپ سے ایک اضافی سوالنامہ بھرنے کی درخواست کی ہے۔ "
 
@@ -1374,9 +1420,6 @@ msgstr "سوالنامہ کے جوابات"
 
 msgid "Step"
 msgstr "قدم"
-
-msgid "Status:"
-msgstr "حالت:"
 
 msgid "Files attached by recipients"
 msgstr "وصول کنندگان کے ذریعے منسلک فائلیں۔ "
@@ -1472,20 +1515,11 @@ msgstr "اگر 24 گھنٹوں کے اندر فعال نہیں کیا گیا ت�
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Invalid phone number"
-msgstr "فون نمبر غلط ہے۔ "
-
 msgid "Invalid confirmation"
 msgstr "تصدیق غلط ہے "
 
-msgid "Address"
-msgstr "پتہ"
-
-msgid "Fiscal code"
-msgstr "مالیاتی کوڈ "
-
-msgid "Tax code"
-msgstr "ٹیکس کوڈ "
+msgid "Invalid phone number"
+msgstr "فون نمبر غلط ہے۔ "
 
 msgid "Site"
 msgstr "ویب سائٹ"

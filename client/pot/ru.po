@@ -573,6 +573,9 @@ msgstr "Дата создания"
 msgid "Last access"
 msgstr "Последний доступ"
 
+msgid "Receivers"
+msgstr "Получатели"
+
 msgid "Whistleblower's last access"
 msgstr "Последний доступ информатора"
 
@@ -596,6 +599,9 @@ msgstr "Сохранить"
 
 msgid "Cancel"
 msgstr "Отмена"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Статусы отчетов"
@@ -1117,6 +1123,9 @@ msgstr "Включить условия обслуживания"
 msgid "Title"
 msgstr "Заголовок"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Публичное имя"
 
@@ -1174,8 +1183,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Предоставьте пользователю административный доступ к следующим функциям:"
+
+msgid "Statistics"
+msgstr "Статистика"
 
 msgid "Request date"
 msgstr "Дата запроса"
@@ -1222,6 +1237,18 @@ msgstr "Текст, показываемый после выбора опции 
 msgid "Assign score points"
 msgstr "Оценить"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
@@ -1244,6 +1271,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Сделайте копию и поместите ее в безопасное место. Она понадобится для восстановления доступа к вашей учетной записи без потери данных, если вы потеряете свой пароль."
+
+msgid "Attention"
+msgstr "Внимание"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Введите имя копии"
@@ -1316,6 +1350,9 @@ msgstr "Доступ к ресурсу возможен только из сет
 msgid "The upload request exceeds the size limit"
 msgstr "Запрос на загрузку файла на сервер превышает установленный лимит"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Текущий пароль"
 
@@ -1366,6 +1403,15 @@ msgstr "Размер:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Код налога"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получатели попросили вас заполнить дополнительный опросник."
 
@@ -1392,9 +1438,6 @@ msgstr "Ответы опросника"
 
 msgid "Step"
 msgstr "Шаг"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "Файлы, приложенные получателями"
@@ -1490,20 +1533,11 @@ msgstr "Если не активировать платформу в течен�
 msgid "Sign up"
 msgstr "Зарегистрироваться"
 
-msgid "Invalid phone number"
-msgstr "Недействительный номер телефона"
-
 msgid "Invalid confirmation"
 msgstr "Недействительное подтверждение"
 
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "Код налога"
+msgid "Invalid phone number"
+msgstr "Недействительный номер телефона"
 
 msgid "Site"
 msgstr "Сайт"

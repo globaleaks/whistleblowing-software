@@ -545,6 +545,9 @@ msgstr "Кхолларан дата"
 msgid "Last access"
 msgstr "Тlаьххьара тlекхачар"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Iорадаккхархочун тlаьххьара тlекхачар"
 
@@ -568,6 +571,9 @@ msgstr "ДӀаӀалашде"
 
 msgid "Cancel"
 msgstr "Юхаэца"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Аьрзнийн статусаш"
@@ -1089,6 +1095,9 @@ msgstr "Сервисан билламаш магабе"
 msgid "Title"
 msgstr "ЦӀе"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Нахана евза цlе"
 
@@ -1146,8 +1155,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Администраторна хIокху башхаллошна тlекхочийла луо:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Дехаран дата"
@@ -1194,6 +1209,18 @@ msgstr "Пайдаэцархочо хlара опци хаьржинчул тlа
 msgid "Assign score points"
 msgstr "Баллаш хIиттае"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Баккъал бахий ахь?"
 
@@ -1216,6 +1243,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Копи а яй, и кхерамза меттехь ларъе. Иза хьуна оьшур ю, парол яйъахь, хьайн аккаунтана, информаци а ца йовш, тIекхочийла меттахIоттош."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Копин цlе чуязъе"
@@ -1288,6 +1322,9 @@ msgstr "Tor машанехула бен тlекхочийла дац ресур�
 msgid "The upload request exceeds the size limit"
 msgstr "Бараман лаккхарчу тlегlанал тlехдаьлла дIахIотторан дехар"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Карара парол"
 
@@ -1338,6 +1375,15 @@ msgstr "Барам"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар яздан."
 
@@ -1364,9 +1410,6 @@ msgstr "Хеттаршна жоьпаш"
 
 msgid "Step"
 msgstr "Гlулч"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "ДIаэцархоша юкъаехкина файлаш"
@@ -1462,20 +1505,11 @@ msgstr "Платформина 24 сахьт далале активаци ца 
 msgid "Sign up"
 msgstr "Язлуо"
 
-msgid "Invalid phone number"
-msgstr "Телпонан лоьмар бакъ яц"
-
 msgid "Invalid confirmation"
 msgstr "Тlечlагlдар бакъ дац"
 
-msgid "Address"
-msgstr ""
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Телпонан лоьмар бакъ яц"
 
 msgid "Site"
 msgstr ""

@@ -544,6 +544,9 @@ msgstr "የፍጥረት ቀን፡"
 msgid "Last access"
 msgstr "የመጨረሻ መዳረሻ"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "የመረጃ ሰጪው የመጨረሻ መዳረሻ"
 
@@ -567,6 +570,9 @@ msgstr "አስቀምጥ "
 
 msgid "Cancel"
 msgstr "ሰርዝ "
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "ሁኔታዎችን ያሳውቁ"
@@ -1088,6 +1094,9 @@ msgstr "የአገልግሎት ደንቦችን አንቃ"
 msgid "Title"
 msgstr "ርእስ "
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "ይፋ ስም"
 
@@ -1145,8 +1154,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "ተጠቃሚው በሚመለከቱት ባህሪዎች ላይ አስተዳደራዊ መዳረሻ አለው"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "የጥያቄ ቀን"
@@ -1193,6 +1208,18 @@ msgstr "ተጠቃሚው አማራጩን ከመረጠ በኋላ የሚታይ ጽ�
 msgid "Assign score points"
 msgstr "የውጤት ነጥቦች መድብ"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "ሁኔታ፡-"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "እርግጠኛ ነዎት?"
 
@@ -1215,6 +1242,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ቅዱና በጥብቅ ቦታ አስቀምጡ፡፡ የይለፍ ቃልህ ቢጠፋ ምንም ውሂብ ሳይጠፋበዎት\n\nየመለያ መዳረሻ ለማግኘት አስፈላጊ ይሆናል"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ለቅጂው ስም አስገቡ"
@@ -1287,6 +1321,9 @@ msgstr "ንብረቱ መዳረሻ በቶር ኔትዎርክ በኩል ብቻ ነ
 msgid "The upload request exceeds the size limit"
 msgstr "የጭነት ጥያቄው ከተፈቀደው ወሰን ያልፋል"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "የአሁን ይለፍ ቃል"
 
@@ -1337,6 +1374,15 @@ msgstr "መጠን"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "አድራሻ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "የግብር ኮድ"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋል፡፡"
 
@@ -1363,9 +1409,6 @@ msgstr "የመጠይቅ መልሶች"
 
 msgid "Step"
 msgstr "ደረጃ"
-
-msgid "Status:"
-msgstr "ሁኔታ፡-"
 
 msgid "Files attached by recipients"
 msgstr "ለመረጃ ሰጪው የተያያዙ ፋይሎች"
@@ -1461,20 +1504,11 @@ msgstr "በ24 ሰኣት ውስጥ ካልነቃ የመሳርያ ስርኣቱ በ�
 msgid "Sign up"
 msgstr "ተመዝገቡ"
 
-msgid "Invalid phone number"
-msgstr "የተሳሳተ ስልክ ቁጥር"
-
 msgid "Invalid confirmation"
 msgstr "የተሳሳተ ማረጋገጫ"
 
-msgid "Address"
-msgstr "አድራሻ"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr "የግብር ኮድ"
+msgid "Invalid phone number"
+msgstr "የተሳሳተ ስልክ ቁጥር"
 
 msgid "Site"
 msgstr "ጣቢያ"

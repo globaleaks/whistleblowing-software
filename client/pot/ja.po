@@ -548,6 +548,9 @@ msgstr "作成日"
 msgid "Last access"
 msgstr "最終アクセス"
 
+msgid "Receivers"
+msgstr "受信者"
+
 msgid "Whistleblower's last access"
 msgstr "WBの最終アクセス"
 
@@ -571,6 +574,9 @@ msgstr "保存"
 
 msgid "Cancel"
 msgstr "キャンセル"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "報告状況"
@@ -1092,6 +1098,9 @@ msgstr "利用規約を有効にする"
 msgid "Title"
 msgstr "タイトル"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "公開名"
 
@@ -1149,8 +1158,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "次の機能にユーザーの管理アクセス権を与えます:"
+
+msgid "Statistics"
+msgstr "統計"
 
 msgid "Request date"
 msgstr "リクエスト日"
@@ -1197,6 +1212,18 @@ msgstr "ユーザーがオプションを選択した後に表示されるテキ
 msgid "Assign score points"
 msgstr "スコアポイントを割り当て"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "状態"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "よろしいですか?"
 
@@ -1219,6 +1246,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "コピーを作成して、安全な場所に保管してください。 パスワードを紛失した場合に、データを失うことなくアカウントへのアクセスを回復する必要があります。"
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "コピーの名前を入力してください"
@@ -1291,6 +1325,9 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "現在のパスワード"
 
@@ -1341,6 +1378,15 @@ msgstr "サイズ："
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "アドレス"
+
+msgid "Fiscal code"
+msgstr "財務コード"
+
+msgid "Tax code"
+msgstr "納税番号"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
 
@@ -1367,9 +1413,6 @@ msgstr "アンケート回答"
 
 msgid "Step"
 msgstr "ステップ"
-
-msgid "Status:"
-msgstr "状態"
 
 msgid "Files attached by recipients"
 msgstr "受信者が添付したファイル"
@@ -1465,20 +1508,11 @@ msgstr "24時間以内に有効にしない場合、プラットフォームは�
 msgid "Sign up"
 msgstr "登録"
 
-msgid "Invalid phone number"
-msgstr "電話番号が正しくありません"
-
 msgid "Invalid confirmation"
 msgstr "確認できません"
 
-msgid "Address"
-msgstr "アドレス"
-
-msgid "Fiscal code"
-msgstr "財務コード"
-
-msgid "Tax code"
-msgstr "納税番号"
+msgid "Invalid phone number"
+msgstr "電話番号が正しくありません"
 
 msgid "Site"
 msgstr "サイト"

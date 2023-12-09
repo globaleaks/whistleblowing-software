@@ -543,6 +543,9 @@ msgstr "Яратма тарихи"
 msgid "Last access"
 msgstr "Сонъ иришим"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Малюмат бериджининъ сонъ иришими"
 
@@ -566,6 +569,9 @@ msgstr "Сакълап къалдырмакъ"
 
 msgid "Cancel"
 msgstr "Лягъу этме"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Эсабат статуслары"
@@ -1087,6 +1093,9 @@ msgstr "Хызмет этме шартларыны ишлетмек"
 msgid "Title"
 msgstr "Серлева"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Ичтимаий ад"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Къулланыджыгъа невбеттеки функцияларгъа административ иришимни беринъиз:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Соратма тарихи"
@@ -1192,6 +1207,18 @@ msgstr "Къулланыджы опцияны сайлагъан сонъ кос
 msgid "Assign score points"
 msgstr "Къыймет кесмек"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Эминсинъизми?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Копия япып, оны телюкесиз ерге ерлештиринъиз. Эгер паролинъизни джойсанъыз, копиядаки малюматлар джойылмайып, эсабынъызнен иришимни гъайрыдан къурмакъ ичюн керек олур."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Копия адыны кирсетинъиз"
@@ -1286,6 +1320,9 @@ msgstr "Ресурскъа иришим тек Tor агъындан мумкюн
 msgid "The upload request exceeds the size limit"
 msgstr "Серверге файл юклемесине соратма тайин этильген лимиттен устюндир"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Шимдики пароль"
 
@@ -1336,6 +1373,15 @@ msgstr "Ольчю:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алыджылар сизни къошма суаллер джедвелини толдурмагъа риджа эттилер."
 
@@ -1362,9 +1408,6 @@ msgstr "Суаллер джедвелининъ джеваплары"
 
 msgid "Step"
 msgstr "Адым"
-
-msgid "Status:"
-msgstr "Статус:"
 
 msgid "Files attached by recipients"
 msgstr "Алыджылар тарафындан иляве этильген файллар"
@@ -1460,20 +1503,11 @@ msgstr "Эгер платформа 24 саатте активация япыл�
 msgid "Sign up"
 msgstr "Къайд олмакъ"
 
-msgid "Invalid phone number"
-msgstr "Телефон номерасы догъру дегиль"
-
 msgid "Invalid confirmation"
 msgstr "Тасдикъ догъру дегиль"
 
-msgid "Address"
-msgstr ""
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Телефон номерасы догъру дегиль"
 
 msgid "Site"
 msgstr ""

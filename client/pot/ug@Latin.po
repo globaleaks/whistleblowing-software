@@ -543,6 +543,9 @@ msgstr "Qurulghan chésla"
 msgid "Last access"
 msgstr "Axirqi ziyaret"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr "Pash qilghuchining axirqi ziyariti"
 
@@ -566,6 +569,9 @@ msgstr "Saqla"
 
 msgid "Cancel"
 msgstr "Waz kech"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Doklat haletliri"
@@ -1087,6 +1093,9 @@ msgstr "Mulazimet shertlirini qozghat"
 msgid "Title"
 msgstr "Téma"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Ammiwi nami"
 
@@ -1144,8 +1153,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
+
+msgid "Statistics"
+msgstr ""
 
 msgid "Request date"
 msgstr "Telep chéslasi"
@@ -1192,6 +1207,18 @@ msgstr "Ishletküchi tallanmini tallighandin kéyin tékist körsitilidu."
 msgid "Assign score points"
 msgstr "Nomur nuqtilirini belgileng"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Halet:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Jezim qilamsiz?"
 
@@ -1214,6 +1241,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Bir kupiyesini éling we ixeter yerde saqlang. eger parolingizni untup qélip, hésabitingizdiki melumatlarni yoqatmastin ziyaret qilmaqchi bolghiningizda lazim bolghusi."
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Kupiye üchün bir nam kirgüzüng"
@@ -1286,6 +1320,9 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Hazirqi parol"
 
@@ -1336,6 +1373,15 @@ msgstr "Chongluqi:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Adrés"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
 
@@ -1362,9 +1408,6 @@ msgstr "Ray sinash jawabliri"
 
 msgid "Step"
 msgstr "Qedem"
-
-msgid "Status:"
-msgstr "Halet:"
 
 msgid "Files attached by recipients"
 msgstr "Höjjetler tapshuriwalghuchilar teripidin qoshup qoyuldi"
@@ -1460,20 +1503,11 @@ msgstr "Eger 24 sa’etkiche aktiplimisngiz, bu supa aptomatik öchürülidu."
 msgid "Sign up"
 msgstr "tizimliting"
 
-msgid "Invalid phone number"
-msgstr "Inawetsiz téléfon nomuri"
-
 msgid "Invalid confirmation"
 msgstr "Inawetsiz jezimlesh"
 
-msgid "Address"
-msgstr "Adrés"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Inawetsiz téléfon nomuri"
 
 msgid "Site"
 msgstr ""

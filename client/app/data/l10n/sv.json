@@ -395,7 +395,7 @@
   "Enter a name for the copy": "Skriv in ett namn för denna kopia",
   "Request support": "Begär support",
   "Thank you.": "Tack.",
-  "We will try to get back to you as soon as possible.": "Vi ska försöka återkomma till dig via plattformen så fort som möjligt.",
+  "We will try to get back to you as soon as possible.": "Vi återkommer till dig via plattformen så fort som möjligt.",
   "Submit": "Skicka",
   "The connection is not secure.": "Uppkopplingen är inte säker.",
   "The platform is still not configured for HTTPS connections and should therefore only be used for testing purposes.": "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte.",

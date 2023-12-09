@@ -552,6 +552,9 @@ msgstr "Datë krijimi"
 msgid "Last access"
 msgstr "Hyrja e fundit"
 
+msgid "Receivers"
+msgstr "Marrësit"
+
 msgid "Whistleblower's last access"
 msgstr "Hyrja e fundit nga nxjerrës të fshehtash"
 
@@ -575,6 +578,9 @@ msgstr "Ruaje"
 
 msgid "Cancel"
 msgstr "Anuloje"
+
+msgid "Scadenza (giorni)"
+msgstr "Skadim (ditë)"
 
 msgid "Report statuses"
 msgstr "Gjendje raportimesh"
@@ -1096,6 +1102,9 @@ msgstr "Aktivizo kushte shërbimi"
 msgid "Title"
 msgstr "Titull"
 
+msgid "Analyst"
+msgstr "Analist"
+
 msgid "Public name"
 msgstr "Emër publik"
 
@@ -1153,8 +1162,14 @@ msgstr "Jepini këtij përdoruesi aftësinë të akordojë hyrje përdoruesish t
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Jepini këtij përdoruesi aftësinë të shpërngulë raportime te përdorues të tjerë"
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Lejoje këtë përdorues të rihapë administrimin e një raportimit"
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Jepi përdoruesit hyrje përgjegjësi në veçoritë vijuese:"
+
+msgid "Statistics"
+msgstr "Statistika"
 
 msgid "Request date"
 msgstr "Datë kërkese"
@@ -1201,6 +1216,18 @@ msgstr "Tekst i shfaqur pasi përdoruesi të ketë përzgjedhur këtë mundësi.
 msgid "Assign score points"
 msgstr "Caktoni pikë"
 
+msgid "Change status"
+msgstr "Ndryshoni gjendje"
+
+msgid "Status:"
+msgstr "Gjendje:"
+
+msgid "Substatus:"
+msgstr "Nëngjendje:"
+
+msgid "Motivation:"
+msgstr "Motivacion:"
+
 msgid "Are you sure?"
 msgstr "Jeni i sigurt?"
 
@@ -1223,6 +1250,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Bëni një kopje dhe depozitojeni në një vend të parrezik. Do t’ju duhet, nëse humbni fjalëkalimin tuaj, për të rifituar hyrje në llogarinë tuaj pa humbje të dhënash."
+
+msgid "Attention"
+msgstr "Kujdes"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Për arsye sigurie, kodi i dëftesës për raportimin tuaj duhet ndryshuar."
 
 msgid "Enter a name for the copy"
 msgstr "Jepni një emër për kopjen"
@@ -1295,6 +1329,9 @@ msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Po veproni në këmbë të një nxjerrësi të fshehtash."
+
 msgid "Current password"
 msgstr "Fjalëkalimi i tanishëm"
 
@@ -1345,6 +1382,15 @@ msgstr "Madhësi:"
 msgid "Access date"
 msgstr "Datë përdorimi"
 
+msgid "Address"
+msgstr "Adresë"
+
+msgid "Fiscal code"
+msgstr "Kod fiskal"
+
+msgid "Tax code"
+msgstr "Kod tatimor"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
 
@@ -1371,9 +1417,6 @@ msgstr "Përgjigje pyetësori"
 
 msgid "Step"
 msgstr "Hap"
-
-msgid "Status:"
-msgstr "Gjendje:"
 
 msgid "Files attached by recipients"
 msgstr "Kartela të bashkëngjitura nga marrës"
@@ -1469,20 +1512,11 @@ msgstr "Në mos u aktivizoftë brenda 24 orësh, platforma do të fshihet vetvet
 msgid "Sign up"
 msgstr "Regjistrohuni"
 
-msgid "Invalid phone number"
-msgstr "Numër telefoni i pavlefshëm"
-
 msgid "Invalid confirmation"
 msgstr "Ripohim i pavlefshëm"
 
-msgid "Address"
-msgstr "Adresë"
-
-msgid "Fiscal code"
-msgstr "Kod fiskal"
-
-msgid "Tax code"
-msgstr "Kod tatimor"
+msgid "Invalid phone number"
+msgstr "Numër telefoni i pavlefshëm"
 
 msgid "Site"
 msgstr "Sajt"

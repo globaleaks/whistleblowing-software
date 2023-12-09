@@ -583,6 +583,9 @@ msgstr "Fecha de creación"
 msgid "Last access"
 msgstr "Último acceso"
 
+msgid "Receivers"
+msgstr "Receptores"
+
 msgid "Whistleblower's last access"
 msgstr "Último acceso del denunciante"
 
@@ -606,6 +609,9 @@ msgstr "Guardar"
 
 msgid "Cancel"
 msgstr "Cancelar"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Estados de una denuncia."
@@ -1127,6 +1133,9 @@ msgstr "Activar términos del servicio"
 msgid "Title"
 msgstr "Título"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Nombre público"
 
@@ -1184,8 +1193,14 @@ msgstr "Dar a este usuario la capacidad de otorgar acceso a las denuncias"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Dar a este usuario la capacidad de transferir denuncias a otros usuarios"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Dar al usuario acceso administrativo a las siguientes características:"
+
+msgid "Statistics"
+msgstr "Estadísticas"
 
 msgid "Request date"
 msgstr "Solicitar fecha"
@@ -1232,6 +1247,18 @@ msgstr "Texto mostrado después de que el usuario haya seleccionado la opción."
 msgid "Assign score points"
 msgstr "Asignar puntuación"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Estado:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
@@ -1254,6 +1281,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Haga una copia y guárdela en un lugar seguro. Será necesaria si pierde su contraseña para poder recuperar de nuevo el acceso sin sufrir pérdida de datos."
+
+msgid "Attention"
+msgstr "Atención"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Introduzca un nombre para la copia"
@@ -1326,6 +1360,9 @@ msgstr "Sólo se puede acceder a este recurso a través de la red Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "El fichero que quiere subir excede el tamaño máximo permitido."
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Contraseña actual"
 
@@ -1376,6 +1413,15 @@ msgstr "Tamaño:"
 msgid "Access date"
 msgstr "Fecha de acceso"
 
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Fiscal code"
+msgstr "Código fiscal"
+
+msgid "Tax code"
+msgstr "Código de impuestos"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Los destinatarios le solicitan que complete un cuestionario adicional."
 
@@ -1402,9 +1448,6 @@ msgstr "Respuestas al cuestionario"
 
 msgid "Step"
 msgstr "Paso"
-
-msgid "Status:"
-msgstr "Estado:"
 
 msgid "Files attached by recipients"
 msgstr "Archivos adjuntados por los destinatarios"
@@ -1500,20 +1543,11 @@ msgstr "Si no se activa en las próximas 24 horas, la plataforma se borrará aut
 msgid "Sign up"
 msgstr "Registrar"
 
-msgid "Invalid phone number"
-msgstr "Número de teléfono no válido."
-
 msgid "Invalid confirmation"
 msgstr "Confirmación no válida"
 
-msgid "Address"
-msgstr "Dirección"
-
-msgid "Fiscal code"
-msgstr "Código fiscal"
-
-msgid "Tax code"
-msgstr "Código de impuestos"
+msgid "Invalid phone number"
+msgstr "Número de teléfono no válido."
 
 msgid "Site"
 msgstr "Sitio"

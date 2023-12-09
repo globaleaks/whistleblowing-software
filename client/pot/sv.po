@@ -566,6 +566,9 @@ msgstr "Datum för skapande"
 msgid "Last access"
 msgstr "Senaste åtkomst"
 
+msgid "Receivers"
+msgstr "Mottagare"
+
 msgid "Whistleblower's last access"
 msgstr "Tidpunkt för visselblåsarens senaste besök"
 
@@ -589,6 +592,9 @@ msgstr "Spara"
 
 msgid "Cancel"
 msgstr "Avbryt"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr "Rapportera statusar"
@@ -1110,6 +1116,9 @@ msgstr "Aktivera användarvillkor"
 msgid "Title"
 msgstr "Rubrik"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr "Offentligt namn"
 
@@ -1167,8 +1176,14 @@ msgstr "Ge mottagaren förmågan att ge användare tillgång till rapporter"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Ge mottagaren förmågan att överlämna rapporter till andra användare"
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Ge användaren administratörsrättigheter för följande funktioner:"
+
+msgid "Statistics"
+msgstr "Statistik"
 
 msgid "Request date"
 msgstr "Datum för begäran"
@@ -1215,6 +1230,18 @@ msgstr "Text som visas efter att användaren har gjort sitt val."
 msgid "Assign score points"
 msgstr "Tilldela poängtal"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Är du säker?"
 
@@ -1238,6 +1265,13 @@ msgid ""
 "your password to recover the access to your account without data loss."
 msgstr "Gör en kopia och förvara den på ett säkert ställe. Om du tappar bort ditt lösenord behövs detta för att du på nytt ska få åtkomst till ditt konto utan dataförlust."
 
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr ""
+
 msgid "Enter a name for the copy"
 msgstr "Skriv in ett namn för denna kopia"
 
@@ -1248,7 +1282,7 @@ msgid "Thank you."
 msgstr "Tack."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Vi ska försöka återkomma till dig via plattformen så fort som möjligt."
+msgstr "Vi återkommer till dig via plattformen så fort som möjligt."
 
 msgid "Submit"
 msgstr "Skicka"
@@ -1309,6 +1343,9 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Nuvarande lösenord"
 
@@ -1359,6 +1396,15 @@ msgstr "Storlek:"
 msgid "Access date"
 msgstr "Åtkomstdatum"
 
+msgid "Address"
+msgstr "Adress"
+
+msgid "Fiscal code"
+msgstr "Skattenummer"
+
+msgid "Tax code"
+msgstr "Skatteregistreringsnummer"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
@@ -1385,9 +1431,6 @@ msgstr "Svar på frågeformuläret"
 
 msgid "Step"
 msgstr "Steg"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Filer som mottagarna bifogat"
@@ -1483,20 +1526,11 @@ msgstr "Om du inte aktiverar plattformen inom 24 timmar, kommer den att raderas
 msgid "Sign up"
 msgstr "Registrering"
 
-msgid "Invalid phone number"
-msgstr "Ogiltigt telefonnummer"
-
 msgid "Invalid confirmation"
 msgstr "Ogiltig bekräftelse"
 
-msgid "Address"
-msgstr "Adress"
-
-msgid "Fiscal code"
-msgstr "Skattenummer"
-
-msgid "Tax code"
-msgstr "Skatteregistreringsnummer"
+msgid "Invalid phone number"
+msgstr "Ogiltigt telefonnummer"
 
 msgid "Site"
 msgstr "Webbplats"

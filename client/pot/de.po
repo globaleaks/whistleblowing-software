@@ -1,6 +1,7 @@
 # 
 # Translators:
 # 5d82173c4528651ffb3192cfbc43353e_22888c7, 2015
+# Andreas Jantz, 2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2023
@@ -10,6 +11,7 @@
 # Jack Pudding, 2015
 # Jack Pudding, 2015
 # Jean-Yves Toumit <saiolar-c@yahoo.fr>, 2013
+# kwadronaut <kwadronaut@chocovax.net>, 2015
 # kwadronaut <kwadronaut@chocovax.net>, 2015
 # lin, 2014
 # marco calamari <marcoc@marcoc.it>, 2013
@@ -52,7 +54,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2023\n"
+"Last-Translator: Andreas Jantz, 2023\n"
 "Language-Team: German (http://app.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -506,7 +508,7 @@ msgid "Hide"
 msgstr "Verstecken"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Einblenden"
 
 msgid "Redact"
 msgstr "redigieren "
@@ -518,22 +520,22 @@ msgid "Select your language"
 msgstr "Wählen Sie Ihre Sprache aus"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Diesem Benutzer die Möglichkeit geben, Informationen zu maskieren"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Diesem Benutzer die Möglichkeit geben, maskierte Informationen dauerhaft zu schwärzen"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Ich habe die Datenschutzbestimmungen gelesen und akzeptiere sie"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Download der Datenschutzerklärung"
 
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Hinweisgeber Richtlinie"
 
 msgid "Voice"
 msgstr "Stimme"
@@ -551,7 +553,7 @@ msgid "File a report"
 msgstr "Einen Bericht einreichen"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Wählen Sie einen Meldekanal aus:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Bevor Sie fortfahren, legen Sie bitte ein neues Passwort fest."
@@ -589,6 +591,9 @@ msgstr "Erstellungsdatum"
 msgid "Last access"
 msgstr "Letzter Zugriff"
 
+msgid "Receivers"
+msgstr "Empfänger"
+
 msgid "Whistleblower's last access"
 msgstr "Letzer Zugriff des Hinweisgebers"
 
@@ -612,6 +617,9 @@ msgstr "Speichern"
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Scadenza (giorni)"
+msgstr "Frist (Tage)"
 
 msgid "Report statuses"
 msgstr "Berichtsstatus"
@@ -1029,7 +1037,7 @@ msgid "Enable search engines indexing"
 msgstr "Suchmaschinenindizierung aktivieren"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Kanäle in alphabetischer Reihenfolge anzeigen"
 
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
@@ -1072,7 +1080,7 @@ msgid "Logging level"
 msgstr "Protokollierungsstufe"
 
 msgid "percentage"
-msgstr "prozent"
+msgstr "Prozent"
 
 msgid "Log accesses of internal users"
 msgstr "Zugriffe interner Benutzer protokollieren"
@@ -1133,6 +1141,9 @@ msgstr "Nutzungsbedingungen aktivieren"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Analyst"
+msgstr "Analyst"
+
 msgid "Public name"
 msgstr "Öffentlicher Name"
 
@@ -1170,7 +1181,7 @@ msgid "Fingerprint"
 msgstr "Fingerabdruck"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Richten Sie die Verschlüsselung durch einen öffentlichen PGP-Schlüssel Bereitstellung"
+msgstr "Einrichten der Verschlüsselung durch Bereitstellung eines öffentlichen PGP-Schlüssels"
 
 msgid "Give this admin ability to change user passwords"
 msgstr "Diesem Administrator das Ändern von Benutzerpasswörtern erlauben"
@@ -1185,13 +1196,19 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Diesem Benutzer die Möglichkeit geben, Benutzern Zugriff auf Berichte zu gewähren"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Diesem Benutzer die Möglichkeit geben, Berichte an andere Benutzer zu übertragen"
+
+msgid "Allow this user to reopen management of a report"
+msgstr "Diesem Benutzer erlauben, die Verwaltung eines Berichts erneut zu öffnen"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Geben Sie dem Benutzer administrativen Zugriff auf die folgenden Funktionen:"
+
+msgid "Statistics"
+msgstr "Statistiken"
 
 msgid "Request date"
 msgstr "Anfragedatum"
@@ -1238,6 +1255,18 @@ msgstr "Angezeigter Text nach dem der Benutzer die Option ausgewählt hat."
 msgid "Assign score points"
 msgstr "Vergeben Sie Punkte"
 
+msgid "Change status"
+msgstr "Status wechseln"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Substatus:"
+msgstr "Teilstatus"
+
+msgid "Motivation:"
+msgstr "Beweggrund"
+
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
@@ -1260,6 +1289,13 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Erstellen Sie eine Kopie und lagern Sie diese an einem sicheren Ort. Sie werden diese brauchen um ohne Datenverlust auf Ihr Konto zuzugreifen, wenn Sie Ihr Passwort verloren haben."
+
+msgid "Attention"
+msgstr "Achtung"
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
+msgstr "Aus Sicherheitsgründen muss der Bestätigungscode für Ihren Bericht geändert werden."
 
 msgid "Enter a name for the copy"
 msgstr "Geben Sie einen Namen für die Kopie ein"
@@ -1297,7 +1333,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "Mit Ihrer Bestätigung legen Sie eine Erinnerung für den ... fest"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Zugang übertragen"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."
@@ -1331,6 +1367,9 @@ msgstr "Ressource kann ausschließlich über das Tor-Netzwerk aufgerufen werden"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Der Upload überschreitet das eingestellte MB Limit."
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Sie handeln im Auftrag eines Hinweisgebers."
 
 msgid "Current password"
 msgstr "Aktuelles Passwort"
@@ -1382,6 +1421,15 @@ msgstr "Größe:"
 msgid "Access date"
 msgstr "Zugriffsdatum"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr "Steuernummer"
+
+msgid "Tax code"
+msgstr "Steuerkennziffer"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Empfänger haben Sie gebeten, einen zusätzlichen Fragebogen auszufüllen."
 
@@ -1408,9 +1456,6 @@ msgstr "Antworten zu Fragebögen"
 
 msgid "Step"
 msgstr "Schritt"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Dateien, die von Empfängern hinzugefügt wurden"
@@ -1482,7 +1527,7 @@ msgid "Show"
 msgstr "Anzeigen"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "Datum der Anmeldung"
 
 msgid "Congratulations!"
 msgstr "Glückwunsch!"
@@ -1506,20 +1551,11 @@ msgstr "Falls nicht innerhalb von 24 Stunden aktiviert, wird die Plattform autom
 msgid "Sign up"
 msgstr "Registrieren"
 
-msgid "Invalid phone number"
-msgstr "Ungültige Telefonnummer"
-
 msgid "Invalid confirmation"
 msgstr "Ungültige Bestätigung"
 
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Fiscal code"
-msgstr "Steuernummer"
-
-msgid "Tax code"
-msgstr "Steuerkennziffer"
+msgid "Invalid phone number"
+msgstr "Ungültige Telefonnummer"
 
 msgid "Site"
 msgstr "Webseite"
@@ -1537,7 +1573,7 @@ msgid "The specified input is not valid:"
 msgstr "Die angegebene Eingabe ist nicht gültig:"
 
 msgid "please enter a valid email address."
-msgstr "bitte geben SIe eine gültige E-Mail-Adresse ein."
+msgstr "bitte geben Sie eine gültige E-Mail-Adresse ein."
 
 msgid "please enter numbers only."
 msgstr "bitte nur Zahlen eingeben."
@@ -1548,7 +1584,7 @@ msgstr "Einreichungen deaktiviert"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustellen. Dieser server.erlaubt nur anonyme Verbindungen. "
+msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem Server herzustellen. Dieser Server erlaubt nur anonyme Verbindungen. "
 
 msgid "Your report was successful."
 msgstr "Ihr Bericht war erfolgreich."
@@ -1681,7 +1717,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Welches Ergebnis möchten Sie mit unserer Unterstützung erreichen?"
 
 msgid "Would you like to tell us who you are?"
-msgstr ""
+msgstr "Möchten Sie uns mitteilen, wer Sie sind?"
 
 msgid "First name"
 msgstr "Vorname"
@@ -1699,7 +1735,7 @@ msgid "Other"
 msgstr "Sonstige"
 
 msgid "Specify"
-msgstr ""
+msgstr "Festlegen"
 
 msgid "Dear {RecipientName},"
 msgstr "Sehr geehrte(r) {RecipientName},"
@@ -1754,7 +1790,7 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Das könnte der Hinweis auf einen Angriff sein (z.B. jemand, der Ihren Server mit nutzlosen daten flutet) oder einfach nur eine hohe Nutzung aufgrund der erhöhten Sichtbarkeit Ihres Projekts."
+msgstr "Das könnte der Hinweis auf einen Angriff sein (z.B. jemand, der Ihren Server mit nutzlosen Daten flutet) oder einfach nur eine hohe Nutzung aufgrund der erhöhten Sichtbarkeit Ihres Projekts."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Prüfen Sie die Angelegenheit, um festzustellen, ob sie gerechtfertigt ist oder nicht."
@@ -1763,7 +1799,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Die Aktivitäten mit ungewöhnlichen Statistiken sind:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Verfügbarer Speicherplatz:{FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1791,12 +1827,12 @@ msgstr "Anomalie in {NodeName} entdeckt"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Dies ist eine E-Mail, um sie darüber zu informieren, dass der PGP-Schlüssel der folgenden Benutzer demnächst abläuft oder bereits abgelaufen ist:"
+msgstr "Dies ist eine E-Mail, um sie darüber zu informieren, dass der PGP-Schlüssel der folgenden Benutzer demnächst abläuft oder bereits abgelaufen sind:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Ohne einen gültigen PGP-Schlüssel kann das System ihnen keine verschlüsselten Benachrichtigungen schicken."
+msgstr "Ohne einen gültigen PGP-Schlüssel kann das System Ihnen keine verschlüsselten Benachrichtigungen schicken."
 
 msgid "PGP key expiration alert"
 msgstr "PGP-Schlüsselablaufalarm"
@@ -1946,7 +1982,7 @@ msgid "You can confirm your request by clicking the following link:"
 msgstr "Sie können Ihre Anfrage bestätigen, indem Sie auf den folgenden Link klicken:"
 
 msgid "Password reset instructions"
-msgstr "Passwortzurücksetzungsanweisungen"
+msgstr "Anleitung zum Zurücksetzen des Passworts"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -1994,7 +2030,7 @@ msgid "New report"
 msgstr "Neuer Bericht"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Ein oder mehrere Berichte laufen ab und werden demnächst gelöscht."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Das früheste Ablaufdatum ist {EarliestExpirationDate}."
@@ -2006,15 +2042,15 @@ msgid "Some reports will expire soon"
 msgstr "Einige Berichte laufen bald ab"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Dies ist eine E-Mail, die Sie über den Eingang eines neuen Berichts informiert."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Dies ist eine E-Mail, die Sie darüber informiert, dass das Erinnerungsdatum für einen oder mehrere Berichte erreicht wurde."
 
 msgid "Reminder"
-msgstr "Erinnerung "
+msgstr "Erinnerung"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dies ist eine E-Mail, um Sie zu benachrichtigen, dass ein vorhandener Bericht aktualisiert wurde."

@@ -547,6 +547,9 @@ msgstr "Data de creación"
 msgid "Last access"
 msgstr "Último acceso"
 
+msgid "Receivers"
+msgstr ""
+
 msgid "Whistleblower's last access"
 msgstr ""
 
@@ -570,6 +573,9 @@ msgstr "Gardar"
 
 msgid "Cancel"
 msgstr "Cancelar"
+
+msgid "Scadenza (giorni)"
+msgstr ""
 
 msgid "Report statuses"
 msgstr ""
@@ -1091,6 +1097,9 @@ msgstr "Habilitar os termos do servizo"
 msgid "Title"
 msgstr "Título"
 
+msgid "Analyst"
+msgstr ""
+
 msgid "Public name"
 msgstr ""
 
@@ -1148,8 +1157,14 @@ msgstr ""
 msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
 msgid "Give the user administrative access to the following features:"
 msgstr ""
+
+msgid "Statistics"
+msgstr "Estadísticas"
 
 msgid "Request date"
 msgstr "Data de solicitude"
@@ -1196,6 +1211,18 @@ msgstr ""
 msgid "Assign score points"
 msgstr "Asignar puntos"
 
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Estado"
+
+msgid "Substatus:"
+msgstr ""
+
+msgid "Motivation:"
+msgstr ""
+
 msgid "Are you sure?"
 msgstr "Estás seguro?"
 
@@ -1217,6 +1244,13 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Attention"
+msgstr ""
+
+msgid ""
+"For security reason th receipt code for your report needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
@@ -1290,6 +1324,9 @@ msgstr "Só se pode acceder ao recurso a través da rede Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "A solicitude de carga supera o límite de tamaño"
 
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
 msgid "Current password"
 msgstr "Contrasinal actual"
 
@@ -1340,6 +1377,15 @@ msgstr "Tamaño:"
 msgid "Access date"
 msgstr ""
 
+msgid "Address"
+msgstr "Enderezo"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatarios pediron que complete un cuestionario adicional."
 
@@ -1366,9 +1412,6 @@ msgstr "Respostas do cuestionario"
 
 msgid "Step"
 msgstr "Paso"
-
-msgid "Status:"
-msgstr "Estado"
 
 msgid "Files attached by recipients"
 msgstr "Arquivos adxuntos por destinatarios"
@@ -1464,20 +1507,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "Rexistrarse "
 
-msgid "Invalid phone number"
-msgstr "Número de teléfono non válido"
-
 msgid "Invalid confirmation"
 msgstr ""
 
-msgid "Address"
-msgstr "Enderezo"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Tax code"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Número de teléfono non válido"
 
 msgid "Site"
 msgstr "SItio"
