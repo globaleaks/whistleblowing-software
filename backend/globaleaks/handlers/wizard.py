@@ -11,6 +11,7 @@ from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomPassword
 from globaleaks.utils.log import log
+from globaleaks.utils.sock import isIPAddress
 
 
 def db_wizard(session, tid, hostname, request):
@@ -48,7 +49,7 @@ def db_wizard(session, tid, hostname, request):
     node.set_val('wizard_done', True)
     node.set_val('enable_developers_exception_notification', request['enable_developers_exception_notification'])
 
-    if tid == 1:
+    if tid == 1 and not isIPAddress(hostname):
        node.set_val('hostname', hostname)
 
     profiles.load_profile(session, tid, request['profile'])
