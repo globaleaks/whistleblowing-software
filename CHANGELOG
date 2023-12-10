@@ -1,3 +1,6 @@
+Changes in version 4.13.20
+    Revise firewall rules changes introduced in 4.13.19
+
 Changes in version 4.13.19
     Correct audio player in relation to handling of multiple recordings
     Modify report print to unroll tabs and export completed data
