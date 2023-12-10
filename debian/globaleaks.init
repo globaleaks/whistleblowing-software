@@ -118,14 +118,14 @@ network_sandboxing_start()
         return
     fi
 
+    iptables -m comment --comment "globaleaks" -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
+    ip6tables -m comment --comment "globaleaks" -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
+
+    iptables -m comment --comment "globaleaks" -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
+    ip6tables -m comment --comment "globaleaks" -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
+
     iptables -m comment --comment "globaleaks" -A INPUT -m mark --mark 1 -j REJECT
     ip6tables -m comment --comment "globaleaks" -A INPUT -m mark --mark 1 -j REJECT
-
-    iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
-    ip6tables -t mangle -A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-mark 1
-
-    iptables -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
-    ip6tables -t mangle -A PREROUTING -p tcp -m tcp --dport 8443 -j MARK --set-mark 1
 
     if [[ "$REACHABLE_VIA_WEB" -eq "1" ]]; then
         iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
@@ -134,11 +134,11 @@ network_sandboxing_start()
         iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
         ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
 
-        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
-        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
 
-        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
-        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
+        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
     fi
 
     log_action_end_msg 0
