@@ -36,7 +36,7 @@ class StaticFileHandler(BaseHandler):
                                    b"form-action 'none';"
                                    b"frame-ancestors 'none';"
                                    b"frame-src 'self';"
-                                   b"img-src 'self';"
+                                   b"img-src 'self'; data:"
                                    b"media-src 'self';"
                                    b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
                                    b"style-src 'self' 'sha256-pru43GdcNLwb4MwzOriCI9/9cKBzE5xeoLWHlKai1As=';")
