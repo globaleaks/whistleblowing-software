@@ -1,3 +1,6 @@
+Changes in version 4.13.21
+    Fix issue #3855 introduced in 4.13.19
+
 Changes in version 4.13.20
     Revise firewall rules changes introduced in 4.13.19
 
