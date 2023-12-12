@@ -14,7 +14,7 @@ from globaleaks.utils.letsencrypt import ChallTok
 
 @inlineCallbacks
 def set_init_params():
-    hostname = 'localhost:9999'
+    hostname = '127.0.0.1:9999'
     yield tw(config.db_set_config_variable, 1, 'hostname', hostname)
     State.tenants[1].cache.hostname = hostname
 
@@ -118,7 +118,7 @@ class TestFileHandler(helpers.TestHandler):
         handler = self.request({'name': 'cert', 'content': helpers.HTTPS_DATA['cert']}, role='admin')
         yield handler.post('cert')
 
-        State.tenants[1].cache.hostname = 'localhost'
+        State.tenants[1].cache.hostname = '127.0.0.1'
 
         body = {'name': 'chain', 'content': helpers.HTTPS_DATA[n]}
         handler = self.request(body, role='admin')

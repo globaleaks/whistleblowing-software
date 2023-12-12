@@ -8,7 +8,7 @@ describe("admin configure network", () => {
   it("should be able to configure https", () => {
     cy.contains("a", "HTTPS").click();
 
-    cy.get('[name="hostname"]').clear().type("localhost");
+    cy.get('[name="hostname"]').clear().type("127.0.0.1");
     cy.get('button:contains("Save")').first().click();
 
     cy.get("#HTTPSManualMode").click();
