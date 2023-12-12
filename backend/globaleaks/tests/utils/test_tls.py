@@ -38,7 +38,7 @@ class TestObjectValidators(TestCase):
             'chain': '',
             'ssl_intermediate': '',
             'https_enabled': False,
-            'hostname': 'localhost:9999',
+            'hostname': '127.0.0.1:9999',
         }
 
     def test_private_key_invalid(self):

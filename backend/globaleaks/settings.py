@@ -49,8 +49,6 @@ class SettingsClass(object, metaclass=Singleton):
         # and resetted by session_management sched
         self.failed_login_attempts = {}
 
-        self.local_hosts = ['127.0.0.1', 'localhost']
-
         self.onionservice = None
 
         # SOCKS default

@@ -305,7 +305,7 @@ class APIResourceWrapper(Resource):
         request.client_using_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
 
         if not State.tenants[1].cache.wizard_done or \
-          request.hostname == b'localhost' or \
+          request.hostname is b'127.0.0.1' or \
           (State.tenants[1].cache.hostname == '' and isIPAddress(request.hostname)):
             request.tid = 1
         else:
