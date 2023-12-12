@@ -79,7 +79,7 @@ def gen_x509_csr_pem(key_pair, csr_fields, csr_sign_bits):
     return pem_csr
 
 
-def gen_selfsigned_certificate(hostname="localhost", ip="127.0.0.1"):
+def gen_selfsigned_certificate(hostname="127.0.0.1", ip="127.0.0.1"):
     """Generates self signed certificate for localhost and 127.0.0.1."""
     key = ec.generate_private_key(ec.SECP384R1(), default_backend())
 
