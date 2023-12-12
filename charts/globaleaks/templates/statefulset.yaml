@@ -6,7 +6,6 @@ metadata:
     {{- include "globaleaks.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  serviceName: "globaleaks"
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -38,17 +37,17 @@ spec:
           - name: globaleaks-pvc
             mountPath: /app
           ports:
-            - name: https
+            - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
-              port: https
+              port: http
           readinessProbe:
             httpGet:
               path: /
-              port: https
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
