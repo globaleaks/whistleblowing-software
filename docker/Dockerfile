@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 debian:12-slim
+FROM debian:12-slim
 
 RUN apt-get update -q && \
     apt-get install -y wget lsb-release && \
