@@ -1,3 +1,9 @@
+globaleaks (4.13.22) stable; urgency=medium
+
+  * New stable release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 14 Dec 2023 00:21:44 +0100
+
 globaleaks (4.13.21) stable; urgency=medium
 
   * New stable release
