@@ -360,16 +360,6 @@ legend {
   height: 12rem;
 }
 
-.imgPreview {
-  height: 10rem;
-  width: 10rem;
-}
-
-.imgPreview img {
-  height: 100%;
-  width: 100%;
-}
-
 .fileUpload {
   position: absolute;
   top: 0;

@@ -868,17 +868,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return $location.path() === "/submission";
     },
 
-    showFilePreview: function(content_type) {
-      var content_types = [
-        "image/gif",
-        "image/jpeg",
-        "image/png",
-        "image/bmp"
-      ];
-
-      return content_types.indexOf(content_type) > -1;
-    },
-
     moveUp: function(elem) {
       elem[this.getYOrderProperty(elem)] -= 1;
     },
