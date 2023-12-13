@@ -1,3 +1,12 @@
+Changes in version 4.13.22
+    Deprecate file upload preview based on data uri
+      The feature will be reimplemented soon based on the
+      secure file viewer extended to more file types that not just images.
+    Revert "Modify report print to unroll tabs and export completed data"
+      Reason: functionality with graphical imperfections on some browsers
+      The feature will be reimplemented creating exports of type pdf
+    Revise firewall rules in relation to issue #3856
+
 Changes in version 4.13.21
     Fix issue #3855 introduced in 4.13.19
 
