@@ -30,12 +30,4 @@
   {
     display: none;
   }
-
-  .exclude-print, .download-button, .btn-danger {
-    display: none;
-  }
-
-  .include-print {
-    display: block !important;
-  }
 }
