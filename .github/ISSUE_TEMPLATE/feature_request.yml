@@ -2,7 +2,6 @@ name: Feature request
 description: Suggest a new feature.
 title: "Suggest a new feature"
 labels: ["Triage", "T: Feature"]
-assignees: [evilaliv3]
 body:
   - type: textarea
     id: proposal
