@@ -8,7 +8,7 @@ image:
   repository: andrewmoy/globaleaks
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "4.13.21"
+  tag: "4.13.22"
 
 imagePullSecrets: []
 nameOverride: ""
