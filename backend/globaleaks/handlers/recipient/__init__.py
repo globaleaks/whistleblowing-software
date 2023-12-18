@@ -15,6 +15,7 @@ from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.utility import datetime_null
 
 import globaleaks.handlers.recipient.export
 
@@ -101,12 +102,16 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             answers = ""
             label = ""
 
+        whistleblower_identity_date = datetime_null()
+
         if data is None:
             subscription = 0
         elif data.creation_date == itip.creation_date:
             subscription = 1
+            whistleblower_identity_date = data.creation_date
         else:
             subscription = 2
+            whistleblower_identity_date = data.creation_date
 
         if accessible or itip.id not in dict_ret:
             dict_ret[itip.id] = {
@@ -131,6 +136,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                 'comment_count': comments_by_itip.get(itip.id, 0),
                 'receiver_count': receiver_count_by_itip.get(itip.id, 0),
                 'subscription': subscription,
+                'whistleblower_identity_date': whistleblower_identity_date,
                 'accessible': accessible
             }
 
