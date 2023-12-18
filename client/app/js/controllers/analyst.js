@@ -5,7 +5,7 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
   let oa = $scope.resources.stats.reports_with_at_least_one_access;
   let totAcc = na + oa;
   na = ((na / totAcc)*100).toFixed(1);
-  oa = ((oa / totAcc)*100).toFixed(1);
+  oa = 100-na;
 
   let an = $scope.resources.stats.reports_anonymous;
   let sb = $scope.resources.stats.reports_subscribed;
@@ -13,7 +13,7 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
   let totId = an + sb + sbl;
   an = ((an / totId)*100).toFixed(1);
   sb = ((sb / totId)*100).toFixed(1);
-  sbl = ((sbl / totId)*100).toFixed(1);
+  sbl = 100-an-sb;
 
   // Label definition
   let returning_wb_labels = ["Not returning", "Returning"
