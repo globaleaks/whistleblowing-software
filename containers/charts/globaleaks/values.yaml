@@ -25,8 +25,10 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+nonce: {}
+
+podSecurityContext: 
+  fsGroup: 102
 
 securityContext: {}
   # capabilities:
@@ -37,7 +39,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8080
   httpsPort: 8443
 
@@ -88,3 +90,36 @@ persistence:
   storageClassName: ""
   accessMode: ReadWriteOnce
   size: 1Gi
+
+livenessProbe:
+    enabled: true
+    path: /#
+    scheme: HTTPS
+    port: 8443
+    initialDelaySeconds: 30
+    failureThreshold: 10
+    timeoutSeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+
+readinessProbe:
+    enabled: true
+    path: /#
+    scheme: HTTPS
+    port: 8443
+    initialDelaySeconds: 30
+    failureThreshold: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+    periodSeconds: 10
+
+startupProbe:
+    enabled: true
+    path: /#
+    scheme: HTTPS
+    port: 8443
+    initialDelaySeconds: 30
+    failureThreshold: 60
+    periodSeconds: 5
+    timeoutSeconds: 5
+internalPort: 8443
