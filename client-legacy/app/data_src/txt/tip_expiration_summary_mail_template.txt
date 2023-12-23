@@ -1,0 +1,12 @@
+Dear {RecipientName},
+
+One or more reports are expiring and will be soon deleted.
+
+The earliest expiration date is {EarliestExpirationDate}.
+
+Please remember to check them before they are deleted.
+
+{LoginUrl}
+
+Kind regards,
+{NodeName}

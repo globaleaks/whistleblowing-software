@@ -1,0 +1,8 @@
+Dear {RecipientName},
+
+This email is to remind you the presence of unread or updated reports.
+
+{LoginUrl}
+
+Kind regards,
+{NodeName}

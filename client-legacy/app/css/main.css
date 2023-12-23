@@ -1,0 +1,1006 @@
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-shadow: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  color: #1d1f24;
+  font-family: Inter, "Noto Sans Armenian", "Noto Sans Arabic", "Noto Sans Bengali", "Noto Sans Hebrew", "Noto Sans HK", "Noto Sans JP", "Noto Sans Georgian", "Noto Sans Khmer", "Noto Sans KR", "Noto Sans Myanmar", "Noto Sans Sc", "Noto Sans Tamil", "Noto Sans Thaana", "Noto Sans Thai", "Noto Serif Tibetan", sans-serif;
+  font-size: 16px;
+  min-height: 20rem;
+}
+
+a,
+a:hover,
+a:active,
+a:focus,
+.link {
+  color: #205282;
+  outline: 0;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover,
+.link:hover,
+.onionaddress {
+  color: #5797d5;
+}
+
+legend {
+  font-size: revert;
+}
+
+.onionaddress {
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.visible-on-over {
+  opacity: 0.2;
+}
+
+.visible-on-over:hover {
+  opacity: 1;
+}
+
+.uib-datepicker-popup {
+  padding: 5;
+  margin: 0;
+}
+
+.uib-datepicker {
+  padding: 5px;
+}
+
+.uib-button-bar > .btn-group > .btn-info {
+  display: none;
+}
+
+.uib-button-bar > .btn-success {
+  display: none;
+}
+
+[dir] .uib-datepicker th,
+[dir] .uib-datepicker td {
+  white-space: nowrap;
+  min-width: 0;
+  padding: 2px;
+}
+
+[dir] .filterSelected {
+  color: #377abc;
+}
+
+.nav,
+.pagination,
+.carousel,
+.card-title a {
+  cursor: pointer;
+}
+
+
+[dir] .dropdown-multiselect button::after {
+  border: 0;
+  content: "";
+  vertical-align: 0;
+}
+
+.dropdown-multiselect button {
+  padding: 0;
+  width: 18px;
+  height: 20px;
+}
+
+[dir] .full button,
+[dir] .btn-info:not(:disabled, .disabled):active,
+[dir] .btn-info:not(:disabled, .disabled).active,
+[dir] .show > .btn-info.dropdown-toggle {
+  background: #dde3ed;
+}
+
+[dir] .full > button {
+  color: #2866a2;
+}
+
+[dir] .uib-datepicker td > .active {
+  color: #fff;
+}
+
+[dir] .uib-datepicker button:active {
+  background: #dde3ed;
+  color: #2866a2;
+}
+
+[dir] .uib-datepicker button:hover {
+  background: #dde3ed;
+  color: #2866a2;
+}
+
+[dir] .table-responsive {
+  overflow: inherit;
+}
+
+.dropdown-multiselect {
+  position: absolute;
+  left: 0;
+}
+
+.DropdownMultiselectContainer {
+  position: relative;
+}
+
+.dropdown-multiselect .dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #f5f7fa;
+}
+
+.dropdown-multiselect-padding .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-multiselect .dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  color: #1d1f24;
+  line-height: 2;
+  white-space: nowrap;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-multiselect .dropdown-menu > li > a:hover {
+  background: #f5f7fa;
+}
+
+[dir] .form-control,
+[dir="ltr"] .custom-select,
+[dir="rtl"] .custom-select {
+  background-color: #f5f7fa;
+}
+
+[dir] .form-control:hover {
+  background-color: #fff;
+}
+
+[dir] .form-control.is-valid,
+[dir] .was-validated .form-control:valid {
+  border-color: #c8d1e0;
+}
+
+[dir] .h1,
+[dir] h1 {
+  font-size: 1.6em;
+}
+
+[dir] .h2,
+[dir] h2 {
+  font-size: 1.5em;
+}
+
+[dir] .h3,
+[dir] h3 {
+  font-size: 1.4em;
+}
+
+[dir] .h4,
+[dir] h4 {
+  font-size: 1.3em;
+}
+
+[dir] .h5,
+[dir] h5 {
+  font-size: 1.2em;
+}
+
+[dir] .h6,
+[dir] h6 {
+  font-size: 1.1em;
+}
+
+[dir] .container-fluid {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+[dir] .nav-tabs .nav-item.show .nav-link,
+[dir] .nav-tabs .nav-link.active {
+  color: #103253;
+}
+
+[dir] .table thead th {
+  border-top: 0;
+}
+
+[dir] .btn {
+  font-weight: bold;
+}
+
+.card {
+  margin-bottom: 1em;
+}
+
+#Sidebar a {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+#Sidebar a.active,
+#Sidebar a:active.active,
+#Sidebar a:hover.active,
+#Sidebar a:focus.active {
+  border-bottom: 1px solid #c8d1e0;
+  width: max-content;
+}
+
+#PageContent {
+  flex: 1 0 auto;
+}
+
+#HeaderBox {
+  padding: 1em;
+}
+
+#ContentBox,
+#FooterBox,
+#DemoBadge,
+#PrivacyBadge {
+  padding: 1em;
+}
+
+#HeaderBox::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.default-logo {
+  height: 3.2rem;
+  width: 3.2rem;
+}
+
+.contextImg,
+.receiverImg {
+  height: 10rem;
+  max-width: 20rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.receipt {
+  text-align: center;
+}
+
+#PrivacyBadge {
+  background-color: #1d1f24;
+  color: #fff;
+}
+
+.tab-content {
+  padding-top: 1em;
+}
+
+.preformatted {
+  white-space: pre-wrap;
+}
+
+.imageUpload {
+  position: relative;
+  border: 1px dashed #c8d1e0;
+  z-index: 0;
+  text-align: center;
+  height: 10.4rem;
+  width: 10.4rem;
+  min-height: 10.4rem;
+}
+
+.imageUpload .changePictureButton {
+  position: absolute;
+  bottom: 1rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.imageThumbnail,
+.imageUploadThumbnail,
+.imageUploadThumbnail img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.imageUploadThumbnail img {
+  vertical-align: middle;
+  text-align: center;
+  z-index: 1;
+}
+
+.LoginErrorBox,
+.LoginErrorBoxHomepage {
+  display: inline-block;
+  margin: 1em;
+}
+
+#WhistleblowerLoginForm input {
+  width: 14rem;
+  text-align: center;
+}
+
+.recoverykeyinput {
+  width: 64rem;
+  text-align: center;
+}
+
+[dir="ltr"] .nested {
+  padding-left: 1em;
+}
+
+[dir="rtl"] .nested {
+  padding-right: 1em;
+}
+
+.filePreview {
+  height: 12rem;
+}
+
+.imgPreview {
+  height: 10rem;
+  width: 10rem;
+}
+
+.imgPreview img {
+  height: 100%;
+  width: 100%;
+}
+
+.fileUpload {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  height: 10rem;
+  width: 10rem;
+  text-align: center;
+  line-height: 10rem;
+  border: 1px solid #c8d1e0;
+}
+
+.fileUploadIconSmall {
+  position: absolute;
+  font-size: 10rem;
+  top: 0;
+  right: 0;
+}
+
+.fileUploadIcon {
+  font-size: 2rem;
+}
+
+.fileUploadProgress {
+  margin-top: 1em;
+}
+
+.message,
+.messageWB {
+  padding: 1em;
+  border: 1px solid #c8d1e0;
+}
+
+.messageWB,
+.selectedTip,
+[dir] .card-header,
+[dir] .table-striped tbody tr:nth-of-type(odd),
+[dir] .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+  background-color: #f5f7fa;
+}
+
+[dir] .reminder {
+  color: #ffd644;
+}
+
+[dir] .overdueReceipt {
+  border: 1px solid #ffd644;
+}
+
+[dir] .expiredReceipt {
+  border: 1px solid #de1b1b;
+}
+
+.dual_title {
+  width: 50%;
+}
+
+#LogoBox img {
+  max-height: 10rem;
+  max-width: 20rem;
+}
+
+#Toolbar {
+  margin-bottom: 1em;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+}
+
+#TipList table {
+  table-layout: auto;
+}
+
+#TipList th,
+#TipList td {
+  white-space: nowrap;
+}
+
+@keyframes fadeinout {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.file-info-row {
+  margin-top: 1em;
+}
+
+.rfile .top-row {
+  min-height: 30px;
+}
+
+.disabled-interface {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.6;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+input[type="file"] {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.navbar .fa,
+.navbar .fa-solid {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-none::before {
+  content: "\2122";
+  color: transparent;
+}
+
+.sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+@media screen and (width >= 768px) {
+  .modal-lg .modal-dialog {
+    width: 600px;
+  }
+}
+
+.drag-drop {
+  padding: 1em;
+  background-color: #f5f7fa;
+  border: 1px solid #c8d1e0;
+}
+
+.drag-drop:hover {
+  background-color: #fff;
+  border-style: dashed;
+}
+
+.drag-over {
+  border-style: solid;
+}
+
+.custom-file {
+  width: auto;
+}
+
+.custom-file-label::after {
+  opacity: 0;
+}
+
+#creditCard {
+  width: 20rem;
+}
+
+[dir] label,
+[dir] p:last-child {
+  margin: 0;
+}
+
+#HomePageBox {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#NodePresentation {
+  font-size: 1.2rem;
+}
+
+#NodePresentation,
+#WhistleblowingQuestion,
+#WhistleblowerLoginPrompt {
+  white-space: pre-wrap;
+}
+
+#WhistleblowerSubmitBox,
+#WhistleblowerLoginBox {
+  text-align: center;
+}
+
+.description {
+  color: #1d1f24;
+  white-space: pre-wrap;
+}
+
+.selectCard {
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #c8d1e0;
+  border-radius: 5px;
+}
+
+.selectCard:hover,
+.selectCard.selected {
+  background-color: #fffcf1;
+}
+
+.selectCard.disabled {
+  background-color: #f2dede;
+}
+
+[dir="ltr"] .selectCard {
+  text-align: left;
+}
+
+[dir="rtl"] .selectCard {
+  text-align: right;
+}
+
+.fieldAnswerEntry {
+  margin-top: 1em;
+}
+
+.fieldAnswerEntryFirst {
+  margin-top: 0;
+}
+
+.fieldAnswerEntryLast {
+  margin-bottom: 1em;
+}
+
+#OTPSecretForm input {
+  width: 26rem;
+  text-align: center;
+}
+
+.fieldAnswerEntryLabel::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#MaxSelectableReceiverBox {
+  margin-bottom: 1em;
+}
+
+[dir] .form-control.is-valid,
+[dir] .form-control.is-valid:focus,
+[dir] .was-validated .form-control:valid,
+[dir] .was-validated .form-control:focus {
+  color: inherit;
+  border-color: inherit;
+  box-shadow: inherit;
+  background-image: none;
+}
+
+.code {
+  color: #1d1f24;
+  background: #f5f7fa;
+}
+
+#Receipt {
+  margin: 1em auto;
+  width: max-content;
+}
+
+#ReceiptCode {
+  text-align: center;
+}
+
+.StepIndex {
+  display: inline-block;
+  color: #c8d1e0;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0.2rem 0;
+  border: 1px solid #c8d1e0;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+[dir="ltr"] .StepIndex,
+[dir="ltr"] #SubmissionButtons button {
+  margin-right: 1em;
+}
+
+[dir="rtl"] .StepIndex,
+[dir="rtl"] #SubmissionButtons button {
+  margin-left: 1em;
+}
+
+.StepIndexSelected {
+  color: #fff;
+  background-color: #377abc;
+  border-color: #377abc;
+}
+
+#SubmissionErrors {
+  margin-top: 1em;
+}
+
+.question legend {
+  display: contents;
+}
+
+.question-body {
+  padding-bottom: 0.5em;
+}
+
+[dir="ltr"] .question .question {
+  padding-left: 1em;
+}
+
+[dir="rtl"] .question .question {
+  padding-right: 1em;
+}
+
+.fileButtons {
+  position: absolute;
+  top: 0;
+  z-index: 666;
+  height: 10rem;
+  width: 10rem;
+  padding: 1em;
+}
+
+[dir="ltr"] .fileButtons {
+  text-align: right;
+}
+
+[dir="rtl"] .fileButtons {
+  text-align: left;
+}
+
+.configSection {
+  margin-bottom: 1em;
+}
+
+.configItem {
+  border: 1px solid #c8d1e0;
+  padding: 1em;
+  margin: 1em auto;
+}
+
+#LogoBox,
+#TitleBox {
+  margin: 1em 0;
+}
+
+#TitleBox * {
+  font-size: 1.6rem;
+  font-weight: bold;
+  white-space: pre-wrap;
+  display: inline;
+}
+
+#LoginStatusBox {
+  font-weight: bold;
+}
+
+#LanguagePickerBox .form-control {
+  width: auto;
+}
+
+#LoginStatusBox,
+#LanguagePickerBox .form-control {
+  height: 2.2rem;
+  line-height: 2.2rem;
+  padding: 0 1em;
+  width: max-content;
+}
+
+#LoginStatusBox,
+#WhistleblowerLoginBox {
+  color: #1d1f24;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+#HeaderBox #WhistleblowerLoginBox {
+  clear: both;
+}
+
+#HeaderBox #WhistleblowerLoginBox form {
+  clear: both;
+}
+
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form {
+  float: right;
+}
+
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form {
+  float: left;
+}
+
+#FooterBox {
+  background-color: #f5f7fa;
+  text-align: center;
+}
+
+#Skip a {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#FooterBox a {
+  font-weight: bold;
+}
+
+#Skip a:focus
+{
+  position:static;
+  width:auto;
+  height:auto;
+}
+
+#FooterBox a:hover,
+#Footerbox a:active,
+#FooterBox a:focus {
+  font-weight: bold;
+}
+
+#MessagesConsoleBox {
+  position: fixed;
+  width: 30rem;
+  min-width: 20rem;
+  z-index: 10;
+  top: 1rem;
+  padding: 0 5em;
+}
+
+#StepAddBox,
+#StepsEditBox,
+#FieldsEditBox,
+#ContextAdvancedSettingsBox,
+#SubstateEditBox {
+  margin-top: 0.5em;
+}
+
+#SubmissionStepContext {
+  padding: revert;
+  margin: revert;
+}
+
+.addField,
+.addFieldFromTemplate {
+  clear: both;
+  margin-bottom: 0.5em;
+}
+
+.field {
+  position: relative;
+  border: 1px solid #c8d1e0;
+  margin-bottom: 0.5em;
+}
+
+.fieldOption {
+  margin-bottom: 0.5em;
+}
+
+.selectionList {
+  background-color: #f5f7fa;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border: 1px solid #c8d1e0;
+  list-style-type: none;
+  overflow: auto;
+  max-height: 8rem;
+}
+
+text.axis-workweek,
+text.axis-worktime {
+  fill: #1d1f24;
+}
+
+.disclaimer-text, .tos-text {
+  display: block;
+  padding: 1em;
+  font-family: monospace;
+  font-size: 0.8rem;
+  max-height: 40em;
+  max-width: 80rem;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+}
+
+.tos-text {
+  color: #1d1f24;
+  background-color: #f5f7fa;
+  border: 1px solid #c8d1e0;
+  max-height: 20rem;
+}
+
+.non-default-language,
+.disabled-icon {
+  opacity: 0.2;
+}
+
+.non-default-language:hover {
+  opacity: 1;
+}
+
+[dir="ltr"] .imageUpload .changePictureButton {
+  left: 1rem;
+}
+
+[dir="rtl"] .imageUpload .changePictureButton {
+  right: 1rem;
+}
+
+.tip-action-open {
+  cursor: pointer;
+}
+
+.fieldAnswer {
+  margin-bottom: 1em;
+}
+
+.TipLabel {
+  color: #377abc;
+}
+
+.StepLabel {
+  text-transform: capitalize;
+}
+
+#SearchFilter {
+  margin: 0 0.5em;
+}
+
+#viewer {
+  width: 100%;
+}
+
+.modal-xl {
+  max-width: 90%;
+}
+
+html[dir="rtl"] input[type="email"],
+html[dir="ltr"] input[type="email"],
+html[dir="rtl"] #creditCard,
+html[dir="ltr"] #creditCard,
+html[dir="rtl"] #Receipt,
+html[dir="ltr"] #Receipt {
+  direction: ltr;
+}
+
+[dir="rtl"] .fa,
+[dir="rtl"] .fa-solid {
+  transform: scaleX(-1);
+}
+
+[dir="ltr"] #Sidebar .fa,
+[dir="ltr"] #Sidebar .fa-solid {
+  margin-right: 0.5em;
+}
+
+[dir="rtl"] #Sidebar .fa,
+[dir="rtl"] #Sidebar .fa-solid {
+  margin-left: 0.5em;
+}
+
+[dir] .collapse,
+[dir] .navbar-collapse {
+ height: auto !important;
+}
+
+[dir] .navbar {
+  padding: 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.container-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  user-select: none;
+}
+
+.https-files {
+  margin: 1em 0;
+}
+
+
+.audio-box {
+  position: relative;
+  border: 1px solid #f5f7fa;
+  background-color: #f5f7fa;
+  border-radius: 5px;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.audio-player {
+  background: #f5f7fa;
+  border-radius: 50px;
+  margin: 1em;
+  border: 1px solid #1d1f24;
+  max-width: 90%
+}
+
+.audio-player-wrapper[disabled] .audio-player{
+  opacity: 0.5;
+}
+
+#Policies * {
+ display: inline;
+}
+
+.nested-tabset .tab-content {
+  padding: 1em;
+  border: 1px solid #dee2e6;
+  border-top: 0;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.underline {
+  text-decoration: underline;
+}

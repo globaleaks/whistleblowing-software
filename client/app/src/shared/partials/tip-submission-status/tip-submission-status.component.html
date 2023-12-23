@@ -1,0 +1,19 @@
+<span class="form-inline" (click)="utilsService.stopPropagation($event);">
+    <span id="assign-submission-status" class="status-container">
+        <div class="status-label">{{ 'Status:' | translate }}</div>
+        <span class="status-box-list">
+            <ng-select class="ml-2" [clearable]="false" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipStatus" (ngModelChange)="updateSubmissionStatus()">
+                <ng-option *ngFor="let item of  appDataService.submissionStatuses.slice(1)" [value]="item.id">
+                    {{item.label}}
+                </ng-option>
+            </ng-select>
+        </span>
+       <ng-container *ngIf="!loading && appDataService.submission_statuses_by_id[tipService.tip.status] && appDataService.submission_statuses_by_id[tipService.tip.status.toLowerCase()].substatuses.length"> &nbsp;&nbsp; <span>
+               <ng-select class="status-box-list" *ngIf="tipService.tip.status && appDataService.submission_statuses_by_id[tipService.tip.status]" [clearable]="false" [ngModelOptions]="{standalone: true}" [(ngModel)]="tipSubStatus" [hidden]="!appDataService.submission_statuses_by_id[tipService.tip.status].substatuses.length" (change)="updateSubmissionSubStatus()">
+                   <ng-option *ngFor="let item of appDataService.submission_statuses_by_id[tipService.tip.status].substatuses" [value]="item.id">{{item.label}}</ng-option>
+                   <ng-option value=""></ng-option>
+               </ng-select>
+           </span>
+       </ng-container>
+    </span>
+</span>

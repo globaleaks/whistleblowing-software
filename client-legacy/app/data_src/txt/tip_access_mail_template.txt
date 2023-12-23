@@ -1,0 +1,8 @@
+Dear {RecipientName},
+
+This is an email to notify you that a recipient has granted you access to one or more reports.
+
+{LoginUrl}
+
+Kind regards,
+{NodeName}

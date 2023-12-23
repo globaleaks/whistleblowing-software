@@ -1,0 +1,43 @@
+#viewer{}
+
+#pdf-viewer{
+    display: none;
+    height: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+#pdf-viewer #pdf-controls{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+
+#pdf-viewer #pdf-controls{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    top: 0;
+    background: #f5f7fa;
+    font-size: 18px;
+}
+
+#pdf-viewer canvas{
+    width: 100%;
+}
+#media-viewer{
+    display: none;
+}
+
+#media-viewer video{
+    height: 100%;
+    width: 100%;
+}
+#media-viewer img{
+    object-fit: contain;
+    height: 100%;
+}

@@ -1,0 +1,16 @@
+<div class="select-card" [ngClass]="{ 'selected':submission.selected_receivers[receiver.id] || receiver.forcefully_selected}">
+    <div class="row mb-1">
+        <div class="col-md-12">
+            <input type="checkbox" class="btn-checkbox" [id]="'recipient-' + receiver.id" [name]="'recipient-' + receiver.id" [(ngModel)]="submission.selected_receivers[receiver.id]" (change)="switchSelection(receiver)" *ngIf="!receiver.forcefully_selected">
+            <label [for]="'recipient-' + receiver.id" class="title">{{receiver.name}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngIf="receiver.picture">
+            <img class="receiver-image" alt="receiver picture" src="/s/{{receiver.id}}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 description" *ngIf="receiver.description">{{receiver.description}}</div>
+    </div>
+</div>

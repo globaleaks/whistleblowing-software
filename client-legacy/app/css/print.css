@@ -1,0 +1,33 @@
+@media print {
+  @page {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @page :header,
+  @page :footer {
+    display: none
+  }
+
+  html,
+  body {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .tooltip,
+  #HeaderBox2 {
+    display: none
+  }
+
+  .popover *,
+  .popover .arrow,
+  .fa-collapse-down,
+  .fa-fullscreen,
+  #PrivacyBadge,
+  #Toolbar,
+  #TipInfoBox .panel-heading
+  {
+    display: none;
+  }
+}

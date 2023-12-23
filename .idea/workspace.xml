@@ -4,7 +4,1027 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="855fc517-de80-4e16-9e97-581aa374ee33" name="Changes" comment="" />
+    <list default="true" id="855fc517-de80-4e16-9e97-581aa374ee33" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client-beta/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/.nycrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/Gruntfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/bootstrap-fixes.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/button.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/date-picker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/loader.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/ng-select.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/print.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/css/ui-select-bootstrap4-fix.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/appdata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/notranslate_strings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/profiles/default.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/questionnaires/default.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/questions/whistleblower_identity.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/account_activation_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/account_activation_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/account_recovery_key_instructions.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/activation_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/activation_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_anomaly_activities.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_anomaly_disk_high.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_anomaly_disk_low.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_anomaly_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_anomaly_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_pgp_alert_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_pgp_alert_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_signup_alert_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_signup_alert_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_test_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/admin_test_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/email_validation_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/email_validation_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/export_message_recipient.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/export_message_whistleblower.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/export_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/https_certificate_expiration_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/https_certificate_expiration_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/https_certificate_renewal_failure_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/https_certificate_renewal_failure_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_authorized_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_authorized_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_denied_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_denied_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_request_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_access_request_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_provided_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/identity_provided_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/password_reset_validation_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/password_reset_validation_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/pgp_alert_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/pgp_alert_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/signup_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/signup_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/software_update_available_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/software_update_available_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_access_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_access_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_expiration_summary_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_expiration_summary_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_update_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/tip_update_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/unread_tips_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/unread_tips_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/data_src/txt/user_credentials.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/app-data.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/app-guard.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/crypto.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/field-Template.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/new-context.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/new-field.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/new-questionare.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/new-step.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/admin/new-user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/app/error-code.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/app/public-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/app/shared-public-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/authentication/password-recovery-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/authentication/password-recovery-response-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/authentication/session.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/authentication/token-response.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/reciever/Iar-data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/reciever/reciever-tip-data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/auditlog-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/context-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/field-template-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/job-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/network-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/node-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/notification-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/preference-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/questionnaire-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/redirect-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/rtips-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/status-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/tenant-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/tips-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/resolvers/user-resolver-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/models/whistleblower/wb-tip-data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/action-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/action.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/force-password-change/force-password-change.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/force-password-change/force-password-change.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/forced-two-factor/forced-two-factor.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/action/forced-two-factor/forced-two-factor.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/admin-preferences/admin-preferences.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/admin-preferences/admin-preferences.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/admin-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/admin.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/audit-log.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/audit-log.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/audit-log.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab1/audit-log-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab1/audit-log-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab2/audit-log-tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab2/audit-log-tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab3/audit-log-tab3.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab3/audit-log-tab3.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab4/audit-log-tab4.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/auditlog/auditlog-tab4/audit-log-tab4.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/case-management-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/case-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/case-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/case-management.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/casemanagement-tab1/case-management-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/casemanagement-tab1/case-management-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/substatuses/sub-status.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/substatuses/sub-status.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/substatusmanager/sub-status-manager.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/casemanagement/substatusmanager/sub-status-manager.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/context-editor/context-editor.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/context-editor/context-editor.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/contexts-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/contexts.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/contexts.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/contexts/contexts.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/home/admin-home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/home/admin-home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/access-control/access-control.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/access-control/access-control.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-csr-gen/https-csr-gen.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-csr-gen/https-csr-gen.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-files/https-files.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-files/https-files.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-setup/https-setup.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-setup/https-setup.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-status/https-status.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https-status/https-status.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https/https.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/https/https.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/network-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/network.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/network.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/network.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/tor/tor.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/tor/tor.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/url-redirects/url-redirects.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/network/url-redirects/url-redirects.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notification-tab1/notification-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notification-tab1/notification-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notification-tab2/notification-tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notification-tab2/notification-tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notifications-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notifications.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notifications.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/notifications/notifications.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/add-field-from-template/add-field-from-template.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/add-field-from-template/add-field-from-template.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/add-field/add-field.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/add-field/add-field.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/fields/fields.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/fields/fields.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/main/main.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/main/main.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaire.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires-list/questionnaires-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires-list/questionnaires-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questionnaires.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questions/questions.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/questions/questions.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/step/step.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/step/step.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/steps-list/steps-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/steps-list/steps-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/steps/steps.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/questionnaires/steps/steps.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/helper-methods/language-utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/settings-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/settings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/settings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/settings.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab1/tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab1/tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab2/tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab2/tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab3/tab3.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab3/tab3.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab4/tab4.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab4/tab4.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab5/tab5.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/settings/tab5/tab5.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sidebar/sidebar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sidebar/sidebar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites-tab1/sites-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites-tab1/sites-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites-tab2/sites-tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites-tab2/sites-tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/sites.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/siteslist/siteslist.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/sites/siteslist/siteslist.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/user-editor/user-editor.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/user-editor/user-editor.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users-tab1/users-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users-tab1/users-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users-tab2/users-tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users-tab2/users-tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/admin/users/users.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/auth-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/auth.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/model/login-model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/templates/default-login/default-login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/templates/default-login/default-login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/templates/simple-login/simple-login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/login/templates/simple-login/simple-login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/password-reset-response/password-reset-response.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/password-reset-response/password-reset-response.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/password-reset/password-reset.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/password-reset/password-reset.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/passwordreqested/password-requested.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/auth/passwordreqested/password-requested.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/custodian-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/custodian.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/identity-access-requests/identity-access-requests.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/identity-access-requests/identity-access-requests.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/settings/settings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/settings/settings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/sidebar/sidebar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/custodian/sidebar/sidebar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/dashboard/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/dashboard/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/field/whistleblower-identity-field/whistleblower-identity-field.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/field/whistleblower-identity-field/whistleblower-identity-field.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/recipient-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/recipient.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/settings/settings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/settings/settings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/sidebar/sidebar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/sidebar/sidebar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/tip/tip.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/tip/tip.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/tips/tips.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/tips/tips.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/whistleblower-identity-reciever/whistle-blower-identity-receiver.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/recipient/whistleblower-identity-reciever/whistle-blower-identity-receiver.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/signup-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/signup.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/signup/signup.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/signup/signup.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/activation/activation.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/activation/activation.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/signupdefault/signupdefault.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/signupdefault/signupdefault.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/tos/tos.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/tos/tos.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/wbpa/wbpa.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/signup/templates/wbpa/wbpa.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/context-selection/context-selection.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/context-selection/context-selection.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/fields/whistleblower-identity-field/whistleblower-identity-field.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/fields/whistleblower-identity-field/whistleblower-identity-field.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form-field-input/form-field-input.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form-field-input/form-field-input.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form-field-inputs/form-field-inputs.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form-field-inputs/form-field-inputs.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form/form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/form/form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/homepage/homepage.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/homepage/homepage.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receipt/receipt.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receipt/receipt.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receiver-card/receiver-card.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receiver-card/receiver-card.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receiver-selection/receiver-selection.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/receiver-selection/receiver-selection.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/step-error/step-error.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/step-error/step-error.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/step-error/template/step-error-entry/step-error-entry.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/step-error/template/step-error-entry/step-error-entry.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/submission-error/submission-error.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/submission-error/submission-error.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/submission/submission.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/submission/submission.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/tippage/tippage.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/tippage/tippage.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/whistleblower/whistleblower.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard/template/profile/profile.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard/template/profile/profile.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard/wizard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/pages/wizard/wizard/wizard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/2fa.data.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/app-config.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/authentication.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/receiver-tip.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/request.interceptor.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/submission-resource.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/submission.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/translation.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/services/wbtip.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/blank/blank.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/blank/blank.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/components/date-selector/date-selector.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/components/date-selector/date-selector.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/components/password-meter/password-meter.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/components/password-meter/password-meter.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/constants/constants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/disable-ccp.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/image-upload.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/ng-form-change.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/password-strength-validator.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/receipt-validator.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/scroll-to-bottom.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/directive/subdomain-validator.directive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/guards/admin.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/guards/custodian.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/guards/pageguard.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/guards/receiver.guard.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/accept-agreement/accept-agreement.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/accept-agreement/accept-agreement.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/add-option-hint/add-option-hint.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/add-option-hint/add-option-hint.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/assign-score-points/assign-score-points.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/assign-score-points/assign-score-points.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation-with-password/confirmation-with-password.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation-with-password/confirmation-with-password.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation-with2fa/confirmation-with2fa.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation-with2fa/confirmation-with2fa.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation/confirmation.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/confirmation/confirmation.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/delete-confirmation/delete-confirmation.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/delete-confirmation/delete-confirmation.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/disclaimer/disclaimer.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/disclaimer/disclaimer.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/enable-encryption/enable-encryption.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/enable-encryption/enable-encryption.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/enable2fa/enable2fa.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/enable2fa/enable2fa.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/encryption-recovery-key/encryption-recovery-key.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/encryption-recovery-key/encryption-recovery-key.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/file-view/file-view.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/file-view/file-view.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/grant-access/grant-access.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/grant-access/grant-access.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/questionnaire-duplication/questionnaire-duplication.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/questionnaire-duplication/questionnaire-duplication.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/request-support/request-support.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/request-support/request-support.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/revoke-access/revoke-access.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/revoke-access/revoke-access.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/security-awareness-confidentiality/security-awareness-confidentiality.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/security-awareness-confidentiality/security-awareness-confidentiality.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-additional-questionnaire-form/tip-additional-questionnaire-form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-additional-questionnaire-form/tip-additional-questionnaire-form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-file-identity-access-reply/tip-operation-file-identity-access-reply.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-file-identity-access-reply/tip-operation-file-identity-access-reply.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-file-identity-access-request/tip-operation-file-identity-access-request.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-file-identity-access-request/tip-operation-file-identity-access-request.ompoent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-postpone/tip-operation-postpone.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-postpone/tip-operation-postpone.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/transfer-access/transfer-access.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/transfer-access/transfer-access.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/trigger-receiver/trigger-receiver.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/modals/trigger-receiver/trigger-receiver.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/admin-file/admin-file.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/admin-file/admin-file.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/demo/demo.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/demo/demo.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/enable-2fa/enable-2fa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/enable-2fa/enable-2fa.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/footer/footer.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/footer/footer.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/header/header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/header/header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/header/template/user/user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/header/template/user/user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/image-upload/image-upload.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/image-upload/image-upload.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/messageconsole/message-console.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/messageconsole/message-console.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/password-change/password-change.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/password-change/password-change.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preference-tabs/preference-tab1/preference-tab1.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preference-tabs/preference-tab1/preference-tab1.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preference-tabs/preference-tab2/preference-tab2.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preference-tabs/preference-tab2/preference-tab2.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preferences/preferences.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/preferences/preferences.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/privacybadge/privacy-badge.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/privacybadge/privacy-badge.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/receipt/receipt.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/receipt/receipt.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfile-upload-button/r-file-upload-button.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfile-upload-button/r-file-upload-button.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfile-upload-status/r-file-upload-status.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfile-upload-status/r-file-upload-status.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfiles-upload-status/r-files-upload-status.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/rfiles-upload-status/r-files-upload-status.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-additional-questionnaire-invite/tip-additional-questionnaire-invite.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-additional-questionnaire-invite/tip-additional-questionnaire-invite.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-comments/tip-comments.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-comments/tip-comments.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-field-answer-entry/tip-field-answer-entry.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-field-answer-entry/tip-field-answer-entry.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-field/tip-field.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-field/tip-field.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-files-receiver/tip-files-receiver.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-files-receiver/tip-files-receiver.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-files-whistleblower/tip-files-whistleblower.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-files-whistleblower/tip-files-whistleblower.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-info/tip-info.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-info/tip-info.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-questionnaire-answers/tip-questionnaire-answers.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-questionnaire-answers/tip-questionnaire-answers.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-receiver-list/tip-receiver-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-receiver-list/tip-receiver-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-submission-status/tip-submission-status.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-submission-status/tip-submission-status.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-upload-wbfile/tip-upload-wb-file.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/tip-upload-wbfile/tip-upload-wb-file.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/user-home/user-home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/user-home/user-home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/user-warnings/user-warnings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/user-warnings/user-warnings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/voice-recorder/voice-recorder.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/voice-recorder/voice-recorder.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/wbfiles/wb-files.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/wbfiles/wb-files.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/whistleblower-identity/whistleblower-identity.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/whistleblower-identity/whistleblower-identity.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/widget-wbfiles/widget-wb-files.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/partials/widget-wbfiles/widget-wb-files.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/byte-fmt.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/date.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/filter.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/limit-to.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/order-by.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/split.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/strip-html.pipe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/pipes/translate.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/audit-log-resolver.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/contexts.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/field-templates-resolver.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/iar-resolver.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/job.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/network.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/node.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/notifications.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/preference.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/questionnaires.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/r-tips-resolver.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/redirects.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/statuses.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/tenants.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/tips.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/title-resolver.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/users.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/wb-tip-resolver.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/resolvers/whistleblower-login.resolver.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/field-utilities.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/http.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/service-instance.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/tip-service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/token-resource.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/src/shared/services/utils.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/viewer/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/viewer/pdf.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/viewer/pdf.worker.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/viewer/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/app/viewer/viewer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/coverage.webpack.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/00-playground.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/01-test-init.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/02-test-admin-perform-wizard.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/03-test-authentication-redirects.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/04-test-user-password-reset.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/05-test-admin-first-login.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/06-test-admin-configure-advanced.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/07-test-admin-configure-users.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/08-test-users-first-login.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/09-test-admin-assign-escrow-key.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/10-test-admin-configure-languages.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/11-test-admin-configure-files.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/12-test-internationalization.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/13-test-admin-configure-custom-texts.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/14-test-admin-configure-notifications.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/15-test-admin-configure-network.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/16-test-admin-contexts.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/17-test-admin-questionnaires.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/18-test-globaleaks-process.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/19-test-acquire-documentation-screenshots.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/20-test-admin-sites.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/e2e/21-test-signup.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/documentation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/evidence-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/fixtures/files/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/plugin/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/PageIdleDetector.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/commands.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/component-index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/e2e.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/support/pages.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/cypress/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/proxy.conf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-beta/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.nycrc" beforeDir="false" afterPath="$PROJECT_DIR$/client/.nycrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.stylelintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Gruntfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Gruntfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/css/loader.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/css/print.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/css/print.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/css/ui-select-bootstrap4-fix.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/css/ui-select-bootstrap4-fix.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/appdata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/field_attrs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/am.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ar.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/az.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ba.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/be.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/bg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/bn.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/bo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/bs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ca.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ca@valencia.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ce.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/crh.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/cs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/da.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/de.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/dv.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/el.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/en.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/es.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/et.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/eu.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/fa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/fa_AF.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/fi.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/fr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/gl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/he.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/hr_HR.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/hu_HU.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/hy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/id.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/it.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ja.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ka.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/kk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/km.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ko.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ky.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/lo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/lt.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/lv.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/mg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/mk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ms.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/my.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/nb_NO.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/nl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/pl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/pt_BR.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/pt_PT.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ro.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ru.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sl_SI.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sq.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sr_ME.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sr_ME@latin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sr_RS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sr_RS@latin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sv.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/sw.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/tg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/th.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/tk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/tr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/tt.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ug.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ug@Cyrl.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ug@Latin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/uk.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/ur.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/uz.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/vi.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/zh_CN.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/zh_HK.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/l10n/zh_TW.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/profiles/default.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/questionnaires/default.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/questions/whistleblower_identity.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data/templates_descriptor.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/appdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/appdata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/notranslate_strings.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/notranslate_strings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/profiles/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/profiles/default.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/questionnaires/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/questionnaires/default.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/questions/whistleblower_identity.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/questions/whistleblower_identity.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/account_activation_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/account_activation_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/account_activation_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/account_activation_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/account_recovery_key_instructions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/account_recovery_key_instructions.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/activation_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/activation_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/activation_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/activation_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_activities.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_activities.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_disk_high.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_disk_high.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_disk_low.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_disk_low.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_anomaly_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_pgp_alert_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_pgp_alert_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_pgp_alert_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_pgp_alert_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_signup_alert_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_signup_alert_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_signup_alert_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_signup_alert_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_test_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_test_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/admin_test_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/admin_test_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/email_validation_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/email_validation_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/email_validation_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/email_validation_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/export_comment_recipient.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/export_comment_whistleblower.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/export_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/export_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_expiration_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_expiration_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_expiration_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_expiration_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_renewal_failure_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_renewal_failure_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_renewal_failure_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/https_certificate_renewal_failure_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_authorized_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_authorized_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_authorized_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_authorized_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_denied_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_denied_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_denied_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_denied_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_request_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_request_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_request_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_access_request_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_provided_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_provided_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/identity_provided_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/identity_provided_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/password_reset_validation_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/password_reset_validation_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/password_reset_validation_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/password_reset_validation_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/pgp_alert_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/pgp_alert_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/pgp_alert_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/pgp_alert_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/signup_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/signup_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/signup_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/signup_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/software_update_available_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/software_update_available_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/software_update_available_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/software_update_available_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_access_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_access_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_access_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_access_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_expiration_summary_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_expiration_summary_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_expiration_summary_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_expiration_summary_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_reminder_mail_template.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_reminder_mail_title.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_update_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_update_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/tip_update_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/tip_update_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/unread_tips_mail_template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/unread_tips_mail_template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/unread_tips_mail_title.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/unread_tips_mail_title.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/data_src/txt/user_credentials.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/data_src/txt/user_credentials.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/actions/forcedpasswordchange.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/actions/forcedtwofactor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/auditlog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/casemanagement.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/contexts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/fields.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/network.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/notifications.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/questionnaires.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/settings.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/steps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/tenant.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/admin/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/custodian.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/empty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/fileupload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/passwordreset.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/preferences.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/receipt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/recipient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/sidebar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/submission.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/tip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/controllers/wizard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/crypto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/directives.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/filters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/mocks.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/services.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/js/templates.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/loader.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/modules/speaker_anonymization/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/translations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/viewer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/viewer/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/viewer/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/viewer/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/viewer/viewer.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/viewer/viewer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/actions/forced_password_change.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/actions/forced_two_factor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/auditlog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/auditlog/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/auditlog/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/auditlog/tab3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/auditlog/tab4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/casemanagement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/casemanagement/substatuses.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/casemanagement/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/contexts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/access_control.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/https.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/https_csr_gen.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/https_files.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/https_setup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/https_status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/tor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/network/url_redirects.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/notifications.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/notifications/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/notifications/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/add_field.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/add_field_from_template.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/fields.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/questions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/step.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/questionnaires/steps.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings/tab3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings/tab4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/settings/tab5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/sidebar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/sites.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/sites/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/sites/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/users.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/users/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/admin/users/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/custodian/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/custodian/identity_access_requests.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/custodian/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/custodian/sidebar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/email_validation_failure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/email_validation_success.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/empty.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/login/default.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/login/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/login/simplified.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/accept_agreement.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/add_option_hint.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/assign_score_points.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/confirmation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/confirmation_with_2fa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/confirmation_with_password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/delete_confirmation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/disclaimer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/enable_2fa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/enable_encryption.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/encryption_recovery_key.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/file_view.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/grant_access.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/questionnaire_duplication.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/request_support.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/revoke_access.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/security_awareness_confidentiality.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/tip_additional_questionnaire_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/tip_operation_file_identity_access_reply.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/tip_operation_file_identity_access_request.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/tip_operation_postpone.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/tip_operation_set_reminder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/transfer_access.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/modals/trigger_receiver.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/admin_file.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/datarangepicker.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/enable_2fa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/file_input.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/image_upload.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/messageconsole.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/password_change.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/password_meter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/preferences.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/preferences/tab1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/preferences/tab2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/privacybadge.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/receipt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/rfile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/signup/default.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/signup/wbpa.it" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_additional_questionnaire_invite.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_comments.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_field.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_field_answer_entry.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_files_receiver.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_files_whistleblower.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_questionnaire_answers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_receiver_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_submission_status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/tip_upload_rfile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/upload_error_msg.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/upload_error_msgs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/user_home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/user_warnings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/voice_recorder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/wbfile_upload_button.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/wbfile_upload_status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/partials/widget_rfiles.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/2fa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/failure_recovery.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/failure_token.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/requested.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/passwordreset/reset.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/sidebar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/tip.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/tips.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/recipient/whistleblower_identity.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/signup/activation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/signup/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/signup/modes/demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/signup/modes/wbpa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/signup/tos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/context_selection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/fields/whistleblower_identity.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/form_field_input.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/form_field_inputs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/receipt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/receiver_card.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/receiver_selection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/step_error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/submission.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/submission_errors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/tip.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/whistleblower/whistleblower_identity.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/wizard/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/views/wizard/profiles.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/01-test-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/02-test-admin-perform-wizard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/03-test-authentication-redirects.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/04-test-user-password-reset.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/05-test-admin-first-login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/06-test-admin-configure-advanced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/07-test-admin-configure-users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/08-test-users-first-login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/09-test-admin-assign-escrow-key.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/10-test-admin-configure-languages.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/11-test-admin-configure-files.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/12-test-internationalization.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/13-test-admin-configure-custom-texts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/14-test-admin-configure-notifications.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/15-test-admin-configure-network.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/16-test-admin-contexts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/17-test-admin-questionnaires.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/18-test-globaleaks-process.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/19-test-acquire-documentation-screenshots.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/20-test-admin-sites.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/e2e/21-test-signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/plugins/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/support/PageIdleDetector.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/support/commands.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/support/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/cypress/support/pages.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/npm-shrinkwrap.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/am.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ar.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/az.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ba.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/be.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/bg.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/bn.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/bo.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/bs.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ca.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ca@valencia.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ce.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/crh.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/cs.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/da.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/de.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/dv.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/el.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/en.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/es.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/et.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/eu.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/fa.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/fa_AF.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/fi.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/fr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/gl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/he.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/hr_HR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/hu_HU.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/hy.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/id.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/it.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ja.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ka.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/kk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/km.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ko.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ky.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/lo.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/lt.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/lv.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/mg.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/mk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ms.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/my.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/nb_NO.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/nl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/pl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ps.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/pt_BR.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/pt_PT.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ro.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ru.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sl_SI.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sq.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sr_ME.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sr_ME@latin.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sr_RS.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sr_RS@latin.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sv.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/sw.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ta.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/tg.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/th.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/tk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/tr.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/tt.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ug.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ug@Cyrl.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ug@Latin.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/uk.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/ur.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/uz.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/vi.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/zh_CN.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/zh_HK.po" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pot/zh_TW.po" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,10 +1036,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2XovyxP6j24cjcf8QCC4r6JxZTH" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -28,19 +1048,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "client-update/main",
-    "last_opened_file_path": "/home/morgan-freeman/Workspace/GlobaLeaks/client-beta/app/src"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client-update/main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/morgan-freeman/Workspace/GlobaLeaks/client-beta/app/src&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client-beta/app" />
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

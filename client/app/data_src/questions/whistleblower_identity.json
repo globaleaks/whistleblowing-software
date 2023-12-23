@@ -1,7 +1,7 @@
 {
   "id":"whistleblower_identity",
   "label":{
-    "en":"Would you like to tell us who you are?"
+    "en":"Do you want to provide your identification information?"
   },
   "description":{
     "en":""
@@ -219,7 +219,7 @@
     {
       "id":"question_whistleblower_identity_email",
       "label":{
-        "en":"Specify"
+        "en":"Email address"
       },
       "description":{
         "en":""
@@ -276,7 +276,7 @@
     {
       "id":"question_whistleblower_identity_phone",
       "label":{
-        "en":"Specify"
+        "en":"Phone number"
       },
       "description":{
         "en":""
@@ -333,7 +333,7 @@
     {
       "id":"question_whistleblower_identity_other",
       "label":{
-        "en":"Specify"
+        "en":"Other"
       },
       "description":{
         "en":""

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link crossorigin="anonymous" rel="stylesheet" href="viewer.css">
+  </head>
+  <body>
+    <div id="viewer-container">
+      <div id="media-viewer"></div>
+      <div id="pdf-viewer">
+        <div id="pdf-controls">
+          <button id="prev-page-btn" disabled>&lt;</button>
+          <div id="page-info">
+            <span id="page-number"></span> / <span id="page-count"></span>
+          </div>
+          <button id="next-page-btn" disabled>&gt;</button>
+        </div>
+        <canvas id="pdf-canvas"></canvas>
+      </div>
+    </div>
+  </body>
+  <script crossorigin="anonymous" src="pdf.worker.min.js"></script>
+  <script crossorigin="anonymous" src="pdf.min.js"></script>
+  <script crossorigin="anonymous" src="script.js"></script>
+</html>

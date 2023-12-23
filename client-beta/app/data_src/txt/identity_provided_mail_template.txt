@@ -1,9 +1,0 @@
-Dear {RecipientName},
-
-This is an email to notify you that the whistleblower for the report {TipNum} has provided their identity.
-
-The report can be accessed at:
-{Url}
-
-Kind regards,
-{NodeName}

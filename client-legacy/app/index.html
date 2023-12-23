@@ -1,0 +1,208 @@
+<!doctype html>
+<html data-ng-app="GL" data-ng-csp data-ng-strict-di data-ng-keydown="keypress($event)" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GlobaLeaks</title>
+    <meta name="description" content="Secure whistleblowing platform based on GlobaLeaks free and open-source software.">
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
+
+    <link id="favicon" rel="shortcut icon" href="data/favicon.ico" />
+
+    <style>
+      .ng-cloak, #BrowserNotSupported { display:none }
+
+      #Skip a {
+        position: absolute;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      #Skip a:focus {
+        position: static;
+        width: auto;
+        height: auto;
+      }
+    </style>
+
+    <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/inter/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/inter/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-arabic/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-arabic/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-armenian/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-armenian/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-bengali/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-bengali/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-ethiopic/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-ethiopic/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-georgian/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-georgian/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-hebrew/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-hebrew/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-hk/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-hk/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-khmer/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-khmer/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-kr/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-kr/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-jp/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-jp/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-lao/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-lao/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-myanmar/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-myanmar/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-sc/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-sc/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-tamil/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-tamil/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-thai/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-thai/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-thaana/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-sans-thaana/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-serif-tibetan/400.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fontsource/noto-serif-tibetan/700.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/fontawesome.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/regular.css" />
+    <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/solid.css" />
+    <link rel="stylesheet" href="lib/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/css/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" href="lib/css/select.css" />
+    <link rel="stylesheet" href="lib/css/angular-csp.css" />
+    <link rel="stylesheet" href="css/ui-select-bootstrap4-fix.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/print.css" />
+    <!-- endbuild -->
+  </head>
+
+  <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
+    <div id="Skip"><a href="#Content" tabindex="1" data-translate>Skip to content</a></div>
+    <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
+      <div id="Loader"></div>
+    </div>
+
+    <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-cloak>
+      <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
+      <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
+      <div data-ng-include="'views/partials/header.html'"></div>
+      <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
+      <div id="ContentBox">
+        <div class="row" data-ng-controller="SidebarCtrl">
+          <div data-ng-if="sidebar" id="Sidebar" class="col-lg-2 col-md-4 col-sm-12" role="navigation">
+            <nav class="navbar navbar-expand-md" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggler" data-ng-click="isNavCollapsed = !isNavCollapsed">
+                  <i class="fa-solid fa-bars"></i>
+                </button>
+              </div>
+	      <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed">
+                <div class="navbar-nav">
+                  <div data-ng-include="sidebar"></div>
+                </div>
+              </div>
+            </nav>
+	  </div>
+	  <main id="Content" data-ng-class="{'col-lg-10 col-md-8 col-sm-12': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
+        </div>
+      </div>
+    </div>
+
+    <footer id="FooterBox" class="ng-cloak" data-ng-if="started" data-ng-include="'views/partials/footer.html'" data-ng-cloak></footer>
+
+    <div id="BrowserNotSupported">
+      <h1>Error!</h1><br /><br />
+      <div>
+        You are running an unsupported and potentially vulnerable browser.<br /><br />
+        In order to use GlobaLeaks you are strongly advised to download and install the <a href="https://www.torproject.org/download/" rel="noreferrer" target="_blank">Tor Browser</a> that includes various privacy and security enhancements not present in other browsers.<br /><br />
+        This is the list of the other supported browsers:<br />
+        <ul>
+          <li>Mozilla Firefox &gt;= 38</li>
+          <li>Google Chrome &gt;= 45</li>
+          <li>Brave &gt;= 1.20.110</li>
+          <li>Edge (any)</li>
+          <li>Safari: &gt;= 8</li>
+          <li>iOS &gt;= 9</li>
+          <li>Android &gt;= 4.4</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- build:js js/scripts.js -->
+    <script src="lib/js/qrcode.js"></script>
+    <script src="lib/js/showdown.js"></script>
+    <script src="lib/js/angular.js"></script>
+    <script src="lib/js/angular-aria.js"></script>
+    <script src="lib/js/angular-filter.js"></script>
+    <script src="lib/js/angular-idle.min.js"></script>
+    <script src="lib/js/angular-qrcode.js"></script>
+    <script src="lib/js/angular-resource.js"></script>
+    <script src="lib/js/angular-route.js"></script>
+    <script src="lib/js/angular-sanitize.js"></script>
+    <script src="lib/js/angular-translate.js"></script>
+    <script src="lib/js/angular-translate-loader-static-files.js"></script>
+    <script src="lib/js/angularjs-dropdown-multiselect.js"></script>
+    <script src="lib/js/flow.js"></script>
+    <script src="lib/js/ng-csv.js"></script>
+    <script src="lib/js/ng-flow.js"></script>
+    <script src="lib/js/ng-showdown.js"></script>
+    <script src="lib/js/select.js"></script>
+    <script src="lib/js/tmhDynamicLocale.js"></script>
+    <script src="lib/js/ui-bootstrap-tpls.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/mocks.js"></script>
+    <script src="js/controllers/empty.js"></script>
+    <script src="js/controllers/modal.js"></script>
+    <script src="js/controllers/preferences.js"></script>
+    <script src="js/controllers/sidebar.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/fileupload.js"></script>
+    <script src="js/controllers/signup.js"></script>
+    <script src="js/controllers/wizard.js"></script>
+    <script src="js/controllers/recipient.js"></script>
+    <script src="js/controllers/tip.js"></script>
+    <script src="js/controllers/custodian.js"></script>
+    <script src="js/controllers/admin/home.js"></script>
+    <script src="js/controllers/admin/settings.js"></script>
+    <script src="js/controllers/admin/users.js"></script>
+    <script src="js/controllers/admin/contexts.js"></script>
+    <script src="js/controllers/admin/fields.js"></script>
+    <script src="js/controllers/admin/steps.js"></script>
+    <script src="js/controllers/admin/questionnaires.js"></script>
+    <script src="js/controllers/admin/network.js"></script>
+    <script src="js/controllers/admin/notifications.js"></script>
+    <script src="js/controllers/admin/auditlog.js"></script>
+    <script src="js/controllers/admin/network.js"></script>
+    <script src="js/controllers/admin/tenant.js"></script>
+    <script src="js/controllers/admin/casemanagement.js"></script>
+    <script src="js/controllers/submission.js"></script>
+    <script src="js/controllers/receipt.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/actions/forcedpasswordchange.js"></script>
+    <script src="js/controllers/actions/forcedtwofactor.js"></script>
+    <script src="js/controllers/passwordreset.js"></script>
+    <script src="modules/speaker_anonymization/index.js"></script>
+    <!-- endbuild -->
+
+    <noscript>
+      <h1>Error! :(</h1>
+      <br />
+      <div>
+        Your browser is not running JavaScript that is required to use this site.<br /><br />
+        It is a common belief that JavaScript and security don't work well together and for this reason we advise to use the <a href="https://www.torproject.org/" rel="noreferrer" target="_blank">Tor Browser</a>, a browser designed for security and privacy.
+      </div>
+    </noscript>
+  </body>
+</html>

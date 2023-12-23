@@ -1,0 +1,10 @@
+Dear {RecipientName},
+
+This is an email to notify you that a custodian has authorized you to access to the whistleblowing identity for the report {TipNum}.
+
+The report can be accessed at:
+{LoginUrl}
+
+Kind regards,
+{NodeName}
+

@@ -8,7 +8,7 @@ Without a valid certificate, the platform will be accessible in a secure way onl
 
 Log in to solve the issue.
 
-{LoginUrl}
+{Url}
 
 Kind regards,
 {NodeName}
