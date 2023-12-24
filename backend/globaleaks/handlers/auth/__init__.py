@@ -82,6 +82,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor, operator_id=Non
         user_key = GCE.derive_key(receipt.encode(), State.tenants[tid].cache.receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
+    itip.access_count += 1
     if operator_id is not None:
         itip.receipt_change_needed = True
         itip.operator_id = operator_id
