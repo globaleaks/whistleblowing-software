@@ -49,9 +49,9 @@ from globaleaks.db.migrations.update_65 import Comment_v_64, \
     Message_v_64, ReceiverTip_v_64, \
     SubmissionStatus_v_64, SubmissionSubStatus_v_64, \
     User_v_64, ReceiverFile_v_64, WhistleblowerFile_v_64
-from globaleaks.db.migrations.update_66 import SubmissionStatus_v_65, SubmissionSubStatus_v_65
+from globaleaks.db.migrations.update_66 import SubmissionSubStatus_v_65
 from globaleaks.db.migrations.update_67 import \
-        InternalTip_v_66, ReceiverFile_v_66, Redaction_v_66, WhistleblowerFile_v_66
+        InternalTip_v_66, ReceiverFile_v_66, Redaction_v_66, User_v_66, WhistleblowerFile_v_66
 
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
@@ -93,13 +93,13 @@ migration_mapping = OrderedDict([
     ('ReceiverTip', [ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, ReceiverTip_v_61, 0, ReceiverTip_v_64, 0, 0, models._ReceiverTip, 0, 0]),
     ('Redaction', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Redaction_v_66, 0, models._Redaction]),
     ('Redirect', [-1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, SubmissionStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SubmissionStatus_v_65, models._SubmissionStatus, 0]),
-    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SubmissionSubStatus_v_65, models._SubmissionSubStatus, 0]),
+    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, SubmissionStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionStatus, 0]),
+    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SubmissionSubStatus_v_65, 0, models._SubmissionSubStatus]),
     ('SubmissionStatusChange', [SubmissionStatusChange_v_54, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Step', [Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Subscriber', [Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0, 0, 0]),
     ('Tenant', [Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('User', [User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, models._User, 0, 0]),
+    ('User', [User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, User_v_66, 0, models._User]),
     ('UserImg', [UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('WhistleblowerFile', [WhistleblowerFile_v_51, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, WhistleblowerFile_v_64, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_66, 0, models._WhistleblowerFile]),
 
