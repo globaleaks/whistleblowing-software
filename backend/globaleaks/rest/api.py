@@ -10,7 +10,6 @@ import re
 from sqlalchemy.orm.exc import NoResultFound
 
 from twisted.internet import defer
-from twisted.internet.abstract import isIPAddress, isIPv6Address
 from twisted.python.failure import Failure
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
@@ -41,6 +40,7 @@ from globaleaks.handlers import admin, \
 from globaleaks.rest import decorators, requests, errors
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.json import JSONEncoder
+from globaleaks.utils.sock import isIPAddress
 
 tid_regexp = r'([0-9]+)'
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -355,12 +355,12 @@ class APIResourceWrapper(Resource):
 
         self.set_headers(request)
 
-        if isIPAddress(request.hostname) or isIPv6Address(request.hostname):
-            hostname = State.tenants[1].cache['hostname'] if 1 in State.tenants else ''
-            if hostname and not isIPAddress(hostname) and not isIPv6Address(hostname):
+        if isIPAddress(request.hostname) and 1 in State.tenants:
+            hostname = State.tenants[1].cache['hostname']
+            https_enabled = State.tenants[1].cache['https_enabled']
+            if hostname and https_enabled:
                 request.tid = 1
                 self.redirect_https(request, hostname.encode())
-                return b''
 
         if request.tid is None or request.tid not in State.tenants:
             request.tid = None
