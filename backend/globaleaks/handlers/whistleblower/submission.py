@@ -146,8 +146,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None, True)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
-    crypto_tip_pub_key = ''
-
     receivers = []
     for r in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
         if crypto_is_available:
@@ -173,13 +171,9 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     if 0 < context.maximum_selectable_receivers < len(request['receivers']):
         raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
 
-    if crypto_is_available:
-        crypto_tip_prv_key, crypto_tip_pub_key = GCE.generate_keypair()
-
     itip = models.InternalTip()
     itip.tid = tid
     itip.status = 'new'
-    itip.crypto_tip_pub_key = crypto_tip_pub_key
 
     # Ensure that update_date and creation_date have the same value at creation time.
     itip.update_date = itip.creation_date
