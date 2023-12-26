@@ -148,7 +148,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.generateCSR = function() {
     $http.post("api/admin/config/csr/gen", $scope.csr_cfg).then(function (response) {
-       Utils.saveAs(new Blob([response.data], {type: "text/plain;charset=utf-8"}), "csr.pem");
+       Utils.saveBlobAs("csr.pem", new Blob([response.data], {type: "text/plain;charset=utf-8"}));
     });
   };
 
