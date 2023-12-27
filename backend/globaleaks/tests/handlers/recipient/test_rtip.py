@@ -184,6 +184,64 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             response = yield handler.get(rtip_desc['id'])
             self.assertEqual(response[key], True)
 
+    @inlineCallbacks
+    def test_update_status(self):
+        rtip_descs = yield self.get_rtips()
+
+        for rtip_desc in rtip_descs:
+            operation = {
+              'operation': 'update_status',
+              'args': {
+                'status': 'closed',
+                'substatus': '',
+                'motivation': ''
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            self.assertEqual(rtip_desc['status'], 'closed')
+
+        for rtip_desc in rtip_descs:
+            operation = {
+              'operation': 'update_status',
+              'args': {
+                'status': 'new',
+                'substatus': '',
+                'motivation': ''
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            self.assertEqual(rtip_desc['status'], 'closed')
+
+        for rtip_desc in rtip_descs:
+            operation = {
+              'operation': 'update_status',
+              'args': {
+                'status': 'opened',
+                'substatus': '',
+                'motivation': ''
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            self.assertEqual(rtip_desc['status'], 'opened')
+
     def test_enable_two_way_comments(self):
         return self.switch_enabler('enable_two_way_comments')
 

@@ -1003,6 +1003,7 @@ class _User(Model):
                  'notification',
                  'can_delete_submission',
                  'can_postpone_expiration',
+                 'can_reopen_reports',
                  'can_grant_access_to_reports',
                  'can_redact_information',
                  'can_mask_information',

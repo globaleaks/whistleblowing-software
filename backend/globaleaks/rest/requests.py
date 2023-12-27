@@ -145,6 +145,7 @@ AdminUserDesc = {
     'can_grant_access_to_reports': bool,
     'can_redact_information': bool,
     'can_mask_information': bool,
+    'can_reopen_reports': bool,
     'can_transfer_access_to_reports': bool,
     'forcefully_selected': bool
 }
@@ -568,5 +569,6 @@ SubmissionStatusDesc = {
 
 SubmissionSubStatusDesc = {
     'label': str,
-    'order': int
+    'order': int,
+    'tip_timetolive': int
 }

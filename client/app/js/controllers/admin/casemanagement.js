@@ -133,8 +133,15 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     };
 
     $scope.save_submissions_substatuses = function (substatus, cb) {
-      var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substatus);
-      return $scope.Utils.update(updated_submissions_substatuses, cb);
+      if (substatus.tip_timetolive_option <= -1) {
+        substatus.tip_timetolive = -1;
+      } else if (substatus.tip_timetolive_option == 0) {
+        substatus.tip_timetolive = 0;
+      }
+
+      var updated_submissions_substatus = new AdminSubmissionSubStatusResource(substatus);
+
+      return $scope.Utils.update(updated_submissions_substatus, cb);
     };
 
     function swapSs($event, index, n) {
@@ -169,7 +176,8 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.addSubmissionSubStatus = function () {
       var new_submissions_substatuses = {
         "label": $scope.new_substatus.label,
-        "order": $scope.order
+        "order": $scope.order,
+        "tip_timetolive": -1
       };
 
       $http.post(

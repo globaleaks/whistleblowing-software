@@ -20,6 +20,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.whistleblower.submission import db_create_receivertip, decrypt_tip
+from globaleaks.handlers.whistleblower.wbtip import db_notify_report_update
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers, Context
 from globaleaks.orm import db_get, db_del, db_log, transact, tw
@@ -172,7 +173,64 @@ def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
         db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
-def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
+def get_tip_ttl(session, orm_object_model, orm_object_id):
+    """
+    Transaction for retrieving the data retention
+
+    :param session: An ORM session
+    :param orm_object_model: An ORM object type
+    :param orm_object_id: The ORM object id
+    """
+    # we exploit the fact that we have the same "tip_timetolive" name in
+    # the SubmissionSubStatus, SubmissionStatus and Context tables
+    return session.query(orm_object_model.tip_timetolive) \
+                  .filter(orm_object_model.id == orm_object_id).one()[0]
+
+
+def recalculate_data_retention(session, itip, report_reopen_request):
+    """
+    Transaction for recaulating the data retention after a status change
+
+    :param session: An ORM session
+    :param itip: The internaltip ORM object
+    :param report_reopen_request: boolean value, true if the report is being reopend
+    """
+    new_retention = None
+    if report_reopen_request:
+        # use the context-defined data retention
+        new_retention = get_tip_ttl(session, models.Context, itip.context_id)
+        if new_retention <= 0:
+            new_retention = None
+    elif itip.status == "closed":
+        # check the substatus, status and context for a data retention
+        substatus = 0
+        status = 1
+        context = 2
+        for to_check in (substatus, status, context):
+            if to_check == substatus:
+                if itip.substatus is not None:
+                    new_retention = get_tip_ttl(session, models.SubmissionSubStatus, itip.substatus)
+            elif to_check == status:
+                new_retention = get_tip_ttl(session, models.SubmissionStatus, itip.status)
+            else: # to_check == context:
+                new_retention = get_tip_ttl(session, models.Context, itip.context_id)
+
+            if new_retention != -1:
+                if new_retention == 0:
+                    # infinite data retention, break from the for loop
+                    new_retention = None
+                break
+    else:
+        return # change between open statuses, no data retention recalculation needed
+
+    if isinstance(new_retention, int):
+        itip.expiration_date = datetime_now() + timedelta(new_retention)
+    else:
+        # infinite data retention, i.e. the 1st January 3000
+        itip.expiration_date = datetime(3000, 1, 1)
+
+
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation=None):
     """
     Transaction for registering a change of status of a submission
 
@@ -186,12 +244,27 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if status_id == 'new':
         return
 
+    if itip.crypto_tip_pub_key and motivation is not None:
+        motivation = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, motivation)).decode()
+
+    can_reopen_reports = session.query(models.User.can_reopen_reports).filter(models.User.id == user_id).one()[0]
+    report_reopen_request = itip.status == "closed" and status_id == "opened"
+
+    if report_reopen_request and not can_reopen_reports:
+        raise errors.ForbiddenOperation # mandatory permission setting missing
+
+    if report_reopen_request and motivation is None:
+        raise errors.ForbiddenOperation # motivation must be given when restoring closed tips
+
     itip.status = status_id
     itip.substatus = substatus_id or None
 
+    recalculate_data_retention(session, itip, report_reopen_request)
+
     log_data = {
-        'status': itip.status,
-        'substatus': itip.substatus
+      'status': itip.status,
+      'substatus': itip.substatus,
+      'motivation': motivation,
     }
 
     db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
@@ -426,23 +499,30 @@ def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, red
 
 
 @transact
-def update_tip_submission_status(session, tid, user_id, itip_id, status_id, substatus_id):
+def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id, motivation):
     """
     Transaction for registering a change of status of a submission
 
     :param session: An ORM session
     :param tid: The tenant ID
     :param user_id: A user ID of the user changing the state
-    :param itip_id: The ID of the rtip accessed by the user
+    :param rtip_id: The ID of the rtip accessed by the user
     :param status_id:  The new status ID
     :param substatus_id: A new substatus ID
     """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
 
-    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
+    # send mail notification to all users with access to the report excluding <user_id>
+    for user in session.query(models.User) \
+                       .filter(models.User.id == models.ReceiverTip.receiver_id,
+                               models.ReceiverTip.internaltip_id == itip.id,
+                               models.ReceiverTip.receiver_id != user_id):
+        db_notify_report_update(session, user, rtip, itip)
+
+    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation)
 
 
 def db_access_rtip(session, tid, user_id, itip_id):
@@ -548,6 +628,10 @@ def db_get_rtip(session, tid, user_id, itip_id, language):
         rtip.access_date = rtip.last_access
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
+
+    if itip.status == 'new':
+        itip.update_date = rtip.last_access
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
@@ -1055,7 +1139,6 @@ class RTipInstance(OperationHandler):
             'set': RTipInstance.set_tip_val,
             'update_status': RTipInstance.update_submission_status,
             'transfer': RTipInstance.transfer_tip
-
         }
 
     def set_tip_val(self, req_args, itip_id, *args, **kwargs):
@@ -1082,9 +1165,9 @@ class RTipInstance(OperationHandler):
     def set_reminder(self, req_args, itip_id, *args, **kwargs):
         return set_reminder(self.request.tid, self.session.user_id, itip_id, req_args['value'])
 
-    def update_submission_status(self, req_args, itip_id, *args, **kwargs):
-        return update_tip_submission_status(self.request.tid, self.session.user_id, itip_id,
-                                            req_args['status'], req_args['substatus'])
+    def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
+        return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,
+                                            req_args['status'], req_args['substatus'], req_args['motivation'])
 
     def delete(self, itip_id):
         """
@@ -1102,6 +1185,7 @@ class RTipCommentCollection(BaseHandler):
     def post(self, itip_id):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.session.user_id, itip_id, request['content'], request['visibility'])
+
 
 class WhistleblowerFileDownload(BaseHandler):
     """
