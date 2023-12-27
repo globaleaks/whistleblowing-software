@@ -210,16 +210,15 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     session.add(itip)
     session.flush()
 
-    crypto_tip_prv_key = ''
+    user_session.user_id = itip.id
 
     # Evaluate if the whistleblower tip should be encrypted
     if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
         wb_key = GCE.derive_key(receipt.encode(), State.tenants[tid].cache.receipt_salt)
-        wb_prv_key, wb_pub_key = GCE.generate_keypair()
-        itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
-        itip.crypto_pub_key = wb_pub_key
-        itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
+        user_session.cc, itip.crypto_pub_key = GCE.generate_keypair()
+        itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, user_session.cc))
+        itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(itip.crypto_pub_key, crypto_tip_prv_key))
 
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
