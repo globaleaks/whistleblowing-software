@@ -163,7 +163,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.select_all = function () {
     $scope.selected_tips = [];
     angular.forEach($scope.filteredTips, function (tip) {
-      $scope.selected_tips.push(tip.id);
+      if (tip.accessible) {
+        $scope.selected_tips.push(tip.id);
+      }
     });
   };
 
