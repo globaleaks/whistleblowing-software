@@ -212,7 +212,6 @@ AdminNodeDesc = {
     'disable_privacy_badge': bool,
     'disable_submissions': bool,
     'simplified_login': bool,
-    'enable_custodian': bool,
     'enable_scoring_system': bool,
     'enable_signup': bool,
     'mode': str,
