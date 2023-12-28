@@ -110,3 +110,23 @@ class WhistleblowerFile_v_66(Model):
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
+
+
+class MigrationScript(MigrationBase):
+    def migrate_Config(self):
+        for old_obj in self.session_old.query(self.model_from['Config']):
+            new_obj = self.model_to['Config']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                setattr(new_obj, key, getattr(old_obj, key))
+
+            if old_obj.var_name == 'disable_admin_notification_emails':
+                new_obj.var_name = 'enable_notification_emails_admin'
+                new_obj.value = not old_obj.value
+            elif old_obj.var_name == 'disable_custodian_notification_emails':
+                new_obj.var_name = 'enable_notification_emails_custodian'
+                new_obj.value = not old_obj.value
+            elif old_obj.var_name == 'disable_receiver_notification_emails':
+                new_obj.var_name = 'enable_notification_emails_recipient'
+                new_obj.value = not old_obj.value
+
+            self.session_new.add(new_obj)

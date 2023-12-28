@@ -85,13 +85,13 @@ class CertificateCheck(DailyJob):
                 else:
                     # Send an email to the admin cause this requires user intervention
                     if now > expiration_date - timedelta(self.notify_expr_within) and \
-                        not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
+                        not self.state.tenants[tid].cache.notification.enable_notification_emails_admin:
                         yield self.certificate_mail_creation('https_certificate_renewal_failure', tid, expiration_date)
 
             # Regular certificates expiration checks
             elif now > expiration_date - timedelta(self.notify_expr_within):
                 log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
-                if not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
+                if not self.state.tenants[tid].cache.notification.enable_notification_emails_admin:
                     yield self.certificate_mail_creation('https_certificate_expiration', tid, expiration_date)
 
             yield deferred_sleep(15)

@@ -68,7 +68,7 @@ class UpdateCheck(HourlyJob):
 
             latest_version = versions[-1]
 
-            if not self.state.tenants[1].cache.notification.disable_admin_notification_emails:
+            if not self.state.tenants[1].cache.notification.enable_notification_emails_admin:
                 yield evaluate_update_notification(self.state, latest_version)
 
             log.debug('The newest version in the repository is: %s', latest_version)

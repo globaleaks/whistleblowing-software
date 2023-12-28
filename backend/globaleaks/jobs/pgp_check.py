@@ -79,7 +79,7 @@ class PGPCheck(DailyJob):
             for user_desc in expired_or_expiring:
                 self.prepare_user_pgp_alerts(session, tid, user_desc)
 
-            if self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
+            if self.state.tenants[tid].cache.notification.enable_notification_emails_admin:
                 continue
 
             if expired_or_expiring:
