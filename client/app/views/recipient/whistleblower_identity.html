@@ -21,7 +21,7 @@
           <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
           <span data-ng-switch-when="denied" data-translate>Denied</span>
         </span>
-        <div><label data-translate>Request motivation</label>:<span> {{tip.iar.request_motivation}}</span></div>
+        <div><label data-translate>Motivation</label>:<span> {{tip.iar.request_motivation}}</span></div>
       </div>
       <div data-ng-if="tip.iar && tip.iar.reply == 'denied'"><label data-translate>Reply motivation</label>: <span>{{tip.iar.reply_motivation}}</span></div>
     </div>
