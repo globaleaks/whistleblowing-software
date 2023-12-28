@@ -3,14 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import recipient
-from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import datetime_never
-
-
-@transact
-def set_expiration_of_all_rtips_to_unlimited(session):
-    session.query(models.InternalTip).update({'expiration_date': datetime_never()})
 
 
 class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
