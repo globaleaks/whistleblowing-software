@@ -41,6 +41,7 @@ var GL = angular.module("GL", [
 }]).
   config(["$showdownProvider", function($showdownProvider) {
     $showdownProvider.setOption("sanitize", true);
+    $showdownProvider.setOption("simplifiedAutoLink", true);
     $showdownProvider.setOption("openLinksInNewWindow", true);
 }]).
   config(["$provide", function($provide) {
