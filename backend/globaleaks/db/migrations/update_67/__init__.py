@@ -130,3 +130,18 @@ class MigrationScript(MigrationBase):
                 new_obj.value = not old_obj.value
 
             self.session_new.add(new_obj)
+
+    def epilogue(self):
+        # Transform footer_privacy_policy and footer_whistleblowing_policy in localized variables
+        for c in self.session_new.query(self.model_from['Config']) \
+                                 .filter(self.model_from['Config'].var_name.in_(['footer_privacy_policy',
+                                                                                 'footer_whistleblowing_policy'])):
+           for language in self.session_old.query(self.model_from['EnabledLanguage'].name) \
+                                           .filter(self.model_from['EnabledLanguage'].tid == c.tid):
+               x = self.model_to['ConfigL10N']()
+               x.tid = c.tid
+               x.lang = language[0]
+               x.var_name = c.var_name
+               x.value = c.value
+               self.session_new.add(x)
+               self.entries_count['ConfigL10N'] += 1
