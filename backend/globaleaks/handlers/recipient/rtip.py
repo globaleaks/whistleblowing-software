@@ -620,12 +620,13 @@ def db_get_rtip(session, tid, user_id, itip_id, language):
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
-    if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
-
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
+
+    if itip.status == 'new':
+        itip.update_date = rtip.last_access
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
