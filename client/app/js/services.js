@@ -171,14 +171,6 @@ factory("Authentication",
         }
       };
 
-      self.hasUserRole = function() {
-        if (angular.isUndefined(self.session)) {
-          return false;
-        }
-
-        return ["admin", "receiver", "custodian"].indexOf(self.session.role) !== -1;
-      };
-
       self.get_headers = function() {
         var h = {};
 
