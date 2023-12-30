@@ -350,10 +350,10 @@ class TestRTipRedactionCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             body = {
                 'internaltip_id': rtip_desc['id'],
-                'reference_id': '',
+                'reference_id': rtip_desc['questionnaires'][0]['steps'][0]['id'],
                 'entry': '0',
                 'permanent_redaction': '',
-                'temporary_redaction': ''
+                'temporary_redaction': [{"start": 0, "end": 0}]
             }
 
             handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
@@ -369,7 +369,7 @@ class TestRTipRedactionCollection(helpers.TestHandlerWithPopulatedDB):
                 'reference_id': '',
                 'entry': '0',
                 'permanent_redaction': '',
-                'temporary_redaction': ''
+                'temporary_redaction': [{"start": 0, "end": 1}]
             }
 
             handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
@@ -384,8 +384,8 @@ class TestRTipRedactionCollection(helpers.TestHandlerWithPopulatedDB):
                 'internaltip_id': rtip_desc['id'],
                 'reference_id': '',
                 'entry': '0',
-                'permanent_redaction': '',
-                'temporary_redaction': ''
+                'permanent_redaction': [{"start": 0, "end": 0}],
+                'temporary_redaction': [{"start": 1, "end": 1}]
             }
 
             handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
