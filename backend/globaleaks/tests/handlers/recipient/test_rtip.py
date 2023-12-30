@@ -51,8 +51,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_grant_and_revoke_access(self):
-        now = datetime_now()
-
         rtip_descs = yield self.get_rtips()
 
         count = len(rtip_descs)
@@ -97,8 +95,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_transfer(self):
-        now = datetime_now()
-
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:

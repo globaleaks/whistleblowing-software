@@ -10,12 +10,6 @@ class TestPGP(helpers.TestGL):
     secret_content = helpers.PGPKEYS['VALID_PGP_KEY1_PRV']
 
     def test_encrypt_message(self):
-        fake_receiver_desc = {
-            'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
-            'pgp_key_fingerprint': 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': 'fake@username.net',
-        }
-
         pgpctx = PGPContext(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 
         encrypted_body = pgpctx.encrypt_message(self.secret_content)
@@ -25,12 +19,6 @@ class TestPGP(helpers.TestGL):
     def test_encrypt_file(self):
         file_src = os.path.join(os.getcwd(), 'test_plaintext_file.txt')
         file_dst = os.path.join(os.getcwd(), 'test_encrypted_file.txt')
-
-        fake_receiver_desc = {
-            'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PRV'],
-            'pgp_key_fingerprint': 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1',
-            'username': 'fake@username.net',
-        }
 
         # these are the same lines used in delivery.py
         pgpctx = PGPContext(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])

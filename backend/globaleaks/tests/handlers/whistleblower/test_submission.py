@@ -53,8 +53,7 @@ class TestSubmission(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_verify_file_creation(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        receipt = yield self.create_submission_with_files(self.submission_desc)
-
+        yield self.create_submission_with_files(self.submission_desc)
         yield delivery.Delivery().run()
 
     @inlineCallbacks

@@ -146,7 +146,7 @@ def validate_password_reset(session, reset_token, recovery_key, auth_code):
     # Require password change
     user.password_change_needed = True
 
-    user.last_login = datetime_now()
+    user.last_login = now
 
     user_session = Sessions.new(user.tid, user.id,
                            user.tid, user.name,

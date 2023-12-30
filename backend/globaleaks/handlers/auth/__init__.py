@@ -315,4 +315,4 @@ class OperatorAuthSwitchHandler(BaseHandler):
 
         session.properties['operator_session'] = self.session.user_id
 
-        return {'redirect': '/#/login?token=%s' % (session.id)}
+        return {'redirect': '/#/login?token=%s' % session.id}

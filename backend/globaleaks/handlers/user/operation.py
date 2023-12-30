@@ -84,7 +84,7 @@ def change_password(session, tid, user_session, password, old_password):
 
 
 @transact
-def get_users_names(session, tid, user_id):
+def get_users_names(session, tid):
     ret = {}
 
     for user_id, user_name in session.query(models.User.id, models.User.name) \
@@ -177,8 +177,7 @@ class UserOperationHandler(OperationHandler):
                                req_args['current'])
 
     def get_users_names(self, req_args, *args, **kwargs):
-        return get_users_names(self.session.user_tid,
-                               self.session.user_id)
+        return get_users_names(self.session.user_tid)
 
     def get_recovery_key(self, req_args, *args, **kwargs):
         return get_recovery_key(self.session.user_tid,

@@ -18,13 +18,13 @@ class BaseHandlerMock(BaseHandler):
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
 
-    def test_validate_request_valid(self):
+    def test_validate_request_valid1(self):
         dummy_message = {'spam': 'ham', 'firstd': {3: 4}, 'fields': "CIAOCIAO", 'nest': [{1: 2, 3: 4}]}
         dummy_request_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
         self.assertTrue(BaseHandler.validate_request(dummy_message, dummy_request_template))
 
-    def test_validate_request_valid(self):
+    def test_validate_request_valid2(self):
         dummy_json = json.dumps({'spam': 'ham'})
         dummy_request_template = {'spam': str}
 

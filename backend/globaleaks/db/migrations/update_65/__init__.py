@@ -308,7 +308,7 @@ class MigrationScript(MigrationBase):
         i = self.model_from['InternalTip']
         r = self.model_from['ReceiverTip']
         for m, i, r in self.session_old.query(m, i, r) \
-                                       .filter(m.receivertip_id == r.id, \
+                                       .filter(m.receivertip_id == r.id,
                                                r.internaltip_id == i.id):
             new_obj = self.model_to['Comment']()
             for key in new_obj.__mapper__.column_attrs.keys():
