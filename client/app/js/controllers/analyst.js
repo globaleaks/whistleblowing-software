@@ -29,8 +29,7 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
   d_2 = 100 - d_1;
 
   // Label definition
-  var returning_wb_labels = ["Not returning", "Returning"
-    ].map($filter("translate"));
+  var returning_wb_labels = ["Yes", "No"].map($filter("translate"));
   var anonymity_wb_labels = ["Anonymous",
     "Subscribed", "Subscribed later"].map($filter("translate"));
   var tor_wb_labels = ["Yes", "No"].map($filter("translate"));
@@ -38,8 +37,8 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
   
 
   // Adding percentages to labels after translation
-  returning_wb_labels[0] = `${returning_wb_labels[0]} ${a_1}% - (${$scope.resources.stats.reports_with_no_access})`
-  returning_wb_labels[1] = `${returning_wb_labels[1]} ${a_2}% - (${reports_count - $scope.resources.stats.reports_with_no_access})`
+  returning_wb_labels[0] = `${returning_wb_labels[0]} ${a_1}% - (${reports_count - $scope.resources.stats.reports_with_no_access})`
+  returning_wb_labels[1] = `${returning_wb_labels[1]} ${a_2}% - (${$scope.resources.stats.reports_with_no_access})`
 
   anonymity_wb_labels[0] = `${anonymity_wb_labels[0]} ${b_1}% - (${$scope.resources.stats.reports_anonymous})`
   anonymity_wb_labels[1] = `${anonymity_wb_labels[1]} ${b_2}% - (${$scope.resources.stats.reports_subscribed})`

@@ -198,9 +198,6 @@ msgstr "Access requested"
 msgid "Request access to the whistleblower's identity"
 msgstr "Request access to the whistleblower's identity"
 
-msgid "Please write a motivation"
-msgstr "Please write a motivation"
-
 msgid "Reply to the request"
 msgstr "Reply to the request"
 
@@ -500,6 +497,27 @@ msgstr "Recipients only"
 msgid "Me only"
 msgstr "Me only"
 
+msgid "Returning whistleblowers"
+msgstr "Returning whistleblowers"
+
+msgid "Anonymity"
+msgstr "Anonymity"
+
+msgid "Anonymous"
+msgstr "Anonymous"
+
+msgid "Subscribed"
+msgstr "Subscribed"
+
+msgid "Initially anonymous"
+msgstr "Initially anonymous"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobile"
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -542,6 +560,9 @@ msgstr "Creation date"
 msgid "Last access"
 msgstr "Last access"
 
+msgid "Receivers"
+msgstr "Receivers"
+
 msgid "Whistleblower's last access"
 msgstr "Whistleblower's last access"
 
@@ -566,6 +587,9 @@ msgstr "Save"
 msgid "Cancel"
 msgstr "Cancel"
 
+msgid "days"
+msgstr "days"
+
 msgid "Report statuses"
 msgstr "Report statuses"
 
@@ -587,9 +611,6 @@ msgstr "Recipients"
 msgid "Reminder date"
 msgstr "Reminder date"
 
-msgid "days"
-msgstr "days"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Set the value to 0 to disable this feature."
 
@@ -610,12 +631,6 @@ msgstr "Show recipients in alphabetical order"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Show recipient details on the status page of the report"
-
-msgid "Enable comments"
-msgstr "Enable comments"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Allow the whistleblower to write comments"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Allow the whistleblower to add attachments"
@@ -652,6 +667,9 @@ msgstr "Allowed IP addresses"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr "Analyst"
 
 msgid "Recipient"
 msgstr "Recipient"
@@ -1022,9 +1040,6 @@ msgstr "Enable custom privacy panel"
 msgid "Custom privacy panel"
 msgstr "Custom privacy panel"
 
-msgid "Enable custodian user role"
-msgstr "Enable custodian user role"
-
 msgid "Enable scoring system"
 msgstr "Enable scoring system"
 
@@ -1155,8 +1170,14 @@ msgstr "Give this user ability to grant user access to reports"
 msgid "Give this user ability to transfer reports to other users"
 msgstr "Give this user ability to transfer reports to other users"
 
+msgid "Allow this user to reopen management of a report"
+msgstr "Allow this user to reopen management of a report"
+
 msgid "Give the user administrative access to the following features:"
 msgstr "Give the user administrative access to the following features:"
+
+msgid "Statistics"
+msgstr "Statistics"
 
 msgid "Request date"
 msgstr "Request date"
@@ -1203,6 +1224,12 @@ msgstr "Text shown after the user has selected the option."
 msgid "Assign score points"
 msgstr "Assign score points"
 
+msgid "Change status"
+msgstr "Change status"
+
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -1228,8 +1255,23 @@ msgstr ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 
+msgid "Attention"
+msgstr "Attention"
+
+msgid "For security reasons the code needs to be changed."
+msgstr "For security reasons the code needs to be changed."
+
 msgid "Enter a name for the copy"
 msgstr "Enter a name for the copy"
+
+msgid "Mask"
+msgstr "Mask"
+
+msgid "Unselect"
+msgstr "Unselect"
+
+msgid "Reopen"
+msgstr "Reopen"
 
 msgid "Request support"
 msgstr "Request support"
@@ -1252,9 +1294,6 @@ msgid ""
 msgstr ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-
-msgid "Please write a motivation for the reply"
-msgstr "Please write a motivation for the reply"
 
 msgid "Send"
 msgstr "Send"
@@ -1300,6 +1339,9 @@ msgstr "Resource can only be accessed via the Tor network"
 
 msgid "The upload request exceeds the size limit"
 msgstr "The upload request exceeds the size limit"
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr "You are operating on behalf of a whistleblower."
 
 msgid "Current password"
 msgstr "Current password"
@@ -1353,11 +1395,23 @@ msgstr "Size:"
 msgid "Access date"
 msgstr "Access date"
 
+msgid "Address"
+msgstr "Address"
+
+msgid "Fiscal code"
+msgstr "Fiscal code"
+
+msgid "Tax code"
+msgstr "Tax code"
+
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Recipients have requested you to fill an additional questionnaire."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fill the additional questionnaire"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Allow the whistleblower to write comments"
 
 msgid "From:"
 msgstr "From:"
@@ -1379,9 +1433,6 @@ msgstr "Questionnaire answers"
 
 msgid "Step"
 msgstr "Step"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Files attached by recipients"
 msgstr "Files attached by recipients"
@@ -1484,20 +1535,11 @@ msgstr "If not activated within 24 hours the platform will be automatically dele
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Invalid phone number"
-msgstr "Invalid phone number"
-
 msgid "Invalid confirmation"
 msgstr "Invalid confirmation"
 
-msgid "Address"
-msgstr "Address"
-
-msgid "Fiscal code"
-msgstr "Fiscal code"
-
-msgid "Tax code"
-msgstr "Tax code"
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
 
 msgid "Site"
 msgstr "Site"
