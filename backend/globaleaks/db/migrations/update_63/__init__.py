@@ -43,9 +43,6 @@ class MigrationScript(MigrationBase):
                 if old_obj.value == 'whistleblowing.it':
                     new_obj.value = 'wbpa'
 
-                elif old_obj.value == 'eat':
-                    new_obj.value = 'default'
-
             self.session_new.add(new_obj)
 
     def migrate_Subscriber(self):
