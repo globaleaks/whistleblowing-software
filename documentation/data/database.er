@@ -20,6 +20,7 @@
     visibility {label:"INTEGER"}
 [internaltip]
     *id {label:"TEXT(36)"}
+    access_count {label:"INTEGER"}
     context_id {label:"TEXT(36)"}
     creation_date {label:"DATETIME"}
     crypto_prv_key {label:"TEXT(84)"}
@@ -35,7 +36,9 @@
     label {label:"TEXT"}
     last_access {label:"DATETIME"}
     mobile {label:"BOOLEAN"}
+    operator_id {label:"TEXT(33)"}
     progressive {label:"INTEGER"}
+    receipt_change_needed {label:"BOOLEAN"}
     receipt_hash {label:"TEXT(44)"}
     reminder_date {label:"DATETIME"}
     score {label:"INTEGER"}
@@ -64,7 +67,6 @@
     score_threshold_medium {label:"INTEGER"}
     select_all_receivers {label:"BOOLEAN"}
     show_receivers_in_alphabetical_order {label:"BOOLEAN"}
-    show_recipients_details {label:"BOOLEAN"}
     show_steps_navigation_interface {label:"BOOLEAN"}
     tid {label:"INTEGER"}
     tip_reminder {label:"INTEGER"}
@@ -164,6 +166,7 @@
     can_mask_information {label:"BOOLEAN"}
     can_postpone_expiration {label:"BOOLEAN"}
     can_redact_information {label:"BOOLEAN"}
+    can_reopen_reports {label:"BOOLEAN"}
     can_transfer_access_to_reports {label:"BOOLEAN"}
     change_email_address {label:"TEXT"}
     change_email_date {label:"DATETIME"}
@@ -236,9 +239,15 @@
 [receiverfile]
     *id {label:"TEXT(36)"}
     access_date {label:"DATETIME"}
-    internalfile_id {label:"TEXT(36)"}
+    author_id {label:"TEXT(36)"}
+    content_type {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    description {label:"TEXT"}
+    internaltip_id {label:"TEXT(36)"}
+    name {label:"TEXT"}
     new {label:"BOOLEAN"}
-    receivertip_id {label:"TEXT(36)"}
+    size {label:"INTEGER"}
+    visibility {label:"INTEGER"}
 [receivertip]
     *id {label:"TEXT(36)"}
     access_date {label:"DATETIME"}
@@ -252,6 +261,7 @@
     receiver_id {label:"TEXT(36)"}
 [redaction]
     *id {label:"TEXT(36)"}
+    entry {label:"TEXT"}
     internaltip_id {label:"TEXT(36)"}
     permanent_redaction {label:"TEXT"}
     reference_id {label:"TEXT(36)"}
@@ -300,18 +310,12 @@
 [whistleblowerfile]
     *id {label:"TEXT(36)"}
     access_date {label:"DATETIME"}
-    author_id {label:"TEXT(36)"}
-    content_type {label:"TEXT"}
-    creation_date {label:"DATETIME"}
-    description {label:"TEXT"}
-    internaltip_id {label:"TEXT(36)"}
-    name {label:"TEXT"}
+    internalfile_id {label:"TEXT(36)"}
     new {label:"BOOLEAN"}
-    size {label:"INTEGER"}
-    visibility {label:"INTEGER"}
+    receivertip_id {label:"TEXT(36)"}
 internaltip 1--* comment
-tenant 1--* internaltip
 context 1--* internaltip
+tenant 1--* internaltip
 questionnaire 1--* context
 tenant 1--* context
 tenant 1--* questionnaire
@@ -322,20 +326,20 @@ tenant 1--1 enabledlanguage
 tenant 1--1 customtexts
 field ?--* field
 step ?--* field
+field ?--* field
+field ?--* field
 tenant 1--* field
-field ?--* field
-field ?--* field
 questionnaire 1--* step
 field 1--1 fieldattr
 field 1--* fieldoption
-field 1--1 fieldoptiontriggerfield
 fieldoption 1--1 fieldoptiontriggerfield
-step 1--1 fieldoptiontriggerstep
+field 1--1 fieldoptiontriggerfield
 fieldoption 1--1 fieldoptiontriggerstep
+step 1--1 fieldoptiontriggerstep
 tenant ?--* file
+internaltip 1--* identityaccessrequest
 user ?--* identityaccessrequest
 user 1--* identityaccessrequest
-internaltip 1--* identityaccessrequest
 tenant 1--* user
 identityaccessrequest 1--1 identityaccessrequest_custodian
 user 1--1 identityaccessrequest_custodian
@@ -345,14 +349,14 @@ internaltip 1--1 internaltipdata
 tenant 1--* mail
 user 1--1 receiver_context
 context 1--1 receiver_context
-receivertip 1--* receiverfile
-internalfile 1--* receiverfile
-internaltip 1--* receivertip
+internaltip 1--* receiverfile
 user 1--* receivertip
+internaltip 1--* receivertip
 internaltip 1--* redaction
 tenant 1--* redirect
 tenant 1--1 submissionstatus
 submissionstatus 1--* submissionsubstatus
 submissionstatus 1--1 submissionsubstatus
 tenant 1--1 subscriber
-internaltip 1--* whistleblowerfile
+internalfile 1--* whistleblowerfile
+receivertip 1--* whistleblowerfile
