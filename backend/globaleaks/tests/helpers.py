@@ -284,7 +284,6 @@ class MockDict:
             'tip_reminder': 80,
             'maximum_selectable_receivers': 0,
             'show_context': True,
-            'show_recipients_details': True,
             'allow_recipients_selection': False,
             'enable_two_way_comments': True,
             'enable_attachments': True,

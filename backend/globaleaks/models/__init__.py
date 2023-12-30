@@ -323,7 +323,6 @@ class _Context(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
-    show_recipients_details = Column(Boolean, default=False, nullable=False)
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)
     maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
     select_all_receivers = Column(Boolean, default=True, nullable=False)
@@ -364,7 +363,6 @@ class _Context(Model):
         'hidden',
         'select_all_receivers',
         'show_context',
-        'show_recipients_details',
         'show_receivers_in_alphabetical_order',
         'show_steps_navigation_interface',
         'allow_recipients_selection',

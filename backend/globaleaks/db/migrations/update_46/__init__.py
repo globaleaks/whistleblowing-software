@@ -32,7 +32,6 @@ class Context_v_45(Model):
     tid = Column(Integer, default=1, nullable=False)
     show_steps_navigation_interface = Column(Boolean, default=True, nullable=False)
     show_context = Column(Boolean, default=True, nullable=False)
-    show_recipients_details = Column(Boolean, default=False, nullable=False)
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)
     maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
     select_all_receivers = Column(Boolean, default=True, nullable=False)
