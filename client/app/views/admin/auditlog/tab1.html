@@ -18,7 +18,7 @@
     </tr>
   </tbody>
 </table>
-<div class="text-center" data-ng-show="auditLog.auditlog.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.auditlog.currentPage - 1) * itemsPerPage)">
+<div class="float-left" data-ng-show="auditLog.auditlog.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.auditlog.currentPage - 1) * itemsPerPage)">
   <ul uib-pagination
       total-items="auditLog.auditlog.elems.length"
       first-text="<< {{'First' | translate}}"
@@ -32,8 +32,10 @@
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.auditlog" csv-label='true' filename="auditlog.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
-<span data-ng-if="resources.node.root_tenant">
-  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.saveAs('globaleaks.log', '/api/admin/auditlog/debug')"><i class="fa-solid fa-download"></i> <span>globaleaks.log</span></a>
-  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.saveAs('access.log', '/api/admin/auditlog/access')"><i class="fa-solid fa-download"></i> <span>access.log</span></a>
-</span>
+<div class="float-right">
+  <button class="btn btn-sm btn-link" type="button" ng-csv="resources.auditlog" csv-label='true' filename="auditlog.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
+  <span data-ng-if="resources.node.root_tenant">
+    <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.saveAs('globaleaks.log', '/api/admin/auditlog/debug')"><i class="fa-solid fa-download"></i> <span>globaleaks.log</span></a>
+    <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.saveAs('access.log', '/api/admin/auditlog/access')"><i class="fa-solid fa-download"></i> <span>access.log</span></a>
+  </span>
+</div>

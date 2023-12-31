@@ -22,7 +22,7 @@
     </tr>
   </tbody>
 </table>
-<div class="text-center" data-ng-show="auditLog.users.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)">
+<div class="float-left" data-ng-show="auditLog.users.elems.length > itemsPerPage | limitTo:itemsPerPage:((auditLog.users.currentPage - 1) * itemsPerPage)">
   <ul uib-pagination
       total-items="auditLog.users.elems.length"
       first-text="<< {{'First' | translate}}"
@@ -36,4 +36,6 @@
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.users" csv-label='true' filename="users.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
+<div class="float-right">
+  <button class="btn btn-sm btn-link" type="button" ng-csv="resources.users" csv-label='true' filename="users.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
+</div>
