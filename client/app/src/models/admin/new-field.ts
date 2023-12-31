@@ -2,7 +2,6 @@ export class NewField {
   id = "";
   key = "";
   instance = "instance";
-  descriptor_id = "";
   label = "";
   type = "inputbox";
   description = "";

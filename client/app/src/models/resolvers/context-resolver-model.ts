@@ -3,8 +3,6 @@ export class contextResolverModel {
   hidden: boolean;
   tip_timetolive: number;
   tip_reminder: number;
-  tip_reminder_hard: number;
-  tip_reminder_soft: number;
   select_all_receivers: boolean;
   maximum_selectable_receivers: number;
   show_recipients_details: boolean;

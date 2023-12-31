@@ -1,7 +1,9 @@
 import {Component} from "@angular/core";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {TipAdditionalQuestionnaireFormComponent} from "@app/shared/modals/tip-additional-questionnaire-form/tip-additional-questionnaire-form.component";
+import {
+  TipAdditionalQuestionnaireFormComponent
+} from "@app/shared/modals/tip-additional-questionnaire-form/tip-additional-questionnaire-form.component";
 
 @Component({
   selector: "src-tip-additional-questionnaire-invite",
@@ -18,6 +20,10 @@ export class TipAdditionalQuestionnaireInviteComponent {
   }
 
   tipOpenAdditionalQuestionnaire() {
-    this.modalService.open(TipAdditionalQuestionnaireFormComponent,{windowClass: "custom-modal-width",backdrop: 'static',keyboard: false});
+    this.modalService.open(TipAdditionalQuestionnaireFormComponent, {
+      windowClass: "custom-modal-width",
+      backdrop: 'static',
+      keyboard: false
+    });
   }
 }

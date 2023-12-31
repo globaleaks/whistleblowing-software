@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class NotificationsResolver  {
+export class NotificationsResolver {
   dataModel: notificationResolverModel = new notificationResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

@@ -1,6 +1,6 @@
 export interface FileResource {
   name: string;
-  content?:string;
+  content?: string;
 }
 
 export interface FileResources {

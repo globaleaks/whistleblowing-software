@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody id="fileListBody">
-                <tr id="file-{{index}}" *ngFor="let file of tipService.tip.wbfiles | orderBy:'creation_date' as index" [ngClass]="{ 'view-supported': supportedViewTypes.includes(file.type) }">
+                <tr id="file-{{index}}" *ngFor="let file of getSortedWBFiles(tipService.tip.wbfiles | orderBy:'creation_date') as index" [ngClass]="{ 'view-supported': supportedViewTypes.includes(file.type) }">
                     <ng-container *ngIf="!file.reference_id">
                         <td>{{ file.name }}</td>
                         <td *ngIf="appDataService.public.node.viewer">

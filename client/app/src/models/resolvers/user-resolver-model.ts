@@ -29,10 +29,8 @@ export class userResolverModel {
   can_delete_submission: boolean;
   can_grant_access_to_reports: boolean;
   can_edit_general_settings: boolean;
-  can_privilege_delete_mask_information: boolean;
-  can_privilege_mask_information: boolean;
   clicked_recovery_key: boolean;
   contexts: string[];
-  newpassword:boolean;
-  can_transfer_access_to_reports:boolean;
+  newpassword: boolean;
+  can_transfer_access_to_reports: boolean;
 }

@@ -1,5 +1,5 @@
-import {RFile, WbFile, WhistleblowerIdentity,Comment} from "@app/models/app/shared-public-model";
-import {Context,Answers,Questionnaire3,Questionnaire} from "@app/models/reciever/reciever-tip-data";
+import {RFile, WbFile, WhistleblowerIdentity, Comment} from "@app/models/app/shared-public-model";
+import {Context, Answers, Questionnaire3, Questionnaire} from "@app/models/reciever/reciever-tip-data";
 
 export class WbTipData {
   id: string;
@@ -36,7 +36,7 @@ export class WbTipData {
   label: string;
   fields: Children[];
   whistleblower_identity_field: Children;
-  answers:Answers;
+  answers: Answers;
 }
 
 export class Step {
@@ -75,7 +75,7 @@ export class Children {
   description: string;
   hint: string;
   placeholder: string;
-  enabled:boolean;
+  enabled: boolean;
 }
 
 export class Attrs {

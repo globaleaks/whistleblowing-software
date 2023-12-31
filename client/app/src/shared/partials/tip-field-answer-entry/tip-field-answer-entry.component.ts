@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {ReceiverTipService} from "@app/services/helper/receiver-tip.service";
 
@@ -7,7 +7,7 @@ import {ReceiverTipService} from "@app/services/helper/receiver-tip.service";
   selector: "src-tip-field-answer-entry",
   templateUrl: "./tip-field-answer-entry.component.html"
 })
-export class TipFieldAnswerEntryComponent {
+export class TipFieldAnswerEntryComponent implements OnInit {
   @Input() entry: any;
   @Input() field: any;
   @Input() fieldAnswers: any;

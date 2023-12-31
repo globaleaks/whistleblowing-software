@@ -1,5 +1,5 @@
 <div class="row mt-4" *ngIf="authenticationData.session">
-    <div class="col-md-10" [ngClass]="{'container-disabled': !authenticationData.session.permissions.can_upload_files}">
+    <div class="col-md-10" [ngClass]="{'container-disabled': !canUploadFiles()}">
         <div class="form-group">
             <div>
                 <ng-container *ngFor="let admin_file of admin_files">
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-2">
         <div class="form-check form-switch">
-            <app-switch name="authenticationData.session.permissions.can_upload_files_switch" [isChecked]="permissionStatus" [label]="authenticationData.session.permissions.can_upload_files ? 'Enabled' : 'Disabled'" (click)="togglePermissionUploadFiles()"></app-switch>
+            <app-switch name="authenticationData.session.permissions.can_upload_files_switch" [isChecked]="permissionStatus" [label]="authenticationData.permissions.can_upload_files ? 'Enabled' : 'Disabled'" (click)="togglePermissionUploadFiles()"></app-switch>
         </div>
     </div>
 </div>

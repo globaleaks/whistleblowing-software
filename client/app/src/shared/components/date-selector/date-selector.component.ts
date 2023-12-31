@@ -12,7 +12,7 @@ import {JsonPipe} from "@angular/common";
 export class DateRangeSelectorComponent {
   hoveredDate: NgbDate | null = null;
   @Output() emitDateSelection: EventEmitter<{ fromDate: string | null; toDate: string | null }> = new EventEmitter();
-  @Input() currentDates: {fromDate:NgbDate|null,toDate:NgbDate|null}|null;
+  @Input() currentDates: { fromDate: NgbDate | null, toDate: NgbDate | null } | null;
   fromDate: NgbDate | null = null;
   toDate: NgbDate | null = null;
 

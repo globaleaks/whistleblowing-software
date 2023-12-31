@@ -33,7 +33,7 @@ export class preferenceResolverModel {
   can_edit_general_settings: boolean;
   can_transfer_access_to_reports: boolean;
   clicked_recovery_key: boolean;
-  accepted_privacy_policy:string;
+  accepted_privacy_policy: string;
   contexts: string[];
-  permissions:{can_upload_files:boolean}
+  permissions: { can_upload_files: boolean }
 }

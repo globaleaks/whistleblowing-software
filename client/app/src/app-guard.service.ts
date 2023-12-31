@@ -7,7 +7,7 @@ import {AppDataService} from "@app/app-data.service";
 @Injectable({
   providedIn: "root"
 })
-export class SessionGuard  {
+export class SessionGuard {
   constructor(private router: Router, private appDataService: AppDataService, public authenticationService: AuthenticationService) {
   }
 

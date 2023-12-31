@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 
 const LOCALE = navigator.languages
   ? navigator.languages[0]
-  : (navigator.language || (navigator as {userLanguage?:string}).userLanguage);
+  : (navigator.language || (navigator as { userLanguage?: string }).userLanguage);
 
 type Formats = "short" | "medium" | "shortDate";
 

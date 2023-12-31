@@ -19,14 +19,14 @@ export class TipAdditionalQuestionnaireFormComponent implements OnInit {
   @ViewChildren("stepform") stepForms: QueryList<NgForm>;
 
   validate: boolean[] = [];
-  navigation:number = 0;
-  score :number= 0;
+  navigation: number = 0;
+  score: number = 0;
   questionnaire: Questionnaire3;
   answers: Answers = {};
   field_id_map: { [key: string]: Field };
   done: boolean = false;
-  uploads:{ [key: string]: any };
-  file_upload_url:string = "api/whistleblower/wbtip/rfile";
+  uploads: { [key: string]: any };
+  file_upload_url: string = "api/whistleblower/wbtip/rfile";
 
   constructor(private wbTipResolver: WbTipResolver, private httpService: HttpService, private fieldUtilitiesService: FieldUtilitiesService, private utilsService: UtilsService, protected wbTipService: WbtipService, protected activeModal: NgbActiveModal) {
   }

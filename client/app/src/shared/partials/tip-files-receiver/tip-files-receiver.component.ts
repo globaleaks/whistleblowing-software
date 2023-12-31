@@ -25,12 +25,16 @@ export class TipFilesReceiverComponent implements OnInit {
   }
 
   public viewRFile(file: WbFile) {
-    const modalRef = this.modalService.open(FileViewComponent,{backdrop: 'static',keyboard: false});
+    const modalRef = this.modalService.open(FileViewComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.args = {
       file: file,
       loaded: false,
       iframeHeight: window.innerHeight * 0.75
     };
+  }
+
+  getSortedWBFiles(data: WbFile[]): WbFile[] {
+    return data;
   }
 
   public downloadRFile(file: WbFile) {
@@ -39,7 +43,7 @@ export class TipFilesReceiverComponent implements OnInit {
     (
       {
         next: async token => {
-          const ans = await this.cryptoService.proofOfWork(token.id);
+          const ans = this.cryptoService.proofOfWork(token.id).subscribe();
           window.open("api/recipient/wbfiles/" + file.id + "?token=" + token.id + ":" + ans);
           this.appDataService.updateShowLoadingPanel(false);
         }

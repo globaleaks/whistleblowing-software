@@ -23,7 +23,7 @@ export class TipService {
 
     for (x = 0; x < tip.questionnaires.length; x++) {
       let questionnaire = tip.questionnaires[x];
-      this.fieldUtilities.parseQuestionnaire(questionnaire,{fields: [], fields_by_id: {}, options_by_id: {}});
+      this.fieldUtilities.parseQuestionnaire(questionnaire, {fields: [], fields_by_id: {}, options_by_id: {}});
 
       for (i = 0; i < questionnaire.steps.length; i++) {
         step = questionnaire.steps[i];

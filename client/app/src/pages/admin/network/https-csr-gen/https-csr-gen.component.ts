@@ -28,7 +28,7 @@ export class HttpsCsrGenComponent {
     email: ""
   };
 
-  constructor(private authenticationService:AuthenticationService, private httpService: HttpService, private utilsService: UtilsService) {
+  constructor(private authenticationService: AuthenticationService, private httpService: HttpService, private utilsService: UtilsService) {
   }
 
   submitCSR() {

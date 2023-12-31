@@ -7,7 +7,9 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {CaseManagementRoutingModule} from "@app/pages/admin/casemanagement/case-management-routing.module";
-import {CaseManagementTab1Component} from "@app/pages/admin/casemanagement/casemanagement-tab1/case-management-tab1.component";
+import {
+  CaseManagementTab1Component
+} from "@app/pages/admin/casemanagement/casemanagement-tab1/case-management-tab1.component";
 import {SubStatusManagerComponent} from "@app/pages/admin/casemanagement/substatusmanager/sub-status-manager.component";
 import {SubStatusComponent} from "@app/pages/admin/casemanagement/substatuses/sub-status.component";
 

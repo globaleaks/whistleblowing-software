@@ -11,7 +11,7 @@ import {Constants} from "@app/shared/constants/constants";
 export class RequestSupportComponent implements OnInit {
   protected readonly Constants = Constants;
   sent = false;
-  arg: {mail_address: string,text: string} = { mail_address: "",text: ""};
+  arg: { mail_address: string, text: string } = {mail_address: "", text: ""};
 
   constructor(protected activeModal: NgbActiveModal, protected utilsService: UtilsService, private preferenceResolver: PreferenceResolver) {
   }

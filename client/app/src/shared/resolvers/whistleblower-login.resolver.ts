@@ -6,7 +6,7 @@ import {Observable, of} from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class WhistleblowerLoginResolver  {
+export class WhistleblowerLoginResolver {
   loggedIn = false;
 
   constructor(private appDataService: AppDataService, private authenticationService: AuthenticationService) {

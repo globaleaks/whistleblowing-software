@@ -5,8 +5,8 @@ import {Component, Input} from "@angular/core";
   templateUrl: "./r-files-upload-status.component.html"
 })
 export class RFilesUploadStatusComponent {
-  @Input() uploading: boolean|undefined;
-  @Input() progress: number|undefined;
-  @Input() estimatedTime: number|undefined;
+  @Input() uploading: boolean | undefined;
+  @Input() progress: number | undefined;
+  @Input() estimatedTime: number | undefined;
   protected readonly isFinite = isFinite;
 }

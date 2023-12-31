@@ -12,11 +12,10 @@ import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {QuestionnaireService} from "@app/pages/admin/questionnaires/questionnaire.service";
 import {map, Observable, of} from "rxjs";
-import {Step} from "@app/models/resolvers/questionnaire-model";
+import {Step, questionnaireResolverModel} from "@app/models/resolvers/questionnaire-model";
 import {ParsedFields} from "@app/models/component-model/parsedFields";
 import {Field, fieldtemplatesResolverModel} from "@app/models/resolvers/field-template-model";
-import {Children, Option, Step as Steps, TriggeredByOption} from "@app/models/app/shared-public-model";
-import {Questionnaire} from "@app/models/app/public-model";
+import {Children, Option, TriggeredByOption} from "@app/models/app/shared-public-model";
 
 @Component({
   selector: "src-fields",
@@ -24,13 +23,13 @@ import {Questionnaire} from "@app/models/app/public-model";
 })
 export class FieldsComponent implements OnInit {
   @Input() editField: NgForm;
-  @Input() field: Children | Step | Field ;
+  @Input() field: Children | Step | Field;
   @Input() fields: Children[] | Field[] | Step[];
   @Input() type: string;
   @Input() step: Step;
   @Input() parsedFields: ParsedFields;
   @Output() dataToParent = new EventEmitter<string>();
-  custom:string="custom";
+  custom: string = "custom";
   editing: boolean = false;
   openMinDate: boolean = false;
   openMaxDate: boolean = false;
@@ -46,7 +45,7 @@ export class FieldsComponent implements OnInit {
     option: "",
     sufficient: false,
   };
-  instance:string;
+  instance: string;
 
   constructor(private questionnaireService: QuestionnaireService, private modalService: NgbModal, public nodeResolver: NodeResolver, private httpService: HttpService, private utilsService: UtilsService, private fieldTemplates: FieldTemplatesResolver, private fieldUtilities: FieldUtilitiesService,) {
   }
@@ -60,8 +59,12 @@ export class FieldsComponent implements OnInit {
     this.fieldIsMarkableSubjectToStats = this.isMarkableSubjectToStats(this.field);
     this.fieldIsMarkableSubjectToPreview = this.isMarkableSubjectToPreview(this.field);
     this.instance = this.questionnaireService.sharedData;
-    if(this.instance === "template"){
-      this.parsedFields = this.fieldUtilities.parseFields(this.fieldTemplates.dataModel,{fields: [], fields_by_id: {}, options_by_id: {}});
+    if (this.instance === "template") {
+      this.parsedFields = this.fieldUtilities.parseFields(this.fieldTemplates.dataModel, {
+        fields: [],
+        fields_by_id: {},
+        options_by_id: {}
+      });
     }
     this.children = this.field.children;
   }
@@ -74,28 +77,28 @@ export class FieldsComponent implements OnInit {
   }
 
   minDateFormat(value: { year: number; month: number; day: number } | string): string {
-    if(typeof(value) !== "string"){
+    if (typeof (value) !== "string") {
       return `${value.year}-${value.month}-${value.day}`;
-    }else{
+    } else {
       return value;
     }
   }
 
   maxDateFormat(value: { year: number; month: number; day: number } | string): string {
-    if(typeof(value) !== "string"){
+    if (typeof (value) !== "string") {
       return `${value.year}-${value.month}-${value.day}`;
-    }else{
+    } else {
       return value;
     }
   }
-  
+
   listenToFields(): Observable<void> {
     if (this.type === "step") {
       return this.httpService.requestQuestionnairesResource().pipe(
         map(response => {
-          response.forEach((step: Questionnaire) => {
+          response.forEach((step: questionnaireResolverModel) => {
             if (step.id == this.step.questionnaire_id) {
-              step.steps.forEach((innerStep: Steps) => {
+              step.steps.forEach((innerStep: any) => {
                 if (innerStep.id == this.step.id) {
                   innerStep.children.forEach((field: Step | Field) => {
                     if (field.id == this.field.id && field.step_id == this.field.step_id) {
@@ -112,7 +115,7 @@ export class FieldsComponent implements OnInit {
     if (this.type === "template") {
       return this.httpService.requestAdminFieldTemplateResource().pipe(
         map(response => {
-          response.forEach((field: Step | Field) => {
+          response.forEach((field: fieldtemplatesResolverModel) => {
             if (field.id == this.field.id) {
               this.children = field.children;
             }
@@ -128,16 +131,16 @@ export class FieldsComponent implements OnInit {
   }
 
   exportQuestion(field: Step | Field) {
-    this.utilsService.download("api/admin/fieldtemplates/" + field.id);
+    this.utilsService.download("api/admin/fieldtemplates/" + field.id).subscribe();
   }
 
   delField(field: Step | Field) {
     this.openConfirmableModalDialog(field, "").subscribe();
   }
 
-  openConfirmableModalDialog(arg:Step | Field, scope: any): Observable<string> {
+  openConfirmableModalDialog(arg: Step | Field, scope: any): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
 
@@ -212,7 +215,7 @@ export class FieldsComponent implements OnInit {
   addTrigger() {
     this.field.triggered_by_options.push(this.new_trigger);
     this.toggleAddTrigger();
-    this.new_trigger = { "field": "", "option": "", "sufficient": false };
+    this.new_trigger = {"field": "", "option": "", "sufficient": false};
   }
 
   showOptions(field: Step | Field): boolean {
@@ -224,7 +227,7 @@ export class FieldsComponent implements OnInit {
   }
 
   addOption(): void {
-    const new_option= {
+    const new_option = {
       id: "",
       label: "",
       hint1: "",
@@ -233,7 +236,7 @@ export class FieldsComponent implements OnInit {
       score_points: 0,
       score_type: "none",
       trigger_receiver: [],
-      order:0,
+      order: 0,
     };
 
     new_option.order = this.utilsService.newItemOrder(this.field.options, "order");
@@ -263,7 +266,7 @@ export class FieldsComponent implements OnInit {
 
   openOptionHintDialog(arg: Option): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(AddOptionHintComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(AddOptionHintComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
 
       modalRef.componentInstance.confirmFunction = () => {
@@ -293,7 +296,7 @@ export class FieldsComponent implements OnInit {
 
   openTriggerReceiverDialog(arg: Option): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(TriggerReceiverComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(TriggerReceiverComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
 
       modalRef.componentInstance.confirmFunction = () => {
@@ -308,7 +311,7 @@ export class FieldsComponent implements OnInit {
 
   openAssignScorePointsDialog(arg: Option): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(AssignScorePointsComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(AssignScorePointsComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
 
       modalRef.componentInstance.confirmFunction = () => {

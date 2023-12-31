@@ -19,7 +19,7 @@
             <div *ngIf="tlsConfig.enabled">
                 <span>{{'URL'|translate}}</span>
                 <span>:</span>
-                <a href="https://{{networkResolver.dataModel.hostname}}" rel="noreferrer" target="_blank">https://{{networkResolver.dataModel.hostname}}</a>
+                <a href={{getNetworkResolver()}} rel="noreferrer" target="_blank">https://{{networkResolver.dataModel.hostname}}</a>
             </div>
         </div>
     </div>

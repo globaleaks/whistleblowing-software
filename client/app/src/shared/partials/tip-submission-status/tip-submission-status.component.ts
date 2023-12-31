@@ -9,7 +9,7 @@ import {HttpService} from "@app/shared/services/http.service";
   selector: "src-tip-submission-status",
   templateUrl: "./tip-submission-status.component.html"
 })
-export class TipSubmissionStatusComponent implements OnInit{
+export class TipSubmissionStatusComponent implements OnInit {
   @Input() tipService: ReceiverTipService | WbtipService;
   @Input() loading: boolean;
   tipStatus = ""
@@ -21,15 +21,17 @@ export class TipSubmissionStatusComponent implements OnInit{
 
   public ngOnInit(): void {
 
-    if(!this.loading){
-      if(this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()]){
+    if (!this.loading) {
+      if (this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()]) {
         this.tipStatus = this.tipService.tip.status;
       }
 
-      if(this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()] && this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()].substatuses.find((item: { id: string; }) => item.id === this.tipService.tip.substatus)){
+      if (this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()] && this.appDataService.submission_statuses_by_id[this.tipService.tip.status.toLowerCase()].substatuses.find((item: {
+        id: string;
+      }) => item.id === this.tipService.tip.substatus)) {
         this.tipSubStatus = this.tipService.tip.substatus;
       }
-    }else {
+    } else {
       this.tipStatus = "";
     }
 

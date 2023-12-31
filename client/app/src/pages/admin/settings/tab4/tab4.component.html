@@ -42,13 +42,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of customTextsKeys()" [ngClass]="{'danger': !default_texts[item.key]}" [attr.uibTooltip]="!default_texts[item.key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : ''">
+                <tr *ngFor="let item of customTextsKeys()" [ngClass]="{'bg-danger': !default_texts[item.key]}" data-toggle="tooltip" title="{{!default_texts[item.key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate}}">
                     <td class="preformatted">{{ item.key }}</td>
                     <td class="preformatted">{{ default_texts[item.key] }}</td>
                     <td class="clearfix">
                         <span class="preformatted">{{ custom_texts[item.key] }}</span>
                         <button class="deleteCustomTextButton float-end btn btn-sm btn-danger" (click)="deleteCustomText(custom_texts,item.key); updateCustomText(custom_texts,vars.language_to_customize)">
-                            <i class="fa" [ngClass]="{'fa-times': default_texts[item.key], 'fa-alert': !default_texts[item.key]}"></i>
+                            <i class="fa fa-times"></i>
                         </button>
                     </td>
                 </tr>

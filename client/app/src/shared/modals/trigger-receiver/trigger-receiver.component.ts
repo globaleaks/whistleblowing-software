@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UsersResolver} from "@app/shared/resolvers/users.resolver";
 import {UtilsService} from "@app/shared/services/utils.service";
@@ -9,7 +9,7 @@ import {userResolverModel} from "@app/models/resolvers/user-resolver-model";
   selector: "src-trigger-receiver",
   templateUrl: "./trigger-receiver.component.html"
 })
-export class TriggerReceiverComponent {
+export class TriggerReceiverComponent implements OnInit {
 
   @Input() arg: Option;
   confirmFunction: (data: Option) => void;

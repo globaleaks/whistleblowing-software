@@ -25,7 +25,7 @@
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing();">
                     <span>{{ 'Cancel' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-danger" *ngIf="authenticationData.session?.user_id !== user.id" (click)="deleteUser(user)">
+                <button class="btn btn-sm btn-danger" *ngIf="getUserID() !== user.id" (click)="deleteUser(user)">
                     <span>{{ 'Delete' | translate }}</span>
                 </button>
             </span>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="text-danger" *ngIf="editUser.form.get('email')?.errors?.['pattern']"> Invalid email address </div>
                 </div>
-                <div class="form-group" *ngIf="authenticationData.session?.user_id !== user.id">
+                <div class="form-group" *ngIf="getUserID() !== user.id">
                     <label>{{ 'Password' | translate }}</label>
                     <div>
                         <span class="btn btn-outline-secondary" (click)="resetUserPassword(user)">
@@ -84,7 +84,7 @@
                         </span>
                     </div>
                     <div class="form-group" *ngIf="user.newpassword">
-                        <input class="d-none" type="password" name="disable-autocomplete-hack" />
+                        <input class="d-none" type="password" name="disable-autocomplete" />
                         <span class="input-group">
                             <input name="password" class="form-control" [(ngModel)]="setPasswordArgs.password" #password="ngModel" type="password" (passwordStrengthChange)="onPasswordStrengthChange($event)" [ngClass]="{'is-invalid': setPasswordArgs.password && (!password?.errors?.['passwordStrengthValidator'] && !password?.valid)}" autocomplete="off" passwordStrengthValidator />
                             <span class="input-group-append">
@@ -169,7 +169,7 @@
         <div class="row" *ngIf="user.role === 'admin'">
             <div class="col-md-12">
                 <div class="form-group" *ngIf="nodeData.escrow && user.encryption && preferenceData.escrow">
-                    <input [(ngModel)]="user.escrow" name="user.escrow" type="checkbox" (ngModelChange)="toggleUserEscrow(user)" [disabled]="authenticationData.session?.user_id === user.id">
+                    <input [(ngModel)]="user.escrow" name="user.escrow" type="checkbox" (ngModelChange)="toggleUserEscrow(user)" [disabled]="getUserID() === user.id">
                     <label>{{ 'Give this admin ability to change user passwords' | translate }}</label>
                 </div>
             </div>

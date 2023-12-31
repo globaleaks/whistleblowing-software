@@ -5,7 +5,7 @@
     </button>
 </div>
 <div class="modal-body">
-    <div id="ReceiverContextAdder" class="form-group">
+    <div class="form-group ReceiverContextAdder">
         <div class="input-group">
             <ng-select class="w-25 rounded-end-0" [(ngModel)]="receiverId" [items]="selectableRecipients" bindLabel="name" placeholder="{{ 'Search' | translate }}" [searchable]="true">
                 <ng-template ng-label-tmp let-item="item">

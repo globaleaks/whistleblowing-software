@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {WbTipResolver} from "@app/shared/resolvers/wb-tip-resolver.service";
 import {FieldUtilitiesService} from "@app/shared/services/field-utilities.service";
 import {ActivatedRoute} from "@angular/router";
@@ -14,12 +14,12 @@ import {WhistleblowerIdentity} from "@app/models/app/shared-public-model";
   selector: "src-tippage",
   templateUrl: "./tippage.component.html"
 })
-export class TippageComponent {
+export class TippageComponent implements OnInit {
 
   fileUploadUrl: string;
   tip_id = null;
   answers = {};
-  uploads: { [key: string]: any }={};
+  uploads: { [key: string]: any } = {};
   score = 0;
   ctx: string;
   rows: Children[];
@@ -27,13 +27,13 @@ export class TippageComponent {
   questionnaires: Questionnaire[];
   identity_provided = false;
 
-  private submission: { _submission: WbTipData[] } = { _submission: [] };
+  private submission: { _submission: WbTipData[] } = {_submission: []};
   protected tip: WbTipData;
 
   constructor(private fieldUtilities: FieldUtilitiesService, private wbTipResolver: WbTipResolver, private fieldUtilitiesService: FieldUtilitiesService, protected utilsService: UtilsService, protected appDataService: AppDataService, private activatedRoute: ActivatedRoute, private httpService: HttpService, protected wbTipService: WbtipService) {
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     let wpTip = this.wbTipResolver.dataModel;
     if (wpTip) {
       this.wbTipService.initialize(wpTip);
@@ -51,7 +51,7 @@ export class TippageComponent {
       this.ctx = "wbtip";
       this.preprocessTipAnswers(this.tip);
 
-      this.tip.submissionStatusStr = this.utilsService.getSubmissionStatusText(this.tip.status,this.tip.substatus,this.appDataService.submissionStatuses);
+      this.tip.submissionStatusStr = this.utilsService.getSubmissionStatusText(this.tip.status, this.tip.substatus, this.appDataService.submissionStatuses);
       this.submission._submission = [];
       this.submission._submission = [this.tip];
       if (this.tip.receivers.length === 1 && this.tip.msg_receiver_selected === null) {
@@ -76,7 +76,7 @@ export class TippageComponent {
 
     for (let x = tip.questionnaires.length - 1; x >= 0; x--) {
       this.questionnaire = tip.questionnaires[x];
-      this.fieldUtilities.parseQuestionnaire(this.questionnaire,{fields: [], fields_by_id: {}, options_by_id: {}});
+      this.fieldUtilities.parseQuestionnaire(this.questionnaire, {fields: [], fields_by_id: {}, options_by_id: {}});
 
       for (i = 0; i < this.questionnaire.steps.length; i++) {
         step = this.questionnaire.steps[i];

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {AppDataService} from "@app/app-data.service";
 import {HttpService} from "@app/shared/services/http.service";
 import {AppConfigService} from "@app/services/root/app-config.service";
@@ -8,7 +8,7 @@ import {Signup} from "@app/models/component-model/signup";
   selector: "src-signup",
   templateUrl: "./signup.component.html"
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   hostname = "";
   completed = false;
   step = 1;

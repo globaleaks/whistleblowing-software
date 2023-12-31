@@ -36,19 +36,19 @@ export class FormFieldInputComponent implements OnInit {
   input_date: NgbDateStruct;
   input_start_date: NgbDateStruct;
   input_end_date: NgbDateStruct;
-  validator:string | RegExp;
+  validator: string | RegExp;
   rows: Step;
-  dateRange: { start: string, end: string } = {"start": "","end": ""};
+  dateRange: { start: string, end: string } = {"start": "", "end": ""};
   dateOptions1: NgbDateStruct;
-  dateOptions2:NgbDateStruct;
-  dateOptions: {min_date:NgbDateStruct, max_date:NgbDateStruct}
+  dateOptions2: NgbDateStruct;
+  dateOptions: { min_date: NgbDateStruct, max_date: NgbDateStruct }
 
   constructor(private fieldUtilitiesService: FieldUtilitiesService) {
   }
 
   clearDateRange() {
-    this.input_start_date = {year: 0, month: 0, day: 0 };
-    this.input_end_date = {year: 0, month: 0, day: 0 };
+    this.input_start_date = {year: 0, month: 0, day: 0};
+    this.input_end_date = {year: 0, month: 0, day: 0};
     this.dateRange = {
       "start": "",
       "end": ""

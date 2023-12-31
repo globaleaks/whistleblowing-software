@@ -27,7 +27,7 @@ export class ReceiptComponent implements OnInit {
     this.receiptId = this.receipt.substring(0, 4) + " " + this.receipt.substring(4, 8) + " " + this.receipt.substring(8, 12) + " " + this.receipt.substring(12, 16);
   }
 
-  viewReport(){
+  viewReport() {
     const promise = () => {
       this.httpService.whistleBlowerTip().subscribe(
         (response: WbTipData) => {
@@ -36,7 +36,7 @@ export class ReceiptComponent implements OnInit {
         }
       );
     };
-    this.authenticationService.login(0, 'whistleblower', this.receipt, null, null,  promise);
+    this.authenticationService.login(0, 'whistleblower', this.receipt, null, null, promise);
   }
 
 }

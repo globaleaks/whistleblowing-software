@@ -3,7 +3,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {PreferencesComponent} from "@app/shared/partials/preferences/preferences.component";
 import {HomeComponent} from "@app/pages/custodian/home/home.component";
 import {SettingsComponent} from "@app/pages/custodian/settings/settings.component";
-import {IdentityAccessRequestsComponent} from "@app/pages/custodian/identity-access-requests/identity-access-requests.component";
+import {
+  IdentityAccessRequestsComponent
+} from "@app/pages/custodian/identity-access-requests/identity-access-requests.component";
 import {PreferenceResolver} from "@app/shared/resolvers/preference.resolver";
 import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 import {RTipsResolver} from "@app/shared/resolvers/r-tips-resolver.service";

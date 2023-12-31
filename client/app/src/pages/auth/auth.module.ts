@@ -7,7 +7,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {PasswordResetComponent} from "@app/pages/auth/password-reset/password-reset.component";
 import {PasswordRequestedComponent} from "@app/pages/auth/passwordreqested/password-requested.component";
-import {PasswordResetResponseComponent} from "@app/pages/auth/password-reset-response/password-reset-response.component";
+import {
+  PasswordResetResponseComponent
+} from "@app/pages/auth/password-reset-response/password-reset-response.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {SharedModule} from "@app/shared.module";
 

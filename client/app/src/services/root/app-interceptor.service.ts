@@ -55,9 +55,12 @@ export class appInterceptor implements HttpInterceptor {
     const authHeader = this.authenticationService.getHeader();
     let authRequest = httpRequest;
 
-    for (const [key, value] of authHeader) {
-      authRequest = authRequest.clone({headers: authRequest.headers.set(key, value)});
-    }
+    authHeader.keys().forEach(header => {
+      const headerValue = authHeader.get(header);
+      if (headerValue) {
+        authRequest = authRequest.clone({headers: authRequest.headers.set(header, headerValue)});
+      }
+    });
 
     authRequest = authRequest.clone({
       headers: authRequest.headers.set("Accept-Language", this.getAcceptLanguageHeader() || ""),
@@ -65,12 +68,14 @@ export class appInterceptor implements HttpInterceptor {
 
     if (httpRequest.url.includes("api/signup") || httpRequest.url.endsWith("api/auth/receiptauth") && !this.authenticationService.session || protectedUrls.includes(httpRequest.url)) {
       return this.httpClient.post("api/auth/token", {}).pipe(
-        switchMap((response) => from(this.cryptoService.proofOfWork(Object.assign(new TokenResponse(), response).id)).pipe(
-          switchMap((ans) => next.handle(httpRequest.clone({
-            headers: httpRequest.headers.set("x-token", Object.assign(new TokenResponse(), response).id + ":" + ans)
-              .set("Accept-Language", this.getAcceptLanguageHeader() || ""),
-          })))
-        ))
+        switchMap((response) =>
+          from(this.cryptoService.proofOfWork(Object.assign(new TokenResponse(), response).id)).pipe(
+            switchMap((ans) => next.handle(httpRequest.clone({
+              headers: httpRequest.headers.set("x-token", `${Object.assign(new TokenResponse(), response).id}:${ans}`)
+                .set("Accept-Language", this.getAcceptLanguageHeader() || ""),
+            })))
+          )
+        )
       );
     } else {
       return next.handle(authRequest);
@@ -109,18 +114,18 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 export class CompletedInterceptor implements HttpInterceptor {
   count = 0;
 
-  constructor(private authenticationService: AuthenticationService, private appDataService: AppDataService) {
+  constructor(private appDataService: AppDataService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(req.url != "api/auth/authentication"){
+    if (req.url != "api/auth/authentication") {
       this.count++;
       this.appDataService.updateShowLoadingPanel(true);
     }
 
     return next.handle(req).pipe(
       finalize(() => {
-        if(req.url != "api/auth/authentication"){
+        if (req.url != "api/auth/authentication") {
           this.count--;
           if (this.count === 0 && (req.url !== "api/auth/token")) {
             timer(100).pipe(

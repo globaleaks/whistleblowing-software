@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import { Router } from "@angular/router";
+import {Router} from "@angular/router";
 import {Observable, of} from "rxjs";
 import {HttpService} from "@app/shared/services/http.service";
 import {preferenceResolverModel} from "@app/models/resolvers/preference-resolver-model";
@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class PreferenceResolver  {
+export class PreferenceResolver {
   dataModel: preferenceResolverModel = new preferenceResolverModel();
 
   constructor(private router: Router, private httpService: HttpService, private authenticationService: AuthenticationService) {

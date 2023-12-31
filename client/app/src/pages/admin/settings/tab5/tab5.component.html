@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <label>
-                <input #encryption name="node.dataModel.encryption" [(ngModel)]="nodeResolver.dataModel.encryption" type="checkbox" (ngModelChange)="enableEncryption()" [disabled]="nodeResolver.dataModel.encryption" />
+                <input name="node.dataModel.encryption" [(ngModel)]="nodeResolver.dataModel.encryption" type="checkbox" (ngModelChange)="enableEncryption()" [disabled]="nodeResolver.dataModel.encryption" />
                 <span>{{'Enable encryption' | translate}}</span>
             </label>
         </div>

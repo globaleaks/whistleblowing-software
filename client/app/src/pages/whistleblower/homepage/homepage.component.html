@@ -1,7 +1,7 @@
-<div id="homepage-box">
-    <markdown id="Presentation" class="mb-4" *ngIf="appDataService.public.node.presentation" [data]="appDataService.public.node.presentation | stripHtml"></markdown>
-    <div id="WhistleblowerBox" class="d-block mx-auto">
-        <div id="WhistleblowerSubmitBoxButtonDisabled" class="mb-4" *ngIf="appDataService.public.node.disable_submissions || (!appDataService.public.node.https_whistleblower && !appDataService.connection.tor)">
+<div class="homepage-box">
+    <markdown class="mb-4" *ngIf="appDataService.public.node.presentation" [data]="appDataService.public.node.presentation | stripHtml"></markdown>
+    <div class="d-block mx-auto">
+        <div class="mb-4" *ngIf="appDataService.public.node.disable_submissions || (!appDataService.public.node.https_whistleblower && !appDataService.connection.tor)">
             <button class="btn btn-danger disabled">
                 <i class="fa-solid fa-ban-circle"></i>
                 <span>{{'Submissions disabled'|translate}}</span>
@@ -11,12 +11,12 @@
             <p class="text-danger">{{'You are connecting to the server without anonymity and this server supports only anonymous submissions'|translate}}</p>
         </div>
     </div>
-    <div id="whistleblower-submit-box" class="mb-4" *ngIf="!appDataService.public.node.disable_submissions && (appDataService.public.node.https_whistleblower || appDataService.connection.tor)">
-        <markdown id="whistle-blowing-question" *ngIf="appDataService.public.node.whistleblowing_question" [data]="appDataService.public.node.whistleblowing_question | stripHtml"></markdown>
+    <div class="mb-4 whistleblower-submit-box" *ngIf="!appDataService.public.node.disable_submissions && (appDataService.public.node.https_whistleblower || appDataService.connection.tor)">
+        <markdown class="whistle-blowing-question" *ngIf="appDataService.public.node.whistleblowing_question" [data]="appDataService.public.node.whistleblowing_question | stripHtml"></markdown>
         <button id="WhistleblowingButton" (click)="openSubmission()" class="btn btn-primary"><span *ngIf="appDataService.public.node.whistleblowing_button">{{appDataService.public.node.whistleblowing_button|translate}}</span></button>
     </div>
     <br>
-    <div id="whistle-blower-login-box" *ngIf="appDataService.public.node.https_whistleblower || appDataService.connection.tor">
+    <div class="whistle-blower-login-box" *ngIf="appDataService.public.node.https_whistleblower || appDataService.connection.tor">
         <src-receipt></src-receipt>
     </div>
 </div>

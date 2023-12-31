@@ -1,4 +1,4 @@
-<div id="steps-edit-box">
+<div class="steps-edit-box">
     <div class="row">
         <span class="col-md-8">
             <span>{{ 'Steps' | translate }}</span>
@@ -8,14 +8,14 @@
             </button>
         </span>
     </div>
-    <div id="step-add-box" class="row" *ngIf="showAddStep">
+    <div class="row step-add-box" *ngIf="showAddStep">
         <div class="col-md-6">
             <form #newStepForm="ngForm" (ngSubmit)="addStep(); toggleAddStep()">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>{{ 'Label' | translate }}</label>
-                            <input name="new_step.label" class="form-control" [(ngModel)]="new_step.label" type="text" required #label="ngModel">
+                            <input name="new_step.label" class="form-control" [(ngModel)]="new_step.label" type="text" required>
                             <div class="text-danger" *ngIf="newStepForm.form.get('label')?.errors?.['required']">
                                 <span>{{ 'This field is mandatory' | translate }}</span>
                             </div>

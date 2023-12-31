@@ -1,19 +1,19 @@
-import {Component, ElementRef, Input, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import * as Flow from "@flowjs/flow.js";
 import {AppConfigService} from "@app/services/root/app-config.service";
 import {AppDataService} from "@app/app-data.service";
-import { AdminFile } from "@app/models/component-model/admin-file";
+import {AdminFile} from "@app/models/component-model/admin-file";
 
 @Component({
   selector: "src-admin-file",
   templateUrl: "./admin-file.component.html"
 })
-export class AdminFileComponent {
+export class AdminFileComponent implements OnInit {
   @Input() adminFile: AdminFile;
-  nodeData:{[key:string]:string[]|boolean}={};
+  nodeData: { [key: string]: string[] | boolean } = {};
   @ViewChild("uploader") uploaderElementRef!: ElementRef<HTMLInputElement>;
 
   constructor(protected node: NodeResolver, protected appConfigService: AppConfigService, protected appDataService: AppDataService, protected utilsService: UtilsService, protected authenticationService: AuthenticationService) {

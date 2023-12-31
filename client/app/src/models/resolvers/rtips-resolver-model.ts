@@ -11,6 +11,7 @@ export interface rtipResolverModel {
   expiration_date: string;
   reminder_date: string;
   progressive: number;
+  subscription: number;
   important: boolean;
   label: string;
   updated: boolean;

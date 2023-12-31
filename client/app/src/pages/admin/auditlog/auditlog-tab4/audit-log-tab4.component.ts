@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {ngxCsv} from "ngx-csv";
 import {JobResolver} from "@app/shared/resolvers/job.resolver";
 import {jobResolverModel} from "@app/models/resolvers/job-resolver-model";
+import {UtilsService} from "@app/shared/services/utils.service";
 
 @Component({
   selector: "src-auditlog-tab4",
@@ -10,9 +10,9 @@ import {jobResolverModel} from "@app/models/resolvers/job-resolver-model";
 export class AuditLogTab4Component {
   currentPage = 1;
   pageSize = 20;
-  jobs: jobResolverModel[]=[];
+  jobs: jobResolverModel[] = [];
 
-  constructor(private jobResolver: JobResolver) {
+  constructor(private utilsService: UtilsService, private jobResolver: JobResolver) {
   }
 
   ngOnInit() {
@@ -34,6 +34,6 @@ export class AuditLogTab4Component {
   }
 
   exportAuditLog() {
-    new ngxCsv(JSON.stringify(this.jobs), "jobs", {});
+    this.utilsService.generateCSV(JSON.stringify(this.jobs), 'jobs', []);
   }
 }

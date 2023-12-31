@@ -8,8 +8,8 @@ import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 import {PreferenceResolver} from "@app/shared/resolvers/preference.resolver";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {AppConfigService} from "@app/services/root/app-config.service";
-import { preferenceResolverModel } from "@app/models/resolvers/preference-resolver-model";
-import { AdminFile } from "@app/models/component-model/admin-file";
+import {preferenceResolverModel} from "@app/models/resolvers/preference-resolver-model";
+import {AdminFile} from "@app/models/component-model/admin-file";
 
 @Component({
   selector: "src-tab2",
@@ -26,7 +26,7 @@ export class Tab2Component implements OnInit {
   authenticationData: AuthenticationService;
   permissionStatus = false;
 
-  admin_files:AdminFile[]= [
+  admin_files: AdminFile[] = [
     {
       "title": "Favicon",
       "varname": "favicon",
@@ -51,7 +51,7 @@ export class Tab2Component implements OnInit {
   }
 
   ngOnInit(): void {
-      this.preferenceData = this.preferenceResolver.dataModel;
+    this.preferenceData = this.preferenceResolver.dataModel;
     this.authenticationData = this.authenticationService;
     this.authenticationData.permissions = {
       can_upload_files: false
@@ -84,6 +84,10 @@ export class Tab2Component implements OnInit {
       });
       this.utilsService.onFlowUpload(flowJsInstance, file)
     }
+  }
+
+  canUploadFiles() {
+    return this.authenticationData.session.permissions.can_upload_files;
   }
 
   deleteFile(url: string): void {

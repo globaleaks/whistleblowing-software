@@ -25,7 +25,7 @@ export class StepErrorEntryComponent implements OnInit {
     if (form) {
       form.scrollIntoView({behavior: "smooth", block: "start"});
       const offset = 35;
-      const elementTop = form.getBoundingClientRect().top - window.pageYOffset;
+      const elementTop = form.getBoundingClientRect().top - window.scrollY;
       const scrollToPosition = elementTop - offset;
       window.scrollTo({top: scrollToPosition, behavior: "smooth"});
     }

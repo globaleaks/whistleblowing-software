@@ -8,9 +8,14 @@ import {HttpService} from "@app/shared/services/http.service";
 })
 export class SitesTab1Component implements OnInit {
   search: string;
-  newTenant: {name:string,active:boolean,mode:string,subdomain:string} = {name:"",active:true,mode:"default",subdomain:""};
+  newTenant: { name: string, active: boolean, mode: string, subdomain: string } = {
+    name: "",
+    active: true,
+    mode: "default",
+    subdomain: ""
+  };
   tenants: tenantResolverModel[];
-  showAddTenant:boolean = false;
+  showAddTenant: boolean = false;
   itemsPerPage: number = 10;
   currentPage: number = 1;
 

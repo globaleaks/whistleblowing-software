@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class WbTipResolver  {
+export class WbTipResolver {
 
   dataModel: WbTipData;
 

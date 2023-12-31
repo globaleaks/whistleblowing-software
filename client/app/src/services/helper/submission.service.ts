@@ -16,10 +16,11 @@ export class SubmissionService {
   selected_receivers: { [key: string]: boolean } = {};
   blocked = false;
   uploads: { [key: string]: any };
-  private sharedData: Flow|null;
+  private sharedData: Flow | null;
 
   constructor(private httpService: HttpService, private appDataService: AppDataService) {
   }
+
   setContextReceivers(context_id: number) {
     this.context = this.appDataService.contexts_by_id[context_id];
 
@@ -86,7 +87,7 @@ export class SubmissionService {
     return this.httpService.requestReportSubmission(param);
   }
 
-  setSharedData(data: Flow |null) {
+  setSharedData(data: Flow | null) {
     this.sharedData = data;
   }
 

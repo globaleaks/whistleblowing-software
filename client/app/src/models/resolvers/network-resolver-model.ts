@@ -13,5 +13,5 @@ export class networkResolverModel {
   ip_filter_receiver_enable: boolean;
   onionservice: string;
   reachable_via_web: boolean;
-  enable_custodian:boolean
+  enable_custodian: boolean
 }

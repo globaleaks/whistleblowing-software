@@ -8,7 +8,7 @@ import {AppDataService} from "@app/app-data.service";
   selector: "app-simple-login",
   templateUrl: "./simple-login.component.html",
 })
-export class SimpleLoginComponent implements OnInit{
+export class SimpleLoginComponent implements OnInit {
 
   @Input() loginData: LoginDataRef;
   @Input() loginValidator: NgForm;
@@ -17,7 +17,7 @@ export class SimpleLoginComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    if(this.appDataService.public.receivers.length>0){
+    if (this.appDataService.public.receivers.length > 0) {
       this.loginData.loginUsername = this.appDataService.public.receivers[0].id
     }
   }

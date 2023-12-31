@@ -19,10 +19,10 @@ export class SubStatusManagerComponent {
   @Input() first: boolean;
   @Input() last: boolean;
 
-
   constructor(private appDataServices: AppDataService, private httpService: HttpService, private modalService: NgbModal, private utilsService: UtilsService) {
 
   }
+
   isSystemDefined(state: Status): boolean {
     return ["new", "opened", "closed"].indexOf(state.id) !== -1;
   }
@@ -37,15 +37,15 @@ export class SubStatusManagerComponent {
     return ["new", "opened"].indexOf(submissionsStatus.id) === -1;
   }
 
-  moveUp(e:Event, idx: number): void {
+  moveUp(e: Event, idx: number): void {
     this.swap(e, idx, -1);
   }
 
-  moveDown(e:Event, idx: number): void {
+  moveDown(e: Event, idx: number): void {
     this.swap(e, idx, 1);
   }
 
-  ssIdx(ssID:string): number | undefined {
+  ssIdx(ssID: string): number | undefined {
     for (let i = 0; i < this.appDataServices.submissionStatuses.length; i++) {
       const status = this.appDataServices.submissionStatuses[i];
       if (status.id === ssID) {
@@ -95,14 +95,14 @@ export class SubStatusManagerComponent {
     scope = !scope ? this : scope;
     let self = this
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
       modalRef.componentInstance.confirmFunction = () => {
         observer.complete()
         const url = "api/admin/statuses/" + arg.id;
         return self.utilsService.deleteStatus(url).subscribe(_ => {
-        this.utilsService.deleteResource(this.submissionStatuses,arg);
+          this.utilsService.deleteResource(this.submissionStatuses, arg);
         });
       };
     });

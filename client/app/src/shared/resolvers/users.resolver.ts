@@ -8,13 +8,10 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class UsersResolver  {
+export class UsersResolver {
   dataModel: userResolverModel[];
 
-  constructor(
-    private httpService: HttpService,
-    private authenticationService: AuthenticationService
-  ) {
+  constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {
   }
 
   resolve(): Observable<boolean> {

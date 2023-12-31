@@ -1,5 +1,5 @@
 <form #wizardForm="ngForm" name="wizardForm" novalidate>
-    <div *ngIf="step === 1" ngForm #wizardFormStep1="ngForm" class="clearfix">
+    <div *ngIf="step === 1" ngForm class="clearfix">
         <div class="row wizard-block">
             <div class="col-md-12">
                 <div class="title">{{'Welcome!'|translate}}</div>
@@ -189,7 +189,7 @@
                             <span class="text-danger" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
                         </label>
                         <div class="col-md-8">
-                            <input name="password" class="form-control" [(ngModel)]="wizard.receiver_password" #password_receiver="ngModel" type="password" placeholder="{{'Password' | translate}}" autocomplete="off" [ngClass]="{'is-invalid': validation.step4 && wizardFormStep5.valid && (password_receiver?.errors?.['required'] || (password_receiver?.errors?.['passwordStrengthValidator']))}" (passwordStrengthChange)="onPasswordStrengthChange($event)" required passwordStrengthValidator />
+                            <input name="password"  class="form-control" [(ngModel)]="wizard.receiver_password" #password_receiver="ngModel" type="password" placeholder="{{'Password' | translate}}" autocomplete="off" [ngClass]="{'is-invalid': validation.step4 && wizardFormStep5.valid && (password_receiver?.errors?.['required'] || (password_receiver?.errors?.['passwordStrengthValidator']))}" (passwordStrengthChange)="onPasswordStrengthChange($event)" required passwordStrengthValidator />
                             <src-password-meter *ngIf="password_score>0" [passwordStrengthScore]='password_score'></src-password-meter>
                             <div class="text-danger" *ngIf="!password_receiver?.errors?.['required'] && password_receiver?.errors?.['passwordStrengthValidator']">
                                 <p>{{'The chosen password is too weak. A valid password should be at least 12 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.'|translate}}</p>
@@ -201,7 +201,7 @@
                             <span>{{'Password'|translate}}</span> ( <span>{{'Confirm'|translate}}</span>) <span class="text-danger" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
                         </label>
                         <div class="col-md-8">
-                            <input name="checkpassword" class="form-control" [(ngModel)]="recipient_check_password" type="password" placeholder="{{'Password' | translate}}" autocomplete="off" ng-class="{'is-invalid': validation.step4 && wizardFormStep4.valid && (!wizardFormStep5.password.$error.passwordStrengthValidator && wizard.receiver_password && (wizard.receiver_password !== recipient_check_password))}" required />
+                            <input name="checkpassword" class="form-control" [(ngModel)]="recipient_check_password" type="password" placeholder="{{'Password' | translate}}" autocomplete="off" [ngClass]="{'is-invalid': validation.step4 && (!password_receiver.errors?.['passwordStrengthValidator'] && wizard.receiver_password && (wizard.receiver_password !== recipient_check_password))}" required />
                             <div class="text-danger" *ngIf="validation.step4 && (!password_receiver?.errors?.['passwordStrengthValidator'] && recipient_check_password.length>0 && wizard.receiver_password && (wizard.receiver_password !== recipient_check_password))">{{'The two passwords do not match'|translate}}</div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
                 <i class="fa-solid fa-arrow-circle-left"></i>
                 <span>{{'Previous'|translate}}</span>
             </button>
-            <button class="ButtonNext btn btn-primary" (click)="(validation.step5 = true) && (wizard.skip_recipient_account_creation || !(wizardFormStep5.invalid || (validateDuplicateRecipient()))) && (step = 6)">
+            <button class="ButtonNext btn btn-primary" (click)="(validation.step5 = true) && validation.step4 && (wizard.receiver_password == recipient_check_password) && (wizard.skip_recipient_account_creation || !(wizardFormStep5.invalid || (validateDuplicateRecipient()))) && (step = 6)">
                 <span>{{'Next'|translate}}</span>
                 <i class="fa-solid fa-arrow-circle-right"></i>
             </button>
@@ -269,7 +269,7 @@
         </div>
         <br>
         <div class="pager float-start">
-            <button name="proceed" class="ButtonNext btn btn-primary" (click)="goToAdminInterface()" type="submit">
+            <button name="proceed" #proceed class="ButtonNext btn btn-primary" (click)="goToAdminInterface()" type="submit">
                 <span>{{'Proceed'|translate}}</span>
             </button>
         </div>

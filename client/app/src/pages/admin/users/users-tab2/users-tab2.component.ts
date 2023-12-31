@@ -15,7 +15,7 @@ export class UsersTab2Component implements OnInit {
 
   ngOnInit(): void {
     if (this.nodeResolver.dataModel) {
-        this.nodeData = this.nodeResolver.dataModel;
+      this.nodeData = this.nodeResolver.dataModel;
     }
   }
 

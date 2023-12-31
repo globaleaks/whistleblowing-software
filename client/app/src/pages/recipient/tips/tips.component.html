@@ -117,7 +117,7 @@
                         <span class="ngb-dtepicker-container ms-1">
                                 <i class="fas fa-calendar" [ngClass]="{'calendar-active':  reportDateFilter}" (click)="reportDatePicker=!reportDatePicker;lastUpdatePicker=false;expirationDatePicker=false;statusDropdownVisible=false;channelDropdownVisible=false;scoreDropdownVisible=false;"></i>
                                 <div [hidden]="!reportDatePicker">
-                                    <ngbd-datepicker-range class="position-absolute d-block" #datePicker [currentDates]="reportDateModel" (emitDateSelection)="onReportFilterChange($event)"></ngbd-datepicker-range>
+                                    <ngbd-datepicker-range class="position-absolute d-block" [currentDates]="reportDateModel" (emitDateSelection)="onReportFilterChange($event)"></ngbd-datepicker-range>
                                 </div>
                             </span>
                     </th>
@@ -133,7 +133,7 @@
                         <span class="ngb-dtepicker-container ms-1">
                             <i class="fas fa-calendar" [ngClass]="{'calendar-active':  updateDateFilter}" (click)="lastUpdatePicker=!lastUpdatePicker;reportDatePicker=false;expirationDatePicker=false;statusDropdownVisible=false;channelDropdownVisible=false;scoreDropdownVisible=false;"></i>
                             <div [hidden]="!lastUpdatePicker">
-                                <ngbd-datepicker-range class="position-absolute d-block" #datePicker [currentDates]="updateDateModel" (emitDateSelection)="onUpdateFilterChange($event)"></ngbd-datepicker-range>
+                                <ngbd-datepicker-range class="position-absolute d-block" [currentDates]="updateDateModel" (emitDateSelection)="onUpdateFilterChange($event)"></ngbd-datepicker-range>
                             </div>
                         </span>
                     </th>
@@ -149,7 +149,7 @@
                         <span class="ngb-dtepicker-container ms-1">
                             <i class="fas fa-calendar" [ngClass]="{'calendar-active':  expiryDateFilter}" (click)="expirationDatePicker=!expirationDatePicker;reportDatePicker=false;lastUpdatePicker=false;statusDropdownVisible=false;channelDropdownVisible=false;scoreDropdownVisible=false;"></i>
                             <div [hidden]="!expirationDatePicker">
-                                <ngbd-datepicker-range class="position-absolute d-block" #datePicker [currentDates]="expiryDateModel" (emitDateSelection)="onExpiryFilterChange($event)"></ngbd-datepicker-range>
+                                <ngbd-datepicker-range class="position-absolute d-block" [currentDates]="expiryDateModel" (emitDateSelection)="onExpiryFilterChange($event)"></ngbd-datepicker-range>
                             </div>
                         </span>
                     </th>
@@ -184,7 +184,7 @@
                 </tr>
                 </thead>
                 <tbody id="tipListTableBody">
-                <ng-container *ngFor="let tip of filteredTips | orderBy:sortKey:sortReverse | slice:((currentPage - 1) * itemsPerPage):((currentPage - 1) * itemsPerPage + itemsPerPage) let index = index">
+                <ng-container *ngFor="let tip of orderbyCast(filteredTips | orderBy:sortKey:sortReverse) | slice:((currentPage - 1) * itemsPerPage):((currentPage - 1) * itemsPerPage + itemsPerPage) let index = index">
                     <tr id="tip-{{index}}" [ngClass]="{'fw-bold': tip.updated, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" (click)="utils.go('/reports/' + tip.id)">
                         <td>
                             <span class="btn btn-sm btn-outline-secondary" *ngIf="isSelected(tip.id)" (click)="tipSwitch(tip.id); $event.stopPropagation();">
@@ -193,7 +193,7 @@
                             <span class="btn btn-sm btn-outline-secondary" *ngIf="!isSelected(tip.id)" (click)="tipSwitch(tip.id); $event.stopPropagation();">
                                 <i class="fa-solid fa-square"></i>
                             </span>
-                            <span name="TipExport" (click)="exportTip(tip.id); $event.stopPropagation()" data-toggle="tooltip" title="{{'Export' | translate}}" novalidate>
+                            <span name="TipExport" (click)="exportTip(tip.id); $event.stopPropagation()" data-toggle="tooltip" title="{{'Export' | translate}}">
                                 <button id="tip-action-export" class="btn btn-sm btn-outline-secondary">
                                     <i class="fa-solid fa-download"></i>
                                 </button>

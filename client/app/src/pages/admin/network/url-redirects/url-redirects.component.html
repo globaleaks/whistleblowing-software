@@ -37,8 +37,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let redirect of redirectData | orderBy:'path1'">
-                <td>{{redirect.path1}}</td>
-                <td>{{redirect.path2}}</td>
+                <td>{{redirectPath(redirect, 1)</td>
+                <td>{{redirectPath(redirect, 2)</td>
                 <td>
                     <button class="btn btn-sm btn-danger" (click)="deleteRedirect(redirect)">
                         <i class="fa-solid fa-trash"></i>

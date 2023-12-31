@@ -15,7 +15,7 @@ export class AddFieldComponent implements OnInit {
   @Output() dataToParent = new EventEmitter<string>();
   @Input() step: Step;
   @Input() type: string;
-  new_field: { label: string, type: string } =  { label: "",type: "" };
+  new_field: { label: string, type: string } = {label: "", type: ""};
   fields: Step[] | Field[];
 
   constructor(private questionnaireService: QuestionnaireService, private httpService: HttpService, private utilsService: UtilsService) {

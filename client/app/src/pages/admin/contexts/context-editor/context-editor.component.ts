@@ -19,7 +19,7 @@ import {nodeResolverModel} from "@app/models/resolvers/node-resolver-model";
 })
 export class ContextEditorComponent implements OnInit {
   @Input() contextsData: contextResolverModel[];
-  @Input() context: contextResolverModel;
+  @Input() contextResolver: contextResolverModel;
   @Input() index: number;
   @Input() editContext: NgForm;
   @Output() dataToParent = new EventEmitter<string>();
@@ -74,15 +74,15 @@ export class ContextEditorComponent implements OnInit {
 
   swapReceiver(index: number, n: number): void {
     const target = index + n;
-    if (target > -1 && target < this.context.receivers.length) {
-      const tmp = this.context.receivers[target];
-      this.context.receivers[target] = this.context.receivers[index];
-      this.context.receivers[index] = tmp;
+    if (target > -1 && target < this.contextResolver.receivers.length) {
+      const tmp = this.contextResolver.receivers[target];
+      this.contextResolver.receivers[target] = this.contextResolver.receivers[index];
+      this.contextResolver.receivers[index] = tmp;
     }
   }
 
   receiverNotSelectedFilter(item: userResolverModel): boolean {
-    return this.context.receivers.indexOf(item.id) === -1;
+    return this.contextResolver.receivers.indexOf(item.id) === -1;
   }
 
   moveUpReceiver(index: number): void {
@@ -98,8 +98,8 @@ export class ContextEditorComponent implements OnInit {
   }
 
   moveReceiver(rec: userResolverModel): void {
-    if (rec && this.context.receivers.indexOf(rec.id) === -1) {
-      this.context.receivers.push(rec.id);
+    if (rec && this.contextResolver.receivers.indexOf(rec.id) === -1) {
+      this.contextResolver.receivers.push(rec.id);
       this.showSelect = false;
     }
   }

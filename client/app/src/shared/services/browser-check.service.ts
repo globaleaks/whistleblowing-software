@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: "root",
 })
 export class BrowserCheckService {
-  private supportedBrowsers:{ [key: string]: number } = {
+  private supportedBrowsers: { [key: string]: number } = {
     Firefox: 38,
     Chrome: 45,
     Brave: 1.20,
@@ -15,7 +15,8 @@ export class BrowserCheckService {
     Android: 4.4,
   };
 
-  constructor() {}
+  constructor() {
+  }
 
   checkBrowserSupport(): boolean {
     const browser = this.getBrowser();

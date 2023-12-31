@@ -2,7 +2,9 @@ import {Component, Input} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {DeleteConfirmationComponent} from "@app/shared/modals/delete-confirmation/delete-confirmation.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {QuestionnaireDuplicationComponent} from "@app/shared/modals/questionnaire-duplication/questionnaire-duplication.component";
+import {
+  QuestionnaireDuplicationComponent
+} from "@app/shared/modals/questionnaire-duplication/questionnaire-duplication.component";
 import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {QuestionnaireService} from "@app/pages/admin/questionnaires/questionnaire.service";
@@ -44,7 +46,7 @@ export class QuestionnairesListComponent {
   }
 
   duplicateQuestionnaire(questionnaire: questionnaireResolverModel) {
-    const modalRef = this.modalService.open(QuestionnaireDuplicationComponent,{backdrop: 'static',keyboard: false});
+    const modalRef = this.modalService.open(QuestionnaireDuplicationComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.questionnaire = questionnaire;
     modalRef.componentInstance.operation = "duplicate";
     return modalRef.result;
@@ -57,14 +59,14 @@ export class QuestionnairesListComponent {
   openConfirmableModalDialog(arg: questionnaireResolverModel, scope: any): Observable<string> {
     scope = !scope ? this : scope;
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
 
       modalRef.componentInstance.confirmFunction = () => {
         observer.complete()
         return this.httpService.requestDeleteAdminQuestionnaire(arg.id).subscribe(_ => {
-          this.utilsService.deleteResource(this.questionnaires,arg);
+          this.utilsService.deleteResource(this.questionnaires, arg);
         });
       };
     });

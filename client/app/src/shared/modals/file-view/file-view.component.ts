@@ -13,7 +13,7 @@ export class FileViewComponent implements OnInit {
   @Input() args: {
     file: WbFile,
     loaded: boolean,
-    iframeHeight:number
+    iframeHeight: number
   };
   @ViewChild("viewer") viewerFrame: ElementRef;
 

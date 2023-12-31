@@ -61,5 +61,6 @@ export class notificationResolverModel {
   unread_tips_mail_title: string;
   user_credentials: string;
   templates: string[];
+
   [key: string]: string | boolean | number | string[];
 }

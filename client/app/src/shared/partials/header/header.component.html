@@ -1,23 +1,23 @@
-<header id="header-box" class="p-3">
+<header class="p-3 header-box">
     <div class="d-flex flex-wrap justify-content-between">
-        <div id="HeaderBox1">
-            <div id="logo-box" class="mb-3" (click)="appConfig.setHomepage()">
-                <img class="img-fluid pointer" alt="project logo" src="{{appDataService.public.node.logo ? 's/logo' : 'data/logo.png'}}" />
+        <div>
+            <div class="mb-3 logo-box" (click)="appConfig.setHomepage()">
+                <img class="img-fluid pointer" alt="project logo" ngSrc="{{appDataService.public.node.logo ? 's/logo' : 'data/logo.png'}}" width="500" height="500"/>
             </div>
-            <div id="title-box">
+            <div class="title-box">
                 <ng-container *ngIf="appDataService.projectTitle || appDataService.pageTitle">
                     <h1>
-                        <span id="ProjectTitle" (click)="appConfig.setHomepage()">
+                        <span (click)="appConfig.setHomepage()">
                             <a href="#">{{appDataService.projectTitle}}</a>
                         </span>
                         <span class="TitleSeparator" *ngIf="appDataService.projectTitle && appDataService.pageTitle"> - </span>
-                        <span id="PageTitle">{{appDataService ? appDataService.pageTitle ? appDataService.pageTitle : '' : '' | translate}}</span>
+                        <span>{{appDataService ? appDataService.pageTitle ? appDataService.pageTitle : '' : '' | translate}}</span>
                     </h1>
                 </ng-container>
             </div>
         </div>
-        <div id="HeaderBox2" class="">
-            <views-user id="UserBox"></views-user>
+        <div>
+            <views-user></views-user>
         </div>
     </div>
 </header>

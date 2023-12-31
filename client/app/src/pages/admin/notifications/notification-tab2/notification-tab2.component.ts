@@ -17,10 +17,10 @@ export class NotificationTab2Component implements OnInit {
   }
 
   ngOnInit(): void {
-      this.notificationData = this.notificationResolver.dataModel;
+    this.notificationData = this.notificationResolver.dataModel;
   }
 
-  updateNotification(notification:  notificationResolverModel) {
+  updateNotification(notification: notificationResolverModel) {
     this.utilsService.updateAdminNotification(notification).subscribe();
   }
 }

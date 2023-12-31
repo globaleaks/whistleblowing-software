@@ -8,7 +8,7 @@ import {ImageUploadComponent} from "@app/shared/partials/image-upload/image-uplo
   selector: "[appImageUpload]",
 })
 export class ImageUploadDirective {
-  @Input() imageUploadModel: contextResolverModel|nodeResolverModel|userResolverModel;
+  @Input() imageUploadModel: contextResolverModel | nodeResolverModel | userResolverModel;
   @Input() imageUploadModelAttr: string;
   @Input() imageUploadId: string;
   @Input() imageSrcUrl: string;

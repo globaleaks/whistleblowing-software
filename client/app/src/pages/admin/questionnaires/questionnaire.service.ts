@@ -6,6 +6,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class QuestionnaireService {
   sharedData: any;
+
   constructor() {
   }
 

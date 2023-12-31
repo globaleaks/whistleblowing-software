@@ -4,7 +4,7 @@
             <button class="btn" [ngClass]="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" [disabled]="isRecording || uploads[fileInput]?.files.length" (click)="triggerRecording(field.id)">
                 <i class="fas fa-microphone"></i>
             </button>
-            <button class="btn" *ngIf="activeButton === 'record'" (click)="stopRecording()">
+            <button class="btn" *ngIf="activeButton === 'record'" (click)="onStop()">
                 <i class="fas fa-stop"></i>
             </button>
         </div>
@@ -19,15 +19,15 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <input class="inputelem d-none" [id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" #uploader [required]="field && field.required" [name]="'input-' + entryIndex" type="file" />
-            <div [id]="fieldEntry + '-audio'" class="audio-player-wrapper" [ngClass]="{ 'disabled': isRecording || seconds < field.attrs.min_len }">
+            <input class="inputelem d-none" [id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" [required]="field && field.required" [name]="'input-' + entryIndex" type="file" />
+            <div [id]="fieldEntry + '-audio'" class="audio-player-wrapper" [ngClass]="{ 'disabled': isRecording || seconds < parseInt(field.attrs.min_len.value) }">
                 <audio *ngIf="audioPlayer" [src]="audioPlayer" controls class="audio-player"></audio>
             </div>
         </div>
     </div>
     <div class="row" *ngIf="seconds > 0">
         <div class="col-md-12 text-end">
-            <div class="btn" [ngClass]="{'text-danger': seconds < field.attrs.min_len.value}">
+            <div class="btn" [ngClass]="{'text-danger': seconds < parseInt(field.attrs.min_len.value)}">
                 {{ seconds }}/{{ field.attrs.max_len.value }}
             </div>
         </div>

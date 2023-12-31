@@ -30,7 +30,7 @@ export class PasswordStrengthValidatorDirective implements Validator {
 
     let variation1 = 0;
     let variation2 = 0;
-    const letters: {[key: string]: number} = {};
+    const letters: { [key: string]: number } = {};
     let score = 0;
 
     if (pwd) {

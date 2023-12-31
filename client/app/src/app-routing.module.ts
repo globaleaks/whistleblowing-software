@@ -2,7 +2,9 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {SessionGuard} from "@app/app-guard.service";
 import {HomeComponent} from "@app/pages/dashboard/home/home.component";
-import {PasswordResetResponseComponent} from "@app/pages/auth/password-reset-response/password-reset-response.component";
+import {
+  PasswordResetResponseComponent
+} from "@app/pages/auth/password-reset-response/password-reset-response.component";
 import {AdminGuard} from "@app/shared/guards/admin.guard";
 import {CustodianGuard} from "@app/shared/guards/custodian.guard";
 import {ReceiverGuard} from "@app/shared/guards/receiver.guard";
@@ -124,7 +126,7 @@ const routes: Routes = [
     canActivate: [SessionGuard],
     pathMatch: "full",
   },
-  { path: "**", redirectTo: "" }
+  {path: "**", redirectTo: ""}
 ];
 
 @NgModule({

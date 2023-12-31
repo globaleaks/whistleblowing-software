@@ -8,7 +8,7 @@ import {auditlogResolverModel} from "@app/models/resolvers/auditlog-resolver-mod
 @Injectable({
   providedIn: "root"
 })
-export class AuditLogResolver  {
+export class AuditLogResolver {
   dataModel: auditlogResolverModel = new auditlogResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

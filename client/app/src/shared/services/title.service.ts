@@ -8,9 +8,10 @@ import {Router} from "@angular/router";
 })
 export class TitleService {
 
-  constructor(private appDataService: AppDataService, private translateService: TranslateService, private router: Router) { }
+  constructor(private appDataService: AppDataService, private translateService: TranslateService, private router: Router) {
+  }
 
-  public setPage(page:string) {
+  public setPage(page: string) {
     this.appDataService.page = page;
     this.setTitle();
   };

@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {LanguageUtils} from "@app/pages/admin/settings/helper-methods/language-utils";
 import {NodeResolver} from "@app/shared/resolvers/node.resolver";
@@ -8,15 +8,19 @@ import {UtilsService} from "@app/shared/services/utils.service";
   selector: "src-tab4",
   templateUrl: "./tab4.component.html"
 })
-export class Tab4Component {
+export class Tab4Component implements OnInit {
   @Input() contentForm: NgForm;
 
-  vars: {language_to_customize:string, text_to_customize:string,custom_text:string} = {language_to_customize:"", text_to_customize:"",custom_text:""};
-  custom_texts:{[key: string]: string}={}
-  default_texts:{[key: string]: string}={}
-  custom_texts_selector:{key: string; value: string;}[] = [];
+  vars: { language_to_customize: string, text_to_customize: string, custom_text: string } = {
+    language_to_customize: "",
+    text_to_customize: "",
+    custom_text: ""
+  };
+  custom_texts: { [key: string]: string } = {}
+  default_texts: { [key: string]: string } = {}
+  custom_texts_selector: { key: string; value: string; }[] = [];
   customTextsExist: boolean = false;
-  languageUtils:LanguageUtils
+  languageUtils: LanguageUtils
 
 
   constructor(protected utilsService: UtilsService, protected nodeResolver: NodeResolver) {
@@ -65,12 +69,12 @@ export class Tab4Component {
     return Object.keys(this.custom_texts).map(key => ({key}));
   }
 
-  updateCustomText(data: {[key: string]: string}, lang: string) {
+  updateCustomText(data: { [key: string]: string }, lang: string) {
     this.utilsService.updateAdminL10NResource(data, lang).subscribe(_ => {
     });
   }
 
-  deleteCustomText(dict: {[key: string]: string;}, key: string): void {
+  deleteCustomText(dict: { [key: string]: string; }, key: string): void {
     delete dict[key];
   }
 

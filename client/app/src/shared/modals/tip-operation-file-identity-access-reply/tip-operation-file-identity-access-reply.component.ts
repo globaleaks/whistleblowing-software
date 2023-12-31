@@ -17,6 +17,7 @@ export class TipOperationFileIdentityAccessReplyComponent {
   cancel() {
     this.modalService.dismissAll();
   }
+
   confirmFunction: () => void;
 
   confirm() {

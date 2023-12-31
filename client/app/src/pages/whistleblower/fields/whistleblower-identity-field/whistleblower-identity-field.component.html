@@ -1,14 +1,14 @@
 <div>
     <div *ngIf="!field.required">
-            <input id="whistleblower_identity_radio_1" class="inputelem" type="radio" name="whistleblower_identity_radio_1" (click)="changeIdentitySetting(true)" [checked]="identity_provided" [value]="identity_provided" />
+            <input id="whistleblower_identity_radio_1" class="inputelem" type="radio" (click)="changeIdentitySetting(true)" [checked]="identity_provided" [value]="identity_provided" />
             <label class="form-check-inline" for="whistleblower_identity_radio_1">{{'Yes'|translate}}</label>
-            <input id="whistleblober_identity_radio_2" class="inputelem" type="radio" name="!whistleblober_identity_radio_1" (click)="changeIdentitySetting(false)" [checked]="!identity_provided" [value]="!identity_provided" />
+            <input id="whistleblower_identity_radio_2" class="inputelem" type="radio" (click)="changeIdentitySetting(false)" [checked]="!identity_provided" [value]="!identity_provided" />
             <label class="form-check-inline" for="whistleblower_identity_radio_2">{{'No'|translate}}</label>
     </div>
-    <div *ngIf="identity_provided === false && field.attrs.text_shown_upon_negative_answer.value" class="alert alert-secondary">
+    <div *ngIf="!identity_provided && field.attrs.text_shown_upon_negative_answer.value" class="alert alert-secondary">
         <div>{{field.attrs.text_shown_upon_negative_answer.value|translate}}</div>
     </div>
-    <div *ngIf="identity_provided === true">
+    <div *ngIf="identity_provided">
         <src-form [identity_provided]=false [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="step" [submission]="submission" [index]="index"></src-form>
     </div>
 </div>

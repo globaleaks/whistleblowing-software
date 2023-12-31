@@ -19,9 +19,9 @@
         </div>
     </div>
 </ng-container>
-<div id="Skip"><a href="#Content" tabindex="0">{{'Skip to content'|translate}}</a></div>
-<div id="page-overlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
-    <div id="loader"></div>
+<div class="Skip"><a href="#Content" tabindex="0">{{'Skip to content'|translate}}</a></div>
+<div class="page-overlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
+    <div class="loader"></div>
 </div>
 <ng-container *ngIf="appDataService.public.node">
     <div [dir]="utilsService.getDirection(translate.currentLang)" class="reveal">
@@ -32,11 +32,11 @@
             <src-privacybadge></src-privacybadge>
         </div>
         <views-header></views-header>
-        <messageconsole id="messages-console-box"></messageconsole>
-        <div id="PageContent">
-            <div id="content-box">
+        <messageconsole class="messages-console-box"></messageconsole>
+        <div class="PageContent">
+            <div class="content-box">
                 <div class="row">
-                    <div *ngIf="appConfig.sidebar && showSidebar" id="Sidebar" class="col-lg-2 col-md-4 col-sm-12" role="navigation">
+                    <div *ngIf="appConfig.sidebar && showSidebar" class="col-lg-2 col-md-4 col-sm-12 Sidebar" role="navigation">
                         <nav class="navbar navbar-expand-md p-0" role="navigation">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggler" (click)="isNavCollapsed = !isNavCollapsed">

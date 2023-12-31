@@ -94,7 +94,7 @@
                 <div *ngIf="field.attrs.multimedia.value">
                     <div *ngSwitchCase="'field.attrs.multimedia_type.value'">
                         <div *ngSwitchCase="'image'">
-                            <img [src]="field.attrs.multimedia_url.value" />
+                            <img alt="media" [src]="field.attrs.multimedia_url.value" />
                         </div>
                         <div *ngSwitchCase="'audio'">
                             <audio controls>
@@ -103,7 +103,7 @@
                         </div>
                         <div *ngSwitchCase="'video'">
                             <video controls>
-                                <source src="field.attrs.multimedia_url.value" type="video/mp4">
+                                <source [src]="field.attrs.multimedia_url.value" type="video/mp4">
                             </video>
                         </div>
                     </div>

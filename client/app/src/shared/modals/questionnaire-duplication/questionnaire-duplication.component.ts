@@ -21,7 +21,7 @@ export class QuestionnaireDuplicationComponent {
   }
 
   confirm() {
-    if (this.operation === "duplicate" && this.duplicate_questionnaire.name.length>0) {
+    if (this.operation === "duplicate" && this.duplicate_questionnaire.name.length > 0) {
       this.http.post(
         "api/admin/questionnaires/duplicate",
         {
@@ -32,7 +32,7 @@ export class QuestionnaireDuplicationComponent {
         this.modalService.dismissAll();
         this.utilsService.reloadComponent();
       });
-    }else {
+    } else {
       this.modalService.dismissAll();
     }
   }

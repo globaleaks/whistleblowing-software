@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
   fields: Children[];
   stepId: string;
   rows: any;
-  status: {opened: boolean};
+  status: { opened: boolean };
 
   constructor(protected fieldUtilitiesService: FieldUtilitiesService) {
   }

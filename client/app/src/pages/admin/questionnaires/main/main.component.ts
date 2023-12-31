@@ -48,16 +48,16 @@ export class MainComponent implements OnInit, OnDestroy {
 
   importQuestionnaire(files: FileList | null) {
     if (files && files.length > 0) {
-      this.utilsService.readFileAsText(files[0]).then((txt) => {
+      this.utilsService.readFileAsText(files[0]).subscribe((txt) => {
         return this.http.post("api/admin/questionnaires?multilang=1", txt).subscribe(() => {
           this.getResolver();
-      });
+        });
       });
     }
   }
 
   getResolver() {
-    return this.httpService.requestQuestionnairesResource().subscribe((response:questionnaireResolverModel[]) => {
+    return this.httpService.requestQuestionnairesResource().subscribe((response: questionnaireResolverModel[]) => {
       this.questionnairesResolver.dataModel = response;
       this.questionnairesData = response;
       this.cdr.markForCheck();

@@ -9,15 +9,15 @@ import {UtilsService} from "@app/shared/services/utils.service";
 @Injectable({
   providedIn: "root"
 })
-export class RTipsResolver  {
+export class RTipsResolver {
   dataModel: rtipResolverModel[] = [];
 
-  reload(){
+  reload() {
     this.httpService.receiverTipResource().subscribe(
-        (response) => {
-          this.dataModel = response;
-          this.utilsService.reloadComponent();
-        }
+      (response) => {
+        this.dataModel = response;
+        this.utilsService.reloadComponent();
+      }
     );
   }
 

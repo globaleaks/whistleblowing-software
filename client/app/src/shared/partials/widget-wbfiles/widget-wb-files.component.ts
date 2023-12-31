@@ -22,7 +22,8 @@ export class WidgetWbFilesComponent {
   public toggleCollapse() {
     this.collapsed = !this.collapsed;
   }
-  listenToWbfiles(files: string){
+
+  listenToWbfiles(files: string) {
     this.utilsService.deleteResource(this.wbTipService.tip.rfiles, files);
   }
 }

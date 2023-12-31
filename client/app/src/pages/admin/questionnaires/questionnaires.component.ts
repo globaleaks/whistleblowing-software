@@ -1,5 +1,5 @@
 import {Component, TemplateRef, ViewChild, AfterViewInit, ChangeDetectorRef} from "@angular/core";
-import { Tab } from "@app/models/component-model/tab";
+import {Tab} from "@app/models/component-model/tab";
 import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 import {MainComponent} from "@app/pages/admin/questionnaires/main/main.component";
 import {QuestionsComponent} from "@app/pages/admin/questionnaires/questions/questions.component";

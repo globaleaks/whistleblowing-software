@@ -1,18 +1,18 @@
 <form name="preferenceResolver.dataModel.orm" #preferenceForm="ngForm" class="reveal" *ngIf="authenticationService.session">
     <div *ngIf="preferenceResolver.dataModel.picture" class="image-thumbnail">
-        <img class="receiver-image" alt="user picture" src="/s/{{preferenceResolver.dataModel.id}}" />
+        <img class="receiver-image" alt="user picture" ngSrc="/s/{{preferenceResolver.dataModel.id}}" width="500" height="500"/>
         <br />
     </div>
-    <div id="Username">
+    <div>
         <label>
             <span>{{'Username'|translate}}</span>: </label> {{preferenceResolver.dataModel.username}}
     </div>
-    <div id="Role">
+    <div>
         <label>
             <span>{{'Role'|translate}}</span>: </label>
         <span>{{role}}</span>
     </div>
-    <div id="Name">
+    <div>
         <label>
             <span>{{'Name'|translate}}</span>: </label>
         <span *ngIf="!editingName">
@@ -23,7 +23,7 @@
         </span>
         <input *ngIf="editingName" class="form-control" name="name" [(ngModel)]="preferenceResolver.dataModel.name" type="text" required />
     </div>
-    <div id="PublicName">
+    <div>
         <label>
             <span>{{'Public name'|translate}}</span>: </label>
         <span *ngIf="!editingPublicName">
@@ -34,7 +34,7 @@
         </span>
         <input *ngIf="editingPublicName" class="form-control" name="public_name" [(ngModel)]="preferenceResolver.dataModel.public_name" type="text" required />
     </div>
-    <div id="EmailAddress">
+    <div>
         <label>
             <span>{{'Email address'|translate}}</span>: </label>
         <div>
@@ -54,7 +54,7 @@
     <div *ngIf="preferenceResolver.dataModel.description">
         <label>{{'Description'|translate}}</label> {{preferenceResolver.dataModel.description}}
     </div>
-    <div id="Contexts" *ngIf="authenticationService.session.role === 'receiver' && appDataService.public.contexts.length > 1">
+    <div *ngIf="authenticationService.session.role === 'receiver' && appDataService.public.contexts.length > 1">
         <label>
             <span>{{'Channels'|translate}}</span>
         </label>
@@ -62,13 +62,13 @@
             <li>{{appDataService.contexts_by_id[context_id].name}}</li>
         </ul>
     </div>
-    <div id="Language" class="form-group" *ngIf="appDataService.languages_enabled_selector.length > 1">
+    <div class="form-group" *ngIf="appDataService.languages_enabled_selector.length > 1">
         <label>{{'Language'|translate}}</label>
         <select class="form-select-custom" name="languageModel" [(ngModel)]="languageModel" (ngModelChange)="onlanguagechange()">
             <option *ngFor="let item of appDataService.languages_enabled_selector" [value]="item.code">{{ item.native }}</option>
         </select>
     </div>
-    <div id="EnableNotifications" class="form-group" *ngIf="(authenticationService.session.role === 'admin' && !appDataService.public.node.disable_admin_notification) || (authenticationService.session.role === 'receiver' && !appDataService.public.node.disable_receiver_notification) || (authenticationService.session.role === 'custodian' && !appDataService.public.node.disable_custodian_notification)">
+    <div class="form-group" *ngIf="(authenticationService.session.role === 'admin' && !appDataService.public.node.disable_admin_notification) || (authenticationService.session.role === 'receiver' && !appDataService.public.node.disable_receiver_notification) || (authenticationService.session.role === 'custodian' && !appDataService.public.node.disable_custodian_notification)">
         <input name="notification" [(ngModel)]="preferenceResolver.dataModel.notification" type="checkbox">
         <label>{{'Enable email notifications'|translate}}</label>
     </div>
@@ -78,7 +78,7 @@
             <span>{{'Enable two factor authentication'|translate}}</span>
         </label>
     </div>
-    <div id="EditPGP" ngForm #pgpkeyForm="ngForm" *ngIf="appDataService.public.node.pgp">
+    <div ngForm #pgpkeyForm="ngForm" *ngIf="appDataService.public.node.pgp">
         <div *ngIf="preferenceResolver.dataModel.pgp_key_fingerprint">
             <div class="form-group">
                 <label>{{'Details of the PGP key:'|translate}}</label>

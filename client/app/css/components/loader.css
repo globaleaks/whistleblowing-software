@@ -3,7 +3,7 @@
   user-select: none;
 }
 
-#page-overlay {
+.page-overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@
   opacity: 0.2;
 }
 
-#loader {
+.loader {
   position: relative;
   margin: 0 auto;
   display: flex;

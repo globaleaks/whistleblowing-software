@@ -5,8 +5,6 @@ export class NewContext {
   description = "";
   order = 0;
   tip_timetolive = 90;
-  tip_reminder_hard = 80;
-  tip_reminder_soft = 5;
   show_recipients_details = false;
   allow_recipients_selection = false;
   show_receivers_in_alphabetical_order = true;

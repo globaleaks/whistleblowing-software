@@ -29,7 +29,7 @@ export class FormFieldInputsComponent implements OnInit {
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
 
   fieldId: string;
-  entries: { [key: string]: Field}[]=[];
+  entries: { [key: string]: Field }[] = [];
   fieldEntry = "";
 
   constructor(protected utilsService: UtilsService) {

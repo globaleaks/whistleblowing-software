@@ -38,12 +38,14 @@ export class SiteslistComponent {
 
   saveTenant() {
     const url = "api/admin/tenants/" + this.tenant.id;
-    this.httpService.requestUpdateTenant(url, this.tenant).subscribe(_ => { });
+    this.httpService.requestUpdateTenant(url, this.tenant).subscribe(_ => {
+    });
   }
 
   deleteTenant(event: Event, tenant: tenantResolverModel) {
     event.stopPropagation();
-    this.openConfirmableModalDialog(tenant, "").subscribe(_ => { });
+    this.openConfirmableModalDialog(tenant, "").subscribe(_ => {
+    });
   }
 
   configureTenant($event: Event, tid: number): void {
@@ -58,21 +60,22 @@ export class SiteslistComponent {
     scope = !scope ? this : scope;
     let self = this
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
       modalRef.componentInstance.confirmFunction = () => {
         observer.complete()
-        const url = "api/admin/tenants/"+arg.id;
+        const url = "api/admin/tenants/" + arg.id;
         return self.httpService.requestDeleteTenant(url).subscribe(_ => {
-          this.utilsService.deleteResource(this.tenants,arg);
+          this.utilsService.deleteResource(this.tenants, arg);
         });
       };
     });
   }
+
   toggleEditing(event: Event): void {
     event.stopPropagation();
-    if(this.tenant.id !== 1){
+    if (this.tenant.id !== 1) {
       this.editing = !this.editing;
     }
   }

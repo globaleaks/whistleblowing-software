@@ -7,18 +7,19 @@ import {AppDataService} from "@app/app-data.service";
 import {ErrorCodes} from "@app/models/app/error-code";
 import {Session} from "@app/models/authentication/session";
 import {TitleService} from "@app/shared/services/title.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
   public session: any = undefined;
-  permissions:{can_upload_files:boolean}
+  permissions: { can_upload_files: boolean }
   loginInProgress: boolean = false;
   requireAuthCode: boolean = false;
   loginData: LoginDataRef = new LoginDataRef();
 
-  constructor(private titleService:TitleService, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private router: Router) {
+  constructor(private titleService: TitleService, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private router: Router) {
     this.init();
   }
 
@@ -72,7 +73,7 @@ export class AuthenticationService {
     );
   }
 
-  login(tid?: number, username?: string, password?: string|undefined, authcode?: string|null, authtoken?: string|null, callback?: () => void) {
+  login(tid?: number, username?: string, password?: string | undefined, authcode?: string | null, authtoken?: string | null, callback?: () => void) {
 
     if (authtoken === undefined) {
       authtoken = "";
@@ -81,7 +82,7 @@ export class AuthenticationService {
       authcode = "";
     }
 
-    let requestObservable: Observable<any>;
+    let requestObservable: Observable<Session>;
     if (authtoken) {
       requestObservable = this.httpService.requestAuthTokenLogin(JSON.stringify({"authtoken": authtoken}));
     } else {
@@ -101,11 +102,11 @@ export class AuthenticationService {
 
     requestObservable.subscribe(
       {
-        next: (response) => {
+        next: (response: Session) => {
           this.setSession(response);
 
-          if ("redirect" in response) {
-            this.router.navigate([response.data.redirect]).then();
+          if (response.redirect) {
+            this.router.navigate([response.redirect]).then();
           }
 
           const src = location.search;
@@ -152,17 +153,18 @@ export class AuthenticationService {
     return requestObservable;
   }
 
-  public getHeader(confirmation?: string) {
-    const header = new Map<string, string>();
+  public getHeader(confirmation?: string): HttpHeaders {
+    let headers = new HttpHeaders();
+
     if (this.session) {
-      header.set("X-Session", this.session.id);
-      header.set("Accept-Language", "en");
-    }
-    if (confirmation) {
-      header.set("X-Confirmation", confirmation);
+      headers = headers.set('X-Session', this.session.id);
+      headers = headers.set('Accept-Language', 'en');
     }
 
-    return header;
+    if (confirmation) {
+      headers = headers.set('X-Confirmation', confirmation);
+    }
+    return headers;
   }
 
   logout(callback?: () => void) {

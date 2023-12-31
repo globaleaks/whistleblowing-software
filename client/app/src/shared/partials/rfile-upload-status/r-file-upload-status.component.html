@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="file-upload-progress progress progress-striped" [ngClass]="{'invisible': file.paused}">
-                        <div class="progress-bar" [ngClass]="{'progress-bar-complete': file.progress === 1 }" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': (file.progress * 100) + '%'}"></div>
+                        <div class="progress-bar" [ngClass]="{'progress-bar-complete': file.progress === 1 }" role="progressbar" [ngStyle]="{'width': (file.progress * 100) + '%'}"></div>
                     </div>
                 </div>
             </div>

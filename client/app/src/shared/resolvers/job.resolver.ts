@@ -8,7 +8,7 @@ import {jobResolverModel} from "@app/models/resolvers/job-resolver-model";
 @Injectable({
   providedIn: "root"
 })
-export class JobResolver  {
+export class JobResolver {
   dataModel: jobResolverModel = new jobResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

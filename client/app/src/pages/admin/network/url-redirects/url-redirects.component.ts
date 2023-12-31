@@ -8,7 +8,7 @@ import {HttpService} from "@app/shared/services/http.service";
   templateUrl: "./url-redirects.component.html"
 })
 export class UrlRedirectsComponent implements OnInit {
-  redirectData: redirectResolverModel[] = [];
+  redirectData: redirectResolverModel[];
   new_redirect = {
     path1: "",
     path2: ""
@@ -22,6 +22,14 @@ export class UrlRedirectsComponent implements OnInit {
       this.redirectData = this.redirects.dataModel;
     } else {
       this.redirectData = [this.redirects.dataModel];
+    }
+  }
+
+  redirectPath(path: redirectResolverModel, index: number) {
+    if (index == 1) {
+      return path.path1;
+    } else {
+      return path.path2;
     }
   }
 

@@ -9,7 +9,7 @@ import {UtilsService} from "@app/shared/services/utils.service";
 })
 export class CaseManagementTab1Component {
   showAddStatus = false;
-  newSubmissionsStatus:{ label: string; }= { label: "" };
+  newSubmissionsStatus: { label: string; } = {label: ""};
 
   constructor(private utilsService: UtilsService, protected appDataServices: AppDataService, private appDataService: AppDataService, private httpService: HttpService) {
   }

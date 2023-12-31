@@ -1,4 +1,4 @@
-<div id="TipInfoBox" class="card card-default">
+<div class="card card-default">
     <div class="card-header" (click)="toggleCollapse(); utilsService.stopPropagation($event)">
         <div>
             <span class="d-flex justify-content-between">
@@ -29,9 +29,9 @@
                     <src-whistleblower-identity-field [step]="step" (stateChanged)="stateChanged($event)" [identity_provided]="identity_provided" [answers]="answers" [field]="field" [index]="0"></src-whistleblower-identity-field>
                 </ng-container>
                 <src-rfiles-upload-status [progress]="uploadProgress" [estimatedTime]="uploadEstimateTime" [uploading]="isUploading"></src-rfiles-upload-status>
-                <div id="SubmitBox">
+                <div>
                     <button *ngIf="identity_provided" id="SubmitButton" class="btn btn-primary float-end" (click)="provideIdentityInformation.emit({ param1: field.id, param2: answers })" [disabled]="wbform.invalid" type="submit">
-                        <i id="SubmitIconOK" class="fa-solid fa-check"></i>
+                        <i class="fa-solid fa-check"></i>
                         <span>{{'Submit'|translate}}</span>
                     </button>
                 </div>

@@ -9,14 +9,14 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class NodeResolver  {
+export class NodeResolver {
   dataModel: nodeResolverModel = new nodeResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService, private preferenceResolver: PreferenceResolver) {
   }
 
   resolve(): Observable<boolean> {
-    if (this.authenticationService.session.role === "admin" || ( this.authenticationService.session.role === "receiver" && this.preferenceResolver.dataModel.can_edit_general_settings)) {
+    if (this.authenticationService.session.role === "admin" || (this.authenticationService.session.role === "receiver" && this.preferenceResolver.dataModel.can_edit_general_settings)) {
       return this.httpService.requestNodeResource().pipe(
         map((response: nodeResolverModel) => {
           this.dataModel = response;

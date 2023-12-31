@@ -8,8 +8,8 @@ import {fieldtemplatesResolverModel} from "@app/models/resolvers/field-template-
 @Injectable({
   providedIn: "root"
 })
-export class FieldTemplatesResolver  {
-  dataModel: fieldtemplatesResolverModel = new fieldtemplatesResolverModel();
+export class FieldTemplatesResolver {
+  dataModel: fieldtemplatesResolverModel[];
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {
   }
@@ -17,7 +17,7 @@ export class FieldTemplatesResolver  {
   resolve(): Observable<boolean> {
     if (this.authenticationService.session.role === "admin") {
       return this.httpService.requestAdminFieldTemplateResource().pipe(
-        map((response: fieldtemplatesResolverModel) => {
+        map((response: fieldtemplatesResolverModel[]) => {
           this.dataModel = response;
           return true;
         })

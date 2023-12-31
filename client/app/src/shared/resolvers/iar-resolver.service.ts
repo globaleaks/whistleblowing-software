@@ -6,31 +6,31 @@ import {AuthenticationService} from "@app/services/helper/authentication.service
 import {IarData} from "@app/models/reciever/Iar-data";
 
 @Injectable({
-    providedIn: "root"
+  providedIn: "root"
 })
 export class IarResolver {
-    dataModel: IarData[] = [];
+  dataModel: IarData[] = [];
 
-    constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {
-    }
+  constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {
+  }
 
-    reload(){
-      this.httpService.iarResource().subscribe(
-          (response: IarData[]) => {
-            this.dataModel = response;
-          }
+  reload() {
+    this.httpService.iarResource().subscribe(
+      (response: IarData[]) => {
+        this.dataModel = response;
+      }
+    );
+  }
+
+  resolve(): Observable<boolean> {
+    if (this.authenticationService.session.role === "custodian") {
+      return this.httpService.iarResource().pipe(
+        map((response: IarData[]) => {
+          this.dataModel = response;
+          return true;
+        })
       );
     }
-
-    resolve(): Observable<boolean> {
-        if (this.authenticationService.session.role === "custodian") {
-            return this.httpService.iarResource().pipe(
-                map((response: IarData[]) => {
-                    this.dataModel = response;
-                    return true;
-                })
-            );
-        }
-        return of(true);
-    }
+    return of(true);
+  }
 }

@@ -10,7 +10,7 @@ import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 })
 export class SidebarComponent {
 
-  constructor(private router: Router, protected nodeResolver: NodeResolver, protected authenticationService:AuthenticationService) {
+  constructor(private router: Router, protected nodeResolver: NodeResolver, protected authenticationService: AuthenticationService) {
   }
 
   isActive(route: string): boolean {

@@ -1,6 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
 import {AppDataService} from "@app/app-data.service";
 import {preferenceResolverModel} from "@app/models/resolvers/preference-resolver-model";
 import {AcceptAgreementComponent} from "@app/shared/modals/accept-agreement/accept-agreement.component";
@@ -12,12 +11,13 @@ import {Observable} from "rxjs";
   selector: "src-recipient-home",
   templateUrl: "./home.component.html"
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   preferenceData: preferenceResolverModel;
-  constructor(private appDataService: AppDataService, private http: HttpClient, private modalService: NgbModal, private preference: PreferenceResolver, private router: Router) {
+
+  constructor(private appDataService: AppDataService, private http: HttpClient, private modalService: NgbModal, private preference: PreferenceResolver) {
   }
 
- ngOnInit(): void {
+  ngOnInit(): void {
     if (this.preference.dataModel) {
       this.preferenceData = this.preference.dataModel;
     }
@@ -25,6 +25,7 @@ export class HomeComponent {
       this.acceptPrivacyPolicyDialog().subscribe();
     }
   }
+
   acceptPrivacyPolicyDialog(): Observable<string> {
     return new Observable((observer) => {
       let modalRef = this.modalService.open(AcceptAgreementComponent, {

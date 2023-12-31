@@ -11,11 +11,11 @@ import {Receiver} from "@app/models/app/public-model";
 export class RevokeAccessComponent {
 
 
-  @Input() usersNames: Record<string, string>|undefined;
+  @Input() usersNames: Record<string, string> | undefined;
   @Input() selectableRecipients: Receiver[];
   @Input() confirmFun: Function;
   @Input() cancelFun: Function;
-  receiver_id: {id: number};
+  receiver_id: { id: number };
 
   constructor(private modalService: NgbModal, private utils: UtilsService) {
   }

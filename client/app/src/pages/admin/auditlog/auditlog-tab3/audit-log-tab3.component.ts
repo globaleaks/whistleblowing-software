@@ -1,6 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {UtilsService} from "@app/shared/services/utils.service";
-import {ngxCsv} from "ngx-csv";
 import {TipsResolver} from "@app/shared/resolvers/tips.resolver";
 import {tipsResolverModel} from "@app/models/resolvers/tips-resolver-model";
 import {AppDataService} from "@app/app-data.service";
@@ -9,10 +8,10 @@ import {AppDataService} from "@app/app-data.service";
   selector: "src-auditlog-tab3",
   templateUrl: "./audit-log-tab3.component.html"
 })
-export class AuditLogTab3Component {
+export class AuditLogTab3Component implements OnInit {
   currentPage = 1;
   pageSize = 20;
-  tips:tipsResolverModel[]=[];
+  tips: tipsResolverModel[] = [];
 
   constructor(private tipsResolver: TipsResolver, protected utilsService: UtilsService, protected appDataService: AppDataService) {
   }
@@ -36,8 +35,6 @@ export class AuditLogTab3Component {
   }
 
   exportAuditLog() {
-    new ngxCsv(JSON.stringify(this.tips), "reports", {
-      headers: ["id", "progressive", "creation_date", "last_update", "expiration_date", "context_id", "status", "substatus", "tor", "comments", "files", "last_access"],
-    });
+    this.utilsService.generateCSV(JSON.stringify(this.tips), "reports", ["id", "progressive", "creation_date", "last_update", "expiration_date", "context_id", "status", "substatus", "tor", "comments", "files", "last_access"]);
   }
 }

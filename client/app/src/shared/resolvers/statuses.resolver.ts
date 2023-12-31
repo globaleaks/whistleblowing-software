@@ -7,7 +7,7 @@ import {statusResolverModel} from "@app/models/resolvers/status-resolver-model";
 @Injectable({
   providedIn: "root"
 })
-export class StatusResolver  {
+export class StatusResolver {
   dataModel: statusResolverModel = new statusResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

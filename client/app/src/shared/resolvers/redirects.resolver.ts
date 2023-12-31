@@ -8,8 +8,8 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class RedirectsResolver  {
-  dataModel: redirectResolverModel = new redirectResolverModel();
+export class RedirectsResolver {
+  dataModel: redirectResolverModel[];
 
   constructor(
     private httpService: HttpService,
@@ -20,7 +20,7 @@ export class RedirectsResolver  {
   resolve(): Observable<boolean> {
     if (this.authenticationService.session.role === "admin") {
       return this.httpService.requestRedirectsResource().pipe(
-        map((response: redirectResolverModel) => {
+        map((response: redirectResolverModel[]) => {
           this.dataModel = response;
           return true;
         })

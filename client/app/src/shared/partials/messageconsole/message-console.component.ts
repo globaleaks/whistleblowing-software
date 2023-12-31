@@ -7,7 +7,7 @@ import {ErrorCodes} from "@app/models/app/error-code";
   templateUrl: "./message-console.component.html"
 })
 export class MessageConsoleComponent implements AfterViewChecked {
-  private timeoutId: number|NodeJS.Timeout;
+  private timeoutId: number | NodeJS.Timeout;
   private timeoutRunning: boolean = false;
 
   constructor(public appDataService: AppDataService) {

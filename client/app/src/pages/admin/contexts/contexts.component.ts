@@ -15,8 +15,8 @@ import {UtilsService} from "@app/shared/services/utils.service";
 })
 export class ContextsComponent implements OnInit {
   showAddContext: boolean = false;
-  new_context:{ name: string;} = { name: "" };
-  contextsData: contextResolverModel[]=[] ;
+  new_context: { name: string; } = {name: ""};
+  contextsData: contextResolverModel[] = [];
 
 
   constructor(protected preference: PreferenceResolver, protected httpService: HttpService, protected authenticationService: AuthenticationService, protected node: NodeResolver, protected users: UsersResolver, protected contexts: ContextsResolver, protected utilsService: UtilsService) {
@@ -37,7 +37,7 @@ export class ContextsComponent implements OnInit {
   addContext() {
     const context: NewContext = new NewContext();
     context.name = this.new_context.name;
-    context.questionnaire_id = this.node.dataModel.default_questionnaire;
+    context.questionnaire_id = "default";
     context.order = this.newItemOrder(this.contextsData, "order");
     this.utilsService.addAdminContext(context).subscribe(res => {
       this.contextsData.push(res);

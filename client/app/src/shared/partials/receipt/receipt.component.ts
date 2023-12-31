@@ -21,7 +21,7 @@ export class ReceiptComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  viewReport(){
+  viewReport() {
     const promise = () => {
       this.httpService.whistleBlowerTip().subscribe(
         (response: WbTipData) => {
@@ -31,6 +31,6 @@ export class ReceiptComponent implements OnInit {
         }
       );
     };
-    this.authenticationService.login(0, 'whistleblower', this.formattedReceipt, null, null,  promise);
+    this.authenticationService.login(0, 'whistleblower', this.formattedReceipt, null, null, promise);
   }
 }

@@ -11,7 +11,7 @@
             </div>
             <div class="row" *ngIf="context.picture">
                 <div class="col-md-4">
-                    <img class="context-image" alt="context picture" *ngIf="context.picture" src="/s/{{context.id}}" />
+                    <img class="context-image" alt="context picture" *ngIf="context.picture" width="500" height="500" ngSrc="/s/{{context.id}}"/>
                 </div>
             </div>
             <div class="row" *ngIf="context.description">

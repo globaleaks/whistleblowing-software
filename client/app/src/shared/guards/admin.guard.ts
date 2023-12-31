@@ -7,7 +7,7 @@ import {AppConfigService} from "@app/services/root/app-config.service";
 @Injectable({
   providedIn: "root"
 })
-export class AdminGuard  {
+export class AdminGuard {
   constructor(private router: Router, private appConfigService: AppConfigService, public authenticationService: AuthenticationService) {
   }
 

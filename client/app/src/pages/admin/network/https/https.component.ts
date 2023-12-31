@@ -35,7 +35,7 @@ export class HttpsComponent implements OnInit {
     this.utilsService.runAdminOperation("set_hostname", {"value": hostname}, false)
       .subscribe(
         () => {
-          location.href = "https://"+this.nodeResolver.dataModel.hostname;
+          location.href = "https://" + this.nodeResolver.dataModel.hostname;
         }
       );
   }

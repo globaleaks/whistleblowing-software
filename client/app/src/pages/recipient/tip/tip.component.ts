@@ -12,10 +12,14 @@ import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {Observable} from "rxjs";
 import {FieldUtilitiesService} from "@app/shared/services/field-utilities.service";
-import {TipOperationSetReminderComponent} from "@app/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component";
+import {
+  TipOperationSetReminderComponent
+} from "@app/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component";
 import {DeleteConfirmationComponent} from "@app/shared/modals/delete-confirmation/delete-confirmation.component";
 import {HttpClient} from "@angular/common/http";
-import {TipOperationPostponeComponent} from "@app/shared/modals/tip-operation-postpone/tip-operation-postpone.component";
+import {
+  TipOperationPostponeComponent
+} from "@app/shared/modals/tip-operation-postpone/tip-operation-postpone.component";
 import {CryptoService} from "@app/shared/services/crypto.service";
 import {TransferAccessComponent} from "@app/shared/modals/transfer-access/transfer-access.component";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
@@ -72,13 +76,14 @@ export class TipComponent implements OnInit {
           this.ctx = "rtip";
           this.showEditLabelInput = this.tip.label === "";
           this.preprocessTipAnswers(this.tip);
-          this.tip.submissionStatusStr = this.utils.getSubmissionStatusText(this.tip.status,this.tip.substatus,this.appDataService.submissionStatuses);
+          this.tip.submissionStatusStr = this.utils.getSubmissionStatusText(this.tip.status, this.tip.substatus, this.appDataService.submissionStatuses);
           this.initNavBar()
         }
       }
     );
   }
-  initNavBar(){
+
+  initNavBar() {
     setTimeout(() => {
       this.active = "Everyone";
       this.tabs = [
@@ -97,33 +102,34 @@ export class TipComponent implements OnInit {
       ];
     });
   }
+
   openGrantTipAccessModal(): void {
-    this.utils.runUserOperation("get_users_names", {}, false).subscribe( {
+    this.utils.runUserOperation("get_users_names", {}, false).subscribe({
       next: response => {
-      const selectableRecipients: Receiver[] = [];
-      this.appDataService.public.receivers.forEach(async (receiver: Receiver) => {
-        if (receiver.id !== this.authenticationService.session.user_id && !this.tip.receivers_by_id[receiver.id]) {
-          selectableRecipients.push(receiver);
-        }
-      });
-      const modalRef = this.modalService.open(GrantAccessComponent,{backdrop: 'static',keyboard: false});
-      modalRef.componentInstance.usersNames = response;
-      modalRef.componentInstance.selectableRecipients = selectableRecipients;
-      modalRef.componentInstance.confirmFun = (receiver_id: Receiver) => {
-        const req = {
-          operation: "grant",
-          args: {
-            receiver: receiver_id.id
-          },
+        const selectableRecipients: Receiver[] = [];
+        this.appDataService.public.receivers.forEach(async (receiver: Receiver) => {
+          if (receiver.id !== this.authenticationService.session.user_id && !this.tip.receivers_by_id[receiver.id]) {
+            selectableRecipients.push(receiver);
+          }
+        });
+        const modalRef = this.modalService.open(GrantAccessComponent, {backdrop: 'static', keyboard: false});
+        modalRef.componentInstance.usersNames = response;
+        modalRef.componentInstance.selectableRecipients = selectableRecipients;
+        modalRef.componentInstance.confirmFun = (receiver_id: Receiver) => {
+          const req = {
+            operation: "grant",
+            args: {
+              receiver: receiver_id.id
+            },
+          };
+          this.httpService.tipOperation(req.operation, req.args, this.RTipService.tip.id)
+            .subscribe(() => {
+              this.reload();
+            });
         };
-        this.httpService.tipOperation(req.operation, req.args, this.RTipService.tip.id)
-          .subscribe(() => {
-            this.reload();
-          });
-      };
-      modalRef.componentInstance.cancelFun = null;
-    }
-  });
+        modalRef.componentInstance.cancelFun = null;
+      }
+    });
   }
 
   openRevokeTipAccessModal() {
@@ -136,7 +142,7 @@ export class TipComponent implements OnInit {
               selectableRecipients.push(receiver);
             }
           });
-          const modalRef = this.modalService.open(RevokeAccessComponent,{backdrop: 'static',keyboard: false});
+          const modalRef = this.modalService.open(RevokeAccessComponent, {backdrop: 'static', keyboard: false});
           modalRef.componentInstance.usersNames = response;
           modalRef.componentInstance.selectableRecipients = selectableRecipients;
           modalRef.componentInstance.confirmFun = (receiver_id: Receiver) => {
@@ -160,14 +166,14 @@ export class TipComponent implements OnInit {
   openTipTransferModal() {
     this.utils.runUserOperation("get_users_names", {}, false).subscribe(
       {
-        next: response  => {
+        next: response => {
           const selectableRecipients: Receiver[] = [];
-          this.appDataService.public.receivers.forEach(async (receiver:Receiver) => {
+          this.appDataService.public.receivers.forEach(async (receiver: Receiver) => {
             if (receiver.id !== this.authenticationService.session.user_id && !this.tip.receivers_by_id[receiver.id]) {
               selectableRecipients.push(receiver);
             }
           });
-          const modalRef = this.modalService.open(TransferAccessComponent,{backdrop: 'static',keyboard: false});
+          const modalRef = this.modalService.open(TransferAccessComponent, {backdrop: 'static', keyboard: false});
           modalRef.componentInstance.usersNames = response;
           modalRef.componentInstance.selectableRecipients = selectableRecipients;
           modalRef.result.then(
@@ -224,7 +230,7 @@ export class TipComponent implements OnInit {
   }
 
   tipDelete() {
-    const modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+    const modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.confirmFunction = () => {
     };
     modalRef.componentInstance.args = {
@@ -234,7 +240,7 @@ export class TipComponent implements OnInit {
   }
 
   setReminder() {
-    const modalRef = this.modalService.open(TipOperationSetReminderComponent,{backdrop: 'static',keyboard: false});
+    const modalRef = this.modalService.open(TipOperationSetReminderComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.args = {
       tip: this.RTipService.tip,
       operation: "set_reminder",
@@ -249,7 +255,7 @@ export class TipComponent implements OnInit {
   }
 
   tipPostpone() {
-    const modalRef = this.modalService.open(TipOperationPostponeComponent,{backdrop: 'static',keyboard: false});
+    const modalRef = this.modalService.open(TipOperationPostponeComponent, {backdrop: 'static', keyboard: false});
     modalRef.componentInstance.args = {
       tip: this.RTipService.tip,
       operation: "postpone",
@@ -270,14 +276,18 @@ export class TipComponent implements OnInit {
     (
       {
         next: async token => {
-          const ans = await this.cryptoService.proofOfWork(token.id);
-          window.open("api/recipient/rtips/" + tipId + "/export" + "?token=" + token.id + ":" + ans);
-          this.appDataService.updateShowLoadingPanel(false);
+          this.cryptoService.proofOfWork(token.id).subscribe(
+            (result: number) => {
+              window.open("api/recipient/rtips/" + tipId + "/export" + "?token=" + token.id + ":" + result);
+              this.appDataService.updateShowLoadingPanel(false);
+            }
+          );
         }
       }
     );
   }
-  listenToFields(){
+
+  listenToFields() {
     this.loadTipDate();
   }
 }

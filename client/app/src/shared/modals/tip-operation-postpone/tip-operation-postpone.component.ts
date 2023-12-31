@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UtilsService} from "@app/shared/services/utils.service";
 
@@ -7,7 +7,7 @@ import {UtilsService} from "@app/shared/services/utils.service";
   selector: "src-tip-operation-postpone",
   templateUrl: "./tip-operation-postpone.component.html"
 })
-export class TipOperationPostponeComponent {
+export class TipOperationPostponeComponent implements OnInit {
   @Input() args: any;
 
   request_motivation: string;

@@ -11,7 +11,9 @@ import {TipComponent} from "@app/pages/recipient/tip/tip.component";
 import {SettingsComponent} from "@app/pages/recipient/settings/settings.component";
 import {FormsModule} from "@angular/forms";
 import {NgbDatepickerModule, NgbDropdownModule, NgbModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
-import {WhistleBlowerIdentityReceiverComponent} from "@app/pages/recipient/whistleblower-identity-reciever/whistle-blower-identity-receiver.component";
+import {
+  WhistleBlowerIdentityReceiverComponent
+} from "@app/pages/recipient/whistleblower-identity-reciever/whistle-blower-identity-receiver.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({

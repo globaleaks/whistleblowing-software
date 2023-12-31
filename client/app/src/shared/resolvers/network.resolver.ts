@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class NetworkResolver  {
+export class NetworkResolver {
   dataModel: networkResolverModel = new networkResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

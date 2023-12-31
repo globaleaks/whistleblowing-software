@@ -8,18 +8,19 @@ import {UtilsService} from "@app/shared/services/utils.service";
   templateUrl: "./whistleblower-identity.component.html"
 })
 export class WhistleblowerIdentityComponent {
-  collapsed = false;
-  protected readonly JSON = JSON;
   @Input() field: any;
   @Input() step: any;
   @Input() answers: Answers;
+  @Input() uploadEstimateTime: number;
+  @Input() isUploading: boolean | undefined;
+  @Input() uploadProgress: number | undefined;
+
   @Output() provideIdentityInformation = new EventEmitter<{ param1: string, param2: Answers }>();
   @Output() onFormUpdate = new EventEmitter<void>();
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() uploadEstimateTime: number;
-  @Input() isUploading:boolean|undefined;
-  @Input() uploadProgress: number|undefined;
+  collapsed = false;
+  protected readonly JSON = JSON;
   identity_provided: boolean = true;
 
   constructor(protected wbTipService: WbtipService, protected utilsService: UtilsService) {

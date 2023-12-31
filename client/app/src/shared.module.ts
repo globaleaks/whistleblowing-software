@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {FooterComponent} from "@app/shared/partials/footer/footer.component";
 import {ReceiptComponent} from "@app/shared/partials/receipt/receipt.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -9,7 +9,23 @@ import {TranslateModule} from "@ngx-translate/core";
 import {QRCodeModule} from "angularx-qrcode";
 import {PasswordChangeComponent} from "@app/shared/partials/password-change/password-change.component";
 import {PasswordMeterComponent} from "@app/shared/components/password-meter/password-meter.component";
-import {NgbPagination, NgbPaginationFirst, NgbPaginationLast, NgbPaginationNext, NgbPaginationNumber, NgbPaginationPages, NgbPaginationPrevious, NgbNav, NgbNavItem, NgbNavLink, NgbNavContent, NgbProgressbar, NgbDatepickerModule, NgbDropdownModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {
+  NgbPagination,
+  NgbPaginationFirst,
+  NgbPaginationLast,
+  NgbPaginationNext,
+  NgbPaginationNumber,
+  NgbPaginationPages,
+  NgbPaginationPrevious,
+  NgbNav,
+  NgbNavItem,
+  NgbNavLink,
+  NgbNavContent,
+  NgbProgressbar,
+  NgbDatepickerModule,
+  NgbDropdownModule,
+  NgbTooltipModule
+} from "@ng-bootstrap/ng-bootstrap";
 import {PrivacyBadgeComponent} from "@app/shared/partials/privacybadge/privacy-badge.component";
 import {MarkdownModule} from "ngx-markdown";
 import {StripHtmlPipe} from "@app/shared/pipes/strip-html.pipe";
@@ -17,13 +33,21 @@ import {ReceiptValidatorDirective} from "@app/shared/directive/receipt-validator
 import {TipInfoComponent} from "@app/shared/partials/tip-info/tip-info.component";
 import {TipSubmissionStatusComponent} from "@app/shared/partials/tip-submission-status/tip-submission-status.component";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {TipAdditionalQuestionnaireInviteComponent} from "@app/shared/partials/tip-additional-questionnaire-invite/tip-additional-questionnaire-invite.component";
+import {
+  TipAdditionalQuestionnaireInviteComponent
+} from "@app/shared/partials/tip-additional-questionnaire-invite/tip-additional-questionnaire-invite.component";
 import {TipFieldComponent} from "@app/shared/partials/tip-field/tip-field.component";
-import {TipFieldAnswerEntryComponent} from "@app/shared/partials/tip-field-answer-entry/tip-field-answer-entry.component";
-import {TipQuestionnaireAnswersComponent} from "@app/shared/partials/tip-questionnaire-answers/tip-questionnaire-answers.component";
+import {
+  TipFieldAnswerEntryComponent
+} from "@app/shared/partials/tip-field-answer-entry/tip-field-answer-entry.component";
+import {
+  TipQuestionnaireAnswersComponent
+} from "@app/shared/partials/tip-questionnaire-answers/tip-questionnaire-answers.component";
 import {DatePipe} from "@app/shared/pipes/date.pipe";
 import {SplitPipe} from "@app/shared/pipes/split.pipe";
-import {TipFilesWhistleblowerComponent} from "@app/shared/partials/tip-files-whistleblower/tip-files-whistleblower.component";
+import {
+  TipFilesWhistleblowerComponent
+} from "@app/shared/partials/tip-files-whistleblower/tip-files-whistleblower.component";
 import {WidgetWbFilesComponent} from "@app/shared/partials/widget-wbfiles/widget-wb-files.component";
 import {ByteFmtPipe} from "@app/shared/pipes/byte-fmt.pipe";
 import {RFileUploadButtonComponent} from "@app/shared/partials/rfile-upload-button/r-file-upload-button.component";
@@ -52,13 +76,23 @@ import {PreferencesComponent} from "@app/shared/partials/preferences/preferences
 import {PreferenceTab1Component} from "@app/shared/partials/preference-tabs/preference-tab1/preference-tab1.component";
 import {PreferenceTab2Component} from "@app/shared/partials/preference-tabs/preference-tab2/preference-tab2.component";
 import {Enable2faComponent} from "@app/shared/modals/enable2fa/enable2fa.component";
-import {EncryptionRecoveryKeyComponent} from "@app/shared/modals/encryption-recovery-key/encryption-recovery-key.component";
-import {ConfirmationWithPasswordComponent} from "@app/shared/modals/confirmation-with-password/confirmation-with-password.component";
+import {
+  EncryptionRecoveryKeyComponent
+} from "@app/shared/modals/encryption-recovery-key/encryption-recovery-key.component";
+import {
+  ConfirmationWithPasswordComponent
+} from "@app/shared/modals/confirmation-with-password/confirmation-with-password.component";
 import {ConfirmationWith2faComponent} from "@app/shared/modals/confirmation-with2fa/confirmation-with2fa.component";
-import {TipOperationFileIdentityAccessRequestComponent} from "@app/shared/modals/tip-operation-file-identity-access-request/tip-operation-file-identity-access-request.ompoent";
+import {
+  TipOperationFileIdentityAccessRequestComponent
+} from "@app/shared/modals/tip-operation-file-identity-access-request/tip-operation-file-identity-access-request.ompoent";
 import {TipFilesReceiverComponent} from "@app/shared/partials/tip-files-receiver/tip-files-receiver.component";
-import {TipOperationSetReminderComponent} from "@app/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component";
-import {TipOperationPostponeComponent} from "@app/shared/modals/tip-operation-postpone/tip-operation-postpone.component";
+import {
+  TipOperationSetReminderComponent
+} from "@app/shared/modals/tip-operation-set-reminder/tip-operation-set-reminder.component";
+import {
+  TipOperationPostponeComponent
+} from "@app/shared/modals/tip-operation-postpone/tip-operation-postpone.component";
 import {FileViewComponent} from "@app/shared/modals/file-view/file-view.component";
 import {TipUploadWbFileComponent} from "@app/shared/partials/tip-upload-wbfile/tip-upload-wb-file.component";
 import {ImageUploadDirective} from "@app/shared/directive/image-upload.directive";
@@ -66,21 +100,27 @@ import {ImageUploadComponent} from "@app/shared/partials/image-upload/image-uplo
 import {EnableEncryptionComponent} from "@app/shared/modals/enable-encryption/enable-encryption.component";
 import {AdminFileComponent} from "@app/shared/partials/admin-file/admin-file.component";
 import {ConfirmationComponent} from "@app/shared/modals/confirmation/confirmation.component";
-import {QuestionnaireDuplicationComponent} from "@app/shared/modals/questionnaire-duplication/questionnaire-duplication.component";
+import {
+  QuestionnaireDuplicationComponent
+} from "@app/shared/modals/questionnaire-duplication/questionnaire-duplication.component";
 import {AddOptionHintComponent} from "@app/shared/modals/add-option-hint/add-option-hint.component";
 import {TriggerReceiverComponent} from "@app/shared/modals/trigger-receiver/trigger-receiver.component";
 import {AssignScorePointsComponent} from "@app/shared/modals/assign-score-points/assign-score-points.component";
-import {TipOperationFileIdentityAccessReplyComponent} from "@app/shared/modals/tip-operation-file-identity-access-reply/tip-operation-file-identity-access-reply.component";
+import {
+  TipOperationFileIdentityAccessReplyComponent
+} from "@app/shared/modals/tip-operation-file-identity-access-reply/tip-operation-file-identity-access-reply.component";
 import {DemoComponent} from "@app/shared/partials/demo/demo.component";
 import {MessageConsoleComponent} from "@app/shared/partials/messageconsole/message-console.component";
 import {AcceptAgreementComponent} from "@app/shared/modals/accept-agreement/accept-agreement.component";
 import {DisclaimerComponent} from "@app/shared/modals/disclaimer/disclaimer.component";
-import {SecurityAwarenessConfidentialityComponent} from "@app/shared/modals/security-awareness-confidentiality/security-awareness-confidentiality.component";
+import {
+  SecurityAwarenessConfidentialityComponent
+} from "@app/shared/modals/security-awareness-confidentiality/security-awareness-confidentiality.component";
 import {TransferAccessComponent} from "@app/shared/modals/transfer-access/transfer-access.component";
 import {BlankComponent} from "@app/shared/blank/blank.component";
 import {VoiceRecorderComponent} from "@app/shared/partials/voice-recorder/voice-recorder.component";
 import {Tab1Component} from "@app/pages/admin/settings/tab1/tab1.component";
-import { SwitchComponent } from "@app/shared/components/switch/switch.component";
+import {SwitchComponent} from "@app/shared/components/switch/switch.component";
 
 @NgModule({
   imports: [
@@ -108,7 +148,8 @@ import { SwitchComponent } from "@app/shared/components/switch/switch.component"
     NgbNavLink,
     NgbNavContent,
     NgbDropdownModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgOptimizedImage
   ],
   declarations: [
     FooterComponent,

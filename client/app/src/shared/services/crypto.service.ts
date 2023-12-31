@@ -1,33 +1,36 @@
 import {Injectable} from "@angular/core";
-import sha256, {} from "fast-sha256";
+import {Observable, from} from "rxjs";
+import {switchMap} from "rxjs/operators";
+import sha256 from "fast-sha256";
 
 @Injectable({
   providedIn: "root"
 })
 export class CryptoService {
 
-  deferred: Promise<number>;
   data: string;
   counter: number = 0;
 
-  getWebCrypto() {
-    if (typeof window === "undefined" || !window.isSecureContext) {
-      return;
-    }
-    return window.crypto.subtle;
-  };
+  getWebCrypto(): SubtleCrypto | undefined {
+    return typeof window !== "undefined" && window.isSecureContext
+      ? window.crypto.subtle
+      : undefined;
+  }
 
-  calculateHash(hash: any, resolve: (result: number) => void) {
+  calculateHash(hash: any): Observable<number> {
     hash = new Uint8Array(hash);
     if (hash[31] === 0) {
-      resolve(this.counter);
+      return new Observable<number>((observer) => {
+        observer.next(this.counter);
+        observer.complete();
+      });
     } else {
       this.counter += 1;
-      this.work(resolve);
+      return this.work();
     }
-  };
+  }
 
-  str2Uint8Array(str: string) {
+  str2Uint8Array(str: string): Uint8Array {
     const result = new Uint8Array(str.length);
     for (let i = 0; i < str.length; i++) {
       result[i] = str.charCodeAt(i);
@@ -35,45 +38,33 @@ export class CryptoService {
     return result;
   }
 
-  work(resolve: (result: number) => void) {
+  work(): Observable<number> {
     const webCrypto = this.getWebCrypto();
-    const toHash = this.str2Uint8Array(this.data + this.counter);
-    let digestPremise;
 
     if (webCrypto) {
-      digestPremise = webCrypto.digest({name: "SHA-256"}, toHash);
+      const toHash = this.str2Uint8Array(this.data + this.counter);
+      const digestPremise = from(webCrypto.digest({name: "SHA-256"}, toHash));
+
+      return digestPremise.pipe(
+        switchMap((res) => this.calculateHash(res))
+      );
     } else {
-      digestPremise = new Promise((resolve, reject) => {
+      return new Observable<number>((observer) => {
+        const toHash = this.str2Uint8Array(this.data + this.counter);
+
         if (sha256(toHash)) {
-          resolve("ok");
+          observer.next(0);
+          observer.complete();
         } else {
-          reject("error");
+          observer.error("error");
         }
       });
     }
-
-    if (typeof digestPremise.then !== "undefined") {
-      digestPremise.then(res => {
-        this.calculateHash(res, resolve);
-      });
-    } else {
-      digestPremise.then(res => {
-        return res;
-      });
-    }
-
-    return digestPremise;
   }
 
-  proofOfWork(data: string): Promise<number> {
-
-    this.deferred = new Promise((resolve, _) => {
-      this.data = data;
-      this.counter = 0;
-      this.work(resolve);
-    });
-
-    return this.deferred;
+  proofOfWork(data: string): Observable<number> {
+    this.data = data;
+    this.counter = 0;
+    return this.work();
   }
-
 }

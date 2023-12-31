@@ -5,7 +5,7 @@ import {Title} from "@angular/platform-browser";
 @Injectable({
   providedIn: "root",
 })
-export class TitleResolver  {
+export class TitleResolver {
   constructor(private titleService: Title) {
   }
 

@@ -32,7 +32,7 @@ export class NotificationTab1Component {
       )
       .subscribe();
   }
-  
+
   resetSMTPSettings() {
     this.utilsService.runAdminOperation("reset_smtp_settings", {}, true).subscribe();
   }

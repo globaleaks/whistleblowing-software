@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class QuestionnairesResolver  {
+export class QuestionnairesResolver {
   dataModel: questionnaireResolverModel[];
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

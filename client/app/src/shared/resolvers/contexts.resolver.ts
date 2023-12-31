@@ -8,7 +8,7 @@ import {contextResolverModel} from "@app/models/resolvers/context-resolver-model
 @Injectable({
   providedIn: "root"
 })
-export class ContextsResolver  {
+export class ContextsResolver {
   dataModel: contextResolverModel = new contextResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

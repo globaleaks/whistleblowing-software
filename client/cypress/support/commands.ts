@@ -176,5 +176,5 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
 });
 
 Cypress.Commands.add("logout", () => {
-  cy.waitUntilClickable("#LogoutLink");
+  cy.get('a.LogoutLink').should('be.visible').click();
 });

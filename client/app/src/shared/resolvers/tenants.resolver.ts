@@ -8,7 +8,7 @@ import {catchError, map} from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class TenantsResolver  {
+export class TenantsResolver {
   dataModel: tenantResolverModel = new tenantResolverModel();
 
   constructor(private httpService: HttpService, private authenticationService: AuthenticationService) {

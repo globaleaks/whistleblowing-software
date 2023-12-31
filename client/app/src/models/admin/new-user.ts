@@ -16,8 +16,6 @@ export class NewUser {
   notification = true;
   forcefully_selected = false;
   can_edit_general_settings = false;
-  can_privilege_mask_information = false;
-  can_privilege_delete_mask_information = false;
   can_grant_access_to_reports = false;
   can_delete_submission = false;
   can_postpone_expiration = true;

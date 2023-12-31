@@ -1,8 +1,8 @@
-import {Attrs, Option,TriggeredByOption} from "@app/models/app/shared-public-model";
+import {Attrs, Option, TriggeredByOption} from "@app/models/app/shared-public-model";
 
 export interface Field {
   id: string;
-  questionnaire_id:string;
+  questionnaire_id: string;
   instance: string;
   editable: boolean;
   type: string;
@@ -25,7 +25,7 @@ export interface Field {
   description: string;
   hint: string;
   placeholder: string;
-  enabled :boolean;
+  enabled: boolean;
 }
 
 export class fieldtemplatesResolverModel {
@@ -34,7 +34,7 @@ export class fieldtemplatesResolverModel {
   editable: boolean;
   type: string;
   template_id: string;
-  questionnaire_id:string;
+  questionnaire_id: string;
   template_override_id: string;
   step_id: string;
   fieldgroup_id: string;

@@ -17,7 +17,12 @@ export class UsersTab1Component implements OnInit {
   showAddUser = false;
   tenantData: tenantResolverModel;
   usersData: userResolverModel[];
-  new_user: {username:string, role:string, name:string,email:string} = {username:"", role:"", name:"",email:""};
+  new_user: { username: string, role: string, name: string, email: string } = {
+    username: "",
+    role: "",
+    name: "",
+    email: ""
+  };
   editing = false;
   protected readonly Constants = Constants;
 
@@ -47,7 +52,7 @@ export class UsersTab1Component implements OnInit {
     user.language = this.nodeResolver.dataModel.default_language;
     this.utilsService.addAdminUser(user).subscribe(_ => {
       this.getResolver();
-      this.new_user = {username:"", role:"", name:"",email:""};
+      this.new_user = {username: "", role: "", name: "", email: ""};
     });
   }
 

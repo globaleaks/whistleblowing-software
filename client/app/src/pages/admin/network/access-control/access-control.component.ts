@@ -9,7 +9,7 @@ import {UtilsService} from "@app/shared/services/utils.service";
   templateUrl: "./access-control.component.html"
 })
 export class AccessControlComponent implements OnInit {
-  networkData:  networkResolverModel;
+  networkData: networkResolverModel;
 
   constructor(private networkResolver: NetworkResolver, private httpService: HttpService, private utilsService: UtilsService) {
   }

@@ -25,8 +25,8 @@ export class UserEditorComponent implements OnInit {
   @Output() dataToParent = new EventEmitter<string>();
 
   editing = false;
-  setPasswordArgs: {user_id:string, password:string};
-  changePasswordArgs: {password_change_needed:string};
+  setPasswordArgs: { user_id: string, password: string };
+  changePasswordArgs: { password_change_needed: string };
   passwordStrengthScore: number = 0;
   nodeData: nodeResolverModel;
   preferenceData: preferenceResolverModel;
@@ -71,7 +71,7 @@ export class UserEditorComponent implements OnInit {
     this.utilsService.runAdminOperation("disable_2fa", {"value": user.id}, true).subscribe();
   }
 
-  setPassword(setPasswordArgs: {user_id:string, password:string}) {
+  setPassword(setPasswordArgs: { user_id: string, password: string }) {
     this.utilsService.runAdminOperation("set_user_password", setPasswordArgs, false).subscribe();
     this.user.newpassword = false;
     this.setPasswordArgs.password = "";
@@ -101,14 +101,14 @@ export class UserEditorComponent implements OnInit {
   openConfirmableModalDialog(arg: userResolverModel, scope: any): Observable<string> {
     scope = !scope ? this : scope;
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: 'static',keyboard: false});
+      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
 
       modalRef.componentInstance.confirmFunction = () => {
         observer.complete()
         return this.utilsService.deleteAdminUser(arg.id).subscribe(_ => {
-          this.utilsService.deleteResource(this.users,arg);
+          this.utilsService.deleteResource(this.users, arg);
         });
       };
     });
@@ -121,11 +121,15 @@ export class UserEditorComponent implements OnInit {
   loadPublicKeyFile(files: FileList | null) {
     if (files && files.length > 0) {
       this.utilsService.readFileAsText(files[0])
-        .then((txt: string) => {
+        .subscribe((txt: string) => {
           this.user.pgp_key_public = txt;
         });
     }
   };
+
+  getUserID() {
+    return this.authenticationData.session.user_id;
+  }
 
   toggleUserEscrow(user: userResolverModel) {
     this.user.escrow = !this.user.escrow;

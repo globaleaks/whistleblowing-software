@@ -7,7 +7,7 @@
             <div class="title">{{submissionService.context.name}}</div>
             <div class="row">
                 <div class="col-md-2" *ngIf="submissionService.context.picture">
-                    <img class="context-image" alt="context picture" src="/s/{{submissionService.context.id}}" />
+                    <img class="context-image" alt="context picture" width="500" height="500" ngSrc="/s/{{getContextID()}}" />
                 </div>
             </div>
         </div>
@@ -28,11 +28,11 @@
                             </a>
                         </div>
                 </ul>
-                <div id="SubmissionTabsContentBox" class="tab-content">
+                <div class="tab-content">
                     <div *ngIf="displayErrors()">
-                        <src-submission-error [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStep]=hasPreviousStep() [areReceiverSelected]=areReceiversSelected() [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
+                        <src-submission-error [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStep]=hasPreviousStep() [areReceiverSelected]=areReceiversSelected() [singleStepForm]="singleStepForm()" [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
                     </div>
-                    <div id="step-receiver-selection" *ngIf="submissionService.context.allow_recipients_selection">
+                    <div *ngIf="submissionService.context.allow_recipients_selection">
                         <div *ngIf="navigation === -1">
                             <src-receiver-selection (switchSelection)="switchSelection($event)" [receiversOrderPredicate]="receiversOrderPredicate" [submission]="submissionService" [show_steps_navigation_bar]="show_steps_navigation_bar"></src-receiver-selection>
                         </div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div id="submission-buttons">
+            <div>
                 <button id="PreviousStepButton" class="btn btn-outline-secondary" *ngIf="hasPreviousStep()" (click)="decrementStep()">
                     <i class="fa-solid fa-arrow-circle-left"></i>
                     <span>{{'Previous'|translate}}</span>

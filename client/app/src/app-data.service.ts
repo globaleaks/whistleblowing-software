@@ -10,6 +10,7 @@ export class AppDataService {
 
   private showLoadingPanelSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   showLoadingPanel$: Observable<boolean> = this.showLoadingPanelSubject.asObservable();
+
   updateShowLoadingPanel(newValue: boolean) {
     this.showLoadingPanelSubject.next(newValue);
   }
@@ -30,7 +31,7 @@ export class AppDataService {
   receipt: string;
   score: number;
   receivers_by_id: any = {};
-  submissionStatuses:Status[];
+  submissionStatuses: Status[];
   submission_statuses_by_id: any;
   contexts_by_id: any = {};
   questionnaires_by_id: any = {};

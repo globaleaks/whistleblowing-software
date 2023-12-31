@@ -92,7 +92,7 @@ export class FieldUtilitiesService {
 
   splitRows(fields: Children[]) {
     const rows: any = [];
-    let y: number|null = null;
+    let y: number | null = null;
 
     fields.forEach(function (f: Children) {
       if (y !== f.y) {
@@ -267,7 +267,7 @@ export class FieldUtilitiesService {
   }
 
 
-  isFieldTriggered(parent: any, field: any, answers: Answers|WhistleblowerIdentity, score: number) {
+  isFieldTriggered(parent: any, field: any, answers: Answers | WhistleblowerIdentity, score: number) {
     let count = 0;
     let i;
 

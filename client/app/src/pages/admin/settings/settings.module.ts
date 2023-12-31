@@ -21,10 +21,10 @@ import {TranslateModule} from "@ngx-translate/core";
     Tab4Component,
     Tab5Component
   ],
-    imports: [
-        CommonModule,
-        SettingsRoutingModule, SharedModule, NgbNavModule, NgbModule, RouterModule, FormsModule, NgSelectModule, TranslateModule
-    ]
+  imports: [
+    CommonModule,
+    SettingsRoutingModule, SharedModule, NgbNavModule, NgbModule, RouterModule, FormsModule, NgSelectModule, TranslateModule
+  ]
 })
 export class SettingsModule {
 }

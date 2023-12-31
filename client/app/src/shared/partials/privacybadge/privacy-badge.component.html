@@ -1,19 +1,19 @@
 <div *ngIf="!appDataService.connection.tor">
-    <div id="privacy-badge">
+    <div class="privacy-badge">
         <div *ngIf="!appDataService.public.node.enable_custom_privacy_badge">
-            <div id="PrivacyBadgeTextBox">
+            <div>
                 <span class="badge badge-warning-custom text-bg-warning">
                     <i class="fa-solid fa-exclamation-circle"></i>
                     <span>
                         {{'Warning'|translate}}
                     </span>
                 </span>
-                <div id="PrivacyBadgeText">
+                <div>
                     <div>
                         {{'You are strongly advised to visit this site using the app called Tor Browser, that protects your identity.'|translate}}
                     </div>
                 </div>
-                <div id="PrivacyBadgeDownloadLink">
+                <div>
                     <a class="btn btn-sm btn-secondary" href="https://www.torproject.org/download/" rel="noreferrer" target="_blank">
                         <i class="fa-solid fa-download"></i>
                         <span>
@@ -32,8 +32,8 @@
             </div>
         </div>
         <div *ngIf="appDataService.public.node.enable_custom_privacy_badge">
-            <div id="PrivacyBoxTextBox">
-                <markdown [data]="markdown | stripHtml" id="PrivacyBadgeCustomText" class="variable-binding"></markdown>
+            <div>
+                <markdown [data]="markdown | stripHtml" class="variable-binding"></markdown>
             </div>
         </div>
     </div>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {PreferenceResolver} from "@app/shared/resolvers/preference.resolver";
-import { AppDataService } from "@app/app-data.service";
-import { preferenceResolverModel } from "@app/models/resolvers/preference-resolver-model";
+import {AppDataService} from "@app/app-data.service";
+import {preferenceResolverModel} from "@app/models/resolvers/preference-resolver-model";
 
 @Component({
   selector: "src-accept-agreement",
@@ -13,7 +13,7 @@ export class AcceptAgreementComponent implements OnInit {
   preferenceData: preferenceResolverModel;
   accept: boolean = false;
 
-  constructor(private activeModal: NgbActiveModal, private preference: PreferenceResolver,public appDataService: AppDataService) {
+  constructor(private activeModal: NgbActiveModal, private preference: PreferenceResolver, public appDataService: AppDataService) {
   }
 
   ngOnInit(): void {

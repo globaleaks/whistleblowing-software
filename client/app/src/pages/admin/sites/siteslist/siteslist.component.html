@@ -7,14 +7,14 @@
             </div>
             <div class="tenant-badge"
                  *ngIf="tenant.active && (tenant.onionservice || tenant.hostname || (tenant.subdomain || nodeResolver.dataModel.rootdomain))">
-                <a class="badge bg-primary" *ngIf="tenant.onionservice" [href]="'http://' + tenant.onionservice"
+                <a class="badge bg-primary" *ngIf="tenant.onionservice" [href]="'https://' + tenant.onionservice"
                    rel="noreferrer" target="_blank">{{tenant.onionservice}}</a>
                 <span *ngIf="tenant.subdomain">
                         <a *ngIf="nodeResolver.dataModel.rootdomain" class="badge bg-primary"
                            [href]="'https://' + tenant.subdomain + '.' + nodeResolver.dataModel.rootdomain"
                            target="_blank">{{ tenant.subdomain }} .{{ nodeResolver.dataModel.rootdomain }}</a>
                         <a *ngIf="nodeResolver.dataModel.onionservice && tenant.subdomain" class="badge bg-primary"
-                           [href]="'http://' + tenant.subdomain + '.' + nodeResolver.dataModel.onionservice"
+                           [href]="'https://' + tenant.subdomain + '.' + nodeResolver.dataModel.onionservice"
                            rel="noreferrer" target="_blank">{{ tenant.subdomain }}
                             .{{ nodeResolver.dataModel.onionservice }}</a>
                     </span>

@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Inject, Renderer2} from "@angular/core";
+import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, Renderer2} from "@angular/core";
 import {AppConfigService} from "@app/services/root/app-config.service";
 import {AppDataService} from "@app/app-data.service";
 import {UtilsService} from "@app/shared/services/utils.service";
@@ -22,14 +22,14 @@ import {AuthenticationService} from "@app/services/helper/authentication.service
     ])
   ]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   showSidebar: boolean = true;
   isNavCollapsed: boolean = true;
   showLoadingPanel = false;
   supportedBrowser = true;
   loading = false;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, protected browserCheckService: BrowserCheckService, private changeDetectorRef: ChangeDetectorRef, private router: Router, protected translationService: TranslationService, protected translate: TranslateService, protected appConfig: AppConfigService, protected appDataService: AppDataService, protected utilsService: UtilsService, private authenticationService:AuthenticationService) {
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, protected browserCheckService: BrowserCheckService, private changeDetectorRef: ChangeDetectorRef, private router: Router, protected translationService: TranslationService, protected translate: TranslateService, protected appConfig: AppConfigService, protected appDataService: AppDataService, protected utilsService: UtilsService, private authenticationService: AuthenticationService) {
     this.watchLanguage();
   }
 
@@ -59,9 +59,9 @@ export class AppComponent implements AfterViewInit {
 
   isWhistleblowerPage() {
     let temp = this.utilsService.isWhistleblowerPage(this.authenticationService, this.appDataService)
-    if((this.router.url === "/" || this.router.url === "/submission") && this.loading){
+    if ((this.router.url === "/" || this.router.url === "/submission") && this.loading) {
       return true;
-    }else {
+    } else {
       this.loading = temp;
       return this.loading;
     }

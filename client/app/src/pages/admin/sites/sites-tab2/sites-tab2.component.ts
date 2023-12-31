@@ -10,6 +10,5 @@ import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 export class SitesTab2Component {
 
   constructor(protected nodeResolver: NodeResolver, protected utilsService: UtilsService, public questionnairesResolver: QuestionnairesResolver) {
-    console.log(nodeResolver.dataModel)
   }
 }

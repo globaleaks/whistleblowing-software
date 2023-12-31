@@ -1,4 +1,4 @@
-import {TriggeredByOption,Attrs} from "@app/models/app/shared-public-model";
+import {TriggeredByOption, Attrs} from "@app/models/app/shared-public-model";
 
 interface Option {
   id: string;
@@ -28,7 +28,7 @@ export interface Step {
   x: number;
   y: number;
   width: number;
-  questionnaire_id:string;
+  questionnaire_id: string;
   triggered_by_score: number;
   triggered_by_options: TriggeredByOption[];
   options: Option[];

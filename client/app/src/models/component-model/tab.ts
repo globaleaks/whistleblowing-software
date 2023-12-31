@@ -1,6 +1,6 @@
-import { TemplateRef } from "@angular/core";
+import {TemplateRef} from "@angular/core";
 
 export interface Tab {
-    title: string;
-    component: TemplateRef<any>;
+  title: string;
+  component: TemplateRef<any>;
 }

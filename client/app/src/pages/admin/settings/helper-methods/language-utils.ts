@@ -1,12 +1,13 @@
-import { LanguagesSupported } from "@app/models/app/public-model";
-import { NodeResolver } from "@app/shared/resolvers/node.resolver";
+import {LanguagesSupported} from "@app/models/app/public-model";
+import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 
 export class LanguageUtils {
   public languages_supported: { [code: string]: LanguagesSupported } = {};
   public languagesEnabled: { [code: string]: LanguagesSupported } = {};
   public languages_enabled_selector: LanguagesSupported[] = [];
 
-  constructor(private nodeResolver: NodeResolver) {}
+  constructor(private nodeResolver: NodeResolver) {
+  }
 
   updateLanguages() {
     this.languages_supported = {};

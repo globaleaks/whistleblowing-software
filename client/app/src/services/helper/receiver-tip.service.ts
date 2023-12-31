@@ -12,7 +12,7 @@ export class ReceiverTipService {
   constructor(private httpService: HttpService, private appDataService: AppDataService) {
   }
 
-  reset(){
+  reset() {
     this.tip = new RecieverTipData();
   }
 
@@ -25,7 +25,7 @@ export class ReceiverTipService {
   }
 
 
-  operation(url: string, operation: string, args: {key:string,value:boolean}) {
+  operation(url: string, operation: string, args: { key: string, value: boolean }) {
     return this.httpService.runOperation(url, operation, args, false).subscribe({});
   }
 

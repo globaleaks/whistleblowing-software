@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class DeleteConfirmationComponent {
 
-  @Input() args:any;
+  @Input() args: any;
   @Input() selected_tips: string[];
   @Input() operation: string;
   confirmFunction: () => void;

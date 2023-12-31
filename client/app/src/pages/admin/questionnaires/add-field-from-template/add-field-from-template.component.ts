@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {NewField} from "@app/models/admin/new-field";
@@ -10,7 +10,7 @@ import {Field, fieldtemplatesResolverModel} from "@app/models/resolvers/field-te
   selector: "src-add-field-from-template",
   templateUrl: "./add-field-from-template.component.html"
 })
-export class AddFieldFromTemplateComponent {
+export class AddFieldFromTemplateComponent implements OnInit {
   @Input() fieldTemplatesData: fieldtemplatesResolverModel[];
   @Input() step: Step;
   @Input() type: string;
@@ -19,7 +19,8 @@ export class AddFieldFromTemplateComponent {
   fields: Step[] | Field[];
   new_field: { template_id: string } = {template_id: ""};
 
-  constructor(private questionnaireService: QuestionnaireService, private httpService: HttpService, private utilsService: UtilsService) { }
+  constructor(private questionnaireService: QuestionnaireService, private httpService: HttpService, private utilsService: UtilsService) {
+  }
 
   ngOnInit(): void {
     if (this.step) {
