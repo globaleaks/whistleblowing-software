@@ -1,3 +1,24 @@
+Changes in version 4.14.0
+    Implement masking and redaction features (#3420, #3429)
+    Register report update when the report is opened (#3918)
+    Implement functionality enabling a recipient to operate on behalf of a whistleblower
+    Add analyst user role and initial implementation of statistics panel
+    Extend recipient list UI adding number of recipients for each report
+    Added possibility to export the report list in form of CSV
+    Redirect to hostname only when the HTTPS certificate is configured and enabled
+    Make it possible to localize privacy and whistleblowing policies urls
+    Enable showdown simplifiedAutoLink option
+    Simplify interface for enabling and disabling email notifications
+    Enable recipients connected to contexts to list every report
+    Implement data retention policies on closed statuses
+    Introduces a proviledge to restrict who can re-open management of reports
+    Remove custodian user role enabler
+    Count whistleblowers accesses
+    Correct CSR download function
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update documentation images
+
 Changes in version 4.13.22
     Deprecate file upload preview based on data uri
       The feature will be reimplemented soon based on the
