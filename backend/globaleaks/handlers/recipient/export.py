@@ -12,7 +12,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_submission_statuses
-from globaleaks.handlers.recipient.rtip import db_update_submission_status
+from globaleaks.handlers.recipient.rtip import db_update_submission_status, redact_report
 from globaleaks.handlers.whistleblower.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
@@ -67,20 +67,22 @@ def get_tip_export(session, tid, user_id, itip_id, language):
 
 
 @inlineCallbacks
-def prepare_tip_export(cc, tip_export):
+def prepare_tip_export(user_session, tip_export):
     files = tip_export['tip']['wbfiles'] + tip_export['tip']['rfiles']
 
     if tip_export['crypto_tip_prv_key']:
-        tip_export['tip'] = yield deferToThread(decrypt_tip, cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
+        tip_export['tip'] = yield deferToThread(decrypt_tip, user_session.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
+
+        tip_export['tip'] = yield redact_report(user_session.user_id, tip_export['tip'], True)
 
         for file_dict in tip_export['tip']['wbfiles']:
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
             if tip_export['deprecated_crypto_files_prv_key']:
-                files_prv_key = GCE.asymmetric_decrypt(cc, tip_export['deprecated_crypto_files_prv_key'])
+                files_prv_key = GCE.asymmetric_decrypt(user_session.cc, tip_export['deprecated_crypto_files_prv_key'])
             else:
-                files_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
+                files_prv_key = GCE.asymmetric_decrypt(user_session.cc, tip_export['crypto_tip_prv_key'])
 
             filelocation = os.path.join(Settings.attachments_path, file_dict['id'])
             if not os.path.exists(filelocation):
@@ -95,7 +97,7 @@ def prepare_tip_export(cc, tip_export):
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
-            tip_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
+            tip_prv_key = GCE.asymmetric_decrypt(user_session.cc, tip_export['crypto_tip_prv_key'])
             filelocation = os.path.join(Settings.attachments_path, file_dict['name'])
             directory_traversal_check(Settings.attachments_path, filelocation)
             file_dict['key'] = tip_prv_key
@@ -133,7 +135,7 @@ class ExportHandler(BaseHandler):
 
         filename = "report-" + str(tip_export["tip"]["progressive"]) + ".zip"
 
-        files = yield prepare_tip_export(self.session.cc, tip_export)
+        files = yield prepare_tip_export(self.session, tip_export)
 
         zipstream = ZipStream(files)
 

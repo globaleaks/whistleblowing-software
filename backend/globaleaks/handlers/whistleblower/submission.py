@@ -3,6 +3,7 @@
 # Handlerse dealing with submission interface
 import base64
 import json
+import re
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
@@ -15,6 +16,22 @@ from globaleaks.utils.json import JSONEncoder
 from globaleaks.utils.utility import get_expiration, datetime_null
 
 
+def index_answers(answers, parent_index=''):
+    for key in answers:
+        if not re.match(requests.uuid_regexp, key):
+            continue
+
+        index = 0
+        for answer in answers[key]:
+            str_index = str(index)
+            if parent_index:
+               str_index = parent_index + "-" + str_index
+
+            answer['index'] = str_index
+            index_answers(answer, str_index)
+            index += 1
+
+
 def decrypt_tip(user_key, tip_prv_key, tip):
     tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
 
@@ -23,6 +40,9 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
     for questionnaire in tip['questionnaires']:
         questionnaire['answers'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(questionnaire['answers'].encode())).decode())
+
+    for q in tip['questionnaires']:
+        index_answers(q['answers'])
 
     for k in ['whistleblower_identity']:
         if k in tip['data'] and tip['data'][k]:

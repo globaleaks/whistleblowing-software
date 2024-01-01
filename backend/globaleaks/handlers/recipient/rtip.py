@@ -481,8 +481,6 @@ def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, red
 
     answers = tip_data['questionnaires'][0]['answers']
 
-    index_answers(answers)
-
     db_redact_answers(answers, redaction)
 
     _content = answers
@@ -667,14 +665,15 @@ def redact_answers(answers, redactions):
 
 
 @transact
-def redact_report(session, user_id, report):
+def redact_report(session, user_id, report, enforce=False):
     user = session.query(models.User).get(user_id)
 
     redactions = session.query(models.Redaction).filter(models.Redaction.internaltip_id == report['id']).all()
 
-    if user.can_mask_information or \
-            user.can_redact_information or \
-            not len(redactions):
+    if not enforce and \
+            (user.can_mask_information or \
+             user.can_redact_information or \
+             not len(redactions)):
         return report
 
     redactions_by_reference_id = {}
@@ -1095,22 +1094,6 @@ class RTipRedactionCollection(BaseHandler):
         returnValue(redaction)
 
 
-def index_answers(answers, parent_index=''):
-    for key in answers:
-        if not re.match(requests.uuid_regexp, key):
-            continue
-
-        index = 0
-        for answer in answers[key]:
-            str_index = str(index)
-            if parent_index:
-               str_index = parent_index + "-" + str_index
-
-            answer['index'] = str_index
-            index_answers(answer, str_index)
-            index += 1
-
-
 class RTipInstance(OperationHandler):
     """
     This interface exposes the Receiver's Tip
@@ -1123,9 +1106,6 @@ class RTipInstance(OperationHandler):
 
         if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
-
-        for q in tip['questionnaires']:
-          index_answers(q['answers'])
 
         tip = yield redact_report(self.session.user_id, tip)
 
@@ -1209,7 +1189,7 @@ class WhistleblowerFileDownload(BaseHandler):
                                             models.WhistleblowerFile.id == file_id))
 
         redaction = session.query(models.Redaction) \
-                            .filter(models.Redaction.reference_id == ifile.id, models.Redaction.entry == '0').one_or_none()
+                           .filter(models.Redaction.reference_id == ifile.id, models.Redaction.entry == '0').one_or_none()
 
         if redaction is not None and \
                 not user.can_mask_information and \
