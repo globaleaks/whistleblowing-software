@@ -100,6 +100,12 @@ for TARGET in $TARGETS; do
 
   rm debian/control backend/requirements.txt
 
+  if [ "$TARGET" == "bionic" ]; then
+    echo 10 > debian/compat
+  else
+    echo 12 > debian/compat
+  fi
+
   cp debian/controlX/control.$TARGET  debian/control
   cp backend/requirements/requirements-$TARGET.txt backend/requirements.txt
 
