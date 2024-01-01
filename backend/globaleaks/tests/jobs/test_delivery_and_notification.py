@@ -6,7 +6,6 @@ from globaleaks import models
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.jobs.notification import Notification
 from globaleaks.orm import transact
-from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now, datetime_null
 

@@ -13,7 +13,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import letsencrypt, tls
-from globaleaks.utils.log import log
 
 
 def db_load_tls_config(session, tid, test=False):

@@ -4,7 +4,6 @@ import itertools
 
 from datetime import timedelta
 
-from sqlalchemy import or_
 from twisted.internet import defer
 
 from globaleaks import models

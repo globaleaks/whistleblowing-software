@@ -12,7 +12,6 @@ from twisted.trial import unittest
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db import update_db
-from globaleaks.orm import set_db_uri
 from globaleaks.settings import Settings
 from globaleaks.tests import helpers
 

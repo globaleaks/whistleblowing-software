@@ -11,7 +11,6 @@ from globaleaks.settings import Settings
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.utility import uuid4
 
 
 __all__ = ['Delivery']

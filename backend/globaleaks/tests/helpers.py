@@ -37,7 +37,7 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.whistleblower import wbtip
 from globaleaks.handlers.whistleblower.submission import create_submission
 from globaleaks.models import serializers
-from globaleaks.models.config import db_set_config_variable, ConfigFactory
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import initialize_submission_session, Sessions
@@ -46,7 +46,6 @@ from globaleaks.state import State, TenantState
 from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.token import Token
 from globaleaks.utils.utility import datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 

@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 # Implements configuration of Tor onion services
 import os
-import sys
 import txtorcon
 
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
-from twisted.internet.defer import Deferred, inlineCallbacks, returnValue
+from twisted.internet.defer import Deferred, returnValue
 from txtorcon import TorConfig
 
-from globaleaks.models.config import ConfigFactory
-from globaleaks.orm import transact
 from globaleaks.services.service import Service
 from globaleaks.state import State
 from globaleaks.utils.log import log

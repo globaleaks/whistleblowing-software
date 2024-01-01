@@ -9,7 +9,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomPassword
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.sock import isIPAddress
 

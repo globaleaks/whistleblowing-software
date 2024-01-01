@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import tw
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
 
 

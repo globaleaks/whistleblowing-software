@@ -2,7 +2,6 @@
 from globaleaks import models
 from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.jobs import delivery
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 from twisted.internet import defer

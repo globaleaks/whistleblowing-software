@@ -16,7 +16,7 @@ from globaleaks.handlers.whistleblower.submission import decrypt_tip, \
     db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_log, db_get, transact
+from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE

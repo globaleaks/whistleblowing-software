@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.admin.operation import generate_password_reset_token
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, \
                                      user_serialize_user

@@ -1,8 +1,5 @@
 # -*- coding: utf-8
-import getpass
-import grp
 import os
-import pwd
 import sys
 
 from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug

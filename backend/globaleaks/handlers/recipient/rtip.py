@@ -22,15 +22,15 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.whistleblower.submission import db_create_receivertip, decrypt_tip
 from globaleaks.handlers.whistleblower.wbtip import db_notify_report_update
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.models import serializers, Context
-from globaleaks.orm import db_get, db_del, db_log, transact, tw
+from globaleaks.models import serializers
+from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
+from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never
 from globaleaks.utils.json import JSONEncoder
 
 

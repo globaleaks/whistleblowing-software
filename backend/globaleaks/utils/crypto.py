@@ -8,11 +8,9 @@ import secrets
 import string
 import struct
 import threading
-import time
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
-from cryptography.hazmat.primitives.twofactor.totp import TOTP
 
 from nacl.encoding import Base64Encoder
 from nacl.pwhash import argon2id

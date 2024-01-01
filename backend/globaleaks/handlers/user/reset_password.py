@@ -16,7 +16,7 @@ from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey, GCE
-from globaleaks.utils.utility import datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_null
 
 
 def db_generate_password_reset_token(session, user):

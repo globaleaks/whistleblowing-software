@@ -2,7 +2,7 @@
 #
 # Handler implementing pre/post submission tokens for implementing rate limiting on whistleblower operations
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.state import State
 
 

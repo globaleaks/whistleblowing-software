@@ -1,6 +1,4 @@
 # -*- coding: UTF-8
-from itertools import groupby
-
 from globaleaks import models
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
@@ -8,7 +6,6 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import serializers
 from globaleaks.models.config import db_get_configs, \
     db_get_config_variable, db_set_config_variable
-from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
 from globaleaks.utils.tls import gen_selfsigned_certificate

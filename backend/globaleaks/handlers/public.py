@@ -2,7 +2,6 @@
 #
 # Handlers dealing with public API exporting main platform configuration/resources
 import copy
-import os
 
 from sqlalchemy import or_
 

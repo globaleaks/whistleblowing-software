@@ -37,7 +37,7 @@ from globaleaks.handlers import admin, \
                                 wizard, \
                                 whistleblower
 
-from globaleaks.rest import decorators, requests, errors
+from globaleaks.rest import decorators, errors
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.json import JSONEncoder
 from globaleaks.utils.sock import isIPAddress

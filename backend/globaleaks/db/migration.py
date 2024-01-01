@@ -15,7 +15,7 @@ from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.orm import db_log
 
 from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, \
-    Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, \
+    Context_v_45, FieldOption_v_45, InternalFile_v_45, \
     InternalTip_v_45, Receiver_v_45, User_v_45, ReceiverFile_v_45
 from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, \
     InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46

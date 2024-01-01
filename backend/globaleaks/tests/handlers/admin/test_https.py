@@ -8,7 +8,6 @@ from globaleaks.orm import tw
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.tests import helpers
-from globaleaks.tests.utils import test_tls
 from globaleaks.utils.letsencrypt import ChallTok
 
 
