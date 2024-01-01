@@ -204,9 +204,6 @@ msgstr "ဝင်ရောက်ခွင့် တောင်းဆိုပ�
 msgid "Request access to the whistleblower's identity"
 msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ဝင်ရောက်ကြည့်ရှုခွင့် တောင်းဆိုသည်"
 
-msgid "Please write a motivation"
-msgstr "ကျေးဇူးပြုပြီး လှုံ့ဆော်မှုတစ်ခု ရေးပေးပါ"
-
 msgid "Reply to the request"
 msgstr "တောင်းဆိုမှုကို အကြောင်းပြန်ပါ"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "အမည်မသိနိုင်ခြင်း"
+
+msgid "Anonymous"
+msgstr "အမည်မဖေါ်"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 
@@ -571,8 +589,8 @@ msgstr "သိမ်းမည်"
 msgid "Cancel"
 msgstr "ပယ်ဖျက်မည်"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ရက်များ"
 
 msgid "Report statuses"
 msgstr "အစီရင်ခံစာ အခြေအနေများ"
@@ -595,9 +613,6 @@ msgstr "လက်ခံသူများ"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ရက်များ"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ဤလုပ်ဆောင်ချက်ကို ပိတ်ရန် တန်ဖိုးကို 0 သတ်မှတ်ပါ။"
 
@@ -618,12 +633,6 @@ msgstr "လက်ခံသူများကို အက္ခရာစဉ်�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "လက်ခံသူ အသေးစိတ်များကို အစီရင်ခံစာ၏ အခြေအနေပြ စာမျက်နှာတွင် ပြသပါ"
-
-msgid "Enable comments"
-msgstr "မှတ်ချက်များကို ဖွင့်ပါ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "သတင်းပေးသူအား အစီရင်ခံစာတွင် ပူးတွဲဖိုင်များ ထည့်ခွင့်ပြုပါ"
@@ -660,6 +669,9 @@ msgstr "ခွင့်ပြုထားသော IP လိပ်စာမျ�
 
 msgid "Admin"
 msgstr "အုပ်ချုပ်ရေးမှူး"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "လက်ခံသူ"
@@ -1023,9 +1035,6 @@ msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်�
 msgid "Custom privacy panel"
 msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
 
-msgid "Enable custodian user role"
-msgstr "အုပ်ထိန်းသူအဖြစ် အသုံးပြုသူ အခန်းကဏ္ဍကို  ဖွင့်ပါ"
-
 msgid "Enable scoring system"
 msgstr "အမှတ်ပေးစနစ်ကို ဖွင့်ပါ"
 
@@ -1093,9 +1102,6 @@ msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းမျာ�
 
 msgid "Title"
 msgstr "ခေါင်းစဉ်"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "အများဆိုင် အမည်"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "အခြေအနေ -"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "သေချာပါသလား။"
 
@@ -1246,12 +1246,20 @@ msgstr "၎င်းကို ကူးယူ၍ လုံခြုံသော 
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "မိတ္တူအတွက် အမည်တစ်ခု ရိုက်ထည့်ပါ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "ပလက်ဖောင်းကို HTTPS ချိတ်ဆက်မှုများအတွက် ချိန်ညှိမထားသဖြင့် စမ်းသပ်ရန်အတွက်သာ အသုံးပြုသင့်သည်။"
-
-msgid "Please write a motivation for the reply"
-msgstr "ကျေးဇူးပြု၍ အကြောင်းပြန်မှုအတွက် လှုံ့ဆော်မှုတစ်ခု ရေးပါ။"
 
 msgid "Send"
 msgstr "ပို့မည်"
@@ -1388,6 +1393,9 @@ msgstr "လက်ခံသူများက သင့်အား အပို�
 
 msgid "Fill the additional questionnaire"
 msgstr "အပိုဆောင်း မေးခွန်းလွှာ ဖြည့်ပါ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
 
 msgid "From:"
 msgstr "မှ -"

@@ -224,9 +224,6 @@ msgstr " Зроблено запит на доступ"
 msgid "Request access to the whistleblower's identity"
 msgstr "Зробити запит на  особисті дані інформатора"
 
-msgid "Please write a motivation"
-msgstr "Будь ласка, поясніть мету"
-
 msgid "Reply to the request"
 msgstr "Відповідь на запит"
 
@@ -522,6 +519,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Анонімність"
+
+msgid "Anonymous"
+msgstr "Анонімно"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Мобільний"
+
 msgid "File a report"
 msgstr "Подати звіт"
 
@@ -591,8 +609,8 @@ msgstr "Зберегти"
 msgid "Cancel"
 msgstr "Скасувати"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "дн."
 
 msgid "Report statuses"
 msgstr "Статуси звітів"
@@ -615,9 +633,6 @@ msgstr "Отримувачі"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "дн."
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Встановіть значення 0, щоб відключити цю функцію."
 
@@ -638,12 +653,6 @@ msgstr "Упорядкувати отримувачів за алфавітом"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Показати дані отримувача на сторінці статусу подання інформації"
-
-msgid "Enable comments"
-msgstr "Увімкнути коментарі"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Дозволити інформатору коментувати"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дозволити інформаторам додавати файли до звіту"
@@ -680,6 +689,9 @@ msgstr "Дозволені IP-адреси"
 
 msgid "Admin"
 msgstr "Адміністратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Отримувач"
@@ -1043,9 +1055,6 @@ msgstr "Увімкнути панель настройки конфіденці�
 msgid "Custom privacy panel"
 msgstr "Панель для налаштування параметрів конфіденційності"
 
-msgid "Enable custodian user role"
-msgstr "Включити роль користувача-зберігача"
-
 msgid "Enable scoring system"
 msgstr "Увімкніть систему оцінки"
 
@@ -1113,9 +1122,6 @@ msgstr "Включити умови використання"
 
 msgid "Title"
 msgstr "Заголовок"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Публічне ім'я"
@@ -1234,12 +1240,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
@@ -1266,12 +1266,20 @@ msgstr "Зробіть копію і помістіть її в безпечне
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Введіть ім'я копії"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Запит на підтримку"
@@ -1292,9 +1300,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа все ще не налаштована на з'єднання HTTPS і тому повинна використовуватися виключно для тестування."
-
-msgid "Please write a motivation for the reply"
-msgstr "Будь ласка, напишіть мотивацію для відповіді"
 
 msgid "Send"
 msgstr "Відправити"
@@ -1408,6 +1413,9 @@ msgstr "Отримувачі попросили вас заповнити дод
 
 msgid "Fill the additional questionnaire"
 msgstr "Заповнити додаткову анкету"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Дозволити інформатору коментувати"
 
 msgid "From:"
 msgstr "Від:"

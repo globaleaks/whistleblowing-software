@@ -8,7 +8,7 @@
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
 # Max Moiseev <max.moiseev@chamber.fi>, 2020-2023
-# Panu Ahvenharju, 2018-2020
+# Panu Ahvenharju, 2018-2020,2023
 # Ricky Tigg, 2022
 # Ricky Tigg, 2022
 # Sami Kuusisto <sami@6sto.com>, 2015
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>, 2020-2023\n"
+"Last-Translator: Panu Ahvenharju, 2018-2020,2023\n"
 "Language-Team: Finnish (http://app.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -212,9 +212,6 @@ msgstr "Sisäänpääsy pyydetty"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Pyydä pääsyä ilmoittajan henkilöllisyyteen"
-
-msgid "Please write a motivation"
-msgstr "Kirjoita perustelu"
 
 msgid "Reply to the request"
 msgstr "Vastaa pyyntöön"
@@ -488,10 +485,10 @@ msgid "Give this user ability to permanently redact masked information"
 msgstr "Anna käyttäjälle mahdollisuus poistaa pysyvästi peitetyt tiedot"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Olen lukenut ja hyväksyn tietosuojakäytännön"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Lataa kopio tietosuojaselosteesta"
 
 msgid "Privacy Policy"
 msgstr "Yksityisyyskäytäntö"
@@ -510,6 +507,27 @@ msgstr "Vain vastaanottajat"
 
 msgid "Me only"
 msgstr "Vain minä"
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonyymi"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobiili"
 
 msgid "File a report"
 msgstr "Jätä vihje"
@@ -580,8 +598,8 @@ msgstr "Tallenna"
 msgid "Cancel"
 msgstr "Peru"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "päivää"
 
 msgid "Report statuses"
 msgstr "Ilmoitusten vaiheet"
@@ -604,9 +622,6 @@ msgstr "Vastaanottajat"
 msgid "Reminder date"
 msgstr "Muistutuksen päivämäärä"
 
-msgid "days"
-msgstr "päivää"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Aseta arvoksi 0 poistaaksesi tämän ominaisuuden käytöstä."
 
@@ -627,12 +642,6 @@ msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
-
-msgid "Enable comments"
-msgstr "Salli kommentit"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Anna ilmoittajan kirjoittaa kommentteja"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Anna ilmoittajan lisätä liitteitä"
@@ -669,6 +678,9 @@ msgstr "Sallitut IP-osoitteet"
 
 msgid "Admin"
 msgstr "Ylläpitäjä"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Vastaanottaja"
@@ -1032,9 +1044,6 @@ msgstr "Ota mukautettu tietosuojapaneeli käyttöön"
 msgid "Custom privacy panel"
 msgstr "Mukautettu tietosuojapaneeli"
 
-msgid "Enable custodian user role"
-msgstr "Ota käyttöön valvontarooli"
-
 msgid "Enable scoring system"
 msgstr "Ota käyttöön pisteytysjärjestelmä"
 
@@ -1102,9 +1111,6 @@ msgstr "Ota käyttöön palvelun käyttöehdot"
 
 msgid "Title"
 msgstr "Otsikko"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Julkinen nimi"
@@ -1223,12 +1229,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Tila:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
@@ -1255,12 +1255,20 @@ msgstr "Tee kopio ja säilytä se turvallisessa paikassa. Se on tarpeen, jos kad
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Anna kopiolle nimi"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Pyydä tukea"
@@ -1281,9 +1289,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Alustaa ei ole vieläkään määritetty HTTPS-yhteyksille, joten sitä tulisi käyttää vain testaamiseen."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kirjoittaisitko vastauksen perustelun"
 
 msgid "Send"
 msgstr "Lähetä"
@@ -1397,6 +1402,9 @@ msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään lisäkyselylomakkeen
 
 msgid "Fill the additional questionnaire"
 msgstr "Täytä lisäkyselylomake"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Anna ilmoittajan kirjoittaa kommentteja"
 
 msgid "From:"
 msgstr "Lähettäjä:"
@@ -1761,7 +1769,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Epätavallisia tietoja sisältävät toiminnot ovat:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Levytilaa vapaana {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "

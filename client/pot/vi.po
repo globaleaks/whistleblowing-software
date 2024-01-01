@@ -218,9 +218,6 @@ msgstr "Yêu cầu truy cập "
 msgid "Request access to the whistleblower's identity"
 msgstr "Yêu cầu truy cập danh tính của người tố giác"
 
-msgid "Please write a motivation"
-msgstr "Xin cho biết lý do"
-
 msgid "Reply to the request"
 msgstr "Trả lời yêu cầu"
 
@@ -516,6 +513,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Tính ẩn danh"
+
+msgid "Anonymous"
+msgstr "Nặc danh"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Di động"
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -585,8 +603,8 @@ msgstr "Lưu"
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ngày"
 
 msgid "Report statuses"
 msgstr "Trạng thái của báo cáo"
@@ -609,9 +627,6 @@ msgstr "Người nhận"
 msgid "Reminder date"
 msgstr "Ngày nhắc nhở"
 
-msgid "days"
-msgstr "ngày"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
@@ -632,12 +647,6 @@ msgstr "Hiển thị người nhận theo thứ tự ABC"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Hiển thị chi tiết người nhận trong trang trạng thái của báo cáo"
-
-msgid "Enable comments"
-msgstr "Cho phép góp ý kiến"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Cho phép người tố giác góp ý kiến"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Cho phép người tố giác thêm tập tin đính kèm"
@@ -674,6 +683,9 @@ msgstr "Các địa chỉ IP được phép truy cập"
 
 msgid "Admin"
 msgstr "Quản trị viên"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Người nhận"
@@ -1037,9 +1049,6 @@ msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư
 msgid "Custom privacy panel"
 msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
 
-msgid "Enable custodian user role"
-msgstr "Bật mở vai trò người bảo quản"
-
 msgid "Enable scoring system"
 msgstr "Bật mở hệ thống tính điểm"
 
@@ -1107,9 +1116,6 @@ msgstr "Bật mở điều khoản dịch vụ"
 
 msgid "Title"
 msgstr "Tựa đề"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Tên công khai"
@@ -1228,12 +1234,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Trạng thái"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
@@ -1260,12 +1260,20 @@ msgstr "Làm một bản sao và lưu trữ ở nơi an toàn. Nếu bạn mất
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nhập tên cho bản sao"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Yêu cầu hỗ trợ"
@@ -1286,9 +1294,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Hệ thống chưa được cấu hình cho kết nối HTTPS và do đó chỉ nên dùng để thử nghiệm."
-
-msgid "Please write a motivation for the reply"
-msgstr "Xin cho biết lý do của bạn trong phần trả lời"
 
 msgid "Send"
 msgstr "Gởi"
@@ -1402,6 +1407,9 @@ msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu h�
 
 msgid "Fill the additional questionnaire"
 msgstr "Điền thêm các câu hỏi bổ sung"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Cho phép người tố giác góp ý kiến"
 
 msgid "From:"
 msgstr "Từ:"

@@ -212,9 +212,6 @@ msgstr "U kërkua hyrje"
 msgid "Request access to the whistleblower's identity"
 msgstr "Kërko hyrje te identiteti i nxjerrësit të së fshehtës"
 
-msgid "Please write a motivation"
-msgstr "Ju lutemi, shkruani një motivim"
-
 msgid "Reply to the request"
 msgstr "Përgjigjuni kërkesës"
 
@@ -510,6 +507,27 @@ msgstr "Vetëm marrësit"
 msgid "Me only"
 msgstr "Vetëm unë"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Subscribed"
+msgstr "I pajtuar"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Celular"
+
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 
@@ -579,8 +597,8 @@ msgstr "Ruaje"
 msgid "Cancel"
 msgstr "Anuloje"
 
-msgid "Scadenza (giorni)"
-msgstr "Skadim (ditë)"
+msgid "days"
+msgstr "ditë"
 
 msgid "Report statuses"
 msgstr "Gjendje raportimesh"
@@ -603,9 +621,6 @@ msgstr "Marrës"
 msgid "Reminder date"
 msgstr "Datë kujtuesi"
 
-msgid "days"
-msgstr "ditë"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
 
@@ -626,12 +641,6 @@ msgstr "Marrësit shfaqi në rend alfabetik"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Shfaq hollësi marrësi te faqja e gjendjes së raportimit"
-
-msgid "Enable comments"
-msgstr "Aktivizo komente"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
@@ -668,6 +677,9 @@ msgstr "Adresa IP të lejuara"
 
 msgid "Admin"
 msgstr "Përgjegjës"
+
+msgid "Analyst"
+msgstr "Analist"
 
 msgid "Recipient"
 msgstr "Marrës"
@@ -1031,9 +1043,6 @@ msgstr "Aktivizo panel vetjak privatësie"
 msgid "Custom privacy panel"
 msgstr "Panel vetjak privatësie"
 
-msgid "Enable custodian user role"
-msgstr "Aktivizo rol përdoruesi ruajtës"
-
 msgid "Enable scoring system"
 msgstr "Aktivizo sistem pikësh"
 
@@ -1101,9 +1110,6 @@ msgstr "Aktivizo kushte shërbimi"
 
 msgid "Title"
 msgstr "Titull"
-
-msgid "Analyst"
-msgstr "Analist"
 
 msgid "Public name"
 msgstr "Emër publik"
@@ -1222,12 +1228,6 @@ msgstr "Ndryshoni gjendje"
 msgid "Status:"
 msgstr "Gjendje:"
 
-msgid "Substatus:"
-msgstr "Nëngjendje:"
-
-msgid "Motivation:"
-msgstr "Motivacion:"
-
 msgid "Are you sure?"
 msgstr "Jeni i sigurt?"
 
@@ -1254,12 +1254,20 @@ msgstr "Bëni një kopje dhe depozitojeni në një vend të parrezik. Do t’ju 
 msgid "Attention"
 msgstr "Kujdes"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Për arsye sigurie, kodi i dëftesës për raportimin tuaj duhet ndryshuar."
+msgid "For security reasons the code needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Jepni një emër për kopjen"
+
+msgid "Mask"
+msgstr "Maskoje"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Kërkoni asistencë"
@@ -1280,9 +1288,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma ende s’është formësuar për lidhje HTTPS, ndaj duhet përdorur vetëm për qëllime testimi."
-
-msgid "Please write a motivation for the reply"
-msgstr "Ju lutemi, shkruani një shtysë për përgjigjen"
 
 msgid "Send"
 msgstr "Dërgoje"
@@ -1396,6 +1401,9 @@ msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
 
 msgid "Fill the additional questionnaire"
 msgstr "Plotësoni pyetësorin shtesë"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
 msgid "From:"
 msgstr "Nga:"

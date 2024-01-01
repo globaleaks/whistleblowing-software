@@ -233,9 +233,6 @@ msgstr "Доступ запрошен"
 msgid "Request access to the whistleblower's identity"
 msgstr "Запросить доступ к личности информатора"
 
-msgid "Please write a motivation"
-msgstr "Пожалуйста укажите мотивацию"
-
 msgid "Reply to the request"
 msgstr "Ответить на запрос"
 
@@ -531,6 +528,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Анонимность"
+
+msgid "Anonymous"
+msgstr "Анонимно"
+
+msgid "Subscribed"
+msgstr "Подписан"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Мобильный"
+
 msgid "File a report"
 msgstr "Подать отчет"
 
@@ -600,8 +618,8 @@ msgstr "Сохранить"
 msgid "Cancel"
 msgstr "Отмена"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "дней"
 
 msgid "Report statuses"
 msgstr "Статусы отчетов"
@@ -624,9 +642,6 @@ msgstr "Получатели"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "дней"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Установите значение 0, чтобы отключить эту функцию."
 
@@ -647,12 +662,6 @@ msgstr "Сортировать получателей в алфавитном п
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Показать данные получателя на странице состояния подачи материалов"
-
-msgid "Enable comments"
-msgstr "Включить комментарии"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Разрешить информатору добавлять комментарии"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
@@ -689,6 +698,9 @@ msgstr "Допустимые IP-адреса"
 
 msgid "Admin"
 msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Получатель"
@@ -1052,9 +1064,6 @@ msgstr "Включить панель настройки конфиденциа�
 msgid "Custom privacy panel"
 msgstr "Панель настройки конфиденциальности"
 
-msgid "Enable custodian user role"
-msgstr "Включить роль пользователя-хранителя"
-
 msgid "Enable scoring system"
 msgstr "Включить скоринговую систему"
 
@@ -1122,9 +1131,6 @@ msgstr "Включить условия обслуживания"
 
 msgid "Title"
 msgstr "Заголовок"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Публичное имя"
@@ -1243,12 +1249,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
@@ -1275,12 +1275,20 @@ msgstr "Сделайте копию и поместите ее в безопас
 msgid "Attention"
 msgstr "Внимание"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Введите имя копии"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Запросить поддержку"
@@ -1301,9 +1309,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа все еще не настроена на соединения HTTPS и поэтому должна использоваться исключительно для тестирования."
-
-msgid "Please write a motivation for the reply"
-msgstr "Пожалуйста укажите мотивацию ответа"
 
 msgid "Send"
 msgstr "Отправить"
@@ -1417,6 +1422,9 @@ msgstr "Получатели попросили вас заполнить доп
 
 msgid "Fill the additional questionnaire"
 msgstr "Заполнить дополнительный опросник"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Разрешить информатору добавлять комментарии"
 
 msgid "From:"
 msgstr "От кого:"

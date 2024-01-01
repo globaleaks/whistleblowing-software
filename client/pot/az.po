@@ -210,9 +210,6 @@ msgstr "Giriş tələb olunur"
 msgid "Request access to the whistleblower's identity"
 msgstr "İnformasiya ötürənin kimliyinə giriş istə"
 
-msgid "Please write a motivation"
-msgstr "Motivasiya yazmağınızı xahiş edirik"
-
 msgid "Reply to the request"
 msgstr "Tələblərə cavab verin"
 
@@ -508,6 +505,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hesabat göndər"
 
@@ -577,8 +595,8 @@ msgstr "Yadda saxla"
 msgid "Cancel"
 msgstr "Ləğv et"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "günlər"
 
 msgid "Report statuses"
 msgstr "Hesabatın statusu"
@@ -601,9 +619,6 @@ msgstr "Alıcılar"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "günlər"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu funksiyanı deaktiv etmək üçün ölçünü 0 kimi qeyd edin."
 
@@ -624,12 +639,6 @@ msgstr "Alıcıları əlifba sırası ilə göstərin"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Alıcı haqda məlumatları hesabatın status səhifəsində göstərin "
-
-msgid "Enable comments"
-msgstr "Şərhləri aktiv edin"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
@@ -666,6 +675,9 @@ msgstr "İcazəli İP ünvanlar"
 
 msgid "Admin"
 msgstr "İnzibatçı"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Alıcı"
@@ -1029,9 +1041,6 @@ msgstr "Fərdi məxfilik panelini aktiv edin"
 msgid "Custom privacy panel"
 msgstr "Fərdi məxfiik paneli"
 
-msgid "Enable custodian user role"
-msgstr "Mühafizəçinin istifadəçi rolunu işə salın"
-
 msgid "Enable scoring system"
 msgstr "Qiymətləndirmə sistemini işə salın"
 
@@ -1099,9 +1108,6 @@ msgstr "Qaydaları aktiv edin"
 
 msgid "Title"
 msgstr "Başlıq"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "İctimai ad"
@@ -1220,12 +1226,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Əminsinizmi?"
 
@@ -1252,12 +1252,20 @@ msgstr "Nüsxəsini çıxarıb, təhlükəsiz yerdə saxlayın. Beləcə, parol 
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nüsxə üçün ad əlavə edin"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Kömək istəyin"
@@ -1278,9 +1286,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma hələ HTTPS əlaqələri üçün quraşdırılmayıb, ona görə də yalnız test məqsədləri üçün istifadə olunmalıdır."
-
-msgid "Please write a motivation for the reply"
-msgstr "Xahiş edirik, cavab üçün motivasiya yazın"
 
 msgid "Send"
 msgstr "Göndər"
@@ -1394,6 +1399,9 @@ msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
 
 msgid "Fill the additional questionnaire"
 msgstr "Əlavə sorğu anketini doldurun"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
 
 msgid "From:"
 msgstr "Etibarən:"

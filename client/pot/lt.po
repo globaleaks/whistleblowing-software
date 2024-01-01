@@ -203,9 +203,6 @@ msgstr "Prašymas gauti prieigą"
 msgid "Request access to the whistleblower's identity"
 msgstr "Prašymas leisti susipažinti su informatoriaus tapatybe"
 
-msgid "Please write a motivation"
-msgstr "Prašymą pagrįskite"
-
 msgid "Reply to the request"
 msgstr "Atsakyti į prašymą"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonimas"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Teikti pranešimą"
 
@@ -570,8 +588,8 @@ msgstr "Įrašyti"
 msgid "Cancel"
 msgstr "Atšaukti"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dienos"
 
 msgid "Report statuses"
 msgstr "Pranešimo statusai"
@@ -594,9 +612,6 @@ msgstr "Gavėjai"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dienos"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Norėdami išjungti šią funkciją, nustatykite vertę „0“."
 
@@ -617,12 +632,6 @@ msgstr "Rodyti gavėjus abėcėlės tvarka"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Rodyti gavėjo informaciją pranešimo statuso puslapyje"
-
-msgid "Enable comments"
-msgstr "Įgalinti komentarus"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Leisti pranešėjui rašyti komentarus"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
@@ -659,6 +668,9 @@ msgstr "Leidžiami IP adresai"
 
 msgid "Admin"
 msgstr "Administratorius"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Gavėjas"
@@ -1022,9 +1034,6 @@ msgstr "Įgalinti pasirinktinį privatumo skydelį"
 msgid "Custom privacy panel"
 msgstr "Pasirinktinis privatumo skydelis"
 
-msgid "Enable custodian user role"
-msgstr "Įgalinti saugotojo naudotojo funkciją"
-
 msgid "Enable scoring system"
 msgstr "Įjungti vertinimo sistemą"
 
@@ -1092,9 +1101,6 @@ msgstr "Įgalinti paslaugų sąlygas"
 
 msgid "Title"
 msgstr "Antraštė"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Viešas pavadinimas"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Būsena:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ar tikrai?"
 
@@ -1245,12 +1245,20 @@ msgstr "Padarykite kopiją ir laikykite ją saugioje vietoje. Jei prarasite slap
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Įveskite kopijos pavadinimą"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Prašyti pagalbos"
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma vis dar nesukonfigūruota HTTPS ryšiams, todėl turėtų būti naudojama tik testavimo tikslais."
-
-msgid "Please write a motivation for the reply"
-msgstr "Atsakymą pagrįskite"
 
 msgid "Send"
 msgstr "Siųsti"
@@ -1387,6 +1392,9 @@ msgstr "Gavėjai paprašė jūsų užpildyti papildomą klausimyną."
 
 msgid "Fill the additional questionnaire"
 msgstr "Pildykite papildomą klausimyną"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Leisti pranešėjui rašyti komentarus"
 
 msgid "From:"
 msgstr "Nuo:"

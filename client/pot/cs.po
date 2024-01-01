@@ -216,9 +216,6 @@ msgstr "Požádáno o přístup"
 msgid "Request access to the whistleblower's identity"
 msgstr "Požádát o přístup k identitě oznamovatele"
 
-msgid "Please write a motivation"
-msgstr "Prosím vyplňte motivaci"
-
 msgid "Reply to the request"
 msgstr "Odpovědět na požadavek"
 
@@ -514,6 +511,27 @@ msgstr "Pouze příjemci"
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonymní"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobilní"
+
 msgid "File a report"
 msgstr "Podat oznámení"
 
@@ -583,8 +601,8 @@ msgstr "Uložit"
 msgid "Cancel"
 msgstr "Zrušit"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dnů"
 
 msgid "Report statuses"
 msgstr "Stav oznámení"
@@ -607,9 +625,6 @@ msgstr "Příjemci"
 msgid "Reminder date"
 msgstr "Datum připomenutí"
 
-msgid "days"
-msgstr "dnů"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nastavte hodnotu na 0, chcete-li tuto funkci zakázat."
 
@@ -630,12 +645,6 @@ msgstr "Ukázat příjemce v abecedním pořadí"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Zobrazit detaily o příjemcích na stránce o stavu oznámení"
-
-msgid "Enable comments"
-msgstr "Povolit komentáře"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Povolit oznamovateli psát komentáře"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Povolit oznamovateli přidat přílohy k oznámení"
@@ -672,6 +681,9 @@ msgstr "Povolené IP adresy"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Příjemce"
@@ -1035,9 +1047,6 @@ msgstr "Povolit vlastní panel soukromí"
 msgid "Custom privacy panel"
 msgstr "Vlastní panel soukromí"
 
-msgid "Enable custodian user role"
-msgstr "Povolit roli depozitáře"
-
 msgid "Enable scoring system"
 msgstr "Aktivovat systém hodnocení"
 
@@ -1105,9 +1114,6 @@ msgstr "Aktivovat smluvní podmínky"
 
 msgid "Title"
 msgstr "Název"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Veřejné jméno"
@@ -1226,12 +1232,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Stav"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Jste si jistý?"
 
@@ -1258,12 +1258,20 @@ msgstr "Vytvořte kopii a uložte ji na bezpečném místě. Pokud ztratíte hes
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Zadejte název kopie"
+
+msgid "Mask"
+msgstr "Skrýt"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Požádat podporu"
@@ -1284,9 +1292,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma stále není nakonfigurována pro připojení via HTTPS a měla by být použita pouze pro účely testování."
-
-msgid "Please write a motivation for the reply"
-msgstr "Prosím, napište zdůvodnění odpovědi."
 
 msgid "Send"
 msgstr "Odeslat"
@@ -1400,6 +1405,9 @@ msgstr "Příjemci požadují, abyste vyplnili dodatečný dotazník."
 
 msgid "Fill the additional questionnaire"
 msgstr "Vyplňte dodatečný dotazník"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Povolit oznamovateli psát komentáře"
 
 msgid "From:"
 msgstr "Od:"

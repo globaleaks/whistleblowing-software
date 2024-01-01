@@ -208,9 +208,6 @@ msgstr "Giriş soraldy"
 msgid "Request access to the whistleblower's identity"
 msgstr "Gizlin habar ýetirijiň şahsyýetine girmegi haýyş ediň"
 
-msgid "Please write a motivation"
-msgstr "Motiwasiýa ýazmagyňyzy haýyş edýäris"
-
 msgid "Reply to the request"
 msgstr "Haýyşa jogap beriň"
 
@@ -506,6 +503,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hasabat beriň"
 
@@ -575,8 +593,8 @@ msgstr "Ýazdyr"
 msgid "Cancel"
 msgstr "Goýbolsun et"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "günler"
 
 msgid "Report statuses"
 msgstr "Statuslary hasabat ber"
@@ -599,9 +617,6 @@ msgstr "Alyjylar"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "günler"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu aýratynlygy öçürmek üçin sany 0-a belläň."
 
@@ -622,12 +637,6 @@ msgstr "Alyjylary elipbiý tertibinde görkez"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Hasabatyň ýagdaý sahypasynda alyjynyň jikme-jikliklerini görkez"
-
-msgid "Enable comments"
-msgstr "Teswirleri aç"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beriň"
@@ -664,6 +673,9 @@ msgstr "Rugsat berlen IP salgylar"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Alyjy"
@@ -1027,9 +1039,6 @@ msgstr "Hususy gizlinlik panelini aç"
 msgid "Custom privacy panel"
 msgstr "Hususy gizlinlik paneli"
 
-msgid "Enable custodian user role"
-msgstr "Gözegçi ulanyjy roluny açyň"
-
 msgid "Enable scoring system"
 msgstr "Bal ulgamyny aç"
 
@@ -1097,9 +1106,6 @@ msgstr "Hyzmat şertlerine rugsat beriň"
 
 msgid "Title"
 msgstr "Sözbaşy"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Umumy ady"
@@ -1218,12 +1224,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ynamyňyz barmy?"
 
@@ -1250,12 +1250,20 @@ msgstr "Göçürip alyň we howpsuz ýerde saklaň. Maglumat ýitirilmezden hasa
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Göçürmäniň adyny giriziň"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Goldaw soraň"
@@ -1276,9 +1284,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma henizem HTTPS birikmeleri üçin düzülenok we şonuň üçin diňe test maksatly ulanylmaly."
-
-msgid "Please write a motivation for the reply"
-msgstr "Jogap üçin motiwasiýa ýazmagyňyzy haýyş edýäris"
 
 msgid "Send"
 msgstr "Iber"
@@ -1392,6 +1397,9 @@ msgstr "Alyjylar goşmaça sowalnama doldurmagyňyzy haýyş etdiler."
 
 msgid "Fill the additional questionnaire"
 msgstr "Goşmaça sowalnamany dolduryň"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
 msgid "From:"
 msgstr "Kimden:"

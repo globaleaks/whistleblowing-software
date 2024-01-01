@@ -209,9 +209,6 @@ msgstr "Zahtevek za dostop"
 msgid "Request access to the whistleblower's identity"
 msgstr "Zahtevek za dostop do identitete prijavitelja"
 
-msgid "Please write a motivation"
-msgstr "Prosimo navedite razlog"
-
 msgid "Reply to the request"
 msgstr "Odgovori na zahtevek"
 
@@ -507,6 +504,27 @@ msgstr "Samo prejemniki"
 msgid "Me only"
 msgstr "Samo jaz"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 
@@ -576,8 +594,8 @@ msgstr "Shrani"
 msgid "Cancel"
 msgstr "Prekliči"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dnevi"
 
 msgid "Report statuses"
 msgstr "Statusi prijav"
@@ -600,9 +618,6 @@ msgstr "Prejemniki"
 msgid "Reminder date"
 msgstr "Datum opomnika"
 
-msgid "days"
-msgstr "dnevi"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Funkcijo onemogočite z nastavitvijo vrednosti na 0."
 
@@ -623,12 +638,6 @@ msgstr "Pokaži prejemnike po abecednem vrstnem redu"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Pokaži podrobne podatke o prejemnikih na strani, ki prikazuje status prijave"
-
-msgid "Enable comments"
-msgstr "Omogoči komentarje"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Prijavitelju dovoli pisanje komentarjev"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Prijavitelju dovoli dodajanje prilog"
@@ -665,6 +674,9 @@ msgstr "Dovoljeni IP naslovi"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr "Analitik"
 
 msgid "Recipient"
 msgstr "Prejemnik"
@@ -1028,9 +1040,6 @@ msgstr "Omogoči prilagojen panel zasebnosti"
 msgid "Custom privacy panel"
 msgstr "Prilagojen panel zasebnosti"
 
-msgid "Enable custodian user role"
-msgstr "Omogoči skrbniško uporabniško vlogo"
-
 msgid "Enable scoring system"
 msgstr "Omogoči sistem točkovanja"
 
@@ -1098,9 +1107,6 @@ msgstr "Omogoči pogoje uporabe"
 
 msgid "Title"
 msgstr "Naslov"
-
-msgid "Analyst"
-msgstr "Analitik"
 
 msgid "Public name"
 msgstr "Javno ime"
@@ -1219,12 +1225,6 @@ msgstr "Spremeni status"
 msgid "Status:"
 msgstr "Stanje:"
 
-msgid "Substatus:"
-msgstr "Podstatus:"
-
-msgid "Motivation:"
-msgstr "Razlog:"
-
 msgid "Are you sure?"
 msgstr "Ali ste prepričani? "
 
@@ -1251,12 +1251,20 @@ msgstr "Naredite kopijo in jo shranite na varno mesto. Potrebovali jo boste za o
 msgid "Attention"
 msgstr "Pozor"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Zaradi varnostnih razlogov je treba spremeniti potrditveno kodo vaše prijave."
+msgid "For security reasons the code needs to be changed."
+msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
+
+msgid "Mask"
+msgstr "Skrij"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Zaprosi za pomoč"
@@ -1277,9 +1285,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma še vedno ni konfigurirana za povezave HTTPS in jo je zato treba uporabljati samo za testiranje."
-
-msgid "Please write a motivation for the reply"
-msgstr "Navedite razlog za odgovor"
 
 msgid "Send"
 msgstr "Pošlji"
@@ -1393,6 +1398,9 @@ msgstr "Prejemniki vas prosijo, da izpolnite dodatni vprašalnik."
 
 msgid "Fill the additional questionnaire"
 msgstr "Izpolni dodatni vprašalnik"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Prijavitelju dovoli pisanje komentarjev"
 
 msgid "From:"
 msgstr "Od:"

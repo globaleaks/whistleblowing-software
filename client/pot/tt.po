@@ -203,9 +203,6 @@ msgstr "Керү мөмкинлеге соралды"
 msgid "Request access to the whistleblower's identity"
 msgstr "Мәгълүмат җиткерүченең идентификаторына керү мөмкинлеген сорау"
 
-msgid "Please write a motivation"
-msgstr "Зинһар, сәбәпне языгыз"
-
 msgid "Reply to the request"
 msgstr "Сорауга җавап бирү"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Хисап бирү"
 
@@ -570,8 +588,8 @@ msgstr "Саклау"
 msgid "Cancel"
 msgstr "Баш тарту"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "көннәр"
 
 msgid "Report statuses"
 msgstr "Хисап статусы"
@@ -594,9 +612,6 @@ msgstr "Алучылар"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "көннәр"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Бу функцияне сүндерү өчен санны \"0\" итеп кертегез."
 
@@ -617,12 +632,6 @@ msgstr "Алучыларны алфавит тәртибендә күрсәтү"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Хисап статусы битендә алучы мәгълүматын күрсәтү"
-
-msgid "Enable comments"
-msgstr "Комментарийларны кабызу"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Мәгълүмат җиткерүчегә комментарий язарга рөхсәт итү"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Мәгълүмат җиткерүчегә хисапка кертелмәләр өстәргә рөхсәт итү"
@@ -659,6 +668,9 @@ msgstr "Рөхсәт ителгән IP адреслар"
 
 msgid "Admin"
 msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Алучы"
@@ -1022,9 +1034,6 @@ msgstr "Кулланучы хосусыйлык панелен кабызу"
 msgid "Custom privacy panel"
 msgstr "Хосусыйлык панелен шәхсиләштерергә"
 
-msgid "Enable custodian user role"
-msgstr "Кулланучы өчен җаваплы зат ролен кабызу"
-
 msgid "Enable scoring system"
 msgstr "Баллы бәяләү системасын кабызу"
 
@@ -1092,9 +1101,6 @@ msgstr "Куллану шартларын раслау"
 
 msgid "Title"
 msgstr "Башисем"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Ачык исем"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Халәт:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Моны раслыйсызмы?"
 
@@ -1245,12 +1245,20 @@ msgstr "Күчермә ясагыз һәм аны ышанычлы урында 
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Күчереп алу өчен исем кертегез"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Ярдәм сорау"
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа әле HTTPS бәйләнешләре өчен көйләнмәгән һәм шуңа күрә аны сынау максатлары өчен генә кулланырга кирәк."
-
-msgid "Please write a motivation for the reply"
-msgstr "Зинһар, җавап өчен сәбәп языгыз"
 
 msgid "Send"
 msgstr "Җибәрү"
@@ -1387,6 +1392,9 @@ msgstr "Алучылар сездән өстәмә сораулык тутыру
 
 msgid "Fill the additional questionnaire"
 msgstr "Өстәмә сораулыкны тутыру"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Мәгълүмат җиткерүчегә комментарий язарга рөхсәт итү"
 
 msgid "From:"
 msgstr "Кемнән:"

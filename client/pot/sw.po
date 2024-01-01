@@ -203,9 +203,6 @@ msgstr "Ufikiaji umeombwa"
 msgid "Request access to the whistleblower's identity"
 msgstr "Omba ufikiaji wa kitambulisho cha mtoa taarifa ya siri"
 
-msgid "Please write a motivation"
-msgstr "Tafadhali andika motisha"
-
 msgid "Reply to the request"
 msgstr "Jibu ombi"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -570,8 +588,8 @@ msgstr "Hifadhi"
 msgid "Cancel"
 msgstr "futa"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "siku"
 
 msgid "Report statuses"
 msgstr "Hali ya ripoti"
@@ -594,9 +612,6 @@ msgstr "Wapokeaji"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "siku"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Weka 0 ili kutowezesha huduma hii."
 
@@ -617,12 +632,6 @@ msgstr "Onyesha wapokeaji kwa mpangilio wa alfabeti"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Onyesha maelezo ya mpokeaji kwenye ukurasa wa hali ya ripoti"
-
-msgid "Enable comments"
-msgstr "Wezesha maoni "
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
@@ -659,6 +668,9 @@ msgstr "Anuani za IP zilizoruhusiwa"
 
 msgid "Admin"
 msgstr "Msimamizi"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Mpokeaji"
@@ -1022,9 +1034,6 @@ msgstr "Wezesha paneli ya faragha maalum "
 msgid "Custom privacy panel"
 msgstr "paneli ya faragha"
 
-msgid "Enable custodian user role"
-msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
-
 msgid "Enable scoring system"
 msgstr "Wezesha mfumo wa upataji wa alama"
 
@@ -1092,9 +1101,6 @@ msgstr "Wezesha masharti ya huduma"
 
 msgid "Title"
 msgstr "Kichwa"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Jina la umma"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Hali:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Una uhakika?"
 
@@ -1245,12 +1245,20 @@ msgstr "Tengeneza nakala na uihifadhi mahali salama. Itakuwa muhimu ikiwa utapot
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Ingiza jina la nakala"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
-
-msgid "Please write a motivation for the reply"
-msgstr "Tafadhali andika motisha kwa kujibu"
 
 msgid "Send"
 msgstr "Tuma"
@@ -1387,6 +1392,9 @@ msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
 msgid "Fill the additional questionnaire"
 msgstr "Jaza dodoso za nyongeza"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
 
 msgid "From:"
 msgstr "Kutoka:"

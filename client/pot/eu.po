@@ -221,9 +221,6 @@ msgstr "Sarbidea eskatu da"
 msgid "Request access to the whistleblower's identity"
 msgstr "Salatzailearen identitatera sarbidea eskatu "
 
-msgid "Please write a motivation"
-msgstr "Arren, idatzi arrazoia"
-
 msgid "Reply to the request"
 msgstr "Erantzun eskakizunari"
 
@@ -519,6 +516,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Izengabe"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Aurkeztu salaketa."
 
@@ -588,8 +606,8 @@ msgstr "Gorde"
 msgid "Cancel"
 msgstr "Utzi"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "egunak"
 
 msgid "Report statuses"
 msgstr "Salaketa baten egoerak"
@@ -612,9 +630,6 @@ msgstr "Hartzaileak"
 msgid "Reminder date"
 msgstr "Oroitzeko data"
 
-msgid "days"
-msgstr "egunak"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ezarri 0 balioa funtzionaltasun hau desgaitzeko."
 
@@ -635,12 +650,6 @@ msgstr "Hartzaileak ordena alfabetikoan erakutsi"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Salaketaren egoeraren orrian hartzailearen xehetasunak erakutsi."
-
-msgid "Enable comments"
-msgstr "Gaitu iruzkinak"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Salatzaileei iruzkinak idaztea ahalbidetu"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
@@ -677,6 +686,9 @@ msgstr "Baimendutako IP helbideak"
 
 msgid "Admin"
 msgstr "Administratzailea"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Hartzailea"
@@ -1040,9 +1052,6 @@ msgstr "Gaitu pribatutasun pertsonalizatuko panela"
 msgid "Custom privacy panel"
 msgstr "Pribatutasun pertsonalizatuko panela"
 
-msgid "Enable custodian user role"
-msgstr "Gaitu Zaintza erabiltzaile betekizuna"
-
 msgid "Enable scoring system"
 msgstr "Gaitu puntuatzeko sistema"
 
@@ -1110,9 +1119,6 @@ msgstr "Aktibatu zerbitzuen terminoak"
 
 msgid "Title"
 msgstr "Izenburua"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Izen publikoa"
@@ -1231,12 +1237,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Egoera:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ziur zaude?"
 
@@ -1263,12 +1263,20 @@ msgstr "Egin kopia bat eta gorde ezazu toki seguruan. Pasahitza galduz gero beha
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Idatzi izena kopiarentzat"
+
+msgid "Mask"
+msgstr "Maskaratu"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Eskatu laguntza"
@@ -1289,9 +1297,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plataforma ez dago oraindik konfiguratuta HTTPS konexioentzat, eta probatzeko bakarrik erabili behar da."
-
-msgid "Please write a motivation for the reply"
-msgstr "Arren, idatzi arrazoi bat erantzuteko"
 
 msgid "Send"
 msgstr "Bidali"
@@ -1405,6 +1410,9 @@ msgstr "Hartzaileek beste galdekizun gehigarri bat betetzea eskatzen dizute."
 
 msgid "Fill the additional questionnaire"
 msgstr "Bete galdekizun gehigarria"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Salatzaileei iruzkinak idaztea ahalbidetu"
 
 msgid "From:"
 msgstr "Nondik"

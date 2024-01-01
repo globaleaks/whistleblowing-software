@@ -222,9 +222,6 @@ msgstr "Accés demanat"
 msgid "Request access to the whistleblower's identity"
 msgstr "Demana l'accés a la identitat de la persona informadora"
 
-msgid "Please write a motivation"
-msgstr "Si us plau, escriu una motivació"
-
 msgid "Reply to the request"
 msgstr "Respon a la petició"
 
@@ -520,6 +517,27 @@ msgstr "Solament receptors"
 msgid "Me only"
 msgstr "Únicament jo"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anònim "
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mòbil"
+
 msgid "File a report"
 msgstr "Presentar un informe"
 
@@ -589,8 +607,8 @@ msgstr "Desa"
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dies"
 
 msgid "Report statuses"
 msgstr "Estat de l’informe"
@@ -613,9 +631,6 @@ msgstr "Persones destinatàries"
 msgid "Reminder date"
 msgstr "Data de recordatori"
 
-msgid "days"
-msgstr "dies"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Establiu el valor a 0 per desactivar aquesta funció."
 
@@ -636,12 +651,6 @@ msgstr "Mostra els destinataris en ordre alfabètic"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Mostra la informació dels destinataris a la pàgina de l'estat de l'informe"
-
-msgid "Enable comments"
-msgstr "Habilita comentaris"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permet als informadors escriure comentaris"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet a les persones reveladores de informació enviar un arxiu adjunt. "
@@ -678,6 +687,9 @@ msgstr "Adreces IP autoritzades"
 
 msgid "Admin"
 msgstr "Persona administradora"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Persona destinatària"
@@ -1041,9 +1053,6 @@ msgstr "Habilita distintiu personalitzat de privacitat"
 msgid "Custom privacy panel"
 msgstr "Tauler de privacitat del client"
 
-msgid "Enable custodian user role"
-msgstr "Activa el rol de persona usuària guardiana"
-
 msgid "Enable scoring system"
 msgstr "Activa el sistema de puntuació"
 
@@ -1111,9 +1120,6 @@ msgstr "Activa els termes del servei"
 
 msgid "Title"
 msgstr "Títol"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Nom públic"
@@ -1232,12 +1238,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Estat"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "N'estàs segur?"
 
@@ -1264,12 +1264,20 @@ msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu 
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Introduïu un nom per a la còpia"
+
+msgid "Mask"
+msgstr "Ocultar"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Petició d'ajuda"
@@ -1290,9 +1298,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
-
-msgid "Please write a motivation for the reply"
-msgstr "Si us plau, escriu una motivació per a la resposta"
 
 msgid "Send"
 msgstr "Envia-ho"
@@ -1406,6 +1411,9 @@ msgstr "Les persones destinatàries han demanat que ompli un qüestionari addici
 
 msgid "Fill the additional questionnaire"
 msgstr "Ompliu el qüestionari addicional"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Permet als informadors escriure comentaris"
 
 msgid "From:"
 msgstr "Des de:"

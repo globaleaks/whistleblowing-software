@@ -203,9 +203,6 @@ msgstr "ໄດ້ຂໍການເຂົ້າເຖິງແລ້ວ"
 msgid "Request access to the whistleblower's identity"
 msgstr "ຂໍການເຂົ້າເຖິງຂໍ້ມູນລະບຸຕົວຕົນຂອງຜູ້ແຈ້ງເບາະແສ"
 
-msgid "Please write a motivation"
-msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈ"
-
 msgid "Reply to the request"
 msgstr "ຕອບຄຳຮ້ອງຂໍ"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "​ບໍ່ມີ​ການ​ເປີດ​ເຜີຍຕົວ​ຕົນ"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
@@ -570,8 +588,8 @@ msgstr "ບັນທຶກ"
 msgid "Cancel"
 msgstr "ຍົກເລີກ"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ວັນ"
 
 msgid "Report statuses"
 msgstr "ລາຍງານສະຖານະ"
@@ -594,9 +612,6 @@ msgstr "ຜູ້ຮັບ"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ວັນ"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ຕັ້ງຄ່າເປັນ 0 ເພື່ອປິດໃຊ້ງານຄຸນສົມບັດນີ້."
 
@@ -617,12 +632,6 @@ msgstr "ສະແດງຈຳນວນຜູ້ຮັບຕາມລຳດັບ
 
 msgid "Show recipient details on the status page of the report"
 msgstr "ສະແດງລາຍລະອຽດຕ່າງໆຂອງຜູ້ຮັບໃນໜ້າສະຖານະຂອງການລາຍງານ"
-
-msgid "Enable comments"
-msgstr "ເປີດນຳໃຊ້ຄຳຄິດເຫັນ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານ"
@@ -659,6 +668,9 @@ msgstr "ທີ່ຢູ່ IP ທີ່ໄດ້ຮັບການອະນຸ�
 
 msgid "Admin"
 msgstr "ຜູ້ເບິ່ງແຍງລະບົບ"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "ຜູ້ຮັບ"
@@ -1022,9 +1034,6 @@ msgstr "ເປີດນຳໃຊ້ແຜງຄວາມເປັນສ່ວນ
 msgid "Custom privacy panel"
 msgstr "ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
 
-msgid "Enable custodian user role"
-msgstr "ເປີດນຳໃຊ້ພາລະບົດບາດຂອງຜູ້ໃຊ້ທີ່ເປັນຜູ້ປົກປ້ອງຂໍ້ມູນ"
-
 msgid "Enable scoring system"
 msgstr "ເປີດນຳໃຊ້ລະບົບການໃຫ້ຄະແນນ"
 
@@ -1092,9 +1101,6 @@ msgstr "ເປີດນຳໃຊ້ຂໍ້ກຳນົດໃນການບໍ
 
 msgid "Title"
 msgstr "ຫົວຂໍ້"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "ຊື່ສາທາລະນະ"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "ສະຖານະ:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
 
@@ -1245,12 +1245,20 @@ msgstr "ເຮັດການສຳເນົາ ແລະ ຈັດເກັບ�
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ປ້ອນຊື່ສຳລັບການສຳເນົາ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "ຍັງບໍ່ໄດ້ກຳນົດຄ່າຂອງລະບົບສຳລັບການເຊື່ອມຕໍ່ HTTPS ແລະ ເພາະສະນັ້ນຈຶ່ງຄວນໃຊ້ເພື່ອຈຸດປະສົງໃນການທົດສອບເທົ່ານັ້ນ."
-
-msgid "Please write a motivation for the reply"
-msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈໃນການຕອບກັບ"
 
 msgid "Send"
 msgstr "ສົ່ງ"
@@ -1387,6 +1392,9 @@ msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື
 
 msgid "Fill the additional questionnaire"
 msgstr "ຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
+
+msgid "Allow the whistleblower to write comments"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
 
 msgid "From:"
 msgstr "ຈາກ:"

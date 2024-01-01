@@ -203,9 +203,6 @@ msgstr "წვდომის მოთხოვნა"
 msgid "Request access to the whistleblower's identity"
 msgstr "მინსტრუქტორის იდენტობაზე წვდომის მოთხოვნა"
 
-msgid "Please write a motivation"
-msgstr "გთხოვთ, დაწერეთ მოტივაცია"
-
 msgid "Reply to the request"
 msgstr "მოთხოვნაზე პასუხი"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "მობილურზე"
+
 msgid "File a report"
 msgstr "ანგარიშის დაფაილება"
 
@@ -570,8 +588,8 @@ msgstr "შენახვა"
 msgid "Cancel"
 msgstr "გაუქმება"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "დღე"
 
 msgid "Report statuses"
 msgstr "სტატუსების ანგარიში"
@@ -594,9 +612,6 @@ msgstr "მიმღებები"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "დღე"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ამ ფუნქციის გამოსართავად მნიშვნელობა დააყენეთ 0-ზე."
 
@@ -617,12 +632,6 @@ msgstr "მიმღებების ჩვენება ანბანუ�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "მიმღების დეტალების ჩვენება ანგარიშის სტატუსის გვერდზე"
-
-msgid "Enable comments"
-msgstr "კომენტარების ჩართვა"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "დართეთ ნება ინსტრუქტორს დაამატოს ანგარიშზე დანართები"
@@ -659,6 +668,9 @@ msgstr "ნებადართული IP მისამართები"
 
 msgid "Admin"
 msgstr "ადმინი"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "მიმღები"
@@ -1022,9 +1034,6 @@ msgstr "კონფიდენციალურობის პანელ�
 msgid "Custom privacy panel"
 msgstr "მორგებული კონფიდენციალურობის პანელი"
 
-msgid "Enable custodian user role"
-msgstr "ინსტრუქტორის მომხმარებლის როლის ჩართვა"
-
 msgid "Enable scoring system"
 msgstr "ქულების დათვლის სისტემის ჩართვა"
 
@@ -1092,9 +1101,6 @@ msgstr "მომსახურების პირობების ჩა�
 
 msgid "Title"
 msgstr "სათაური"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "საჯარო სახელი"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "სტატუსი:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
@@ -1245,12 +1245,20 @@ msgstr "გააკეთეთ ასლი და შეინახეთ �
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "შეიყვანეთ სახელი ასლისთვის"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "მხარდაჭერის მოთხოვნა"
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "პლატფორმა ჯერ არ არის კონფიგურირებული HTTPS პროტოკოლით კავშირებისთვის და ამიტომ უნდა იყოს გამოყენებული მხოლოდ ტესტირების მიზნებისთვის."
-
-msgid "Please write a motivation for the reply"
-msgstr "გთხოვთ დაწერეთ პასუხისთვის მოტივაცია"
 
 msgid "Send"
 msgstr "გაგზავნა"
@@ -1387,6 +1392,9 @@ msgstr "მიმღებებმა მოითხოვეს, რომ �
 
 msgid "Fill the additional questionnaire"
 msgstr "შეავსეთ დამატებითი კითხვარი"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
 
 msgid "From:"
 msgstr "ვისგან:"

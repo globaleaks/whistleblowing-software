@@ -252,9 +252,6 @@ msgstr "مطلوب النفاذ"
 msgid "Request access to the whistleblower's identity"
 msgstr "طلب النفاذ الى هوية المبلغ"
 
-msgid "Please write a motivation"
-msgstr "الرجاء كتابة الدوافع"
-
 msgid "Reply to the request"
 msgstr "الاجابة على الطلب"
 
@@ -550,6 +547,27 @@ msgstr "المُرسَل إليهم فقط"
 msgid "Me only"
 msgstr "أنا فقط"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "نعم"
+
+msgid "Anonymous"
+msgstr "مجهول"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "تور"
+
+msgid "Mobile"
+msgstr "الهاتف النقّال"
+
 msgid "File a report"
 msgstr "تقديم بلاغ"
 
@@ -619,8 +637,8 @@ msgstr "حفظ"
 msgid "Cancel"
 msgstr "إلغاء"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "‮أيّام"
 
 msgid "Report statuses"
 msgstr "تقرير الحالات"
@@ -643,9 +661,6 @@ msgstr "المتلقّون"
 msgid "Reminder date"
 msgstr "تاريخ التنبيه"
 
-msgid "days"
-msgstr "‮أيّام"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
 
@@ -666,12 +681,6 @@ msgstr "إظهار المتلقين بترتيب ابجدي"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
-
-msgid "Enable comments"
-msgstr "تفعيل التعليقات"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "تمكين المبلغ من كتابة تعليقات"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
@@ -708,6 +717,9 @@ msgstr "عناوين بروتوكول الانترنت المسموح بها"
 
 msgid "Admin"
 msgstr "مشرف"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "المتلقّي"
@@ -1071,9 +1083,6 @@ msgstr "تمكين شريط الخصوصيّة المخصّص"
 msgid "Custom privacy panel"
 msgstr "مخصص لوحة الخصوصية"
 
-msgid "Enable custodian user role"
-msgstr "تمكين دور المستخدم الوصي"
-
 msgid "Enable scoring system"
 msgstr "تمكين نظام تسجيل النقاط"
 
@@ -1141,9 +1150,6 @@ msgstr "تمكين شروط الخدمة"
 
 msgid "Title"
 msgstr "العنوان"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "الاسم العام"
@@ -1262,12 +1268,6 @@ msgstr ""
 msgid "Status:"
 msgstr "الحالة:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
 
@@ -1294,12 +1294,20 @@ msgstr "اعمل نسخة منه وخزنها فى مكان آمن. اذا فق�
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "أدخل اسما من أجل النسخة"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "اطلب مساعدة"
@@ -1320,9 +1328,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "لم تتم تهيئة المنصة بعد لاتصالات HTTPS و على اساس ذلك ينبغي أن تستخدم فقط لغرض الاختبار."
-
-msgid "Please write a motivation for the reply"
-msgstr "يرجى كتابة دافع للاجابة"
 
 msgid "Send"
 msgstr "إرسال"
@@ -1436,6 +1441,9 @@ msgstr "طلب المستلمون منك إكمال استبيان إضافي."
 
 msgid "Fill the additional questionnaire"
 msgstr "قم بإكمال الاستبيان الإضافي,"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "تمكين المبلغ من كتابة تعليقات"
 
 msgid "From:"
 msgstr "من:"

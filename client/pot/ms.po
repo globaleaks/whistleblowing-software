@@ -203,9 +203,6 @@ msgstr "Akses diminta"
 msgid "Request access to the whistleblower's identity"
 msgstr "Minta akses kepada identiti pemberi maklumat"
 
-msgid "Please write a motivation"
-msgstr "Sila tulis motivasi"
-
 msgid "Reply to the request"
 msgstr "Balas kepada permintaan"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Tidak dikenali"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Failkan laporan"
 
@@ -570,8 +588,8 @@ msgstr "Simpan"
 msgid "Cancel"
 msgstr "Batalkan"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "hari"
 
 msgid "Report statuses"
 msgstr "Status laporan"
@@ -594,9 +612,6 @@ msgstr "Penerima"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "hari"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Tetapkan nilai kepada 0 untuk menyahdayakan ciri ini."
 
@@ -617,12 +632,6 @@ msgstr "Tunjukkan penerima dalam susunan abjad"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Tunjukkan butiran penerima di halaman status laporan"
-
-msgid "Enable comments"
-msgstr "Dayakan komen"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Benarkan pemberi maklumat menulis komen"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
@@ -659,6 +668,9 @@ msgstr "Alamat IP dibenarkan"
 
 msgid "Admin"
 msgstr "Pentadbir"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Penerima"
@@ -1022,9 +1034,6 @@ msgstr "Dayakan panel privasi tersuai"
 msgid "Custom privacy panel"
 msgstr "Panel privasi tersuai"
 
-msgid "Enable custodian user role"
-msgstr "Dayakan peranan pengguna penjaga"
-
 msgid "Enable scoring system"
 msgstr "Dayakan sistem pemarkahan"
 
@@ -1092,9 +1101,6 @@ msgstr "Dayakan terma perkhidmatan"
 
 msgid "Title"
 msgstr "Tajuk"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Nama awam"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Adakah anda pasti?"
 
@@ -1245,12 +1245,20 @@ msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia diperlukan jika an
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Masukkan nama untuk salinan"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
-
-msgid "Please write a motivation for the reply"
-msgstr "Sila tuliskan motivasi untuk balas"
 
 msgid "Send"
 msgstr "Hantar"
@@ -1387,6 +1392,9 @@ msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
 msgid "Fill the additional questionnaire"
 msgstr "Isikan soal selidik tambahan"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Benarkan pemberi maklumat menulis komen"
 
 msgid "From:"
 msgstr "Daripada:"

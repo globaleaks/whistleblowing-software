@@ -204,9 +204,6 @@ msgstr "መድረሻ ተጠይቋል"
 msgid "Request access to the whistleblower's identity"
 msgstr "የመረጃ ሰጭውን ማንነት መድረሻ ይጠይቁ"
 
-msgid "Please write a motivation"
-msgstr "እባኮት ተነሳሽነት ይጻፉ"
-
 msgid "Reply to the request"
 msgstr "ጥያቄውን ይመልሱ"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -571,8 +589,8 @@ msgstr "አስቀምጥ "
 msgid "Cancel"
 msgstr "ሰርዝ "
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ቀናት"
 
 msgid "Report statuses"
 msgstr "ሁኔታዎችን ያሳውቁ"
@@ -595,9 +613,6 @@ msgstr "ተቀባዮች"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ቀናት"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ይህንን ባህርይ ለማቦዘን ዋጋውን 0 ያድርጉ"
 
@@ -618,12 +633,6 @@ msgstr "ተቀባዮችን በፊደል ተራ አሳይ"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "የተቀባዮችን ዝርዝር መረጃ በሪፖርቱ ሁኔታ ገጽ ላይ አሳይ"
-
-msgid "Enable comments"
-msgstr "አስተያየት አንቃ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "መረጃ ሰጪው አስተያየት እንዲሰጥ ፍቀዱ"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
@@ -660,6 +669,9 @@ msgstr "የተፈቀዱ አይፒ አድራሻዎች"
 
 msgid "Admin"
 msgstr "አስተዳዳሪ "
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "ተቀባይ"
@@ -1023,9 +1035,6 @@ msgstr "ብጁ የግላዊነት ፓነል ያዘጋጁ"
 msgid "Custom privacy panel"
 msgstr "ብጁ የግል መረጃ ጥበቃ"
 
-msgid "Enable custodian user role"
-msgstr "የሞግዚት ተጠቃሚ ሚናን ያንቁ"
-
 msgid "Enable scoring system"
 msgstr "የውጤት ስርኣት ያንቁ"
 
@@ -1093,9 +1102,6 @@ msgstr "የአገልግሎት ደንቦችን አንቃ"
 
 msgid "Title"
 msgstr "ርእስ "
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "ይፋ ስም"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "ሁኔታ፡-"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "እርግጠኛ ነዎት?"
 
@@ -1246,12 +1246,20 @@ msgstr "ቅዱና በጥብቅ ቦታ አስቀምጡ፡፡ የይለፍ ቃል�
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ለቅጂው ስም አስገቡ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "የመሳርያ ስርኣቱ ለኤችቲቲፒኤስ ግንኙነት አልተዋቀረም በመሆኑም\n\nለፍተሻ አላማዎች ብቻ ማገልገል አለበት"
-
-msgid "Please write a motivation for the reply"
-msgstr "ለመልሱ ማነሳሻ ጻፉ"
 
 msgid "Send"
 msgstr "ይላኩ"
@@ -1388,6 +1393,9 @@ msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋ�
 
 msgid "Fill the additional questionnaire"
 msgstr "ተጨማሪ መጠይቁን ይሙሉ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "መረጃ ሰጪው አስተያየት እንዲሰጥ ፍቀዱ"
 
 msgid "From:"
 msgstr "ከ"

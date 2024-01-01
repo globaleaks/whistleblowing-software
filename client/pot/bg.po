@@ -213,9 +213,6 @@ msgstr "Поискан е достъп"
 msgid "Request access to the whistleblower's identity"
 msgstr "Заявка за достъп до самоличността на подалия сигнал"
 
-msgid "Please write a motivation"
-msgstr "Моля, напишете мотивация"
-
 msgid "Reply to the request"
 msgstr "Отговор на заявката"
 
@@ -511,6 +508,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Мобилен"
+
 msgid "File a report"
 msgstr "Картотекиране на сигнал"
 
@@ -580,8 +598,8 @@ msgstr "Записване"
 msgid "Cancel"
 msgstr "Отмяна"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "дни"
 
 msgid "Report statuses"
 msgstr "Статуси на сигналите"
@@ -604,9 +622,6 @@ msgstr "Получатели"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "дни"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Задайте стойност 0, за да дезактивирате тази функция."
 
@@ -627,12 +642,6 @@ msgstr "Показване на получателите по азбучен р�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Показване на данни за получателите на страницата за статуса на сигнала"
-
-msgid "Enable comments"
-msgstr "Активиране на коментари"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Разрешаване на подателя на сигнал да пише коментари"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
@@ -669,6 +678,9 @@ msgstr "Разрешени IP адреси"
 
 msgid "Admin"
 msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Получател"
@@ -1032,9 +1044,6 @@ msgstr "Активиране на потребителски панел за п�
 msgid "Custom privacy panel"
 msgstr "Потребителски панел за поверителност"
 
-msgid "Enable custodian user role"
-msgstr "Активиране на потребителска роля „длъжностно лице по защита на данните“"
-
 msgid "Enable scoring system"
 msgstr "Активиране на система за оценяване"
 
@@ -1102,9 +1111,6 @@ msgstr "Активиране на условията за използване �
 
 msgid "Title"
 msgstr "Заглавие"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Публично име"
@@ -1223,12 +1229,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Наистина ли го искате?"
 
@@ -1255,12 +1255,20 @@ msgstr "Направете копие и го съхранявайте на си
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Въведете име за копието"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Заявка за поддръжка"
@@ -1281,9 +1289,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформата още не е конфигурирана за HTTPS връзки и следователно трябва да се използва само за целите на тестването."
-
-msgid "Please write a motivation for the reply"
-msgstr "Моля, напишете мотивация за отговора"
 
 msgid "Send"
 msgstr "Изпращане"
@@ -1397,6 +1402,9 @@ msgstr "Получателите Ви са поискали попълните �
 
 msgid "Fill the additional questionnaire"
 msgstr "Попълване на допълнителния въпросник"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Разрешаване на подателя на сигнал да пише коментари"
 
 msgid "From:"
 msgstr "От:"

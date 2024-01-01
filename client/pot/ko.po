@@ -204,9 +204,6 @@ msgstr "액세스 요청"
 msgid "Request access to the whistleblower's identity"
 msgstr "내부 고발자 신원 액세스 요청"
 
-msgid "Please write a motivation"
-msgstr "동기를 작성하십시오"
-
 msgid "Reply to the request"
 msgstr "요청에 답변"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "익명성"
+
+msgid "Anonymous"
+msgstr "익명"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "모바일"
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -571,8 +589,8 @@ msgstr "저장"
 msgid "Cancel"
 msgstr "취소"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "일"
 
 msgid "Report statuses"
 msgstr "상태 보고"
@@ -595,9 +613,6 @@ msgstr "수신자"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "일"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "값을 0으로 설정하여 기능을 중단하십시오."
 
@@ -618,12 +633,6 @@ msgstr "알파벳 순서로 수신자 표시"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "보고서 상태 페이지에서 수신자 세부 정보 표시"
-
-msgid "Enable comments"
-msgstr "댓글 허용"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
@@ -660,6 +669,9 @@ msgstr "허용된 IP 주소"
 
 msgid "Admin"
 msgstr "관리자"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "수신자"
@@ -1023,9 +1035,6 @@ msgstr "사용자 정의 프라이버시 패널 허용"
 msgid "Custom privacy panel"
 msgstr "사용자 정의 프라이버시 패널"
 
-msgid "Enable custodian user role"
-msgstr "관리인 사용자 역할 허용"
-
 msgid "Enable scoring system"
 msgstr "채점 시스템 허용"
 
@@ -1093,9 +1102,6 @@ msgstr "서비스 약관 허용"
 
 msgid "Title"
 msgstr "제목"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "공개 이름"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "상태"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "계속하시겠습니까?"
 
@@ -1246,12 +1246,20 @@ msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "사본 이름 입력"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
-
-msgid "Please write a motivation for the reply"
-msgstr "답변에 대한 동기를 작성하십시오"
 
 msgid "Send"
 msgstr "전송"
@@ -1388,6 +1393,9 @@ msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다
 
 msgid "Fill the additional questionnaire"
 msgstr "추가 설문 조사 작성"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "From:"
 msgstr "발신자:"

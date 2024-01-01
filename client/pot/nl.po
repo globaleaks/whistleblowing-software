@@ -247,9 +247,6 @@ msgstr "Toegang gevraagd"
 msgid "Request access to the whistleblower's identity"
 msgstr "Vraag toegang tot de identiteit van de klokkenluider"
 
-msgid "Please write a motivation"
-msgstr "Motiveer de aanvraag"
-
 msgid "Reply to the request"
 msgstr "Reactie op de aanvraag"
 
@@ -545,6 +542,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anoniem"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobiel"
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -614,8 +632,8 @@ msgstr "Bewaar"
 msgid "Cancel"
 msgstr "Annuleren"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dagen"
 
 msgid "Report statuses"
 msgstr "Status van de inzending"
@@ -638,9 +656,6 @@ msgstr "Ontvangers"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dagen"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
@@ -661,12 +676,6 @@ msgstr "Toon ontvangers in alfabetische volgorde"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Toon details van de ontvanger op de status-pagina van de inzending"
-
-msgid "Enable comments"
-msgstr "Reacties inschakelen"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "De klokkenluider toestaan reacties achter te laten"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
@@ -703,6 +712,9 @@ msgstr "Toegestane IP-adressen"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Ontvanger"
@@ -1066,9 +1078,6 @@ msgstr "Gepersonaliseerd privacy-paneel inschakelen"
 msgid "Custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel"
 
-msgid "Enable custodian user role"
-msgstr "Activeer de custodian gebruikersrol"
-
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
 
@@ -1136,9 +1145,6 @@ msgstr "Gebruiksvoorwaarden inschakelen"
 
 msgid "Title"
 msgstr "Titel"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Publieke naam"
@@ -1257,12 +1263,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -1289,12 +1289,20 @@ msgstr "Maak een kopie en sla deze in een veilige plaats op. Als je je wachtwoor
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Vraag ondersteuning"
@@ -1315,9 +1323,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
-
-msgid "Please write a motivation for the reply"
-msgstr "Motiveer het antwoord"
 
 msgid "Send"
 msgstr "Verzend"
@@ -1431,6 +1436,9 @@ msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult.
 
 msgid "Fill the additional questionnaire"
 msgstr "De toegevoegde vragenlijst invullen"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "De klokkenluider toestaan reacties achter te laten"
 
 msgid "From:"
 msgstr "Van:"

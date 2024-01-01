@@ -230,9 +230,6 @@ msgstr "Erişme isteğinde bulunuldu"
 msgid "Request access to the whistleblower's identity"
 msgstr "Muhbirin kimliğine erişme isteğinde bulun"
 
-msgid "Please write a motivation"
-msgstr "Lütfen bir neden yazın"
-
 msgid "Reply to the request"
 msgstr "İstek yanıtı"
 
@@ -528,6 +525,27 @@ msgstr "Yalnızca alıcılar"
 msgid "Me only"
 msgstr "Yalnızca ben"
 
+msgid "Returning whistleblowers"
+msgstr "Geri dönen muhbirler"
+
+msgid "Anonymity"
+msgstr "Anonimlik"
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Subscribed"
+msgstr "Abone olundu"
+
+msgid "Initially anonymous"
+msgstr "Başlangıçta anonim"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobil"
+
 msgid "File a report"
 msgstr "İhbar edin"
 
@@ -597,8 +615,8 @@ msgstr "Kaydet"
 msgid "Cancel"
 msgstr "İptal"
 
-msgid "Scadenza (giorni)"
-msgstr "Geçerlilik sonu (gün)"
+msgid "days"
+msgstr "gün"
 
 msgid "Report statuses"
 msgstr "İhbar durumları"
@@ -621,9 +639,6 @@ msgstr "Alıcılar"
 msgid "Reminder date"
 msgstr "Anımsatıcı tarihi"
 
-msgid "days"
-msgstr "gün"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu özelliği kapatmak için 0 olarak ayarlayın."
 
@@ -644,12 +659,6 @@ msgstr "Alıcılar alfabetik sırada görüntülensin"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "İhbar durumu sayfasında alıcı ayrıntıları görüntülensin"
-
-msgid "Enable comments"
-msgstr "Yorum yapılabilsin"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Muhbir yorum yazabilsin"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Muhbir dosya ekleyebilsin"
@@ -686,6 +695,9 @@ msgstr "İzin verilen IP adresleri"
 
 msgid "Admin"
 msgstr "Yönetici"
+
+msgid "Analyst"
+msgstr "İnceleyen"
 
 msgid "Recipient"
 msgstr "Alıcı"
@@ -1049,9 +1061,6 @@ msgstr "Özel gizlilik panosunu aç"
 msgid "Custom privacy panel"
 msgstr "Özel gizlilik panosu"
 
-msgid "Enable custodian user role"
-msgstr "Koruyucu kullanıcı rolü kullanılsın"
-
 msgid "Enable scoring system"
 msgstr "Değerlendirme yapılabilsin"
 
@@ -1119,9 +1128,6 @@ msgstr "Hizmet koşulları kullanılsın"
 
 msgid "Title"
 msgstr "Başlık"
-
-msgid "Analyst"
-msgstr "İnceleyen"
 
 msgid "Public name"
 msgstr "Herkese açık ad"
@@ -1240,12 +1246,6 @@ msgstr "Durumu değiştir"
 msgid "Status:"
 msgstr "Durum"
 
-msgid "Substatus:"
-msgstr "Alt durum:"
-
-msgid "Motivation:"
-msgstr "Amaç:"
-
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
 
@@ -1272,12 +1272,20 @@ msgstr "Bir kopyasını alın ve güvenli bir yerde saklayın. Parolanızı unut
 msgid "Attention"
 msgstr "Dikkat"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Güvenlik nedeniyle ihbarınızın güvenlik kodunun değiştirilmesi gerekiyor."
+msgid "For security reasons the code needs to be changed."
+msgstr "Güvenlik nedeniyle kodun değiştirilmesi gerekiyor."
 
 msgid "Enter a name for the copy"
 msgstr "Kopya için bir ad yazın"
+
+msgid "Mask"
+msgstr "Maskele"
+
+msgid "Unselect"
+msgstr "Bırak"
+
+msgid "Reopen"
+msgstr "Yeniden aç"
 
 msgid "Request support"
 msgstr "Destek isteyin"
@@ -1298,9 +1306,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platform henüz HTTPS kullanacak şekilde yapılandırılmamış. Bu nedenle yalnızca deneme amacıyla kullanılmalıdır."
-
-msgid "Please write a motivation for the reply"
-msgstr "Lütfen yanıt verilmesi için bir neden belirtin"
 
 msgid "Send"
 msgstr "Gönder"
@@ -1414,6 +1419,9 @@ msgstr "Alıcılar bir de anket doldurmanızı istiyor."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ek anketi doldur"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Muhbir yorum yazabilsin"
 
 msgid "From:"
 msgstr "Gönderici:"

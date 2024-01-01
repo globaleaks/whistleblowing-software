@@ -204,9 +204,6 @@ msgstr "دسترسی درخواست شد"
 msgid "Request access to the whistleblower's identity"
 msgstr "برای دسترسی به هویت افشاکننده درخواست بدهید"
 
-msgid "Please write a motivation"
-msgstr "یک انگیزه بنویسید"
-
 msgid "Reply to the request"
 msgstr "به درخواست پاسخ بدهید"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "ناشناس"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "تفلن همراه"
+
 msgid "File a report"
 msgstr "ترتیب یک راپور"
 
@@ -571,8 +589,8 @@ msgstr "ذخیره"
 msgid "Cancel"
 msgstr "لغو"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "روزها"
 
 msgid "Report statuses"
 msgstr "راپور وضعیت ها"
@@ -595,9 +613,6 @@ msgstr "دریافت‌کننده‌ها"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "روزها"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "برای غیرفعال کردن این ویژگی، مقدار را 0 قرار دهید."
 
@@ -618,12 +633,6 @@ msgstr "نمایش دریافت کننده ها بر اساس حروف الفب�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "نمایش جزئیات دریافت کننده روی صفحه وضعیت در راپور"
-
-msgid "Enable comments"
-msgstr "فعال کردن تبصره ها"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "به افشاگر اجازه نوشتن تبصره ها داده شود"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این راپور داده شود"
@@ -660,6 +669,9 @@ msgstr "آدرس های IP مجاز"
 
 msgid "Admin"
 msgstr "ادمین"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "دریافت کننده"
@@ -1023,9 +1035,6 @@ msgstr "فعال سازی پنل محرمیت سفارشی"
 msgid "Custom privacy panel"
 msgstr "پنل محرمیت سفارشی"
 
-msgid "Enable custodian user role"
-msgstr "فعال سازی نقش کاربر نگهبان"
-
 msgid "Enable scoring system"
 msgstr "فعال سازی سیستم امتیازدهی"
 
@@ -1093,9 +1102,6 @@ msgstr "فعال سازی شرایط خدمات"
 
 msgid "Title"
 msgstr "عنوان"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "نام عمومی"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "وضعیت:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
@@ -1246,12 +1246,20 @@ msgstr "از آن یک کاپی تهیه کرده و در مکانی امن نگ
 msgid "Attention"
 msgstr "توجه"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "یک نام برای کاپی وارد کنید"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "درخواست کمک"
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "پلتفورم هنوز برای اتصال های HTTPS تنظیم نشده و بهتر است که فقط برای تست کردن از آن استفاده شود."
-
-msgid "Please write a motivation for the reply"
-msgstr "لطفاً برای جواب یک انگیزه بنویسید"
 
 msgid "Send"
 msgstr "ارسال"
@@ -1388,6 +1393,9 @@ msgstr "دریافت کنندگان از شما می خواهند تا یک پر
 
 msgid "Fill the additional questionnaire"
 msgstr "پرسشنامه اضافی را پر کنید"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "به افشاگر اجازه نوشتن تبصره ها داده شود"
 
 msgid "From:"
 msgstr "از:"

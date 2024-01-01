@@ -215,9 +215,6 @@ msgstr "رسائی کی درخواست کی"
 msgid "Request access to the whistleblower's identity"
 msgstr "مخبر کی شناخت تک رسائی کی درخواست"
 
-msgid "Please write a motivation"
-msgstr "ایک حوصلہ افزائی لکھ کریں"
-
 msgid "Reply to the request"
 msgstr "درخواست کا جواب"
 
@@ -513,6 +510,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "تور"
+
+msgid "Mobile"
+msgstr "متحرک"
+
 msgid "File a report"
 msgstr "رپورٹ درج کروائیں۔"
 
@@ -582,8 +600,8 @@ msgstr "محفوظ"
 msgid "Cancel"
 msgstr "تسنیخ"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "دن"
 
 msgid "Report statuses"
 msgstr "اسٹیٹس کی اطلاع دیں۔ "
@@ -606,9 +624,6 @@ msgstr "وصول کنندگان"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "دن"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "اس خصوصیت کو غیر فعال کرنے کے لیے قدر کو 0 پر سیٹ کریں۔ "
 
@@ -629,12 +644,6 @@ msgstr "الفبائی ترتیب میں وصول کنندگان دکھائیں"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "جمع کرانے کی حیثیت کے صفحے پر وصول کنندہ کی تفصیلات دکھائیں"
-
-msgid "Enable comments"
-msgstr "تبصرے فعال کریں"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
@@ -671,6 +680,9 @@ msgstr "اجازت یافتہ IP addresses "
 
 msgid "Admin"
 msgstr "ایڈمن"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "وصول کنندہ"
@@ -1034,9 +1046,6 @@ msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
 msgid "Custom privacy panel"
 msgstr "اپنی مرضی کی پرائیویسی کا پینل"
 
-msgid "Enable custodian user role"
-msgstr "نگہبان صارف کے کردار کو فعال کریں۔ "
-
 msgid "Enable scoring system"
 msgstr "اسکورنگ سسٹم کو فعال کریں۔ "
 
@@ -1104,9 +1113,6 @@ msgstr "سروس کی شرائط کو فعال کریں۔ "
 
 msgid "Title"
 msgstr "عنوان"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Public name"
@@ -1225,12 +1231,6 @@ msgstr ""
 msgid "Status:"
 msgstr "حالت:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
 
@@ -1257,12 +1257,20 @@ msgstr "ایک کاپی بنائیں اور اسے محفوظ جگہ پر اسٹ
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "کاپی کا نام درج کریں۔ "
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "تعاون کی درخواست کریں۔ "
@@ -1283,9 +1291,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "پلیٹ فارم کو ابھی تک HTTPS کنکشنز کے لیے کنفیگر نہیں کیا گیا ہے اور اس لیے اسے صرف جانچ کے مقاصد کے لیے استعمال کیا جانا چاہیے۔ "
-
-msgid "Please write a motivation for the reply"
-msgstr "جواب کے لئے ایک حوصلہ افزائی لکھ کریں"
 
 msgid "Send"
 msgstr "بھیجیں"
@@ -1399,6 +1404,9 @@ msgstr "وصول کنندگان نے آپ سے ایک اضافی سوالنام�
 
 msgid "Fill the additional questionnaire"
 msgstr "اضافی سوالنامہ پُر کریں۔= "
+
+msgid "Allow the whistleblower to write comments"
+msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
 
 msgid "From:"
 msgstr "From:"

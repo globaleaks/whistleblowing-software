@@ -241,9 +241,6 @@ msgstr "accès demandé"
 msgid "Request access to the whistleblower's identity"
 msgstr "Demander l’accès à l’identité du lanceur d’alerte"
 
-msgid "Please write a motivation"
-msgstr "Veuillez écrire un motif"
-
 msgid "Reply to the request"
 msgstr "Réponse à la demande"
 
@@ -539,6 +536,27 @@ msgstr "Destinataires seulement"
 msgid "Me only"
 msgstr "Moi seulement"
 
+msgid "Returning whistleblowers"
+msgstr "Lanceurs d'alerte de retour"
+
+msgid "Anonymity"
+msgstr "Anonymat"
+
+msgid "Anonymous"
+msgstr "Anonymes"
+
+msgid "Subscribed"
+msgstr "Abonnés"
+
+msgid "Initially anonymous"
+msgstr "Anonymes initialement"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobile"
+
 msgid "File a report"
 msgstr "Remplir un signalement"
 
@@ -608,8 +626,8 @@ msgstr "Enregistrer"
 msgid "Cancel"
 msgstr "Annuler"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "jours"
 
 msgid "Report statuses"
 msgstr "États des signalements"
@@ -632,9 +650,6 @@ msgstr "Destinataires"
 msgid "Reminder date"
 msgstr "Date de rappel"
 
-msgid "days"
-msgstr "jours"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Définir la valeur à 0 pour désactiver cette fonction."
 
@@ -655,12 +670,6 @@ msgstr "Montrer les destinataires par ordre alphabétique"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
-
-msgid "Enable comments"
-msgstr "Activer les commentaires"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints"
@@ -697,6 +706,9 @@ msgstr "Adresses IP autorisées"
 
 msgid "Admin"
 msgstr "Administrateur"
+
+msgid "Analyst"
+msgstr "Analyste"
 
 msgid "Recipient"
 msgstr "Destinataire"
@@ -1060,9 +1072,6 @@ msgstr "Activer le volet de confidentialité personnalisée"
 msgid "Custom privacy panel"
 msgstr "Volet de confidentialité personnalisée"
 
-msgid "Enable custodian user role"
-msgstr "Activer le rôle de gardien"
-
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
 
@@ -1130,9 +1139,6 @@ msgstr "Activer les conditions générales d’utilisation"
 
 msgid "Title"
 msgstr "Titre"
-
-msgid "Analyst"
-msgstr "Analyste"
 
 msgid "Public name"
 msgstr "Nom public"
@@ -1251,12 +1257,6 @@ msgstr "Changer l’état"
 msgid "Status:"
 msgstr "État :"
 
-msgid "Substatus:"
-msgstr "Sous-état :"
-
-msgid "Motivation:"
-msgstr "Motivation :"
-
 msgid "Are you sure?"
 msgstr "Confirmez-vous ?"
 
@@ -1283,12 +1283,20 @@ msgstr "Copiez-la et gardez-la en lieu sûr. Si vous perdiez votre mot de passe,
 msgid "Attention"
 msgstr "Attention"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Pour des raisons de sécurité, le code de reçu de votre rapport doit être changé."
+msgid "For security reasons the code needs to be changed."
+msgstr "Pour des raisons de sécurité, le code doit être changé."
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
+
+msgid "Mask"
+msgstr "Cacher"
+
+msgid "Unselect"
+msgstr "Dessélectionner"
+
+msgid "Reopen"
+msgstr "Rouvrir"
 
 msgid "Request support"
 msgstr "Demander de l’assistance"
@@ -1309,9 +1317,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
-
-msgid "Please write a motivation for the reply"
-msgstr "Veuillez écrire le motif de la réponse"
 
 msgid "Send"
 msgstr "Envoyer"
@@ -1425,6 +1430,9 @@ msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnai
 
 msgid "Fill the additional questionnaire"
 msgstr "Remplir le questionnaire supplémentaire"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
 msgid "From:"
 msgstr "De :"

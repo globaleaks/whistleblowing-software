@@ -226,9 +226,6 @@ msgstr "Åtkomst begärd"
 msgid "Request access to the whistleblower's identity"
 msgstr "Begär åtkomst till visselblåsarens identitet"
 
-msgid "Please write a motivation"
-msgstr "Vänligen skriv en motivering"
-
 msgid "Reply to the request"
 msgstr "Svara på begäran"
 
@@ -524,6 +521,27 @@ msgstr "Endast mottagare"
 msgid "Me only"
 msgstr "Bara jag"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobil"
+
 msgid "File a report"
 msgstr "Lämna en rapport"
 
@@ -593,8 +611,8 @@ msgstr "Spara"
 msgid "Cancel"
 msgstr "Avbryt"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dagar"
 
 msgid "Report statuses"
 msgstr "Rapportera statusar"
@@ -617,9 +635,6 @@ msgstr "Mottagare"
 msgid "Reminder date"
 msgstr "Påminnelsedatum"
 
-msgid "days"
-msgstr "dagar"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ange värdet 0 för att inaktivera denna funktion."
 
@@ -640,12 +655,6 @@ msgstr "Visa mottagare i alfabetisk ordning"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Visa uppgifter om mottagarna överst på rapportstatussidan"
-
-msgid "Enable comments"
-msgstr "Aktivera kommentarer"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillåt att visselblåsaren skriver kommentarer"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
@@ -682,6 +691,9 @@ msgstr "Tillåtna IP-adresser"
 
 msgid "Admin"
 msgstr "Administratör"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Mottagare"
@@ -1045,9 +1057,6 @@ msgstr "Aktivera egen integritetspanel"
 msgid "Custom privacy panel"
 msgstr "Egen integritetspanel"
 
-msgid "Enable custodian user role"
-msgstr "Aktivera användarrollen som systemförvaltare"
-
 msgid "Enable scoring system"
 msgstr "Aktivera system med poängsättning"
 
@@ -1115,9 +1124,6 @@ msgstr "Aktivera användarvillkor"
 
 msgid "Title"
 msgstr "Rubrik"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Offentligt namn"
@@ -1236,12 +1242,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Är du säker?"
 
@@ -1268,12 +1268,20 @@ msgstr "Gör en kopia och förvara den på ett säkert ställe. Om du tappar bor
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Skriv in ett namn för denna kopia"
+
+msgid "Mask"
+msgstr "Maskera"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Begär support"
@@ -1294,9 +1302,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte."
-
-msgid "Please write a motivation for the reply"
-msgstr "Vänligen skriv en motivering till svaret"
 
 msgid "Send"
 msgstr "Skicka"
@@ -1410,6 +1415,9 @@ msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fyll i det ytterligare frågeformuläret"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillåt att visselblåsaren skriver kommentarer"
 
 msgid "From:"
 msgstr "Från:"

@@ -205,9 +205,6 @@ msgstr "Մուտքի հայցն ուղարկվել է"
 msgid "Request access to the whistleblower's identity"
 msgstr "Հայցել իրազեկչի ինքնությանը մատչելիությունը"
 
-msgid "Please write a motivation"
-msgstr "Խնդրում ենք նշել մոտիվացիան"
-
 msgid "Reply to the request"
 msgstr "Արձագանքել հայցին"
 
@@ -503,6 +500,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Հաշվետվություն ներկայացնել"
 
@@ -572,8 +590,8 @@ msgstr "Պահպանել"
 msgid "Cancel"
 msgstr "Չեղարկել"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "օրեր"
 
 msgid "Report statuses"
 msgstr "Հաղորդել կարգավիճակների մասին"
@@ -596,9 +614,6 @@ msgstr "Հասցեատերեր"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "օրեր"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Այս գործառույթն արգելափակելու համար սահմանեք արժեքը 0:"
 
@@ -619,12 +634,6 @@ msgstr "Դասակարգել հասցեատերերին այբբենական կ�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Ցույց տալ հասցեատիրոջ տվյալները զեկույցի կարգավիճակի էջում"
-
-msgid "Enable comments"
-msgstr "Թույլատրել մեկնաբանությունները"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
@@ -661,6 +670,9 @@ msgstr "Թույլատրված IP հասցեներ"
 
 msgid "Admin"
 msgstr "Ադմինիստրատոր"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Հասցեատեր"
@@ -1024,9 +1036,6 @@ msgstr "Ակտիվացնել անհատական գաղտնիության կար�
 msgid "Custom privacy panel"
 msgstr "Անհատական գաղտնիության կարգավորումների վահանակը"
 
-msgid "Enable custodian user role"
-msgstr "Ակտիվացնել վերահսկիչ օգտատիրոջ դերը"
-
 msgid "Enable scoring system"
 msgstr "Ակտիվացնել գնահատման համակարգը"
 
@@ -1094,9 +1103,6 @@ msgstr "Ակտիվացնել օգտագործման պայմանները"
 
 msgid "Title"
 msgstr "Վերնագիր"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Հանրային անուն"
@@ -1215,12 +1221,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Կարգավիճակ՝"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Համոզվա՞ծ եք։"
 
@@ -1247,12 +1247,20 @@ msgstr "Պատճենեք և պահեք այն ապահով վայրում: Այ�
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Մուտքագրեք պատճենի անունը"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Հայցել աջակցություն"
@@ -1273,9 +1281,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Հարթակը դեռ կազմաձևված չէ HTTPS միացումների համար, հետևաբար պետք է օգտագործվի բացառապես փորձարկումների համար։"
-
-msgid "Please write a motivation for the reply"
-msgstr "Խնդրում ենք նշել պատասխանի մոտիվացիան"
 
 msgid "Send"
 msgstr "Ուղարկել"
@@ -1389,6 +1394,9 @@ msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավ�
 
 msgid "Fill the additional questionnaire"
 msgstr "Լրացնել հավելյալ հարցաշարը"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
 
 msgid "From:"
 msgstr "Ումից՝"

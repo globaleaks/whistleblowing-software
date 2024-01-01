@@ -205,9 +205,6 @@ msgstr "அணுகல் கோரப்பட்டது"
 msgid "Request access to the whistleblower's identity"
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான வேண்டுகோள் அணுகல்"
 
-msgid "Please write a motivation"
-msgstr "ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
-
 msgid "Reply to the request"
 msgstr "கோரிக்கையை பதில்"
 
@@ -503,6 +500,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -572,8 +590,8 @@ msgstr "சேமி"
 msgid "Cancel"
 msgstr "நிராகரி"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "நாட்களில்"
 
 msgid "Report statuses"
 msgstr ""
@@ -596,9 +614,6 @@ msgstr "பெற்றவர்கள்"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "நாட்களில்"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
 
@@ -619,12 +634,6 @@ msgstr "அகரவரிசையில் பெற்றவர்கள் �
 
 msgid "Show recipient details on the status page of the report"
 msgstr "சமர்ப்பிக்கும் நிலையை பக்கம் பெறுநர் விவரங்களை காட்டு"
-
-msgid "Enable comments"
-msgstr "கருத்துகளை இயக்கு"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
@@ -661,6 +670,9 @@ msgstr ""
 
 msgid "Admin"
 msgstr "நிர்வாகம்"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "பெறுநரின்"
@@ -1024,9 +1036,6 @@ msgstr "விருப்ப தனியுரிமை குழு இயக
 msgid "Custom privacy panel"
 msgstr "விருப்ப தனியுரிமை குழு"
 
-msgid "Enable custodian user role"
-msgstr ""
-
 msgid "Enable scoring system"
 msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
 
@@ -1094,9 +1103,6 @@ msgstr "சேவை விதிமுறைகளை இயக்கு"
 
 msgid "Title"
 msgstr "தலைப்பு"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr ""
@@ -1215,12 +1221,6 @@ msgstr ""
 msgid "Status:"
 msgstr ""
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
@@ -1247,12 +1247,20 @@ msgstr ""
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1273,9 +1281,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "மேடையில் இன்னும் HTTPS இணைப்புகளுக்கு உள்ளமைக்கப்படவில்லை, எனவே சோதனை நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்பட வேண்டும்."
-
-msgid "Please write a motivation for the reply"
-msgstr "பதிலுக்கு ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
 
 msgid "Send"
 msgstr "அனுப்பு"
@@ -1389,6 +1394,9 @@ msgstr "கூடுதல் கேள்வித்தாள் நிரப�
 
 msgid "Fill the additional questionnaire"
 msgstr "கூடுதல் கேள்வித்தாளை நிரப்புக"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
 
 msgid "From:"
 msgstr ""

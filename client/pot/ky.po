@@ -204,9 +204,6 @@ msgstr "Кирүү уруксаты суралды"
 msgid "Request access to the whistleblower's identity"
 msgstr "Кабарчынын жекелигин көрүүгө уруксат талап кылуу"
 
-msgid "Please write a motivation"
-msgstr "Мотивациялык кат жазыныз"
-
 msgid "Reply to the request"
 msgstr "Талапка жооп берүү"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Отчет жазыңыз"
 
@@ -571,8 +589,8 @@ msgstr "Сактоо"
 msgid "Cancel"
 msgstr "Баш тартуу"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "күндөр"
 
 msgid "Report statuses"
 msgstr "Отчеттордун статусу"
@@ -595,9 +613,6 @@ msgstr "Алуучулар"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "күндөр"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Бул функцияны өчүрүү үчүн 0 маанисин коюңуз."
 
@@ -618,12 +633,6 @@ msgstr "Алуучуларды алфавиттик тартипте көрсө�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Отчеттун статус баракчасында алуучунун маалыматтарын көрсөтүү"
-
-msgid "Enable comments"
-msgstr "Комментарий калтыруу мүмкүнчүлүгүн ишке киргизүү"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Кабарчыга комментарий жазууга уруксат берүү"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Кабарчыга отчетко тиркеме кошууга уруксат берүү"
@@ -660,6 +669,9 @@ msgstr "Уруксат берилген IP даректери"
 
 msgid "Admin"
 msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Алуучу"
@@ -1023,9 +1035,6 @@ msgstr "Жеке купуялык панелин иштетүү"
 msgid "Custom privacy panel"
 msgstr "Жеке купуялык панели"
 
-msgid "Enable custodian user role"
-msgstr "Сактоочу колдонуучу ролун ишке киргизүү"
-
 msgid "Enable scoring system"
 msgstr "Упай системасын иштетүү"
 
@@ -1093,9 +1102,6 @@ msgstr "Тейлөө шарттарын иштетүү"
 
 msgid "Title"
 msgstr "Башкы сөз"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Жалпы аты"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Абал"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Чечимиңиз катуубу?"
 
@@ -1246,12 +1246,20 @@ msgstr "Көчүрмөсүн жасап, коопсуз жерге сактаң�
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Көчүрүү үчүн ат киргизиңиз"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Колдоо сураңыз"
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа дагы эле HTTPS туташуулары үчүн жөндөлгөн эмес, ошондуктан тестирлөө максатында гана колдонулушу керек."
-
-msgid "Please write a motivation for the reply"
-msgstr "Жооп үчүн мотивация жазыңыз"
 
 msgid "Send"
 msgstr "Жөнөтүү"
@@ -1388,6 +1393,9 @@ msgstr "Алуучулар сизден кошумча анкетаны толт
 
 msgid "Fill the additional questionnaire"
 msgstr "Кошумча анкетаны толтуруңуз"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Кабарчыга комментарий жазууга уруксат берүү"
 
 msgid "From:"
 msgstr "Баштап:"

@@ -205,9 +205,6 @@ msgstr "Тlекхочийла дехна"
 msgid "Request access to the whistleblower's identity"
 msgstr "Iорадаккхархочун цIарна тlекхачар деха"
 
-msgid "Please write a motivation"
-msgstr "Мотивацехь лаьцна яздехьа"
-
 msgid "Reply to the request"
 msgstr "Дехарна жоп луо"
 
@@ -503,6 +500,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Арз чудала"
 
@@ -572,8 +590,8 @@ msgstr "ДӀаӀалашде"
 msgid "Cancel"
 msgstr "Юхаэца"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "денош"
 
 msgid "Report statuses"
 msgstr "Аьрзнийн статусаш"
@@ -596,9 +614,6 @@ msgstr "ДIаэцархой"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "денош"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIоттаде."
 
@@ -619,12 +634,6 @@ msgstr "ДIаэцархой абатан рогlаллехь гайта"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "ДIаэцархочун билгалонаш гайта аьрзнийн статусан агlона тIехь"
-
-msgid "Enable comments"
-msgstr "Комменташ магае"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
@@ -661,6 +670,9 @@ msgstr "Магийна IP-адресаш"
 
 msgid "Admin"
 msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "ДIаэцархо"
@@ -1024,9 +1036,6 @@ msgstr "БIегIийла шайлахьйолу панел магае"
 msgid "Custom privacy panel"
 msgstr "БIегIийла шайлахьйолу панел"
 
-msgid "Enable custodian user role"
-msgstr "lуналхочунна пайдаэцархочун дакъа магаде"
-
 msgid "Enable scoring system"
 msgstr "Баллийн система магае"
 
@@ -1094,9 +1103,6 @@ msgstr "Сервисан билламаш магабе"
 
 msgid "Title"
 msgstr "ЦӀе"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Нахана евза цlе"
@@ -1215,12 +1221,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Баккъал бахий ахь?"
 
@@ -1247,12 +1247,20 @@ msgstr "Копи а яй, и кхерамза меттехь ларъе. Иза 
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Копин цlе чуязъе"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Гlортор еха"
@@ -1273,9 +1281,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "HTTPS зIенашца конфигураци йина яц платформа, цундела зерийн lалашонца бен лело ца мега и."
-
-msgid "Please write a motivation for the reply"
-msgstr "ХIокху жоьпан мотивацех лаций яздехьа"
 
 msgid "Send"
 msgstr "ДIатаса"
@@ -1389,6 +1394,9 @@ msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар
 
 msgid "Fill the additional questionnaire"
 msgstr "ТIеоьшуш долу хеттар язде"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
 
 msgid "From:"
 msgstr "Хьаьнгара:"

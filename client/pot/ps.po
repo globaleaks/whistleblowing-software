@@ -203,9 +203,6 @@ msgstr "لاسرسی غوښتل شوی"
 msgid "Request access to the whistleblower's identity"
 msgstr "د افشاګر پیژندګلوي ته لاسرسی لرل وغواړئ"
 
-msgid "Please write a motivation"
-msgstr "مهرباني وکړئ یوه انګیزه ولیکئ"
-
 msgid "Reply to the request"
 msgstr "غوښتنې ته ځواب ورکړئ"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
@@ -570,8 +588,8 @@ msgstr "ثبت کول"
 msgid "Cancel"
 msgstr "لغوه کول"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ورځې"
 
 msgid "Report statuses"
 msgstr "د وضعیتونو رپوټ کول"
@@ -594,9 +612,6 @@ msgstr "تر لاسه کوونکي"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ورځې"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "مقدار 0 کړئ تر څو دغه ځانګړنه غیرفعاله شي."
 
@@ -617,12 +632,6 @@ msgstr "تر لاسه کوونکي د الفبا د تورو په ترتیب و�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "د تر لاسه کوونکي جزئیات د رپوټ د پاڼې په وضعیت کې وښیئ"
-
-msgid "Enable comments"
-msgstr "تبصرې فعالې کړئ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "افشاګر ته اجازه ورکړئ تر څو تبصرې ولیکي"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "افشاګر ته اجازه ورکړئ چې له دې رپوټ سره ضمیمې اضافه کړي"
@@ -659,6 +668,9 @@ msgstr "مجاز IP پتې"
 
 msgid "Admin"
 msgstr "اډمین"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "تر لاسه کوونکی"
@@ -1022,9 +1034,6 @@ msgstr "د سفارشي محرمیت د پینل فعالول"
 msgid "Custom privacy panel"
 msgstr "د سفارشي محرمیت پینل"
 
-msgid "Enable custodian user role"
-msgstr "د ساتونکي کارن د رول فعالول"
-
 msgid "Enable scoring system"
 msgstr "د نمرې ورکولو د سیستم فعالول"
 
@@ -1092,9 +1101,6 @@ msgstr "د خدمت د شرایطو فعالول"
 
 msgid "Title"
 msgstr "عنوان"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "عام نوم"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "وضعیت:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "ایا ډاډه یاست؟"
 
@@ -1245,12 +1245,20 @@ msgstr "کاپي يې کړئ او په خوندي ځای کې یې زیرمه ک
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "د کاپي لپاره یو نوم دننه کړئ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "د مرستې غوښتنه"
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "پلټفارم لا تر اوسه پورې د HTTPS د اتصالاتو لپاره نه دی کانفیګور شوی او له همدې کبله باید یوازې د ازمویلو د مقاصدو لپاره وکارول شي."
-
-msgid "Please write a motivation for the reply"
-msgstr "مهرباني وکړئ د ځواب لپاره یوه انګیزه ولیکئ"
 
 msgid "Send"
 msgstr "لیږل"
@@ -1387,6 +1392,9 @@ msgstr "تر لاسه کوونکو له تاسې غوښتي تر څو یو اض�
 
 msgid "Fill the additional questionnaire"
 msgstr "اضافي پوښتنلیک ډک کړئ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "افشاګر ته اجازه ورکړئ تر څو تبصرې ولیکي"
 
 msgid "From:"
 msgstr "له خوا:"

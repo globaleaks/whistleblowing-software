@@ -221,9 +221,6 @@ msgstr "Hozzáférés kérve"
 msgid "Request access to the whistleblower's identity"
 msgstr "Hozzáférés kérése a bejelentők identitásához"
 
-msgid "Please write a motivation"
-msgstr "Kérem, adjon meg egy motivációt"
-
 msgid "Reply to the request"
 msgstr "Válasz a kérésre"
 
@@ -519,6 +516,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Névtelen"
+
+msgid "Subscribed"
+msgstr "Feliratkozva"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobil"
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 
@@ -588,8 +606,8 @@ msgstr "Mentés"
 msgid "Cancel"
 msgstr "Mégse"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "nap"
 
 msgid "Report statuses"
 msgstr "Jelentés állapotok"
@@ -612,9 +630,6 @@ msgstr "Címzettek"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "nap"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Állítsa az értéket 0-ra, hogy kikapcsolja ezt a funkciót."
 
@@ -635,12 +650,6 @@ msgstr "A címzettek megjelenítése betűrendben"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "A címzettek adatainak megjelenítése a jelentés státusz oldalán"
-
-msgid "Enable comments"
-msgstr "Megjegyzések engedélyezése"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "A bejelentő írhat megjegyzéseket"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
@@ -677,6 +686,9 @@ msgstr "Engedélyezett IP címek"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Címzett"
@@ -875,10 +887,10 @@ msgid "Template override"
 msgstr "Template felülírása"
 
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Telefonszám"
@@ -1040,9 +1052,6 @@ msgstr "Egyedi adatvédelmi panel engedélyezése"
 msgid "Custom privacy panel"
 msgstr "Egyéni adatvédelmi panel"
 
-msgid "Enable custodian user role"
-msgstr "Kezelő felhasználó típus engedélyezése"
-
 msgid "Enable scoring system"
 msgstr "Pontozási rendszer engedélyezése"
 
@@ -1110,9 +1119,6 @@ msgstr "Felhasználási feltételek engedélyezése"
 
 msgid "Title"
 msgstr "Cím"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Nyilvános elnevezés"
@@ -1231,12 +1237,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Állapot:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Biztosan?"
 
@@ -1263,12 +1263,20 @@ msgstr "Készítsen róla egy másolatot és tárolja biztonságos helyen.  Ha e
 msgid "Attention"
 msgstr "Figyelem"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Adja meg a másolat nevét"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Támogatás kérése"
@@ -1289,9 +1297,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kérem írjon egy motivációt a válaszra"
 
 msgid "Send"
 msgstr "Küldés"
@@ -1405,6 +1410,9 @@ msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
 msgid "Fill the additional questionnaire"
 msgstr "Kérjük, töltse ki a kérdőívet"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "A bejelentő írhat megjegyzéseket"
 
 msgid "From:"
 msgstr "Feladó:"

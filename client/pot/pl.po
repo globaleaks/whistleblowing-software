@@ -223,9 +223,6 @@ msgstr "Zażądano dostępu"
 msgid "Request access to the whistleblower's identity"
 msgstr "Zażądaj dostępu do tożsamości sygnalisty"
 
-msgid "Please write a motivation"
-msgstr "Proszę podać uzasadnienie"
-
 msgid "Reply to the request"
 msgstr "Odpowiedź na żądanie"
 
@@ -521,6 +518,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Anonimowość"
+
+msgid "Anonymous"
+msgstr "Używaj anonimowo"
+
+msgid "Subscribed"
+msgstr "Zaabonowany"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobilny"
+
 msgid "File a report"
 msgstr " \nWyślij zgłoszenie"
 
@@ -590,8 +608,8 @@ msgstr "Zapisz"
 msgid "Cancel"
 msgstr "Anuluj"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dni"
 
 msgid "Report statuses"
 msgstr "Statusy zgłoszeń"
@@ -614,9 +632,6 @@ msgstr "Odbiorcy"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dni"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ustaw wartość na 0 by wyłączyć tę funkcję."
 
@@ -637,12 +652,6 @@ msgstr "Pokaż odbiorców w porządku alfabetycznym"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Pokaż szczegóły odbiorców na stronie statusu zgłoszenia"
-
-msgid "Enable comments"
-msgstr "Włącz komentarze"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Sygnalista może pisać komentarze"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Sygnaliści mogą dodawać załączniki"
@@ -679,6 +688,9 @@ msgstr "Dozwolone adresy IP"
 
 msgid "Admin"
 msgstr "Administracja"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Odbiorca"
@@ -1042,9 +1054,6 @@ msgstr "Włącz własne ustawienia prywatności"
 msgid "Custom privacy panel"
 msgstr "Własne ustawienia prywatności"
 
-msgid "Enable custodian user role"
-msgstr "Włącz rolę dozorcy"
-
 msgid "Enable scoring system"
 msgstr "Włącz system punktacji"
 
@@ -1112,9 +1121,6 @@ msgstr "Włącz warunki świadczenia usług"
 
 msgid "Title"
 msgstr "Tytuł"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Publiczna nazwa"
@@ -1233,12 +1239,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
@@ -1265,12 +1265,20 @@ msgstr "Zrób kopię i zapisz w bezpiecznym miejscu. Potrzebny będzie jak zapom
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Wpisz nazwę kopii"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Poproś o wsparcie"
@@ -1291,9 +1299,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma wciąż nie ma skonfigurowanego HTTPS wobec czego powinna być używana tylko do testów."
-
-msgid "Please write a motivation for the reply"
-msgstr "Uzasadnij odpowiedź"
 
 msgid "Send"
 msgstr "Wyślij"
@@ -1407,6 +1412,9 @@ msgstr "Odbiorcy proszą cię byś wypełnił/a dodatkową ankietę."
 
 msgid "Fill the additional questionnaire"
 msgstr "Wypełnij dodatkową ankietę"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Sygnalista może pisać komentarze"
 
 msgid "From:"
 msgstr "Od:"

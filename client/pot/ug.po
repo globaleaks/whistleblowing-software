@@ -205,9 +205,6 @@ msgstr "زىيارەت ھوقۇقى تەلەپ قىلىندى"
 msgid "Request access to the whistleblower's identity"
 msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىشنى تەلەپ قىلىڭ"
 
-msgid "Please write a motivation"
-msgstr "بىر مەقسەت يېزىڭ"
-
 msgid "Reply to the request"
 msgstr "تەلەپكە جاۋاب بەر"
 
@@ -503,6 +500,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "ئىسىمسىز"
+
+msgid "Anonymous"
+msgstr "نامسىز"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Mobile"
+msgstr "جوال"
+
 msgid "File a report"
 msgstr "بىر مەلۇمات يوللا"
 
@@ -572,8 +590,8 @@ msgstr "ساقلا"
 msgid "Cancel"
 msgstr "ۋاز كەچ"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "كۈنلەر"
 
 msgid "Report statuses"
 msgstr "مەلۇمات ھالەتلىرى"
@@ -596,9 +614,6 @@ msgstr "تاپشۇرىۋالغۇچىلار"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "كۈنلەر"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "بۇ ئىقتىدارنى چەكلەش ئۈچۈن قىممىتىنى 0 قىلىپ بېكىتىڭ."
 
@@ -619,12 +634,6 @@ msgstr "تاپشۇرىۋالغۇچىلارنى ئېلىپبە تەرتىپى ب�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "تاپشۇرىۋالغۇچىنىڭ تەپسىلى ئەھۋالىنى مەلۇماتنىڭ ھالەت بېتىدە كۆرسەت"
-
-msgid "Enable comments"
-msgstr "باھالاشنى قوزغات"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr ""
@@ -661,6 +670,9 @@ msgstr "رۇخسەت قىلىنغان IP ئادرېسلىرى"
 
 msgid "Admin"
 msgstr "باشقۇرغۇچى"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "تاپشۇرىۋالغۇچى"
@@ -1024,9 +1036,6 @@ msgstr "ئىختىيارى شەخسىيەت تاختىسىنى قوزغات"
 msgid "Custom privacy panel"
 msgstr "ئىختىيارى شەخسىيەت تاختىسى"
 
-msgid "Enable custodian user role"
-msgstr "ساقلىغۇچى ئىشلەتكۈچى رولىنى قوزغات"
-
 msgid "Enable scoring system"
 msgstr "نومۇر قويۈش سىستېمىسىنى قوزغات"
 
@@ -1094,9 +1103,6 @@ msgstr "مۇلازىمەت شەرتلىرىنى قوزغات"
 
 msgid "Title"
 msgstr "تېما"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "ئاممىۋى نامى"
@@ -1215,12 +1221,6 @@ msgstr ""
 msgid "Status:"
 msgstr "ھالەت:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "جەزىم قىلامسىز؟"
 
@@ -1247,12 +1247,20 @@ msgstr "بىر كۇپىيەسىنى ئېلىڭ ۋە ىخەتەر يەردە سا
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "كۇپىيە ئۈچۈن بىر نام كىرگۈزۈڭ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "ياردەم تەلەپ"
@@ -1273,9 +1281,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "بۇ سۇپىغا تېخىچە HTTPS باغلىنىشلىرى سەپلەنمەپتۇ ۋە شۇنداق بولغاچقا پەقەت سىناق مەقسىتىدىلا ئىشلىتىش كېرەك.  "
-
-msgid "Please write a motivation for the reply"
-msgstr "جاۋا قايتۇرۇشتىكى بىر مەقسىتىڭىزنى يېزىڭ"
 
 msgid "Send"
 msgstr "ئەۋەت"
@@ -1389,6 +1394,9 @@ msgstr "تاپشۇرىۋالغۇچىلار سىزنىڭ بىر قوشۇمچە ر
 
 msgid "Fill the additional questionnaire"
 msgstr "بۇ قوشۇمچە راي سىناشنى توشقۇز"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
 msgid "From:"
 msgstr "ئەۋەتكۈچى:"

@@ -203,9 +203,6 @@ msgstr "Иришим соратылды"
 msgid "Request access to the whistleblower's identity"
 msgstr "Малюмат бериджи шахсиетине иришимни соратмакъ"
 
-msgid "Please write a motivation"
-msgstr "Лютфен, мотивацияны бельгиленъиз"
-
 msgid "Reply to the request"
 msgstr "Соратмагъа джевап бермек"
 
@@ -501,6 +498,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Эсабат бермек"
 
@@ -570,8 +588,8 @@ msgstr "Сакълап къалдырмакъ"
 msgid "Cancel"
 msgstr "Лягъу этме"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "куньлер"
 
 msgid "Report statuses"
 msgstr "Эсабат статуслары"
@@ -594,9 +612,6 @@ msgstr "Алыджылар"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "куньлер"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Бу функцияны сёндюрмек ичюн 0 дёгмесине басынъыз."
 
@@ -617,12 +632,6 @@ msgstr "Алыджыларны элифбе тертибине коре сыра
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Малюмат берме вазиети саифесинде алыджы бильгилерни косьтермек"
-
-msgid "Enable comments"
-msgstr "Изаатларны ишлетмек"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
@@ -659,6 +668,9 @@ msgstr "Къабиль IP-адреслер"
 
 msgid "Admin"
 msgstr "Идареджи"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Алыджы"
@@ -1022,9 +1034,6 @@ msgstr "Гизлилик сазламалар панелини чалыштыр�
 msgid "Custom privacy panel"
 msgstr "Гизлилик сазламалар панели "
 
-msgid "Enable custodian user role"
-msgstr "Къулланыджы-къоруйыджы ролюни ишлетмек"
-
 msgid "Enable scoring system"
 msgstr "Баа къойма системасыны ишлетмек"
 
@@ -1092,9 +1101,6 @@ msgstr "Хызмет этме шартларыны ишлетмек"
 
 msgid "Title"
 msgstr "Серлева"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Ичтимаий ад"
@@ -1213,12 +1219,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Эминсинъизми?"
 
@@ -1245,12 +1245,20 @@ msgstr "Копия япып, оны телюкесиз ерге ерлештир
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Копия адыны кирсетинъиз"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Ярдым соратмакъ"
@@ -1271,9 +1279,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа HTTPS бирлешмеси ичюн сазлаштырылмагъан, бу себептен о тек тест ичюн къулланылмакъ керек."
-
-msgid "Please write a motivation for the reply"
-msgstr "Лютфен, джевапнынъ мотивациясыны бельгиленъиз"
 
 msgid "Send"
 msgstr "Ёлламакъ"
@@ -1387,6 +1392,9 @@ msgstr "Алыджылар сизни къошма суаллер джедвел
 
 msgid "Fill the additional questionnaire"
 msgstr "Къошма суаллер джедвелини толдурмакъ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
 msgid "From:"
 msgstr "Кимден:"

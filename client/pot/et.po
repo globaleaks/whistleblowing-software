@@ -204,9 +204,6 @@ msgstr "Taotleti juurdepääsu"
 msgid "Request access to the whistleblower's identity"
 msgstr "Taotle juurdepääsu vihjeandja isikuandmetele"
 
-msgid "Please write a motivation"
-msgstr "Kirjutage motivatsioon"
-
 msgid "Reply to the request"
 msgstr "Vasta päringule"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonüümne"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Esita teavitus"
 
@@ -571,8 +589,8 @@ msgstr "Salvesta"
 msgid "Cancel"
 msgstr "Tühista"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "päeva"
 
 msgid "Report statuses"
 msgstr "Teavituste staatused"
@@ -595,9 +613,6 @@ msgstr "Saajad"
 msgid "Reminder date"
 msgstr "Meeldetuletuse kuupäev"
 
-msgid "days"
-msgstr "päeva"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
 
@@ -618,12 +633,6 @@ msgstr "Näita saajaid tähestiku järjekorras"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Näita saajate üksikasju teavituse staatuselehel"
-
-msgid "Enable comments"
-msgstr "Luba kommentaarid"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Luba vihjeandjal kommentaare kirjutada"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Luba vihjeandjal teatele manuseid lisada"
@@ -660,6 +669,9 @@ msgstr "Lubatud IP-aadressid"
 
 msgid "Admin"
 msgstr "Administraator"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Saaja"
@@ -1023,9 +1035,6 @@ msgstr "Luba kohandatud andmekaitsepaneel"
 msgid "Custom privacy panel"
 msgstr "Kohandatud andmekaitsepaneel"
 
-msgid "Enable custodian user role"
-msgstr "Luba hoidja kasutajaroll"
-
 msgid "Enable scoring system"
 msgstr "Luba punktisüsteem"
 
@@ -1093,9 +1102,6 @@ msgstr "Luba teenusetingimused"
 
 msgid "Title"
 msgstr "Pealkiri"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Avalik nimi"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Staatus:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Kas olete kindel?"
 
@@ -1246,12 +1246,20 @@ msgstr "Tehke sellest koopia ja hoidke seda kindlas kohas. Seda läheb vaja paro
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Sisestage koopia nimi"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Küsi tuge"
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kirjutage vastuse kohta motivatsioon"
 
 msgid "Send"
 msgstr "Saada"
@@ -1388,6 +1393,9 @@ msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täiendavat ankeeti täitma"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Luba vihjeandjal kommentaare kirjutada"
 
 msgid "From:"
 msgstr "Saatja:"

@@ -213,9 +213,6 @@ msgstr "การเข้าถึงที่ร้องขอ"
 msgid "Request access to the whistleblower's identity"
 msgstr "ร้องขอการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
-msgid "Please write a motivation"
-msgstr "กรุณาเขียนเหตุจูงใจ"
-
 msgid "Reply to the request"
 msgstr "ตอบกลับคำขอ"
 
@@ -511,6 +508,27 @@ msgstr "เฉพาะผู้รับ"
 msgid "Me only"
 msgstr "เฉพาะฉัน"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "นิรนาม"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "ยื่นรายงาน"
 
@@ -580,8 +598,8 @@ msgstr "บันทึก"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "วัน"
 
 msgid "Report statuses"
 msgstr "สถานะรายงาน"
@@ -604,9 +622,6 @@ msgstr "ผู้รับ"
 msgid "Reminder date"
 msgstr "วันที่ให้เตือน"
 
-msgid "days"
-msgstr "วัน"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณสมบัตินี้"
 
@@ -627,12 +642,6 @@ msgstr "แสดงผู้รับตามลำดับอักษร"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
-
-msgid "Enable comments"
-msgstr "เปิดใช้งานการแสดงความคิดเห็น"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
@@ -669,6 +678,9 @@ msgstr "อนุญาตที่อยู่ไอพี"
 
 msgid "Admin"
 msgstr "ผู้ดูแลระบบ"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "ผู้รับ"
@@ -1032,9 +1044,6 @@ msgstr "เปิดใช้งานแผงความเป็นส่ว
 msgid "Custom privacy panel"
 msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
 
-msgid "Enable custodian user role"
-msgstr "เปิดใช้บทบาทผู้พิทักษ์"
-
 msgid "Enable scoring system"
 msgstr "เปิดใช้งานระบบให้คะแนน"
 
@@ -1102,9 +1111,6 @@ msgstr "เปิดใช้ข้อตกลงในการให้บร
 
 msgid "Title"
 msgstr "ชื่อเรื่อง"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "ชื่อสาธารณะ"
@@ -1223,12 +1229,6 @@ msgstr ""
 msgid "Status:"
 msgstr "สถานะ:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
@@ -1255,12 +1255,20 @@ msgstr "ทำสำเนาและเก็บไว้ในที่ปล
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ใส่ชื่อสำหรับสำเนา"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "ขอการสนับสนุน"
@@ -1281,9 +1289,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
-
-msgid "Please write a motivation for the reply"
-msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับ"
 
 msgid "Send"
 msgstr "ส่ง"
@@ -1397,6 +1402,9 @@ msgstr "ผู้รับได้ร้องขอให้คุณกรอ
 
 msgid "Fill the additional questionnaire"
 msgstr "กรอกแบบสอบถามเพิ่มเติม"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
 
 msgid "From:"
 msgstr "จาก:"

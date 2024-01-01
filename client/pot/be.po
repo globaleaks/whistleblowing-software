@@ -204,9 +204,6 @@ msgstr "Запыт доступу зроблены"
 msgid "Request access to the whistleblower's identity"
 msgstr "Запыт доступу да інфармацыі пра асобу выкрывальніка"
 
-msgid "Please write a motivation"
-msgstr "Калі ласка, напішыце прычыну"
-
 msgid "Reply to the request"
 msgstr "Адказаць на запыт"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
@@ -571,8 +589,8 @@ msgstr "Захаваць"
 msgid "Cancel"
 msgstr "Адмяніць"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "дн."
 
 msgid "Report statuses"
 msgstr "Статусы справаздачы"
@@ -595,9 +613,6 @@ msgstr "Атрымальнікі"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "дн."
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Каб адключыць гэтую функцыю, выбярыце значэнне \"0\"."
 
@@ -618,12 +633,6 @@ msgstr "Паказваць атрымальнікаў у алфавітным п
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Паказваць падрабязную інфармацыю пра атрымальніка на старонцы статусу справаздачы"
-
-msgid "Enable comments"
-msgstr "Дазволіць каментары"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Дазволіць выкрывальніку пакідаць каментары"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дазволіць выкрывальніку дадаваць да справаздачы далучаныя файлы "
@@ -660,6 +669,9 @@ msgstr "Дазволеныя IP адрасы"
 
 msgid "Admin"
 msgstr "Адміністратар"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Атрымальнік"
@@ -1023,9 +1035,6 @@ msgstr "Уключыць карыстальніцкую панэль канфі�
 msgid "Custom privacy panel"
 msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
 
-msgid "Enable custodian user role"
-msgstr "Уключыць ролю захавальніка"
-
 msgid "Enable scoring system"
 msgstr "Уключыць сістэму налічэння балаў"
 
@@ -1093,9 +1102,6 @@ msgstr "Уключыць умовы выкарыстання"
 
 msgid "Title"
 msgstr "Загаловак"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Публічнае імя"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Упэўненыя?"
 
@@ -1246,12 +1246,20 @@ msgstr "Зрабіце копію і захавайце яе ў бяспечны
 msgid "Attention"
 msgstr "Увага"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Увесці назву для копіі"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Зрабіць запыт аб дапамозе"
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа па -ранейшаму не сканфігураваная для злучэнняў HTTPS, і таму яе варта выкарыстоўваць толькі ў мэтах тэставання."
-
-msgid "Please write a motivation for the reply"
-msgstr "Калі ласка, напішыце прычыну такога адказу"
 
 msgid "Send"
 msgstr "Адправіць"
@@ -1388,6 +1393,9 @@ msgstr "Атрымальнікі зрабілі вам запыт запоўні
 
 msgid "Fill the additional questionnaire"
 msgstr "Запоўніць дадатковую анкету."
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Дазволіць выкрывальніку пакідаць каментары"
 
 msgid "From:"
 msgstr "Ад:"

@@ -205,9 +205,6 @@ msgstr "Tilgang forespurt"
 msgid "Request access to the whistleblower's identity"
 msgstr "Forespør tilgang til fløyteblåserens sanne identitet"
 
-msgid "Please write a motivation"
-msgstr "Skriv motivasjon for forespørsel"
-
 msgid "Reply to the request"
 msgstr "Besvar forespørsel"
 
@@ -503,6 +500,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobil"
+
 msgid "File a report"
 msgstr "Legg inn en rapport"
 
@@ -572,8 +590,8 @@ msgstr "Lagre"
 msgid "Cancel"
 msgstr "Avbryt"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dager"
 
 msgid "Report statuses"
 msgstr "Rapporter statuser"
@@ -596,9 +614,6 @@ msgstr "Mottakere"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dager"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Innstill verdien til 0 for å kunne deaktivere funksjonen."
 
@@ -619,12 +634,6 @@ msgstr "Vis mottakere i alfabetisk rekkefølge"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Vis detaljer om mottakeren på statussiden til rapporten"
-
-msgid "Enable comments"
-msgstr "Aktiver kommentarer"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "La fløyteblåseren legge til vedlegg i rapporten"
@@ -661,6 +670,9 @@ msgstr "Tillatte IP-adresser"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Mottaker"
@@ -1024,9 +1036,6 @@ msgstr "Aktiver egentilpasset personvernspanel"
 msgid "Custom privacy panel"
 msgstr "Egentilpasset personvernspanel"
 
-msgid "Enable custodian user role"
-msgstr "Slå på brukerrollen for tillitspersonen"
-
 msgid "Enable scoring system"
 msgstr "Aktiver poengsystem"
 
@@ -1094,9 +1103,6 @@ msgstr "Aktiver servicevilkår"
 
 msgid "Title"
 msgstr "Tittel"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Offentlig navn"
@@ -1215,12 +1221,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1247,12 +1247,20 @@ msgstr "Ta en kopi og lagre den på et trygt sted. Du vil trenge dette i tilfell
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Skriv inn et navn på kopien"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Be om støtte"
@@ -1273,9 +1281,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
-
-msgid "Please write a motivation for the reply"
-msgstr "Skriv motivasjon for forespørsel"
 
 msgid "Send"
 msgstr "Send"
@@ -1389,6 +1394,9 @@ msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fyll ut tilleggsspørreskjemaet"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
 msgid "From:"
 msgstr "Fra:"

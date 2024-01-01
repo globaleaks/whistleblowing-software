@@ -211,9 +211,6 @@ msgstr "Дастрасӣ дархост шуд"
 msgid "Request access to the whistleblower's identity"
 msgstr "Дархости дастрасӣ ба шахсияти хабардиҳанда "
 
-msgid "Please write a motivation"
-msgstr "Лутфан сабабро нависед"
-
 msgid "Reply to the request"
 msgstr "Ба дархост ҷавоб додан"
 
@@ -509,6 +506,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "Таҳияи гузориш"
 
@@ -578,8 +596,8 @@ msgstr "Захира кардан"
 msgid "Cancel"
 msgstr "Бекор кардан"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "рӯзҳо"
 
 msgid "Report statuses"
 msgstr "Ҳолатҳоро гузориш додан"
@@ -602,9 +620,6 @@ msgstr "Гирандагон"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "рӯзҳо"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Барои хомӯш кардани ин функсия арзишро ба 0 муқаррар кунед."
 
@@ -625,12 +640,6 @@ msgstr "Гирандагонро бо тартиби алифбо нишон д�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Маълумот оид ба гирандаро дар саҳифаи ҳолати гузориш нишон додан"
-
-msgid "Enable comments"
-msgstr "Шарҳҳоро фаъол кардан"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ба хабардиҳанда иҷозаи илова кардани замима ба гузориш додан"
@@ -667,6 +676,9 @@ msgstr "IP суроғаҳои иҷозашуда"
 
 msgid "Admin"
 msgstr "Маъмур"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Гиранда"
@@ -1030,9 +1042,6 @@ msgstr "Панели махфии фармоиширо фаъол сохтан"
 msgid "Custom privacy panel"
 msgstr "Панели махфии фармоишӣ"
 
-msgid "Enable custodian user role"
-msgstr "Нақши муҳофиз-корбарро фаъол кардан"
-
 msgid "Enable scoring system"
 msgstr "Низоми ҳисоби холҳоро фаъол сохтан"
 
@@ -1100,9 +1109,6 @@ msgstr "Шартҳои хизматрасониро фаъол сохтан"
 
 msgid "Title"
 msgstr "Унвон"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Номи ҷамъиятӣ"
@@ -1221,12 +1227,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Ҳолат:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Шумо мутмаъин ҳастед?"
 
@@ -1253,12 +1253,20 @@ msgstr "Инро нусхабардорӣ кунед ва дар ҷои амн �
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Барои нусха ном ворид кунед"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Дастгирӣ дархост кардан"
@@ -1279,9 +1287,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Барнома то ҳол барои алоқаи HTTPS танзим нашудааст ва бинобар ин танҳо бо мақсади санҷишӣ истифода мешавад."
-
-msgid "Please write a motivation for the reply"
-msgstr "Лутфан барои ҷавоб додан далел нависонед"
 
 msgid "Send"
 msgstr "Фиристодан"
@@ -1395,6 +1400,9 @@ msgstr "Гирандагон аз шумо дархост кардаанд са�
 
 msgid "Fill the additional questionnaire"
 msgstr "Пур кардани саволномаи иловагӣ"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
 
 msgid "From:"
 msgstr "Аз:"

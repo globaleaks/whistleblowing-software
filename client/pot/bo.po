@@ -204,9 +204,6 @@ msgstr "ལྟ་སྤྱོད་རེ་ཞུ་ཟིན།"
 msgid "Request access to the whistleblower's identity"
 msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ཆེད་ལྟ་སྤྱོད་རེ་ཞུ་བྱ།"
 
-msgid "Please write a motivation"
-msgstr "ཀུན་སློང་ཞིག་འབྲི་རོགས་གནང་།"
-
 msgid "Reply to the request"
 msgstr "རེ་ཞུར་ལན་འདེབས་བྱ།"
 
@@ -502,6 +499,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "མིང་མེད།"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr ""
+
 msgid "File a report"
 msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"
 
@@ -571,8 +589,8 @@ msgstr "ཉར་ཚགས།"
 msgid "Cancel"
 msgstr "བརྩི་མེད།"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ཉིན།"
 
 msgid "Report statuses"
 msgstr "སྙན་ཐོའི་གནས་བབ།"
@@ -595,9 +613,6 @@ msgstr "འབྱོར་ཡུལ།"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ཉིན།"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ཁྱད་ཆོས་འདི་ནུས་འཇོམས་བཟོ་བར་རིན་ཐང་དེ་ 0 སྟེང་སྒྲིག་བཀོད་བྱ།"
 
@@ -618,12 +633,6 @@ msgstr "འབྱོར་ཡུལ་རྣམས་ཀ་མད་སྒོ་
 
 msgid "Show recipient details on the status page of the report"
 msgstr "འབྱོར་ཡུལ་གྱི་ཞིབ་ཕྲ་རྣམས་སྙན་ཐོའི་གནས་བབ་ཤོག་ངོས་སྟེང་སྟོན།"
-
-msgid "Enable comments"
-msgstr "མཆན་ནུས་ལྡན་བཟོ།"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "གསང་སྒྲོག་པ་ལ་མཆན་འབྲི་རུ་འཇུག"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་ཟུར་སྣོན་སྣོན་དུ་འཇུག"
@@ -660,6 +669,9 @@ msgstr "ལྟ་སྤྱོད་ཆོག་པའི་ IP ཁ་བྱང�
 
 msgid "Admin"
 msgstr "འཛིན་སྐྱོང་།"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "འབྱོར་ཡུལ།"
@@ -1023,9 +1035,6 @@ msgstr "རང་བཟོ་གསང་རྒྱའི་སྟེགས་བ
 msgid "Custom privacy panel"
 msgstr "རང་བཟོ་གསང་རྒྱའི་སྟེགས་བུ། "
 
-msgid "Enable custodian user role"
-msgstr "བདག་གཉེར་སྤྱོད་པ་པོའི་འགན་འཁྲི་ནུས་ལྡན་བཟོ།"
-
 msgid "Enable scoring system"
 msgstr "ཨང་ཐོབ་ལམ་ལུགས་ནུས་ལྡན་བཟོ།"
 
@@ -1093,9 +1102,6 @@ msgstr "ཞབས་ཞུའི་རྒྱས་གཅད་ནུས་ལྡ
 
 msgid "Title"
 msgstr "འགོ་བརྗོད།"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "སྤྱི་སྤྱོད་མིང་།"
@@ -1214,12 +1220,6 @@ msgstr ""
 msgid "Status:"
 msgstr "གནས་བབ།:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "ཁྱེད་རང་ངེས་བརྟན་ཡིན་ནམ།"
 
@@ -1246,12 +1246,20 @@ msgstr "འདྲ་བཤུས་ཤིག་བཟོས་ཏེ་དེ་
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "འདྲ་བཤུས་དེར་མིང་ཞིག་འཇུག"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1272,9 +1280,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "གླེང་སྟེགས་དེ་ HTTPS སྦྲེལ་མཐུད་ཆེད་ད་དུང་ཡང་སྡེབ་སྒྲིག་ཟིན་མེད་པ་དང་། ཚོད་ལྟའི་དགོས་དོན་དག་ཁོ་ནའི་ཆེད་བེད་སྤྱོད་བྱེད་དགོས།"
-
-msgid "Please write a motivation for the reply"
-msgstr "ལན་འདེབས་ཆེད་སྐུལ་སློང་ཞིག་འབྲི་རོགས་གནང་། "
 
 msgid "Send"
 msgstr "གཏོང་།"
@@ -1388,6 +1393,9 @@ msgstr "འབྱོར་ཡུལ་བ་ཡིས་ཁྱེད་ལ་ད
 
 msgid "Fill the additional questionnaire"
 msgstr "དྲི་ཚན་འཕར་མ་འགེང་།"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "གསང་སྒྲོག་པ་ལ་མཆན་འབྲི་རུ་འཇུག"
 
 msgid "From:"
 msgstr "ནས།:"

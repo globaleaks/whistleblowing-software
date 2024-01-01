@@ -224,9 +224,6 @@ msgstr "已请求访问"
 msgid "Request access to the whistleblower's identity"
 msgstr "请求访问揭发者身份"
 
-msgid "Please write a motivation"
-msgstr "请说明动机"
-
 msgid "Reply to the request"
 msgstr "回复请求"
 
@@ -522,6 +519,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "匿名"
+
+msgid "Anonymous"
+msgstr "匿名"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "移动设备"
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -591,8 +609,8 @@ msgstr "保存"
 msgid "Cancel"
 msgstr "取消"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "天"
 
 msgid "Report statuses"
 msgstr "报告状态"
@@ -615,9 +633,6 @@ msgstr "接收人"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "天"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "将该值设置为 0 以禁用该功能。"
 
@@ -638,12 +653,6 @@ msgstr "按字母顺序显示接收人"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "在报告状态页面显示接收人详情"
-
-msgid "Enable comments"
-msgstr "启用评论"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "允许揭发者评论"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "允许揭发者向报告添加附件"
@@ -680,6 +689,9 @@ msgstr "已允许 IP 地址"
 
 msgid "Admin"
 msgstr "管理员"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "接收人"
@@ -1043,9 +1055,6 @@ msgstr "启用自定义隐私面板"
 msgid "Custom privacy panel"
 msgstr "自定义隐私面板"
 
-msgid "Enable custodian user role"
-msgstr "启用保管人用户角色"
-
 msgid "Enable scoring system"
 msgstr "启用评分系统"
 
@@ -1113,9 +1122,6 @@ msgstr "启用服务条款"
 
 msgid "Title"
 msgstr "标题"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "公开名称"
@@ -1234,12 +1240,6 @@ msgstr ""
 msgid "Status:"
 msgstr "状态："
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "是否确定？"
 
@@ -1266,12 +1266,20 @@ msgstr "请制作副本并妥善保存。如果密码丢失，为了恢复帐户
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "输入副本的名称"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "请求支持"
@@ -1292,9 +1300,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "平台为使用 HTTPS 连接配置，因此仅用于测试。"
-
-msgid "Please write a motivation for the reply"
-msgstr "请说明回复的动机"
 
 msgid "Send"
 msgstr "发送"
@@ -1408,6 +1413,9 @@ msgstr "接收人已请求您填写附加问卷。"
 
 msgid "Fill the additional questionnaire"
 msgstr "填写附加问卷"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "允许揭发者评论"
 
 msgid "From:"
 msgstr "来自："

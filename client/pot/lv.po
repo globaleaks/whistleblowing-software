@@ -208,9 +208,6 @@ msgstr "Piekļuves pieprasījums"
 msgid "Request access to the whistleblower's identity"
 msgstr "Pieprasīt piekļuvi trauksmes cēlēja identitātei"
 
-msgid "Please write a motivation"
-msgstr "Lūdzu, uzrakstiet pamatojumu"
-
 msgid "Reply to the request"
 msgstr "Atbildēt uz pieprasījumu"
 
@@ -506,6 +503,27 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Mobile"
+msgstr "Mobils"
+
 msgid "File a report"
 msgstr "Iesniegt ziņojumu"
 
@@ -575,8 +593,8 @@ msgstr "Saglabāt"
 msgid "Cancel"
 msgstr "Atcelt"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dienas"
 
 msgid "Report statuses"
 msgstr "Ziņojuma statusi"
@@ -599,9 +617,6 @@ msgstr "Saņēmēji"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dienas"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Iestatiet vērtību uz 0, lai atspējotu šo funkciju."
 
@@ -622,12 +637,6 @@ msgstr "Rādīt saņēmējus alfabētiskā secībā"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Rādīt informāciju par saņēmēju pārskata statusa lapā"
-
-msgid "Enable comments"
-msgstr "Iespējot komentārus"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Atļaut trauksmes cēlējam rakstīt komentārus"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Atļaut trauksmes cēlējam pievienot pielikumus"
@@ -664,6 +673,9 @@ msgstr "Atļautās IP adreses"
 
 msgid "Admin"
 msgstr "Administrators"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Saņēmējs"
@@ -1027,9 +1039,6 @@ msgstr "Iespējot pielāgoto privātuma paneli"
 msgid "Custom privacy panel"
 msgstr "Pielāgotais privātuma panelis"
 
-msgid "Enable custodian user role"
-msgstr "Iespējot pārziņa lietotāja lomu"
-
 msgid "Enable scoring system"
 msgstr "Iespējot vērtēšanas sistēmu"
 
@@ -1097,9 +1106,6 @@ msgstr "Iespējot pakalpojumu sniegšanas noteikumus"
 
 msgid "Title"
 msgstr "Virsraksts"
-
-msgid "Analyst"
-msgstr ""
 
 msgid "Public name"
 msgstr "Publiskais nosaukums"
@@ -1218,12 +1224,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Statuss:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Esiet pārliecināts?"
 
@@ -1250,12 +1250,20 @@ msgstr "Izveidojiet kopiju un uzglabājiet to drošā vietā. Ja pazaudēsiet pa
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Ievadiet kopijas nosaukumu"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Pieprasīt atbalstu"
@@ -1276,9 +1284,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma joprojām nav konfigurēta HTTPS savienojumiem, un tāpēc to vajadzētu izmantot tikai testēšanas nolūkos."
-
-msgid "Please write a motivation for the reply"
-msgstr "Lūdzu, uzrakstiet atbildes pamatojumu"
 
 msgid "Send"
 msgstr "Nosūtīt"
@@ -1392,6 +1397,9 @@ msgstr "Saņēmēji ir lūguši jūs aizpildīt papildu aptauju."
 
 msgid "Fill the additional questionnaire"
 msgstr "Aizpildiet papildu aptauju"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Atļaut trauksmes cēlējam rakstīt komentārus"
 
 msgid "From:"
 msgstr "No:"
