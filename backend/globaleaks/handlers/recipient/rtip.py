@@ -204,14 +204,11 @@ def recalculate_data_retention(session, itip, report_reopen_request):
     elif itip.status == "closed":
         # check the substatus, status and context for a data retention
         substatus = 0
-        status = 1
         context = 2
-        for to_check in (substatus, status, context):
+        for to_check in (substatus, context):
             if to_check == substatus:
                 if itip.substatus is not None:
                     new_retention = get_tip_ttl(session, models.SubmissionSubStatus, itip.substatus)
-            elif to_check == status:
-                new_retention = get_tip_ttl(session, models.SubmissionStatus, itip.status)
             else: # to_check == context:
                 new_retention = get_tip_ttl(session, models.Context, itip.context_id)
 

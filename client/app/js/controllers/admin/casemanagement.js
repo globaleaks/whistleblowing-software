@@ -132,13 +132,17 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
       });
     };
 
-    $scope.save_submissions_substatuses = function (substatus, cb) {
+    $scope.updateRetentionOption = function(substatus) {
       if (substatus.tip_timetolive_option <= -1) {
         substatus.tip_timetolive = -1;
       } else if (substatus.tip_timetolive_option == 0) {
-        substatus.tip_timetolive = 0;
+        if (substatus.tip_timetolive <= 0) {
+          substatus.tip_timetolive = 30;
+        }
       }
+    };
 
+    $scope.save_submissions_substatuses = function (substatus, cb) {
       var updated_submissions_substatus = new AdminSubmissionSubStatusResource(substatus);
 
       return $scope.Utils.update(updated_submissions_substatus, cb);

@@ -168,6 +168,8 @@ GL.controller("TipCtrl",
                     });
                   }
                 } else {
+                  x.status = x.id;
+                  x.substatus = '';
                   x.order = output.length;
                   output.push(x);
                 }
@@ -176,10 +178,10 @@ GL.controller("TipCtrl",
             }()
           },
           confirmFun: function () {
-            return function (status, motivation) {
-              $scope.tip.status = status.status;
-              $scope.tip.substatus = status.substatus;
-              $scope.tip.motivation = motivation;
+            return function (arg) {
+              $scope.tip.status = arg.status.status;
+              $scope.tip.substatus = arg.status.substatus;
+              $scope.tip.motivation = arg.motivation;
               $scope.updateSubmissionStatus();
             };
           },

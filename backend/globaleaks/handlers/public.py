@@ -37,10 +37,8 @@ def serialize_submission_substatus(substatus, language):
     """
     if substatus.tip_timetolive <= -1:
         tip_timetolive_option = -1
-    elif substatus.tip_timetolive == 0:
-        tip_timetolive_option = 0
     else:
-        tip_timetolive_option = 1
+        tip_timetolive_option = 0
 
     submission_substatus = {
         'id': substatus.id,

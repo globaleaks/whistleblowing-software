@@ -80,20 +80,21 @@
                   <input class="form-control" data-ng-model="substatus.label" type="text" required/>
                 </div>
               </div>
+            </div>
+	    <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                   <label><span data-translate>Expiration date</span> (<span data-translate>days</span>)</label>{{substatus.tip_timetolive_option}}
-                   <select class="form-control" data-ng-model="substatus.tip_timetolive_option" convert-to-number>
+                   <label><span data-translate>Expiration date</span> (<span data-translate>days</span>)</label>
+                   <select class="form-control" data-ng-model="substatus.tip_timetolive_option" data-ng-change="updateRetentionOption(substatus)" convert-to-number>
                      <option value="-1" data-translate>Disabled</option>
-                     <option value="0" data-translate>Unlimited</option>
-                     <option value="1" data-translate>Custom</option>
+                     <option value="0" data-translate>Custom</option>
                    </select>
                 </div>
               </div>
               <div class="col-md-1">
                 <div class="form-group">
                   <label data-translate></label>
-                  <input class="form-control" data-ng-model="substatus.tip_timetolive" type="number" min="1" data-ng-if="substatus.tip_timetolive_option === 1" required/>
+                  <input class="form-control" data-ng-model="substatus.tip_timetolive" type="number" min="0" data-ng-if="substatus.tip_timetolive_option === 0" required/>
                 </div>
               </div>
             </div>
