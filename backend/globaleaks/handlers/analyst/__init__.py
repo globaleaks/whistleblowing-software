@@ -16,24 +16,30 @@ def get_stats(session, tid):
     :param session: An ORM session
     :param tid: A tenant ID
     """
-    reports_count = session.query(func.count(models.InternalTip.id)).one()[0]
+    reports_count = session.query(func.count(models.InternalTip.id)) \
+                           .filter(models.InternalTip.tid == tid).one()[0]
 
     num_tips_no_access = session.query(func.count(models.InternalTip.id)) \
-                                .filter(models.InternalTip.access_count == 0).one()[0]
+                                .filter(models.InternalTip.tid == tid,
+                                        models.InternalTip.access_count == 0).one()[0]
 
     num_tips_mobile = session.query(func.count(models.InternalTip.id)) \
-                             .filter(models.InternalTip.mobile == True).one()[0]
+                             .filter(models.InternalTip.tid == tid,
+                                     models.InternalTip.mobile == True).one()[0]
 
     num_tips_tor = session.query(func.count(models.InternalTip.id)) \
-                             .filter(models.InternalTip.tor == True).one()[0]
+                             .filter(models.InternalTip.tid == tid,
+                                     models.InternalTip.tor == True).one()[0]
 
     num_subscribed_tips = session.query(func.count(models.InternalTip.id)) \
+                                 .filter(models.InternalTip.tid == tid) \
                                  .join(models.InternalTipData,
                                        and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
                                             models.InternalTipData.key == 'whistleblower_identity',
                                             models.InternalTipData.creation_date == models.InternalTip.creation_date)).one()[0]
 
     num_initially_anonymous_tips = session.query(func.count(models.InternalTip.id)) \
+                                       .filter(models.InternalTip.tid == tid) \
                                        .join(models.InternalTipData,
                                              and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
                                                   models.InternalTipData.key == 'whistleblower_identity',
