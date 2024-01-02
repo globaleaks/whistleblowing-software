@@ -130,8 +130,8 @@ def db_fix_orphans_models(session):
     """
     steps_ids = session.query(models.Step.id)
     fields_ids = session.query(models.Field.id)
-    session.query(models.Field).filter(models.Field.instance == 0, models.Field.step_id.is_not(None), not_(models.Field.step_id.in_(steps_ids))).delete(synchronize_session=False)
-    session.query(models.Field).filter(models.Field.fieldgroup_id.is_not(None), not_(models.Field.fieldgroup_id.in_(fields_ids))).delete(synchronize_session=False)
+    session.query(models.Field).filter(models.Field.instance == 0, models.Field.step_id != None, not_(models.Field.step_id.in_(steps_ids))).delete(synchronize_session=False)
+    session.query(models.Field).filter(models.Field.fieldgroup_id != None, not_(models.Field.fieldgroup_id.in_(fields_ids))).delete(synchronize_session=False)
     session.query(models.FieldOption).filter(not_(models.FieldOption.field_id.in_(fields_ids))).delete(synchronize_session=False)
     session.query(models.FieldAttr).filter(not_(models.FieldAttr.field_id.in_(fields_ids))).delete(synchronize_session=False)
     session.query(models.FieldOptionTriggerField).filter(not_(models.FieldOptionTriggerField.object_id.in_(fields_ids))).delete(synchronize_session=False)
