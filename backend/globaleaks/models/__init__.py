@@ -846,6 +846,8 @@ class _SubmissionStatus(Model):
     tid = Column(Integer, primary_key=True, default=1)
     label = Column(JSON, default=dict, nullable=False)
     order = Column(Integer, default=0, nullable=False)
+
+    # TODO: to be removed at next migration
     tip_timetolive = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
