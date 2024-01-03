@@ -18,7 +18,8 @@ from globaleaks.utils.utility import get_expiration, datetime_null
 
 def index_answers(answers, parent_index=''):
     for key in answers:
-        if not re.match(requests.uuid_regexp, key):
+        if not re.match(requests.uuid_regexp, key) or \
+                not isinstance(answers[key], list):
             continue
 
         index = 0

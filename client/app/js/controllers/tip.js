@@ -161,7 +161,7 @@ GL.controller("TipCtrl",
                   for (var y of x.substatuses) {
                     output.push({
                       id: x.id + ":" + y.id,
-                      label: x.label + " \u2013 " + y.label,
+                      label: $filter("translate")(x.label ) + " \u2013 " + y.label,
                       status: x.id,
                       substatus: y.id,
                       order: output.length

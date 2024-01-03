@@ -760,7 +760,6 @@ def delete_rtip(session, tid, user_id, itip_id):
     db_log(session, tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
 
 
-@transact
 def delete_wbfile(session, tid, user_id, file_id):
     """
     Transaction for deleting a wbfile
@@ -769,24 +768,19 @@ def delete_wbfile(session, tid, user_id, file_id):
     :param user_id: The user ID of the user performing the operation
     :param file_id: The file ID of the wbfile to be deleted
     """
-
-    wbfile = (
-        session.query(models.WhistleblowerFile)
-               .filter(models.User.id == user_id,
-                       models.WhistleblowerFile.internalfile_id == file_id,
-                       models.ReceiverTip.receiver_id == models.User.id,
-                       models.ReceiverTip.internaltip_id == models.InternalTip.id, models.InternalTip.tid == tid)
+    ifile = (
+        session.query(models.InternalFile)
+               .filter(models.InternalFile.id == file_id,
+                       models.WhistleblowerFile.internalfile_id == models.InternalFile.id,
+                       models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
+                       models.ReceiverTip.receiver_id == user_id,
+                       models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                       models.InternalTip.tid == tid)
                .first()
     )
 
-    if wbfile:
-        receiver_file_list = session.query(models.WhistleblowerFile).filter(
-            models.WhistleblowerFile.internalfile_id == wbfile.internalfile_id).all()
-        internal_file_list = session.query(models.InternalFile).filter(
-            models.InternalFile.id == wbfile.internalfile_id).all()
-        all_files_to_delete = receiver_file_list + internal_file_list
-        for file in all_files_to_delete:
-            session.delete(file)
+    if ifile:
+        session.delete(ifile)
 
 
 @transact
@@ -1042,7 +1036,7 @@ def update_redaction(session, tid, user_id, redaction_id, redaction_data, tip_da
             if len(redaction.temporary_redaction) == 1 and \
                     redaction.temporary_redaction[0].get('start', False) == '-inf' and \
                     redaction.temporary_redaction[0].get('start', False) == '-inf':
-                session.delete(ifile)
+                delete_wbfile(session, tid, user_id, redaction.reference_id)
                 session.delete(redaction)
 
 

@@ -723,9 +723,9 @@ factory("mask", [function() {
         end: elem.selectionEnd - 1
       };
 
-      if(selectedText.length === 0) {
+      if (selectedText.length === 0) {
         return {new_ranges:selected_ranges, selected_ranges:ranges};
-      } else if(select) {
+      } else if (select) {
         return {new_ranges:this.mergeRanges([ranges], selected_ranges), selected_ranges:ranges};
       } else {
         return {new_ranges:this.splitRanges(ranges, selected_ranges), selected_ranges:ranges};
