@@ -21,7 +21,7 @@ GL.controller("TipCtrl",
           var xhr = new XMLHttpRequest();
 
           if ($scope.Authentication.session.role === "whistleblower") {
-            xhr.open("GET", "api/whistleblower/wbfiles/" + id, true);
+            xhr.open("GET", "api/whistleblower/wbtip/wbfiles/" + id, true);
           } else {
             xhr.open("GET", "api/recipient/wbfiles/" + id, true);
           }
