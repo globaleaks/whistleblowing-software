@@ -273,10 +273,10 @@ AdminNotificationDesc = {
     'smtp_username': str,
     'smtp_password': str,
     'smtp_source_email': email_regexp,
-    'enable_notification_emails_admin': bool,
-    'disable_analyst_notification_emails': bool,
-    'enable_notification_emails_custodian': bool,
-    'enable_notification_emails_recipient': bool,
+    'enable_admin_notification_emails': bool,
+    'enable_analyst_notification_emails': bool,
+    'enable_custodian_notification_emails': bool,
+    'enable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int
 }
 
