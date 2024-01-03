@@ -1,8 +1,11 @@
+Changes in version 4.14.3
+    Apply minor bugfixing on release 4.14.0; see git log for details
+
 Changes in version 4.14.2
-    Apply minor bugfixing on release 4.14.0
+    Apply minor bugfixing on release 4.14.0; see git log for details
 
 Changes in version 4.14.1
-    Apply minor bugfixing on release 4.14.0
+    Apply minor bugfixing on release 4.14.0; see git log for details
 
 Changes in version 4.14.0
     Implement masking and redaction features (#3420, #3429)
