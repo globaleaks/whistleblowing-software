@@ -8,7 +8,7 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
-# cocoon, 2023
+# cocoon, 2023-2024
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2023\n"
+"Last-Translator: cocoon, 2023-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -541,7 +541,7 @@ msgid "Tor"
 msgstr "Tor"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Computer"
 msgstr "Computador"

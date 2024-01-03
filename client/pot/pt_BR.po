@@ -557,7 +557,7 @@ msgid "Tor"
 msgstr "Tor"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Computer"
 msgstr "Computador"

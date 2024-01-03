@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Aleš <ales.petan@digital.si>, 2016
-# Dagmar Šober, 2023
+# Dagmar Šober, 2023-2024
 # Delo <prevajalci.delo@delo.si>, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022
 # Matija <matija@srebrni-galeb.si>, 2015
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Dagmar Šober, 2023\n"
+"Last-Translator: Dagmar Šober, 2023-2024\n"
 "Language-Team: Slovenian (Slovenia) (http://app.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -508,22 +508,22 @@ msgid "Returning whistleblowers"
 msgstr ""
 
 msgid "Anonymity"
-msgstr ""
+msgstr "Anonimnost "
 
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonimen"
 
 msgid "Subscribed"
-msgstr ""
+msgstr "Naročen"
 
 msgid "Initially anonymous"
-msgstr ""
+msgstr "Sprva anonimen"
 
 msgid "Tor"
 msgstr "Tor"
 
 msgid "Devices"
-msgstr ""
+msgstr "Naprave"
 
 msgid "Computer"
 msgstr "Računalnik"
@@ -1255,7 +1255,7 @@ msgid "Attention"
 msgstr "Pozor"
 
 msgid "For security reasons the code needs to be changed."
-msgstr ""
+msgstr "Iz varnostnih razlogov je treba kodo spremeniti."
 
 msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
@@ -1264,10 +1264,10 @@ msgid "Mask"
 msgstr "Skrij"
 
 msgid "Unselect"
-msgstr ""
+msgstr "Prekliči izbiro"
 
 msgid "Reopen"
-msgstr ""
+msgstr "Ponovno odpri"
 
 msgid "Request support"
 msgstr "Zaprosi za pomoč"
@@ -1356,7 +1356,7 @@ msgid "Validation of email address change in progress."
 msgstr "Potrditev spremembe naslova e-pošte poteka."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Za nadaljnja navodila preverite vaš nabiralnik."
+msgstr "Za nadaljnja navodila preverite svoj e-poštni nabiralnik."
 
 msgid "Warning"
 msgstr "Opozorilo"
@@ -1473,7 +1473,7 @@ msgstr "Vneseno potrdilo za ponastavitev je neveljavno ali je poteklo. "
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Vnesite uporabniško ime računa ali vaš e-naslov za ponastavitev gesla."
+msgstr "Vnesite uporabniško ime računa ali svoj e-naslov za ponastavitev gesla."
 
 msgid "Enter your email address to request a password reset."
 msgstr "Vnesite e-naslov za ponastavitev gesla."
@@ -1511,7 +1511,7 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaša platforma za prijave je skoraj končana!"
 
 msgid "Check your inbox to activate it."
-msgstr "Za aktivacijo poglejte v e-nabiralnik."
+msgstr "Za aktivacijo poglejte v e-poštni nabiralnik."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
