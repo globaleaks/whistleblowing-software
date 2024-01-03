@@ -449,7 +449,8 @@ def db_redact_comment(session, tid, user_id, itip_id, redaction, redaction_data,
 
 def db_redact_answers(answers, redaction):
     for key in answers:
-        if not re.match(requests.uuid_regexp, key):
+        if not re.match(requests.uuid_regexp, key) or \
+                not isinstance(answers[key], list):
             continue
 
         for inner_idx, answer in enumerate(answers[key]):
@@ -649,7 +650,8 @@ def get_rtip(session, tid, user_id, itip_id, language):
 
 def redact_answers(answers, redactions):
     for key in answers:
-        if not re.match(requests.uuid_regexp, key):
+        if not re.match(requests.uuid_regexp, key) or \
+                not isinstance(answers[key], list):
             continue
 
         for inner_idx, answer in enumerate(answers[key]):
