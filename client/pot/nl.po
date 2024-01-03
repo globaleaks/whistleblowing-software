@@ -560,6 +560,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobiel"
 
@@ -635,6 +641,9 @@ msgstr "Annuleren"
 msgid "days"
 msgstr "dagen"
 
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
 msgid "Report statuses"
 msgstr "Status van de inzending"
 
@@ -673,9 +682,6 @@ msgstr "Maximaal aantal selecteerbare ontvangers:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Toon ontvangers in alfabetische volgorde"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Toon details van de ontvanger op de status-pagina van de inzending"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
@@ -795,9 +801,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
-
-msgid "Disabled"
-msgstr "Uitgeschakeld"
 
 msgid "Auto-renewal"
 msgstr "Auto-hernieuwing"

@@ -543,6 +543,12 @@ msgstr "Başlangıçta anonim"
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "Aygıtlar"
+
+msgid "Computer"
+msgstr "Bilgisayar"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -618,6 +624,9 @@ msgstr "İptal"
 msgid "days"
 msgstr "gün"
 
+msgid "Disabled"
+msgstr "Kapalı"
+
 msgid "Report statuses"
 msgstr "İhbar durumları"
 
@@ -656,9 +665,6 @@ msgstr "Seçilebilecek en fazla alıcı sayısı:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcılar alfabetik sırada görüntülensin"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "İhbar durumu sayfasında alıcı ayrıntıları görüntülensin"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Muhbir dosya ekleyebilsin"
@@ -778,9 +784,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "El ile yapılandırma yardımcısı, HTTPS özeliğinin başka bir sertifika yetkilisi ile kurulmasında size rehberlik eder."
-
-msgid "Disabled"
-msgstr "Kapalı"
 
 msgid "Auto-renewal"
 msgstr "Otomatik yenileme"

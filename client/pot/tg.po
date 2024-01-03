@@ -524,6 +524,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -599,6 +605,9 @@ msgstr "Бекор кардан"
 msgid "days"
 msgstr "рӯзҳо"
 
+msgid "Disabled"
+msgstr "Хомӯш шуда"
+
 msgid "Report statuses"
 msgstr "Ҳолатҳоро гузориш додан"
 
@@ -637,9 +646,6 @@ msgstr "Шумораи зиёдтарини гирандагони интихо�
 
 msgid "Show recipients in alphabetical order"
 msgstr "Гирандагонро бо тартиби алифбо нишон додан"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Маълумот оид ба гирандаро дар саҳифаи ҳолати гузориш нишон додан"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ба хабардиҳанда иҷозаи илова кардани замима ба гузориш додан"
@@ -759,9 +765,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Ёвари танзимоти дастӣ шуморо дар сохтани HTTPS аз Маркази Гувоҳномаи алтернативӣ роҳнамоӣ мекунад.  "
-
-msgid "Disabled"
-msgstr "Хомӯш шуда"
 
 msgid "Auto-renewal"
 msgstr "Азнавшавии худкор"

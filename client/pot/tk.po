@@ -521,6 +521,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -596,6 +602,9 @@ msgstr "Goýbolsun et"
 msgid "days"
 msgstr "günler"
 
+msgid "Disabled"
+msgstr "Ýapyk"
+
 msgid "Report statuses"
 msgstr "Statuslary hasabat ber"
 
@@ -634,9 +643,6 @@ msgstr "Saýlanyp biljekleriň iň köp sany:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Alyjylary elipbiý tertibinde görkez"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Hasabatyň ýagdaý sahypasynda alyjynyň jikme-jikliklerini görkez"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beriň"
@@ -756,9 +762,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "El bilen konfigurasiýa düzeltmesi, alternatiw Şahadatnama Häkimiýetinden HTTPS gurmak arkaly size ýol görkezer."
-
-msgid "Disabled"
-msgstr "Ýapyk"
 
 msgid "Auto-renewal"
 msgstr "Awto-täzelenme"

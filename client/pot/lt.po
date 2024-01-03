@@ -516,6 +516,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Kompiuteris"
+
 msgid "Mobile"
 msgstr ""
 
@@ -591,6 +597,9 @@ msgstr "Atšaukti"
 msgid "days"
 msgstr "dienos"
 
+msgid "Disabled"
+msgstr "Išjungta"
+
 msgid "Report statuses"
 msgstr "Pranešimo statusai"
 
@@ -629,9 +638,6 @@ msgstr "Didžiausias pasirinktinų gavėjų skaičius:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Rodyti gavėjus abėcėlės tvarka"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Rodyti gavėjo informaciją pranešimo statuso puslapyje"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
@@ -751,9 +757,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Rankinės konfigūracijos vedlys padės jums nustatyti HTTPS iš alternatyvios sertifikavimo institucijos."
-
-msgid "Disabled"
-msgstr "Išjungta"
 
 msgid "Auto-renewal"
 msgstr "Automatinis atnaujinimas"

@@ -517,6 +517,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -592,6 +598,9 @@ msgstr "Tühista"
 msgid "days"
 msgstr "päeva"
 
+msgid "Disabled"
+msgstr "Keelatud"
+
 msgid "Report statuses"
 msgstr "Teavituste staatused"
 
@@ -630,9 +639,6 @@ msgstr "Valitavate saajate arvu ülempiir:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Näita saajaid tähestiku järjekorras"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Näita saajate üksikasju teavituse staatuselehel"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Luba vihjeandjal teatele manuseid lisada"
@@ -752,9 +758,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Manuaalse seadistamise viisard juhatab teid läbi alternatiivse sertimisasutuse HTTPS-i seadistamise protsessi"
-
-msgid "Disabled"
-msgstr "Keelatud"
 
 msgid "Auto-renewal"
 msgstr "Automaatne uuendamine"

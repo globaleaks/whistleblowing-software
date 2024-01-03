@@ -517,6 +517,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -592,6 +598,9 @@ msgstr "ሰርዝ "
 msgid "days"
 msgstr "ቀናት"
 
+msgid "Disabled"
+msgstr "የቦዘነ"
+
 msgid "Report statuses"
 msgstr "ሁኔታዎችን ያሳውቁ"
 
@@ -630,9 +639,6 @@ msgstr "መምረጥ የሚቻለው የተቀባዮች ከፍተኛ ቁጥር"
 
 msgid "Show recipients in alphabetical order"
 msgstr "ተቀባዮችን በፊደል ተራ አሳይ"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "የተቀባዮችን ዝርዝር መረጃ በሪፖርቱ ሁኔታ ገጽ ላይ አሳይ"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
@@ -752,9 +758,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "በእጅ ማዋቀሪያው አዋቂ ኤችቲቲፒኤስን ከአማራጭ የሰርቲፊኬት ስልጣን በመነሳት ለማዋቀር ይመራችኋል"
-
-msgid "Disabled"
-msgstr "የቦዘነ"
 
 msgid "Auto-renewal"
 msgstr "ራስአድስ"

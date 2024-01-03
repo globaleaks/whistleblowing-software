@@ -518,6 +518,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -593,6 +599,9 @@ msgstr "Бас тарту"
 msgid "days"
 msgstr "күн"
 
+msgid "Disabled"
+msgstr "Өшірілген"
+
 msgid "Report statuses"
 msgstr "Есептің күйлері"
 
@@ -631,9 +640,6 @@ msgstr "Таңдалатын алушылардың ең көп саны:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Алушыларды алфавиттік тәртіпте көрсету"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Есеп күйі бетінде алушы мәліметтерін көрсету"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Хабарлаушыға есепке тіркемелер қосуға рұқсат беру"
@@ -753,9 +759,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Қолмен баптау шебері сізге баламалы куәліктер орталығынан HTTPS протоколын орнату бойынша нұсқау беретін болады."
-
-msgid "Disabled"
-msgstr "Өшірілген"
 
 msgid "Auto-renewal"
 msgstr "Автоматты түрде жаңарту"

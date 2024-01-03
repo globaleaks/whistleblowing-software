@@ -516,6 +516,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -591,6 +597,9 @@ msgstr "Лягъу этме"
 msgid "days"
 msgstr "куньлер"
 
+msgid "Disabled"
+msgstr "Сёндюрильди"
+
 msgid "Report statuses"
 msgstr "Эсабат статуслары"
 
@@ -629,9 +638,6 @@ msgstr "Алыджыларнынъ максималь сайысы:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Алыджыларны элифбе тертибине коре сыраламакъ"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Малюмат берме вазиети саифесинде алыджы бильгилерни косьтермек"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
@@ -751,9 +757,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Эль сазламасы устасы альтернитив Сертификация Меркезинден HTTPS сазламасына имкян берип, сизни конфигурация джерьянындан кечирир."
-
-msgid "Disabled"
-msgstr "Сёндюрильди"
 
 msgid "Auto-renewal"
 msgstr "Автоматик девам эттирме"

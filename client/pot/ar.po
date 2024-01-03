@@ -565,6 +565,12 @@ msgstr ""
 msgid "Tor"
 msgstr "تور"
 
+msgid "Devices"
+msgstr "الأجهزة"
+
+msgid "Computer"
+msgstr "كمبيوتر"
+
 msgid "Mobile"
 msgstr "الهاتف النقّال"
 
@@ -640,6 +646,9 @@ msgstr "إلغاء"
 msgid "days"
 msgstr "‮أيّام"
 
+msgid "Disabled"
+msgstr "غير مفعل"
+
 msgid "Report statuses"
 msgstr "تقرير الحالات"
 
@@ -678,9 +687,6 @@ msgstr "الحد الأقصى لعدد المتلقين الذي يمكن اخت
 
 msgid "Show recipients in alphabetical order"
 msgstr "إظهار المتلقين بترتيب ابجدي"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
@@ -800,9 +806,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "سيوجّهك معالج التهيئة اليدوي خلال تمكين HTTPS من مرجع مصدّق بديل."
-
-msgid "Disabled"
-msgstr "غير مفعل"
 
 msgid "Auto-renewal"
 msgstr "تجديد تلقائي"

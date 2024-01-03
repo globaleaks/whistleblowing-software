@@ -521,6 +521,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -596,6 +602,9 @@ msgstr "ކެންސަލްކުރަން"
 msgid "days"
 msgstr "ދުވަސް"
 
+msgid "Disabled"
+msgstr "ޑިސްއޭބަލްޑް"
+
 msgid "Report statuses"
 msgstr "ރިޕޯޓް ސްޓޭޓަސެސް"
 
@@ -634,9 +643,6 @@ msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ �
 
 msgid "Show recipients in alphabetical order"
 msgstr "ރިސިޕިއަންޓުން އެލްފަބެޓިކަލް  އޯޑަރަށް ދައްކާ"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގައި ރިސިޕިއަންޓްގެ މައުލޫމާތު ފެންނަން ހުންނަގޮތް ހަދަން"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "ރިޕޯޓުގައި އާ ފައިލްތައް ހިމެނުމުގެ ހުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް "
@@ -756,9 +762,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "މެނުއަލް ކޮންފިގަރޭޝަން ވިޒަރޑް ބޭނުންކޮއށްގެން އެހެން ސެޓްފިކެޓް އޮތޯރިޓީއަކުން އެޗް.ޓީ.ޓީ.ޕީ.އެސް ސެޓްއަޕް ކުރެވޭނެ"
-
-msgid "Disabled"
-msgstr "ޑިސްއޭބަލްޑް"
 
 msgid "Auto-renewal"
 msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"

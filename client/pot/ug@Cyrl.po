@@ -516,6 +516,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -591,6 +597,9 @@ msgstr "Ваз кәч"
 msgid "days"
 msgstr "күнләр"
 
+msgid "Disabled"
+msgstr "Чәкләнгән"
+
 msgid "Report statuses"
 msgstr "Доклат һаләтлири"
 
@@ -629,9 +638,6 @@ msgstr "Талланған тапшуривалғучилар сани әң кө
 
 msgid "Show recipients in alphabetical order"
 msgstr "Тапшуривалғучиларни елипбә тәртипи бойичә көрсәт"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Тапшуривалғучиниң тәпсили әһвалини доклатниң һаләт бетидә көрсәт"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Паш қилғучиниң доклатқа қошумчә қистуришиға рухсәт қил"
@@ -751,9 +757,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Қолда сәпләш сеһиргәри сизниң ҺТТПС сәплимисни башқа бир гуваһнамә оргини арқилиқ сәплишиңизгә йетәкчилик қилиду."
-
-msgid "Disabled"
-msgstr "Чәкләнгән"
 
 msgid "Auto-renewal"
 msgstr "Аптуматик йеңилаш"

@@ -532,6 +532,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -607,6 +613,9 @@ msgstr "Anulează"
 msgid "days"
 msgstr "zile"
 
+msgid "Disabled"
+msgstr "Dezactivat"
+
 msgid "Report statuses"
 msgstr "Statusuri sesizare"
 
@@ -645,9 +654,6 @@ msgstr "Numărul maxim de destinatari ce pot fi selectați:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Afișează destinatarii în ordine alfabetică"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul sesizării"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permite avertizorului să adauge atașamente sesizării"
@@ -767,9 +773,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Asistentul pentru configurare manuală vă va ghida de-a lungul procesului de instalare a HTTPS de la o altă Autoritate de Certificare."
-
-msgid "Disabled"
-msgstr "Dezactivat"
 
 msgid "Auto-renewal"
 msgstr "Reînnoire automată"

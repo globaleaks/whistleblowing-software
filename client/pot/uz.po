@@ -518,6 +518,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -593,6 +599,9 @@ msgstr "Bekor qilish"
 msgid "days"
 msgstr "kun"
 
+msgid "Disabled"
+msgstr "Yoqilmagan"
+
 msgid "Report statuses"
 msgstr "Anonim xabarlar holati"
 
@@ -631,9 +640,6 @@ msgstr "Tanlanadigan qabul qiluvchilarning maksimal soni:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Qabul qiluvchilarni alifbo tartibida saralash"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Qabul qiluvchi tafsilotlarini anonim xabarning holati sahifasida chiqarish"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr ""
@@ -753,9 +759,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Mustaqil konfiguratsiya vositasi yordamida HTTPS protokolini muqobil Sertifikatlash idorasi yordamida sozlash mumkin."
-
-msgid "Disabled"
-msgstr "Yoqilmagan"
 
 msgid "Auto-renewal"
 msgstr "Avto-yangilanishi"

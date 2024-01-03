@@ -526,6 +526,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "คอมพิวเตอร์"
+
 msgid "Mobile"
 msgstr ""
 
@@ -601,6 +607,9 @@ msgstr "ยกเลิก"
 msgid "days"
 msgstr "วัน"
 
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
+
 msgid "Report statuses"
 msgstr "สถานะรายงาน"
 
@@ -639,9 +648,6 @@ msgstr "จำนวนสูงสุดของผู้รับที่เ
 
 msgid "Show recipients in alphabetical order"
 msgstr "แสดงผู้รับตามลำดับอักษร"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
@@ -761,9 +767,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
-
-msgid "Disabled"
-msgstr "ปิดใช้งาน"
 
 msgid "Auto-renewal"
 msgstr "ต่ออายุอัตโนมัติ"

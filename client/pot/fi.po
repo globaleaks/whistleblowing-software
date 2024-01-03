@@ -526,6 +526,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Tietokone"
+
 msgid "Mobile"
 msgstr "Mobiili"
 
@@ -601,6 +607,9 @@ msgstr "Peru"
 msgid "days"
 msgstr "päivää"
 
+msgid "Disabled"
+msgstr "Pois käytöstä"
+
 msgid "Report statuses"
 msgstr "Ilmoitusten vaiheet"
 
@@ -639,9 +648,6 @@ msgstr "Valittavissa olevien vastaanottajien enimmäismäärä:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Anna ilmoittajan lisätä liitteitä"
@@ -761,9 +767,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Ohjattu manuaalinen määritystoiminto opastaa sinua HTTPS:n määrittämisessä vaihtoehtoiselta varmenteen myöntäjältä."
-
-msgid "Disabled"
-msgstr "Pois käytöstä"
 
 msgid "Auto-renewal"
 msgstr "Automaattinen uusiminen"

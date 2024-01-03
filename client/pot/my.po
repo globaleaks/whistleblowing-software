@@ -517,6 +517,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "စက်ပစ္စည်းများ"
+
+msgid "Computer"
+msgstr "ကြန္ပ်ဴတာ"
+
 msgid "Mobile"
 msgstr ""
 
@@ -592,6 +598,9 @@ msgstr "ပယ်ဖျက်မည်"
 msgid "days"
 msgstr "ရက်များ"
 
+msgid "Disabled"
+msgstr "ပိတ်ထားသည်"
+
 msgid "Report statuses"
 msgstr "အစီရင်ခံစာ အခြေအနေများ"
 
@@ -630,9 +639,6 @@ msgstr "ရွေးချယ်နိုင်သော လက်ခံသူ �
 
 msgid "Show recipients in alphabetical order"
 msgstr "လက်ခံသူများကို အက္ခရာစဉ်အတိုင်း ပြသပါ"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "လက်ခံသူ အသေးစိတ်များကို အစီရင်ခံစာ၏ အခြေအနေပြ စာမျက်နှာတွင် ပြသပါ"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "သတင်းပေးသူအား အစီရင်ခံစာတွင် ပူးတွဲဖိုင်များ ထည့်ခွင့်ပြုပါ"
@@ -752,9 +758,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "ကိုယ်တိုင် အစိတ်အပိုင်းများ ဖွဲ့စည်းသည့် ဝိဇ္ဇာသည် အခြား အသိအမှတ်ပြု အာဏာပိုင်ထံမှ HTTPS ကို သတ်မှတ်ခြင်းဖြင့် သင့်အား လမ်းညွှန်ပါမည်။"
-
-msgid "Disabled"
-msgstr "ပိတ်ထားသည်"
 
 msgid "Auto-renewal"
 msgstr "အော်တို သက်တမ်းတိုးခြင်း"

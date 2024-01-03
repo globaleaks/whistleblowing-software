@@ -534,6 +534,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Ordenagailua"
+
 msgid "Mobile"
 msgstr ""
 
@@ -609,6 +615,9 @@ msgstr "Utzi"
 msgid "days"
 msgstr "egunak"
 
+msgid "Disabled"
+msgstr "Desgaitua"
+
 msgid "Report statuses"
 msgstr "Salaketa baten egoerak"
 
@@ -647,9 +656,6 @@ msgstr "Hauta daitezkeen hartzaileen kopuru maximoa:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Hartzaileak ordena alfabetikoan erakutsi"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Salaketaren egoeraren orrian hartzailearen xehetasunak erakutsi."
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
@@ -769,9 +775,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Eskuzko konfigurazioaren laguntzaileak zuzenduko dizu HTTPSren ezarpenetik zehar, beste Ziurtatze Agintari batetik."
-
-msgid "Disabled"
-msgstr "Desgaitua"
 
 msgid "Auto-renewal"
 msgstr "Berritze automatikoa"

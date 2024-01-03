@@ -539,6 +539,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Dator"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -614,6 +620,9 @@ msgstr "Avbryt"
 msgid "days"
 msgstr "dagar"
 
+msgid "Disabled"
+msgstr "Inaktiverad"
+
 msgid "Report statuses"
 msgstr "Rapportera statusar"
 
@@ -652,9 +661,6 @@ msgstr "Maximalt antal valbara mottagare:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Visa mottagare i alfabetisk ordning"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Visa uppgifter om mottagarna överst på rapportstatussidan"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
@@ -774,9 +780,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Den manuella konfigurationsguiden kommer att leda dig igenom installationen av HTTPS från en alternativ certifikatutfärdare."
-
-msgid "Disabled"
-msgstr "Inaktiverad"
 
 msgid "Auto-renewal"
 msgstr "Automatisk förnyelse"

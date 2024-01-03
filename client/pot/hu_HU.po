@@ -534,6 +534,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "Eszközök"
+
+msgid "Computer"
+msgstr "Számítógép"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -609,6 +615,9 @@ msgstr "Mégse"
 msgid "days"
 msgstr "nap"
 
+msgid "Disabled"
+msgstr "Leiltva"
+
 msgid "Report statuses"
 msgstr "Jelentés állapotok"
 
@@ -647,9 +656,6 @@ msgstr "Maximum kiválasztható címzettek száma:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "A címzettek adatainak megjelenítése a jelentés státusz oldalán"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
@@ -769,9 +775,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "A kézi beállítás varázsló átvezeti a telepítés lépésein, ahhoz, hogy beállíthasson egy HTTPS tanúsítványt, ami egy másik kiadótól származik."
-
-msgid "Disabled"
-msgstr "Leiltva"
 
 msgid "Auto-renewal"
 msgstr "Auto-megújítás"

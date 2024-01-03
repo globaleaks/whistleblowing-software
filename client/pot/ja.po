@@ -521,6 +521,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "コンピュータ"
+
 msgid "Mobile"
 msgstr "モバイル"
 
@@ -596,6 +602,9 @@ msgstr "キャンセル"
 msgid "days"
 msgstr "日"
 
+msgid "Disabled"
+msgstr "無効"
+
 msgid "Report statuses"
 msgstr "報告状況"
 
@@ -634,9 +643,6 @@ msgstr "選択可能な受信者の最大数:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "受信者をアルファベット順に表示"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "報告の状況ページで受信者の詳細を表示する"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
@@ -756,9 +762,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動設定ウィザードは、代替認証局からの HTTPS の設定をガイドします。"
-
-msgid "Disabled"
-msgstr "無効"
 
 msgid "Auto-renewal"
 msgstr "自動更新"

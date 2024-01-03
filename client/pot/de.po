@@ -564,6 +564,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "Geräte"
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -639,6 +645,9 @@ msgstr "Abbrechen"
 msgid "days"
 msgstr "Tage"
 
+msgid "Disabled"
+msgstr "Deaktiviert"
+
 msgid "Report statuses"
 msgstr "Berichtsstatus"
 
@@ -677,9 +686,6 @@ msgstr "Maximale Anzahl auswählbarer Empfänger: "
 
 msgid "Show recipients in alphabetical order"
 msgstr "Empfänger in alphabetischer Reihenfolge anzeigen"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Empfängerdetails auf der Statusseite des Berichts anzeigen"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zum Bericht erlauben"
@@ -799,9 +805,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Der manuelle Konfigurationsassistent führt Sie durch die Einrichtung von HTTPS von einer alternativen Zertifizierungsstelle."
-
-msgid "Disabled"
-msgstr "Deaktiviert"
 
 msgid "Auto-renewal"
 msgstr "Automatische Erneuerung"

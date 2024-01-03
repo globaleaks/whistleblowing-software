@@ -531,6 +531,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Di động"
 
@@ -606,6 +612,9 @@ msgstr "Hủy bỏ"
 msgid "days"
 msgstr "ngày"
 
+msgid "Disabled"
+msgstr "Tắt"
+
 msgid "Report statuses"
 msgstr "Trạng thái của báo cáo"
 
@@ -644,9 +653,6 @@ msgstr "Số lượng người nhận được chọn tối đa là:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Hiển thị người nhận theo thứ tự ABC"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Hiển thị chi tiết người nhận trong trang trạng thái của báo cáo"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Cho phép người tố giác thêm tập tin đính kèm"
@@ -766,9 +772,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Trình hướng dẫn tự thiết kế cấu hình sẽ hướng dẫn bạn thiết lập HTTPS từ một Cơ Quan Chứng Chỉ khác."
-
-msgid "Disabled"
-msgstr "Tắt"
 
 msgid "Auto-renewal"
 msgstr "Tự động gia hạn"

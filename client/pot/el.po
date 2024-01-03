@@ -529,6 +529,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Υπολογιστής"
+
 msgid "Mobile"
 msgstr "Κινητό"
 
@@ -604,6 +610,9 @@ msgstr "Ακύρωση"
 msgid "days"
 msgstr "ημέρες"
 
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
 msgid "Report statuses"
 msgstr "Καταστάσεις αναφορών "
 
@@ -642,9 +651,6 @@ msgstr "Μέγιστος αριθμός επιλέξιμων παραληπτώ�
 
 msgid "Show recipients in alphabetical order"
 msgstr "Εμφάνιση παραληπτών σε αλφαβητική σειρά"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Εμφάνιση λεπτομερειών παραλήπτη στη σελίδα κατάστασης της αναφοράς"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει αναφορά να προσθέτει συνημμένα"
@@ -764,9 +770,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Ο οδηγός χειροκίνητης παραμετροποίησης θα σας καθοδηγήσει στην παραμετροποίηση του HTTPS μέσω μιας εναλλακτικής Αρχής Πιστοποίησης."
-
-msgid "Disabled"
-msgstr "Απενεργοποιημένο"
 
 msgid "Auto-renewal"
 msgstr "Αυτόματη ανανέωση"

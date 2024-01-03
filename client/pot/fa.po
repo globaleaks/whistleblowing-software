@@ -543,6 +543,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "دستگاه‌ها"
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "تفلن همراه"
 
@@ -618,6 +624,9 @@ msgstr "لغو"
 msgid "days"
 msgstr "روز"
 
+msgid "Disabled"
+msgstr "غیرفعال"
+
 msgid "Report statuses"
 msgstr "وضعیت‌های گزارش"
 
@@ -656,9 +665,6 @@ msgstr "حداکثر تعداد گیرندگان قابل انتخاب:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "نمایش گیرندگان به ترتیب الفبا"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "نمایش جزئیات گیرنده روی صفحهٔ وضعیت گزارش"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
@@ -778,9 +784,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "دستیار پیکربندی دستی شما را در نصب HTTPS از یک مرجع صدور گواهی جایگزین راهنمایی خواهد کرد."
-
-msgid "Disabled"
-msgstr "غیرفعال"
 
 msgid "Auto-renewal"
 msgstr "تمدید-خودکار"

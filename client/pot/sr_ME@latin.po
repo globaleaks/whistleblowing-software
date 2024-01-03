@@ -515,6 +515,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Рачунар"
+
 msgid "Mobile"
 msgstr ""
 
@@ -590,6 +596,9 @@ msgstr "Otkaži"
 msgid "days"
 msgstr "dana"
 
+msgid "Disabled"
+msgstr "Onemogućeno"
+
 msgid "Report statuses"
 msgstr "Statusi prijava"
 
@@ -628,9 +637,6 @@ msgstr "Maksimalan broj primalaca koji se mogu izabrati:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Prikaži primaoce po abecednom redu"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Prikaži podatke primaoca na stranici statusa prijava"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
@@ -750,9 +756,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Vodič za ručno podešavanje će vas sprovesti kroz podešavanje HTTPS sertifikata sa alternativnim autoritetom za izdavanje sertifikata."
-
-msgid "Disabled"
-msgstr "Onemogućeno"
 
 msgid "Auto-renewal"
 msgstr "Automatska obnova"

@@ -525,6 +525,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -600,6 +606,9 @@ msgstr "Annullér"
 msgid "days"
 msgstr "dage"
 
+msgid "Disabled"
+msgstr "Deaktiveret"
+
 msgid "Report statuses"
 msgstr "Status for indsendelser"
 
@@ -638,9 +647,6 @@ msgstr "Maksimalt antal modtagere, der kan vælges:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
@@ -760,9 +766,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Den manuelle konfigurationsguide fører dig gennem opsætningen af HTTPS med en anden Certificate Authority."
-
-msgid "Disabled"
-msgstr "Deaktiveret"
 
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"

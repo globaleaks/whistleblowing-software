@@ -523,6 +523,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -598,6 +604,9 @@ msgstr "Ləğv et"
 msgid "days"
 msgstr "günlər"
 
+msgid "Disabled"
+msgstr "Sönülüdür"
+
 msgid "Report statuses"
 msgstr "Hesabatın statusu"
 
@@ -636,9 +645,6 @@ msgstr "Seçilən alıcıların maksimum sayı:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcıları əlifba sırası ilə göstərin"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Alıcı haqda məlumatları hesabatın status səhifəsində göstərin "
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
@@ -758,9 +764,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Alternativ Sertifikat Səlahiyyətindən istifadə etməklə HTTPS quraşdırarkən manual quraşdırma funksiyası sizə kömək edəcək."
-
-msgid "Disabled"
-msgstr "Sönülüdür"
 
 msgid "Auto-renewal"
 msgstr "Avto yeniləmə"

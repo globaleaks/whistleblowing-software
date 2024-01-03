@@ -3,7 +3,7 @@
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2024\n"
 "Language-Team: Italian (http://app.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -538,6 +538,12 @@ msgstr "Inizialmente anonime"
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "Dispositivi"
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -613,6 +619,9 @@ msgstr "Annulla"
 msgid "days"
 msgstr "giorni"
 
+msgid "Disabled"
+msgstr "Disabilitato"
+
 msgid "Report statuses"
 msgstr "Stati della segnalazione"
 
@@ -651,9 +660,6 @@ msgstr "Numero massimo di riceventi selezionabili"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra i riceventi in ordine alfabetico"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Mostra i dettagli dei riceventi sulla pagina di stato della segnalazione"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
@@ -773,9 +779,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "La procedura di configurazione manuale ti guiderà alla abilitazione di HTTPS tramite una Certification Authority alternativa."
-
-msgid "Disabled"
-msgstr "Disabilitato"
 
 msgid "Auto-renewal"
 msgstr "Rinnovo automatico"

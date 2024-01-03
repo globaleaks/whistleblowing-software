@@ -517,6 +517,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "컴퓨터"
+
 msgid "Mobile"
 msgstr "모바일"
 
@@ -592,6 +598,9 @@ msgstr "취소"
 msgid "days"
 msgstr "일"
 
+msgid "Disabled"
+msgstr "중단됨"
+
 msgid "Report statuses"
 msgstr "상태 보고"
 
@@ -630,9 +639,6 @@ msgstr "선택 가능한 최대 수신자 수:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "알파벳 순서로 수신자 표시"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "보고서 상태 페이지에서 수신자 세부 정보 표시"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
@@ -752,9 +758,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "수동 구성 마법사가 대체 인증서 권한의 HTTPS 설치를 안내합니다."
-
-msgid "Disabled"
-msgstr "중단됨"
 
 msgid "Auto-renewal"
 msgstr "자동 갱신"

@@ -529,6 +529,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Počítač"
+
 msgid "Mobile"
 msgstr "Mobilní"
 
@@ -604,6 +610,9 @@ msgstr "Zrušit"
 msgid "days"
 msgstr "dnů"
 
+msgid "Disabled"
+msgstr "Vypnuto"
+
 msgid "Report statuses"
 msgstr "Stav oznámení"
 
@@ -642,9 +651,6 @@ msgstr "Maximální počet zvolitelných příjemců"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Ukázat příjemce v abecedním pořadí"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Zobrazit detaily o příjemcích na stránce o stavu oznámení"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Povolit oznamovateli přidat přílohy k oznámení"
@@ -764,9 +770,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Průvodce manuální konfigurací vás provede nastavením HTTPS od alternativní certifikační autority."
-
-msgid "Disabled"
-msgstr "Vypnuto"
 
 msgid "Auto-renewal"
 msgstr "Automatické obnovení"

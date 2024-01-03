@@ -523,6 +523,12 @@ msgstr ""
 msgid "Tor"
 msgstr "洋蔥路由"
 
+msgid "Devices"
+msgstr "設備"
+
+msgid "Computer"
+msgstr "電腦"
+
 msgid "Mobile"
 msgstr "行動"
 
@@ -598,6 +604,9 @@ msgstr "取消"
 msgid "days"
 msgstr "天"
 
+msgid "Disabled"
+msgstr "關閉"
+
 msgid "Report statuses"
 msgstr "報告狀況"
 
@@ -636,9 +645,6 @@ msgstr "最多可選收件者的數目"
 
 msgid "Show recipients in alphabetical order"
 msgstr "以字母次序顯示收件者"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "在報告的狀況頁顯示收件者的詳細情況"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "揭密者可對此報告附加資料檔案"
@@ -758,9 +764,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動設定精靈會指引你從另一套憑證授權單位來完成 HTTPS 的設定戈"
-
-msgid "Disabled"
-msgstr "關閉"
 
 msgid "Auto-renewal"
 msgstr "自動更新"

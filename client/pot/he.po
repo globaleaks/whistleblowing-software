@@ -533,6 +533,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "מחשב"
+
 msgid "Mobile"
 msgstr "נייד"
 
@@ -608,6 +614,9 @@ msgstr "בטל"
 msgid "days"
 msgstr "ימים"
 
+msgid "Disabled"
+msgstr "מושבת"
+
 msgid "Report statuses"
 msgstr "מעמדי דוח"
 
@@ -646,9 +655,6 @@ msgstr "מספר מקסימאלי של מקבלים לבחירה:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "מקבלי הצג לפי סדר אלפביתי"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
@@ -768,9 +774,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr ""
-
-msgid "Disabled"
-msgstr "מושבת"
 
 msgid "Auto-renewal"
 msgstr "חידוש אוטומטי"

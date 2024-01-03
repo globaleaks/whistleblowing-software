@@ -541,6 +541,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Komputer"
+
 msgid "Mobile"
 msgstr "Berpergian"
 
@@ -616,6 +622,9 @@ msgstr "Batal"
 msgid "days"
 msgstr "hari"
 
+msgid "Disabled"
+msgstr "Nonaktifkan"
+
 msgid "Report statuses"
 msgstr "Status laporan"
 
@@ -654,9 +663,6 @@ msgstr "Jumlah tertinggi penerima yang dapat dipilih:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Tunjukkan detail penerima pada laman status laporan"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
@@ -776,9 +782,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Wisaya konfigurasi manual akan memandu Anda ke pengaturan HTTPS dari otoritas yang mengeluarkan sertifikat alternatif. "
-
-msgid "Disabled"
-msgstr "Nonaktifkan"
 
 msgid "Auto-renewal"
 msgstr "Pembaruan otomatis"

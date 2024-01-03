@@ -517,6 +517,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -592,6 +598,9 @@ msgstr "Баш тартуу"
 msgid "days"
 msgstr "күндөр"
 
+msgid "Disabled"
+msgstr "Өчүрүлдү"
+
 msgid "Report statuses"
 msgstr "Отчеттордун статусу"
 
@@ -630,9 +639,6 @@ msgstr "Алуучулардын мүмкүн болгон максималды�
 
 msgid "Show recipients in alphabetical order"
 msgstr "Алуучуларды алфавиттик тартипте көрсөтүү"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Отчеттун статус баракчасында алуучунун маалыматтарын көрсөтүү"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Кабарчыга отчетко тиркеме кошууга уруксат берүү"
@@ -752,9 +758,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Кол менен конфигурациялоо устаты сизге альтернативдүү күбөлүк органынан HTTPS ти орнотууга жардам берет."
-
-msgid "Disabled"
-msgstr "Өчүрүлдү"
 
 msgid "Auto-renewal"
 msgstr "Автоматтык жаңыртүү"

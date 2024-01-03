@@ -515,6 +515,12 @@ msgstr "Initially anonymous"
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr "Devices"
+
+msgid "Computer"
+msgstr "Computer"
+
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -590,6 +596,9 @@ msgstr "Cancel"
 msgid "days"
 msgstr "days"
 
+msgid "Disabled"
+msgstr "Disabled"
+
 msgid "Report statuses"
 msgstr "Report statuses"
 
@@ -628,9 +637,6 @@ msgstr "Maximum number of selectable recipients:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Show recipients in alphabetical order"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Show recipient details on the status page of the report"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Allow the whistleblower to add attachments"
@@ -756,9 +762,6 @@ msgid ""
 msgstr ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-
-msgid "Disabled"
-msgstr "Disabled"
 
 msgid "Auto-renewal"
 msgstr "Auto-renewal"

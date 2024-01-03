@@ -516,6 +516,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -591,6 +597,9 @@ msgstr "Waz kech"
 msgid "days"
 msgstr "Künler"
 
+msgid "Disabled"
+msgstr "Cheklen’gen"
+
 msgid "Report statuses"
 msgstr "Doklat haletliri"
 
@@ -629,9 +638,6 @@ msgstr "Tallan’ghan tapshuriwalghuchilar sani eng köp bolghanda:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Tapshuriwalghuchilarni élipbe tertipi boyiche körset"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Tapshuriwalghuchining tepsili ehwalini melumatning halet bétide körset"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
@@ -751,9 +757,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Qolda seplesh séhirgeri sizning HTTPS seplimisni bashqa bir guwahname orgini arqiliq seplishingizge yétekchilik qilidu."
-
-msgid "Disabled"
-msgstr "Cheklen’gen"
 
 msgid "Auto-renewal"
 msgstr "Aptumatik yéngilash"

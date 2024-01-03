@@ -546,6 +546,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Компьютер"
+
 msgid "Mobile"
 msgstr "Мобильный"
 
@@ -621,6 +627,9 @@ msgstr "Отмена"
 msgid "days"
 msgstr "дней"
 
+msgid "Disabled"
+msgstr "Отключено"
+
 msgid "Report statuses"
 msgstr "Статусы отчетов"
 
@@ -659,9 +668,6 @@ msgstr "Максимальное число получателей:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Сортировать получателей в алфавитном порядке"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Показать данные получателя на странице состояния подачи материалов"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
@@ -781,9 +787,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Мастер ручной настройки проведет вас через процесс конфигурации, позволяя настроить HTTPS из альтернативного центра сертификации."
-
-msgid "Disabled"
-msgstr "Отключено"
 
 msgid "Auto-renewal"
 msgstr "Aвтоматическое продление"

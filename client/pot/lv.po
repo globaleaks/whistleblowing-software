@@ -521,6 +521,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Dators"
+
 msgid "Mobile"
 msgstr "Mobils"
 
@@ -596,6 +602,9 @@ msgstr "Atcelt"
 msgid "days"
 msgstr "dienas"
 
+msgid "Disabled"
+msgstr "Atspējots"
+
 msgid "Report statuses"
 msgstr "Ziņojuma statusi"
 
@@ -634,9 +643,6 @@ msgstr "Maksimālais atlasāmo saņēmēju skaits:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Rādīt saņēmējus alfabētiskā secībā"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Rādīt informāciju par saņēmēju pārskata statusa lapā"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Atļaut trauksmes cēlējam pievienot pielikumus"
@@ -756,9 +762,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Manuālās konfigurācijas vednis palīdzēs jums iestatīt HTTPS no alternatīvas sertifikācijas iestādes."
-
-msgid "Disabled"
-msgstr "Atspējots"
 
 msgid "Auto-renewal"
 msgstr "Automātiskā atjaunošana"

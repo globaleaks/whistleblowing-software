@@ -518,6 +518,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor工具"
 
+msgid "Devices"
+msgstr "設備"
+
+msgid "Computer"
+msgstr "计算机"
+
 msgid "Mobile"
 msgstr "流動"
 
@@ -593,6 +599,9 @@ msgstr "取消"
 msgid "days"
 msgstr "天"
 
+msgid "Disabled"
+msgstr "已停用"
+
 msgid "Report statuses"
 msgstr "報告狀態"
 
@@ -631,9 +640,6 @@ msgstr "可選接收者上限："
 
 msgid "Show recipients in alphabetical order"
 msgstr "以字母順序顯示接收者名單"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "在報告的狀態頁面顯示接收者資料"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "吹哨者可在提交報告時新增附件"
@@ -753,9 +759,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動配置精靈會引導您，透過另外的憑證頒發機構設置 HTTPS 憑證。"
-
-msgid "Disabled"
-msgstr "已停用"
 
 msgid "Auto-renewal"
 msgstr "自動更新"

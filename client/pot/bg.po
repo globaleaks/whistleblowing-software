@@ -526,6 +526,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Компютър"
+
 msgid "Mobile"
 msgstr "Мобилен"
 
@@ -601,6 +607,9 @@ msgstr "Отмяна"
 msgid "days"
 msgstr "дни"
 
+msgid "Disabled"
+msgstr "Дезактивирано"
+
 msgid "Report statuses"
 msgstr "Статуси на сигналите"
 
@@ -639,9 +648,6 @@ msgstr "Максимален брой избираеми получатели:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Показване на получателите по азбучен ред"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Показване на данни за получателите на страницата за статуса на сигнала"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
@@ -761,9 +767,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Съветникът за ръчно конфигуриране ще Ви ръководи в настройката на HTTPS от алтернативен сертифициращ орган."
-
-msgid "Disabled"
-msgstr "Дезактивирано"
 
 msgid "Auto-renewal"
 msgstr "Автоматично подновяване"

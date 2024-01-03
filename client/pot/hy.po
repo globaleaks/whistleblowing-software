@@ -518,6 +518,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -593,6 +599,9 @@ msgstr "Չեղարկել"
 msgid "days"
 msgstr "օրեր"
 
+msgid "Disabled"
+msgstr "Արգելափակված"
+
 msgid "Report statuses"
 msgstr "Հաղորդել կարգավիճակների մասին"
 
@@ -631,9 +640,6 @@ msgstr "Ընտրվող հասցեատերերի առավելագույն թիվ�
 
 msgid "Show recipients in alphabetical order"
 msgstr "Դասակարգել հասցեատերերին այբբենական կարգով"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Ցույց տալ հասցեատիրոջ տվյալները զեկույցի կարգավիճակի էջում"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
@@ -753,9 +759,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Մանուալ կարգավորման հրաշագործը Ձեզ ուղղություն ցույց կտա այլընտրանքային Սերտիֆիկացման Մարմնի միջոցով HTTPS-ի կարգավորման հարցում։"
-
-msgid "Disabled"
-msgstr "Արգելափակված"
 
 msgid "Auto-renewal"
 msgstr "Ավտոմատ թարմացում"

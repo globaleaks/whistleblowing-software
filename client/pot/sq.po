@@ -525,6 +525,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr "Celular"
 
@@ -600,6 +606,9 @@ msgstr "Anuloje"
 msgid "days"
 msgstr "ditë"
 
+msgid "Disabled"
+msgstr "I çaktivizuar"
+
 msgid "Report statuses"
 msgstr "Gjendje raportimesh"
 
@@ -638,9 +647,6 @@ msgstr "Numër maksimum marrësish të përzgjedhshëm:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Marrësit shfaqi në rend alfabetik"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Shfaq hollësi marrësi te faqja e gjendjes së raportimit"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
@@ -760,9 +766,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Ndihmësi i formësimit dorazi do t’ju udhëheqë nëpër ujdisjen e HTTPS-së me një autoritet alternativ dëshmish."
-
-msgid "Disabled"
-msgstr "I çaktivizuar"
 
 msgid "Auto-renewal"
 msgstr "Vetërinovim"

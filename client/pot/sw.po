@@ -516,6 +516,12 @@ msgstr ""
 msgid "Tor"
 msgstr "Tor"
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -591,6 +597,9 @@ msgstr "futa"
 msgid "days"
 msgstr "siku"
 
+msgid "Disabled"
+msgstr "Haijawezeshwa"
+
 msgid "Report statuses"
 msgstr "Hali ya ripoti"
 
@@ -629,9 +638,6 @@ msgstr "Idadi ya juu ya wapokeaji wanaochaguliwa:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Onyesha wapokeaji kwa mpangilio wa alfabeti"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Onyesha maelezo ya mpokeaji kwenye ukurasa wa hali ya ripoti"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
@@ -751,9 +757,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Programu saidizi ya usanidi wa mwongozo itakuongoza kupitia usanidi wa HTTPS\n\nkutoka kwa Mamlaka mbadala ya Cheti."
-
-msgid "Disabled"
-msgstr "Haijawezeshwa"
 
 msgid "Auto-renewal"
 msgstr "Uhuishaji kiotomatiki"

@@ -518,6 +518,12 @@ msgstr ""
 msgid "Tor"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
 msgid "Mobile"
 msgstr ""
 
@@ -593,6 +599,9 @@ msgstr "Юхаэца"
 msgid "days"
 msgstr "денош"
 
+msgid "Disabled"
+msgstr "Магийна доцу"
+
 msgid "Report statuses"
 msgstr "Аьрзнийн статусаш"
 
@@ -631,9 +640,6 @@ msgstr "Харжа мегачу дIаэцархойн лакхара терах�
 
 msgid "Show recipients in alphabetical order"
 msgstr "ДIаэцархой абатан рогlаллехь гайта"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "ДIаэцархочун билгалонаш гайта аьрзнийн статусан агlона тIехь"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
@@ -753,9 +759,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Куьйга конфигурацин пхьеро гойтур ду, HTTPS алтернативе Certificate Authority чуьра муха дIахIотто еза."
-
-msgid "Disabled"
-msgstr "Магийна доцу"
 
 msgid "Auto-renewal"
 msgstr "Шашах юхацIиндар"
