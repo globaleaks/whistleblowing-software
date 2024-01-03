@@ -1378,12 +1378,13 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     saveAs: function(filename, url) {
+      var self = this;
       return $http({
         method: "GET",
         url: url,
         responseType: "blob",
       }).then(function (response) {
-        this.saveBlobAs(filename, response.data);
+        self.saveBlobAs(filename, response.data);
       });
     },
 
