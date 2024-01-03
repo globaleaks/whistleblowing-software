@@ -361,6 +361,7 @@ class APIResourceWrapper(Resource):
             if hostname and https_enabled:
                 request.tid = 1
                 self.redirect_https(request, hostname.encode())
+                return b''
 
         if request.tid is None or request.tid not in State.tenants:
             request.tid = None
