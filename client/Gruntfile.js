@@ -111,18 +111,6 @@ module.exports = function(grunt) {
           }
 
         ]
-      },
-      coverage: {
-        files: [{
-          dest: "build/",
-          cwd: "app/",
-          src: [
-            "**",
-            "lib/js/*.js", // and copy scripts that should not be instrumented.
-            "lib/js/locale/*.js"
-          ],
-          expand: true
-        }]
       }
     },
 
@@ -427,9 +415,10 @@ module.exports = function(grunt) {
         }
       }
     },
+
     shell: {
       babel: {
-        command: "npx babel build/js --out-dir build/js"
+        command: "npx babel app/js --out-dir app/js"
       }
     }
   });
@@ -1057,7 +1046,6 @@ module.exports = function(grunt) {
   grunt.registerTask("instrument-client", [
     "clean",
     "copy:sources",
-    "copy:coverage",
     "shell:babel"
   ]);
 };
