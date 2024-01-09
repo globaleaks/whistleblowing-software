@@ -356,6 +356,16 @@ var GL = angular.module("GL", [
           resources: fetchResources("analyst", ["preferences"])
         }
       }).
+      when("/analyst/preferences", {
+        templateUrl: "views/partials/preferences.html",
+	    controller: "PreferencesCtrl",
+        header_title: "Preferences",
+        sidebar: "views/analyst/sidebar.html",
+        resolve: {
+          access: requireAuth("analyst"),
+          resources: fetchResources("analyst", ["preferences"])
+        }
+      }).
       when("/analyst/statistics", {
         templateUrl: "views/analyst/statistics.html",
         controller: "StatisticsCtrl",
