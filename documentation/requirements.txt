@@ -1,2 +1,3 @@
 sphinx
+sphinx-intl
 sphinx_rtd_theme
