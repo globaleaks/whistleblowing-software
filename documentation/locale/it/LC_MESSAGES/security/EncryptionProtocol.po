@@ -1,0 +1,356 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../security/EncryptionProtocol.rst:2
+msgid "Encryption Protocol"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:3
+msgid ""
+"GlobaLeaks implements an encryption protocol specifically designed for "
+"anonymous whistleblowing applications."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:5
+msgid ""
+"The protocol has been developed and validated in collaboration with the "
+"`Open Technology Fund <https://www.opentech.fund/results/supported-"
+"projects/globaleaks/>`_ and represents a tradeoff between security and "
+"usability intended to provide easy use by whistleblowers and reasonable "
+"security from attackers seizing the backend and attempting bruteforce "
+"decryption."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:7
+msgid ""
+"Encryption is implemented for each submission protecting questionnaire's "
+"answers, comments, attachments and involved metadata. The keys involved "
+"in the encryption are per-user and per-report and this guarantees that "
+"only whistleblowers and their recipients could access the reports. Such "
+"an implementation implies that in case users forget their password, they "
+"would lose any possibility of access to the data contained in their "
+"accounts."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:9
+msgid ""
+"In order to enable users to be able to recover their own account in case "
+"of loss of their password, the system implements an `Key Recovery`_ "
+"mechanism and make available to every user an Account Recovery Key. This "
+"measure ensure that users in possession of their own Account Recovery Key"
+" could always restore their own access to their own account and the data "
+"contained therein."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:11
+msgid ""
+"In order to protect the system from data loss in case of users' loss of "
+"both the password and the account recovery key, the system could be "
+"configured enabling a `Key Escrow`_ mechanism and delegating to "
+"administrators the role and responsibility to support users recovering "
+"access to their own accounts and the data contained therein. Such a "
+"capability has the value to add resiliency to the project protecting from"
+" any data loss in case of users' death or in condition of conflict of "
+"interest inside the recipient team. The same capability has the drawback "
+"that users with access to escrow keys could possibily access others users"
+" accounts and the data contained therein. Project owners are invited to "
+"wisely choose if enabling this feature depending on the project's threat "
+"model and to document the choice on the project's privacy policies."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:14
+msgid "Encryption's Workflow"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:15
+msgid ""
+"Users chooses a personal secure password at first login done using an "
+"account activation link;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:16
+msgid ""
+"The system creates a personal user asymmetrical keypair and stores the "
+"private key symmetrically encrypted with a secret derived from the "
+"personal user password;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:17
+msgid ""
+"The private key of each user is protected with the Key Recovery mechanism"
+" and if enabled with the Key Escrow mechanism;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:18
+msgid "The whistleblower files a report;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:19
+msgid ""
+"The system assigns personal numeric 16-digits receipt for the "
+"whistleblower;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:20
+msgid ""
+"The system generates an asymmetrical keypair for the whistleblower and "
+"stores the private key symmetrically encrypted with a secret derived from"
+" the receipt of the whistleblower;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:21
+msgid ""
+"The system generates an asymmetrical keypair for the encryption of the "
+"report, the attached files, the comments and the involved metadata and "
+"stores a copy of the private key encrypted for each involved user by "
+"using their own public key;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:22
+msgid ""
+"The system encrypts the report, the attached files, the comments and the "
+"metadata with the public key generated for the report;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:23
+msgid ""
+"The system grants every involved user access to their reports and enable "
+"them to communicate by automatically locking and unlocking involved keys "
+"when a report is accessed or new communication is performed."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:26
+msgid "Encryption's Details"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:28
+msgid "Algorithms"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Type"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Implementation"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Asymmetric encryption"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"`Libsodium SealedBoxes "
+"<https://pynacl.readthedocs.io/en/stable/public/#nacl.public.SealedBox>`_,"
+" an encryption implementation that combines Curve25519, XSalsa20 and "
+"Poly1305 alghoritms."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Symmetric encryption"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"`Libsodium SecretBoxes "
+"<https://pynacl.readthedocs.io/en/stable/secret/#nacl.secret.SecretBox>`_,"
+" an encryption implementation that combines XSalsa20 and Poly1305."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:36
+msgid "Users’ Credentials"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:37
+msgid ""
+"The system used two different type of credentials depending on the user "
+"role:"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Credentials type"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "User role"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Passwords"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Passwords are used for authenticating users identified by a username"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Receipts"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"Receipts are 16-digits random secrets used for authenticating anonymous "
+"whistleblowers"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:45
+msgid "Assumptions:"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:47
+msgid "The system enforces strong password complexity;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:48
+msgid ""
+"The system enforces expiration of receipts according to a strict data "
+"retention policy limiting the concurrent number of active receipts;"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:51
+msgid "Users’ Keys"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Generation"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Storage"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "ECC Curve25519 keypair"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"Generated by the backend at first user login for authenticated users and "
+"on submission for whistleblowers"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"Keys are stored on the backend encrypted using symmetric encryption. The "
+"symmetric key used for encrypting users’ keys is derived from the users’ "
+"credentials using the KDF function `Argon2ID <https://password-"
+"hashing.net/argon2-specs.pdf>`_. The parameters for Argon2ID used for KDF"
+" are chosen stronger than the parameters one used for authentication of "
+"related user which the hash is stored. The parameters are chosen to "
+"require 128MB per Login and 1 second of computation."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:59
+msgid "Data Encryption's Keys"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "256 bit keys"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid "Generated by the backend for each report"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:1
+msgid ""
+"Keys and stored on backend filesystem  encrypted using asymmetric "
+"encryption by means of Users’ and Whistleblower’s keys respectively"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:67
+msgid "Key Generation"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:68
+msgid ""
+"Users' encryption keys are automatically generated during the first user "
+"login and secured by means of the user passphrase used for login. This "
+"simple but effective key generation policy requires users to perform "
+"their first login before being enabled to receive reports."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:71
+msgid "Key Recovery"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:72
+msgid ""
+"The system implements a key recovery system by means of a recovery key "
+"and symmetric encryption."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:74
+msgid ""
+"Upon generation of a user key, the private key is symmetrically encrypted"
+" with a randomly generated recovery key."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:76
+msgid ""
+"For usability reasons, this recovery is kept as well encrypted on the "
+"backend making it possible for logged users in possession of their "
+"password to retrieve and print their own account recovery key."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:79
+msgid "Key Escrow"
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:80
+msgid ""
+"The system implements an optional key escrow mechanism in order to limit "
+"data loss in case of users’ password loss."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:82
+msgid ""
+"Key escrow can be enabled during the initial application wizard or "
+"alternatively could be enabled in the advanced settings of the software."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:84
+msgid ""
+"We advise enabling this option if you would like to protect "
+"whistleblowers' submissions from being lost in the situation where "
+"recipients lose their passwords. On the other hand, we would not advise "
+"using this feature if you want to setup a system where only recipients "
+"are able to access submissions."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:86
+msgid ""
+"When the option is enabled the system will generate and assign an escrow "
+"key and assign it to the administrator that has enabled the feature; the "
+"key will be furtherly used by the system to encrypt every system key "
+"preserving a copy that could be unlocked by any administrator in the "
+"availability of the escrow key."
+msgstr ""
+
+#: ../../security/EncryptionProtocol.rst:88
+msgid ""
+"Administrators with access to the escrow key will be able to support any "
+"internal user in case of password loss and issue password reset. As well "
+"they will be able to grant this same privilege to other administrators or"
+" disable the feature completely."
+msgstr ""
+

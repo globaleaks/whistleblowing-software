@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../user/admin/TroubleShooting.rst:3
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:5
+msgid "Issues and Bug Reporting"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:6
+msgid "If you encounter any issue and you are not able to to run GlobaLeaks:"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:8
+msgid "Be sure to strictly follow the Installation Guide for installation"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:9
+msgid ""
+"Be sure to satisfy the Technical Requirements for hardware and operating "
+"system version."
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:10
+msgid ""
+"Search on the support forum to check if a user has already encountered "
+"your issue: https://github.com/orgs/globaleaks/discussions"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:11
+msgid ""
+"Report the issue on the official software ticking system: "
+"https://github.com/globaleaks/GlobaLeaks/issues"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:14
+msgid "Useful Debugging Commands"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:15
+msgid ""
+"Depending on your setup. There are a few things that are usually the "
+"first things to check to see if GlobaLeaks is working."
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:17
+msgid "Is the service running?"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:23
+msgid "Is the service responding on the loopback interface?"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:29
+msgid "Is the service listening on external interfaces?"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:35
+msgid "Are exceptions being generated?"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:43
+msgid "Log Files"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:44
+msgid ""
+"There are a few useful logs and corresponding log files when GlobaLeaks "
+"is installed."
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:46
+msgid "**GlobaLeaks process:**"
+msgstr ""
+
+#: ../../user/admin/TroubleShooting.rst:53
+msgid ""
+"The verbosity is configurable via the web interface of the software "
+"inside Advanced Settings."
+msgstr ""
+

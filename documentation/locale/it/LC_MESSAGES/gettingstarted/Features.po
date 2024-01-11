@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../gettingstarted/Features.rst:2
+msgid "Features"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:5
+msgid "User Features"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:7
+msgid ""
+"Multi-user system with customizable user roles (whistleblower, recipient,"
+" administrator)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:8
+msgid "Entirely manageable from a web administration interface"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:9
+msgid ""
+"Support for `more than 90 languages "
+"<https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-"
+"Left (RTL)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:10
+msgid ""
+"Let whistleblowers decide if and when to confidentially declare their "
+"identity"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:11
+msgid "Exchange multimedia files with whistleblower"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:12
+msgid "Secure management of files' access and visualization"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:13
+msgid "Chat with Whistleblower to discuss the report"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:14
+msgid "Unique 16-digit receipt for the whistleblower to log back in anonymously"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:15
+msgid "Simple recipient interface for receiving and analyzing reports"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:16
+msgid "Support for the categorization of the reports with labels"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:17
+msgid "Support for the user search of reports"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:18
+msgid "Support for assigning and creating case management statuses"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:19
+msgid "Customizable look and feel (logo, colour, styles, font, text)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:20
+msgid "Define multiple reporting channels (e.g. per-topic, per-department)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:21
+msgid ""
+"Create and manage multiple whistleblowing site (e.g for subsidiaries or "
+"third party clients)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:22
+msgid "Advanced questionnaire builder"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:23
+msgid "Whistleblowing system statistics"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:26
+msgid "Legal Features"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:28
+msgid ""
+"Designed in adherence with `ISO 37002:2021 "
+"<https://www.iso.org/standard/65035.html>`_ and `EU Directive 2019/1937 "
+"<https://eur-lex.europa.eu/legal-"
+"content/en/TXT/?uri=CELEX%3A32019L1937>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:29
+msgid "Bidirectional anonymous communication (comments/messages)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:30
+msgid "Customizable case management workflow (statuses/sub-statuses)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:31
+msgid "Whistleblower identity conditional reporting workflow"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:32
+msgid "Manage conflict of interest in the reporting workflow"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:33
+msgid "Custodian functionality to authorize access to whistleblower identity"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:34
+msgid "GDPR privacy by design and by default"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:35
+msgid "GDPR configurable data retention policies"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:36
+msgid "GDPR compliant subscriber module for new users of SaaS services"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:37
+msgid "No logs of IP addresses"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:38
+msgid "Audit log"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:39
+msgid "Integratable with existing enterprise case management platform"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:40
+msgid ""
+"Free Software OSI Approved `AGPL 3.0 License "
+"<https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:43
+msgid "Security Features"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:45
+msgid ""
+"Designed in adherence with `ISO 27001:2022 "
+"<https://www.iso.org/standard/82875.html>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:46
+msgid "Full data encryption of whistleblower reports and recipient communication"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:47
+msgid ""
+"Digital anonymity support with `Tor <https://www.torproject.org/>`_ "
+"integration"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:48
+msgid ""
+"Built-in HTTPS support with `TLS 1.3 "
+"<https://tools.ietf.org/html/rfc8446>`_ standard (`SSLabs A+ "
+"<https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_ "
+"rating)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:49
+msgid ""
+"Automatic free digital certificate enrollment (`Let’s Encrypt "
+"<https://letsencrypt.org/>`_)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:50
+msgid "Multiple penetration tests with full public reports"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:51
+msgid ""
+"Conform to industry standards and best practices for application security"
+" (`OWASP <https://owasp.org/>`_)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:52
+msgid ""
+"Two-Factor authentication (2FA) support compliant with standard `TOTP RFC"
+" 6238 <https://tools.ietf.org/html/rfc6238>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:53
+msgid "Integrated network sandboxing with iptables"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:54
+msgid ""
+"Integrated application sandboxing with `AppArmor "
+"<http://wiki.apparmor.net/>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:55
+msgid "Complete protection against automated submissions (spam prevention)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:56
+msgid "Subject to continuous peer-review and periodic security audits"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:57
+msgid "PGP support for encrypted email notifications and encrypted file downloads"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:58
+msgid "Does not leave traces in browser cache"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:61
+msgid "Technical Features"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:63
+msgid "Multi-site support enabling to run multiple virtual site on the same setup"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:64
+msgid ""
+"Responsive user interfaces made with `Boostrap "
+"<https://getbootstrap.com/>`_ CSS Framework"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:65
+msgid ""
+"Built-in Accessibility Support with `WAI-ARIA <https://www.w3.org/WAI"
+"/standards-guidelines/aria/>`_ compliance"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:66
+msgid "Automated Software Quality Measurement and Continuous Integration Testing"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:67
+msgid "Long-Term Support plan (LTS)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:68
+msgid ""
+"Built with lightweight framework technologies (`AngularJS "
+"<https://angularjs.org/>`_ and `Python Twisted <https://twisted.org/>`_)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:69
+msgid "Integrated `SQLite <https://sqlite.org>`_ database"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:70
+msgid ""
+"Automatic setup of `Tor Onion Services Version 3 "
+"<https://www.torproject.org/>`_"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:71
+msgid "Support for self-service signup for whistleblowing SaaS service setup"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:72
+msgid ""
+"Support for Linux operating system (`Debian "
+"<https://www.debian.org/>`_/`Ubuntu <https://ubuntu.com/>`_)"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:73
+msgid "Debian packaging with repository for update/upgrades"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:74
+msgid "Fully self-contained application"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:75
+msgid "Easy integration of the platform with existing websites"
+msgstr ""
+
+#: ../../gettingstarted/Features.rst:76
+msgid "Rest API"
+msgstr ""
+

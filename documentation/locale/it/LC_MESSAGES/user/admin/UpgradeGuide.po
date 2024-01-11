@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../user/admin/UpgradeGuide.rst:2
+msgid "Upgrade Guide"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:4
+msgid "Regular Update"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:5
+msgid ""
+"To safely upgrade a GlobaLeaks installation please proceed with a backup "
+"of your setup by following the :doc:`Backup and restore "
+"</user/admin/BackupAndRestore>` guide."
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:7
+msgid ""
+"This is necessary so that if something goes wrong and you need to "
+"rollback, you will be able to just uninstall the current package, then "
+"install the same version of globaleaks that was previously installed and "
+"working."
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:9
+msgid "In order to update GlobaLeaks perform the following commands:"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:16
+msgid "Upgrade of the Distribution Version"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:17
+msgid ""
+"For security and stability reasons it is recommended to not perform a "
+"distribution upgrade."
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:19
+msgid ""
+"GlobaLeaks could be instead easily migrated to a new up-to-date Debian "
+"system with the following recommended instructions:"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:21
+msgid "create an archive backup of /var/globaleaks"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:22
+msgid "instantiate the lates Debian available"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:23
+msgid "log on the new server and extract the backup in /var/globaleaks"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:24
+msgid ""
+"follow the :doc:`Installation Guide </setup/InstallationGuide>`; "
+"GlobaLeaks while installing will recognize the presence of an existing "
+"data directory and will use it"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:27
+msgid "In Case of Errors"
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:28
+msgid ""
+"The above commands should allow you to perform regularly updates. On some"
+" conditions due to special updates it could be possible that those "
+"commands result in a failure. Consult this page for knowning specific "
+"FAQs on precise failures."
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:30
+msgid ""
+"In case you do not find any specific documented solution for your "
+"failure, you could run the GlobaLeaks install script. The installation "
+"script in fact is designed to allow the update of GlobaLeaks and it "
+"includes fixes for the most common issue."
+msgstr ""
+
+#: ../../user/admin/UpgradeGuide.rst:33
+msgid ""
+"To run the install script for updating globaleaks perform the following "
+"commands:"
+msgstr ""
+

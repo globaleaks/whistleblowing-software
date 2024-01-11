@@ -1,0 +1,594 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../user/admin/UserInterface.rst:2
+msgid "User Interface"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:3
+msgid ""
+"This section offers you a summary of the user interface offered to Admin "
+"users."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:7
+msgid "Through the menu you could access the following administrative sections:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:9 ../../user/admin/UserInterface.rst:28
+#: ../../user/admin/UserInterface.rst:33 ../../user/admin/UserInterface.rst:44
+msgid "Settings"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:11 ../../user/admin/UserInterface.rst:77
+msgid "Users"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:13 ../../user/admin/UserInterface.rst:99
+msgid "Questionnaires"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:15 ../../user/admin/UserInterface.rst:158
+msgid "Channels"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:17
+msgid "Case management"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:19 ../../user/admin/UserInterface.rst:201
+msgid "Notification"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:21 ../../user/admin/UserInterface.rst:228
+msgid "Network"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:23 ../../user/admin/UserInterface.rst:279
+msgid "Sites"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:25
+msgid "Audit log"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:29
+msgid ""
+"This is the section that offers you all the main customization "
+"possibilities necessary for implementing a basic and functional "
+"whistleblowing site."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:31
+msgid "This section is furtherly divided in:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:35 ../../user/admin/UserInterface.rst:50
+msgid "Files"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:37 ../../user/admin/UserInterface.rst:56
+msgid "Languages"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:39
+msgid "Text customization"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:41
+msgid "Advanced settings"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:45
+msgid ""
+"In this section is configurable the logo and all the texts of the main "
+"user interfaces."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:51
+msgid ""
+"In this section could be loaded CSS and Javascript and other files "
+"necessary to customize the interface."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:57
+msgid ""
+"In this section you could enable all the languages required by your "
+"project and configure the default language."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:60
+msgid ""
+"Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and "
+"our great volunteer community, the software is already available and "
+"continuously made available in a lot of languages. This aspect of "
+"internationalization is crucial in many projects. In case you are "
+"starting a project and the required languages are not available we "
+"strongly invite you to register on our `web translation platform "
+"<https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex "
+"<https://www.transifex.com/otf/globaleaks/>`_ and support yourself the "
+"translation. Internationalization and Localization is in fact are crucial"
+" for the success of a whistleblowing project. Thank you!"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:65
+msgid "Text Customization"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:66
+msgid ""
+"Here could be configured overrides for any of the texts of the platform "
+"and of their translation."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:71
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:72
+msgid "In this section could be configured a set of advanced settings."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:78
+msgid ""
+"This sections is where users could be created and managed. The system "
+"with the basic configuration completed with the initial Platform wizard "
+"is configured with an Administrator and a Recipient."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:81
+msgid ""
+"Depending on your project needs here you could create users with "
+"different roles and manage their respective privileges."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:86
+msgid "User Roles"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:87
+msgid ""
+"The software offers the possibility to create users with the following "
+"roles:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:89
+msgid "Administrators"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:91
+msgid "Recipients"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:94
+msgid "User Options"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:100
+msgid ""
+"The softare implements a standard default questionnaire that is proposed "
+"as a good base for a generic whistleblowing procedure. This questinnaire "
+"is the current result of the research performed by the project team with "
+"the organizations that have adopted the solution and expecially with "
+"anticorruption and investigative journalism NGOs."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:102
+msgid ""
+"As every organization has different needs, risks and goals globaleaks has"
+" been designed considering to implement an advanced questionnaire builder"
+" offering the possibility to design custom questionnaires."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:104
+msgid ""
+"The following sections present the questionnaire builder and its "
+"capabilities."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:108
+msgid ""
+"Depending on your project needs you may evaluate defining some questions "
+"once as Question Templates and reuse the same question in multiple "
+"questionnaires."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:113
+msgid "Steps"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:114
+msgid ""
+"The software enables to organize questionnaire in one or multiple steps. "
+"For example the default questionnaire is organized with a single step "
+"including all the questions."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:118
+msgid "Questions Types"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:119
+msgid "The software enables you to create questions of the following types:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:121
+msgid "Single-line text input"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:123
+msgid "Multi-line text input"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:125
+msgid "Selection box"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:127
+msgid "Multiple choice input"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:129
+msgid "Checkbox"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:131
+msgid "Attachment"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:133
+msgid "Terms of service"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:135
+msgid "Date"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:137
+msgid "Date range"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:139
+msgid "Voice"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:141
+msgid "Question group"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:144
+msgid "Common Question Properties"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:145
+msgid ""
+"Each of the software question types make it possible to configure the "
+"following properties:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:147
+msgid "Question: The text of the question"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:149
+msgid ""
+"Hint: A hint that will be shown via an popover an a question mark near "
+"the question."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:151
+msgid "Description: A description text that will be shown below the question"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:153
+msgid "Required: Set this field if you want this question to be mandatory"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:155
+msgid ""
+"Preview: Set this field if you want the answers to this question to "
+"appear in the preview section of the list"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:159
+msgid ""
+"This section is where whistleblowing channels could be created and "
+"managed."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:161
+msgid ""
+"A whistleblowing channel is typically defined by the following main "
+"characteristics"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:163
+msgid ""
+"Name: the name of the channel Image: an image to identify the channel "
+"Description: a description of the channel Recipients: the set of "
+"recipients that will receive reports sent to this channel Questionnaire: "
+"the questionnaire that will be proposed to whistleblowers selecting this "
+"channel Submission expiration: the data retention policy for the channel"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:170
+msgid ""
+"The system with the basic configuration completed with the initial "
+"platform wizard is configured with a single Channel called Default, on "
+"which is associated a recipient and the default questionnaire."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:172
+msgid ""
+"Depending on your project needs here you could create additional Channels"
+" and configure their respective properties."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:177
+msgid "Data Retention Policy"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:178
+msgid ""
+"The software enables to configure a data retention policy for each "
+"channel. This is a fundamental property of the whistleblowing channel "
+"that makes it possible to configure automatic secure deletion of reports "
+"after a certain period of time. This setting should be configured in "
+"relation to the risk of the channel in order to limit unneeded exposure "
+"of the reports received therein."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:182
+msgid "By default a channel is configured with a report expiration of 90 days."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:185
+msgid "Case Management"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:186
+msgid ""
+"This section is intended to host all the main case management feature "
+"that will be offered by the software. Currently it hosts the possibility "
+"to define reports statuses and sub-statuses intended to be used by "
+"Recipients while working on the reports."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:194
+msgid "By default the system includes the following report statuses:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:190
+msgid "New"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:192
+msgid "Open"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:194
+msgid "Closed"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:196
+msgid ""
+"Within this section you may add additional Statuses between the State "
+"Open and Closed and you can furtherly define Sub-statuses for the Closed "
+"status (e.g. Archived / Spam)"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:202
+msgid ""
+"This is the section where are configured all the aspects related to the "
+"mail notifications sent by the software."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:207
+#: ../../user/admin/UserInterface.rst:238
+msgid "The section is furtherly divided in:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:205
+#: ../../user/admin/UserInterface.rst:210
+msgid "Notification Settings"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:207
+#: ../../user/admin/UserInterface.rst:219
+msgid "Notification Templates"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:211
+msgid "Here are configured the technical details about SMTP."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:214
+msgid ""
+"By default GlobaLeaks comes with a working configuration that is based on"
+" systems offered by the GlobaLeaks developers to the community of users "
+"and testers; even though this configuration is designed by their owners "
+"with special care in relation to security and privacy you are invited to "
+"consider using alternative systems for your production environment."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:220
+msgid "In this section are configured the notification templates."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:222
+msgid ""
+"By default globaleaks includes text and translations for each of the "
+"templates that are provided to be fully functional and studied with "
+"particular care in relation to security and privacy. Depending on your "
+"project needs you may override the default text with your customized "
+"texts."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:229
+msgid "In this section are configured the network settings."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:232
+#: ../../user/admin/UserInterface.rst:241
+msgid "HTTPS"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:234
+#: ../../user/admin/UserInterface.rst:255
+msgid "Tor"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:236
+msgid "IP Access control"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:238
+#: ../../user/admin/UserInterface.rst:273
+msgid "URL Redirects"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:242
+msgid ""
+"Here you can configure all the aspects related to the access of the "
+"platform via the HTTPS Protocol."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:246
+msgid "In particular here are configured:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:248
+msgid "The domain name used by your project"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:250
+msgid "The HTTPS key and certificates"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:252
+msgid ""
+"To ease the deployment and the maintenance and reduce the costs of your "
+"project, consider using the software includes support for the Let’s "
+"Encrypt HTTPS certificates."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:256
+msgid ""
+"Here you can configure all the aspects related to the access of the "
+"platform via the Tor Protocol."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:261
+msgid "IP Access Control"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:262
+msgid "Here you can configure IP based Access Control."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:266
+msgid "Suggested configurations are:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:268
+msgid "Prevent Whistleblowers to report from within their respective work space."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:270
+msgid "Restrict Recipients access to their intranet."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:274
+msgid "Here you can configure URL Redirects."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:280
+msgid ""
+"The site section enables organization to create and manage multiple "
+"secondary whistleblowing sites."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:283
+msgid "Sites Management"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:284
+msgid ""
+"Secondary whistleblowing platforms with independent configurations can be"
+" manually created and managed through the Sites interface."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:286
+msgid ""
+"Organizations have typically need for creating a secondary site when "
+"dealing with subsidiaries or third party clients."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:290
+msgid ""
+"After creating a secondary site an administrators of the main site could "
+"simply enter on that system by clicking a \"Configure\" button."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:292
+msgid ""
+"After clicking on the button the administrator will be logged in on the "
+"the administrative panel of the site."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:295
+msgid "Signup Module"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:296
+msgid ""
+"The software features a signup module that can be enabled and used to "
+"offers others users the possibility to register their secondary site."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:298
+msgid ""
+"Organizations have typically need for a signup module when offering the "
+"platform to other subsidiaries or third party clients where they want "
+"users to have the possibility to self subscribe."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:300
+msgid "The signup feature can be anabled in the Options tab of the Sites section."
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:304
+msgid ""
+"When the signup module is enabled the submission module of the main site "
+"is automatically disabled and the home page will be featuring the "
+"following signup form:"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:309
+msgid "Audit Log"
+msgstr ""
+
+#: ../../user/admin/UserInterface.rst:310
+msgid ""
+"The software features a privacy precerving audit log enabling "
+"administrators of the system to supervise on projects operations."
+msgstr ""
+

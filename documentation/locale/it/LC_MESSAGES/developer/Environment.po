@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../developer/Environment.rst:3
+msgid "Development Environment"
+msgstr ""
+
+#: ../../developer/Environment.rst:4
+msgid ""
+"This guide describe how to set up an environment in order to contribute "
+"to the development of GlobaLeaks."
+msgstr ""
+
+#: ../../developer/Environment.rst:7
+msgid "Requirements"
+msgstr ""
+
+#: ../../developer/Environment.rst:8
+msgid ""
+"The guide assumes you run a Debian based system and that the following "
+"software is installed on your system:"
+msgstr ""
+
+#: ../../developer/Environment.rst:10
+msgid "debhelper"
+msgstr ""
+
+#: ../../developer/Environment.rst:11
+msgid "devscripts"
+msgstr ""
+
+#: ../../developer/Environment.rst:12
+msgid "dh-apparmor"
+msgstr ""
+
+#: ../../developer/Environment.rst:13
+msgid "dh-python"
+msgstr ""
+
+#: ../../developer/Environment.rst:14
+msgid "git"
+msgstr ""
+
+#: ../../developer/Environment.rst:15
+msgid "grunt-cli"
+msgstr ""
+
+#: ../../developer/Environment.rst:16
+msgid "node"
+msgstr ""
+
+#: ../../developer/Environment.rst:17
+msgid "npm"
+msgstr ""
+
+#: ../../developer/Environment.rst:18
+msgid "python3"
+msgstr ""
+
+#: ../../developer/Environment.rst:19
+msgid "python3-dev"
+msgstr ""
+
+#: ../../developer/Environment.rst:20
+msgid "python3-pip"
+msgstr ""
+
+#: ../../developer/Environment.rst:21
+msgid "python3-setuptools"
+msgstr ""
+
+#: ../../developer/Environment.rst:22
+msgid "python3-sphinx"
+msgstr ""
+
+#: ../../developer/Environment.rst:23
+msgid "python3-virtualenv"
+msgstr ""
+
+#: ../../developer/Environment.rst:26
+msgid "Setup"
+msgstr ""
+
+#: ../../developer/Environment.rst:27
+msgid "The repository could be cloned with:"
+msgstr ""
+
+#: ../../developer/Environment.rst:33
+msgid "Client dependencies could be installed by issuing:"
+msgstr ""
+
+#: ../../developer/Environment.rst:41
+msgid "Backend dependencies could be installed by issuing:"
+msgstr ""
+
+#: ../../developer/Environment.rst:50
+msgid ""
+"This will create for you a python virtualenv in the directory env "
+"containing all the required python dependencies. To leave the virtualenv,"
+" type ``deactivate``."
+msgstr ""
+
+#: ../../developer/Environment.rst:52
+msgid ""
+"Then, anytime you will want to activate the environment to run globaleaks"
+" you will just need to issue the command:"
+msgstr ""
+
+#: ../../developer/Environment.rst:58
+msgid "Setup the client:"
+msgstr ""
+
+#: ../../developer/Environment.rst:66
+msgid "Setup the backend and its dependencies:"
+msgstr ""
+
+#: ../../developer/Environment.rst:76
+msgid "Run"
+msgstr ""
+
+#: ../../developer/Environment.rst:77
+msgid ""
+"To run globaleaks from sources within the development environment you "
+"should issue:"
+msgstr ""
+
+#: ../../developer/Environment.rst:85
+msgid ""
+"GlobaLeaks will start and be reachable at the following address "
+"https://127.0.0.1:8443"
+msgstr ""
+

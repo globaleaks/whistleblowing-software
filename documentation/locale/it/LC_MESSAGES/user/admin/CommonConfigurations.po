@@ -1,0 +1,193 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../user/admin/CommonConfigurations.rst:2
+msgid "Common Configurations"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:4
+msgid "Configure the Logo"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:5
+msgid ""
+"The first thing you want to give to your whistleblowing site is a "
+"branding identity; this could be done by loading a logo in section Site "
+"settings / Main configuration."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:9
+msgid ""
+"Scroll down along the page to reach the \"Save\" button, click on it and "
+"have your logo and favicon applied."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:12
+msgid "Enable Languages"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:13
+msgid "You may want your GlobaLeaks installation served on more than one language"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:15
+msgid ""
+"To do so, in the section \"Site settings / Languages\" select the "
+"languages you would like and add them."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:17
+msgid ""
+"Note that in the same interface you can mark the default application "
+"language."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:22
+msgid "Configure Notification Settings"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:23
+msgid ""
+"GlobaLeaks sends out notifications of different events to different "
+"receivers and to admins. In order to have this working, you have to "
+"select  \"Notification Settings\" in the \"Administration Interface - "
+"General Settings\" page and set up email account and related server "
+"parameters."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:25
+msgid ""
+"We suggest you to setup an email account dedicated to sending out "
+"notifications from your initiative."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:29
+msgid "Enter the followings:"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:31
+msgid ""
+"SMTP name: the name of your GlobaLeaks project or something that equally "
+"descriptive"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:32
+msgid "SMTP email address: the email address used to send notifications"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:33
+msgid ""
+"Username: the username corresponding to the just inserted \"SMTP email "
+"address\"; this is needed to authenticate to the SMTP server and send "
+"emails"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:34
+msgid "Password: Password of the above corresponding \"SMTP email address\""
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:35
+msgid ""
+"SMTP Server Address: it is the hostname of the SMTP server you are using "
+"to send notification emails"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:36
+msgid ""
+"SMTP Server Port: Port used to send outgoing emails. It is usually 465 or"
+" 587 (SMTP with TLS is at TCP port 587; SMTP with SSL is at 465)"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:37
+msgid ""
+"Transport Security: from the drop down menu select the opportune security"
+" level"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:39
+msgid ""
+"It is better to leave untouched the pre-defined settings pertaining the "
+"notification to admins and to recipients, but in the case you want to "
+"disable them, it is possible to check the corresponding checkboxes."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:41
+msgid ""
+"You can then set the value for the time at which the notification alert "
+"of expiring report; this value is set at 72hours to give time to the "
+"recipient(s) to check and manage the pending submissions."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:43
+msgid ""
+"It is possible to tweak the maximum number of emails allowed in an hour, "
+"before email wil be suspended in order to avoid flooding the system. It "
+"is advised to keep the pre-defined value, and eventually change it "
+"accordingly with mail server capabilities."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:45
+msgid ""
+"Once configured all the parameters for notifications, it is possible to "
+"test them by just clicking on the \"Test the configuration\" button."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:47
+msgid ""
+"If all is working as expected, click on the \"Save\" button to keep the "
+"configured parameters."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:50
+msgid "Configure Recipients"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:51
+msgid ""
+"The Recipient is the person that will receive and process the data that "
+"whistleblowers input in the platform. You can have one or multiple "
+"Recipients per Context, and also have one Recipient that can access to "
+"multiple Contexts. The platform is very flexible on this and allows you "
+"to define in very detail your whistleblowing system and procedure."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:55
+msgid "Customize the Graphic Layout"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:57
+msgid "Example 1: Custom Background"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:58
+msgid ""
+"This CSS example shows how to customize the Background Color of the "
+"application."
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:68
+msgid "Example 2: Custom Font"
+msgstr ""
+
+#: ../../user/admin/CommonConfigurations.rst:69
+msgid "This CSS example shows how to customize the font of the application."
+msgstr ""
+

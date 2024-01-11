@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../user/Common.rst:2
+msgid "Common to All Users"
+msgstr ""
+
+#: ../../user/Common.rst:4
+msgid "Login"
+msgstr ""
+
+#: ../../user/Common.rst:5
+msgid "Users could login by accessing the ``/#/login`` page."
+msgstr ""
+
+#: ../../user/Common.rst:10
+msgid "Access the User Preferences"
+msgstr ""
+
+#: ../../user/Common.rst:11
+msgid ""
+"After login Users could access their preferences by clicking the "
+"``Preferences`` link present in the login status bar."
+msgstr ""
+
+#: ../../user/Common.rst:16
+msgid "Change Your Password"
+msgstr ""
+
+#: ../../user/Common.rst:17
+msgid ""
+"Users could change their own password by accessing the ``Password`` tab "
+"present in the ``Preferences`` page."
+msgstr ""
+
+#: ../../user/Common.rst:22
+msgid "Reset Your Password"
+msgstr ""
+
+#: ../../user/Common.rst:23
+msgid ""
+"Users could requests a password reset via the ``/#/login`` page by "
+"clicking the ``Forgot password?`` button."
+msgstr ""
+
+#: ../../user/Common.rst:25
+msgid ""
+"After clicking the button users are requested to type their own username "
+"or email address."
+msgstr ""
+
+#: ../../user/Common.rst:34
+msgid "Enable Two-Factor-Authentication (2FA)"
+msgstr ""
+
+#: ../../user/Common.rst:35
+msgid ""
+"Users could enable Two-Factor-Authentication by clicking the ``Enable two"
+" factor authentication`` option inside the ``Preferences`` page."
+msgstr ""
+
+#: ../../user/Common.rst:37
+msgid ""
+"To enable the feature the user requires to have a phone with installed a "
+"common ``Authenticator APP`` implementing the TOTP standard as by `RFC "
+"6238 <https://tools.ietf.org/html/rfc6238>`_"
+msgstr ""
+
+#: ../../user/Common.rst:42
+msgid "Access and Save Your Account Recovery Key"
+msgstr ""
+
+#: ../../user/Common.rst:43
+msgid ""
+"Users could access their own Account Recovery key by clicking the "
+"``Account Recovery Key`` button present in the ``Preferences`` page."
+msgstr ""
+
+#: ../../user/Common.rst:45
+msgid ""
+"This is a fundamental step that any user should do at their first login "
+"after activating their own account in order to backup their own account "
+"recovery key and get sure to not incur in data loss due to password loss."
+msgstr ""
+

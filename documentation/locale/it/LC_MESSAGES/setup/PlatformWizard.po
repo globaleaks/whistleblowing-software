@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../setup/PlatformWizard.rst:2
+msgid "Platform Wizard"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:3
+msgid "After installing of GlobaLeaks you can proceed with the platform wizard."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:5
+msgid ""
+"Open a browser at port 443 or port 8443 on your remote or local IP "
+"respectively."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:7
+msgid ""
+"We recommend you to to perform the wizard either by using the using Tor "
+"address provided at the end of the setup or on localhost via a VPN."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:10
+msgid "Choose the Primary Language for Your Site"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:11
+msgid ""
+"In the first page of the wizard you are invited to select the language of"
+" your site Default choice is English, but many others lanaguages are "
+"available and more are expected to be available in the future."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:17
+msgid "Choose a Name for Your Project"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:18
+msgid "In the second section of the wizard configure the name of your project."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:23
+msgid "Configure the Account for the Administrator of Your Whistleblowing Site"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:24
+msgid ""
+"In the third section of the wizard configure the account details of the "
+"administrator of your project."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:26
+msgid ""
+"Keep in mind to choose a strong password in order to protect this "
+"sensitive account; an indication of the strength of the choosen password "
+"is shown to guide you in this task."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:31
+msgid "Configure the Account for the First Recipient of Reports"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:32
+msgid ""
+"In the forth section of the wizard configure the account details of the "
+"first recipient for the reports sent to your project."
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:37
+msgid "Read and Accept the License"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:38
+msgid ""
+"In the fifth section of the wizard you are invited to read and accept the"
+" License of GlobaLeaks"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:43
+msgid "Complete the Wizard"
+msgstr ""
+
+#: ../../setup/PlatformWizard.rst:44
+msgid "The sixt section of the wizard notifies you the completion of the wizard."
+msgstr ""
+

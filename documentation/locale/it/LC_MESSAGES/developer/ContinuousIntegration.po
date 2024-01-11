@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../developer/ContinuousIntegration.rst:3
+msgid "Continuous Integration"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:4
+msgid ""
+"The GlobaLeaks codebase is continuously tested for bug within a complete "
+"continuous integration lifecycle implemented."
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:6
+msgid "Testes are performed at every commit by:"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:8
+msgid ""
+"performing continous integration testing with `GitHub Actions "
+"<https://github.com/globaleaks/GlobaLeaks/actions>`_;"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:9
+msgid ""
+"tracking tests coverage and code quality with `Codacy "
+"<https://app.codacy.com/manual/GlobaLeaks/GlobaLeaks>`_."
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:12
+msgid "Unit Tests"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:13
+msgid "Unit tests are implemented by means of python-twisted and trial"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:15
+#: ../../developer/ContinuousIntegration.rst:26
+msgid "Tests can be run manually by issuing:"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:23
+msgid "E2E Tests"
+msgstr ""
+
+#: ../../developer/ContinuousIntegration.rst:24
+msgid "End to end tests are implemented by means of Cypress."
+msgstr ""
+

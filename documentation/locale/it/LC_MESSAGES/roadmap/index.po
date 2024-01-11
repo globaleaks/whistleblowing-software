@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../roadmap/index.rst:2
+msgid "Project Roadmap"
+msgstr ""
+
+#: ../../roadmap/index.rst:5
+msgid ""
+"This tentative roadmap is built by the GlobaLeaks team in order to try to"
+" respond to main users' needs. Please get sure that the needs of your "
+"projects and users are well represented on the project `Ticketing System "
+"<https://github.com/globaleaks/GlobaLeaks/issues>`_. If your organization"
+" could fund the development of parts of this roadmap please write us at "
+"info@globaleaks.org"
+msgstr ""
+
+#: ../../roadmap/index.rst:8
+msgid "Introduction"
+msgstr ""
+
+#: ../../roadmap/index.rst:9
+msgid ""
+"`GlobaLeaks <https://www.globaleaks.org>`_ is free, open source software "
+"enabling anyone to easily set up and maintain a secure whistleblowing "
+"platform."
+msgstr ""
+
+#: ../../roadmap/index.rst:11
+msgid ""
+"Started in 2011, the software is now widely used worldwide by more than "
+"3000 organizations working in the fields of anti-corruption activism, "
+"human rights violations reporting, investigative journalism, and "
+"corporate compliance."
+msgstr ""
+
+#: ../../roadmap/index.rst:13
+msgid ""
+"This document details the main areas of research development and "
+"represents the actual tentative readmap of consolidation planned for "
+"2023-2025 based on the analysis of the large set of user needs collected "
+"within the official `Ticketing System "
+"<https://github.com/globaleaks/GlobaLeaks/issues>`_."
+msgstr ""
+
+#: ../../roadmap/index.rst:16
+msgid "Development Areas"
+msgstr ""
+
+#: ../../roadmap/index.rst:19
+msgid "Application Client Update"
+msgstr ""
+
+#: ../../roadmap/index.rst:20
+msgid ""
+"GlobaLeaks client is still based on Angular 1 and on other stable but "
+"outdated components. Considering the maturity of the technology and of "
+"the libraries adopted, this does not currently represent any security "
+"risk but as the time passes by, it significatively impacts the "
+"possibility of growth of the application, especially in relation to the "
+"set of planned project extensions."
+msgstr ""
+
+#: ../../roadmap/index.rst:22
+msgid ""
+"Within this project idea we propose to rewrite the current application "
+"client pursuing the following set of goals:"
+msgstr ""
+
+#: ../../roadmap/index.rst:24
+msgid "Bump of the core client library from AngularJS to Angular;"
+msgstr ""
+
+#: ../../roadmap/index.rst:25
+msgid "Bump of Bootstrap library from Bootstrap 4 to Bootstrap 5;"
+msgstr ""
+
+#: ../../roadmap/index.rst:26
+msgid "General optimization and modularization of the client"
+msgstr ""
+
+#: ../../roadmap/index.rst:29
+msgid "Statistics and Reporting"
+msgstr ""
+
+#: ../../roadmap/index.rst:30
+msgid ""
+"GlobaLeaks still misses the implementation for any generation of "
+"statistics and reports. Such features are considered fundamental in order"
+" to properly support users in analysis, investigation and reporting."
+msgstr ""
+
+#: ../../roadmap/index.rst:32
+msgid "E.g:"
+msgstr ""
+
+#: ../../roadmap/index.rst:34
+msgid ""
+"Recipients should be able to visually see statistics about the received "
+"reports received and the data contained; these statistics should empower "
+"users in their work providing relevant information out of the data "
+"collection that could help users analyze and study social problems like "
+"corruption and be able to organize and export automatic reporting;"
+msgstr ""
+
+#: ../../roadmap/index.rst:35
+msgid ""
+"Administrators should be able to visually see a dashboard in order to "
+"monitor the system and assure that all is working well (e.g. that "
+"recipients are receiving submissions and are able to access them and that"
+" no attacks are performed on the system)."
+msgstr ""
+
+#: ../../roadmap/index.rst:37 ../../roadmap/index.rst:52
+msgid "Ideas:"
+msgstr ""
+
+#: ../../roadmap/index.rst:39
+msgid ""
+"A client library could be adopted to generate reports directly on the "
+"client (e.g. Chart.js)"
+msgstr ""
+
+#: ../../roadmap/index.rst:40
+msgid ""
+"The implementation should support the possibility of exporting the report"
+" in PDF; in relation to this aspect it should be considered the "
+"advantages of a possible backend implementation."
+msgstr ""
+
+#: ../../roadmap/index.rst:42 ../../roadmap/index.rst:57
+#: ../../roadmap/index.rst:68 ../../roadmap/index.rst:81
+#: ../../roadmap/index.rst:94
+msgid "Reference tickets:"
+msgstr ""
+
+#: ../../roadmap/index.rst:44
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/1959"
+msgstr ""
+
+#: ../../roadmap/index.rst:45
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2254"
+msgstr ""
+
+#: ../../roadmap/index.rst:49
+msgid "Audit Log"
+msgstr ""
+
+#: ../../roadmap/index.rst:50
+msgid ""
+"GlobaLeaks still misses the implementation of a complete audit logit. "
+"This is considered a fundamental feature in order to achieve full "
+"accontability of the whistleblowing process and increase security."
+msgstr ""
+
+#: ../../roadmap/index.rst:54
+msgid "Software audit log should be improved"
+msgstr ""
+
+#: ../../roadmap/index.rst:55
+msgid ""
+"The software could exposes a standard log interfaces in CEF/LEEF/Syslog "
+"format to foster integration with third party SIEM software."
+msgstr ""
+
+#: ../../roadmap/index.rst:59
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2579"
+msgstr ""
+
+#: ../../roadmap/index.rst:60
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2580"
+msgstr ""
+
+#: ../../roadmap/index.rst:61
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2651"
+msgstr ""
+
+#: ../../roadmap/index.rst:64
+msgid "GDPR compliance"
+msgstr ""
+
+#: ../../roadmap/index.rst:65
+msgid ""
+"GlobaLeaks implements by-design many best practices in matters of privacy"
+" and security. In order to be effectively accepted and competitive beside"
+" commercial proprietary solutions and to guarantee the sustainability of "
+"the project, the software needs to achieve some market “standards” (e.g. "
+"GDPR compliance / ISO certifications / etc.); among all we selected that "
+"GDPR compliance is a first step where the software could implement best "
+"practices (e.g. procedures for self signup should present appropriate "
+"legal notices, terms of services, and contractualization). Within the "
+"software, there should be implemented an automatic contract generation "
+"via PDF or other suitable formats in respect with the GDPR requirements."
+msgstr ""
+
+#: ../../roadmap/index.rst:70
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2145"
+msgstr ""
+
+#: ../../roadmap/index.rst:71
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2658"
+msgstr ""
+
+#: ../../roadmap/index.rst:72
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2866"
+msgstr ""
+
+#: ../../roadmap/index.rst:73
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2767"
+msgstr ""
+
+#: ../../roadmap/index.rst:74
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/3011"
+msgstr ""
+
+#: ../../roadmap/index.rst:75
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/3012"
+msgstr ""
+
+#: ../../roadmap/index.rst:78
+msgid "Backup and Restore"
+msgstr ""
+
+#: ../../roadmap/index.rst:79
+msgid ""
+"GlobaLeaks currently misses any feature for performing backup and "
+"restoring of its setup. These duties are currently performed by its users"
+" following typical best manual practices (e.g. archiving the data "
+"directory of the application). This project idea is to research the best "
+"practices to be applied in this context and to identify suitable "
+"strategies for implementing periodic, secure and encrypted backups to be "
+"restored upon necessity."
+msgstr ""
+
+#: ../../roadmap/index.rst:83
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/528"
+msgstr ""
+
+#: ../../roadmap/index.rst:84
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2149"
+msgstr ""
+
+#: ../../roadmap/index.rst:87
+msgid "Multitenancy"
+msgstr ""
+
+#: ../../roadmap/index.rst:89
+msgid "Import and Export of Tenants"
+msgstr ""
+
+#: ../../roadmap/index.rst:90
+msgid ""
+"Part of the software is a recent feature of Multitenancy, first "
+"implemented in 2018 and stabilized during 2019. Through this feature, "
+"GlobaLeaks makes it possible to create multiple setups of itself via "
+"virtual sites (similarly to Wordpress multisite feature). In order to "
+"make it more easy for an administrator to migrate a platform form a "
+"system to an other or to enable users to require data portability from a "
+"globaleaks provider to an other, for example in relation to GDPR it has "
+"been evaluated necessary to improve the multi tenancy implementation by "
+"implementing support for import-export of tenants. In the context of a "
+"whistleblowing application, involving encryption and logging this poses "
+"important challenges on how to best handle this process."
+msgstr ""
+
+#: ../../roadmap/index.rst:96
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2632"
+msgstr ""
+
+#: ../../roadmap/index.rst:97
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2631"
+msgstr ""
+
+#: ../../roadmap/index.rst:100
+msgid "Multisite Users"
+msgstr ""
+
+#: ../../roadmap/index.rst:101
+msgid "(To be further researched)"
+msgstr ""
+
+#: ../../roadmap/index.rst:103
+msgid ""
+"Important requirement at the base of the Multitenancy expansion is the "
+"possibility to enable users to be administrators and recipients of two or"
+" multiple instances running on the same multi-site setup. This is useful "
+"for example when a lawyer takes part as a recipient on multiple projects;"
+" as well it is useful when an ICT consultant joins consultancy on "
+"multiple projects."
+msgstr ""
+
+#: ../../roadmap/index.rst:106
+msgid ""
+"This could significatively simplify user access enabling the user to have"
+" a single set of username and password and associated keys."
+msgstr ""
+
+#: ../../roadmap/index.rst:108
+msgid "References tickets:"
+msgstr ""
+
+#: ../../roadmap/index.rst:110
+msgid "https://github.com/globaleaks/GlobaLeaks/issues/2302"
+msgstr ""
+

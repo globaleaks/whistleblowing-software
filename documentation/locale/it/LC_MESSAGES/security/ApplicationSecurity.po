@@ -1,0 +1,1091 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../security/ApplicationSecurity.rst:3
+msgid "Application Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:4
+msgid ""
+"The GlobaLeaks software tries to conform with industry standard best and "
+"practices and its security is a result of applied research."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:6
+msgid ""
+"This document tries to detail every aspect implemented by the application"
+" in relation to the security design."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:9
+msgid "Architecture"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:10
+msgid ""
+"The software is made up of two main components: a ``Backend`` and a "
+"``Client``:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:12
+msgid ""
+"The Backend is a python backend that runs on a physical backend and "
+"exposes a `REST API "
+"<https://en.wikipedia.org/wiki/Representational_state_transfer>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:13
+msgid ""
+"The Client is a JavaScript client-side web application that interacts "
+"with Backend only through `XHR "
+"<https://en.wikipedia.org/wiki/XMLHttpRequest>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:16
+msgid "Anonymity"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:17
+msgid ""
+"Users's anonymity is protected by means of the `Tor "
+"<https://www.torproject.org>`_ technology."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:19
+msgid ""
+"The entire application considers to avoid logging of sensible metadata "
+"that could lead to identification of whistleblowers."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:22
+msgid "Authentication"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:23
+msgid ""
+"The confidentiality of the authentication is protected by either `Tor "
+"Onion Services v3 <https://www.torproject.org/docs/onion-"
+"services.html.en>`_ or `TLS version 1.2+ "
+"<https://en.wikipedia.org/wiki/Transport_Layer_Security>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:25
+msgid ""
+"This section describes the authentication methods implemented by the "
+"system."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:28
+msgid "Password"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:29
+msgid ""
+"By accessing the login web interface, ``Administrators`` and "
+"``Recipients`` need to insert their respective ``Username`` and "
+"``Password``. If the password submitted is valid, the system grants "
+"access to the functionality available to that user."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:32
+msgid "Receipt"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:33
+msgid ""
+"``Whistleblowers`` access their ``Reports`` by using an anonymous "
+"``Receipts``, which are random generated 16 digits sequences created by "
+"the Backend when the Report is first submitted. The reason of this format"
+" of 16 digits is that it resembles a standard phone number, making it "
+"easier for the whistleblowers to conceal their receipts."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:36
+msgid "Password Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:37
+msgid "The following password security measures implemented by the system."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:40
+msgid "Password Storage"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:41
+msgid ""
+"Password are never stored in plaintext but the system maintain at rest "
+"only an hash. This apply to every authentication secret included "
+"whistleblower receipts."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:43
+msgid ""
+"The platform stores Users’ passwords hashed with a random 128 bit salt, "
+"unique for each user."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:45
+msgid ""
+"Passwords are hashed using `Argon2 "
+"<https://en.wikipedia.org/wiki/Argon2>`_, a key derivation function that "
+"was selected as the winner of the `Password Hashing Competition "
+"<https://en.wikipedia.org/wiki/Password_Hashing_Competition>`_ in July "
+"2015."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:47
+msgid ""
+"The hash involves a per-user salt for each user and a per-system salt for"
+" whistleblowers."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:50
+msgid "Password Complexity"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:51
+msgid ""
+"The system enforces the usage of complex password by implementing a "
+"custom algorithm necessary for ensuring a reasonable entropy of each "
+"authentication secret."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:53
+msgid ""
+"Password are scored in three levels: ``Strong``, ``Acceptable``, "
+"``Insecure``."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:55
+msgid ""
+"Strong: A strong password should be formed by capital letters, lowercase "
+"letters, numbers and a symbols, be at least 12 characters long and "
+"include a variety of at least 10 different inputs."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:56
+msgid ""
+"Acceptable: An acceptable password should be formed by at least 3 "
+"different inputs over capital letters, lowercase letters, numbers and a "
+"symbols, be at least 10 characters and include a variety of at least 7 "
+"different inputs."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:57
+msgid ""
+"Insecure: A password ranked below the strong or acceptable levels is "
+"marked as insecure and not accepted by the system."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:59
+msgid ""
+"We encourage each end user to use `KeePassXC <https://keepassxc.org>`_ to"
+" generate and retain strong and unique passphrases."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:62
+msgid "Two Factor Authentication"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:63
+msgid ""
+"The system implements Two Factor Authentication (2FA) based on ``TOTP`` "
+"based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ algorithm "
+"and 160 bits secrets."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:65
+msgid ""
+"Users are enabled to enroll for 2FA via their own preferences and "
+"administrators can optionally enforce this requirement."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:67
+msgid ""
+"We recommend using `FreeOTP <https://freeotp.github.io/>`_ available `for"
+" Android "
+"<https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_"
+" and `for iOS <https://apps.apple.com/us/app/freeotp-"
+"authenticator/id872559395>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:70
+msgid "Password Change on First Login"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:71
+msgid ""
+"The system enforces users to change their own password at their first "
+"login."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:73
+msgid ""
+"Administrators could as well enforce password change for users at their "
+"next login."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:76
+msgid "Periodic Password Change"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:77
+msgid ""
+"By default the system enforces users to change their own password at "
+"least every year."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:79
+msgid "This period is configurable by administrators."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:82
+msgid "Proof of Work on Login and Submissions"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:83
+msgid ""
+"The system implements an automatic `Proof of Work "
+"<https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that "
+"requires every client to request a token, solve a computational problem "
+"before being able to perform a login or file a submission."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:86
+msgid "Rate Limit on Anonymous Sessions"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:87
+msgid ""
+"The system implements rate limiting on whistleblowers' sessions "
+"preventing to execute more than 5 requests per second."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:90
+msgid "Slowdown on Failed Login Attempts"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:91
+msgid ""
+"The system identifies multiple failed login attempts and implement a "
+"slowdown procedure where an authenticating client should wait up to 42 "
+"seconds to complete an authentication."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:93
+msgid ""
+"This feature is intended to slow down possible attacks requiring more "
+"resources to users in terms of time, computation and memory."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:96
+msgid "Password Recovery"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:97
+msgid ""
+"In case of password loss users could request a password reset via the web"
+" login interface clicking on a ``Forgot password?`` button present on the"
+" login interface."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:99
+msgid ""
+"When this button is clicked, users are invited to enter their username or"
+" an email. If the provided username or the email correspond to an "
+"existing user, the system will provide a reset link to the configured "
+"email."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:101
+msgid ""
+"By clicking the link received by email the user is then invited to "
+"configure a new email different from the previous."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:103
+msgid ""
+"In case encryption is enabled on the system, a user clicking on the reset"
+" link would have first to insert their ``Account Recovery Key`` and only "
+"in case of correct insertion the user will be enabled to set a new "
+"password."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:106
+msgid "Web Application Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:107
+msgid ""
+"This section describes the Web Application Security implemented by the "
+"software in adherence with the `OWASP Security Guidelines "
+"<https://www.owasp.org>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:110
+msgid "Session Management"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:111
+msgid ""
+"The session implementation follows the `OWASP Session Management Cheat "
+"Sheet "
+"<https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_"
+" security guidelines."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:113
+msgid ""
+"The system assigns a Session to each authenticated user. The Session ID "
+"is 256bits long secret generated randomly by the backend. Each session "
+"expire accordingly to a timeout of 60 minutes. Session IDs are exchanged "
+"by the client with the backend by means of an header (``X-Session``) and "
+"do expire as soon that users close their browser or the tab running "
+"GlobaLeaks. Users could explicitly log out via a logout button or "
+"implicitly by closing the browser."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:116
+msgid "Cookies and XSRF Prevention"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:117
+msgid ""
+"Cookies are not used intentionally to minimize XSRF attacks and any "
+"possible attack based on them. Instead than using Cookies authentication "
+"is based on a custom HTTP Session Header sent by the client on "
+"authenticated requests."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:120
+msgid "HTTP Headers"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:121
+#, python-format
+msgid ""
+"The system implements a large set of HTTP headers specifically configured"
+" to improve the software security and achieves `score A+ "
+"<https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_"
+" by `Security Headers <https://securityheaders.com/>`_ and `score A+ "
+"<https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by "
+"`Mozilla Observatory <https://observatory.mozilla.org/>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:124
+msgid "Strict-Transport-Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:125
+msgid "The system implements strict transport security by default. ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:129
+#: ../../security/ApplicationSecurity.rst:368
+#: ../../security/ApplicationSecurity.rst:378
+msgid "The default configuration of the application see this feature disabled."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:132
+msgid "Content-Security-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:133
+msgid ""
+"The backend implements a strict `Content Security Policy (CSP) "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any "
+"interaction with resources of third parties and restricting execution of "
+"untrusted user input: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:137
+msgid ""
+"On this default policy are then implemented specific policies in "
+"adherence to the principle of least privilege."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:139
+msgid "For example:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:141
+msgid ""
+"the index.html source of the app is the only resource enabled to load "
+"scripts from the same origin;"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:142
+msgid "every dynamic content is strictly sandboxed on a null origin;"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:143
+msgid ""
+"every untrusted user input or third party library is executed in a "
+"sandbox limiting its interaction with other application components."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:146
+msgid "Cross-Origin-Embedder-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:147
+msgid ""
+"The backend implements the following `Cross-Origin-Embedder-Policy (COEP)"
+" <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-"
+"Embedder-Policy>`_: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:152
+msgid "Cross-Origin-Opener-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:153
+msgid ""
+"The backend implements the following `Cross-Origin-Opener-Policy (COOP) "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-"
+"Opener-Policy>`_: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:158
+msgid "Cross-Origin-Resource-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:159
+msgid ""
+"The backend implements the following `Cross-Origin-Resource-Policy (CORP)"
+" <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-"
+"Origin_Resource_Policy>`_: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:164
+msgid "Permissions-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:165
+msgid ""
+"The backend implements the following Permissions-Policy header "
+"configuration to limit the possible de-anonymization of the user by "
+"disabling dangerous browser features: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:170
+msgid "X-Frame-Options"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:171
+msgid ""
+"In addition to the implemtent Content Security Policy of level 3 that "
+"prevent the application to be included into an Iframe, the backend "
+"implements the outdated X-Frame-Options header to enure that iframes are "
+"always prevented in any circumstance also on outdated browsers: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:176
+msgid "Referrer-Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:177
+msgid ""
+"Web-browsers usually attach referrers in their http headers as they "
+"browse links. The platform enforce a referrer policy to avoid this "
+"behaviour. ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:182
+msgid "X-Content-Type-Options"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:183
+msgid ""
+"When setting up Content-Type for the specific output, we avoid the "
+"automatic mime detection logic of the browser by setting up the following"
+" header: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:188
+msgid "Cache-Control"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:189
+msgid ""
+"To prevent or limit the the forensic traces left on the device used by "
+"whistleblowers and in the devices involved in the communication the "
+"platform, as by section ``3. Storing Responses in Caches`` of `RFC 7234 "
+"<https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-"
+"control`` HTTP header with the configuration ``no-store`` to instruct "
+"clients and possible network proxies to disable any sort of data cache. "
+"::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:194
+msgid "Crawlers Policy"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:195
+msgid ""
+"For security reasons the backend instructs crawlers to avoid any caching "
+"and indexing of the application and uses the ``Robots.txt`` file to "
+"enable crawling only of the home page; indexing of the home page is in "
+"fact considered best practice in order to be able to widespread the "
+"information about the existance of the platform and ease access to "
+"possible whistleblowers."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:197
+msgid "The configuration implemented is the following: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:203
+msgid ""
+"As well the platform instruct crawlers to not keep any cache by injecting"
+" the following HTTP header: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:207
+msgid ""
+"For high sensitive projects where the platform is intended to remain "
+"``hidden`` and communicated to possible whistleblowers directly the "
+"platform could be as well configured to disable indexing completely."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:209
+msgid "The following is the HTTP header injected in this case: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:214
+msgid "Anchor Tags and External URLs"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:215
+msgid ""
+"The client opens external urls on a new tab independent from the "
+"application context by setting ``rel='noreferrer'`` and "
+"``target='_blank'``` on every anchor tag. ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:220
+msgid "Input Validation"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:221
+msgid ""
+"The application implement strict input validation both on the backend and"
+" on the client"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:224
+msgid "On the Backend"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:225
+msgid ""
+"Each client request is strictly validated by the backend against a set of"
+" regular expressions and only requests matching the expression are then "
+"processed."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:227
+msgid ""
+"As well a set of rules are applied to each request type to limit possible"
+" attacks. For example any request is limited to a payload of 1MB."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:230
+msgid "On the Client"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:231
+msgid ""
+"Each server output is strictly validated by the Client at rendering time "
+"by using the angular component `ngSanitize.$sanitize "
+"<http://docs.angularjs.org/api/ngSanitize.$sanitize>`_"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:234
+msgid "Form Autocomplete OFF"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:235
+msgid ""
+"Form implemented by the platform make use of the HTML5 form attribute in "
+"order to instruct the browser to do not keep caching of the user data in "
+"order to predict and autocomplete forms on subsequent submissions."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:237
+msgid ""
+"This is achieved by setting `autocomplete=”off” "
+"<https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-"
+"autocomplete-attribute>`_ on the relevant forms or attributes."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:240
+msgid "Network Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:242
+msgid "Connection Anonymity"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:243
+msgid ""
+"Users's anonymity is offered by means of the implementation of the `Tor "
+"<https://www.torproject.org/>`_ technology. The application implements an"
+" ``Onion Service v3`` and advices users to use the Tor Browser when "
+"accessing to it."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:246
+msgid "Connection Encryption"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:247
+msgid ""
+"Users' connection is always encrypted, by means of the `Tor Protocol "
+"<https://www.torproject.org>`_ while using the Tor Browser or by means of"
+" `TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_ when the"
+" application is accessed via a common browser."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:249
+msgid ""
+"The use of the ``Tor`` is recommended over HTTPS for its advanced "
+"properties of resistance to selective interception and censorship that "
+"would make it difficult for a third party to selectively capture or block"
+" access to the site to specific whistleblower or company department."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:251
+msgid ""
+"The software enables as well easy setup of ``HTTPS`` offering both "
+"automatic setup via `Let'sEncrypt <https://letsencrypt.org/>`_ and manual"
+" setup."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:253
+msgid ""
+"TLS Certificates are generated using using `NIST Curve P-384 "
+"<https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:255
+msgid ""
+"The configuration enables only ``TLS1.2+`` and is fine tuned and hardened"
+" to achieve `SSLLabs grade A+ "
+"<https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:257
+msgid "In particular only following ciphertexts are enabled: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:270
+msgid "Network Sandboxing"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:271
+msgid ""
+"The GlobaLeaks backend integrates `iptables "
+"<https://www.netfilter.org/>`_ by default and implements strict firewall "
+"rules that restrict network incoming network connection to HTTP and HTTPS"
+" connection on ports 80 and 443."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:273
+msgid ""
+"In addition the application makes it possible to anonymize outgoing "
+"connections that could be configured to be sent through Tor."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:276
+msgid "Data Encryption"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:277
+msgid ""
+"Submissions data, file attachment, messages and metadata exchanged "
+"between whistleblowers and recipients is encrypted using the GlobaLeaks "
+":doc:`EncryptionProtocol`."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:279
+msgid ""
+"In addition to this GlobaLeaks implements many other encryption "
+"components and the following is the set of the main libraries and their "
+"main usage:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:281
+msgid ""
+"`Python-NaCL <https://github.com/pyca/pynacl>`_: is used for implementing"
+" data encryption"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:282
+msgid ""
+"`PyOpenSSL <https://github.com/pyca/pyopenssl>`_: is used for "
+"implementing HTTPS"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:283
+msgid ""
+"`Python-Cryptography <https://cryptography.io>`_: is used for "
+"implementing authentication"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:284
+msgid ""
+"`Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is "
+"used for encrypting email notifications and file downloads by means of "
+"```PGP```"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:287
+msgid "Application Sandboxing"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:288
+msgid ""
+"The GlobaLeaks backend integrates `AppArmor <https://apparmor.net/>`_ by "
+"default and implements a strict sandboxing profile enabling the "
+"application to access only the strictly required files. As well the "
+"application does run under a dedicated user and group \"globaleaks\" with"
+" reduced privileges."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:292
+msgid "Database Security"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:293
+msgid ""
+"The GlobaLeaks backend implements an hardened local SQLite database "
+"accessed via the SQLAlchemy ORM."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:295
+msgid ""
+"This design choice is selected in order to ensure that the application "
+"could fully control its configuration implementing a large set of "
+"security measures in adhrerence to the `security recomendations by  "
+"SQLite <https://sqlite.org/security.html>`_"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:298
+msgid "Secure Deletion"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:299
+msgid ""
+"The GlobaLeaks backend enables a SQLite capability for secure deletion "
+"that automatically makes the database overwrite the data upon each delete"
+" query: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:304
+msgid "Auto Vacuum"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:305
+msgid ""
+"The platform enables a SQLite capability for automatic vacuum of deleted "
+"entries with automatic recall of unused pages: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:310
+msgid "Limited Database Trust"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:311
+msgid ""
+"The GlobaLeaks backend utilizes the SQLite `trusted_schema "
+"<https://www.sqlite.org/src/doc/latest/doc/trusted-schema.md>`_ pragma to"
+" limit the trust put on the database in order to limit exploitation on "
+"which the database could be maliciously corrupted by an attacker. ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:316
+msgid "Limited Database Functionalities"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:317
+msgid ""
+"The GlobaLeaks backend runs specific SQLite functionalities to reduce the"
+" types of queries to the ones necessary to run the application and reduce"
+" the possibilities of explotation in case of successfull SQL injection "
+"attacks."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:319
+msgid ""
+"This is implemented by using the ```conn.set_authorizer``` API and using "
+"a strict authorizer callback that authorizes the execution of a limited "
+"set of SQL instructions: ::"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:329
+msgid "DoS Resiliency"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:330
+msgid ""
+"To avoid applicative and database denial of service, GlobaLeaks apply the"
+" following measures:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:332
+msgid ""
+"It tries to limit the possibility of automating any operation by "
+"implement a proof of work on each unauthenticared request (hashcash)"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:333
+msgid "It applies rete limiting on any authenticated session"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:334
+msgid ""
+"It is written to limit the possibility of triggering CPU intensive "
+"routines by an external user (e.g. by implementing limits on queries and "
+"jobs execution time)"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:335
+msgid ""
+"It implements monitoring of each activity trying to implement detection "
+"of attacks and implement proactively security measures to prevent DoS "
+"(e.g. implementing slowdown on fast-operations)"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:338
+msgid "Other Measures"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:340
+msgid "Browser History and Forensic Traces"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:341
+msgid ""
+"The whole application is designed keeping in mind to try to avoid or "
+"reduce the forensic traces left by whistleblowers on their devices while "
+"filing their reports."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:343
+msgid ""
+"When the accessed via the Tor Browser, the browser guarantees that no "
+"persistent traces are left on the device of the user."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:345
+msgid ""
+"In order to prevent or limit the forensic traces left in the browser "
+"history of the users accessing the platform via a common browser, the "
+"application avoids to change URI during whistleblower navigation. This "
+"has the effect to prevent the browser to log the activities performed by "
+"the user and offers high plausible deniability protection making the "
+"whistleblower appear as a simple visitor of the homepage and avoiding an "
+"actual evidence of any submission."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:348
+msgid "Secure File Management"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:350
+msgid "Secure File Download"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:351
+msgid ""
+"Any attachment file uploaded by anonymous whistleblowers could possibly "
+"contain malware that could be provided intentionally or not. It is always"
+" recommended if possible to download files and access them on an air-"
+"gapped machine disconnected from the network and other sensible devices. "
+"In order to safely downlod files and move them using a USB stick the "
+"application offers the possibility to perform a report export enabling "
+"the download of a ZIP archive including all the report content and thus "
+"reducing risks of executing files on-click during the file transfer from "
+"a device to one other."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:354
+msgid "Safe File Opening"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:355
+msgid ""
+"For conditions where the whistleblower trustworthines has been validated "
+"or in projects subject to a low risk threat model, the application offers"
+" an integrated file viewer that benefiting of modern browser sandboxing "
+"capabilities enable opening of a limited set of file types that are "
+"considered more safe and in a way that is better than accessing files "
+"directly through the operation system. This option is disabled by default"
+" and it is recommended that administrators of the project enable this "
+"feature only after proper evaluation and only in conditions in which it "
+"possible to ensure that recipients' browsers are always maintained up-to-"
+"date. Among the advantages of this novel viewer is the fact that access "
+"to files is performed within a controlled sandbox, via a set of "
+"controlled libraries and avoiding usage of any permanent storage and thus"
+" limiting the the exposure of the opened file."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:359
+msgid "The set of file formats supported by this viewer are:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:361
+msgid "AUDIO"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:362
+msgid "CSV"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:363
+msgid "IMAGE"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:364
+msgid "PDF"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:365
+msgid "VIDEO"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:366
+msgid "TXT"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:371
+msgid "PGP Encryption"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:372
+msgid "The system offers an optional PGP encryption feature."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:374
+msgid ""
+"When enabled, users could possibly enable a personal PGP key that will be"
+" used by the system to encrypt email notifications and encrypt downloaded"
+" files on-the-fly."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:376
+msgid ""
+"This is a recommended feature for high risk threat models in association "
+"with the usage of air-gapped systems for the visualization of the "
+"reports."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:381
+msgid "Encryption of Temporary Files"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:382
+msgid ""
+"Files being uploaded and temporarily stored on the disk during the upload"
+" process are encrypted with a temporary, symmetric AES-key in order to "
+"avoid writing any part of an unencrypted file's data chunk to disk. The "
+"encryption is done in \"streaming\" by using ``AES 128bit`` in ``CTR "
+"mode``. The key files are stored in memory and are unique for each file "
+"being uploaded."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:385
+msgid "Secure File Delete"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:386
+msgid ""
+"Every file deleted by the application if overwritten before releasing the"
+" file space on the disk."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:388
+msgid ""
+"The overwrite routine is performed by a periodic scheduler and acts as "
+"following:"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:390
+msgid "A first overwrite writes 0 on the whole file;"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:391
+msgid "A second overwrite writes 1 on the whole file;"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:392
+msgid "A third overwrite writes random bytes on the whole file."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:395
+msgid "Exception Logging and Redaction"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:396
+msgid ""
+"In order to quickly diagnose potential problems in the software when "
+"exceptions in clients are generated, they are automatically reported to "
+"the backend. The backend backend temporarily caches these exceptions and "
+"sends them to the backend administrator via email."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:398
+msgid ""
+"In order to prevent inadvertent information leaks the logs are run "
+"through filters that redact email addresses and uuids."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:401
+msgid "Entropy Sources"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:402
+msgid "The main source of entropy for the platform is ``/dev/urandom``."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:405
+msgid "UUIDv4 Randomness"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:406
+msgid ""
+"Resources in the system like submissions and files are identified by a "
+"UUIDv4 in order to not be guessable by an external user and limit "
+"possible attacks."
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:409
+msgid "TLS for SMTP Notification"
+msgstr ""
+
+#: ../../security/ApplicationSecurity.rst:410
+msgid ""
+"All of the notifications are sent through SMTP over TLS encrypted channel"
+" by using SMTP/TLS or SMTPS, depending on the configuration."
+msgstr ""
+

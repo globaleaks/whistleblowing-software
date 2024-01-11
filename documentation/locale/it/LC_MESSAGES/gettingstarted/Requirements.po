@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2024 - GlobaLeaks
+# This file is distributed under the same license as the GlobaLeaks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks 4.14.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../gettingstarted/Requirements.rst:2
+msgid "Requirements"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:3
+msgid ""
+"Make sure you understand and satisfy each of the following technical "
+"requirements."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:6
+msgid "Hardware Requirements"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:7
+msgid "**Requirements**:"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:9
+msgid "CPU: Dual core 2.0GHz"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:10
+msgid "RAM: 1GB"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:11
+msgid "STORAGE: 20GB"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:12
+msgid "I/O: 10Mbit/s (shared)"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:14
+msgid ""
+"Please note that GlobaLeaks is designed to run on servers even smaller "
+"than the above configuration."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:16
+msgid ""
+"The storage size should be defined based on your data retention policies "
+"and the expected use of the platform."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:19
+msgid "Software Requirements"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:20
+msgid ""
+"GlobaLeaks is designed to run on GNU/Linux and developed and tested "
+"specifically for Debian based systems."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:22
+msgid "The currently recommended distribution is: Debian 12 (Bookworm)."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:24
+msgid ""
+"The software lifecycle of the platform includes full support for all "
+"Debian and Ubuntu LTS versions starting from `Debian 10 "
+"<https://www.debian.org/releases/buster/>`_ and `Ubuntu 20.04 "
+"<https://releases.ubuntu.com/20.04/>`_."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:26
+msgid ""
+"On these platforms the support is guaranteed following the official long "
+"term support timelines:"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:28
+msgid ""
+"`Release End of Life Timeline <https://wiki.debian.org/LTS>`_ defined by "
+"Debian;"
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:29
+msgid ""
+"`Release End of Life Timeline <https://www.ubuntu.com/info/release-end-"
+"of-life>`_ defined by Ubuntu."
+msgstr ""
+
+#: ../../gettingstarted/Requirements.rst:31
+msgid "Support for more distributions is planned."
+msgstr ""
+
