@@ -1,4 +1,5 @@
 sphinx
+sphinx-intl
 sphinx_rtd_theme
 sphinx-autobuild
 sphinx-sitemap
