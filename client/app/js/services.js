@@ -418,7 +418,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource","R
       };
 
       tip.updateSubmissionStatus = function() {
-        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : "", "motivation": tip.motivation}).then(function () {
+        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : "", "motivation": tip.motivation || ""}).then(function () {
           $rootScope.reload();
         });
       };
