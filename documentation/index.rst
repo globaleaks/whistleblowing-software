@@ -1,5 +1,5 @@
-GlobaLeaks Documentation
-========================
+Documentation
+=============
 
 `GlobaLeaks <https://www.globaleaks.org/>`_ is an open-source, free software intended to enable anyone to easily set up and maintain a secure whistleblowing platform.
 

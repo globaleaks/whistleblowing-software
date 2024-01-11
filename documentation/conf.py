@@ -52,12 +52,12 @@ latex_documents = [
 latex_logo = 'logo-latex.png'
 
 man_pages = [
-    (master_doc, 'globaleaks', u'GlobaLeaks Documentation',
+    (master_doc, 'globaleaks', u'Documentation',
      [author], 1)
 ]
 
 texinfo_documents = [
-    (master_doc, 'GlobaLeaks', u'GlobaLeaks Documentation',
+    (master_doc, 'GlobaLeaks', u'Documentation',
      author, 'GlobaLeaks', ' GlobaLeaks is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform',
      'Miscellaneous'),
 ]
