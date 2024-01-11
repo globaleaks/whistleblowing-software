@@ -287,6 +287,8 @@ GL.controller("SubmissionCtrl",
     $scope.$on("GL::uploadsUpdated", function () {
       fieldUtilities.onAnswersUpdate($scope);
     });
+
+    $scope.Utils.scrollTo("#SubmissionForm");
   });
 }]).
 controller("AdditionalQuestionnaireCtrl",
