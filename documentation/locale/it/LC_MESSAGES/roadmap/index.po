@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../roadmap/index.rst:2
 msgid "Project Roadmap"
-msgstr ""
+msgstr "Roadmap di Progetto"
 
 #: ../../roadmap/index.rst:5
 msgid ""

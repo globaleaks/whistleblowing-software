@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../gettingstarted/Features.rst:2
 msgid "Features"
-msgstr ""
+msgstr "Funzionalità"
 
 #: ../../gettingstarted/Features.rst:5
 msgid "User Features"

@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../gettingstarted/SupportedBrowsers.rst:2
 msgid "Supported Browsers"
-msgstr ""
+msgstr "Browsers Supportati"
 
 #: ../../gettingstarted/SupportedBrowsers.rst:3
 msgid ""

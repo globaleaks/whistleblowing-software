@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../gettingstarted/Requirements.rst:2
 msgid "Requirements"
-msgstr ""
+msgstr "Requisiti"
 
 #: ../../gettingstarted/Requirements.rst:3
 msgid ""
