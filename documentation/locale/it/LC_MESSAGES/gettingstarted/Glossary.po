@@ -1,14 +1,9 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2011-2024 - GlobaLeaks
-# This file is distributed under the same license as the GlobaLeaks package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
-#
-#, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks 4.14.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-11 10:33+0100\n"
+"POT-Creation-Date: 2024-01-12 13:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it\n"
@@ -21,27 +16,31 @@ msgstr ""
 
 #: ../../gettingstarted/Glossary.rst:2
 msgid "Glossary"
-msgstr ""
+msgstr "Glossario"
 
 #: ../../gettingstarted/Glossary.rst:3
 msgid ""
 "This is a list of jargon used in GlobaLeaks, defined in a way so as to be"
 " unambiguous and uniform across all references."
 msgstr ""
+"Questa è una lista del gergo utilizzato in GlobaLeaks, definito in modo "
+"da essere inequivocabile e uniforme in tutti i riferimenti"
 
 #: ../../gettingstarted/Glossary.rst:5
 msgid "Administrator"
-msgstr ""
+msgstr "Amministratore"
 
 #: ../../gettingstarted/Glossary.rst:7
 msgid ""
 "The user that has set up and is maintaining the platform. An "
 "Administrator does not have access to Whistleblowers’ reports."
 msgstr ""
+"L'utente che ha configurato e sta gestendo la piattaforma. "
+"L'amministratore non ha accesso alle segnalazioni."
 
 #: ../../gettingstarted/Glossary.rst:8
 msgid "Channel"
-msgstr ""
+msgstr "Canale"
 
 #: ../../gettingstarted/Glossary.rst:10
 msgid ""
@@ -49,38 +48,46 @@ msgid ""
 "be configured in terms of questionnaire, recipients and policies. They "
 "are typically used to organize the reporting procedure."
 msgstr ""
+"Il canale di segnalazione, inteso come contenitore per le segnalazioni. I"
+" canali possono essere configurati in termini di questionario, "
+"destinatari e politiche. Sono tipicamente utilizzati per organizzare la "
+"\" \"procedura di segnalazione."
 
 #: ../../gettingstarted/Glossary.rst:11
 msgid "Notification"
-msgstr ""
+msgstr "Notifica"
 
 #: ../../gettingstarted/Glossary.rst:13
 msgid ""
 "An email sent to notify a recipient of a new report, or an update of an "
 "existing report."
 msgstr ""
+"Un'email inviata per avvisare un destinatario di una nuova segnalazione o"
+" di un aggiornamento di una segnalazione esistente."
 
 #: ../../gettingstarted/Glossary.rst:14
 msgid "Platform"
-msgstr ""
+msgstr "Piattaforma"
 
 #: ../../gettingstarted/Glossary.rst:16
 msgid "A system running the GlobaLeaks software."
-msgstr ""
+msgstr "Un sistema che esegue il software GlobaLeaks."
 
 #: ../../gettingstarted/Glossary.rst:17
 msgid "Questionnaire"
-msgstr ""
+msgstr "Questionario"
 
 #: ../../gettingstarted/Glossary.rst:19
 msgid ""
 "A questionnaire is a set of questions that the whistleblower should fill "
 "to file a report."
 msgstr ""
+"Un questionario è un insieme di domande che il segnalatore deve compilare"
+" per presentare una segnalazione."
 
 #: ../../gettingstarted/Glossary.rst:20
 msgid "Receipt"
-msgstr ""
+msgstr "Ricevuta"
 
 #: ../../gettingstarted/Glossary.rst:22
 msgid ""
@@ -89,40 +96,41 @@ msgid ""
 "anonymously access and update their report by adding comments and new "
 "files."
 msgstr ""
+"Un codice segreto casuale di 16 cifre generato dal sistema e fornito ai "
+"segnalatori al momento della presentazione della loro segnalazione, "
+"consentendo loro di accedere in modo anonimo e aggiornare la loro "
+"segnalazione aggiungendo commenti e nuovi file."
 
 #: ../../gettingstarted/Glossary.rst:23
 msgid "Recipient"
-msgstr ""
+msgstr "Ricevente"
 
 #: ../../gettingstarted/Glossary.rst:25
 msgid ""
 "The user enabled to read whistleblowers’ reports. Recipients may also "
 "communicate with whistleblowers via the GlobaLeaks platform."
 msgstr ""
+"L'utente abilitato a leggere le segnalazioni dei segnalatori. I "
+"destinatari possono anche comunicare con i segnalatori tramite la "
+"piattaforma."
 
 #: ../../gettingstarted/Glossary.rst:26
 msgid "Report"
-msgstr ""
+msgstr "Segnalazione"
 
 #: ../../gettingstarted/Glossary.rst:28
 msgid ""
 "The object of the submission by a whistleblower including answers to a "
 "questionnaire and attached material."
 msgstr ""
+"L'oggetto della segnalazione da parte di un segnalante, comprese le "
+"risposte a un questionario e il materiale allegato."
 
 #: ../../gettingstarted/Glossary.rst:29
-msgid "Submission"
-msgstr ""
+msgid "Whistleblower"
+msgstr "Whistleblower"
 
 #: ../../gettingstarted/Glossary.rst:31
-msgid "The action performed by the whistleblower when filing a report."
-msgstr ""
-
-#: ../../gettingstarted/Glossary.rst:32
-msgid "Whistleblower"
-msgstr ""
-
-#: ../../gettingstarted/Glossary.rst:34
 msgid "The person who files a report."
-msgstr ""
+msgstr "La persona che presenta una segnalazione."
 

@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../index.rst:2
 msgid "Documentation"
-msgstr "Documentatazione"
+msgstr "Documentazione"
 
 #: ../../index.rst:4
 msgid ""
@@ -29,6 +29,9 @@ msgid ""
 "software intended to enable anyone to easily set up and maintain a secure"
 " whistleblowing platform."
 msgstr ""
+"`GlobaLeaks <https://www.globaleaks.org/>`_ è un software free, open-source, "
+"destinato a consentire a chiunque di configurare e mantenere facilmente una "
+"piattaforma di segnalazioni sicure."
 
 #: ../../index.rst:7
 msgid ""
@@ -39,7 +42,9 @@ msgid ""
 "report on the `ticketing system "
 "<https://github.com/globaleaks/GlobaLeaks/issues>`_."
 msgstr ""
-
-#~ msgid "GlobaLeaks Documentation"
-#~ msgstr ""
+"Questa documentazione è grazie al supporto della nostra comunità. Unisciti a noi "
+"e contribuisci con le tue aggiunte e suggerimenti. In qualunque pagina "
+"trovi un link che ti permette di fornire suggerimenti e correzioni. "
+"Ti ricordiamo che in caso di problemi o bug del software puoi sempre "
+"segnalare attraverso il `ticketing system <https://github.com/globaleaks/GlobaLeaks/issues>`_."
 
