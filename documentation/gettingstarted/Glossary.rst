@@ -27,8 +27,5 @@ This is a list of jargon used in GlobaLeaks, defined in a way so as to be unambi
    Report
        The object of the submission by a whistleblower including answers to a questionnaire and attached material.
 
-   Submission
-       The action performed by the whistleblower when filing a report.
-
    Whistleblower
        The person who files a report.
