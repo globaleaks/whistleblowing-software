@@ -11,5 +11,5 @@ Documentation
   setup/index.rst
   security/index.rst
   user/index.rst
-  roadmap/index.rst
   developer/index.rst
+  roadmap/index.rst
