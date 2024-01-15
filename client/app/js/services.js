@@ -1024,14 +1024,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return ["/", "/submission"].indexOf($location.path()) !== -1;
     },
 
-    getCSSFlags: function() {
-      return {
-        "public": this.isWhistleblowerPage(),
-        "embedded": $window.self !== $window.top,
-        "block-user-input": $rootScope.showLoadingPanel
-      };
-    },
-
     showUserStatusBox: function() {
       return $rootScope.public.node.wizard_done &&
              $rootScope.page !== "homepage" &&
