@@ -1,3 +1,14 @@
+Changes in version 4.14.4
+    Correct assignment of classes on <body> tag
+    Ensure one could change the report status without specifying a motivation (#3935)
+    Fix visualization of user preferences for analyst user role (#3940)
+    Implement autofocus on first input of login pages (#3744)
+    Improve accessibility by setting initial focus on the reporting questionnaire
+    Revise implementation of report status change incorrectly setting the report
+      to never expire; defect introduced in 4.14.0
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.14.3
     Apply minor bugfixing on release 4.14.0; see git log for details
 
