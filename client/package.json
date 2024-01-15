@@ -53,7 +53,7 @@
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
-    "pdfjs-dist": "4.0.269",
+    "pdfjs-dist": "4.0.379",
     "qrcode-generator": "1.4.4",
     "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@babel/cli": "7.23.4",
     "@babel/core": "7.23.7",
-    "@cypress/code-coverage": "3.12.16",
+    "@cypress/code-coverage": "3.12.18",
     "@lodder/grunt-postcss": "3.1.1",
     "cypress": "13.6.2",
     "eslint": "8.56.0",
