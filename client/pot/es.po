@@ -25,7 +25,7 @@
 # Ines Branco Lopez <ibranco@fibgar.org>, 2019-2020
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
-# José Javier Alamá Izquierdo, 2023
+# José Javier Alamá Izquierdo, 2023-2024
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Javier Alamá Izquierdo, 2023\n"
+"Last-Translator: José Javier Alamá Izquierdo, 2023-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -539,7 +539,7 @@ msgid "Me only"
 msgstr "Sólo yo"
 
 msgid "Returning whistleblowers"
-msgstr ""
+msgstr "Denunciantes que hacen seguimiento"
 
 msgid "Anonymity"
 msgstr "Anonimato"
@@ -551,7 +551,7 @@ msgid "Subscribed"
 msgstr "Suscrito"
 
 msgid "Initially anonymous"
-msgstr ""
+msgstr "Inicialmente anónimo"
 
 msgid "Tor"
 msgstr "Tor"
@@ -563,7 +563,7 @@ msgid "Computer"
 msgstr "Equipo"
 
 msgid "Mobile"
-msgstr "De móvil"
+msgstr "Teléfono móvil"
 
 msgid "File a report"
 msgstr "Presentar una denuncia."
@@ -716,7 +716,7 @@ msgid "Admin"
 msgstr "Administrador"
 
 msgid "Analyst"
-msgstr ""
+msgstr "Analista"
 
 msgid "Recipient"
 msgstr "Destinatario"
@@ -1203,7 +1203,7 @@ msgid "Give this user ability to transfer reports to other users"
 msgstr "Dar a este usuario la capacidad de transferir denuncias a otros usuarios"
 
 msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgstr "Permitir a este usuario reabrir la gestión de una denuncia"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dar al usuario acceso administrativo a las siguientes características:"
@@ -1257,7 +1257,7 @@ msgid "Assign score points"
 msgstr "Asignar puntuación"
 
 msgid "Change status"
-msgstr ""
+msgstr "Cambiar estado"
 
 msgid "Status:"
 msgstr "Estado:"
@@ -1289,7 +1289,7 @@ msgid "Attention"
 msgstr "Atención"
 
 msgid "For security reasons the code needs to be changed."
-msgstr ""
+msgstr "Por razones de seguridad es necesario cambiar el código."
 
 msgid "Enter a name for the copy"
 msgstr "Introduzca un nombre para la copia"
@@ -1301,7 +1301,7 @@ msgid "Unselect"
 msgstr "Deseleccionar"
 
 msgid "Reopen"
-msgstr ""
+msgstr "Reabrir"
 
 msgid "Request support"
 msgstr "Solicitar ayuda"
@@ -1369,7 +1369,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "El fichero que quiere subir excede el tamaño máximo permitido."
 
 msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgstr "Usted está actuando en nombre de un denunciante."
 
 msgid "Current password"
 msgstr "Contraseña actual"

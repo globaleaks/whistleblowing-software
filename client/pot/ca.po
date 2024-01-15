@@ -518,25 +518,25 @@ msgid "Me only"
 msgstr "Únicament jo"
 
 msgid "Returning whistleblowers"
-msgstr ""
+msgstr "Denunciants que fan seguiment de la denúncia."
 
 msgid "Anonymity"
-msgstr ""
+msgstr "Anonimat"
 
 msgid "Anonymous"
 msgstr "Anònim "
 
 msgid "Subscribed"
-msgstr ""
+msgstr "Subscrit"
 
 msgid "Initially anonymous"
-msgstr ""
+msgstr "Inicialment anònim"
 
 msgid "Tor"
 msgstr "Tor"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositius"
 
 msgid "Computer"
 msgstr "Ordinador"
@@ -695,7 +695,7 @@ msgid "Admin"
 msgstr "Persona administradora"
 
 msgid "Analyst"
-msgstr ""
+msgstr "Analista"
 
 msgid "Recipient"
 msgstr "Persona destinatària"
@@ -1182,13 +1182,13 @@ msgid "Give this user ability to transfer reports to other users"
 msgstr "Donar a aquest usuari la capacitat de transferir denúncies a altres usuaris"
 
 msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgstr "Permetre a este usuari reobrir la gestió d'una denúncia"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Doneu a la persona usuària accés administratiu a les funcions següents:"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Estadístiques"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1236,7 +1236,7 @@ msgid "Assign score points"
 msgstr "Assigna puntuació"
 
 msgid "Change status"
-msgstr ""
+msgstr "Canviar l'estat"
 
 msgid "Status:"
 msgstr "Estat"
@@ -1265,10 +1265,10 @@ msgid ""
 msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu la contrasenya per recuperar l’accés al vostre compte sense pèrdues de dades."
 
 msgid "Attention"
-msgstr ""
+msgstr "Atenció"
 
 msgid "For security reasons the code needs to be changed."
-msgstr ""
+msgstr "Per raons de seguretat el codi s'ha de canviar"
 
 msgid "Enter a name for the copy"
 msgstr "Introduïu un nom per a la còpia"
@@ -1277,10 +1277,10 @@ msgid "Mask"
 msgstr "Ocultar"
 
 msgid "Unselect"
-msgstr ""
+msgstr "Anul·lar la selecció"
 
 msgid "Reopen"
-msgstr ""
+msgstr "Reobrir"
 
 msgid "Request support"
 msgstr "Petició d'ajuda"
@@ -1348,7 +1348,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "La petició de pujada preval sobre els límits de volum de dades"
 
 msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgstr "Vosté està operant en nom d'un denunciant"
 
 msgid "Current password"
 msgstr "Contrasenya actual"
