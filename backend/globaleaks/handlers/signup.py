@@ -33,6 +33,9 @@ def signup(session, request, language):
     if not config.get_val('enable_signup'):
         raise errors.ForbiddenOperation
 
+    if request['subdomain'] + "." + config.get_val('rootdomain') == config.get_val('hostname'):
+        raise errors.ForbiddenOperation
+
     request['activation_token'] = generateRandomKey()
     request['language'] = language
 
