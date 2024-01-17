@@ -173,7 +173,7 @@ def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
         db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
-def get_tip_ttl(session, orm_object_model, orm_object_id):
+def get_ttl(session, orm_object_model, orm_object_id):
     """
     Transaction for retrieving the data retention
 
@@ -198,34 +198,15 @@ def recalculate_data_retention(session, itip, report_reopen_request):
     new_retention = None
     if report_reopen_request:
         # use the context-defined data retention
-        new_retention = get_tip_ttl(session, models.Context, itip.context_id)
-        if new_retention <= 0:
-            new_retention = None
-    elif itip.status == "closed":
-        # check the substatus, status and context for a data retention
-        substatus = 0
-        context = 2
-        for to_check in (substatus, context):
-            if to_check == substatus:
-                if itip.substatus is not None:
-                    new_retention = get_tip_ttl(session, models.SubmissionSubStatus, itip.substatus)
-            else: # to_check == context:
-                new_retention = get_tip_ttl(session, models.Context, itip.context_id)
-
-            if new_retention != -1:
-                if new_retention == 0:
-                    # infinite data retention, break from the for loop
-                    new_retention = None
-                break
-    else:
-        return # change between open statuses, no data retention recalculation needed
-
-    if isinstance(new_retention, int):
-        itip.expiration_date = datetime_now() + timedelta(new_retention)
-    else:
-        # infinite data retention, i.e. the 1st January 3000
-        itip.expiration_date = datetime(3000, 1, 1)
-
+        ttl = get_ttl(session, models.Context, itip.context_id)
+        if ttl > 0:
+            itip.expiration_date = datetime_now() + timedelta(ttl)
+        else:
+            itip.expiration_date = datetime_never()
+    elif itip.status == "closed" and itip.substatus is not None:
+        ttl = get_ttl(session, models.SubmissionSubStatus, itip.substatus)
+        if ttl > 0:
+            itip.expiration_date = datetime_now() + timedelta(ttl)
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation=None):
     """
