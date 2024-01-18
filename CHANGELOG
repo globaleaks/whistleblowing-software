@@ -1,3 +1,6 @@
+Changes in version 4.14.5
+    Downgrade version of PDFjs breaking pdf viewer (#3960)
+
 Changes in version 4.14.4
     Correct assignment of classes on <body> tag
     Ensure one could change the report status without specifying a motivation (#3935)
