@@ -50,7 +50,7 @@
         "ng-csv": "0.3.6",
         "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
-        "pdfjs-dist": "4.0.379",
+        "pdfjs-dist": "3.11.174",
         "qrcode-generator": "1.4.4",
         "ui-bootstrap4": "3.0.7",
         "ui-select": "0.19.8"
@@ -11214,9 +11214,9 @@
       }
     },
     "node_modules/pdfjs-dist": {
-      "version": "4.0.379",
-      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-4.0.379.tgz",
-      "integrity": "sha512-6H0Gv1nna+wmrr3CakaKlZ4rbrL8hvGIFAgg4YcoFuGC0HC4B2DVjXEGTFjJEjLlf8nYi3C3/MYRcM5bNx0elA==",
+      "version": "3.11.174",
+      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-3.11.174.tgz",
+      "integrity": "sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==",
       "engines": {
         "node": ">=18"
       },
