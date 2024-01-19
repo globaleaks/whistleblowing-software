@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from debian import deb822
 from pkg_resources import parse_version
 from twisted.internet.defer import inlineCallbacks
 
@@ -15,6 +14,31 @@ from globaleaks.utils.agent import get_page
 from globaleaks.utils.log import log
 
 DEB_PACKAGE_URL = b'https://deb.globaleaks.org/bookworm/Packages'
+
+
+import re
+
+def get_latest_version(packages_file):
+    # Split the Packages file into individual package entries
+    package_entries = packages_file.split('\n\n')
+
+    latest_version = ""
+
+    for entry in package_entries:
+        # Extract package name and version using regular expressions
+        match_name = re.search(r'^Package: (.+)$', entry, re.MULTILINE)
+        match_version = re.search(r'^Version: (.+)$', entry, re.MULTILINE)
+
+        if match_name and match_version:
+            package_name = match_name.group(1)
+            package_version = parse_version(match_version.group(1))
+
+            # Update the dictionary with the latest version for each package
+            if not latest_version or package_version > latest_version:
+                latest_version = package_version
+
+    return str(latest_version)
+
 
 
 @transact
@@ -62,11 +86,7 @@ class UpdateCheck(HourlyJob):
         try:
             log.debug('Fetching latest GlobaLeaks version from repository')
             packages_file = yield self.fetch_packages_file()
-            packages_file = packages_file.decode()
-            versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(packages_file) if p['Package'] == 'globaleaks']
-            versions.sort(key=parse_version)
-
-            latest_version = versions[-1]
+            latest_version = get_latest_version(packages_file.decode())
 
             if not self.state.tenants[1].cache.notification.enable_notification_emails_admin:
                 yield evaluate_update_notification(self.state, latest_version)
