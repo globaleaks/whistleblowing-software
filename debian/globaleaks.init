@@ -49,7 +49,7 @@ fi
 
 test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
-GLPID=/var/globaleaks/globaleaks.pid
+GLPID=/dev/shm/globaleaks/globaleaks.pid
 
 # Let's try to figure our some sane defaults:
 if [ -r /proc/sys/fs/file-max ]; then

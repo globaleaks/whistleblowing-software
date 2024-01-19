@@ -84,7 +84,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.enable_api_cache = True
 
     def eval_paths(self):
-        self.pidfile_path = os.path.join(self.working_path, 'globaleaks.pid')
+        self.pidfile_path = os.path.join(self.ramdisk_path, 'globaleaks.pid')
 
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
