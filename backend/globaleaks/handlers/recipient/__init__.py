@@ -158,11 +158,15 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
                                          models.InternalTip.id.in_(args['rtips']))
 
     if operation == 'grant' and receiver.can_grant_access_to_reports:
+        notify = False
         for itip, rtip in result:
             new_receiver, _ = db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver'])
             if new_receiver:
-                db_notify_grant_access(session, new_receiver)
+                notify = True
                 db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
+
+        if notify:
+            db_notify_grant_access(session, new_receiver)
 
     elif operation == 'revoke' and receiver.can_grant_access_to_reports:
         for itip, _ in result:
