@@ -1,3 +1,8 @@
+Changes in version 4.14.6
+    Revise mail notifications in case of multiple report access grants (#3928)
+    Create pid file on /dev/shm/globaleaks/globaleaks.pid
+    Revase packaging reducing dependencies
+
 Changes in version 4.14.5
     Downgrade version of PDFjs breaking pdf viewer (#3960)
 
