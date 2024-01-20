@@ -1,3 +1,6 @@
+Changes in version 4.14.7
+    Update pid file in globaleaks.service
+
 Changes in version 4.14.6
     Revise mail notifications in case of multiple report access grants (#3928)
     Create pid file on /dev/shm/globaleaks/globaleaks.pid
