@@ -63,7 +63,7 @@
     "@babel/core": "7.23.7",
     "@cypress/code-coverage": "3.12.18",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.6.2",
+    "cypress": "13.6.3",
     "eslint": "8.56.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
@@ -84,14 +84,14 @@
     "npm-check-updates": "16.14.12",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
-    "stylelint": "16.1.0",
+    "stylelint": "16.2.0",
     "stylelint-config-standard": "36.0.0",
     "superagent": "8.1.2",
-    "terser": "5.26.0"
+    "terser": "5.27.0"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "16.1.0"
+      "stylelint": "16.2.0"
     }
   }
 }
