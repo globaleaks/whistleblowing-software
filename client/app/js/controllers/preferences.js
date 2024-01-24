@@ -99,7 +99,8 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     $scope.loadPublicKeyFile = function(file) {
       $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.resources.preferences.pgp_key_public = txt;
-       }, $scope.Utils.displayErrorMsg);
+	return $scope.save();
+       });
     };
 }]).
 controller("TwoFactorModalCtrl",

@@ -62,7 +62,8 @@ GL.controller("AdminUserTabCtrl", ["$scope",
     $scope.loadPublicKeyFile = function(file) {
       $scope.Utils.readFileAsText(file).then(function(txt) {
         $scope.user.pgp_key_public = txt;
-      }, $scope.Utils.displayErrorMsg);
+	return $scope.saveUser();
+      });
     };
 
     $scope.setPassword = function() {

@@ -28,8 +28,6 @@ def parse_pgp_options(user, request):
     if not remove_key and pgp_key_public:
         pgpctx = PGPContext(pgp_key_public)
         user.pgp_key_public = pgp_key_public
-        user.can_redact_information = request['can_redact_information']
-        user.can_mask_information = request['can_mask_information']
         user.pgp_key_fingerprint = pgpctx.fingerprint
         user.pgp_key_expiration = pgpctx.expiration
     else:
