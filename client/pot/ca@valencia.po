@@ -539,6 +539,12 @@ msgstr "Ordinador"
 msgid "Mobile"
 msgstr "Telèfon Mòbil"
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Presentar una denúncia."
 

@@ -565,6 +565,12 @@ msgstr "Equipo"
 msgid "Mobile"
 msgstr "Teléfono móvil"
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Presentar una denuncia."
 

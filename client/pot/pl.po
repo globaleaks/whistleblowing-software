@@ -545,6 +545,12 @@ msgstr "Komputer"
 msgid "Mobile"
 msgstr "Mobilny"
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr " \nWyślij zgłoszenie"
 

@@ -543,6 +543,12 @@ msgstr "Számítógép"
 msgid "Mobile"
 msgstr "Mobil"
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 

@@ -535,6 +535,12 @@ msgstr "Tietokone"
 msgid "Mobile"
 msgstr "Mobiili"
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Jätä vihje"
 

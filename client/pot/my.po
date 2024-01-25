@@ -526,6 +526,12 @@ msgstr "ကြန္ပ်ဴတာ"
 msgid "Mobile"
 msgstr ""
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 

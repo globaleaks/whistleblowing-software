@@ -526,6 +526,12 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"
 

@@ -531,6 +531,12 @@ msgstr "Računalnik"
 msgid "Mobile"
 msgstr ""
 
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr "Povezava bo potekla čez 7 dni."
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 

@@ -15,7 +15,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
-# Kaya Zeren <kayazeren@gmail.com>, 2020-2023
+# Kaya Zeren <kayazeren@gmail.com>, 2020-2024
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2024\n"
 "Language-Team: Turkish (http://app.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -551,6 +551,12 @@ msgstr "Bilgisayar"
 
 msgid "Mobile"
 msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr "Bağlantı 7 sonra geçersiz olacak."
 
 msgid "File a report"
 msgstr "İhbar edin"
