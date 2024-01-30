@@ -10,6 +10,15 @@ from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 
+class FieldAttr_v_52(Model):
+    __tablename__ = 'fieldattr'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    type = Column(UnicodeText, nullable=False)
+    value = Column(JSON, default=dict, nullable=False)
+
+
 class InternalTip_v_52(Model):
     __tablename__ = 'internaltip'
 
