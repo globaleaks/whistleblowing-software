@@ -1,8 +1,14 @@
 {
-  "reporter": ["lcov", "text-summary"],
-  "include": ["app/js/**/*"],
-  "exclude": ["cypress/**", "node_modules/**", "app/lib/**/*"],
-  "check-coverage": false,
-  "report-dir": "cypress/coverage",
-  "sourceMap": false
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "report-dir": "./cypress/coverage",
+  "exclude": [
+    "./coverage/**",
+    "cypress/**",
+    "./dist/**",
+    "**/*.spec.ts",
+    "./app/main.ts",
+    "./app/test.ts",
+    "**/*.conf.js"
+  ]
 }

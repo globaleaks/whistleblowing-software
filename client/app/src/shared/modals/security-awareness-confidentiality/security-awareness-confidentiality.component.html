@@ -1,0 +1,7 @@
+<div class="modal-header">
+    <div class="modal-title">{{ 'The connection is not secure.' | translate }}</div>
+</div>
+<div class="modal-body">{{ 'The platform is still not configured for HTTPS connections and should therefore only be used for testing purposes.' | translate }}</div>
+<div class="modal-footer">
+    <a (click)="confirm()" class="btn btn-primary">{{ 'Proceed' | translate }}</a>
+</div>

@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="appDataService.page">
+    <div *ngSwitchCase="'blank'" class="">
+    </div>
+    <div *ngSwitchCase="'tippage'">
+        <src-tippage class=""></src-tippage>
+    </div>
+    <div *ngSwitchCase="'submissionpage'">
+        <src-submission class=""></src-submission>
+    </div>
+    <div *ngSwitchCase="'receiptpage'">
+        <src-receipt-whistleblower class=""></src-receipt-whistleblower>
+    </div>
+    <div *ngSwitchDefault>
+        <src-homepage class=""></src-homepage>
+    </div>
+</ng-container>

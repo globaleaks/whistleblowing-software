@@ -1,0 +1,8 @@
+<a routerLink="/analyst/home" routerLinkActive="active" [attr.aria-current]="isActive('/analyst/home') ? 'page' : 'false'">
+    <i class="fa fa-home me-2"></i>
+    <span>{{'Home' | translate}}</span>
+</a>
+<a routerLink="/analyst/statistics" routerLinkActive="active" [attr.aria-current]="isActive('/analyst/statistics') ? 'page' : 'false'">
+    <i class="fa fa-pie-chart me-2"></i> 
+    <span>{{'Statistics' | translate}}</span>
+</a>

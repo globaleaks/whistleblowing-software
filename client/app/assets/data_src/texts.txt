@@ -1,0 +1,518 @@
+
+0 = auto
+Accept multiple answers
+Accept multiple file uploads
+Acceptable
+Access control
+Access date
+Access requested
+Access to the whistleblower's identity has been requested to the custodian.
+Account recovery key
+Act on behalf of a whistleblower
+Activities
+Add
+Add custom text
+Add multimedia content
+Add new question
+Add new questionnaire
+Add question from template
+Addition
+Additional questionnaire
+Address
+Admin
+Administrators authorized to change user passwords:
+Advanced
+Allow the recipient to delete reports
+Allow the recipient to postpone the report expiration date
+Allow the whistleblower to add attachments
+Allow the whistleblower to write comments
+Allow this user to reopen management of a report
+Allow users to sign up
+Allow whistleblowers to select their recipients
+Allowed IP addresses
+An update is available:
+Analyst
+Anomalies
+Anomaly detection thresholds
+Anonymity
+Anonymize outgoing connections
+Anonymous
+Are you sure?
+Assign score points
+Assigned to
+Attachment
+Attachments
+Attention
+Audio
+Audit log
+Authentication failed
+Authorization
+Authorize
+Authorize access to the whistleblower's identity
+Authorized
+Auto-renewal
+Automatic configuration
+Available disk space
+Before proceeding please read carefully the documentation at:
+Before proceeding, please enable the two factor authentication.
+Before proceeding, please set a new password.
+Block the submission
+By confirming, you will postpone the expiration date to:
+By confirming, you will set a reminder on date:
+By enabling this feature, you will contribute to the development and security of the platform.
+Cancel
+Case management
+Certificate
+Certificate Signing Request
+Change status
+Change your password
+Changelog
+Channel
+Channels
+Check your inbox to activate it.
+Checkbox
+Checkbox label
+City
+Close
+Closed
+Collapse
+Column
+Comments
+Computer
+Configure
+Confirm
+Confirmation
+Congratulations!
+Copy to clipboard
+Country
+Country code
+Creation date
+Creation date:
+Current password
+Custodian
+Custom
+Custom privacy panel
+Custom support URL
+Custom text
+Custom translation
+Date
+Date of the request
+Date range
+Default mail configuration in use. Please consider using a private mail server.
+Delete
+Denied
+Deny
+Deny access to the whistleblower's identity
+Description
+Deselect
+Deselect all
+Details
+Details of the PGP key:
+Devices
+Disable
+Disable notifications to administrators
+Disable notifications to custodians
+Disable notifications to recipients
+Disable submissions
+Disable the privacy panel
+Disable two factor authentication
+Disabled
+Disclaimer
+Display options alphabetically
+Download
+Download copy of the Privacy Policy
+Download the Tor Browser
+Duplicate
+Each entry must be separated with a comma.
+Earliest selectable date
+Edit
+Email
+Email address
+Enable
+Enable PGP
+Enable administrators to change user passwords
+Enable custom privacy panel
+Enable email notifications
+Enable email notifications for:
+Enable encryption
+Enable scoring system
+Enable search engines indexing
+Enable simplified login
+Enable terms of service
+Enable two factor authentication
+Enabled
+Enter a name for the copy
+Enter the two factor authentication code
+Enter your account recovery key to complete the password reset procedure
+Enter your account's username or your email address to request a password reset.
+Enter your email address to request a password reset.
+Error on input validation
+Error!
+Everyone
+Example:
+Expand
+Expiration date
+Export
+File size
+File size not accepted.
+Filename
+Files
+Files attached by recipients
+Fill the additional questionnaire
+Fingerprint
+First
+Fiscal code
+Footer
+For security reasons the code needs to be changed.
+For security reasons, password changes are required at regular intervals.
+For the user documentation, visit:
+Forbidden operation
+Force password change
+Forcefully selected
+Forgot password?
+From
+From:
+Generate
+Give the user administrative access to the following features:
+Give this admin ability to change user passwords
+Give this user ability to grant user access to reports
+Give this user ability to mask information
+Give this user ability to permanently redact masked information
+Give this user ability to transfer reports to other users
+Grant access
+Group of questions
+Have you already filed a report? Enter your receipt.
+Hidden
+Hide
+High
+Hint
+Home
+Homepage title
+Hostname
+I have read and agree to the terms of the license.
+I've read and accept the Privacy Policy
+ID
+Identity
+If not activated within 24 hours the platform will be automatically deleted.
+If you need technical support, have general questions, or have new ideas for the software:
+If you want to contribute to software development or report a bug, please open an issue in our ticketing system:
+Image
+Import
+In this step the answers to the following questions are either missing or invalid:
+Initially anonymous
+Input validation
+Install an authenticator app on your phone
+Intermediate Certificates
+Internal server error
+Invalid confirmation
+Invalid email address
+Invalid phone number
+Issuer:
+Join our chat:
+Label
+Label the report
+Language
+Language:
+Languages
+Last
+Last Access
+Last access
+Last update
+Latest selectable date
+Let the platform be reachable without Tor
+License
+Log accesses of internal users
+Log in
+Logging level
+Logo
+Logout
+Low
+Make a copy and store it in a safe place. It will be necessary if you lose your password to recover the access to your account without data loss.
+Make it possible for this admin to reset user passwords.
+Mandatory
+Manual configuration
+Mark as important
+Mask
+Max
+Maximum file size is:
+Maximum number of input characters
+Maximum number of selectable recipients:
+Me only
+Medium
+Min
+Minimum number of input characters
+Mobile
+Mode:
+Motivation
+Move down
+Move left
+Move right
+Move up
+Multi-line text input
+Multiple choice input
+Multiplier
+Name
+Network
+New
+New password
+New request
+Next
+No
+None
+Not provided.
+Notifications
+Notify administrators of software problems
+Notify developers of software problems
+Now type your password, then click 'Log in':
+Number
+Number of days till notifying unread reports to users
+Number of downloads
+Number of hours before sending a report expiration alert
+Object
+One or more recipients have not performed the first login yet. This means they won't be receiving reports.
+Opened
+Options
+Organization
+Original text
+Original translation
+Password
+Password change interval
+Password reset
+Password reset requested.
+Phone number
+Placeholder
+Platform wizard
+Please check your inbox for further instructions.
+Please choose a configuration profile:
+Please choose a different username.
+Please note that all the associated data will be permanently deleted.
+Please select your account:
+Postpone the expiration date
+Preferences
+Presentation
+Preview
+Previous
+Print
+Privacy Policy
+Private Key
+Privileges
+Proceed
+Profile
+Project name
+Public name
+Question
+Question group
+Question templates
+Question to solicit possible whistleblowers
+Questionnaire
+Questionnaire answers
+Questionnaires
+Questions
+Receivers
+Recipient
+Recipient selection
+Recipients
+Recipients have requested you to fill an additional questionnaire.
+Recipients only
+Recipients selected:
+Redact
+Refresh
+Regenerate
+Regular expression
+Regular expression validator
+Remember your receipt for this report.
+Reminder date
+Remove
+Reopen
+Reply motivation
+Reply to the request
+Report
+Report date
+Report statuses
+Reports
+Request access to the whistleblower's identity
+Request date
+Request motivation
+Request status
+Request support
+Requests
+Require authentication
+Require two factor authentication
+Reset
+Reset SMTP configuration
+Reset notification templates to default
+Reset reports
+Resource can only be accessed via the Tor network
+Resource not found
+Restrict access to specific IP addresses
+Returning whistleblowers
+Revoke access
+Role
+Roles enabled to use the platform without Tor
+Root domain used for secondary sites
+Row
+SMTP email address
+SMTP server address
+SMTP server port
+Save
+Save all
+Scan the QR code with the app
+Scheduled jobs
+Score
+Scoring system options
+Search
+Security
+Select
+Select a file or drag it here.
+Select all
+Select all recipients by default
+Select an option
+Select the recipients of your report
+Select your language
+Selection box
+Send
+Send a test email to your email address.
+Send activation link
+Send reset link
+Set a reminder
+Set password
+Set the value to 0 to disable this feature.
+Set up encryption by providing a PGP public key
+Settings
+Severity
+Show
+Show channels in alphabetical order
+Show recipients in alphabetical order
+Show the questionnaire navigation interface
+Sign up
+Silence email notifications
+Single-line text input
+Site
+Sites
+Size limit for file attachments
+Size:
+Skip the recipient account creation.
+Software version:
+Statistics
+Stats
+Status
+Status:
+Step
+Steps
+Strong
+Subdomain
+Submissions disabled
+Submit
+Subscribed
+Subscription date
+Substatuses
+Success!
+Sufficient
+Surname
+Tax code
+Template
+Template override
+Templates
+Terms of service
+Test the configuration
+Text
+Text customization
+Text shown after the user has selected the option.
+Text shown on top of the interface for selecting channels
+Text shown upon negative answer
+Thank you.
+The answer is too short
+The chosen password is too weak. A valid password should be at least 12 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.
+The code is either invalid or expired.
+The connection is not secure.
+The following recipients will receive your report and could not be deselected:
+The following step-by-step procedure will guide you through creating your whistleblowing platform.
+The link will expire in 7 days.
+The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.
+The new password must be different from the current one.
+The platform is still not configured for HTTPS connections and should therefore only be used for testing purposes.
+The platform must be reachable through a public IP address and the selected hostname must have a DNS record referencing that address.
+The platform supports the configuration of HTTPS through this interface.
+The provided recovery key is invalid.
+The provided reset token is invalid or expired.
+The receipt is either invalid or the report has expired.
+The specified input is not valid.
+The specified input is not valid:
+The specified old password is not valid
+The two passwords do not match
+The upload request exceeds the size limit
+The user will be forced to change its password on next login.
+The validation link is either incorrect or has expired.
+The whistleblower has already read the last update
+The whistleblower has not read the last update yet
+Then, copy and paste the following address into the Tor Browser:
+This custom text is no longer displayed on the platform. The original text has either changed or been removed.
+This domain name is not available.
+This field is mandatory
+This is a demo platform, please do not use it for real submissions.
+This user has not performed the first login yet.
+Threshold
+Title
+To
+To:
+Tor
+Tor Onion Service
+Transfer
+Transfer access
+Trigger conditions
+Trigger question
+Triggered by score:
+Turn on email notifications
+Type
+Type your new password again
+URL redirects
+Unhide
+Unselect
+Upload
+Upload a file:
+Upload date
+Use as default
+Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.
+Use the first site for administrative purposes only
+User
+Username
+Users
+Using automatic HTTPS configuration will handle the entire process of requesting, enabling and renewing certificates from the Let's Encrypt Certificate Authority.
+Valid until:
+Validation of email address change in progress.
+Value
+Video
+View
+View your report
+Voice
+Waiting for authorization
+Waiting for the file(s) to finish uploading.
+Warning
+We advise selecting this option if you would like to protect data from being lost in the situation where recipients lose their passwords. On the other hand, we would not advise using this feature if you want to setup a system where only recipients are able to access submissions.
+We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.
+We will try to get back to you as soon as possible.
+Weak
+Welcome!
+Whistleblower
+Whistleblower's last access
+Whistleblowing Policy
+Whistleblowing button
+Width
+Yes
+You are connecting to the server without anonymity and this server supports only anonymous submissions
+You are operating on behalf of a whistleblower.
+You are strongly advised to visit this site using the app called Tor Browser, that protects your identity.
+You have completed the platform activation.
+You have completed the platform wizard.
+You have reached the maximum number of selectable recipients.
+You must select at least one recipient.
+Your new email address has been validated.
+Your report was successful.
+Your whistleblowing platform is almost ready!
+days
+file unavailable
+megabytes
+percentage
+please enter a valid email address.
+please enter numbers only.
+seconds

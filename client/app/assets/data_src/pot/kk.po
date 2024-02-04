@@ -1,0 +1,2042 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
+# Gulnar <gulnar.freelance@gmail.com>, 2021
+# Gulnar <gulnar.freelance@gmail.com>, 2021
+# Zangar Batyrkhan <zangar.kazakh@gmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2013-05-29 17:59+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
+"Language-Team: Kazakh (http://app.transifex.com/otf/globaleaks/language/kk/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: kk\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"mime-version: 1.0\n"
+
+msgid "0 = auto"
+msgstr "0 = автоматты"
+
+msgid "Accept multiple answers"
+msgstr "Бірнеше жауапты қабылдау"
+
+msgid "Accept multiple file uploads"
+msgstr "Бірнеше файлды жүктеп салуды қабылдау"
+
+msgid "Acceptable"
+msgstr "Қанағаттандырарлық"
+
+msgid "Access control"
+msgstr "Қатынасты басқару"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Access requested"
+msgstr "Қатынасуға сұратым жіберілді"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Сақтаушыдан хабарлаушының жеке тұлғасына қатынас сұратылды."
+
+msgid "Account recovery key"
+msgstr "Есептік жазбаны қалпына келтіру кілті"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "Activities"
+msgstr "Әрекеттер"
+
+msgid "Add"
+msgstr "Қосу"
+
+msgid "Add custom text"
+msgstr "Реттелмелі мәтінді қосу"
+
+msgid "Add multimedia content"
+msgstr "Мультимедиялық мазмұнды қосу"
+
+msgid "Add new question"
+msgstr "Жаңа сұрақ қосу"
+
+msgid "Add new questionnaire"
+msgstr "Жаңа сауалнама қосу"
+
+msgid "Add question from template"
+msgstr "Үлгідегі сұрақты қосу"
+
+msgid "Addition"
+msgstr "Қосу"
+
+msgid "Additional questionnaire"
+msgstr "Қосымша сауалнама"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Admin"
+msgstr "Әкімші"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Пайдаланушылардың құпиясөздерін өзгертуге рұқсаты бар әкімшілер:"
+
+msgid "Advanced"
+msgstr "Кеңейтілген"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Алушыға есептерді жоюға рұқсат беру"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Алушыға есептің жарамдылық мерзімін кейінге қалдыруға рұқсат беру"
+
+msgid "Allow the whistleblower to add attachments"
+msgstr "Хабарлаушыға есепке тіркемелер қосуға рұқсат беру"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Хабарлаушыға түсініктеме жазуға рұқсат ету"
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "Пайдаланушыларға тіркелуге рұқсат ету"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Хабарлаушыларға өз алушыларын таңдауға рұқсат ету"
+
+msgid "Allowed IP addresses"
+msgstr "Рұқсат етілген IP мекенжайлары"
+
+msgid "An update is available:"
+msgstr "Жаңарту қолжетімді:"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Anomalies"
+msgstr "Ауытқулар"
+
+msgid "Anomaly detection thresholds"
+msgstr "Ауытқуды анықтау шектері"
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr "Шығыс қосылымдарын жасыру"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Are you sure?"
+msgstr "Сенімдісіз бе?"
+
+msgid "Assign score points"
+msgstr "Ұпайларды тағайындау"
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Attachment"
+msgstr "Тіркеме"
+
+msgid "Attachments"
+msgstr "Тіркемелер"
+
+msgid "Attention"
+msgstr ""
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Audit log"
+msgstr "Аудит журналы"
+
+msgid "Authentication failed"
+msgstr "Аутентификация сәтсіз аяқталды"
+
+msgid "Authorization"
+msgstr "Авторизация"
+
+msgid "Authorize"
+msgstr "Рұқсат беру"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Хабарлаушының жеке басына қатынасуға рұқсат беру"
+
+msgid "Authorized"
+msgstr "Рұқсат берілген"
+
+msgid "Auto-renewal"
+msgstr "Автоматты түрде жаңарту"
+
+msgid "Automatic configuration"
+msgstr "Автоматты түрде баптау"
+
+msgid "Available disk space"
+msgstr "Дискідегі қолжетімді бос орын"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Жалғастырмас бұрын, құжаттаманы мұқият оқып шығыңыз:"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Жалғастырмас бұрын, екі факторлы аутентификацияны іске қосыңыз."
+
+msgid "Before proceeding, please set a new password."
+msgstr "Жалғастырмас бұрын, жаңа құпиясөз орнатыңыз."
+
+msgid "Block the submission"
+msgstr "Жіберуді бұғаттау"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Растау арқылы, жарамдылық мерзімін келесіге дейін қалдырасыз:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Бұл мүмкіндікті іске қосу арқылы, сіз платформаның дамуы мен қауіпсіздігіне үлес қосатын боласыз."
+
+msgid "Cancel"
+msgstr "Бас тарту"
+
+msgid "Case management"
+msgstr "Істерді басқару"
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Certificate Signing Request"
+msgstr "Сертификатқа қол қоюға сұратым"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Change your password"
+msgstr "Құпиясөзді өзгерту"
+
+msgid "Changelog"
+msgstr "Өзгерістер журналы"
+
+msgid "Channel"
+msgstr ""
+
+msgid "Channels"
+msgstr ""
+
+msgid "Check your inbox to activate it."
+msgstr "Оны іске қосу үшін, кіріс жәшігін тексеріңіз."
+
+msgid "Checkbox"
+msgstr "Құсбелгі"
+
+msgid "Checkbox label"
+msgstr "Құсбелгі белгісі"
+
+msgid "City"
+msgstr "Қала"
+
+msgid "Close"
+msgstr "Жабу"
+
+msgid "Closed"
+msgstr "Жабық"
+
+msgid "Collapse"
+msgstr "Орындалмау"
+
+msgid "Column"
+msgstr "Баған"
+
+msgid "Comments"
+msgstr "Пікірлер"
+
+msgid "Computer"
+msgstr ""
+
+msgid "Configure"
+msgstr "Конфигурациялау"
+
+msgid "Confirm"
+msgstr "Растау"
+
+msgid "Confirmation"
+msgstr "Растау"
+
+msgid "Congratulations!"
+msgstr "Құттықтаймыз!"
+
+msgid "Copy to clipboard"
+msgstr "Алмасу буферіне көшіру"
+
+msgid "Country"
+msgstr "Ел"
+
+msgid "Country code"
+msgstr "Ел коды"
+
+msgid "Creation date"
+msgstr "Жасалған күні"
+
+msgid "Creation date:"
+msgstr "Жасалған күні:"
+
+msgid "Current password"
+msgstr "Ағымдағы құпиясөз"
+
+msgid "Custodian"
+msgstr "Қамқоршы"
+
+msgid "Custom"
+msgstr "Реттелмелі"
+
+msgid "Custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасы"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Custom text"
+msgstr "Реттелмелі мәтіні"
+
+msgid "Custom translation"
+msgstr "Реттелмелі аударма"
+
+msgid "Date"
+msgstr "Күні"
+
+msgid "Date of the request"
+msgstr "Сұратым күні"
+
+msgid "Date range"
+msgstr "Күндер ауқымы"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "Delete"
+msgstr "Жою"
+
+msgid "Denied"
+msgstr "Рұқсат берілмеген"
+
+msgid "Deny"
+msgstr "Рұқсат бермеу"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Хабарлаушының жеке басына қатынасуға рұқсат етпеу"
+
+msgid "Description"
+msgstr "Сипаттама"
+
+msgid "Deselect"
+msgstr "Таңдауды алып тастау"
+
+msgid "Deselect all"
+msgstr "Барлық таңдауды алып тастау"
+
+msgid "Details"
+msgstr "Мәліметтер"
+
+msgid "Details of the PGP key:"
+msgstr "PGP кілті туралы толық ақпарат:"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Disable"
+msgstr "Өшіру"
+
+msgid "Disable notifications to administrators"
+msgstr "Әкімшілер үшін хабарландыруларды өшіру"
+
+msgid "Disable notifications to custodians"
+msgstr "Қамқоршылар үшін хабарландыруларды өшіру"
+
+msgid "Disable notifications to recipients"
+msgstr "Алушылар үшін хабарландыруларды өшіру"
+
+msgid "Disable submissions"
+msgstr "Жіберуді өшіру"
+
+msgid "Disable the privacy panel"
+msgstr "Құпиялылық тақтасын өшіру"
+
+msgid "Disable two factor authentication"
+msgstr "Екі факторлы аутентификацияны өшіру"
+
+msgid "Disabled"
+msgstr "Өшірілген"
+
+msgid "Disclaimer"
+msgstr "Ескертпе"
+
+msgid "Display options alphabetically"
+msgstr "Опцияларды алфавит бойынша көрсету"
+
+msgid "Download"
+msgstr "Жүктеп алу"
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser қолданбасын жүктеу"
+
+msgid "Duplicate"
+msgstr "Көшірме"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Әр енгізу үтір арқылы бөлінуі керек."
+
+msgid "Earliest selectable date"
+msgstr "Таңдауға болатын ең ерте уақыт"
+
+msgid "Edit"
+msgstr "Өңдеу"
+
+msgid "Email"
+msgstr "Эл. пошта"
+
+msgid "Email address"
+msgstr "Электрондық пошта"
+
+msgid "Enable"
+msgstr "Қосу"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable administrators to change user passwords"
+msgstr "Әкімшілерге пайдаланушылардың құпиясөздерін өзгертуге рұқсат беру"
+
+msgid "Enable custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасын қосу"
+
+msgid "Enable email notifications"
+msgstr "Электрондық пошта хабарландыруларын қосу"
+
+msgid "Enable email notifications for:"
+msgstr "Электрондық пошта хабарландыруларын келесілер үшін қосу:"
+
+msgid "Enable encryption"
+msgstr "Шифрлауды қосу"
+
+msgid "Enable scoring system"
+msgstr "Ұпайларды санау жүйесін іске қосу"
+
+msgid "Enable search engines indexing"
+msgstr "Іздеу жүйелерінің индекстеуін қосу"
+
+msgid "Enable simplified login"
+msgstr "Жеңілдетілген кіруді іске қосу"
+
+msgid "Enable terms of service"
+msgstr "Қызмет көрсету шарттарын қосу"
+
+msgid "Enable two factor authentication"
+msgstr "Екі факторлы аутентификацияны іске қосу"
+
+msgid "Enabled"
+msgstr "Қосылған"
+
+msgid "Enter a name for the copy"
+msgstr "Көшірменің атауын енгізіңіз"
+
+msgid "Enter the two factor authentication code"
+msgstr "Екі факторлы аутентификация кодын енгізу"
+
+msgid ""
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Құпиясөзді қалпына келтіру процедурасын аяқтау үшін, есептік жазбаны қалпына келтіру кілтін енгізіңіз."
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Құпиясөзді қалпына келтіруді сұрау үшін, есептік жазбаның пайдаланушы атын немесе электрондық пошта мекенжайын енгізіңіз."
+
+msgid "Enter your email address to request a password reset."
+msgstr "Құпиясөзді қалпына келтіруді сұрау үшін, электрондық пошта мекенжайын енгізіңіз."
+
+msgid "Error on input validation"
+msgstr "Енгізуді растау қатесі"
+
+msgid "Error!"
+msgstr "Қате!"
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Example:"
+msgstr "Үлгі:"
+
+msgid "Expand"
+msgstr "Кеңейту"
+
+msgid "Expiration date"
+msgstr "Жарамдылық мерзімі"
+
+msgid "Export"
+msgstr "Экспорттау"
+
+msgid "File size"
+msgstr "Файл өлшемі"
+
+msgid "File size not accepted."
+msgstr "Файл өлшемі қабылданбады."
+
+msgid "Filename"
+msgstr "Файл аты"
+
+msgid "Files"
+msgstr "Файлдар"
+
+msgid "Files attached by recipients"
+msgstr "Алушылар тіркеген файлдар"
+
+msgid "Fill the additional questionnaire"
+msgstr "Қосымша сауалнаманы толтыру"
+
+msgid "Fingerprint"
+msgstr "Саусақ ізі"
+
+msgid "First"
+msgstr "Алғашқы"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Footer"
+msgstr "Төменгі колонтитул"
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Қауіпсіздік мақсатында, құпиясөзді үнемі өзгертіп тұру қажет."
+
+msgid "For the user documentation, visit:"
+msgstr "Пайдаланушы құжаттамасы үшін, мына сайтқа кіріңіз:"
+
+msgid "Forbidden operation"
+msgstr "Тыйым салынған операция"
+
+msgid "Force password change"
+msgstr "Құпиясөзді мәжбүрлі түрде өзгерту"
+
+msgid "Forcefully selected"
+msgstr "Мәжбүрлі түрде таңдалды"
+
+msgid "Forgot password?"
+msgstr "Құпиясөзді ұмыттыңыз ба?"
+
+msgid "From"
+msgstr "Кімнен"
+
+msgid "From:"
+msgstr "Жіберуші:"
+
+msgid "Generate"
+msgstr "Құру"
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Пайдаланушыға келесі мүмкіндіктерге әкімшілік рұқсат беру:"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Осы әкімшіге пайдаланушы құпиясөздерін өзгерту мүмкіндігін беру"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to mask information"
+msgstr ""
+
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Grant access"
+msgstr "Қатынасуға рұқсат беру"
+
+msgid "Group of questions"
+msgstr "Сұрақтар тобы"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Есепті толтырып қойдыңыз ба? Түбіртекті енгізіңіз."
+
+msgid "Hidden"
+msgstr "Жасырын"
+
+msgid "Hide"
+msgstr "Жасыру"
+
+msgid "High"
+msgstr "Жоғары"
+
+msgid "Hint"
+msgstr "Кеңес"
+
+msgid "Home"
+msgstr "Басты бет"
+
+msgid "Homepage title"
+msgstr "Басты беттің атауы"
+
+msgid "Hostname"
+msgstr "Хост атауы"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Мен лицензия шарттарымен таныстым және олармен келісемін."
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "ID"
+msgstr "Идентификатор"
+
+msgid "Identity"
+msgstr "Жеке тұлға"
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Егер 24 сағат ішінде іске қосылмаса, платформа автоматты түрде жойылады."
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Егер сізге техникалық қолдау қажет болса, жалпы сұрақтарыңыз болса немесе бағдарламалық жасақтамаға байланысты идеяларыңыз болса:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Егер сіз бағдарламалық жасақтаманы дамытуға үлес қосқыңыз келсе немесе қате туралы хабарлағыңыз келсе, тикет жүйесінде мәселе ашыңыз:"
+
+msgid "Image"
+msgstr "Кескін"
+
+msgid "Import"
+msgstr "Импорттау"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Бұл кезеңде келесі сұрақтарға жауаптар жоқ немесе жарамсыз болып табылады:"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Input validation"
+msgstr "Енгізу деректерін тексеру"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Телефонға аутентификатор қолданбасын орнату"
+
+msgid "Intermediate Certificates"
+msgstr "Аралық сертификаттар"
+
+msgid "Internal server error"
+msgstr "Сервердің ішкі қатесі"
+
+msgid "Invalid confirmation"
+msgstr "Растау жарамсыз"
+
+msgid "Invalid email address"
+msgstr "Электрондық пошта мекенжайы қате"
+
+msgid "Invalid phone number"
+msgstr "Телефон нөмірі жарамсыз"
+
+msgid "Issuer:"
+msgstr "Эмитент:"
+
+msgid "Join our chat:"
+msgstr "Біздің чатқа қосылыңыз:"
+
+msgid "Label"
+msgstr "Жапсырма"
+
+msgid "Label the report"
+msgstr "Есепті белгілеу"
+
+msgid "Language"
+msgstr "Тіл"
+
+msgid "Language:"
+msgstr "Тіл:"
+
+msgid "Languages"
+msgstr "Тілдер"
+
+msgid "Last"
+msgstr "Соңғы"
+
+msgid "Last Access"
+msgstr "Соңғы қатынасу"
+
+msgid "Last access"
+msgstr "Соңғы қатынасу"
+
+msgid "Last update"
+msgstr "Соңғы жаңарту"
+
+msgid "Latest selectable date"
+msgstr "Таңдауға болатын ең кеш уақыт"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Tor бағдарламасысыз платформаға қол жеткізуге рұқсат ету"
+
+msgid "License"
+msgstr "Лицензия"
+
+msgid "Log accesses of internal users"
+msgstr "Ішкі пайдаланушылардың журналдарына қол жеткізу"
+
+msgid "Log in"
+msgstr "Кіру"
+
+msgid "Logging level"
+msgstr "Журнал жүргізу деңгейі"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Logout"
+msgstr "Жүйеден шығу"
+
+msgid "Low"
+msgstr "Төмен"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Көшірмені жасап, оны қауіпсіз жерде сақтаңыз. Бұл құпиясөзіңізді жоғалтқан кезде, ешқандай деректеріңізді жоғалтпай, есептік жазбаңызға қатынасуыңыз үшін қажет."
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Бұл әкімшіге пайдаланушы құпиясөздерін қалпына келтіруге рұқсат беріңіз."
+
+msgid "Mandatory"
+msgstr "Талап етіледі"
+
+msgid "Manual configuration"
+msgstr "Қолмен конфигурациялау"
+
+msgid "Mark as important"
+msgstr "Маңызды ретінде белгілеу"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr "Файлдың максималды өлшемі:"
+
+msgid "Maximum number of input characters"
+msgstr "Енгізілетін таңбалардың ең көп саны"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Таңдалатын алушылардың ең көп саны:"
+
+msgid "Me only"
+msgstr ""
+
+msgid "Medium"
+msgstr "Орташа"
+
+msgid "Min"
+msgstr ""
+
+msgid "Minimum number of input characters"
+msgstr "Енгізілетін таңбалардың ең аз саны"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mode:"
+msgstr "Режим:"
+
+msgid "Motivation"
+msgstr "Мотивация"
+
+msgid "Move down"
+msgstr "Төменге жылжу"
+
+msgid "Move left"
+msgstr "Солға жылжу"
+
+msgid "Move right"
+msgstr "Оңға жылжу"
+
+msgid "Move up"
+msgstr "Жоғарыға жылжу"
+
+msgid "Multi-line text input"
+msgstr "Көп жолды мәтінді енгізу"
+
+msgid "Multiple choice input"
+msgstr "Бірнеше таңдауды енгізу"
+
+msgid "Multiplier"
+msgstr "Көбейткіш"
+
+msgid "Name"
+msgstr "Аты"
+
+msgid "Network"
+msgstr ""
+
+msgid "New"
+msgstr "Жаңа"
+
+msgid "New password"
+msgstr "Жаңа құпиясөз"
+
+msgid "New request"
+msgstr "Жаңа сұратым"
+
+msgid "Next"
+msgstr "Келесі"
+
+msgid "No"
+msgstr "Жоқ"
+
+msgid "None"
+msgstr "Ешқайсысы"
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Notifications"
+msgstr "Хабарламалар"
+
+msgid "Notify administrators of software problems"
+msgstr "Әкімшілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
+
+msgid "Notify developers of software problems"
+msgstr "Әзірлеушілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Енді құпиясөзді теріп, «Кіру» түймесін басыңыз:"
+
+msgid "Number"
+msgstr "Сан"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr " Пайдаланушыларға оқылмаған есептер туралы хабарландырғанға дейінгі күндер саны"
+
+msgid "Number of downloads"
+msgstr "Жүктеп алулар саны"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Есептің пайдаланылу мерзімінің аяқталуы туралы ескертуді жібергенге дейін қалған сағаттар саны"
+
+msgid "Object"
+msgstr "Нысан"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Бір немесе бірнеше алушы алғашқы кіруді әлі аяқтаған жоқ. Бұл олардың есеп алмайтындарын білдіреді."
+
+msgid "Opened"
+msgstr "Ашық"
+
+msgid "Options"
+msgstr "Таңдалатын нұсқалар"
+
+msgid "Organization"
+msgstr "Ұйым"
+
+msgid "Original text"
+msgstr "Түпнұсқа мәтін"
+
+msgid "Original translation"
+msgstr "Түпнұсқа аударма"
+
+msgid "Password"
+msgstr "Құпиясөз"
+
+msgid "Password change interval"
+msgstr "Құпиясөзді ауыстыру интервалы"
+
+msgid "Password reset"
+msgstr "Құпиясөзді қалпына келтіру"
+
+msgid "Password reset requested."
+msgstr "Құпиясөзді қалпына келтіру сұралды."
+
+msgid "Phone number"
+msgstr "Телефон нөмірі"
+
+msgid "Placeholder"
+msgstr "Толтырғыш"
+
+msgid "Platform wizard"
+msgstr "Платформа шебері"
+
+msgid "Please check your inbox for further instructions."
+msgstr "Қосымша нұсқаулар алу үшін, кіріс жәшігіңізді тексеріңіз."
+
+msgid "Please choose a configuration profile:"
+msgstr "Конфигурация профилін таңдаңыз:"
+
+msgid "Please choose a different username."
+msgstr "Басқа пайдаланушы атын таңдаңыз."
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Осыған байланысты барлық деректер біржола жойылатынына назар аударыңыз."
+
+msgid "Please select your account:"
+msgstr "Есептік жазбаңызды таңдаңыз:"
+
+msgid "Postpone the expiration date"
+msgstr "Жарамдылық мерзімін кейінге жылжыту"
+
+msgid "Preferences"
+msgstr "Бапталған параметрлер"
+
+msgid "Presentation"
+msgstr "Презентация"
+
+msgid "Preview"
+msgstr "Алдын ала қарау"
+
+msgid "Previous"
+msgstr "Алдыңғы"
+
+msgid "Print"
+msgstr "Басып шығару"
+
+msgid "Privacy Policy"
+msgstr "Құпиялық саясаты"
+
+msgid "Private Key"
+msgstr "Жеке кілт"
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Proceed"
+msgstr "Жалғастыру"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Project name"
+msgstr "Жоба атауы"
+
+msgid "Public name"
+msgstr "Жалпы атауы"
+
+msgid "Question"
+msgstr "Сұрақ"
+
+msgid "Question group"
+msgstr "Сұрақтар тобы"
+
+msgid "Question templates"
+msgstr "Сұрақ үлгілері"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ықтимал хабарлаушыларды қызықтыруға арналған сұрақ"
+
+msgid "Questionnaire"
+msgstr "Сауалнама"
+
+msgid "Questionnaire answers"
+msgstr "Сауалнама жауаптары"
+
+msgid "Questionnaires"
+msgstr "Сауалнамалар"
+
+msgid "Questions"
+msgstr "Сұрақтар"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Алушы"
+
+msgid "Recipient selection"
+msgstr "Алушыны таңдау"
+
+msgid "Recipients"
+msgstr "Алушылар"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Алушылар сізден қосымша сауалнаманы толтыруды сұрады."
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Таңдалған алушылар:"
+
+msgid "Redact"
+msgstr ""
+
+msgid "Refresh"
+msgstr "Жаңарту"
+
+msgid "Regenerate"
+msgstr "Қайта құру"
+
+msgid "Regular expression"
+msgstr "Тұрақты өрнек"
+
+msgid "Regular expression validator"
+msgstr "Тұрақты өрнектің валидаторы"
+
+msgid "Remember your receipt for this report."
+msgstr "Бұл есеп бойынша түбіртекті есте сақтаңыз."
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Remove"
+msgstr "Жою"
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Reply motivation"
+msgstr "Мотивацияға жауап беру"
+
+msgid "Reply to the request"
+msgstr "Сұратымға жауап беру"
+
+msgid "Report"
+msgstr ""
+
+msgid "Report date"
+msgstr "Есеп беру күні"
+
+msgid "Report statuses"
+msgstr "Есептің күйлері"
+
+msgid "Reports"
+msgstr "Есептер"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Хабарлаушының жеке басын куәландыруға қол жеткізуге сұратым жіберу"
+
+msgid "Request date"
+msgstr "Сұратым күні"
+
+msgid "Request motivation"
+msgstr "Мотивация сұрату"
+
+msgid "Request status"
+msgstr "Сұратым күйі"
+
+msgid "Request support"
+msgstr "Қолдауға сұратым жасау"
+
+msgid "Requests"
+msgstr "Сұратымдар"
+
+msgid "Require authentication"
+msgstr "Аутентификация қажет"
+
+msgid "Require two factor authentication"
+msgstr "Екі факторлы аутентификацияны талап ету"
+
+msgid "Reset"
+msgstr "Қалпына келтіру"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP конфигурациясын қалпына келтіру"
+
+msgid "Reset notification templates to default"
+msgstr "Хабарландыру үлгілерін әдепкі бойынша қалпына келтіру"
+
+msgid "Reset reports"
+msgstr "Есептерді бастапқы қалпына келтіру"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ресурстарға Tor желісі арқылы ғана қол жеткізуге болады"
+
+msgid "Resource not found"
+msgstr "Ресурс табылмады"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Нақты IP мекенжайларына қатынасуды шектеу"
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Рұқсатты кері қайтару"
+
+msgid "Role"
+msgstr "Рөлі"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Платформаны Tor бағдарламасысыз пайдалана алатын рөлдер"
+
+msgid "Root domain used for secondary sites"
+msgstr "Қосымша сайттар үшін пайдаланылатын түбірлік домен"
+
+msgid "Row"
+msgstr "Қатар"
+
+msgid "SMTP email address"
+msgstr "SMTP электрондық пошта мекенжайы"
+
+msgid "SMTP server address"
+msgstr "SMTP серверінің мекенжайы"
+
+msgid "SMTP server port"
+msgstr "SMTP сервер порты"
+
+msgid "Save"
+msgstr "Сақтау"
+
+msgid "Save all"
+msgstr "Барлығын сақтау"
+
+msgid "Scan the QR code with the app"
+msgstr "QR кодын қолданба арқылы сканерлеу"
+
+msgid "Scheduled jobs"
+msgstr "Жоспарланған тапсырмалар"
+
+msgid "Score"
+msgstr "Ұпай"
+
+msgid "Scoring system options"
+msgstr "Ұпай санау жүйесінің параметрлері"
+
+msgid "Search"
+msgstr "Іздеу"
+
+msgid "Security"
+msgstr "Қауіпсіздік"
+
+msgid "Select"
+msgstr "Таңдау"
+
+msgid "Select a file or drag it here."
+msgstr "Файлды таңдаңыз немесе оны осында сүйреп әкеліңіз."
+
+msgid "Select all"
+msgstr "Барлығын таңдау"
+
+msgid "Select all recipients by default"
+msgstr "Әдепкі бойынша барлық алушыларды таңдау"
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select the recipients of your report"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Selection box"
+msgstr "Таңдау өрісі"
+
+msgid "Send"
+msgstr "Жіберу"
+
+msgid "Send a test email to your email address."
+msgstr "Электрондық пошта мекенжайына тестілік хат жіберу."
+
+msgid "Send activation link"
+msgstr "Белсендіру сілтемесін жіберу"
+
+msgid "Send reset link"
+msgstr "Қалпына келтіру сілтемесін жіберу"
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Set password"
+msgstr "Құпиясөзді орнату"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Бұл функцияны өшіру үшін «0» мәнін орнатыңыз."
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "PGP ашық кілтін беру арқылы шифрлауды орнату"
+
+msgid "Settings"
+msgstr "Параметрлер"
+
+msgid "Severity"
+msgstr "Қатаңдық"
+
+msgid "Show"
+msgstr "Көрсету"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Show recipients in alphabetical order"
+msgstr "Алушыларды алфавиттік тәртіпте көрсету"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Сауалнама бойынша навигация интерфейсін көрсету"
+
+msgid "Sign up"
+msgstr "Тіркелу"
+
+msgid "Silence email notifications"
+msgstr "Электрондық пошта хабарландыруларын өшіру"
+
+msgid "Single-line text input"
+msgstr "Бір жолды мәтінді енгізу"
+
+msgid "Site"
+msgstr ""
+
+msgid "Sites"
+msgstr "Сайттар"
+
+msgid "Size limit for file attachments"
+msgstr "Файл тіркемелерінің өлшемінің шектеуі"
+
+msgid "Size:"
+msgstr "Өлшемі:"
+
+msgid "Skip the recipient account creation."
+msgstr "Алушының есептік жазбасын жасауды өткізіп жіберу."
+
+msgid "Software version:"
+msgstr "Бағдарламалық жасақтама нұсқасы:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Stats"
+msgstr "Статистика"
+
+msgid "Status"
+msgstr "Күйі"
+
+msgid "Status:"
+msgstr "Күйі:"
+
+msgid "Step"
+msgstr "Қадам"
+
+msgid "Steps"
+msgstr "Қадамдар"
+
+msgid "Strong"
+msgstr "Жақсы"
+
+msgid "Subdomain"
+msgstr "Ішкі домен"
+
+msgid "Submissions disabled"
+msgstr "Жіберу өшірілген"
+
+msgid "Submit"
+msgstr "Жіберу"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Substatuses"
+msgstr "Ішкі күйлер"
+
+msgid "Success!"
+msgstr "Сәтті аяқталды!"
+
+msgid "Sufficient"
+msgstr "Жеткілікті"
+
+msgid "Surname"
+msgstr "Тегі"
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Template"
+msgstr "Үлгі"
+
+msgid "Template override"
+msgstr "Үлгіні қабыл алмау"
+
+msgid "Templates"
+msgstr "Үлгілер"
+
+msgid "Terms of service"
+msgstr "Қызмет көрсету шарттары"
+
+msgid "Test the configuration"
+msgstr "Конфигурацияны тексеру"
+
+msgid "Text"
+msgstr "Мәтін"
+
+msgid "Text customization"
+msgstr "Мәтінді баптау"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Пайдаланушы опцияны таңдағаннан кейін көрсетілетін мәтін."
+
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
+
+msgid "Text shown upon negative answer"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Рахмет."
+
+msgid "The answer is too short"
+msgstr "Жауап тым қысқа"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 12 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, санды және арнайы таңбаны қамтуы тиіс."
+
+msgid "The code is either invalid or expired."
+msgstr "Код жарамсыз немесе мерзімі өтіп кеткен."
+
+msgid "The connection is not secure."
+msgstr "Қосылым қауіпсіз емес."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Келесі алушылар cіздің есебіңізді алатын болады және оларды жою мүмкін емес:"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Келесі қадамдық процедура сізге хабарлау платформасын жасауға көмектеседі."
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Қолмен баптау шебері сізге баламалы куәліктер орталығынан HTTPS протоколын орнату бойынша нұсқау беретін болады."
+
+msgid "The new password must be different from the current one."
+msgstr "Жаңа құпиясөз қолданыстағы құпиясөзден өзгеше болуы керек."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа әлі HTTPS қосылымдары үшін баптаудан өткізілмеген, сондықтан, оны тек тестілеу мақсатында пайдалану керек."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Платформа ашық IP арқылы қолжетімді болуы керек және таңдалған хост атауында осы мекенжайға сілтеме жасайтын тиісті DNS жазбасын қамтуы тиіс."
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформа осы интерфейс арқылы HTTPS конфигурациясына қолдау көрсетеді."
+
+msgid "The provided recovery key is invalid."
+msgstr "Берілген қалпына келтіру кілті жарамсыз болып табылады."
+
+msgid "The provided reset token is invalid or expired."
+msgstr "Берілген қалпына келтіру белгісі жарамсыз немесе мерзімі өтіп кеткен."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Түбіртек жарамсыз немесе есеп мерзімі аяқталған."
+
+msgid "The specified input is not valid."
+msgstr "Көрсетілген енгізу жарамсыз."
+
+msgid "The specified input is not valid:"
+msgstr "Көрсетілген енгізу жарамсыз."
+
+msgid "The specified old password is not valid"
+msgstr "Көрсетілген ескі құпиясөз жарамсыз"
+
+msgid "The two passwords do not match"
+msgstr "Екі құпиясөз бір-біріне сәйкес келмейді."
+
+msgid "The upload request exceeds the size limit"
+msgstr "Жүктеу сұранысы шекті мөлшерден асып тұр"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Пайдаланушы келесі кірген кезде, құпиясөзді өзгертуге мәжбүр болады."
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Тексеру сілтемесі дұрыс емес немесе мерзімі өтіп кеткен."
+
+msgid "The whistleblower has already read the last update"
+msgstr "Хабарлаушы соңғы жаңартуды оқып үлгерді"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Хабарлаушы соңғы жаңартуды әлі оқыған жоқ"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Содан кейін, келесі мекенжайды Tor Browser қолданбасына көшіріп, қойыңыз:"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Бұл реттелмелі мәтін енді платформада көрсетілмейді. Түпнұсқа мәтін өзгертілген немесе жойылған."
+
+msgid "This domain name is not available."
+msgstr "Бұл домен атауы қолжетімсіз."
+
+msgid "This field is mandatory"
+msgstr "Бұл өріс міндетті"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Бұл демо-платформа, оны шынайы түрде жіберу үшін пайдаланбаңыз."
+
+msgid "This user has not performed the first login yet."
+msgstr "Бұл пайдаланушы алғашқы кіруді әлі аяқтаған жоқ."
+
+msgid "Threshold"
+msgstr "Шек"
+
+msgid "Title"
+msgstr "Атауы"
+
+msgid "To"
+msgstr "Алушы"
+
+msgid "To:"
+msgstr "Алушы:"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion қызметі"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "Trigger conditions"
+msgstr "Триггерлік шарттар"
+
+msgid "Trigger question"
+msgstr "Триггерлік сұрақ"
+
+msgid "Triggered by score:"
+msgstr "Ұпай бойынша іске қосылады:"
+
+msgid "Turn on email notifications"
+msgstr "Электрондық пошта хабарландыруларын қосу"
+
+msgid "Type"
+msgstr "Түрі"
+
+msgid "Type your new password again"
+msgstr "Жаңа құпиясөзді қайта енгізіңіз"
+
+msgid "URL redirects"
+msgstr "URL мекенжайларын қайта бағыттаулар"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Upload"
+msgstr "Жүктеп салу"
+
+msgid "Upload a file:"
+msgstr "Файлды жүктеп салу:"
+
+msgid "Upload date"
+msgstr "Жүктеп салу күні"
+
+msgid "Use as default"
+msgstr "Әдепкі ретінде пайдалану"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Жүйеге кіру үшін, 16 таңбалы түбіртекті пайдаланыңыз. Бұл сізге жіберген кез-келген хабарды көруге, сонымен қатар, қосымша ақпаратты қосуға мүмкіндік береді."
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Бірінші сайтты тек әкімшілік мақсатта пайдалану"
+
+msgid "User"
+msgstr "Пайдаланушы"
+
+msgid "Username"
+msgstr "Пайдаланушы аты"
+
+msgid "Users"
+msgstr "Пайдаланушылар"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Автоматты HTTPS конфигурациясын пайдалану — «Let's Encrypt Certificate Authority» орталығынан сертификаттарды сұраудың, қосудың және жаңартудың барлық процесін басқарады."
+
+msgid "Valid until:"
+msgstr "Жарамдылық мерзімі:"
+
+msgid "Validation of email address change in progress."
+msgstr "Электрондық пошта мекенжайының өзгеруі расталуда."
+
+msgid "Value"
+msgstr "Мән"
+
+msgid "Video"
+msgstr "Бейне"
+
+msgid "View"
+msgstr "Қарау"
+
+msgid "View your report"
+msgstr "Есепті қарау"
+
+msgid "Voice"
+msgstr ""
+
+msgid "Waiting for authorization"
+msgstr "Рұқсат беруді күтуде"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Файл(-дар-)ды жүктеп салудың аяқталуы күтілуде."
+
+msgid "Warning"
+msgstr "Ескерту"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Егер сіз алушылар құпиясөздерін ұмытқанда деректерді жоғалтудан қорғағыңыз келсе, осы опцияны таңдауға кеңес береміз. Екінші жағынан, егер сіз тек алушылар жіберуге қол жеткізе алатын жүйені орнатқыңыз келсе, біз бұл мүмкіндікті пайдаланбауды ұсынамыз."
+
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "«Есептік жазбаны қалпына келтіру кілтін» алу және оны қауіпсіз сақтау үшін «Параметрлер» бөліміне кіруді ұсынамыз. Бұл кілт құпиясөзіңізді ұмытып қалған кезде, платформаға және деректеріңізге кіруді қалпына келтіру үшін қажет болады."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Сізбен мүмкіндігінше тезірек байланысуға тырысамыз."
+
+msgid "Weak"
+msgstr "Нашар"
+
+msgid "Welcome!"
+msgstr "Қош келдіңіз!"
+
+msgid "Whistleblower"
+msgstr "Хабарлаушы"
+
+msgid "Whistleblower's last access"
+msgstr "Хабарлаушының соңғы рет қатынасуы"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Whistleblowing button"
+msgstr "Хабарлау түймесі"
+
+msgid "Width"
+msgstr "Ені"
+
+msgid "Yes"
+msgstr "Иә"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Сіз серверге ашық түрде қосыласыз және бұл сервер тек анонимді жіберуді қолдайды"
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Сізге бұл сайтқа жеке тұлғаңызды қорғайтын Tor Browser қолданбасы арқылы кіру ұсынылады."
+
+msgid "You have completed the platform activation."
+msgstr "Сіз платформаны іске қосуды аяқтадыңыз."
+
+msgid "You have completed the platform wizard."
+msgstr "Сіз платформа шеберімен жұмысты аяқтадыңыз."
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Сіз таңдалған алушылардың максималды санына жеттіңіз."
+
+msgid "You must select at least one recipient."
+msgstr "Сіз кем дегенде бір алушыны таңдауыңыз керек."
+
+msgid "Your new email address has been validated."
+msgstr "Сіздің жаңа электрондық пошта мекенжайыңыз расталды."
+
+msgid "Your report was successful."
+msgstr "Сіздің есебіңіз сәтті аяқталды."
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Сіздің хабар беретін платформаңыз дайын болып қалды!"
+
+msgid "days"
+msgstr "күн"
+
+msgid "file unavailable"
+msgstr "файл қолжетімсіз"
+
+msgid "megabytes"
+msgstr "мегабайт"
+
+msgid "percentage"
+msgstr "пайыз"
+
+msgid "please enter a valid email address."
+msgstr "жарамды электрондық пошта мекенжайын енгізіңіз."
+
+msgid "please enter numbers only."
+msgstr "тек сан енгізіңіз."
+
+msgid "seconds"
+msgstr "секунд"
+
+msgid "File a report"
+msgstr "Есеп беру"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Please summarize your report in a few words."
+msgstr "Есепті бірнеше сөзбен сипаттаңыз."
+
+msgid "Describe your report in detail."
+msgstr "Есепті толығырақ сипаттаңыз."
+
+msgid "Where did the facts happen?"
+msgstr "Фактілер қайда орын алды?"
+
+msgid "When did the facts happen?"
+msgstr "Фактілер қашан орын алды?"
+
+msgid "I'm a victim"
+msgstr "Мен жәбірленушімін"
+
+msgid "I'm involved in the facts"
+msgstr "Менің фактілерге қатысым бар"
+
+msgid "I witnessed the facts in person"
+msgstr "Фактілерге өз көзіммен куә болдым"
+
+msgid "I was personally told by a direct witness"
+msgstr "Тікелей куәгер маған жеке айтты"
+
+msgid "It is a rumor I heard"
+msgstr "Бұл мен естіген өсек"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Хабарланған фактілерге қандай қатысыңыз бар?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Есебіңізді растайтын дәлеліңіз бар ма?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Есебіңізді растайтын дәлелді тіркеңіз."
+
+msgid "Please describe the evidence in detail."
+msgstr "Дәлелдерді толықтай сипаттаңыз."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Ұсынылған дәлелдердің толық сипаттамасы біз үшін шағымдарды бағалау және тергеу қабілетін арттыруға көмектеседі. Жіберілген бейнелердің, кескіндердің немесе құжаттардың маңызды бөліктеріне сілтеме жасауды ұмытпаңыз."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Фактілерді басқа ұйымдарға және/немесе жеке тұлғаларға хабарладыңыз ба?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Сізден осы фактілер туралы мәлімет алған ұйымдарды және/немесе жеке тұлғаларды тізімдеңіз."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Бұл ұйымдар сіздің шағымдарыңызды тексерді ме? Олай болса, нәтиже қандай болды?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Біздің қолдауымызбен қандай нәтижеге қол жеткізгіңіз келеді?"
+
+msgid "Would you like to tell us who you are?"
+msgstr ""
+
+msgid "First name"
+msgstr "Аты"
+
+msgid "Last name"
+msgstr "Тегі"
+
+msgid "Alternative contact method"
+msgstr "Балама байланыс әдісі"
+
+msgid "I prefer to be contacted via this platform only"
+msgstr "Мен тек осы платформа арқылы хабарласуды жөн көремін"
+
+msgid "Other"
+msgstr "Басқа"
+
+msgid "Specify"
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "Құрметті {RecipientName},"
+
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Сіз үшін жүйеде пайдаланушы есеп жазбасы жасалғандықтан, сіз бұл электрондық хатты алып тұрсыз: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Пайдаланушы аты: {Username}\n "
+
+msgid "Activation link: {Url}"
+msgstr "Белсендіру сілтемесі: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Есептік жазбаны іске қосуды жалғастыру үшін және пайдаланушының құпиясөзін орнату үшін, белсендіру сілтемесін басыңыз."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Сәтті іске қосылғаннан кейін, сіз жүйеге келесі сілтеме арқылы кіре аласыз: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Құрметпен,"
+
+msgid "Account activation"
+msgstr "Есептік жазбаны іске қосу"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Сіздің хабарлау платформаңызға енді мына мекенжай бойынша кіруге болады:"
+
+msgid "To log in, visit:"
+msgstr "Кіру үшін мына сайтқа өтіңіз:"
+
+msgid "Users' credentials:"
+msgstr "Пайдаланушылардың есептік жазба деректері:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Платформа автоматты түрде жойылады:"
+
+msgid "Access instructions"
+msgstr "Қатынасу нұсқаулары"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Жақында анықталған әрекеттер саны әдеттегіден жоғары болып шықты."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Бұл шабуылдың белгісі болуы (мысалы, біреу сіздің серверіңізді жалған ақпаратпен толтыруда) немесе сіздің жобаңыздың көрінуінің жоғарылауына байланысты, қолданудың күрт өсуі мүмкін."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr "Заңды немесе заңсыз екенін анықтау үшін, мәселені қарап шығыңыз."
+
+msgid "The activities with unusual stats are:"
+msgstr "Ерекше статистикалық әрекеттер:"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr "Сервер жаңа есепті сақтауға кепілдік бере алмайды, сондықтан, жіберу қолжетімсіз."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Серверде көбірек дискілік кеңістік құру үшін, техникалық қолдау қызметіне хабарласуды қарастыруыңызды өтінеміз."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks технологиясы сізге назар аудару қажет болған жағдайда, сізді ескертетін сервердің күйін тексеретін компонентті қамтиды."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Қосымша ақпарат алу үшін, басқару интерфейсіне кіріп, «Жүйелік статистика» және «Ауытқулар» бөлімдерін қарап шығыңыз."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "{NodeName} ішінде ауытқушылық анықталды"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Бұл келесі пайдаланушылардың PGP кілтінің мерзімі аяқталып жатқанын немесе аяқталғанын білдіретін электрондық хат:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Жарамды PGP кілті болмаса, жүйе оларға шифрланған хабарландыруларды жібере алмайды."
+
+msgid "PGP key expiration alert"
+msgstr "PGP кілтінің жарамдылық мерзімі туралы ескерту"
+
+msgid "A new whistleblowing site has been registered."
+msgstr "Жаңа ақпар беру сайты тіркелді."
+
+msgid "Registration data:"
+msgstr "Тіркеу деректері:"
+
+msgid "Site: {Url}"
+msgstr "Сайт: {Url}"
+
+msgid "Name: {Name}"
+msgstr "Аты: {Name}"
+
+msgid "Email: {Email}"
+msgstr "Электрондық пошта: {Email}"
+
+msgid "New whistleblowing site registered"
+msgstr "Жаңа ақпар беру сайты тіркелді"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Бұл платформаның әкімші интерфейсінен жіберілген тестілік электрондық хаты."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Бұл электрондық хаттың қабылдануы сервердің SMTP пошталық серверімен аутентификациялауға және өзара әрекеттесуге қабілетті екенін көрсетеді."
+
+msgid "Test email"
+msgstr "Тестілік электрондық хат"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "Бұл электрондық пошта мекенжайын {NewEmailAddress} етіп өзгерту туралы сұрау жасалғанын ескертетін электрондық хат."
+
+msgid "Click the following link to validate this change:"
+msgstr "Бұл өзгерісті растау үшін, келесі сілтемені түртіңіз:"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "Егер сіз бұл өзгеріске сұратым жасамасаңыз, құпиясөзді өзгертіңіз және жүйе әкімшісіне хабарласыңыз."
+
+msgid "Email change request"
+msgstr "Электрондық поштаны өзгерту туралы сұратым"
+
+msgid "From: {Author}"
+msgstr "Жіберуші: {Author}"
+
+msgid "Date: {EventTime}"
+msgstr "Күні: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Жіберуші: Ақпарат таратушы"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Күні: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Белгі: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr "Күйі: {TipStatus}"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "Платформаға жүктелген HTTPS сертификатының мерзімі аяқталып жатыр немесе аяқталды."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Жарамдылық мерзімі: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Жарамды сертификат болмаса, платформа тек Tor арқылы қауіпсіз түрде қолжетімді болады."
+
+msgid "Log in to solve the issue."
+msgstr "Мәселені шешу үшін, жүйеге кіріңіз."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "HTTPS сертификатының жарамдылық мерзімі туралы ескерту"
+
+msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr "Бүгінге жоспарланған HTTPS сертификатын автоматты түрде жаңарту сәтсіз аяқталды."
+
+msgid "The system will keep trying."
+msgstr "Жүйе әрекетін жалғастыратын болады."
+
+msgid "Failed HTTPS certificate renewal"
+msgstr "HTTPS сертификатын жаңарту мүмкін болмады"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr "Бұл сақтаушы сізге {TipNum} есебі үшін ақпар беруші куәлігіне кіруге рұқсат берілгенін ескертетін электрондық хат.\n\n "
+
+msgid "The report can be accessed at:"
+msgstr "Есеппен мына мекенжай бойынша танысуға болады:"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Хабарлаушының жеке басына қатынасуға рұқсат етілген"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" whistleblowing identity for the report {TipNum}."
+msgstr "Бұл сақтаушы сізге {TipNum} есебі үшін ақпараттық куәлікке кіруден бас тартқанын хабарлайтын электрондық хат."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Хабарлаушының  жеке тұлғасына қатынасуға тыйым салынады"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the report {TipNum}"
+msgstr "Бұл алушы {TipNum} есебі үшін ақпар берушінің жеке басына қатынасуды сұрағанын хабарлайтын электрондық хат"
+
+msgid "The request can be accessed at:"
+msgstr "Сұратымға мына жерден қатынасуға болады:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Ақпар берушінің жеке басына қатынасу туралы жаңа сұрау"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the report "
+"{TipNum} has provided their identity."
+msgstr "Бұл сізге {TipNum} есебінің ақпар берушісі өзінің жеке басын көрсеткенін хабарлайтын электрондық хат."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Ақпар беруші олардың жеке тұлғасын көрсетті"
+
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"the account: {Username}"
+msgstr "Есептік жазба үшін құпиясөзді қалпына келтіруге сұрау жіберілгендіктен, осы электрондық хатты алып тұрсыз: {Username}"
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "Егер сіз бұл сұрауды жібермеген болсаңыз, бұл электрондық хатты елемеуіңізге немесе жоюыңызға болады."
+
+msgid "You can confirm your request by clicking the following link:"
+msgstr "Сұрауыңызды келесі сілтемені басу арқылы растай аласыз:"
+
+msgid "Password reset instructions"
+msgstr "Құпиясөзді қалпына келтіру нұсқаулары"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Бұл сіздің PGP кілтіңіздің мерзімі аяқталып жатқанын немесе аяқталғанын білдіретін электрондық хат."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Сіз оның мерзімін ұзартып, платформадағы кілтті жаңартуыңыз немесе жаңа кілтті жүктеп салуыңыз қажет."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Жарамды PGP кілті болмаса, жүйе сізге берілген деректерді шифрлай алмайды."
+
+msgid "Click the link to activate the platform:"
+msgstr "Платформаны іске қосу үшін, мына сілтемені басыңыз:"
+
+msgid "Activation"
+msgstr "Іске қосу"
+
+msgid "A software update is available."
+msgstr "Бағдарламалық жасақтаманы жаңарту қолжетімді."
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Бұл платформаны жаңартып отыру үшін қауіпсіздікті қамтамасыз етудің жақсы тәжірибесі болып табылады."
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Жаңа нұсқадағы жаңа мүмкіндіктер мен қателерді түзету туралы білу үшін, өзгерістер журналын мына жерден қараңыз: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "Бағдарламалық жасақтаманы жаңарту туралы нұсқаулар алу үшін, мына мекен-жай бойынша құжаттаманы қараңыз: {UpdateGuideUrl}"
+
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr "Бұл алушы сізге бір немесе бірнеше есептерге қол жеткізуге мүмкіндік бергенін хабарлайтын электрондық хат."
+
+msgid "New report"
+msgstr "Жаңа есеп"
+
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Жарамдылық мерзімінің ең ерте күні - {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Оларды жоймас бұрын, тексеруді ұмытпаңыз."
+
+msgid "Some reports will expire soon"
+msgstr "Кейбір есептердің жарамдылық мерзімі жақында аяқталады"
+
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr "Бұл бар есептің жаңартылғанын хабарлауға арналған электрондық хат."
+
+msgid "Report updated"
+msgstr "Есеп жаңартылды"
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr "Бұл электрондық хат сізге оқылмаған немесе жаңартылған есептерді еске салады."
+
+msgid "Reminder about unread or updated reports"
+msgstr "Оқылмаған немесе жаңартылған есептер туралы ескерту"
+
+msgid "Role: {Role}"
+msgstr "Рөл: {Рөл}"
+
+msgid "Password: {Password}"
+msgstr "Құпиясөз: {Құпиясөз}"

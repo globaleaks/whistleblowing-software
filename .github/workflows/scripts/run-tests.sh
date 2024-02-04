@@ -20,7 +20,6 @@ trap atexit EXIT
 setupClientDependencies() {
   cd  $GITHUB_WORKSPACE/client  # to install frontend dependencies
   npm install
-  grunt instrument-client
 }
 
 setupBackendDependencies() {
