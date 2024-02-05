@@ -5,7 +5,7 @@
     "proxy": "ng serve --proxy-config proxy.conf.json",
     "e2e": "ng e2e",
     "e2e:ci": "ng run Globaleaks:e2e-ci",
-    "e2e:coverage": "npx nyc report --reporter=lcov --report-dir=./cypress/coverage --reporter=text-summary browser electron",
+    "e2e:coverage": "npx nyc report --reporter=lcov --report-dir=./cypress/coverage --reporter=text-summary --browser electron",
     "test": "npm run e2e:ci && npm run e2e:coverage"
   },
   "private": true,
