@@ -30,6 +30,7 @@ def load_appdata():
 
     :return: Return the parsed application data file
     """
+    print(Settings.appdata_file)
     return read_json_file(Settings.appdata_file)
 
 
