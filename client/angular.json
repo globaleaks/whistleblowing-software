@@ -49,33 +49,24 @@
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "app/assets/lib/webfonts/@fontawesome/fontawesome-all.css",
               "app/assets/lib/webfonts/@fontsource/fontsource-all.css"
-            ],
-            "customWebpackConfig": {
-              "path": "./lazy.config.js",
-              "mergeStrategies": {
-                "entrypoints": "replace"
-              }
-            }
+            ]
           },
           "configurations": {
             "production": {
               "extractLicenses": false,
-              "vendorChunk": true
+              "vendorChunk": true,
+              "customWebpackConfig": {
+                "path": "./build.config.ts"
+              }
             },
             "development": {
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
-            },
-            "e2e": {
-              "extractLicenses": false,
-              "sourceMap": true,
               "namedChunks": true,
-              "vendorChunk": true,
               "customWebpackConfig": {
-                "path": "./cypress/coverage.webpack.ts"
+                "path": "./cypress/test.config.ts"
               }
             }
           },
@@ -97,40 +88,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "Globaleaks:build"
-          }
-        },
-        "serve-coverage": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "browserTarget": "Globaleaks:build:e2e",
-            "proxyConfig": "proxy.conf.json"
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "Globaleaks:serve-coverage",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "Globaleaks:serve-coverage:production"
-            }
-          }
-        },
-        "e2e-ci": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "browser": "electron",
-            "devServerTarget": "Globaleaks:serve-coverage",
-            "headless": true,
-            "watch": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "Globaleaks:serve-coverage:production"
-            }
           }
         }
       }

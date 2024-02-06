@@ -20,7 +20,7 @@ trap atexit EXIT
 setupClient() {
   cd  $GITHUB_WORKSPACE/client  # to install frontend dependencies
   npm install -d
-  ./node_modules/grunt/bin/grunt build
+  ./node_modules/grunt/bin/grunt test_build
 }
 
 setupBackend() {

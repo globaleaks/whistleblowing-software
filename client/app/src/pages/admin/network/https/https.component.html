@@ -13,12 +13,14 @@
 </div>
 <div id="HTTPSSettings" *ngIf="appDataService.public.node.hostname">
     <div class="card card-default">
-        <div class="card-body">
+        <div class="card-body" [ngSwitch]="menuState">
             <src-https-status [tlsConfig]="tlsConfig" (dataToParent)="httpsStatus($event)"></src-https-status>
-            <div *ngIf="menuState=='setup'">
+            <div *ngSwitchCase="'setup'">
                 <src-https-setup (dataToParent)="httpsSetup($event)"></src-https-setup>
             </div>
-            <src-https-files [tlsConfig]="tlsConfig" [state]="state" (dataToParent)="httpsFiles($event)"></src-https-files>
+            <div *ngSwitchDefault>
+                <src-https-files [tlsConfig]="tlsConfig" [state]="state" (dataToParent)="httpsFiles($event)"></src-https-files>
+            </div>
         </div>
     </div>
 </div>

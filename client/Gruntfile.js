@@ -432,6 +432,9 @@ module.exports = function(grunt) {
       build: {
         command: "npx ng build --configuration=production --aot && echo \"Build completed\""
       },
+      test: {
+        command: "npx ng build --configuration=development && echo \"Build completed\""
+      },
       babel: {
         command: "npx ng build --configuration=production --source-map && nyc instrument dist instrument"
       },
@@ -1037,6 +1040,8 @@ module.exports = function(grunt) {
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
   grunt.registerTask("build", ["clean", "concat:fontsource", "concat:fontawesome", "string-replace:initFonts", "copy:sources", "shell:build", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
+
+  grunt.registerTask("test_build", ["clean", "concat:fontsource", "concat:fontawesome", "string-replace:initFonts", "copy:sources", "shell:test", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
 
   grunt.registerTask("serve", ["shell:serve"]);
 

@@ -1,6 +1,6 @@
-const path = require('path');
+import * as path from 'path';
 
-module.exports = {
+export default {
   output: {
     chunkFilename: 'js/lazy/[id].[chunkhash].js',
   },
