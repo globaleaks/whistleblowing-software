@@ -47,5 +47,5 @@ cd  $GITHUB_WORKSPACE/client && npm test
 
 cd  $GITHUB_WORKSPACE/backend && coverage xml
 bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Python -r  $GITHUB_WORKSPACE/backend/coverage.xml
-bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r  $GITHUB_WORKSPACE/client/cypress/coverage/lcov.info
+bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l TypeScript -r  $GITHUB_WORKSPACE/client/cypress/coverage/lcov.info
 bash <(curl -Ls https://coverage.codacy.com/get.sh) final
