@@ -71,8 +71,8 @@ export class FormFieldInputsComponent implements OnInit {
         obj[i] = this.resetEntries(obj[i]);
       }
     } else if (typeof obj === "object") {
-      for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
           obj[key] = this.resetEntries(obj[key]);
         }
       }

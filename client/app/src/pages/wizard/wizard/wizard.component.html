@@ -215,7 +215,7 @@
                 <i class="fa-solid fa-arrow-circle-left"></i>
                 <span>{{'Previous'|translate}}</span>
             </button>
-            <button class="ButtonNext btn btn-primary" (click)="(validation.step5 = true) && validation.step4 && (wizard.receiver_password == recipient_check_password) && (wizard.skip_recipient_account_creation || !(wizardFormStep5.invalid || (validateDuplicateRecipient()))) && (step = 6)">
+            <button class="ButtonNext btn btn-primary" (click)="(validation.step5 = true) && validation.step4 && (wizard.receiver_password === recipient_check_password) && (wizard.skip_recipient_account_creation || !(wizardFormStep5.invalid || (validateDuplicateRecipient()))) && (step = 6)">
                 <span>{{'Next'|translate}}</span>
                 <i class="fa-solid fa-arrow-circle-right"></i>
             </button>

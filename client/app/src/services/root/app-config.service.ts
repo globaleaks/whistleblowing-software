@@ -127,20 +127,19 @@ export class AppConfigService {
         this.appDataService.languages_enabled_selector = [];
         this.appDataService.languages_supported = new Map<string, LanguagesSupported>();
 
-        const self = this;
-        this.appDataService.public.node.languages_supported.forEach(function (lang: LanguagesSupported) {
-          self.appDataService.languages_supported.set(lang.code, lang);
+        this.appDataService.public.node.languages_supported.forEach((lang: LanguagesSupported)=> {
+          this.appDataService.languages_supported.set(lang.code, lang);
 
-          if (self.appDataService.public.node.languages_enabled.includes(lang.code)) {
-            self.appDataService.languages_enabled.set(lang.code, lang);
-            self.appDataService.languages_enabled_selector.push(lang);
+          if (this.appDataService.public.node.languages_enabled.includes(lang.code)) {
+            this.appDataService.languages_enabled.set(lang.code, lang);
+            this.appDataService.languages_enabled_selector.push(lang);
           }
         });
 
         let storageLanguage = localStorage.getItem("default_language");
         if (languageInit) {
           if (!storageLanguage) {
-            storageLanguage = self.appDataService.public.node.default_language;
+            storageLanguage = this.appDataService.public.node.default_language;
             localStorage.setItem("default_language", storageLanguage);
           }
           this.translationService.onChange(storageLanguage);
@@ -166,7 +165,7 @@ export class AppConfigService {
         location.replace("/#/signup");
       } else if (this.router.url === "/signup" && !this.appDataService.public.node.enable_signup) {
         location.replace("/#/");
-      } else if (this.appDataService.page == "blank") {
+      } else if (this.appDataService.page === "blank") {
         this.appDataService.page = "homepage"
       }
     }

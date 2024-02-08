@@ -12,7 +12,7 @@ export class WhistleblowerLoginResolver {
   }
 
   resolve(): Observable<boolean> {
-    if (this.appDataService.page == "submissionpage") {
+    if (this.appDataService.page === "submissionpage") {
       setTimeout(() => {
         this.authenticationService.login(0, "whistleblower", "");
       }, 0);

@@ -15,10 +15,8 @@ export class FieldUtilitiesService {
   }
 
   parseQuestionnaire(questionnaire: any, parsedFields: ParsedFields) {
-    const self = this;
-
-    questionnaire.steps.forEach(function (step: Step) {
-      parsedFields = self.parseFields(step.children, parsedFields);
+    questionnaire.steps.forEach((step: Step)=> {
+      parsedFields = this.parseFields(step.children, parsedFields);
     });
 
     return parsedFields;
@@ -106,7 +104,6 @@ export class FieldUtilitiesService {
   }
 
   calculateScore(scope: any, field: any, entry: any) {
-    const self = this;
     let i;
 
     if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
@@ -130,9 +127,9 @@ export class FieldUtilitiesService {
         }
       }
     } else if (field.type === "fieldgroup") {
-      field.children.forEach(function (field: any) {
-        entry[field.id]?.forEach(function (entry: any) {
-          self.calculateScore(scope, field, entry);
+      field.children.forEach((field: any) => {
+        entry[field.id]?.forEach((entry: any) => {
+          this.calculateScore(scope, field, entry);
         });
       });
 
@@ -153,12 +150,9 @@ export class FieldUtilitiesService {
 
   updateAnswers(scope: any, parent: any, list: any, answers: any) {
     let entry, option, i, j;
-    const self = this;
 
-    const localscope = this;
-
-    list.forEach(function (field: any) {
-      if (self.isFieldTriggered(parent, field, scope.answers, scope.score)) {
+    list.forEach((field: any) => {
+      if (this.isFieldTriggered(parent, field, scope.answers, scope.score)) {
         if (!(field.id in answers)) {
           answers[field.id] = [{}];
         }
@@ -170,10 +164,10 @@ export class FieldUtilitiesService {
 
       if (field.id in answers) {
         for (i = 0; i < answers[field.id].length; i++) {
-          self.updateAnswers(scope, field, field.children, answers[field.id][i]);
+          this.updateAnswers(scope, field, field.children, answers[field.id][i]);
         }
       } else {
-        self.updateAnswers(scope, field, field.children, {});
+        this.updateAnswers(scope, field, field.children, {});
       }
 
       if (!field.enabled) {
@@ -181,9 +175,9 @@ export class FieldUtilitiesService {
       }
 
       if (scope.appDataService?.public.node.enable_scoring_system) {
-        scope.answers[field.id]?.forEach(function (entry: any) {
-          localscope.calculateScore(scope, field, entry);
-        });
+        scope.answers[field.id]?.forEach((entry: any) => {
+          this.calculateScore(scope, field, entry);
+        })
       }
 
       for (i = 0; i < answers[field.id].length; i++) {
@@ -239,7 +233,6 @@ export class FieldUtilitiesService {
   }
 
   onAnswersUpdate(scope: any) {
-    const self = this;
     scope.block_submission = false;
     scope.score = 0;
     scope.points_to_sum = 0;
@@ -253,11 +246,9 @@ export class FieldUtilitiesService {
       scope.submissionService.setContextReceivers(scope.context.id);
     }
 
-    const localscope = this;
-
-    scope.questionnaire.steps.forEach(function (step: any) {
-      step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.score);
-      localscope.updateAnswers(scope, step, step.children, scope.answers);
+    scope.questionnaire.steps.forEach((step: any) => {
+      step.enabled = this.isFieldTriggered(null, step, scope.answers, scope.score);
+      this.updateAnswers(scope, step, step.children, scope.answers);
     });
 
     if (scope.context) {
@@ -313,18 +304,15 @@ export class FieldUtilitiesService {
   }
 
   parseFields(fields: any, parsedFields: any) {
-    const self = this;
 
-    fields.forEach(function (field: any) {
-      parsedFields = self.parseField(field, parsedFields);
+    fields.forEach((field: any) =>{
+      parsedFields = this.parseField(field, parsedFields);
     });
 
     return parsedFields;
   }
 
   parseField(field: any, parsedFields: ParsedFields) {
-    const self = this;
-
     if (!Object.keys(parsedFields).length) {
       parsedFields.fields = [];
       parsedFields.fields_by_id = {};
@@ -339,8 +327,8 @@ export class FieldUtilitiesService {
       });
 
     } else if (field.type === "fieldgroup") {
-      field.children.forEach(function (field: any) {
-        self.parseField(field, parsedFields);
+      field.children.forEach((childField: any) => {
+        this.parseField(childField, parsedFields);
       });
     }
 

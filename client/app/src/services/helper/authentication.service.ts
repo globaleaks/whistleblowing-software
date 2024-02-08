@@ -141,7 +141,7 @@ export class AuthenticationService {
                 this.reset();
                 const redirect = this.activatedRoute.snapshot.queryParams['redirect'] || '/';
                 const redirectURL = decodeURIComponent(redirect);
-                if(redirectURL!="/"){
+                if(redirectURL!=="/"){
                   this.router.navigateByUrl(redirectURL).then();
                 }else {
                   this.appDataService.updateShowLoadingPanel(true);

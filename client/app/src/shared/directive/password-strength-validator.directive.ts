@@ -36,7 +36,7 @@ export class PasswordStrengthValidatorDirective implements Validator {
     if (pwd) {
       /* Score symbols variation */
       for (const type in types) {
-        if (types.hasOwnProperty(type)) {
+        if (Object.prototype.hasOwnProperty.call(types, type)) {
           variation1 += (types as Record<string, boolean>)[type] ? 1 : 0;
         }
       }

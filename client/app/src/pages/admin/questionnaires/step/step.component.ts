@@ -52,9 +52,9 @@ export class StepComponent implements OnInit {
   getResolver() {
     return this.httpService.requestQuestionnairesResource().subscribe(response => {
       response.forEach((step: questionnaireResolverModel) => {
-        if (step.id == this.step.questionnaire_id) {
+        if (step.id === this.step.questionnaire_id) {
           step.steps.forEach((innerStep: any) => {
-            if (innerStep.id == this.step.id) {
+            if (innerStep.id === this.step.id) {
               this.step = innerStep;
             }
           })

@@ -33,7 +33,7 @@ export class TippageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let wpTip = this.wbTipResolver.dataModel;
+    const wpTip = this.wbTipResolver.dataModel;
     if (wpTip) {
       this.wbTipService.initialize(wpTip);
       this.tip = this.wbTipService.tip;

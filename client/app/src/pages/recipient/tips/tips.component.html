@@ -173,7 +173,7 @@
                         <span (click)="sortKey = 'receiver_count'; sortReverse = !sortReverse">
                           <i class="fa-solid fa-users"></i>
                           <span></span>
-                          <span *ngIf="sortKey == 'receiver_count'">
+                          <span *ngIf="sortKey === 'receiver_count'">
                             <span *ngIf="!sortReverse" class="fa-solid fa-caret-down"></span>
                             <span *ngIf="sortReverse" class="fa-solid fa-caret-up"></span>
                           </span>

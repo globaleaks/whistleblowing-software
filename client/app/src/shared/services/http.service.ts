@@ -219,7 +219,7 @@ export class HttpService {
     return this.httpClient.delete<void>("api/admin/config/tls/files/" + name);
   }
 
-  requestAdminAcmeResource(param: {}, header: HttpHeaders): Observable<void> {
+  requestAdminAcmeResource(param: object, header: HttpHeaders): Observable<void> {
     return this.httpClient.post<void>("api/admin/config/acme/run", param, {headers: header});
   }
 

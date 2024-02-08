@@ -29,8 +29,8 @@
 
 .btn-primary:active {
   background-color: #9fc9f1 !important;
-  border-color: rgba(38, 143, 255, .5) !important;
-  box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5);
+  border-color: rgba(38, 143, 255, 50%) !important;
+  box-shadow: 0 0 0 .2rem rgba(38, 143, 255, 50%);
 }
 
 .btn-danger:active {
@@ -60,14 +60,19 @@
   border-color: #c8d1e0;
 }
 
+.form-control:hover {
+  background: #fff;
+}
+
 .form-control.is-valid:focus,
 .was-validated .form-control:focus {
   border-color: #86b7fe !important;
   box-shadow: 0 0 0 .25rem #0d6efd40 !important;
 }
 
-.form-control:hover {
-  background: #fff;
+.was-validated .form-control:focus {
+  border-color: #ced4da;
+  box-shadow: none;
 }
 
 body .dropdown-visible > div.multiselect-dropdown > div.dropdown-list {

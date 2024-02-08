@@ -2,6 +2,7 @@ import {Component, Input} from "@angular/core";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {Receiver} from "@app/models/app/public-model";
+import {cancelFun, ConfirmFunFunction} from "@app/shared/constants/types";
 
 @Component({
   selector: "src-grant-access",
@@ -11,8 +12,8 @@ export class GrantAccessComponent {
 
   @Input() usersNames: Record<string, string> | undefined;
   @Input() selectableRecipients: Receiver[];
-  @Input() confirmFun: Function;
-  @Input() cancelFun: Function;
+  @Input() confirmFun: ConfirmFunFunction;
+  @Input() cancelFun: cancelFun;
   receiver_id: { id: number };
 
   constructor(private modalService: NgbModal, private utils: UtilsService) {
@@ -30,9 +31,6 @@ export class GrantAccessComponent {
   }
 
   cancel() {
-    if (this.cancelFun) {
-      this.cancelFun();
-    }
     this.modalService.dismissAll();
   }
 }

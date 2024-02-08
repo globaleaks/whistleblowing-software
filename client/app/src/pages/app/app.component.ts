@@ -58,7 +58,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   isWhistleblowerPage() {
-    let temp = this.utilsService.isWhistleblowerPage(this.authenticationService, this.appDataService)
+    const temp = this.utilsService.isWhistleblowerPage(this.authenticationService, this.appDataService)
     if ((this.router.url === "/" || this.router.url === "/submission") && this.loading) {
       return true;
     } else {

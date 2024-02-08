@@ -245,10 +245,10 @@ export class TipComponent implements OnInit {
 
   prepareSubmissionStatuses() {
     const subCopy:any[]= [...this.appDataService.submissionStatuses];
-    let output = [];
-    for (let x of subCopy) {
+    const output = [];
+    for (const x of subCopy) {
       if (x.substatuses.length) {
-        for (let y of x.substatuses) {
+        for (const y of x.substatuses) {
           output.push({
             id: `${x.id}:${y.id}`,
             label: this.translateService.instant(x.label) + ' \u2013 ' + y.label,

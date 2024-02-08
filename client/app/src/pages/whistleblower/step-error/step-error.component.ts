@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output, QueryList} from "@angular/core";
 import {SubmissionService} from "@app/services/helper/submission.service";
 import {FormArray, FormGroup, NgForm} from "@angular/forms";
 import {Field} from "@app/models/resolvers/field-template-model";
+import {DisplayStepErrorsFunction, StepFormFunction} from "@app/shared/constants/types";
 
 @Component({
   selector: "src-step-error",
@@ -10,8 +11,8 @@ import {Field} from "@app/models/resolvers/field-template-model";
 export class StepErrorComponent {
   @Input() navigation: number;
 
-  @Input() displayStepErrors: Function;
-  @Input() stepForm: Function;
+  @Input() displayStepErrors: DisplayStepErrorsFunction;
+  @Input() stepForm: StepFormFunction;
   @Input() submission: SubmissionService;
   @Input() stepForms: QueryList<NgForm>;
   @Input() field_id_map: { [key: string]: Field };

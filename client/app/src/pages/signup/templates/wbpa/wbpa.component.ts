@@ -15,7 +15,7 @@ export class WbpaComponent {
   protected readonly Constants = Constants;
   validated = false;
   confirmation_email: string;
-  domainPattern: string = "^[a-z0-9\-]+$";
+  domainPattern: string = "^[a-z0-9-]+$";
 
   constructor(protected appDataService: AppDataService) {
   }

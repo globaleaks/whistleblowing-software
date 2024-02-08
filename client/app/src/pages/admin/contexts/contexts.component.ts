@@ -49,7 +49,7 @@ export class ContextsComponent implements OnInit {
     this.utilsService.reloadComponent();
   }
 
-  newItemOrder(objects: Array<any>, key: string): number {
+  newItemOrder(objects: any[], key: string): number {
     if (objects.length === 0) {
       return 0;
     }

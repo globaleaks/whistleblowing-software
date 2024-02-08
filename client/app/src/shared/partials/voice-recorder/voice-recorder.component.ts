@@ -179,7 +179,7 @@ export class VoiceRecorderComponent implements OnInit {
     return new Observable<void>((observer) => {
       this.flow.files = [];
 
-      if (this.uploads.hasOwnProperty(this.fileInput)) {
+      if (Object.prototype.hasOwnProperty.call(this.uploads, this.fileInput)) {
         delete this.uploads[this.fileInput];
       }
 

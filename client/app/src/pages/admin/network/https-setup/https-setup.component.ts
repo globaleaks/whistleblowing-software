@@ -22,7 +22,7 @@ export class HttpsSetupComponent {
   setupAcme() {
     const authHeader = this.authenticationService.getHeader();
     this.httpService.requestUpdateTlsConfigFilesResource("key", authHeader, this.fileResources.key).subscribe(() => {
-      this.httpService.requestAdminAcmeResource({}, authHeader).subscribe(() => {
+      this.httpService.requestAdminAcmeResource(Object, authHeader).subscribe(() => {
         this.dataToParent.emit();
       });
     });

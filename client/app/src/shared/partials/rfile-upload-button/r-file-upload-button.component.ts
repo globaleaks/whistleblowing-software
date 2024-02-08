@@ -55,35 +55,34 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   }
 
   ngAfterViewInit() {
-    const self = this;
     this.autoUploadSubscription = this.flow.transfers$.subscribe((event,) => {
 
-      self.confirmButton = false;
-      self.showError = false;
+      this.confirmButton = false;
+      this.showError = false;
 
-      if (!self.uploads) {
-        self.uploads = {};
+      if (!this.uploads) {
+        this.uploads = {};
       }
-      if (self.uploads && !self.uploads[self.fileInput]) {
-        self.uploads[self.fileInput] = [];
+      if (this.uploads && !this.uploads[this.fileInput]) {
+        this.uploads[this.fileInput] = [];
       }
-      event.transfers.forEach(function (file) {
+      event.transfers.forEach((file)=> {
 
-        if (file.paused && self.errorFile) {
-          self.errorFile.flowFile.cancel();
+        if (file.paused && this.errorFile) {
+          this.errorFile.flowFile.cancel();
           return;
         }
-        if (self.appDataService.public.node.maximum_filesize < (file.size / 1000000)) {
-          self.showError = true;
-          self.cdr.detectChanges();
+        if (this.appDataService.public.node.maximum_filesize < (file.size / 1000000)) {
+          this.showError = true;
+          this.cdr.detectChanges();
           file.flowFile.pause();
-          self.errorFile = file;
+          this.errorFile = file;
         } else if (!file.complete) {
-          self.confirmButton = true;
+          this.confirmButton = true;
         }
       });
-      self.uploads[self.fileInput] = self.flow;
-      this.notifyFileUpload.emit(self.uploads);
+      this.uploads[this.fileInput] = this.flow;
+      this.notifyFileUpload.emit(this.uploads);
     });
   }
 

@@ -58,15 +58,14 @@ export class SiteslistComponent {
 
   openConfirmableModalDialog(arg: tenantResolverModel, scope: any): Observable<string> {
     scope = !scope ? this : scope;
-    let self = this
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
+      const modalRef = this.modalService.open(DeleteConfirmationComponent, {backdrop: 'static', keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
       modalRef.componentInstance.confirmFunction = () => {
         observer.complete()
         const url = "api/admin/tenants/" + arg.id;
-        return self.httpService.requestDeleteTenant(url).subscribe(_ => {
+        return this.httpService.requestDeleteTenant(url).subscribe(_ => {
           this.utilsService.deleteResource(this.tenants, arg);
         });
       };

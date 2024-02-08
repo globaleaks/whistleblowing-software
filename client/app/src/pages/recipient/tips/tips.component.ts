@@ -115,7 +115,6 @@ export class TipsComponent implements OnInit {
       }
     });
   }
-
   openRevokeAccessModal() {
     this.utils.runUserOperation("get_users_names", {}, false).subscribe(
       {

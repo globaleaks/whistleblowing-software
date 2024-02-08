@@ -37,7 +37,7 @@ export class TipCommentsComponent implements OnInit {
   }
 
   newComment() {
-    let response = this.tipService.newComment(this.newCommentContent, this.key);
+    const response = this.tipService.newComment(this.newCommentContent, this.key);
     this.newCommentContent = "";
 
     response.subscribe(

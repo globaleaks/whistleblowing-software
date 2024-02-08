@@ -21,7 +21,7 @@ export class UrlRedirectsComponent implements OnInit {
   }
 
   redirectPath(path: redirectResolverModel, index: number) {
-    if (index == 1) {
+    if (index === 1) {
       return path.path1;
     } else {
       return path.path2;

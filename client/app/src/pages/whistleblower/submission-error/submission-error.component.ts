@@ -4,6 +4,7 @@ import {UtilsService} from "@app/shared/services/utils.service";
 import {SubmissionService} from "@app/services/helper/submission.service";
 import {Field} from "@app/models/resolvers/field-template-model";
 import {Context} from "@app/models/reciever/reciever-tip-data";
+import {DisplayStepErrorsFunction, StepFormFunction} from "@app/shared/constants/types";
 
 @Component({
   selector: "src-submission-error",
@@ -24,8 +25,8 @@ export class SubmissionErrorComponent {
   @Input() stepForms: QueryList<NgForm>;
   @Input() field_id_map: { [key: string]: Field };
 
-  @Input() displayStepErrors: Function;
-  @Input() stepForm: Function;
+  @Input() displayStepErrors: DisplayStepErrorsFunction ;
+  @Input() stepForm: StepFormFunction;
 
   @Output() goToStep: EventEmitter<any> = new EventEmitter();
 

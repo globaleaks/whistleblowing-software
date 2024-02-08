@@ -15,7 +15,7 @@ export class SignupdefaultComponent implements OnInit {
   emailRegex: string;
   confirmation_email: string;
   validated = false;
-  domainPattern: string = "^[a-z0-9\-]+$";
+  domainPattern: string = "^[a-z0-9-]+$";
   mail: string;
 
   constructor(protected appDataService: AppDataService) {

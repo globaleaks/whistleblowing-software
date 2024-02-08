@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable, Renderer2} from "@angular/core";
 import * as Flow from "@flowjs/flow.js";
 import {TranslateService} from "@ngx-translate/core";
-import {ActivatedRouteSnapshot, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RequestSupportComponent} from "@app/shared/modals/request-support/request-support.component";
 import {HttpService} from "@app/shared/services/http.service";
@@ -42,7 +42,7 @@ export class UtilsService {
   }
 
   routeGuardRedirect(){
-    let loginUrlWithParam = `/login?redirect=${encodeURIComponent(location.hash.substring(1))}`;
+    const loginUrlWithParam = `/login?redirect=${encodeURIComponent(location.hash.substring(1))}`;
     this.router.navigateByUrl(loginUrlWithParam).then();
   }
 
@@ -95,7 +95,7 @@ export class UtilsService {
   }
 
   removeBootstrap(renderer: Renderer2, document:Document, link:string){
-    let defaultBootstrapLink = document.head.querySelector(`link[href="${link}"]`);
+    const defaultBootstrapLink = document.head.querySelector(`link[href="${link}"]`);
     if (defaultBootstrapLink) {
       renderer.removeChild(document.head, defaultBootstrapLink);
     }
@@ -160,7 +160,7 @@ export class UtilsService {
       return false;
     };
 
-    let currentUrl = this.router.url + "?";
+    const currentUrl = this.router.url + "?";
 
     this.router.navigateByUrl(currentUrl)
       .then(() => {
@@ -448,7 +448,7 @@ export class UtilsService {
     return this.httpService.requestDefaultL10NResource(lang);
   }
 
-  runAdminOperation(operation: string, args: {value: string}|{}, refresh: boolean) {
+  runAdminOperation(operation: string, args: {value: string}|object, refresh: boolean) {
     return this.runOperation("api/admin/config", operation, args, refresh);
   }
 
@@ -457,7 +457,7 @@ export class UtilsService {
   }
 
 
-  runOperation(api: string, operation: string, args?: {value: string}|{}, refresh?: boolean): Observable<any> {
+  runOperation(api: string, operation: string, args?: {value: string}|object, refresh?: boolean): Observable<any> {
     const requireConfirmation = [
       "enable_encryption",
       "disable_2fa",
@@ -524,7 +524,7 @@ export class UtilsService {
   openConfirmableModalDialogReport(arg: string, scope: any): Observable<string> {
     scope = !scope ? this : scope;
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: "static",keyboard: false});
+      const modalRef = this.modalService.open(DeleteConfirmationComponent,{backdrop: "static",keyboard: false});
       modalRef.componentInstance.arg = arg;
       modalRef.componentInstance.scope = scope;
       modalRef.componentInstance.confirmFunction = () => {
@@ -655,7 +655,7 @@ export class UtilsService {
 
   acceptPrivacyPolicyDialog(): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(AcceptAgreementComponent, {
+      const modalRef = this.modalService.open(AcceptAgreementComponent, {
         backdrop: 'static',
         keyboard: false,
       });

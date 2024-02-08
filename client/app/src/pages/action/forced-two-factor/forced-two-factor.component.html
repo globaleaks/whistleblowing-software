@@ -6,6 +6,6 @@
 </div>
 <div class="row mt-3">
     <div class="col-md-6">
-        <button (click)="enable2FA()" [disabled]="twoFactorAuthData.totp.secret.length !== 32 || (twoFactorAuthData.totp.token.length != 6)" class="btn btn-primary">{{'Enable'|translate}}</button>
+        <button (click)="enable2FA()" [disabled]="twoFactorAuthData.totp.secret.length !== 32 || (twoFactorAuthData.totp.token.length !== 6)" class="btn btn-primary">{{'Enable'|translate}}</button>
     </div>
 </div>

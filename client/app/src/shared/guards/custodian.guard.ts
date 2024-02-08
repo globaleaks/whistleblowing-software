@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Router, UrlTree} from "@angular/router";
+import {Router, UrlTree} from "@angular/router";
 import {Observable} from "rxjs";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {AppConfigService} from "@app/services/root/app-config.service";

@@ -1,17 +1,12 @@
-.form-select-custom {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-}
-
 .select-container {
   position: relative;
   width: 200px;
 }
 
 .form-select-custom {
+  appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
   width: 100%;
   padding: 6px 10px;
   border: 1px solid #ccc;
@@ -35,5 +30,5 @@
 .form-select-custom:focus {
   outline: none;
   border-color: #66afe9;
-  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+  box-shadow: 0 0 5px rgba(102, 175, 233, 50%);
 }

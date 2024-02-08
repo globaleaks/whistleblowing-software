@@ -60,11 +60,8 @@
               }
             },
             "development": {
-              "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
+              "vendorChunk": true,
               "customWebpackConfig": {
                 "path": "./cypress/test.config.ts"
               }
