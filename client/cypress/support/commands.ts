@@ -7,7 +7,7 @@ declare global {
       waitForLoader: () => void;
       waitForPageIdle: () => void;
       logout: () => void;
-      takeScreenshot: (filename: string, timeout?: number, locator?: any) => void;
+      takeScreenshot: (filename: string, locator?: any) => void;
       login_whistleblower: (receipt: string) => void;
       waitUntilClickable: (locator: string, timeout?: number) => void;
       waitForUrl: (url: string, timeout?: number) => Chainable<any>;
@@ -81,7 +81,6 @@ Cypress.Commands.add("takeScreenshot", (filename, timeout: number = 0, _?: any) 
     return;
   }
 
-  cy.wait(timeout);
   cy.get("html, body").invoke(
     "attr",
     "style",
@@ -93,6 +92,7 @@ Cypress.Commands.add("takeScreenshot", (filename, timeout: number = 0, _?: any) 
 
     cy.waitForPageIdle();
 
+    cy.waitForLoader();
     cy.screenshot("../" + filename, {
       overwrite: true
     });
@@ -117,7 +117,7 @@ Cypress.Commands.add("waitForLoader", () => {
             cy.get("#PageOverlay", { log: false }).should("not.be.visible").then(() => {
               resolve();
             });
-          } else if (Date.now() - startTime > 500) {
+          } else if (Date.now() - startTime > 100) {
             resolve();
           } else {
             setTimeout(checkVisibility, 100);
