@@ -417,17 +417,6 @@ module.exports = function(grunt) {
       all: ["app/css/**/*.css"]
     },
 
-    terser: {
-      options: {
-        sourceMap: true
-      },
-      minify: {
-        files: {
-          "build/js/scripts.min.js": ["build/js/scripts.js"]
-        }
-      }
-    },
-
     shell: {
       build: {
         command: "npx ng build --configuration=production --aot && echo \"Build completed\""
@@ -456,7 +445,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-stylelint");
   grunt.loadNpmTasks("grunt-string-replace");
-  grunt.loadNpmTasks("grunt-terser");
   grunt.loadNpmTasks("gruntify-eslint");
   grunt.loadNpmTasks("grunt-shell");
 
