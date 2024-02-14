@@ -60,12 +60,12 @@ export class VoiceRecorderComponent implements OnInit {
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({audio: true})
-        .then((stream) => {
-          this.startRecording(fileId, stream).then();
-        })
-        .catch(() => {
-          this.activeButton = null;
-        });
+          .then((stream) => {
+            this.startRecording(fileId, stream).then();
+          })
+          .catch(() => {
+            this.activeButton = null;
+          });
     }
   }
 
@@ -104,28 +104,28 @@ export class VoiceRecorderComponent implements OnInit {
 
     this.enableNoiseSuppression(stream).subscribe();
     if(this.audioContext){
-    const mediaStreamDestination = this.audioContext.createMediaStreamDestination();
-    const source = this.audioContext.createMediaStreamSource(stream);
-    const anonymizationFilter = this.anonymizeSpeaker(this.audioContext);
-    source.connect(anonymizationFilter.input);
-    anonymizationFilter.output.connect(mediaStreamDestination);
+      const mediaStreamDestination = this.audioContext.createMediaStreamDestination();
+      const source = this.audioContext.createMediaStreamSource(stream);
+      const anonymizationFilter = this.anonymizeSpeaker(this.audioContext);
+      source.connect(anonymizationFilter.input);
+      anonymizationFilter.output.connect(mediaStreamDestination);
 
-    source.connect(anonymizationFilter.input);
-    anonymizationFilter.output.connect(mediaStreamDestination);
+      source.connect(anonymizationFilter.input);
+      anonymizationFilter.output.connect(mediaStreamDestination);
 
-    const recorder = new MediaRecorder(mediaStreamDestination.stream);
-    recorder.onstop = () => {
-      this.onRecorderStop().subscribe();
-    };
-    recorder.ondataavailable = this.onRecorderDataAvailable.bind(this);
-    recorder.start();
+      const recorder = new MediaRecorder(mediaStreamDestination.stream);
+      recorder.onstop = () => {
+        this.onRecorderStop().subscribe();
+      };
+      recorder.ondataavailable = this.onRecorderDataAvailable.bind(this);
+      recorder.start();
 
-    this.mediaRecorder = new MediaRecorder(stream);
-    this.mediaRecorder.onstop = () => {
-      recorder.stop();
-    };
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.mediaRecorder.onstop = () => {
+        recorder.stop();
+      };
 
-    this.mediaRecorder.start();
+      this.mediaRecorder.start();
     }
   };
 
@@ -315,4 +315,3 @@ export class VoiceRecorderComponent implements OnInit {
 
   protected readonly parseInt = parseInt;
 }
-
