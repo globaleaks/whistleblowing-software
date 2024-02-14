@@ -95,7 +95,7 @@ export class VoiceRecorderComponent implements OnInit {
       if (this.seconds > parseInt(this.field.attrs.max_len.value)) {
         this.isRecording = false;
         if (this.secondsTracker) {
-          //clearInterval(this.secondsTracker);
+          clearInterval(this.secondsTracker);
         }
         this.secondsTracker = null;
         this.stopRecording().subscribe();
@@ -152,7 +152,7 @@ export class VoiceRecorderComponent implements OnInit {
       this.activeButton = null;
 
       if (this.secondsTracker) {
-        //clearInterval(this.secondsTracker);
+        clearInterval(this.secondsTracker);
       }
       this.secondsTracker = null;
 
