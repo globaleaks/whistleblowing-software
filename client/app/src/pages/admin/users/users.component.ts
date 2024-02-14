@@ -25,10 +25,12 @@ export class UsersComponent implements AfterViewInit {
       this.nodeData = this.node;
       this.tabs = [
         {
+          id:"users",
           title: "Users",
           component: this.tab1
         },
         {
+          id:"options",
           title: "Options",
           component: this.tab2
         },

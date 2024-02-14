@@ -33,6 +33,7 @@ export class SettingsComponent implements AfterViewInit {
       this.nodeData = this.node;
       this.tabs = [
         {
+          id:"settings",
           title: "Settings",
           component: this.tab1
         },
@@ -40,18 +41,22 @@ export class SettingsComponent implements AfterViewInit {
       if (this.authenticationService.session.role === "admin") {
         this.tabs = this.tabs.concat([
           {
+            id:"files",
             title: "Files",
             component: this.tab2
           },
           {
+            id:"languages",
             title: "Languages",
             component: this.tab3
           },
           {
+            id:"text_customization",
             title: "Text customization",
             component: this.tab4
           },
           {
+            id:"advanced",
             title: "Advanced",
             component: this.tab5
           }

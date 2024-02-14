@@ -3,11 +3,11 @@ describe("admin login", () => {
     cy.login_admin();
 
     cy.visit("#/admin/preferences");
-    cy.contains("button", "Account recovery key").click();
+    cy.get("#account_recovery_key").click();
     cy.get("[name='secret']").type(Cypress.env("user_password"));
-    cy.contains("button", "Confirm").click();
+    cy.get("#confirm").click();
     cy.get('src-encryption-recovery-key').should('exist');
-    cy.contains("button", "Close").should("be.visible").click();
+    cy.get("#close").click();
 
     cy.logout();
   });

@@ -76,7 +76,7 @@ Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) =>
 
 });
 
-Cypress.Commands.add("takeScreenshot", (filename, timeout: number = 0, _?: any) => {
+Cypress.Commands.add("takeScreenshot", (filename, _?: any) => {
   if (!Cypress.env("takeScreenshots")) {
     return;
   }
@@ -162,7 +162,7 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
     finalURL = "/actions/forcedpasswordchange";
     cy.waitForUrl(finalURL);
   } else {
-    cy.url().should("include", "#/login").then((currentURL) => {
+    cy.url().should("include", "#/login").then((_) => {
       cy.url().should("not.include", "#/login").then((currentURL) => {
         const hashPart = currentURL.split("#")[1];
         finalURL = hashPart === "login" ? "/admin/home" : hashPart;

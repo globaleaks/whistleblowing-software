@@ -22,7 +22,7 @@
                 <table class="table table-striped" id="fileList">
                     <tbody id="fileListBody">
                     <tr *ngFor="let file of files | orderBy:'name'">
-                        <td>{{file.name}}</td>
+                        <td id="file_name">{{file.name}}</td>
                         <td>
                             <a class="btn btn-sm btn-primary" [href]="'s/' + file.name" [download]="file.name">
                                 <i class="fa-solid fa-download"></i>
@@ -30,7 +30,7 @@
                             </a>
                             <button class="btn btn-sm btn-danger" (click)="deleteFile('/api/admin/files/' + file.id)">
                                 <i class="fa-solid fa-trash"></i>
-                                <span>{{ 'Delete' | translate }}</span>
+                                <span id="delete">{{ 'Delete' | translate }}</span>
                             </button>
                         </td>
                     </tr>

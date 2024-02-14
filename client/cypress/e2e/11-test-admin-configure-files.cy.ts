@@ -4,7 +4,7 @@ describe("Admin configure custom CSS", () => {
 
     cy.visit("#/admin/settings");
 
-    cy.contains("button", "Files").click();
+    cy.get('[data-cy="files"]').click();
 
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("not.be.checked");
     cy.get("[name='authenticationData.session.permissions.can_upload_files_switch']").click();
@@ -21,7 +21,7 @@ describe("Admin configure custom CSS", () => {
   it("should be able to configure a custom CSS", () => {
     cy.login_admin();
     cy.visit("#/admin/settings");
-    cy.contains("button", "Files").click();
+    cy.get('[data-cy="files"]').click();
 
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("not.be.checked");
     cy.get("[name='authenticationData.session.permissions.can_upload_files_switch']").click();
@@ -42,14 +42,14 @@ describe("Admin configure custom CSS", () => {
         cy.wrap($input).trigger('change', { force: true });
       });
     });
-    cy.contains("label", "Project name").should("be.visible");
+    cy.get("#project_name").should("be.visible");
   });
 
   it("should upload a file and make it available for download and deletion", () => {
 
     cy.login_admin();
     cy.visit("#/admin/settings");
-    cy.contains("button", "Files").click();
+    cy.get('[data-cy="files"]').click();
 
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("not.be.checked");
     cy.get("[name='authenticationData.session.permissions.can_upload_files_switch']").click();
@@ -73,9 +73,9 @@ describe("Admin configure custom CSS", () => {
 
     cy.visit("#/admin/home");
     cy.waitForUrl("#/admin/settings");
-    cy.contains("button", "Files").should('be.visible', { timeout: 10000 }).click();
-    cy.get('table#fileList').contains('td', 'documentation').should('be.visible');
-    cy.get("#fileList").contains("Delete").click();
+    cy.get('[data-cy="files"]').should('be.visible', { timeout: 10000 }).click();
+    cy.get('table#fileList').find('td#file_name').should('contain', 'documentation').should('be.visible');
+    cy.get("#fileList").get("#delete").click();
   });
 
 
@@ -83,7 +83,7 @@ describe("Admin configure custom CSS", () => {
 
     cy.login_admin();
     cy.visit("#/admin/settings");
-    cy.contains("button", "Files").click();
+    cy.get('[data-cy="files"]').click();
 
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("not.be.checked");
     cy.get("[name='authenticationData.session.permissions.can_upload_files_switch']").click();
@@ -93,7 +93,7 @@ describe("Admin configure custom CSS", () => {
 
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("be.checked");
     cy.get("[name='authenticationData.session.permissions.can_upload_files_switch']").click();
-    cy.contains("button", "Files").click();
+    cy.get('[data-cy="files"]').click();
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("not.be.checked");
 
     cy.logout();

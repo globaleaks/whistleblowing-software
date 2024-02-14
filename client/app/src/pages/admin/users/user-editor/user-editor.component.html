@@ -17,16 +17,16 @@
         </span>
         <span class="col-md-5 clearfix">
             <span class="float-end">
-                <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" (click)="toggleEditing();">
+                <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" id="edit_user" (click)="toggleEditing();">
                     <span>{{ 'Edit' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-primary" *ngIf="editing" [disabled]="editUser.invalid" (click)="saveUser(user)">
+                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_user" [disabled]="editUser.invalid" (click)="saveUser(user)">
                     <span>{{ 'Save' | translate }}</span>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing();">
                     <span>{{ 'Cancel' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-danger" *ngIf="getUserID() !== user.id" (click)="deleteUser(user)">
+                <button class="btn btn-sm btn-danger" *ngIf="getUserID() !== user.id" id="delete_user" (click)="deleteUser(user)">
                     <span>{{ 'Delete' | translate }}</span>
                 </button>
             </span>
@@ -81,7 +81,7 @@
                         </span>
                         <span class="btn btn-outline-secondary" *ngIf="!user.encryption || preferenceData.escrow" (click)="user.newpassword = !user.newpassword">
                             <i class="fa-solid fa-edit"></i>
-                            <span>{{ 'Set password' | translate }}</span>
+                            <span id="set_password">{{ 'Set password' | translate }}</span>
                         </span>
                     </div>
                     <div class="form-group" *ngIf="user.newpassword">
@@ -91,7 +91,7 @@
                             <span class="input-group-append">
                                 <button id="setPasswordButton" class="btn btn-primary rounded-start-0 m-0" (click)="setPassword(setPasswordArgs)">
                                     <i class="fa-solid fa-tag"></i>
-                                    <span>{{ 'Set password' | translate }}</span>
+                                    <span id="set_password">{{ 'Set password' | translate }}</span>
                                 </button>
                             </span>
                         </span>

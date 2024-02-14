@@ -5,7 +5,7 @@ describe("admin configure mail", () => {
 
     cy.get("[name='notification.dataModel.tip_expiration_threshold']").clear().type("24");
 
-    cy.contains("button", "Save").click();
+    cy.get("#save_notification").click();
 
     cy.logout();
   });

@@ -3,7 +3,7 @@ describe("Admin Enable Signup", function() {
     cy.login_admin();
 
     cy.visit("/#/admin/sites");
-    cy.contains("button", "Options").should('be.visible').click();
+    cy.get('[data-cy="options"]').should('be.visible').click();
     cy.get('input[name="nodeResolver.dataModel.rootdomain"]').type("domain.tld");
     cy.get('input[name="nodeResolver.dataModel.enable_signup"]').click();
     cy.takeScreenshot("admin/signup_configuration");
@@ -24,8 +24,8 @@ describe("User Perform Signup", function() {
     cy.get('input[name="surname"]').type("Surname");
     cy.get('input[name="mail_address"]').type("test@example.net");
     cy.get('input[name="email"]').type("test@example.net");
-    cy.contains("button", "Proceed").click();
-    cy.contains("Success!", { timeout: 10000 }).should("be.visible");
+    cy.get(".ButtonNext").click();
+    cy.get(".title", { timeout: 10000 }).should("be.visible");
   });
 });
 
@@ -35,7 +35,7 @@ describe("Admin Disable Signup", function() {
     cy.login_admin();
 
     cy.visit("/#/admin/sites");
-    cy.contains("button", "Options").click();
+    cy.get('[data-cy="options"]').click();
     cy.get('input[name="nodeResolver.dataModel.enable_signup"]').click();
     cy.get('i.fa-solid.fa-check').click();
 

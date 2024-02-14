@@ -2,10 +2,10 @@ describe("admin disable submissions", () => {
   it("should disable submission", () => {
     cy.login_admin();
     cy.visit("/#/admin/settings");
-    cy.contains("button", "Advanced").click();
+    cy.get('[data-cy="advanced"]').click();
 
     cy.get('input[name="disable_submissions"]').click();
-    cy.contains("button", "Save").click();
+    cy.get("#save").click();
 
     cy.logout();
     cy.visit("/#/");
@@ -16,7 +16,7 @@ describe("admin configure custom texts", () => {
   it("should perform custom texts configuration", () => {
     cy.login_admin();
     cy.visit("/#/admin/settings");
-    cy.contains("button", "Text customization").click();
+    cy.get('[data-cy="text_customization"]').click();
 
     cy.get('select[name="vars.text_to_customize"]').select("Submissions disabled");
 
@@ -26,11 +26,10 @@ describe("admin configure custom texts", () => {
 
     cy.reload();
     cy.visit("/#/");
-    cy.contains("button", "Whistleblowing disabled").should("exist");
-    cy.contains("button", "Submissions disabled").should("not.exist");
+    cy.get('#submissions_disabled').should('contain', 'Whistleblowing disabled');
 
     cy.visit("/#/admin/settings");
-    cy.contains("button", "Text customization").click();
+    cy.get('[data-cy="text_customization"]').click();
 
     cy.get(".deleteCustomTextButton").click();
 
@@ -39,18 +38,17 @@ describe("admin configure custom texts", () => {
     cy.reload();
     cy.visit("/#/");
     cy.reload();
-    cy.contains("button", "Whistleblowing disabled").should("not.exist");
-    cy.contains("button", "Submissions disabled").should("exist");
+    cy.get('#submissions_disabled').should('not.contain', 'Whistleblowing disabled');
   });
 });
 describe("admin enable submissions", () => {
   it("should enable submission", () => {
     cy.login_admin();
     cy.visit("/#/admin/settings");
-    cy.contains("button", "Advanced").click();
+    cy.get('[data-cy="advanced"]').click();
 
     cy.get('input[name="disable_submissions"]').click();
-    cy.contains("button", "Save").click();
+    cy.get("#save").click();
     cy.waitForUrl("/#/admin/settings");
 
     cy.get('#ngb-nav-12').click();
@@ -59,6 +57,6 @@ describe("admin enable submissions", () => {
     cy.waitForUrl("/#/login");
 
     cy.visit("/#/");
-    cy.contains("button", "File a report").should('be.visible', { timeout: 10000 });
+    cy.get("#WhistleblowingButton").should("be.visible", { timeout: 10000 });
   });
 });

@@ -6,10 +6,10 @@ describe("admin add, configure and delete questionnaires", () => {
     cy.contains(questionnaire_name).should("be.visible");
   };
 
-  const add_question = async (question_type:string, step_trigger:boolean) => {
+  const add_question = async (question_type:string, question_id:number, step_trigger:boolean) => {
     cy.get(".show-add-question-btn").first().click();
     cy.get("input[name='new_field.label']").first().type(question_type);
-    cy.get("select[name='new_field.type']").first().select(question_type);
+    cy.get("select[name='new_field.type']").first().select(question_id);
     cy.get("#add-field-btn").first().click();
 
     if (["Checkbox", "Selection box"].indexOf(question_type) === 0) {
@@ -53,10 +53,10 @@ describe("admin add, configure and delete questionnaires", () => {
     add_step("Step 3");
 
     const fieldTypes = Cypress.env("field_types");
-    fieldTypes.forEach((questionType: string) => {
+    fieldTypes.forEach((questionType: string, index: number) => {
         cy.waitForLoader();
         cy.contains("Step 2").should('be.visible', { timeout: 10000 }).click();
-        add_question(questionType, true);
+        add_question(questionType, index, true);
     });
 
     cy.contains("Step 2").click();
@@ -72,10 +72,10 @@ describe("admin add, configure and delete questionnaires", () => {
     });
 
 
-    cy.contains("button", "Question templates").click();
+    cy.get('[data-cy="question_templates"]').click();
 
-    fieldTypes.forEach((questionType:string) => {
-      add_question(questionType, false);
+    fieldTypes.forEach((questionType:string, index: number) => {
+      add_question(questionType, index, false);
     });
 
     cy.logout();

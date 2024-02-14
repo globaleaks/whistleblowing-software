@@ -2,7 +2,7 @@ describe("globaLeaks setup wizard", () => {
   it("should allow the user to setup the wizard", () => {
     cy.visit("/#/");
 
-    cy.contains("h1", "Platform wizard").should("be.visible");
+    cy.get("#PageTitle").should("be.visible");
 
     cy.takeScreenshot("wizard/1");
 

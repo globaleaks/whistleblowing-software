@@ -25,10 +25,12 @@ export class QuestionnairesComponent implements AfterViewInit {
       this.nodeData = this.node;
       this.tabs = [
         {
+          id:"questionnaires",
           title: "Questionnaires",
           component: this.tab1
         },
         {
+          id:"question_templates",
           title: "Question templates",
           component: this.tab2
         },

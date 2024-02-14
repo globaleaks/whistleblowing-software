@@ -19,14 +19,14 @@ describe("Recipient first login", () => {
     cy.waitForUrl("/recipient");
     cy.visit("/#/recipient/preferences");
     cy.takeScreenshot("user/preferences");
-    cy.contains("button", "Account recovery key").click();
+    cy.get( "#account_recovery_key").click();
     cy.get("[name='secret']").type(Cypress.env("user_password"));
-    cy.contains("button", "Confirm").click();
+    cy.get("#confirm").click();
     cy.takeScreenshot("user/recoverykey");
-    cy.contains("button", "Close").click();
+    cy.get("#close").click();
     cy.get("[name='two_factor']").click();
     cy.takeScreenshot("user/2fa");
-    cy.contains("button", "Close").click();
+    cy.get("#close").click();
   });
 });
 
@@ -39,7 +39,7 @@ describe("Recipient2 first login", () => {
 
     cy.url().should("include", "/recipient/home");
     cy.get("#PreferencesLink").click();
-    cy.contains("a", "Password").click();
+    cy.get(".password").click();
     cy.get('[name="changePasswordArgs.current"]').type(Cypress.env("user_password"));
     cy.get('[name="changePasswordArgs.password"]').type(Cypress.env("init_password"));
     cy.get('[name="changePasswordArgs.confirm"]').type(Cypress.env("init_password"));

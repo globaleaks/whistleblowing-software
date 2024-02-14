@@ -111,11 +111,11 @@
             <i class="fa-solid fa-check"></i>
             <span>{{'Save'|translate}}</span>
         </button>
-        <button *ngIf="preferenceResolver.dataModel.encryption" class="btn btn-outline-secondary" (click)="getEncryptionRecoveryKey($event)">{{'Account recovery key'|translate}}</button>
+        <button *ngIf="preferenceResolver.dataModel.encryption" class="btn btn-outline-secondary" id="account_recovery_key" (click)="getEncryptionRecoveryKey($event)">{{'Account recovery key'|translate}}</button>
     </div>
     <button *ngIf="!appDataService.public.node.pgp" type="submit" class="btn btn-primary" (click)="save()" [disabled]="preferenceForm.invalid">
         <i class="fa-solid fa-check"></i>
         <span>{{'Save'|translate}}</span>
     </button>
-    <button *ngIf="!appDataService.public.node.pgp && preferenceResolver.dataModel.encryption" class="btn btn-outline-secondary" (click)="getEncryptionRecoveryKey($event)">{{'Account recovery key'|translate}}</button>
+    <button *ngIf="!appDataService.public.node.pgp && preferenceResolver.dataModel.encryption" id="account_recovery_key" class="btn btn-outline-secondary" (click)="getEncryptionRecoveryKey($event)">{{'Account recovery key'|translate}}</button>
 </form>

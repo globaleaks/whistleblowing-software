@@ -6,7 +6,7 @@ describe("admin configure, add, and delete contexts", () => {
     cy.visit("#/admin/contexts");
 
     cy.get("#context-0").within(() => {
-      cy.contains("Edit").click();
+      cy.get("#edit_context").click();
 
       for (let i = 0; i <= 2; i++) {
         cy.get(".add-receiver-btn").click();
@@ -18,8 +18,8 @@ describe("admin configure, add, and delete contexts", () => {
         }
       }
 
-      cy.contains("Advanced").click();
-      cy.contains("Save").click();
+      cy.get("#advance_context").click();
+      cy.get("#save_context").click();
     });
   });
 
@@ -47,7 +47,7 @@ describe("admin configure, add, and delete contexts", () => {
     cy.login_admin();
 
     cy.visit("#/admin/contexts");
-    cy.get('button:contains("Delete")').last().click();
+    cy.get("[name='delete_context']").last().click();
     cy.get("#modal-action-ok").click();
 
     cy.logout();

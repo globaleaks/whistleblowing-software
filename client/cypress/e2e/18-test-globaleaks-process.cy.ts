@@ -44,7 +44,7 @@ describe("globaleaks process", function () {
       cy.waitForLoader();
       cy.get('#comment-0').should('contain', comment);
       cy.visit("/#/recipient/reports");
-      cy.takeScreenshot("recipient/reports");
+      cy.takeScreenshot("recipient/reports", 0);
 
       cy.logout();
     });
@@ -61,7 +61,7 @@ describe("globaleaks process", function () {
 
       cy.get("#comment-0 .preformatted").should("contain", comment_reply);
 
-      cy.takeScreenshot("whistleblower/report");
+      cy.takeScreenshot("whistleblower/report", 0);
 
       cy.fixture("files/evidence-3.txt").then(fileContent => {
         cy.get('input[type="file"]').then(input => {
@@ -96,7 +96,7 @@ describe("globaleaks process", function () {
       cy.get('[id="tip-action-silence"]').should('be.visible', { timeout: 10000 }).click();
       cy.get('#tip-action-notify').should('be.visible', { timeout: 10000 }).click();
       cy.get('#tip-action-silence').should('be.visible', { timeout: 10000 }).should('be.visible');
-      cy.takeScreenshot("recipient/report");
+      cy.takeScreenshot("recipient/report", 0);
 
       cy.logout();
     });

@@ -16,10 +16,10 @@ describe("admin configure, add, and delete tenants", () => {
 
     cy.takeScreenshot("admin/sites_management_sites");
 
-    cy.get("button").contains("Delete").last().click();
+    cy.get("#delete_tenant").last().click();
     cy.get("#modal-action-ok").click();
 
-    cy.contains("button", "Options").click();
+    cy.get('[data-cy="options"]').click();
     cy.takeScreenshot("admin/sites_management_options");
     cy.logout();
   });

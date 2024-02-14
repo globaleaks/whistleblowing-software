@@ -1,28 +1,28 @@
 describe("admin add, configure, and delete users", () => {
   const new_users = [
     {
-      role: "Recipient",
       name: "Recipient",
+      value:"receiver",
       address: "globaleaks-receiver1@mailinator.com",
     },
     {
-      role: "Recipient",
       name: "Recipient2",
+      value:"receiver",
       address: "globaleaks-receiver2@mailinator.com",
     },
     {
-      role: "Recipient",
       name: "Recipient3",
+      value:"receiver",
       address: "globaleaks-receiver3@mailinator.com",
     },
     {
-      role: "Custodian",
       name: "Custodian",
+      value:"custodian",
       address: "globaleaks-custodian1@mailinator.com",
     },
     {
-      role: "Admin",
       name: "Admin2",
+      value:"admin",
       address: "globaleaks-admin2@mailinator.com",
     }
   ];
@@ -33,7 +33,7 @@ describe("admin add, configure, and delete users", () => {
 
     const make_account = (user:any) => {
       cy.get(".show-add-user-btn").click();
-      cy.get('select[name="role"]').select(user.role);
+      cy.get('select[name="role"]').select(user.value);
       cy.get('input[name="username"]').clear().type(user.name);
       cy.get('input[name="name"]').clear().type(user.name);
       cy.get('input[name="email"]').clear().type(user.address);
@@ -51,9 +51,9 @@ describe("admin add, configure, and delete users", () => {
     cy.visit("/#/admin/users");
 
     cy.get(".userList").eq(3).within(() => {
-      cy.contains("button", "Edit").click();
+      cy.get("#edit_user").click();
       cy.get('input[name="can_delete_submission"]').click();
-      cy.contains("button", "Save").click();
+      cy.get("#save_user").click();
     });
   });
 
@@ -65,9 +65,9 @@ describe("admin add, configure, and delete users", () => {
       const numberOfUsers = Math.min(userListLength, 6);
       for (let i = 1; i < numberOfUsers; i++) {
         cy.get(".userList").eq(i).within(() => {
-          if (Cypress.$("button:contains('Edit')").length > 0) {
-            cy.contains("button", "Edit").should('be.visible', { timeout: 10000 }).click();
-            cy.contains("span", "Set password").first().click();
+          if (Cypress.$("#edit_user").length > 0) {
+            cy.get("#edit_user").should('be.visible', { timeout: 10000 }).click();
+            cy.get("#set_password").first().click();
             cy.get('input[name="password"]').clear().type(Cypress.env("init_password"));
             cy.get('#setPasswordButton').should('be.visible').click();
           }

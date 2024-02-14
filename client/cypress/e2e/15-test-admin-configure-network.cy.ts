@@ -5,13 +5,13 @@ describe("admin configure network", () => {
   });
 
   it("should be able to configure https", () => {
-    cy.contains("button", "HTTPS").click();
+    cy.get('[data-cy="https"]').should('be.visible', { timeout: 10000 }).click();
 
     cy.get('[name="hostname"]').clear().type("127.0.0.1");
-    cy.get('button:contains("Save")').first().click();
+    cy.get('#save_hostname').click();
 
     cy.get("#HTTPSManualMode", { timeout: 10000 }).click();
-    cy.contains("button", "Generate").should('be.visible', { timeout: 10000 }).click();
+    cy.get("#pkGen").should('be.visible', { timeout: 10000 }).click();
     cy.get("#csrGen").click();
     cy.get('[name="country"]').type("IT");
     cy.get('[name="province"]').type("Milano");
@@ -54,12 +54,12 @@ describe("admin configure network", () => {
   });
 
   it("should configure url redirects", () => {
-    cy.contains("button", "URL redirects").first().click();
+    cy.get('[data-cy="url_redirects"]').first().click();
     for (let i = 0; i < 3; i++) {
       cy.get('[name="path1"]').type(`yyyyyyyy-${i}`);
       cy.get('[name="path2"]').type("xxxxxxxx");
-      cy.contains("button", "Add").click();
-      cy.get("button:contains('Delete')").first().click();
+      cy.get("#add_redirect").click();
+      cy.get("#delete_redirect").first().click();
     }
     cy.logout();
   });

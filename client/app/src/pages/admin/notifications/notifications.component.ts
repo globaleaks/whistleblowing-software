@@ -26,10 +26,12 @@ export class NotificationsComponent implements AfterViewInit {
       this.nodeData = this.node;
       this.tabs = [
         {
+          id:"settings",
           title: "Settings",
           component: this.tab1
         },
         {
+          id:"templates",
           title: "Templates",
           component: this.tab2
         },

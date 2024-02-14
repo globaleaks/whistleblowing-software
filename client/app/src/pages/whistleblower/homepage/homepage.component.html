@@ -4,7 +4,7 @@
         <div id="WhistleblowerSubmitBoxButtonDisabled" class="mb-4" *ngIf="appDataService.public.node.disable_submissions || (!appDataService.public.node.https_whistleblower && !appDataService.connection.tor)">
             <button class="btn btn-danger disabled">
                 <i class="fa-solid fa-ban-circle"></i>
-                <span>{{'Submissions disabled'|translate}}</span>
+                <span id="submissions_disabled">{{'Submissions disabled'|translate}}</span>
             </button>
         </div>
         <div class="mb-4" *ngIf="!appDataService.public.node.https_whistleblower && !appDataService.connection.tor">

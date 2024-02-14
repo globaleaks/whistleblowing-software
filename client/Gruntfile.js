@@ -1,6 +1,3 @@
-/* eslint no-console: 0 */
-const fs = require("fs");
-const path = require("path");
 module.exports = function(grunt) {
   let fs = require("fs"),
       path = require("path"),
@@ -442,7 +439,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-stylelint");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("gruntify-eslint");

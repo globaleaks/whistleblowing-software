@@ -25,6 +25,7 @@ export class CaseManagementComponent implements AfterViewInit {
       this.nodeData = this.node;
       this.tabs = [
         {
+          id:"report_statuses",
           title: "Report statuses",
           component: this.tab1
         },

@@ -33,7 +33,7 @@
                     <button class="btn btn-sm btn-primary" *ngIf="editing" (click)="saveTenant()">
                         <span>{{'Save'|translate}}</span>
                     </button>
-                    <button class="btn btn-sm btn-danger" *ngIf="isRemovableTenant()" (click)="deleteTenant($event, tenant)">
+                    <button class="btn btn-sm btn-danger" id="delete_tenant" *ngIf="isRemovableTenant()" (click)="deleteTenant($event, tenant)">
                         <span>{{'Delete'|translate}}</span>
                     </button>
                 </span>

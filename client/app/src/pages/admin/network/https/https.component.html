@@ -6,7 +6,7 @@
             </span>
             <input name="hostname" class="form-control" type="text" [(ngModel)]="hostName" #hostname="ngModel" [pattern]="Constants.hostnameRegexp" [ngClass]="{'is-invalid': hostname.errors?.['pattern']}" />
             <span class="input-group-append">
-                <button class="btn btn-primary rounded-start-0 m-0" (click)="updateHostname(hostName)" [disabled]="hostname.errors?.['pattern'] || adminNetForm.pristine">{{ 'Save' | translate }}</button>
+                <button class="btn btn-primary rounded-start-0 m-0" id="save_hostname" (click)="updateHostname(hostName)" [disabled]="hostname.errors?.['pattern'] || adminNetForm.pristine">{{ 'Save' | translate }}</button>
             </span>
         </p>
     </form>

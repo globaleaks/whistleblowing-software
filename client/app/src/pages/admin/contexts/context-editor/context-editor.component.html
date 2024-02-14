@@ -12,16 +12,16 @@
                 <button *ngIf="index !== contextsData.length - 1 && !nodeResolver.dataModel.show_contexts_in_alphabetical_order" class="btn btn-sm btn-primary" (click)="moveDown($event, index)" data-toggle="tooltip" title="{{'Move down' | translate}}">
                     <i class="fa-solid fa-chevron-down"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" (click)="toggleEditing()">
+                <button class="btn btn-sm btn-outline-secondary" id="edit_context" *ngIf="!editing" (click)="toggleEditing()">
                     <span>{{ 'Edit' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-primary" *ngIf="editing" [disabled]="editContext.invalid" (click)="saveContext(contextResolver)">
+                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_context" [disabled]="editContext.invalid" (click)="saveContext(contextResolver)">
                     <span>{{ 'Save' | translate }}</span>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing()">
                     <span>{{ 'Cancel' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-danger" (click)="deleteContext(contextResolver)">
+                <button class="btn btn-sm btn-danger" name="delete_context" id="delete_context" (click)="deleteContext(contextResolver)">
                     <span>{{ 'Delete' | translate }}</span>
                 </button>
             </span>
@@ -115,7 +115,7 @@
         <hr />
         <div class="row">
             <div class="col-md-12">
-                <button class="btn btn-primary" (click)="showAdvancedSettings = !showAdvancedSettings">
+                <button class="btn btn-primary" id="advance_context" (click)="showAdvancedSettings = !showAdvancedSettings">
                     <i *ngIf="!showAdvancedSettings" class="fa-solid fa-plus"></i>
                     <i *ngIf="showAdvancedSettings" class="fa-solid fa-minus"></i>
                     <span>{{ 'Advanced' | translate }}</span>
