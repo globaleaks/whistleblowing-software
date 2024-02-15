@@ -425,7 +425,7 @@ module.exports = function(grunt) {
         command: "npx ng build --configuration=production --source-map && nyc instrument dist instrument"
       },
       serve: {
-        command: "ng serve --proxy-config proxy.conf.json"
+        command: "ng serve --configuration=production --proxy-config proxy.conf.json"
       },
       code_coverage: {
         command: "npm run e2e:ci && npm run e2e:coverage"

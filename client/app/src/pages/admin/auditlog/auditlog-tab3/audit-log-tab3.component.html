@@ -2,6 +2,7 @@
     <table id="userList" class="table table-condensed table-striped">
         <thead>
         <tr>
+            <th><i class="fa-solid fa-hashtag"></i></th>
             <th>{{'Date'|translate}}</th>
             <th>{{'Last update'|translate}}</th>
             <th>{{'Expiration date'|translate}}</th>
@@ -20,7 +21,8 @@
             <td>{{data.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{data.last_update | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{data.expiration_date | date:'dd-MM-yyyy'}}</td>
-            <td>{{appDataService.contexts_by_id[data.context_id]['name']}}</td>
+            <td *ngIf="appDataService.contexts_by_id[data.context_id]">{{appDataService.contexts_by_id[data.context_id]['name']}}</td>
+            <td *ngIf="!appDataService.contexts_by_id[data.context_id]"></td>
             <td>{{utilsService.getSubmissionStatusText(data.status,data.substatus,appDataService.submissionStatuses)}}</td>
             <td><i *ngIf="data.tor" class="fa-solid fa-check"></i></td>
             <td>{{data.comments}}</td>
