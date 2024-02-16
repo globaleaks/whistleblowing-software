@@ -12,8 +12,8 @@ describe("Admin configure custom CSS", () => {
     cy.get(".modal [type='password']").type("wrongpassword");
     cy.get(".modal .btn-primary").click();
     cy.get(".modal").should("be.visible");
-    cy.wait(1000)
-    cy.get(".modal [type='password']").type(Cypress.env("user_password"));
+    cy.get(".modal [type='password']").type(".");
+    cy.get(".modal [type='password']").clear().type(Cypress.env("user_password"));
     cy.get(".modal .btn-primary").click();
     cy.get("[name='authenticationData.session.permissions.can_upload_files']").should("be.checked");
   });

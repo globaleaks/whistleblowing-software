@@ -71,6 +71,7 @@ export class Tab4Component implements OnInit {
 
   updateCustomText(data: { [key: string]: string }, lang: string) {
     this.utilsService.updateAdminL10NResource(data, lang).subscribe(_ => {
+      this.utilsService.reloadComponent();
     });
   }
 

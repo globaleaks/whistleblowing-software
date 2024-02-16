@@ -25,6 +25,7 @@ describe("admin configure custom texts", () => {
     cy.get("#addCustomTextButton").click();
 
     cy.reload();
+    cy.waitForLoader();
     cy.visit("/#/");
     cy.get('#submissions_disabled').should('contain', 'Whistleblowing disabled');
 

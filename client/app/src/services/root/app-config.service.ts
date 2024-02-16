@@ -137,12 +137,20 @@ export class AppConfigService {
         });
 
         let storageLanguage = localStorage.getItem("default_language");
+        const queryParams = this.activatedRoute.snapshot.queryParams;
         if (languageInit) {
           if (!storageLanguage) {
             storageLanguage = this.appDataService.public.node.default_language;
             localStorage.setItem("default_language", storageLanguage);
           }
-          this.translationService.onChange(storageLanguage);
+          if(!queryParams["lang"]){
+            const setTitle = () => {
+              this.titleService.setTitle();
+            };
+            this.translationService.onChange(storageLanguage, setTitle);
+          }else {
+            this.translationService.onChange(storageLanguage);
+          }
         }
 
 

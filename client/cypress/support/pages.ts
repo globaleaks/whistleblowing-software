@@ -1,17 +1,3 @@
-class ReceiverPage {
-  viewMostRecentSubmission() {
-    cy.get("#tip-0").click();
-  }
-
-  wbfileWidget() {
-    return cy.get("#TipPageWBFileUpload");
-  }
-
-  uploadWBFile(fileName:string) {
-    cy.get("input[type='file']").selectFile(fileName);
-  }
-}
-
 class WhistleblowerPage {
   public static performSubmission() {
     cy.visit("#/");
@@ -27,7 +13,7 @@ class WhistleblowerPage {
 
 
     cy.get("#step-0-field-3-0-input-0").first().select("13d17a19-1c7c-482c-9e6c-16896f0d5f1b");
-    cy.get("#step-0-field-4-0-input-0").first().select("Yes");
+    cy.get("#step-0-field-4-0-input-0").first().select(1);
 
     cy.get("#step-0-field-6-0-input-0").type("...");
 
@@ -43,30 +29,18 @@ class WhistleblowerPage {
       mimeType: "application/zip"
     }, {"force": true});
 
-    cy.get("#step-0-field-7-0-input-0").first().select("No");
+    cy.get("#step-0-field-7-0-input-0").first().select(2);
 
     cy.get("#step-0-field-10-0-input-0").type("...");
     cy.wait(1000);
     cy.get("#SubmitButton").should("be.visible");
 
-    //cy.takeScreenshot("whistleblower/submission",0);
-
     cy.get("#SubmitButton").click();
-    //
-    // cy.wait(1000);
-    //
-    // cy.get("#ReceiptCode").should("be.visible");
-    //
-    // cy.takeScreenshot("whistleblower/receipt",0);
-    //
+
     return cy.get('#ReceiptCode').invoke('val').then((value) => {
       return value;
     });
   }
-
-  submitFile(fileName:string) {
-    cy.get("input[type='file']").selectFile(fileName, {"force": true});
-  }
 }
 
-export { ReceiverPage, WhistleblowerPage };
+export { WhistleblowerPage };

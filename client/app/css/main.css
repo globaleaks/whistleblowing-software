@@ -638,7 +638,11 @@ p:last-child {
 }
 
 .language-box {
-  width: 300px;
+  width: 190px;
+}
+
+.language-box-extended {
+  width: 290px;
 }
 
 #whistleblower-submit-box {
@@ -818,10 +822,6 @@ p:last-child {
   line-height: 2.2rem;
   padding: 0 1em;
   width: max-content;
-}
-
-#language-picker-box {
-  width: 190px;
 }
 
 #login-status-box,

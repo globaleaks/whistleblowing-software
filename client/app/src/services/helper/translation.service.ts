@@ -37,12 +37,15 @@ export class TranslationService {
     return waitForLoader;
   }
 
-  onChange(changedLanguage: string) {
+  onChange(changedLanguage: string, callback?: () => void) {
     this.language = changedLanguage;
     this.translate.use(this.language).subscribe(() => {
       this.translate.setDefaultLang(this.language);
       if (this.translate.getBrowserLang() !== this.language) {
         this.translate.getTranslation(this.language).subscribe();
+      }
+      if (callback) {
+        callback();
       }
     });
   }
