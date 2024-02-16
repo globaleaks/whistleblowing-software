@@ -1087,6 +1087,7 @@ i.fa-solid.fa-chevron-right {
 }
 
 .audio-player-iframe {
+  width: 24em;
   height: 4em;
 }
 
