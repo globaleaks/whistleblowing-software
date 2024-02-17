@@ -10,11 +10,16 @@ import sys
 
 from datetime import datetime
 
+from getpass import getpass
+
+from nacl.encoding import Base64Encoder
+
 from globaleaks.db import get_db_file
 from globaleaks.orm import make_db_uri, get_engine
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks.settings import Settings
 from globaleaks.utils.crypto import GCE, generateRandomPassword
+from globaleaks.utils.utility import datetime_now
 
 
 def check_file(f):
@@ -108,19 +113,58 @@ def restore(args):
 def reset_pass(args):
     db_path = check_db(args.workdir)
 
-    salt = GCE.generate_salt()
-
-    hashed_password = GCE.hash_password(args.password, salt)
-
-    QUERY = "UPDATE user SET salt=?, hash=? WHERE username=? AND tid=? AND crypto_pub_key=?;"
+    admin_username = input("Username: ")
+    admin_password = getpass()
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(QUERY, (salt, hashed_password, args.username, args.tid, ''))
 
-    if c.rowcount != 1:
-        print("Failed! The user '{}' does not exist or encryption key is set".format(args.username))
+    user_salt = GCE.generate_salt()
+    user_hash = GCE.hash_password(args.password, user_salt)
+    user_enc_key = GCE.derive_key(args.password.encode(), user_salt)
+
+    QUERY = "SELECT id, salt, crypto_prv_key, crypto_escrow_prv_key FROM user WHERE username=? AND tid=?"
+    c.execute(QUERY, (admin_username, 1))
+
+    admin_user = c.fetchone()
+    if admin_user is None:
+        print("Failed! The specified admin user '{}' does not exist".format(admin_username))
         sys.exit(1)
+
+    admin_id, admin_salt, admin_crypto_prv_key, admin_crypto_escrow_prv_key = admin_user[0], admin_user[1], admin_user[2], admin_user[3]
+
+    admin_enc_key = GCE.derive_key(admin_password.encode(), admin_salt)
+
+    if admin_crypto_prv_key:
+        try:
+            admin_cc = GCE.symmetric_decrypt(admin_enc_key, Base64Encoder.decode(admin_crypto_prv_key))
+        except:
+            print("Failed! Invalid password")
+            sys.exit(1)
+
+        admin_ek = GCE.asymmetric_decrypt(admin_cc, Base64Encoder.decode(admin_crypto_escrow_prv_key))
+
+    QUERY = "SELECT id, crypto_escrow_bkp1_key FROM user WHERE username=? AND tid=?;"
+    c.execute(QUERY, (args.username, args.tid))
+
+    user = c.fetchone()
+
+    if user is None:
+        print("Failed! The user '{}' does not exist".format(args.username))
+        sys.exit(1)
+
+    user_id, user_crypto_escrow_bkp1_key = user[0], user[1]
+    if user_crypto_escrow_bkp1_key:
+        user_cc = GCE.asymmetric_decrypt(admin_ek, Base64Encoder.decode(user_crypto_escrow_bkp1_key))
+        user_crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(user_enc_key, user_cc))
+    else:
+        user_crypto_prv_key = ''
+
+    QUERY = "UPDATE user SET salt=?, hash=?, crypto_prv_key=?, password_change_date=?, password_change_needed=? WHERE username=? AND tid=?;"
+    c.execute(QUERY, (user_salt, user_hash, user_crypto_prv_key, datetime_now(), True, args.username, args.tid))
+
+    QUERY = "INSERT INTO auditlog(tid, date, type, severity, user_id, object_id) VALUES(?,?,?,?,?,?);"
+    c.execute(QUERY, (1, datetime_now(), 'change_password', 0, admin_id, user_id))
 
     conn.commit()
     conn.close()
