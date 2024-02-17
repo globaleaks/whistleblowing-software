@@ -565,9 +565,7 @@ class _IdentityAccessRequest(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['request_user_id'], ['user.id'], deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['reply_user_id'], ['user.id'], deferrable=True, initially='DEFERRED'))
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _IdentityAccessRequestCustodian(Model):
