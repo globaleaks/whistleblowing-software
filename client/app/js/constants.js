@@ -4,7 +4,7 @@ GL.constant("CONSTANTS", {
    "email_regexp_or_empty": /^([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}[\w]{1,100}$|^$/,
    "country_code_regexp_or_empty": /^([a-zA-Z]){2}$|^$/,
    "number_regexp": /^\d+$/,
-   "phonenumber_regexp": /^[+]?[ \d]+$/,
+   "phonenumber_regexp": /^[+]?[\d]+$/,
    "hostname_regexp": /^[a-z0-9-.]+$|^$/,
    "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
    "secure_or_local_url_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^\/(.*)$|^$/,
