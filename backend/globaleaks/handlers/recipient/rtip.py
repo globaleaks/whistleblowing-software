@@ -692,7 +692,7 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
-    max_date = time.time() + 3651 * 86400
+    max_date = time.time() + 1826 * 86400
     max_date = max_date - max_date % 86400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
