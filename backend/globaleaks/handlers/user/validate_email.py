@@ -15,8 +15,7 @@ from globaleaks.utils.utility import datetime_null
 def db_validate_address_change(session, validation_token):
     """Retrieves a user given a mail change validation token"""
     user = session.query(models.User).filter(
-        models.User.change_email_token == validation_token,
-        models.User.change_email_date >= datetime.now() - timedelta(hours=72)
+        models.User.change_email_token == validation_token
     ).one_or_none()
 
     if user is None:
