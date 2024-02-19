@@ -6,11 +6,9 @@
   <select id="assignSubmissionStatus" class="form-control" data-ng-model="arg.status" data-ng-options="state as state.label | translate for state in arg.submission_statuses.slice(1)"></select>
   <div class="mt-2">
     <span data-translate>Motivation</span>
-    <span data-ng-if="arg.status.status === 'closed' && !arg.motivation" data-uib-tooltip="{{'This field is mandatory' | translate}}" class="text-danger sup">*</span>
   </div>
   <div class="form-group">
-    <textarea name="reason" class="form-control " data-ng-class="{'is-invalid': arg.status.status === 'closed' && !arg.motivation}" data-ng-model="arg.motivation" data-ng-required="arg.status.status === 'closed'" /></textarea>
-    <span data-ng-if="arg.status.status === 'closed' && !arg.motivation" class="text-danger" data-translate>This field is mandatory</span>
+    <textarea name="reason" class="form-control " data-ng-model="arg.motivation" /></textarea>
   </div>
 </div>
 <div class="modal-footer">
