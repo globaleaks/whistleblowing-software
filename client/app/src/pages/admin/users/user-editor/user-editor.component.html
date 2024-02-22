@@ -180,19 +180,19 @@
                     <label>{{ 'Forcefully selected' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="user.can_mask_information" type="checkbox" />
+                    <input name="can_mask_information" [(ngModel)]="user.can_mask_information" type="checkbox" />
                     <span>{{ 'Give this user ability to mask information' | translate }}</span>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="user.can_redact_information" type="checkbox" />
+                    <input name="can_redact_information" [(ngModel)]="user.can_redact_information" type="checkbox" />
                     <span>{{ 'Give this user ability to permanently redact masked information' | translate }}</span>
                 </div>
                 <div class="form-group">
                     <input name="can_delete_submission" [(ngModel)]="user.can_delete_submission" type="checkbox" />
                     <label>{{ 'Allow the recipient to delete reports' | translate }}</label>
                 </div>
-                <div name="can_postpone_expiration" class="form-group" *ngIf="!nodeData.can_postpone_expiration">
-                    <input [(ngModel)]="user.can_postpone_expiration" type="checkbox" />
+                <div  class="form-group" *ngIf="!nodeData.can_postpone_expiration">
+                    <input name="can_postpone_expiration" [(ngModel)]="user.can_postpone_expiration" type="checkbox" />
                     <label>{{ 'Allow the recipient to postpone the report expiration date' | translate }}</label>
                 </div>
                 <div class="form-group">

@@ -73,7 +73,6 @@ import {DemoComponent} from "@app/shared/partials/demo/demo.component";
 import {MessageConsoleComponent} from "@app/shared/partials/messageconsole/message-console.component";
 import {AcceptAgreementComponent} from "@app/shared/modals/accept-agreement/accept-agreement.component";
 import {DisclaimerComponent} from "@app/shared/modals/disclaimer/disclaimer.component";
-import {SecurityAwarenessConfidentialityComponent} from "@app/shared/modals/security-awareness-confidentiality/security-awareness-confidentiality.component";
 import {TransferAccessComponent} from "@app/shared/modals/transfer-access/transfer-access.component";
 import {BlankComponent} from "@app/shared/blank/blank.component";
 import {VoiceRecorderComponent} from "@app/shared/partials/voice-recorder/voice-recorder.component";
@@ -185,7 +184,6 @@ import {RedactInformationComponent} from "@app/shared/modals/redact-information/
     MessageConsoleComponent,
     AcceptAgreementComponent,
     TransferAccessComponent,
-    SecurityAwarenessConfidentialityComponent,
     DisclaimerComponent,
     ChangeSubmissionStatusComponent,
     ReopenSubmissionComponent,
@@ -247,7 +245,6 @@ import {RedactInformationComponent} from "@app/shared/modals/redact-information/
     MessageConsoleComponent,
     AcceptAgreementComponent,
     TransferAccessComponent,
-    SecurityAwarenessConfidentialityComponent,
     DisclaimerComponent,
     ChangeSubmissionStatusComponent,
     ReopenSubmissionComponent,

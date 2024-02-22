@@ -24,7 +24,12 @@ describe("admin add, configure, and delete users", () => {
       name: "Admin2",
       value:"admin",
       address: "globaleaks-admin2@mailinator.com",
-    }
+    },
+    {
+      name: "Analyst",
+      value:"analyst",
+      address: "globaleaks-analyst1@mailinator.com",
+    },
   ];
 
   it("should add new users", () => {
@@ -50,8 +55,9 @@ describe("admin add, configure, and delete users", () => {
     cy.login_admin();
     cy.visit("/#/admin/users");
 
-    cy.get(".userList").eq(3).within(() => {
+    cy.get(".userList").eq(4).within(() => {
       cy.get("#edit_user").click();
+      cy.get('input[name="can_mask_information"]').click();
       cy.get('input[name="can_delete_submission"]').click();
       cy.get("#save_user").click();
     });
@@ -62,7 +68,7 @@ describe("admin add, configure, and delete users", () => {
     cy.visit("/#/admin/users");
 
     cy.get(".userList").its("length").then(userListLength => {
-      const numberOfUsers = Math.min(userListLength, 6);
+      const numberOfUsers = Math.min(userListLength, 7);
       for (let i = 1; i < numberOfUsers; i++) {
         cy.get(".userList").eq(i).within(() => {
           if (Cypress.$("#edit_user").length > 0) {

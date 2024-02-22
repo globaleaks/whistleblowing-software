@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-2">
         <div class="form-check form-switch">
-            <app-switch name="authenticationData.session.permissions.can_upload_files_switch" [isChecked]="permissionStatus" [label]="authenticationData.permissions.can_upload_files ? 'Enabled' : 'Disabled'" (click)="togglePermissionUploadFiles()"></app-switch>
+            <app-switch name="authenticationData.session.permissions.can_upload_files_switch" [isChecked]="permissionStatus" [can_upload_files]="authenticationData.session.permissions.can_upload_files" [label]="authenticationData.session.permissions.can_upload_files ? 'Enabled' : 'Disabled'" (click)="togglePermissionUploadFiles()"></app-switch>
         </div>
     </div>
 </div>

@@ -34,7 +34,7 @@
                 <span id="tip-action-delete" *ngIf="preferencesService.dataModel.can_delete_submission" (click)="tipDelete()" data-toggle="tooltip" title="{{'Delete' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-trash"></i>
             </span>
-            <span *ngIf="(preferencesService.dataModel.can_redact_information || preferencesService.dataModel.can_mask_information)" (click)="toggleRedactMode()" data-toggle="tooltip" title="{{redactOperationTitle | translate}}"
+            <span id="tip-action-mask" *ngIf="(preferencesService.dataModel.can_redact_information || preferencesService.dataModel.can_mask_information)" (click)="toggleRedactMode()" data-toggle="tooltip" title="{{redactOperationTitle | translate}}"
 	            class="btn btn-outline-secondary" [ngClass]="{'active': redactMode}">
                 <i class="fa-solid fa-eraser"></i>
             </span>
