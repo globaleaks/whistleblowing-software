@@ -43,6 +43,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
   let mediaRecorder = null;
   let flow = null;
   let secondsTracker = null;
+  let context;
 
   $scope.seconds = 0;
   $scope.activeButton = null;
@@ -145,7 +146,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
     await mediaProcessor.enableNoiseSuppression(stream);
 
-    var context = new AudioContext();
+    context = new AudioContext();
     var mediaStreamDestination = new MediaStreamAudioDestinationNode(context);
     const source = context.createMediaStreamSource(stream);
     const anonymization_filter = new anonymizeSpeaker(context);
@@ -192,6 +193,9 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
     if (mediaRecorder && (mediaRecorder.state === "recording" || mediaRecorder.state === "paused")) {
       mediaRecorder.stop();
+    }
+    if (context) {
+      context.close();
     }
   };
 
