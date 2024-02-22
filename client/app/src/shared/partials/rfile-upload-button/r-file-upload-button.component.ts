@@ -14,6 +14,7 @@ import {ControlContainer, NgForm} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {FlowOptions} from "@flowjs/flow.js";
 import {Field} from "@app/models/resolvers/field-template-model";
+import { AuthenticationService } from "@app/services/helper/authentication.service";
 
 @Component({
   selector: "src-rfile-upload-button",
@@ -38,10 +39,11 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   confirmButton = false;
   flowConfig: FlowOptions;
 
-  constructor(private cdr: ChangeDetectorRef, protected appDataService: AppDataService) {
+  constructor(private cdr: ChangeDetectorRef, protected appDataService: AppDataService,protected authenticationService:AuthenticationService) {
   }
 
   ngOnInit(): void {
+    this.file_id = this.file_id ? this.file_id:"step-input";
     this.flowConfig = {
       target: this.fileUploadUrl,
       speedSmoothingFactor: 0.01,
@@ -49,7 +51,7 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
       allowDuplicateUploads: false,
       testChunks: false,
       permanentErrors: [500, 501],
-      headers: {"X-Session": this.session_id}
+      headers: {"X-Session": this.session_id?this.session_id:this.authenticationService.session.id}
     };
     this.fileInput = this.field ? this.field.id : "status_page";
   }

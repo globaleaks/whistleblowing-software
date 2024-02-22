@@ -42,13 +42,16 @@ export class WbFilesComponent implements OnInit {
     (
       {
         next: async token => {
-          const ans = this.cryptoService.proofOfWork(token.id);
-          if (this.authenticationService.session.role === "receiver") {
-            window.open("api/recipient/rfiles/" + wbFile.id + "?token=" + token.id + ":" + ans);
-          } else {
-            window.open("api/whistleblower/wbtip/rfiles/" + wbFile.id + "?token=" + token.id + ":" + ans);
-          }
-          this.appDataService.updateShowLoadingPanel(false);
+          this.cryptoService.proofOfWork(token.id).subscribe(
+            (ans) => {
+              if (this.authenticationService.session.role === "receiver") {
+                window.open("api/recipient/rfiles/" + wbFile.id + "?token=" + token.id + ":" + ans);
+              } else {
+                window.open("api/whistleblower/wbtip/rfiles/" + wbFile.id + "?token=" + token.id + ":" + ans);
+              }
+              this.appDataService.updateShowLoadingPanel(false);
+            }
+          );
         }
       }
     );
