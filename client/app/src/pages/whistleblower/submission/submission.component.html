@@ -13,14 +13,14 @@
         </div>
         <form #submissionForm="ngForm" [ngClass]="{'was-validated': displayErrors()}" autocomplete="off" novalidate>
             <div class="tabbable tabs-below mb-3">
-                <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" *ngIf="submissionService.context.show_steps_navigation_interface && submissionService.context.questionnaire.steps.length > 1">
-                    <li *ngIf="submissionService.context.allow_recipients_selection" [attr.aria-selected]="navigation === -1" [attr.aria-current]="navigation === -1 ? 'step' : 'false'" aria-controls="tab-recipient-selection" class="nav-item">
+                <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" *ngIf="submissionService.context.show_steps_navigation_interface && submissionService.context.questionnaire.steps.length > 1" role="tablist">
+                    <li *ngIf="submissionService.context.allow_recipients_selection" [attr.aria-selected]="navigation === -1" [attr.aria-current]="navigation === -1 ? 'step' : 'false'" aria-controls="tab-recipient-selection" class="nav-item" role="tab">
                         <a href="#" id="receiver-selection-link" [ngClass]="{active: navigation === -1}" class="nav-link nav-link-custom" (click)="goToStep(-1)">
                             <span class="step-index" [ngClass]="{'step-index-selected': navigation === -1}">1</span>
                             <span class="step-label">{{'Recipient selection'|translate}}</span>
                         </a>
                     </li>
-                    <li id="context-{{index}}" *ngFor="let step of (submissionService.context.questionnaire.steps | orderBy:'order');let index = index" class="nav-item" [attr.aria-selected]="navigation === index" [attr.aria-current]="navigation === index ? 'step' : 'false'" [attr.aria-controls]="'step-' + index">
+                    <li id="context-{{index}}" *ngFor="let step of (submissionService.context.questionnaire.steps | orderBy:'order');let index = index" class="nav-item" role="tablist" [attr.aria-selected]="navigation === index" [attr.aria-current]="navigation === index ? 'step' : 'false'" [attr.aria-controls]="'step-' + index">
                         <div *ngIf="step.enabled">
                             <a id="step-{{index}}-link" href="#" [ngClass]="{active: navigation === index}" class="nav-link nav-link-custom" (click)="goToStep(index)">
                                 <span class="step-index" [ngClass]="{'step-index-selected': navigation === index}">{{index + (submissionService.context.allow_recipients_selection ? 2 : 1)}}</span>
@@ -32,7 +32,7 @@
                     <div *ngIf="displayErrors()">
                         <src-submission-error [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStep]=hasPreviousStep() [areReceiverSelected]=areReceiversSelected() [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
                     </div>
-                    <div id="step-receiver-selection" *ngIf="submissionService.context.allow_recipients_selection">
+                    <div id="step-receiver-selection" *ngIf="submissionService.context.allow_recipients_selection" role="tabpanel">
                         <div *ngIf="navigation === -1">
                             <src-receiver-selection (switchSelection)="switchSelection($event)" [receiversOrderPredicate]="receiversOrderPredicate" [submission]="submissionService" [show_steps_navigation_bar]="show_steps_navigation_bar"></src-receiver-selection>
                         </div>
@@ -40,7 +40,7 @@
                     <div *ngIf="navigation !== -1">
                         <div *ngFor="let step of submissionService.context.questionnaire.steps | orderBy:'order'; let index = index">
                             <span *ngIf="step && step.enabled && submissionService">
-                                <div [class.hidden]="navigation !== index">
+                                <div [class.hidden]="navigation !== index" role="tabpanel">
                                     <div id="step-{{index}}" ngForm #stepform="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
                                         <markdown *ngIf="step.description" class="description" [data]="step.description | stripHtml"></markdown>
                                         <src-form (notifyFileUpload)="notifyFileUpload($event)" [session_id]="getAuthSessionID()" [fileUploadUrl]="'api/whistleblower/submission/attachment'" [identity_provided]=identity_provided [uploads]="uploads" [displayErrors]="displayErrors()" [answers]="answers" [submission]="submissionService" [step]="step" [index]="index"></src-form>

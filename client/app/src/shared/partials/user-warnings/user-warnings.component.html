@@ -1,4 +1,4 @@
-<div id="UserWarnings" *ngIf="authentication.session">
+<div id="UserWarnings" *ngIf="authentication.session" role="alert">
     <div class="alert alert-secondary" *ngIf="authentication.session.role === 'admin' && nodeResolver.dataModel.update_available">
         <i class="fa-solid fa-exclamation-circle"></i>
         <span>{{'An update is available:' | translate}}</span>

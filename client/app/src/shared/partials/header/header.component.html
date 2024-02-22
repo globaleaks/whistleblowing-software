@@ -2,7 +2,7 @@
     <div class="d-flex flex-wrap justify-content-between">
         <div id="HeaderBox1">
             <div id="logo-box" class="mb-3" (click)="appConfig.setHomepage()">
-                <img class="img-fluid pointer" alt="project logo" src="{{appDataService.public.node.logo ? 's/logo' : 'data/logo.png'}}" />
+                <img class="img-fluid pointer" [alt]="appDataService.projectTitle" src="{{appDataService.public.node.logo ? 's/logo' : 'data/logo.png'}}" />
             </div>
             <div id="title-box">
                 <ng-container *ngIf="appDataService.projectTitle || appDataService.pageTitle">

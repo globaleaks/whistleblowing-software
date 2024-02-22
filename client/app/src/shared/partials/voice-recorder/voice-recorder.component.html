@@ -1,18 +1,18 @@
 <div class="audio-box" *ngIf="authenticationService.session">
     <div class="row">
         <div class="col-md-6">
-            <button class="btn" [ngClass]="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" [disabled]="isRecording || uploads[fileInput]?.files.length" (click)="triggerRecording(field.id)">
+            <button class="btn" [ngClass]="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" [disabled]="isRecording || uploads[fileInput]?.files.length" (click)="triggerRecording(field.id)" aria-label="Record a voice message">
                 <i class="fas fa-microphone"></i>
             </button>
-            <button class="btn" *ngIf="activeButton === 'record'" (click)="onStop()">
+            <button class="btn" *ngIf="activeButton === 'record'" (click)="onStop()" aria-label="Stop Recording">
                 <i class="fas fa-stop"></i>
             </button>
         </div>
         <div class="col-md-6 text-end">
-            <button class="btn text-danger" [ngClass]="{'blink': activeButton === 'record'}" *ngIf="activeButton === 'record'">
+            <button class="btn text-danger" [ngClass]="{'blink': activeButton === 'record'}" *ngIf="activeButton === 'record'" aria-label="Recording Indicator">
                 <i class="fas fa-circle-dot"></i>
             </button>
-            <button class="btn text-danger" *ngIf="!isRecording && seconds" (click)="deleteRecording()">
+            <button class="btn text-danger" *ngIf="!isRecording && seconds" (click)="deleteRecording()" aria-label="Delete Recording">
                 <i class="fas fa-trash"></i>
             </button>
         </div>

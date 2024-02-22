@@ -25,10 +25,10 @@
 </div>
 <div *ngIf="authentication.requireAuthCode">
     <div class="form-group">
-        <label>{{'Enter the two factor authentication code'|translate}}</label>
+        <label for="input-2fa">{{'Enter the two factor authentication code'|translate}}</label>
     </div>
     <div class="input-group">
-        <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="authentication.loginData.loginAuthCode" type="text" size="6" maxlength="6" required />
+        <input name="input-2fa" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="authentication.loginData.loginAuthCode" type="text" size="6" maxlength="6" required />
         <div class="input-group-btn">
             <button id="login-button" class="btn btn-primary rounded-start-0 m-0" [disabled]="authentication.loginInProgress  || loginValidator.invalid || authentication.loginData.loginAuthCode.length !=6" (click)="authentication.login(0, authentication.loginData.loginUsername, authentication.loginData.loginPassword, authentication.loginData.loginAuthCode)" type="submit">
                 <i class="fa-solid fa-sign-in-alt"></i>
