@@ -182,3 +182,8 @@ class AccessLocationInvalid(GLException):
     reason = "IP Address not allows to login from this location"
     error_code = 16
     status_code = 401
+
+class DuplicateUserError(GLException):
+    reason = "A user with this username already exists"
+    error_code = 17
+    status_code = 422
