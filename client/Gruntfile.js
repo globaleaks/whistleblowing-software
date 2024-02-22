@@ -419,13 +419,13 @@ module.exports = function(grunt) {
         command: "npx ng build --configuration=production --aot && echo \"Build completed\""
       },
       test: {
-        command: "npx ng build --configuration=development --source-map && nyc instrument dist instrument"
+        command: "npx ng build --configuration=testing --source-map && nyc instrument dist instrument"
       },
       babel: {
         command: "npx ng build --configuration=production --source-map && nyc instrument dist instrument"
       },
       serve: {
-        command: "ng serve --configuration=production --proxy-config proxy.conf.json"
+        command: "ng serve --proxy-config proxy.conf.json"
       },
       code_coverage: {
         command: "npm run e2e:ci && npm run e2e:coverage"

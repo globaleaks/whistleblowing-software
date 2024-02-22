@@ -58,6 +58,13 @@
               }
             },
             "development": {
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "testing": {
               "extractLicenses": false,
               "vendorChunk": true,
               "customWebpackConfig": {
