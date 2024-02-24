@@ -3,7 +3,11 @@ describe("globaLeaks setup wizard", () => {
     cy.visit("/#/");
 
     cy.get("#PageTitle").should("be.visible");
-    cy.get('#language-picker-box').should('be.visible', { timeout: 10000 }).find('ng-select').last().click().get('ng-dropdown-panel').contains(Cypress.env('default_language')).click();
+
+    if (Cypress.env('default_language')!="en") {
+      cy.get('#language-picker-select').click();
+      cy.get(`[data-cy="${Cypress.env('default_language')}"]`).trigger('click');
+    }
 
     cy.takeScreenshot("wizard/1");
 

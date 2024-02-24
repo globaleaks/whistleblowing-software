@@ -23,15 +23,15 @@
                 <span id="tip-action-revoke-access" *ngIf="preferencesService.dataModel.can_grant_access_to_reports" (click)="openRevokeTipAccessModal()" data-toggle="tooltip" title="{{'Revoke access' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-user-minus"></i>
             </span>
-                <span id="tip-action-transfer-access" *ngIf="preferencesService.dataModel.can_transfer_access_to_reports" (click)="openTipTransferModal()" data-toggle="tooltip" title="{{'Transfer access' | translate}}" class="btn btn-outline-secondary">
+            <span id="tip-action-transfer-access" *ngIf="preferencesService.dataModel.can_transfer_access_to_reports" (click)="openTipTransferModal()" data-toggle="tooltip" title="{{'Transfer access' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-people-arrows"></i>
             </span>
-                <ng-container *ngIf="!tip || tip.context">
+            <ng-container *ngIf="!tip || tip.context">
                 <span id="tip-action-postpone" *ngIf="!tip || preferencesService.dataModel.can_postpone_expiration && tip.context.tip_timetolive > 0" (click)="tipPostpone()" data-toggle="tooltip" title="{{'Postpone the expiration date' | translate}}" class="btn btn-outline-secondary">
                     <i class="fa-solid fa-clock"></i>
                 </span>
-                </ng-container>
-                <span id="tip-action-delete" *ngIf="preferencesService.dataModel.can_delete_submission" (click)="tipDelete()" data-toggle="tooltip" title="{{'Delete' | translate}}" class="btn btn-outline-secondary">
+            </ng-container>
+            <span id="tip-action-delete" *ngIf="preferencesService.dataModel.can_delete_submission" (click)="tipDelete()" data-toggle="tooltip" title="{{'Delete' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-trash"></i>
             </span>
             <span id="tip-action-mask" *ngIf="(preferencesService.dataModel.can_redact_information || preferencesService.dataModel.can_mask_information)" (click)="toggleRedactMode()" data-toggle="tooltip" title="{{redactOperationTitle | translate}}"
@@ -44,7 +44,7 @@
               </span>
             </ng-container>
             <ng-container *ngIf="preferencesService.dataModel.can_reopen_reports && tip?.status === 'closed'">
-                <span id="tip-action-change-status" (click)="openModalReopen()" data-toggle="tooltip" title="{{'Reopen' | translate}}" class="btn btn-outline-secondary">
+                <span id="tip-action-reopen-status" (click)="openModalReopen()" data-toggle="tooltip" title="{{'Reopen' | translate}}" class="btn btn-outline-secondary">
                   <i class="fa-solid fa-dot-circle"></i>
                 </span>
             </ng-container>

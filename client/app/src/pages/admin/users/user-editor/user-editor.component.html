@@ -213,7 +213,7 @@
             <div class="col-md-12">
                 <label>{{ 'Give the user administrative access to the following features:' | translate }}</label>
                 <div class="form-group">
-                    <input [(ngModel)]="user.can_edit_general_settings" type="checkbox" />
+                    <input name="can_edit_general_settings" [(ngModel)]="user.can_edit_general_settings" type="checkbox" />
                     <span>{{ 'Settings' | translate }}</span>
                 </div>
             </div>

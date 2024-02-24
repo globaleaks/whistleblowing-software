@@ -24,14 +24,14 @@ describe("admin configure languages", () => {
     cy.waitForUrl("/#/admin/settings");
     cy.get('[data-cy="languages"]').click();
 
-    if (Cypress.env('default_language')=="Italian") {
+    if (Cypress.env('default_language')=="it") {
       cy.get(".non-default-language").eq(0).click();
     }
 
     cy.get("#save_language").click();
     cy.get('[data-cy="languages"]').click();
 
-    if (Cypress.env('default_language')=="Italian") {
+    if (Cypress.env('default_language')=="it") {
       cy.get(".remove-lang-btn").eq(0).click();
     } else {
       cy.get(".remove-lang-btn").eq(1).click();
@@ -45,10 +45,14 @@ describe("admin configure languages", () => {
     cy.get('[name="node.dataModel.presentation"]').clear().type("TEXT2_IT");
     cy.get('button.btn.btn-primary').eq(0).get("#save_settings").click();
 
-    cy.get('#language-picker-box').find('ng-select').last().click().get('ng-dropdown-panel').contains(Cypress.env('default_language')).click();
+    cy.get('#language-picker-select').click();
+    cy.get(`[data-cy="${Cypress.env('default_language')}"]`).trigger('click');
+
     cy.visit("/#/admin/settings");
     cy.get('[data-cy="languages"]').click();
-    cy.get(".non-default-language").eq(0).click();
+    if (Cypress.env('default_language')=="it") {
+      cy.get(".non-default-language").eq(0).click();
+    }
     cy.get("#save_language").click();
 
     cy.logout();
