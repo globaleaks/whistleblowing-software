@@ -214,8 +214,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     itip.mobile = client_using_mobile
 
     itip.context_id = context.id
-    itip.enable_two_way_comments = context.enable_two_way_comments
-    itip.enable_attachments = context.enable_attachments
 
     whistleblower_identity = session.query(models.Field) \
                                     .filter(models.Field.template_id == 'whistleblower_identity',
@@ -258,9 +256,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers, itip.creation_date)
 
     for uploaded_file in user_session.files:
-        if not itip.enable_attachments:
-            break
-
         if crypto_is_available:
             for k in ['name', 'type', 'size']:
                 uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))

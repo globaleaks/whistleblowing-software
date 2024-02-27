@@ -368,8 +368,6 @@ AdminContextDesc = {
     'receivers': [uuid_regexp],
     'select_all_receivers': bool,
     'allow_recipients_selection': bool,
-    'enable_two_way_comments': bool,
-    'enable_attachments': bool,
     'score_threshold_medium': int,
     'score_threshold_high': int,
     'order': int,
@@ -470,7 +468,6 @@ ContextDesc = {
     'tip_reminder': int,
     'allow_recipients_selection': bool,
     'maximum_selectable_receivers': int,
-    'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool,
     'picture': bool
 }

@@ -238,12 +238,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             self.assertEqual(rtip_desc['status'], 'opened')
 
-    def test_enable_two_way_comments(self):
-        return self.switch_enabler('enable_two_way_comments')
-
-    def test_enable_attachments(self):
-        return self.switch_enabler('enable_attachments')
-
     def test_mark_important(self):
         return self.switch_enabler('important')
 
