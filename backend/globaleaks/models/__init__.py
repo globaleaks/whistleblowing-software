@@ -219,7 +219,6 @@ class _AuditLog(Model):
     tid = Column(Integer, default=1)
     date = Column(DateTime, default=datetime_now, nullable=False)
     type = Column(UnicodeText(24), default='', nullable=False)
-    severity = Column(Integer, default=0, nullable=False)
     user_id = Column(UnicodeText(36))
     object_id = Column(UnicodeText(36))
     data = Column(JSON)

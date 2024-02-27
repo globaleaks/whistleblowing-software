@@ -14,7 +14,6 @@ def serialize_log(log):
     return {
         'date': log.date,
         'type': log.type,
-        'severity': log.severity,
         'user_id': log.user_id,
         'object_id': log.object_id,
         'data': log.data
