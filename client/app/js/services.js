@@ -580,8 +580,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.show_steps_navigation_interface = true;
       context.select_all_receivers = true;
       context.maximum_selectable_receivers = 0;
-      context.enable_two_way_comments = true;
-      context.enable_attachments = true;
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;
