@@ -12,7 +12,6 @@
     <tr data-ng-repeat="data in auditLog.auditlog.elems | orderBy:'date':true | limitTo:itemsPerPage:((auditLog.auditlog.currentPage - 1) * itemsPerPage)">
       <td>{{data.date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{data.type}}</td>
-      <td>{{data.severity}}</td>
       <td>{{data.user_id}}</td>
       <td>{{data.object_id}}</td>
     </tr>
