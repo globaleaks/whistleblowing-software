@@ -1,4 +1,4 @@
-<form name="contentForm" novalidate class="reveal">
+<div id="SectionContent" name="contentForm" novalidate class="reveal">
     <ul ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="active">
         <ng-container *ngFor="let tab of tabs">
             <li [ngbNavItem]="tab.title"> <button ngbNavLink [attr.data-cy]="tab.id">{{ tab.title | translate }}</button>
@@ -21,4 +21,4 @@
     <ng-template #tab4>
         <src-auditlog-tab4></src-auditlog-tab4>
     </ng-template>
-</form>
+</div>

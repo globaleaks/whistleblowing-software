@@ -1,5 +1,5 @@
 <ng-container *ngIf="RTips.dataModel && RTips.dataModel && filteredTips">
-    <div id="toolbar" class="row">
+    <div id="Toolbar" class="row">
         <div class="col-md-12">
             <a id="link-home" routerLink="/recipient/home" data-toggle="tooltip" title="{{'Home' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -28,7 +28,7 @@
             <span id="tip-action-reload" (click)="reload()" data-toggle="tooltip" title="{{'Refresh' | translate}}" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-sync"></i>
             </span>
-            <span id="search-filter" class="w-auto d-inline-block">
+            <span id="SearchFilter" class="w-auto d-inline-block">
                 <span class="input-group ">
                     <input type="text" class="form-control" placeholder="{{'Search' | translate}}" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)">
                     <div class="input-group-append">

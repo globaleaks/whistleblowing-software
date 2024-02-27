@@ -7,7 +7,7 @@
             </ng-option>
         </ng-select>
 	</div>
-	<div id="login-status-box" *ngIf="utils.showUserStatusBox(authentication, appDataService)">
+	<div id="LoginStatusBox" *ngIf="utils.showUserStatusBox(authentication, appDataService)">
 		<span id="HomeLinkBox">
             <span *ngIf="authentication.session.role !== 'whistleblower'">
                 <a id="HomepageLink" [href]="'#'+authentication.session.homepage" title="{{'Home' | translate }}">
@@ -42,4 +42,4 @@
         </span>
 	</div>
 </div>
-<src-receipt id="whistle-blower-login-box" class="ms-1 mb-1" *ngIf="utils.showWBLoginBox()"></src-receipt>
+<src-receipt id="WhistleblowerLoginBox" class="ms-1 mb-1" *ngIf="utils.showWBLoginBox()"></src-receipt>

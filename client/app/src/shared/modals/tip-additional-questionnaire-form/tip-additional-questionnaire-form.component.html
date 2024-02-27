@@ -5,7 +5,7 @@
     </button>
 </div>
 <div class="modal-body">
-    <form #submissionForm="ngForm" autocomplete="off" novalidate>
+    <form #submissionForm="ngForm" id="SubmissionForm" autocomplete="off" novalidate>
         <div class="tabbable tabs-below">
             <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" *ngIf="wbTipService.tip.additional_questionnaire.steps.length > 1">
                 <li class="nav-item" *ngFor="let step of wbTipService.tip.additional_questionnaire.steps | orderBy:'order' ;let index = index">
@@ -36,7 +36,7 @@
     <src-rfiles-upload-status [progress]="calculateProgress()" [estimatedTime]="calculateEstimatedTime()" [uploading]="uploading()" *ngIf="!hasNextStep()"></src-rfiles-upload-status>
 </div>
 <div class="modal-footer">
-    <div id="submission-buttons">
+    <div id="SubmissionButtons">
         <br>
         <button id="PreviousStepButton" class="btn btn-outline-secondary" *ngIf="hasPreviousStep()" (click)="whistleblowerSubmissionService.decrementStep(this)">
             <i class="fa-solid fa-arrow-circle-left"></i>

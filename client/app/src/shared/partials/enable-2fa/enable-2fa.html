@@ -16,7 +16,7 @@
             <br />
             <div class="text-center">
                 <qrcode data-toggle="tooltip" title="{{'Copy to clipboard' | translate}}" (click)="utils.copyToClipboard(twoFactorAuthData.totp.secret);" [qrdata]="twoFactorAuthData.totp.qrcode_string" [width]="350" [errorCorrectionLevel]="'Q'" [colorDark]="'#1d1f2a'" [colorLight]="'#fff'"></qrcode>
-                <form id="otp-secret-form" [formGroup]="OTPSecretForm" class="form-inline">
+                <form id="OTPSecretForm" [formGroup]="OTPSecretForm" class="form-inline">
                     <div class="form-group d-block mx-auto">
                         <div class="input-group">
                             <input [ngModelOptions]="{standalone: true}" [ngClass]="{'is-invalid': OTPSecretForm.invalid}" class="form-control" name="secret" (ngModelChange)="onSecretKeyChanged()" [(ngModel)]="twoFactorAuthData.totp.secret" [disabled]="!twoFactorAuthData.totp.edit" type="text" [minlength]="32" [maxLength]="32" maxlength="32" size="32" required />

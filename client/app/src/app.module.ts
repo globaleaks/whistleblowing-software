@@ -36,10 +36,24 @@ import {AdminModule} from "@app/pages/admin/admin.module";
 import {CustodianModule} from "@app/pages/custodian/custodian.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AnalystModule} from "@app/pages/analyst/analyst.module";
-
+import { mockEngine } from './services/helper/mocks';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "l10n/", "");
 }
+
+(window as any).mockEngine = mockEngine;
+declare global {
+  interface Window {
+    GL: {
+      language: string;
+      mockEngine: any;
+    };
+  }
+}
+window.GL = {
+  language: 'en', // Assuming a default language
+  mockEngine: mockEngine
+};
 
 const translationModule = TranslateModule.forRoot({
     loader: {
@@ -78,6 +92,7 @@ const translationModule = TranslateModule.forRoot({
   ],
   providers: [
     ReceiptValidatorDirective,
+    {provide: 'MockEngine', useValue: mockEngine},
     TranslatorPipe, TranslateService,
     {provide: HTTP_INTERCEPTORS, useClass: appInterceptor, multi: true},
     {provide: APP_BASE_HREF, useValue: "/"},

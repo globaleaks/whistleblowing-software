@@ -66,12 +66,12 @@ export class Tab2Component implements OnInit {
   onFileSelected(files: FileList | null) {
     if (files && files.length > 0) {
       const file = files[0];
-
+      console.log(files)
       const flowJsInstance = new Flow({
         target: "api/admin/files/custom",
         speedSmoothingFactor: 0.01,
         singleFile: true,
-        allowDuplicateUploads: false,
+        allowDuplicateUploads: true,
         testChunks: false,
         permanentErrors: [500, 501],
         query: {fileSizeLimit: this.nodeResolver.dataModel.maximum_filesize * 1024 * 1024},

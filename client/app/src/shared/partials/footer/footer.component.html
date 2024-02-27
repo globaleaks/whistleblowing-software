@@ -1,4 +1,4 @@
-<footer id="footer-box">
+<footer id="FooterBox">
     <ng-container *ngIf="appDataService.public.node">
         <markdown id="CustomFooter" class="vcenter preformatted mb-1" *ngIf="appDataService.public.node.footer" [data]="appDataService.public.node.footer | stripHtml"></markdown>
         <div id="Policies" class="vcenter mb-1" *ngIf="appDataService.public.node.footer_whistleblowing_policy || appDataService.public.node.footer_privacy_policy || appDataService.public.node.footer_accessibility_declaration">

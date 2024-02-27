@@ -28,7 +28,7 @@
     <ng-container *ngIf="contextsData.length > 0">
         <ng-container *ngFor="let context of contextsData; let index = index">
             <div>
-                <form [id]="'context-' + index" name="editContext" #editContext="ngForm" novalidate>
+                <form id="context-{{index}}" name="editContext" #editContext="ngForm" novalidate>
                     <src-context-editor [contextResolver]="context" [editContext]="editContext" [contextsData]="contextsData" [index]="index" (dataToParent)="handleDataFromChild()"></src-context-editor>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 <div *ngIf="!appDataService.connection.tor">
-    <div id="privacy-badge">
+    <div id="PrivacyBadge">
         <div *ngIf="!appDataService.public.node.enable_custom_privacy_badge">
-            <div>
+            <div id="PrivacyBadgeTextBox">
                 <span class="badge badge-warning-custom text-bg-warning">
                     <i class="fa-solid fa-exclamation-circle"></i>
                     <span>
@@ -9,7 +9,7 @@
                     </span>
                 </span>
                 <div>
-                    <div>
+                    <div id="PrivacyBadgeText">
                         {{'You are strongly advised to visit this site using the app called Tor Browser, that protects your identity.'|translate}}
                     </div>
                 </div>

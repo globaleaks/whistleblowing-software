@@ -1,4 +1,4 @@
-<div id="steps-edit-box">
+<div id="StepsEditBox">
     <div class="row">
         <span class="col-md-8">
             <span>{{ 'Steps' | translate }}</span>
@@ -8,7 +8,7 @@
             </button>
         </span>
     </div>
-    <div id="step-add-box" class="row" *ngIf="showAddStep">
+    <div id="StepAddBox" class="row" *ngIf="showAddStep">
         <div class="col-md-6">
             <form #newStepForm="ngForm" (ngSubmit)="addStep(); toggleAddStep()">
                 <div class="row">

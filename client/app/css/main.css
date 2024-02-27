@@ -29,15 +29,15 @@ a:hover,
   color: #5797d5;
 }
 
-#footer-box {
+#FooterBox {
   background-color: #f5f7fa;
   text-align: center;
 }
 
-#footer-box a,
-#footer-box a:hover,
-#footer-box a:active,
-#footer-box a:focus {
+#FooterBox a,
+#FooterBox a:hover,
+#FooterBox a:active,
+#FooterBox a:focus {
   font-weight: bold;
 }
 
@@ -303,13 +303,13 @@ h6 {
   margin-bottom: 0.5em;
 }
 
-#content-box {
+#ContentBox {
   padding: 1em;
 }
 
-#footer-box,
+#FooterBox,
 #demo-badge,
-#privacy-badge,
+#PrivacyBadge,
 #operator-badge{
   padding: 1em;
 }
@@ -345,7 +345,7 @@ h6 {
   font-weight: bold;
 }
 
-#privacy-badge {
+#PrivacyBadge {
   background-color: #1d1f24;
   color: #fff;
 }
@@ -506,13 +506,13 @@ h6 {
   --bs-table-striped-bg: #f5f7fa;
 }
 
-#logo-box img {
+#LogoBox img {
   max-height: 5rem;
   max-width: 20rem;
   margin: 0;
 }
 
-#toolbar {
+#Toolbar {
   margin-bottom: 1em;
 }
 
@@ -632,7 +632,7 @@ p:last-child {
   margin: 0;
 }
 
-#homepage-box {
+#HomePageBox {
   text-align: center;
   margin: 0 auto;
 }
@@ -653,12 +653,12 @@ p:last-child {
   padding-left: 1em;
 }
 
-#whistle-blowing-question {
+#WhistleblowingQuestion {
   white-space: pre-wrap;
 }
 
-#whistleblower-submit-box,
-#whistle-blower-login-box {
+#WhistleblowerSubmitBox,
+#WhistleblowerLoginBox {
   text-align: center;
 }
 
@@ -697,7 +697,7 @@ p:last-child {
   margin-top: 0.5em;
 }
 
-#otp-secret-form input {
+#OTPSecretForm input {
   width: 26rem;
   text-align: center;
 }
@@ -736,7 +736,7 @@ p:last-child {
 }
 
 .step-index,
-#submission-buttons button {
+#SubmissionButtons button {
   margin-right: 10px;
 }
 
@@ -773,19 +773,19 @@ p:last-child {
   margin: 1em auto;
 }
 
-#header-box h1 {
+#HeaderBox h1 {
   margin: 0;
   padding: 0;
   font-size: 100%;
   font-weight: bold;
 }
 
-#logo-box,
-#title-box {
+#LogoBox,
+#TitleBox {
   margin: 0;
 }
 
-#logo-box{
+#LogoBox{
   min-height: 5rem;
 }
 
@@ -794,13 +794,13 @@ p:last-child {
 }
 
 
-#title-box {
+#TitleBox {
   font-size: 1.6rem;
   font-weight: bold;
   margin: 0;
 }
 
-#login-status-box {
+#LoginStatusBox {
   font-weight: 700;
 }
 
@@ -816,7 +816,7 @@ p:last-child {
   width: auto;
 }
 
-#login-status-box,
+#LoginStatusBox,
 #language-picker-box .form-control {
   height: 2.2rem;
   line-height: 2.2rem;
@@ -824,8 +824,8 @@ p:last-child {
   width: max-content;
 }
 
-#login-status-box,
-#whistle-blower-login-box {
+#LoginStatusBox,
+#WhistleblowerLoginBox {
   color: #1d1f2a;
   background-color: #fff;
   border-radius: 5px;
@@ -840,10 +840,10 @@ p:last-child {
   padding: 0 5em;
 }
 
-#step-add-box,
-#steps-edit-box,
-#fields-edit-box,
-#context-advanced-settings-box {
+#StepAddBox,
+#StepsEditBox,
+#FieldsEditBox,
+#ContextAdvancedSettingsBox {
   margin-top: 0.5em;
 }
 
@@ -925,7 +925,7 @@ text.axis-worktime {
   text-transform: capitalize;
 }
 
-#search-filter {
+#SearchFilter {
   margin: 0;
 }
 
@@ -961,6 +961,19 @@ input[type="email"] {
 
 .nav-items {
   display: grid;
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+  .jumbotron {
+    padding: 4rem 2rem;
+  }
 }
 
 .navbar-toggler {

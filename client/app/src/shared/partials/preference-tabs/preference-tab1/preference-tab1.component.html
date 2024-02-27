@@ -1,4 +1,4 @@
-<form name="preferenceResolver.dataModel.orm" #preferenceForm="ngForm" class="reveal" *ngIf="authenticationService.session">
+<form name="preferenceResolver.dataModel.orm" #preferenceForm="ngForm" class="reveal" *ngIf="authenticationService.session" id="PreferencesForm">
     <div *ngIf="preferenceResolver.dataModel.picture" class="image-thumbnail">
         <img class="receiver-image" alt="user picture" src="/s/{{preferenceResolver.dataModel.id}}" />
         <br />
