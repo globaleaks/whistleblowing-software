@@ -98,6 +98,11 @@ class Cleaning(DailyJob):
                                                        .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
+        # delete expired audit logs older than 5 years and not pertaining any report
+        subquery = session.query(models.InternalTip.id).subquery()
+        db_del(session, models.AuditLog, (models.AuditLog.date <= datetime_now() - timedelta(days=5 * 365),
+                                          not_(models.AuditLog.object_id.in_(subquery))))
+
         # delete expired change email tokens
         session.query(models.User) \
                .filter(models.User.change_email_date <= datetime_now() - timedelta(hours=72)) \
