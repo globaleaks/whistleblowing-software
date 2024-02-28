@@ -4,7 +4,9 @@
             <span aria-hidden="true">&times;</span>
         </button>
 
-        <div>{{'Error!'|translate}}</div>
+        <div *ngIf="appDataService.errorCodes.code !== 15">
+            <div>{{'Error!'|translate}}</div>
+        </div>
         <ng-container [ngSwitch]="appDataService.errorCodes.code">
             <div *ngSwitchCase="1">
                 <span>{{ 'Error on input validation' | translate }}</span>
@@ -30,6 +32,10 @@
             </div>
             <div *ngSwitchCase="14">
                 <span>{{'The upload request exceeds the size limit'|translate}}</span>
+            </div>
+            <div *ngSwitchCase="15">
+                <strong><span class="text-danger">{{'Error loading custom files'|translate}}</span></strong>
+                <span>{{appDataService.errorCodes.message|translate}}</span>
             </div>
         </ng-container>
     </div>

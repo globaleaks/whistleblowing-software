@@ -8,6 +8,7 @@ import {Router, NavigationEnd, ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {LanguagesSupported} from "@app/models/app/public-model";
 import {TitleService} from "@app/shared/services/title.service";
+import {ErrorCodes} from "@app/models/app/error-code";
 
 @Injectable({
   providedIn: "root"
@@ -56,12 +57,20 @@ export class AppConfigService {
     this.titleService.setTitle();
   };
 
+  removeElementById(elementId:string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.remove();
+    }
+  }
+
   public localInitialization(languageInit = true, callback?: () => void) {
     this.httpService.getPublicResource().subscribe({
       next: data => {
         if (data.body !== null) {
           this.appDataService.public = data.body;
         }
+
         let elem;
         if (window.location.pathname === "/") {
           if (this.appDataService.public.node.css) {
@@ -82,6 +91,21 @@ export class AppConfigService {
               elem = document.createElement("script");
               elem.setAttribute("id", "load-custom-script");
               elem.setAttribute("src", "s/script");
+              let self = this;
+              window.addEventListener('error', function(event) {
+                const removeElement = (id: string) => {
+                  const elem = document.getElementById(id);
+                  if (elem) {
+                    elem.remove();
+                  }
+                };
+
+                if (event.filename && event.filename.includes("s/script")) {
+                  removeElement('load-custom-script');
+                  removeElement('load-custom-css');
+                  self.appDataService.errorCodes = new ErrorCodes(event.message.substring(0, 50), 15, "");
+                }
+              });
               document.getElementsByTagName("body")[0].appendChild(elem);
             }
           }
