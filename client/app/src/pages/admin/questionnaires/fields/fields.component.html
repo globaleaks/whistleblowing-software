@@ -47,7 +47,7 @@
                     <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" (click)="toggleEditing(); $event.stopPropagation();">
                         <span>{{ 'Edit' | translate }}</span>
                     </button>
-                    <button name="save_field" class="btn btn-sm btn-primary" *ngIf="editing" (click)="saveField(field)">
+                    <button name="save_field" class="btn btn-sm btn-primary" *ngIf="editing" (click)="saveField(field,editing)">
                         <span>{{ 'Save' | translate }}</span>
                     </button>
                     <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing(); $event.stopPropagation();">

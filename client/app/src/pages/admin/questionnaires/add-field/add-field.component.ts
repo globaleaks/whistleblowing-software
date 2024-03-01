@@ -47,7 +47,6 @@ export class AddFieldComponent implements OnInit {
           type: ""
         };
         this.dataToParent.emit();
-        return this.questionnaireService.sendData();
       });
     }
     if (this.type === "template") {
@@ -86,7 +85,6 @@ export class AddFieldComponent implements OnInit {
           type: ""
         };
         this.dataToParent.emit();
-        return this.questionnaireService.sendData();
       });
     }
   }
