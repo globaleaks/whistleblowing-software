@@ -22,7 +22,12 @@
                         </div>
                     </div>
                     <div class="file-upload-progress progress progress-striped" [ngClass]="{'invisible': file.paused}">
-                        <div class="progress-bar" [ngClass]="{'progress-bar-complete': file.progress === 1 }" role="progressbar" [ngStyle]="{'width': (file.progress * 100) + '%'}"></div>
+                        <ng-container *ngIf="file.progress === 1">
+                            <div class="progress-bar progress-bar-complete" [attr.data-cy]="'progress-bar-complete'" role="progressbar" [ngStyle]="{'width': (file.progress * 100) + '%'}"></div>
+                        </ng-container>
+                        <ng-container *ngIf="file.progress === 1">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': (file.progress * 100) + '%'}"></div>
+                        </ng-container>
                     </div>
                 </div>
             </div>
