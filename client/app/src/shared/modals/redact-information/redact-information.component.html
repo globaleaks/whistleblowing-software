@@ -8,7 +8,7 @@
 
 <div class="modal-body">
     <textarea #redact id="redact" name="controlElement" [(ngModel)]="forced_visible ? unmaskedContent : content" cols="30"
-        rows="10" (keydown)="ignoreEdit($event)" class="form-control"></textarea>
+              rows="10" (keydown)="ignoreEdit($event)" class="form-control"></textarea>
 </div>
 
 <div class="modal-footer">
@@ -17,12 +17,12 @@
             <div *ngIf="preferenceResolver.dataModel.can_mask_information && preferenceResolver.dataModel.can_redact_information" class="btn mask-btn">
                 <div class="form-check form-check-inline">
                     <input class="" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                        [(ngModel)]="vars.redaction_switch" [value]="true" (ngModelChange)="toggleMasking()" />
+                           [(ngModel)]="vars.redaction_switch" [value]="true" (ngModelChange)="toggleMasking()" />
                     <label class="form-check-label" for="inlineRadio1">{{ 'Mask' | translate }}</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                        [(ngModel)]="vars.redaction_switch" [value]="false" (ngModelChange)="toggleMasking()" />
+                           [(ngModel)]="vars.redaction_switch" [value]="false" (ngModelChange)="toggleMasking()" />
                     <label class="form-check-label" for="inlineRadio2">{{ 'Redact' | translate }}</label>
                 </div>
             </div>
@@ -34,15 +34,15 @@
                 <i class="fas fa-eye-slash" *ngIf="!forced_visible" id="eye-icon-closed"></i>
             </button>
 
-            <button class="btn btn-primary" (click)="selectContent()">
+            <button class="btn btn-primary" id="select_content" (click)="selectContent()">
                 <span>{{ 'Select' | translate }}</span>
             </button>
 
-            <button class="btn btn-primary" (click)="unSelectContent()">
+            <button class="btn btn-primary" id="unselect_content" (click)="unSelectContent()">
                 <span>{{ 'Unselect' | translate }}</span>
             </button>
 
-            <button class="btn btn-primary" (click)="saveMasking()">
+            <button class="btn btn-primary" id="save_masking" (click)="saveMasking()">
                 <span>{{ 'Save' | translate }}</span>
             </button>
         </div>
