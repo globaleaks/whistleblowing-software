@@ -2,8 +2,8 @@
     <ng-container #flow="flow" [flowConfig]="flowConfig"></ng-container>
     <div class="drag-drop" flowDrop [flow]="flow.flowJs">
         <div class="custom-file">
-            <input [attr.id]="'customFile-' + file_id" id="{{file_id}}-'customFile'" type="file" flowButton [flow]="flow.flowJs" [style.display]="'none'" class="custom-file-input inputelem" [required]="field && field.required" />
-            <label [attr.for]="'customFile-' + file_id" for="{{file_id}}-'customFile'" class="btn btn-sm btn-outline-secondary">
+            <input [attr.id]="'customFile-' + fileInput" id="customFile-{{fileInput}}" type="file" flowButton [flow]="flow.flowJs" [style.display]="'none'" class="custom-file-input inputelem" [required]="field && field.required" />
+            <label [attr.for]="'customFile-' + fileInput" for="customFile-{{fileInput}}" class="btn btn-sm btn-outline-secondary">
                 <i class="fa-solid fa-upload"></i>
                 <span> {{'Upload'|translate}}</span>
             </label>

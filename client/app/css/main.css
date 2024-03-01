@@ -308,7 +308,7 @@ h6 {
 }
 
 #FooterBox,
-#demo-badge,
+#DemoBadge,
 #PrivacyBadge,
 #operator-badge{
   padding: 1em;
@@ -520,7 +520,7 @@ h6 {
   font-size: 1.4rem;
 }
 
-#tip-list table {
+#TipList table {
   table-layout: auto;
 }
 
@@ -528,8 +528,8 @@ th:not(:first-child, :nth-last-child(-n+4)) {
   cursor: pointer;
 }
 
-#tip-list th,
-#tip-list td {
+#TipList th,
+#TipList td {
   white-space: nowrap;
 }
 
@@ -645,7 +645,7 @@ p:last-child {
   width: 290px;
 }
 
-#whistleblower-submit-box {
+#WhistleblowerSubmitBox {
   margin-bottom: 2em;
 }
 
@@ -708,7 +708,7 @@ p:last-child {
   clear: both;
 }
 
-#max-selectable-receiver-box {
+#MaxSelectableReceiverBox {
   margin-bottom: 1em;
 }
 
@@ -746,7 +746,7 @@ p:last-child {
   border-color: #377abc;
 }
 
-#submission-errors {
+#SubmissionErrors {
   margin-top: 1em;
 }
 
@@ -812,12 +812,12 @@ p:last-child {
   margin-bottom: 0.5rem;
 }
 
-#language-picker-box .form-control {
+#LanguagePickerBox .form-control {
   width: auto;
 }
 
 #LoginStatusBox,
-#language-picker-box .form-control {
+#LanguagePickerBox .form-control {
   height: 2.2rem;
   line-height: 2.2rem;
   padding: 0 1em;
@@ -831,7 +831,7 @@ p:last-child {
   border-radius: 5px;
 }
 
-#messages-console-box {
+#MessagesConsoleBox {
   position: fixed;
   width: 30rem;
   min-width: 20rem;
@@ -926,7 +926,7 @@ text.axis-worktime {
 }
 
 #SearchFilter {
-  margin: 0;
+  margin: 0 0.5em;
 }
 
 input[type="email"] {

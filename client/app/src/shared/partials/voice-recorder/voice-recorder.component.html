@@ -1,10 +1,10 @@
 <div class="audio-box" *ngIf="authenticationService.session">
     <div class="row">
         <div class="col-md-6">
-            <button class="btn" [ngClass]="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" [disabled]="isRecording || uploads[fileInput]?.files.length" (click)="triggerRecording(field.id)" aria-label="Record a voice message">
+            <button class="btn" id="start_recording" [ngClass]="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" [disabled]="isRecording || uploads[fileInput]?.files.length" (click)="triggerRecording(field.id)" aria-label="Record a voice message">
                 <i class="fas fa-microphone"></i>
             </button>
-            <button class="btn" *ngIf="activeButton === 'record'" (click)="onStop()" aria-label="Stop Recording">
+            <button class="btn" id="stop_recording" *ngIf="activeButton === 'record'" (click)="onStop()" aria-label="Stop Recording">
                 <i class="fas fa-stop"></i>
             </button>
         </div>
@@ -19,8 +19,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <input class="inputelem d-none" [id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" [required]="field && field.required && !uploads[fileInput]?.files.length" [name]="'input-' + entryIndex" type="file" />
-            <iframe #viewer *ngIf="audioPlayer" [id]="fieldEntry + '-audio'" class="audio-player-iframe" sandbox="allow-downloads allow-scripts" [src]="iframeUrl" ></iframe>
+            <input class="inputelem d-none" [attr.id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" [required]="field && field.required && !uploads[fileInput]?.files.length" [name]="'input-' + entryIndex" type="file" />
+            <iframe #viewer *ngIf="audioPlayer" id="{{fieldEntry}}-audio" class="audio-player-iframe" sandbox="allow-downloads allow-scripts" [src]="iframeUrl" ></iframe>
         </div>
     </div>
     <div class="row" *ngIf="seconds > 0">

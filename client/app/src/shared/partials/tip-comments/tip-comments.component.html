@@ -26,7 +26,7 @@
             </div>
         </div>
         <div *ngIf="tipService.tip.comments && tipService.tip.comments.length">
-            <div data-cy="SubmissionComments" *ngFor="let comment of getSortedComments(comments | orderBy:'creation_date': true | filter : 'visibility' : key) | slice: (currentCommentsPage-1) * itemsPerPage : (currentCommentsPage-1) * itemsPerPage + itemsPerPage; let index = index">
+            <div data-cy="SubmissionComments" id="SubmissionComments" *ngFor="let comment of getSortedComments(comments | orderBy:'creation_date': true | filter : 'visibility' : key) | slice: (currentCommentsPage-1) * itemsPerPage : (currentCommentsPage-1) * itemsPerPage + itemsPerPage; let index = index">
                 <div id="comment-{{index}}" class="mt-2">
                     <div *ngIf="!comment.author_id" class="message-whistle-blower">
                         <div class="row">

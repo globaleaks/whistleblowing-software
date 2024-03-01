@@ -32,8 +32,8 @@
             </div>
         </div>
         <div *ngIf="appDataService.public.node.enable_custom_privacy_badge">
-            <div>
-                <markdown [data]="markdown | stripHtml" class="variable-binding"></markdown>
+            <div id="PrivacyBoxTextBox">
+                <markdown id="PrivacyBadgeCustomText" [data]="markdown | stripHtml" class="variable-binding"></markdown>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div id="title" *ngIf="!show_steps_navigation_bar">{{'Recipient selection'|translate}}</div>
     <div *ngIf="submission.optional_receivers">
         <div class="description mb-2"><strong>{{'Select the recipients of your report'|translate}}</strong></div>
-        <div *ngIf="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" class="max-selectable-receiver-box">
+        <div *ngIf="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox">
             <div>
                 <span>{{'Recipients selected:'|translate}}</span> {{submission.countSelectedReceivers()}} /{{submission.context.maximum_selectable_receivers}}
             </div>

@@ -1,5 +1,5 @@
 <ng-container *ngIf="!supportedBrowser">
-    <div>
+    <div id="BrowserNotSupported">
         <h1>Error!</h1><br/> <br/>
         <div> You are running an unsupported and potentially vulnerable browser. <br/> <br/> In order to use GlobaLeaks you
             are strongly advised to download and install the Tor Browser. <br/> The Tor Browser includes various privacy and
@@ -20,7 +20,7 @@
     </div>
 </ng-container>
 <div id="Skip"><a href="#Content" tabindex="0">{{'Skip to content'|translate}}</a></div>
-<div id="PageOverlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
+<div [attr.data-cy]="'page-loader-overlay'" id="PageOverlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
     <div id="Loader"></div>
 </div>
 <ng-container *ngIf="appDataService.public.node">
@@ -35,7 +35,7 @@
             <src-privacybadge></src-privacybadge>
         </div>
         <views-header></views-header>
-        <messageconsole id="messages-console-box"></messageconsole>
+        <messageconsole id="MessagesConsoleBox"></messageconsole>
         <div id="PageContent">
             <div id="ContentBox">
                 <div class="row">

@@ -11,10 +11,10 @@
                 </div>
             </div>
         </div>
-        <form #submissionForm="ngForm" [ngClass]="{'was-validated': displayErrors()}" autocomplete="off" novalidate>
+        <form #submissionForm="ngForm" id="SubmissionForm" [ngClass]="{'was-validated': displayErrors()}" autocomplete="off" novalidate>
             <div class="tabbable tabs-below mb-3">
                 <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" *ngIf="submissionService.context.show_steps_navigation_interface && submissionService.context.questionnaire.steps.length > 1" role="tablist">
-                    <li *ngIf="submissionService.context.allow_recipients_selection" [attr.aria-selected]="navigation === -1" [attr.aria-current]="navigation === -1 ? 'step' : 'false'" aria-controls="tab-recipient-selection" class="nav-item" role="tab">
+                    <li *ngIf="submissionService.context.allow_recipients_selection" id="step-recipient-selection-tab" [attr.aria-selected]="navigation === -1" [attr.aria-current]="navigation === -1 ? 'step' : 'false'" aria-controls="tab-recipient-selection" class="nav-item" role="tab">
                         <a href="#" id="receiver-selection-link" [ngClass]="{active: navigation === -1}" class="nav-link nav-link-custom" (click)="goToStep(-1)">
                             <span class="step-index" [ngClass]="{'step-index-selected': navigation === -1}">1</span>
                             <span class="step-label">{{'Recipient selection'|translate}}</span>
@@ -27,6 +27,7 @@
                                 <span class="step-label">{{step.label}}</span>
                             </a>
                         </div>
+                    </li>
                 </ul>
                 <div id="SubmissionTabsContentBox" class="tab-content">
                     <div *ngIf="displayErrors()">

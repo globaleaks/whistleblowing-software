@@ -43,7 +43,7 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   }
 
   ngOnInit(): void {
-    this.file_id = this.file_id ? this.file_id:"step-input";
+    this.file_id = this.file_id ? this.file_id:"status_page";
     this.flowConfig = {
       target: this.fileUploadUrl,
       speedSmoothingFactor: 0.01,
