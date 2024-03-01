@@ -20,8 +20,8 @@
     </div>
 </ng-container>
 <div id="Skip"><a href="#Content" tabindex="0">{{'Skip to content'|translate}}</a></div>
-<div id="page-overlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
-    <div id="loader"></div>
+<div id="PageOverlay" *ngIf="showLoadingPanel" [@fadeInOut]="!showLoadingPanel ? 'void' : ''">
+    <div id="Loader"></div>
 </div>
 <ng-container *ngIf="appDataService.public.node">
     <div [dir]="utilsService.getDirection(translate.currentLang)" class="reveal">
