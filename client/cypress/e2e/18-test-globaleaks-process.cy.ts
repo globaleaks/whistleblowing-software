@@ -13,14 +13,13 @@ describe("globaleaks process", function () {
     });
   };
 
+
   for (let i = 1; i <= N; i++) {
     it("Whistleblowers should be able to perform a submission", function () {
       perform_submission();
     });
 
     it("Recipient actions ", function () {
-      /* file upload delay */
-      cy.wait(3000)
       cy.login_receiver();
       cy.waitForUrl("/#/recipient/home");
       cy.visit("/#/recipient/reports");
@@ -36,6 +35,7 @@ describe("globaleaks process", function () {
         cy.get("#tip-action-star").click();
       });
 
+      cy.waitForTipImageUpload();
       cy.get('#fileListBody', { timeout: 10000 }).find('tr').should('have.length', 2);
 
       const comment = "comment";
@@ -77,7 +77,7 @@ describe("globaleaks process", function () {
         });
 
         cy.get("#files-action-confirm").click();
-        // cy.get(".progress-bar-complete", { timeout: 10000 }).should("be.visible");
+        cy.get('[data-cy="progress-bar-complete"]', { timeout: 10000 }).should("be.visible");
       });
 
       cy.logout();
@@ -101,4 +101,74 @@ describe("globaleaks process", function () {
       cy.logout();
     });
   }
+  it("should update default context", () => {
+    cy.login_admin();
+    cy.visit("/#/admin/contexts");
+    cy.get("#edit_context").first().click();
+    cy.get('select[name="contextResolver.questionnaire_id"]').select('testing 1');
+    cy.get("#advance_context").click();
+    cy.get('select[name="contextResolver.additional_questionnaire_id"]').select('testing 2');
+    cy.get("#save_context").click();
+    cy.logout();
+  })
+  it("should run audio questionnaire", () => {
+    cy.visit("#/");
+    cy.get("#WhistleblowingButton").click();
+    cy.get("#step-0").should("be.visible");
+    cy.get("#step-0-field-0-0-input-0")
+    cy.get("#start_recording").click();
+    cy.wait(6000);
+    cy.get("#stop_recording").click();
+    cy.get("#NextStepButton").click();
+    cy.get("#SubmitButton").should("be.visible");
+    cy.get("#SubmitButton").click();
+  })
+  it("should run identity & additional questionnaire", () => {
+    cy.visit("#/");
+    cy.get("#WhistleblowingButton").click();
+    cy.get("#NextStepButton").click();
+    cy.get("input[type='text']").eq(1).should("be.visible").type("abc");
+    cy.get("input[type='text']").eq(2).should("be.visible").type("xyz");
+    cy.get("select").first().select(1);
+    cy.get("#SubmitButton").should("be.visible");
+    cy.get("#SubmitButton").click();
+    cy.get('.mt-md-3.clearfix.ng-star-inserted').find('#ReceiptButton').click();
+    cy.get("#open_additional_questionnaire").click();
+    cy.get("input[type='text']").eq(1).should("be.visible").type("single line text input");
+    cy.get("#SubmitButton").click();
+    cy.logout();
+  });
+  it("should revert default context", () => {
+    cy.login_admin();
+    cy.visit("/#/admin/contexts");
+    cy.get("#edit_context").first().click();
+    cy.get('select[name="contextResolver.questionnaire_id"]').select('GLOBALEAKS');
+    cy.get("#save_context").click();
+    cy.logout();
+  });
+  it("should mask reported data", function () {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get('[id="tip-action-mask"]').should('be.visible', { timeout: 10000 }).click();
+    cy.get("#edit-question").should('be.visible').first().click();
+
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea:any) => {
+      const val = textarea.val();
+      cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
+      cy.get("#select_content").click();
+      cy.wait(1000);
+    });
+    cy.get("#save_masking").click();
+    cy.get('[id="tip-action-mask"]').should('be.visible', { timeout: 10000 }).click();
+    cy.get("#edit-question").should('be.visible').first().click();
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea:any) => {
+      const val = textarea.val();
+      cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
+      cy.get("#unselect_content").click();
+      cy.wait(1000);
+    });
+    cy.get("#save_masking").click();
+    cy.logout();
+  });
 });

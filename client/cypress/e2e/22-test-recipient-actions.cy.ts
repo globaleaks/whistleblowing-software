@@ -1,4 +1,4 @@
-describe("Action: Revoke Access and Grant Access - Recipient Section", () => {
+describe("recipient admin tip actions", () => {
   it("should revoke and grant access to reports", function () {
     cy.login_receiver();
 
@@ -29,14 +29,13 @@ describe("Action: Revoke Access and Grant Access - Recipient Section", () => {
     cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(1);
     cy.get('textarea[name="reason"]').type("This is a close status illatest motivation");
     cy.get("#modal-action-ok").click();
-
     cy.get("#tip-action-reopen-status").click();
     cy.get('textarea[name="motivation"]').type("This is a Reopen status test motivation");
     cy.get("#modal-action-ok").click();
 
     cy.logout();
   });
-  it("should open a new tab for reports", function () {
+  it("recipient should file a report on behalf of whistleblower", function () {
     cy.login_receiver();
 
     cy.visit("/#/recipient/reports");
@@ -46,7 +45,7 @@ describe("Action: Revoke Access and Grant Access - Recipient Section", () => {
     cy.logout();
   });
 
-  it("should set a reminder for reports", function () {
+  it("should set a reminder date for reports", function () {
     cy.login_receiver();
 
     cy.visit("/#/recipient/reports");
@@ -79,19 +78,15 @@ describe("Action: Revoke Access and Grant Access - Recipient Section", () => {
     cy.get("#add-submission-sub-status").click();
 
     cy.logout();
-
   });
   it("should change sub-status for reports", function () {
     cy.login_receiver();
-
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get("#tip-action-change-status").click();
-    cy.wait(5000);
     cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(0);
     cy.get('textarea[name="reason"]').type("This is a test motivation");
     cy.get("#modal-action-ok").click();
-
     cy.logout();
   });
 });
