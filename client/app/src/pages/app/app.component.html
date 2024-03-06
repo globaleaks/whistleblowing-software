@@ -31,7 +31,7 @@
         <div *ngIf="!appDataService.public.node.root_tenant && appDataService.public.node.mode === 'demo'">
             <src-demo></src-demo>
         </div>
-        <div *ngIf="isWhistleblowerPage() && !appDataService.public.node.disable_privacy_badge">
+        <div *ngIf="isWhistleblowerPage() && location.hash!=='#/admin/' && !appDataService.public.node.disable_privacy_badge">
             <src-privacybadge></src-privacybadge>
         </div>
         <views-header></views-header>
