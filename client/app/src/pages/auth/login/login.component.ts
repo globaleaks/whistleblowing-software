@@ -28,4 +28,6 @@ export class LoginComponent implements OnInit {
       }
     });
   };
+
+  protected readonly location = location;
 }
