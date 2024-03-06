@@ -138,12 +138,15 @@ export class AuthenticationService {
               this.router.navigate(['/']).then();
             } else {
               if (!callback) {
+                let redirect = this.activatedRoute.snapshot.queryParams['redirect'] || undefined;
                 this.reset();
-                const redirect = this.activatedRoute.snapshot.queryParams['redirect'] || '/';
+                redirect = this.activatedRoute.snapshot.queryParams['redirect'] || '/';
                 const redirectURL = decodeURIComponent(redirect);
                 if(redirectURL!=="/"){
-                  this.router.navigateByUrl(redirectURL).then();
+                  console.log(this.session.homepage)
+                  this.router.navigate([redirectURL + 'home']);
                 }else {
+                  console.log(this.session.homepage)
                   this.appDataService.updateShowLoadingPanel(true);
                   this.router.navigate([this.session.homepage], {
                     queryParams: this.activatedRoute.snapshot.queryParams,

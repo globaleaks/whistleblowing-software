@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable, Renderer2} from "@angular/core";
 import * as Flow from "@flowjs/flow.js";
 import {TranslateService} from "@ngx-translate/core";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RequestSupportComponent} from "@app/shared/modals/request-support/request-support.component";
 import {HttpService} from "@app/shared/services/http.service";
@@ -34,16 +34,16 @@ import { AcceptAgreementComponent } from "../modals/accept-agreement/accept-agre
 })
 export class UtilsService {
 
-  constructor(private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
   }
 
   updateNode(nodeResolverModel:nodeResolverModel) {
     this.httpService.updateNodeResource(nodeResolverModel).subscribe();
   }
 
-  routeGuardRedirect(){
-    const loginUrlWithParam = `/login?redirect=${encodeURIComponent(location.hash.substring(1))}`;
-    this.router.navigateByUrl(loginUrlWithParam).then();
+  routeGuardRedirect(route="login", skipChange = false){
+    const loginUrlWithParam = `/${route}?redirect=${encodeURIComponent(location.hash.substring(1))}`;
+    this.router.navigateByUrl(loginUrlWithParam, { skipLocationChange: skipChange }).then(() => {});
   }
 
   newItemOrder(objects: any[], key: string): number {

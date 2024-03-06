@@ -74,4 +74,6 @@ export class AppComponent implements AfterViewInit, OnInit {
       this.changeDetectorRef.detectChanges();
     });
   }
+
+  protected readonly location = location;
 }
