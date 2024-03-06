@@ -19,6 +19,7 @@ describe("acquire screenshots necessary for user documentation - Admin Section",
     cy.get('#Content').takeScreenshot('admin/site_settings_logo_detail', { capture: 'viewport' });
 
     cy.get('[data-cy="files"]').first().click();
+    cy.wait(500)
     cy.takeScreenshot("admin/site_settings_files");
 
     cy.get('[data-cy="languages"]').first().click();

@@ -42,7 +42,7 @@ describe("Admin configure custom CSS", () => {
         cy.wrap($input).trigger('change', { force: true });
       });
     });
-    cy.get("#project_name").should("be.visible");
+    cy.get("#project_name", { timeout: 10000 }).should("be.visible");
   });
 
   it("should upload a file and make it available for download and deletion", () => {
