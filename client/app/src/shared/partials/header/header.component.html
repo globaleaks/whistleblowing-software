@@ -8,7 +8,7 @@
                 <ng-container *ngIf="appDataService.projectTitle || appDataService.pageTitle">
                     <h1>
                         <span id="ProjectTitle" (click)="appConfig.setHomepage()">
-                            <a href="#">{{appDataService.projectTitle}}</a>
+                            <a href="">{{appDataService.projectTitle}}</a>
                         </span>
                         <span class="TitleSeparator" *ngIf="appDataService.projectTitle && appDataService.pageTitle"> - </span>
                         <span id="PageTitle">{{appDataService ? appDataService.pageTitle ? appDataService.pageTitle : '' : '' | translate}}</span>
