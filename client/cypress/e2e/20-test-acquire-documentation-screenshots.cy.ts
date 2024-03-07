@@ -108,6 +108,8 @@ describe("Acquire screenshots necessary for user documentation - Recipient Secti
   it("should capture screenshots of the recipient section", function () {
     cy.login_receiver();
     cy.takeScreenshot("recipient/home", 500);
+    cy.get("#recipient_settings").click();
+    cy.takeScreenshot("recipient/settings", 500);
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get('[id="tip-action-mask"]').should('be.visible', { timeout: 10000 }).click();

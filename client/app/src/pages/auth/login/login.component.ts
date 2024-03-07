@@ -11,9 +11,10 @@ import {AppDataService} from "@app/app-data.service";
 })
 export class LoginComponent implements OnInit {
 
+  protected readonly location = location;
   loginData = new LoginDataRef();
 
-  constructor(private authentication: AuthenticationService, private router: Router, private route: ActivatedRoute, protected appDataService: AppDataService) {
+  constructor(private authentication: AuthenticationService, public router: Router, private route: ActivatedRoute, protected appDataService: AppDataService) {
   }
 
   ngOnInit() {
@@ -28,6 +29,4 @@ export class LoginComponent implements OnInit {
       }
     });
   };
-
-  protected readonly location = location;
 }

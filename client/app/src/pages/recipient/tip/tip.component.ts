@@ -361,4 +361,6 @@ export class TipComponent implements OnInit {
   listenToFields() {
     this.loadTipDate();
   }
+
+  protected readonly JSON = JSON;
 }

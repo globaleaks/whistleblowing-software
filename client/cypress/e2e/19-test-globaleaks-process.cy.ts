@@ -123,7 +123,7 @@ describe("globaleaks process", function () {
     cy.get("#SubmitButton").should("be.visible");
     cy.get("#SubmitButton").click();
   })
-  it("should run identity & additional questionnaire", () => {
+  it("should run identity , upload file & additional questionnaire", () => {
     cy.visit("#/");
     cy.get("#WhistleblowingButton").click();
     cy.get("#NextStepButton").click();
@@ -136,8 +136,48 @@ describe("globaleaks process", function () {
     cy.get("#open_additional_questionnaire").click();
     cy.get("input[type='text']").eq(1).should("be.visible").type("single line text input");
     cy.get("#SubmitButton").click();
+    cy.get('i.fa-solid.fa-upload').click();
+    cy.fixture("files/dummy-image.jpg").then(fileContent => {
+      cy.get('input[type="file"]').then(input => {
+        const blob = new Blob([fileContent], { type: "image/jpeg" });
+        const testFile = new File([blob], "files/dummy-image.jpg");
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(testFile);
+        const inputElement = input[0] as HTMLInputElement;
+        inputElement.files = dataTransfer.files;
+
+        const changeEvent = new Event("change", { bubbles: true });
+        input[0].dispatchEvent(changeEvent);
+      });
+    });
+    cy.get("#files-action-confirm").click();
     cy.logout();
   });
+  it("should view the whistleblower file", () => {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get(".tip-action-views-file").first().click();
+    cy.wait(1000);
+    cy.get("#modal-action-cancel").click();
+    cy.logout();
+  })
+  it("should request for identity", () => {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get('[data-cy="identity_toggle"]').click();
+    cy.get("#identity_access_request").click();
+    cy.get('textarea[name="request_motivation"]').type("This is the motivation text.");
+    cy.get('#modal-action-ok').click();
+    cy.logout();
+  })
+   it("should authorize identity", () => {
+    cy.login_custodian();
+    cy.get("#custodian_requests").first().click();
+    cy.get("#authorize").first().click();
+    cy.logout();
+  })
   it("should revert default context", () => {
     cy.login_admin();
     cy.visit("/#/admin/contexts");

@@ -1,12 +1,12 @@
 describe("admin add, configure and delete questionnaires", () => {
-  const add_questionnaires = async (questionnaire_name:string) => {
+  const add_questionnaires = async (questionnaire_name: string) => {
     cy.get(".show-add-questionnaire-btn").click();
     cy.get("input[name='new_questionnaire.name']").type(questionnaire_name);
     cy.get("#add-questionnaire-btn").click();
     cy.contains(questionnaire_name).should("be.visible");
   };
 
-  const add_question = async (question_type:string, question_id:number) => {
+  const add_question = async (question_type: string, question_id: number) => {
     cy.get(".show-add-question-btn").first().click();
     cy.get("input[name='new_field.label']").first().type(question_type);
     cy.get("select[name='new_field.type']").first().select(question_id);
@@ -26,7 +26,7 @@ describe("admin add, configure and delete questionnaires", () => {
     }
   };
 
-  const add_step = async (step_label:string) => {
+  const add_step = async (step_label: string) => {
     cy.get("button[name='new_step']").click();
     cy.get("input[name='new_step.label']").type(step_label);
     cy.get("#add-step-btn").click();
@@ -50,8 +50,8 @@ describe("admin add, configure and delete questionnaires", () => {
     cy.contains("Step 2").should('be.visible', { timeout: 10000 }).click();
 
     fieldTypes.forEach((questionType: string, index: number) => {
-        cy.waitForLoader();
-        add_question(questionType, index);
+      cy.waitForLoader();
+      add_question(questionType, index);
     });
 
     cy.contains("Step 2").click();
@@ -69,7 +69,7 @@ describe("admin add, configure and delete questionnaires", () => {
 
     cy.get('[data-cy="question_templates"]').click();
 
-    fieldTypes.forEach((questionType:string, index: number) => {
+    fieldTypes.forEach((questionType: string, index: number) => {
       add_question(questionType, index);
     });
 
@@ -108,6 +108,14 @@ describe("admin add, configure and delete questionnaires", () => {
       });
 
     });
+    cy.logout();
   });
-
+  it("should add duplicate questionnaire", function () {
+    cy.login_admin();
+    cy.visit("/#/admin/questionnaires");
+    cy.get(".fa-clone").first().click();
+    cy.get('input[name="name"]').type("duplicate questionnaire");
+    cy.get("#modal-action-ok").click();
+    cy.logout();
+  });
 });

@@ -7,6 +7,6 @@
     <markdown class="disclaimer-text" [data]="appDataService.public.node.disclaimer_text | stripHtml"></markdown>
 </div>
 <div class="modal-footer">
-    <button (click)="confirm()" class="btn btn-primary" type="submit">{{ 'Proceed' | translate }}</button>
+    <button (click)="confirm()" id="modal-action-ok" class="btn btn-primary" type="submit">{{ 'Proceed' | translate }}</button>
     <button id="modal-action-cancel" class="btn btn-outline-secondary" (click)="cancel()">{{ 'Close' | translate }}</button>
 </div>

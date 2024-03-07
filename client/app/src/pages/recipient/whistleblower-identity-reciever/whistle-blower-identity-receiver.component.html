@@ -1,5 +1,5 @@
 <div id="TipInfoBox" class="card card-default">
-    <div class="card-header clearfix" (click)="toggleCollapse(); utilsService.stopPropagation($event)">
+    <div class="card-header clearfix" [attr.data-cy]="'identity_toggle'" (click)="toggleCollapse(); utilsService.stopPropagation($event)">
         <span>{{'Identity' | translate}}</span>
         <span class="float-end">
             <i *ngIf="!collapsed" class="fa-solid fa-chevron-up" data-toggle="tooltip" title="{{'Collapse' | translate}}"></i>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div *ngIf="!tipService.tip.iar || tipService.tip.iar.reply === 'denied'">
-                <button *ngIf="tipService.tip.custodian" class="btn btn-sm btn-primary" (click)="fileIdentityAccessRequest()">{{"Request access to the whistleblower's identity" | translate}}</button>
+                <button *ngIf="tipService.tip.custodian" class="btn btn-sm btn-primary" id="identity_access_request" (click)="fileIdentityAccessRequest()">{{"Request access to the whistleblower's identity" | translate}}</button>
                 <button *ngIf="!tipService.tip.custodian" class="btn btn-sm btn-primary" (click)="accessIdentity()">{{'Show' | translate}}</button>
             </div>
             <div *ngIf="tipService.tip.data.whistleblower_identity_date !== tipService.tip.creation_date" class="mt-3" [ngClass]="{'nested': tipService.tip.iar && tipService.tip.iar.reply === 'authorized'}">

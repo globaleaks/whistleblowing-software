@@ -28,7 +28,7 @@ describe("admin configure, add, and delete contexts", () => {
     cy.login_admin();
 
     cy.visit("#/admin/contexts");
-    const add_context = async (context_name:string) => {
+    const add_context = async (context_name: string) => {
       cy.get(".show-add-context-btn").click();
       cy.get("[name='new_context.name']").type(context_name);
       cy.get("#add-btn").click();
@@ -49,6 +49,23 @@ describe("admin configure, add, and delete contexts", () => {
     cy.visit("#/admin/contexts");
     cy.get("[name='delete_context']").last().click();
     cy.get("#modal-action-ok").click();
+
+    cy.logout();
+  });
+
+  it("should add new status and sub-status in the admin section", () => {
+    cy.login_admin();
+
+    cy.visit("/#/admin/casemanagement");
+    cy.get(".config-section").should("be.visible");
+    cy.get(".show-add-user-btn").click();
+    cy.get(".addSubmissionStatus").should("be.visible");
+    cy.get('input[name="name"]').type("Partial");
+    cy.get("#add-btn").click();
+    cy.get(".config-section").contains("Partial").should("be.visible").click();
+    cy.get("#add-sub-status").click();
+    cy.get('input[name="label"]').type("closed");
+    cy.get("#add-submission-sub-status").click();
 
     cy.logout();
   });

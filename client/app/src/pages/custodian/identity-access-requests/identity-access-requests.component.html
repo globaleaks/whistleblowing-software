@@ -42,7 +42,7 @@
                                 {{ 'Denied' | translate }}
                             </ng-container>
                             <ng-container *ngSwitchCase="'pending'">
-                                <button class="btn btn-sm btn-primary" (click)="authorizeIdentityAccessRequest(iar.id)">
+                                <button class="btn btn-sm btn-primary" id="authorize" (click)="authorizeIdentityAccessRequest(iar.id)">
                                     {{ 'Authorize' | translate }}
                                 </button>
                                 <button class="btn btn-sm btn-danger" (click)="fileDeniedIdentityAccessReply(iar.id)">

@@ -59,11 +59,11 @@ describe("admin add, configure, and delete users", () => {
       cy.get("#edit_user").click();
       cy.get('input[name="can_mask_information"]').click();
       cy.get('input[name="can_redact_information"]').click();
-      cy.get('input[name="can_postpone_expiration"]').click();
       cy.get('input[name="can_grant_access_to_reports"]').click();
       cy.get('input[name="can_transfer_access_to_reports"]').click();
       cy.get('input[name="can_reopen_reports"]').click();
       cy.get('input[name="can_delete_submission"]').click();
+      cy.get('input[name="can_edit_general_settings"]').click();
       cy.get("#save_user").click();
     });
   });
