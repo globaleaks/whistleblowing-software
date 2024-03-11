@@ -250,7 +250,6 @@
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
     "{Comments}",
-    "{Messages}",
     "{Author}",
     "{Content}"
   ],
@@ -275,7 +274,6 @@
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
     "{Comments}",
-    "{Messages}",
     "{Author}",
     "{Content}"
   ],
@@ -299,8 +297,7 @@
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}"
+    "{Comments}"
   ],
   "https_certificate_expiration_mail_template":[
     "{NodeName}",
@@ -568,8 +565,7 @@
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}"
+    "{Comments}"
   ],
   "tip_mail_title":[
     "{NodeName}",
@@ -591,8 +587,7 @@
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}"
+    "{Comments}"
   ],
   "tip_update_mail_template":[
     "{NodeName}",
@@ -614,8 +609,7 @@
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}"
+    "{Comments}"
   ],
   "tip_update_mail_title":[
     "{NodeName}",
@@ -637,8 +631,7 @@
     "{EventTime}",
     "{SubmissionDate}",
     "{QuestionnaireAnswers}",
-    "{Comments}",
-    "{Messages}"
+    "{Comments}"
   ],
   "unread_tips_mail_template":[
     "{NodeName}",
