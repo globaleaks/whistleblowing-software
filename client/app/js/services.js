@@ -96,7 +96,6 @@ factory("Authentication",
               if (password) {
                 $rootScope.setPage("tippage");
               }
-              $location.path("/");
             } else {
               $location.path(self.session.homepage);
             }
