@@ -20,7 +20,7 @@
                         <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing(submissionsStatus); $event.stopPropagation();">
                             <span>{{'Cancel'|translate}}</span>
                         </button>
-                        <button class="btn btn-sm btn-danger" *ngIf="!isSystemDefined(submissionsStatus)" (click)="deleteSubmissionStatus(submissionsStatus); $event.stopPropagation();">
+                        <button id="delete-submissions-status" class="btn btn-sm btn-danger" *ngIf="!isSystemDefined(submissionsStatus)" (click)="deleteSubmissionStatus(submissionsStatus); $event.stopPropagation();">
                             <span>{{'Delete'|translate}}</span>
                         </button>
                     </span>

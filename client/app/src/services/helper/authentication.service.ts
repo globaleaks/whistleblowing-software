@@ -143,10 +143,8 @@ export class AuthenticationService {
                 redirect = this.activatedRoute.snapshot.queryParams['redirect'] || '/';
                 const redirectURL = decodeURIComponent(redirect);
                 if(redirectURL!=="/"){
-                  console.log(this.session.homepage)
                   this.router.navigate([redirectURL + 'home']);
                 }else {
-                  console.log(this.session.homepage)
                   this.appDataService.updateShowLoadingPanel(true);
                   this.router.navigate([this.session.homepage], {
                     queryParams: this.activatedRoute.snapshot.queryParams,

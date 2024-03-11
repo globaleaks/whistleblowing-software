@@ -19,6 +19,25 @@ describe("admin add, configure and delete questionnaires", () => {
       for (let i = 0; i < 3; i++) {
         cy.get('button[name="addOption"]').click();
         cy.get("input[name='option.label']").eq(i).type("option");
+
+        if (i === 0) {
+          cy.get('#option_hint').first().click();
+          cy.get('#hint1').type('This is hint 1');
+          cy.get('#hint2').type('This is hint 2');
+          cy.get('#modal-action-ok').click();
+
+          cy.get('#option_block_submission').first().click();
+
+          cy.get('#option_trigger_receiver').first().click();
+          cy.get('[data-cy="reciever_selection"]').click();
+          cy.get('.ng-option').eq(0).click();
+          cy.get('#modal-action-ok').click();
+
+          cy.get('#option_score').first().click();
+          cy.get('select.form-control').select('multiplier');
+          cy.get('#score_points').clear().type('5');
+          cy.get('#modal-action-ok').click();
+        }
       }
 
       cy.get('button[name="delOption"]').eq(2).click();

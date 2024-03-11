@@ -358,22 +358,22 @@
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </button>
                                         <span>
-                                            <button class="btn btn-sm" [ngClass]="option.hint1 || option.hint2 ? 'btn-primary' : 'btn-outline-secondary'" (click)="addOptionHintDialog(option)" data-toggle="tooltip" title="{{'Hint' | translate}}">
+                                            <button class="btn btn-sm" id="option_hint" [ngClass]="option.hint1 || option.hint2 ? 'btn-primary' : 'btn-outline-secondary'" (click)="addOptionHintDialog(option)" data-toggle="tooltip" title="{{'Hint' | translate}}">
                                                 <i class="fa-solid fa-question-circle"></i>
                                             </button>
                                         </span>
                                         <span>
-                                            <button class="btn btn-sm" [ngClass]="option.block_submission ? 'btn-danger' : 'btn-outline-secondary'" (click)="flipBlockSubmission(option)" data-toggle="tooltip" title="{{'Block the submission' | translate}}">
+                                            <button class="btn btn-sm" id="option_block_submission" [ngClass]="option.block_submission ? 'btn-danger' : 'btn-outline-secondary'" (click)="flipBlockSubmission(option)" data-toggle="tooltip" title="{{'Block the submission' | translate}}">
                                                 <i class="fa-solid fa-ban"></i>
                                             </button>
                                         </span>
                                         <span>
-                                            <button class="btn btn-sm" [ngClass]="option.trigger_receiver.length ? 'btn-primary' : 'btn-outline-secondary'" (click)="triggerReceiverDialog(option)" data-toggle="tooltip" title="{{'Recipients' | translate}}">
+                                            <button class="btn btn-sm" id="option_trigger_receiver" [ngClass]="option.trigger_receiver.length ? 'btn-primary' : 'btn-outline-secondary'" (click)="triggerReceiverDialog(option)" data-toggle="tooltip" title="{{'Recipients' | translate}}">
                                                 <i class="fa-solid fa-user"></i>
                                             </button>
                                         </span>
                                         <span *ngIf="nodeResolver.dataModel.enable_scoring_system">
-                                            <button class="btn btn-sm" [ngClass]="option.score_type !== 'none' ? 'btn-primary' : 'btn-outline-secondary'" (click)="assignScorePointsDialog(option)" data-toggle="Assign score points" title="{{'Recipients' | translate}}">
+                                            <button class="btn btn-sm" id="option_score" [ngClass]="option.score_type !== 'none' ? 'btn-primary' : 'btn-outline-secondary'" (click)="assignScorePointsDialog(option)" data-toggle="Assign score points" title="{{'Recipients' | translate}}">
                                                 <i class="fa-solid fa-bolt"></i>
                                                 <span *ngIf="option.score_type !== 'none'">
                                                     <span> {{ option.score_points }} </span>

@@ -53,11 +53,39 @@ describe("admin configure, add, and delete contexts", () => {
     cy.logout();
   });
 
-  it("should add new status and sub-status in the admin section", () => {
+  it("should add/remove new status and sub-status in the admin section", () => {
     cy.login_admin();
 
     cy.visit("/#/admin/casemanagement");
     cy.get(".config-section").should("be.visible");
+    cy.get(".show-add-user-btn").click();
+    cy.get(".addSubmissionStatus").should("be.visible");
+    cy.get('input[name="name"]').type("Test");
+    cy.get("#add-btn").click();
+    cy.get(".config-section").contains("Test").should("be.visible").click();
+    cy.get("#add-sub-status").click();
+    cy.get('input[name="label"]').type("closed 1");
+    cy.get("#add-submission-sub-status").click();
+    cy.get("#add-sub-status").click();
+    cy.get('input[name="label"]').type("closed 2");
+    cy.get("#add-submission-sub-status").click();
+    cy.get('#move-up-button').click();
+    cy.get('#move-down-button').click();
+    cy.get('#substatus-edit-button').first().click();
+    cy.get('input[name="substatus.label"]').clear();
+    cy.get('input[name="substatus.label"]').type('Test Label').should('have.value', 'Test Label');
+    cy.get('select[name="substatus.tip_timetolive_option"]').select(1);
+    cy.get('input[name="substatus.tip_timetolive"]').clear();
+    const inputValue = 10;
+    cy.get('input[name="substatus.tip_timetolive"]').type(inputValue.toString()).should('have.value', inputValue.toString());
+    cy.get('#substatus-save-button').first().click();
+    cy.get('#substatus-delete-button').first().click();
+    cy.get("#modal-action-ok").click();
+    cy.get('#substatus-delete-button').first().click();
+    cy.get("#modal-action-ok").click();
+    cy.get("#delete-submissions-status").last().click();
+    cy.get("#modal-action-ok").click();
+   
     cy.get(".show-add-user-btn").click();
     cy.get(".addSubmissionStatus").should("be.visible");
     cy.get('input[name="name"]').type("Partial");

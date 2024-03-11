@@ -2,7 +2,7 @@ import * as pages from '../support/pages';
 
 describe("globaleaks process", function () {
   const N = 1;
-  let receipts:any = [];
+  let receipts: any = [];
   const comment = "comment";
 
   const perform_submission = async () => {
@@ -83,7 +83,7 @@ describe("globaleaks process", function () {
       cy.logout();
     });
 
-    it("Recipient actions", function() {
+    it("Recipient actions", function () {
       cy.login_receiver();
       cy.visit("/#/recipient/reports");
 
@@ -125,6 +125,7 @@ describe("globaleaks process", function () {
   })
   it("should run identity , upload file & additional questionnaire", () => {
     cy.visit("#/");
+    cy.reload();
     cy.get("#WhistleblowingButton").click();
     cy.get("#NextStepButton").click();
     cy.get("input[type='text']").eq(1).should("be.visible").type("abc");
@@ -150,15 +151,16 @@ describe("globaleaks process", function () {
         input[0].dispatchEvent(changeEvent);
       });
     });
-    cy.get("#files-action-confirm").click();
+    cy.get("#files-action-confirm", { timeout: 10000 }).click();
     cy.logout();
   });
   it("should view the whistleblower file", () => {
     cy.login_receiver();
+    cy.reload();
+    cy.wait(2000);
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
-    cy.get(".tip-action-views-file").first().click();
-    cy.wait(1000);
+    cy.get(".tip-action-views-file", { timeout: 10000 }).first().click();
     cy.get("#modal-action-cancel").click();
     cy.logout();
   })
@@ -172,7 +174,25 @@ describe("globaleaks process", function () {
     cy.get('#modal-action-ok').click();
     cy.logout();
   })
-   it("should authorize identity", () => {
+  it("should deny authorize identity", () => {
+    cy.login_custodian();
+    cy.get("#custodian_requests").first().click();
+    cy.get("#deny").first().click();
+    cy.get('#motivation').type("This is the motivation text.");
+    cy.get('#modal-action-ok').click();
+    cy.logout();
+  })
+  it("should request for identity", () => {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get('[data-cy="identity_toggle"]').click();
+    cy.get("#identity_access_request").click();
+    cy.get('textarea[name="request_motivation"]').type("This is the motivation text.");
+    cy.get('#modal-action-ok').click();
+    cy.logout();
+  })
+  it("should authorize identity", () => {
     cy.login_custodian();
     cy.get("#custodian_requests").first().click();
     cy.get("#authorize").first().click();
@@ -193,7 +213,7 @@ describe("globaleaks process", function () {
     cy.get('[id="tip-action-mask"]').should('be.visible', { timeout: 10000 }).click();
     cy.get("#edit-question").should('be.visible').first().click();
 
-    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea:any) => {
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea: any) => {
       const val = textarea.val();
       cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
       cy.get("#select_content").click();
@@ -202,7 +222,7 @@ describe("globaleaks process", function () {
     cy.get("#save_masking").click();
     cy.get('[id="tip-action-mask"]').should('be.visible', { timeout: 10000 }).click();
     cy.get("#edit-question").should('be.visible').first().click();
-    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea:any) => {
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea: any) => {
       const val = textarea.val();
       cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
       cy.get("#unselect_content").click();

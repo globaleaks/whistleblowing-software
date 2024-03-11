@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
     <div>{{ 'Recipients' | translate }}</div>
-    <ng-select [items]="userData | filter: 'role': 'receiver'" [(ngModel)]="selected.value" [virtualScroll]="true" [placeholder]="'Search' | translate" bindValue="name" (change)="addReceiver($event)">
+    <ng-select [items]="userData | filter: 'role': 'receiver'" [attr.data-cy]="'reciever_selection'" [(ngModel)]="selected.value" [virtualScroll]="true" [placeholder]="'Search' | translate" bindValue="name" (change)="addReceiver($event)">
         <ng-template ng-label-tmp let-item="item">
             {{ item.name }}
         </ng-template>
@@ -33,7 +33,7 @@
         <i class="fa-solid fa-check"></i>
         <span>{{ 'Confirm' | translate }}</span>
     </button>
-    <button id="modal-action-ok" class="btn btn-danger" (click)="resetRecipients()">
+    <button id="modal-action-reset" class="btn btn-danger" (click)="resetRecipients()">
         <i class="fa-solid fa-check"></i>
         <span>{{ 'Reset' | translate }}</span>
     </button>
