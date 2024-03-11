@@ -25,7 +25,6 @@ factory("Authentication",
 
       if (typeof session === "string") {
         self.session = JSON.parse(session);
-        //$location.path(self.session.homepage);
       }
 
       self.set_session = function(response) {
