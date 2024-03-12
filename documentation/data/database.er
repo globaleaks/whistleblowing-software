@@ -6,7 +6,6 @@
     data {label:"TEXT"}
     date {label:"DATETIME"}
     object_id {label:"TEXT(36)"}
-    severity {label:"INTEGER"}
     tid {label:"INTEGER"}
     type {label:"TEXT(24)"}
     user_id {label:"TEXT(36)"}
@@ -28,8 +27,6 @@
     crypto_tip_prv_key {label:"TEXT(84)"}
     crypto_tip_pub_key {label:"TEXT(56)"}
     deprecated_crypto_files_pub_key {label:"TEXT(56)"}
-    enable_attachments {label:"BOOLEAN"}
-    enable_two_way_comments {label:"BOOLEAN"}
     enable_whistleblower_identity {label:"BOOLEAN"}
     expiration_date {label:"DATETIME"}
     important {label:"BOOLEAN"}
@@ -56,8 +53,6 @@
     additional_questionnaire_id {label:"TEXT(36)"}
     allow_recipients_selection {label:"BOOLEAN"}
     description {label:"TEXT"}
-    enable_attachments {label:"BOOLEAN"}
-    enable_two_way_comments {label:"BOOLEAN"}
     hidden {label:"BOOLEAN"}
     maximum_selectable_receivers {label:"INTEGER"}
     name {label:"TEXT"}
@@ -157,6 +152,10 @@
     request_date {label:"DATETIME"}
     request_motivation {label:"TEXT"}
     request_user_id {label:"TEXT(36)"}
+[identityaccessrequest_custodian]
+    *custodian_id {label:"TEXT(36)"}
+    *identityaccessrequest_id {label:"TEXT(36)"}
+    crypto_tip_prv_key {label:"TEXT(84)"}
 [user]
     *id {label:"TEXT(36)"}
     accepted_privacy_policy {label:"DATETIME"}
@@ -202,10 +201,6 @@
     tid {label:"INTEGER"}
     two_factor_secret {label:"TEXT(32)"}
     username {label:"TEXT"}
-[identityaccessrequest_custodian]
-    *custodian_id {label:"TEXT(36)"}
-    *identityaccessrequest_id {label:"TEXT(36)"}
-    crypto_tip_prv_key {label:"TEXT(84)"}
 [internalfile]
     *id {label:"TEXT(36)"}
     content_type {label:"TEXT"}
@@ -314,10 +309,10 @@
     new {label:"BOOLEAN"}
     receivertip_id {label:"TEXT(36)"}
 internaltip 1--* comment
-context 1--* internaltip
 tenant 1--* internaltip
-questionnaire 1--* context
+context 1--* internaltip
 tenant 1--* context
+questionnaire 1--* context
 tenant 1--* questionnaire
 tenant 1--1 config
 enabledlanguage 1--1 config_l10n
@@ -325,30 +320,28 @@ enabledlanguage 1--1 config_l10n
 tenant 1--1 enabledlanguage
 tenant 1--1 customtexts
 field ?--* field
-step ?--* field
-field ?--* field
 field ?--* field
 tenant 1--* field
+step ?--* field
+field ?--* field
 questionnaire 1--* step
 field 1--1 fieldattr
 field 1--* fieldoption
-fieldoption 1--1 fieldoptiontriggerfield
 field 1--1 fieldoptiontriggerfield
+fieldoption 1--1 fieldoptiontriggerfield
 fieldoption 1--1 fieldoptiontriggerstep
 step 1--1 fieldoptiontriggerstep
 tenant ?--* file
 internaltip 1--* identityaccessrequest
-user ?--* identityaccessrequest
-user 1--* identityaccessrequest
-tenant 1--* user
-identityaccessrequest 1--1 identityaccessrequest_custodian
 user 1--1 identityaccessrequest_custodian
+identityaccessrequest 1--1 identityaccessrequest_custodian
+tenant 1--* user
 internaltip 1--* internalfile
 internaltip 1--1 internaltipanswers
 internaltip 1--1 internaltipdata
 tenant 1--* mail
-user 1--1 receiver_context
 context 1--1 receiver_context
+user 1--1 receiver_context
 internaltip 1--* receiverfile
 user 1--* receivertip
 internaltip 1--* receivertip
@@ -358,5 +351,5 @@ tenant 1--1 submissionstatus
 submissionstatus 1--* submissionsubstatus
 submissionstatus 1--1 submissionsubstatus
 tenant 1--1 subscriber
-internalfile 1--* whistleblowerfile
 receivertip 1--* whistleblowerfile
+internalfile 1--* whistleblowerfile
