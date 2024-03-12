@@ -1,3 +1,17 @@
+Changes in version 4.15.0
+    Fix issues #4019, #4020
+    Do not loose channel selection when changing platform language
+    Make it possible to use channel id parameter on homepage link
+    Fix memory leak on speaker anonymization algorithm
+    Implement deletion of audit logs after 5 years or report deletion
+    Do not require mandatory motivation on report close
+    Extend gl-admin command adding possibility to change encrypted passwords
+    Deprecate old migrations for globaleaks versions < 4.0.0
+    Optimize Tor loading enabling permanent data dir
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Add reference to new security audit report by ISGroup
+
 Changes in version 4.14.8
     Fix failure on configuration of network filter introduced in 4.14.0 (#3971)
     Fix failure on the upload of PGP keys (#3970)
