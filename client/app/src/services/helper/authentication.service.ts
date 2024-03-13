@@ -135,7 +135,6 @@ export class AuthenticationService {
                 this.appDataService.receipt = password;
                 this.titleService.setPage("tippage");
               }
-              this.router.navigate(['/']).then();
             } else {
               if (!callback) {
                 let redirect = this.activatedRoute.snapshot.queryParams['redirect'] || undefined;
