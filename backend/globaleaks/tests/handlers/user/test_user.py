@@ -152,7 +152,6 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
             'args': {}
         }
 
-
         current_token = totp.generate(time.time()).decode()
 
         handler = self.request(data_request, role='receiver', headers={'x-confirmation': current_token})
