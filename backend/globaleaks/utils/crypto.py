@@ -223,7 +223,7 @@ class _GCE(object):
     @staticmethod
     def check_password(password: str, salt: str, hash: str) -> bool:
         """
-        Perform passowrd check for match with a provided hash
+        Perform password check for match with a provided hash
         """
         password = _convert_to_bytes(password)
         salt = _convert_to_bytes(salt)
