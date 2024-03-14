@@ -183,6 +183,57 @@ def reset_password(args):
          ).format(args.username, password))
 
 
+def disable_2fa(args):
+    db_path = check_db(args.workdir)
+
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+
+    admin_username = input("Username: ")
+    admin_password = getpass()
+
+    QUERY = "SELECT id, salt, hash WHERE tid=? AND username=?"
+    c.execute(QUERY, (tid, admin_username))
+
+    admin_user = c.fetchone()
+    if admin_user is None:
+        print("Failed! The specified admin user '{}' does not exist".format(admin_username))
+        sys.exit(1)
+
+    admin_id, admin_salt, admin_hash = admin_user[0], admin_user[1], admin_user[2]
+
+    if not GCE.check_password(admin_password, user_salt, admin_hash):
+        print("Failed! Invalid password")
+        sys.exit(1)
+
+    QUERY = "SELECT id FROM user WHERE tid=? AND username=?;"
+    c.execute(QUERY, (args.tid, args.username))
+
+    user = c.fetchone()
+
+    if user is None:
+        print("Failed! The user '{}' does not exist".format(args.username))
+        sys.exit(1)
+
+    user_id = user[0]
+
+    QUERY = "UPDATE user SET two_factor_secret=? WHERE id=?;"
+    c.execute(QUERY, ('', user_id))
+
+    QUERY = "INSERT INTO auditlog(tid, date, type, user_id, object_id) VALUES(?,?,?,?,?,?);"
+    c.execute(QUERY, (args.tid, datetime_now(), 'disable_2fa', 0, admin_id, user_id))
+
+    conn.commit()
+    conn.close()
+
+    print(("=========================================\n"
+           "||         2fa disabled                ||\n"
+           "=========================================\n"
+           " Username: {}\n"
+           "=========================================\n"
+         ).format(args.username))
+
+
 def get_var(args):
     db_path = check_db(args.workdir)
 
@@ -253,6 +304,12 @@ add_workingdir_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username")
 pw_p.set_defaults(func=reset_password)
+
+pw_p = subp.add_parser("disable-2fa", help="disable the two factor authentication of a user")
+add_workingdir_path_arg(pw_p)
+pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
+pw_p.add_argument("username")
+pw_p.set_defaults(func=disable_2fa)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_workingdir_path_arg(rv_p)
