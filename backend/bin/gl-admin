@@ -211,11 +211,11 @@ def set_var(args, silent=False):
 
     value = json.dumps(args.value)
 
-    QUERY = "UPDATE config SET value=? WHERE var_name=? AND tid=?;"
+    QUERY = "UPDATE config SET value=? WHERE tid=? AND var_name=?;"
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(QUERY, (value, args.varname, args.tid))
+    c.execute(QUERY, (value, args.tid, args.varname))
     conn.commit()
     conn.close()
 
