@@ -110,7 +110,7 @@ def restore(args):
     print("Success! globaleaks has been restored from a backup")
 
 
-def reset_pass(args):
+def reset_password(args):
     db_path = check_db(args.workdir)
 
     admin_username = input("Username: ")
@@ -119,19 +119,24 @@ def reset_pass(args):
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
 
+    password = generateRandomPassword(16)
     user_salt = GCE.generate_salt()
-    user_hash = GCE.hash_password(args.password, user_salt)
-    user_enc_key = GCE.derive_key(args.password.encode(), user_salt)
+    user_hash = GCE.hash_password(password, user_salt)
+    user_enc_key = GCE.derive_key(password.encode(), user_salt)
 
-    QUERY = "SELECT id, salt, crypto_prv_key, crypto_escrow_prv_key FROM user WHERE username=? AND tid=?"
-    c.execute(QUERY, (admin_username, 1))
+    QUERY = "SELECT id, salt, hash, crypto_prv_key, crypto_escrow_prv_key FROM user WHERE tid=? AND username=?"
+    c.execute(QUERY, (args.tid, admin_username))
 
     admin_user = c.fetchone()
     if admin_user is None:
         print("Failed! The specified admin user '{}' does not exist".format(admin_username))
         sys.exit(1)
 
-    admin_id, admin_salt, admin_crypto_prv_key, admin_crypto_escrow_prv_key = admin_user[0], admin_user[1], admin_user[2], admin_user[3]
+    admin_id, admin_salt, admin_hash, admin_crypto_prv_key, admin_crypto_escrow_prv_key = admin_user[0], admin_user[1], admin_user[2], admin_user[3], admin_user[4]
+
+    if not GCE.check_password(admin_password, admin_salt, admin_hash):
+        print("Failed! Invalid password")
+        sys.exit(1)
 
     admin_enc_key = GCE.derive_key(admin_password.encode(), admin_salt)
 
@@ -144,8 +149,8 @@ def reset_pass(args):
 
         admin_ek = GCE.asymmetric_decrypt(admin_cc, Base64Encoder.decode(admin_crypto_escrow_prv_key))
 
-    QUERY = "SELECT id, crypto_escrow_bkp1_key FROM user WHERE username=? AND tid=?;"
-    c.execute(QUERY, (args.username, args.tid))
+    QUERY = "SELECT id, crypto_escrow_bkp1_key FROM user WHERE tid=? AND username=?;"
+    c.execute(QUERY, (args.tid, args.username))
 
     user = c.fetchone()
 
@@ -160,11 +165,11 @@ def reset_pass(args):
     else:
         user_crypto_prv_key = ''
 
-    QUERY = "UPDATE user SET salt=?, hash=?, crypto_prv_key=?, password_change_date=?, password_change_needed=? WHERE username=? AND tid=?;"
-    c.execute(QUERY, (user_salt, user_hash, user_crypto_prv_key, datetime_now(), True, args.username, args.tid))
+    QUERY = "UPDATE user SET salt=?, hash=?, crypto_prv_key=?, password_change_date=?, password_change_needed=? WHERE id=?;"
+    c.execute(QUERY, (user_salt, user_hash, user_crypto_prv_key, datetime_now(), True, user_id))
 
-    QUERY = "INSERT INTO auditlog(tid, date, type, severity, user_id, object_id) VALUES(?,?,?,?,?,?);"
-    c.execute(QUERY, (1, datetime_now(), 'change_password', 0, admin_id, user_id))
+    QUERY = "INSERT INTO auditlog(tid, date, type, user_id, object_id) VALUES(?,?,?,?,?);"
+    c.execute(QUERY, (args.tid, datetime_now(), 'change_password', admin_id, user_id))
 
     conn.commit()
     conn.close()
@@ -172,10 +177,10 @@ def reset_pass(args):
     print(("=========================================\n"
            "||      Password reset completed       ||\n"
            "=========================================\n"
-           "     Username: {}\n"
-           "     Password: {}\n"
+           " Username: {}\n"
+           " Password: {}\n"
            "=========================================\n"
-         ).format(args.username, args.password))
+         ).format(args.username, password))
 
 
 def get_var(args):
@@ -243,13 +248,11 @@ res_p.add_argument("backuppath", nargs="?", help="the path and name of the backu
                    default=default_backup_path())
 res_p.set_defaults(func=restore)
 
-pw_p = subp.add_parser("resetpass", help="reset a user's password")
+pw_p = subp.add_parser("reset-password", help="reset the password of a user")
 add_workingdir_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 pw_p.add_argument("username")
-pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=generateRandomPassword(16))
-pw_p.set_defaults(func=reset_pass)
+pw_p.set_defaults(func=reset_password)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")
 add_workingdir_path_arg(rv_p)
