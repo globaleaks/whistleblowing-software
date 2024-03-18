@@ -78,7 +78,6 @@ import {BlankComponent} from "@app/shared/blank/blank.component";
 import {VoiceRecorderComponent} from "@app/shared/partials/voice-recorder/voice-recorder.component";
 import {Tab1Component} from "@app/pages/admin/settings/tab1/tab1.component";
 import {SwitchComponent} from "@app/shared/components/switch/switch.component";
-import {NgChartsModule} from "ng2-charts";
 import {ChangeSubmissionStatusComponent} from "@app/shared/modals/change-submission-status/change-submission-status.component";
 import {ReopenSubmissionComponent} from "@app/shared/modals/reopen-submission/reopen-submission.component";
 import {OtkcAccessComponent} from "@app/shared/modals/otkc-access/otkc-access.component";
@@ -113,7 +112,6 @@ import {RedactInformationComponent} from "@app/shared/modals/redact-information/
     NgbDropdownModule,
     NgbTooltipModule,
     NgOptimizedImage,
-    NgChartsModule
   ],
   declarations: [
     FooterComponent,

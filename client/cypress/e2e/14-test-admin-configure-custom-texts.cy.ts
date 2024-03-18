@@ -32,13 +32,12 @@ describe("admin configure custom texts", () => {
     cy.visit("/#/admin/settings");
     cy.get('[data-cy="text_customization"]').click();
 
-    cy.get(".deleteCustomTextButton").click();
+    cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
+    cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
 
     cy.logout();
 
-    cy.reload();
     cy.visit("/#/");
-    cy.reload();
     cy.get('#submissions_disabled').should('not.contain', 'Whistleblowing disabled');
   });
 });

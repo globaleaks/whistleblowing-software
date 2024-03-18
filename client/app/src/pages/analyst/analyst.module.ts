@@ -9,7 +9,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { HomeComponent } from '@app/pages/analyst/home/home.component';
 import { SidebarComponent } from '@app/pages/analyst/sidebar/sidebar.component';
 import { StatisticsComponent } from '@app/pages/analyst/statistics/statistics.component';
-import { NgChartsModule } from "ng2-charts";
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
 @NgModule({
@@ -20,10 +20,11 @@ import { NgChartsModule } from "ng2-charts";
   ],
   imports: [
     CommonModule, RouterModule, TranslateModule, SharedModule, FormsModule,
-    NgbModule, NgbNavModule,NgChartsModule,
+    NgbModule, NgbNavModule,BaseChartDirective,
     NgbDatepickerModule, NgbDropdownModule, NgMultiSelectDropDownModule.forRoot()
 
   ],
+  providers: [provideCharts(withDefaultRegisterables())],
   exports: [SidebarComponent]
 })
 export class AnalystModule { }

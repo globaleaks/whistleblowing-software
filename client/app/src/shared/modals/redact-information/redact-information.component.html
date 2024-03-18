@@ -7,7 +7,7 @@
 </div>
 
 <div class="modal-body">
-    <textarea #redact id="redact" name="controlElement" [(ngModel)]="forced_visible ? unmaskedContent : content" cols="30"
+    <textarea #redact id="redact" name="controlElement" [ngModel]="forced_visible ? unmaskedContent : content" (ngModelChange)="forced_visible ? unmaskedContent : content = $event" cols="30"
               rows="10" (keydown)="ignoreEdit($event)" class="form-control"></textarea>
 </div>
 

@@ -157,7 +157,6 @@ describe("globaleaks process", function () {
   it("should view the whistleblower file", () => {
     cy.login_receiver();
     cy.reload();
-    cy.wait(2000);
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get(".tip-action-views-file", { timeout: 10000 }).first().click();
