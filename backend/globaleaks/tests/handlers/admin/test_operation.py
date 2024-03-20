@@ -10,20 +10,6 @@ from twisted.internet import defer
 class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
-    @defer.inlineCallbacks
-    def test_put(self):
-        data_request = {
-            'operation': 'send_password_reset_email',
-            'args': {
-                'value': self.dummyReceiver_1['id']
-            }
-        }
-
-        handler = self.request(data_request, role='admin')
-
-        yield handler.put()
-
-
 class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
@@ -79,6 +65,10 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
         return self._test_operation_handler('set_user_password',
                                            {'user_id': self.dummyReceiver_1['id'],
                                             'password': 'GlobaLeaks123!'})
+
+    def test_admin_test_send_password_reset_email(self):
+        return self._test_operation_handler('send_password_reset_email',
+                                           {'value': self.dummyReceiver_1['id']})
 
     def test_admin_test_smtp_settings(self):
         return self._test_operation_handler('reset_smtp_settings')
