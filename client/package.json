@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "17.3.0",
     "@angular/router": "17.3.0",
     "@flowjs/flow.js": "2.14.1",
-    "@flowjs/ngx-flow": "0.7.2",
+    "@flowjs/ngx-flow": "0.8.1",
     "@fontsource/inter": "5.0.17",
     "@fontsource/noto-sans-arabic": "5.0.12",
     "@fontsource/noto-sans-armenian": "5.0.13",
