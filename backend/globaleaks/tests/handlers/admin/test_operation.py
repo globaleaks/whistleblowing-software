@@ -78,3 +78,6 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
 
     def test_admin_test_reset_templates(self):
         return self._test_operation_handler('reset_templates')
+
+    def test_admin_test_reset_onion_private_key(self):
+        return self._test_operation_handler('reset_onion_private_key')

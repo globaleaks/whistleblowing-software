@@ -301,12 +301,14 @@ class AdminOperationHandler(OperationHandler):
     def reset_onion_private_key(self, req_args, *args, **kargs):
         self.check_root_or_management_session()
 
-        self.state.tor.unload_onion_service(self.request.tid)
+        if self.state.tor:
+            self.state.tor.unload_onion_service(self.request.tid)
 
         hostname, key = generate_onion_service_v3()
         yield set_onion_service_info(self.request.tid, hostname, key)
 
-        yield self.state.tor.load_onion_service(self.request.tid, hostname, key)
+        if self.state.tor:
+            yield self.state.tor.load_onion_service(self.request.tid, hostname, key)
 
         returnValue({
             'onionservice': hostname
