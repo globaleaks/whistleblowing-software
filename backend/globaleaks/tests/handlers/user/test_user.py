@@ -95,20 +95,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(response['change_email_address'], email)
 
 
-class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):
-    _handler = user.operation.UserOperationHandler
-
-    def test_put(self):
-        data_request = {
-            'operation': 'get_recovery_key',
-            'args': {}
-        }
-
-        handler = self.request(data_request, role='receiver')
-
-        return handler.put()
-
-
 class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
     _handler = user.operation.UserOperationHandler
 
@@ -196,3 +182,6 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
         yield self._test_operation_handler('change_password',
                                            {'password': valid_password,
                                             'current': helpers.VALID_PASSWORD1})
+
+    def test_user_test_get_recovery_key(self):
+        return self._test_operation_handler('get_recovery_key')
