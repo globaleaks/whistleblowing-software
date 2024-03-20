@@ -157,7 +157,7 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
         return self.request(data_request, role='receiver').put()
 
     @inlineCallbacks
-    def test_user_test_change_password(self):
+    def test_user_change_password(self):
         valid_password = 'validPassword1!'
 
         weak_passwords = [
@@ -183,5 +183,5 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
                                            {'password': valid_password,
                                             'current': helpers.VALID_PASSWORD1})
 
-    def test_user_test_get_recovery_key(self):
+    def test_user_get_recovery_key(self):
         return self._test_operation_handler('get_recovery_key')
