@@ -1,7 +1,7 @@
 <div id="FieldsEditBox" class="form-group">
     <div class="row">
         <span class="col-md-12">
-            <label>
+            <div>
                 <span>{{ 'Questions' | translate }}</span>
                 <button class="btn btn-sm btn-primary show-add-question-btn" id="add-question" (click)="toggleAddQuestion()">
                     <i class="fa-solid fa-plus"></i>
@@ -11,7 +11,7 @@
                     <i class="fa-solid fa-plus"></i>
                     <span>{{ 'Add question from template' | translate }}</span>
                 </button>
-            </label>
+            </div>
         </span>
     </div>
     <div class="row config-section" *ngIf="showAddQuestion">
