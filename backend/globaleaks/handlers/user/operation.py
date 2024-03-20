@@ -203,7 +203,7 @@ class UserOperationHandler(OperationHandler):
 
     def accepted_privacy_policy(self, req_args, *args, **kwargs):
         return accepted_privacy_policy(self.session.user_tid,
-                           self.session.user_id)
+                                       self.session.user_id)
 
     def operation_descriptors(self):
         return {

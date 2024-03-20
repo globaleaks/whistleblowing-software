@@ -185,3 +185,6 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
 
     def test_user_get_recovery_key(self):
         return self._test_operation_handler('get_recovery_key')
+
+    def test_user_get_usernames(self):
+        return self._test_operation_handler('get_users_names')
