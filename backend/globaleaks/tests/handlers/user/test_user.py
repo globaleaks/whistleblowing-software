@@ -188,3 +188,6 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
 
     def test_user_get_usernames(self):
         return self._test_operation_handler('get_users_names')
+
+    def test_user_accepted_privacy_policy(self):
+        return self._test_operation_handler('accepted_privacy_policy')
