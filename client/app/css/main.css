@@ -847,7 +847,7 @@ text.axis-worktime {
   font-family: monospace;
   font-size: 0.8rem;
   max-height: 40em;
-  max-width: 80rem;
+  max-width: 100%;
   overflow-y: scroll;
   white-space: pre-wrap;
 }
