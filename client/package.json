@@ -19,7 +19,7 @@
     "@fontsource/noto-sans-armenian": "5.0.13",
     "@fontsource/noto-sans-bengali": "5.0.12",
     "@fontsource/noto-sans-ethiopic": "5.0.17",
-    "@fontsource/noto-sans-georgian": "5.0.20",
+    "@fontsource/noto-sans-georgian": "5.0.21",
     "@fontsource/noto-sans-hebrew": "5.0.19",
     "@fontsource/noto-sans-hk": "5.0.18",
     "@fontsource/noto-sans-jp": "5.0.18",
@@ -59,11 +59,11 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "@babel/cli": "7.23.9",
-    "@babel/core": "7.24.0",
-    "@cypress/code-coverage": "3.12.29",
+    "@babel/cli": "7.24.1",
+    "@babel/core": "7.24.3",
+    "@cypress/code-coverage": "3.12.30",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.6.6",
+    "cypress": "13.7.0",
     "eslint": "8.57.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
@@ -81,13 +81,13 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.14.15",
+    "npm-check-updates": "16.14.17",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "stylelint": "16.2.1",
     "stylelint-config-standard": "36.0.0",
     "superagent": "8.1.2",
-    "terser": "5.29.1"
+    "terser": "5.29.2"
   },
   "overrides": {
     "grunt-stylelint": {
