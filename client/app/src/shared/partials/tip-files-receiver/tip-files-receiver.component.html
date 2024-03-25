@@ -68,11 +68,5 @@
                 </tbody>
             </table>
         </div>
-        <div *ngIf="tipService.tip.context && authenticationService.session?.role === 'receiver' && !tipService.tip.context.enable_attachments" class="form-group">
-            <label class="inline-checkbox">
-                <input [(ngModel)]="tipService.tip.enable_attachments" (ngModelChange)="tipService.operation('api/recipient/rtips/'+tipService.tip.id,'set', {'key': 'enable_attachments', 'value': tipService.tip.enable_attachments})" type="checkbox" />
-                <span>{{ 'Allow the whistleblower to add attachments' | translate }}</span>
-            </label>
-        </div>
     </div>
 </div>

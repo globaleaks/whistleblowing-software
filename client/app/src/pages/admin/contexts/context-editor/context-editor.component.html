@@ -157,12 +157,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="inline-checkbox">
-                                    <input type="checkbox" [(ngModel)]="contextResolver.enable_attachments" />
-                                    <span>{{ 'Allow the whistleblower to add attachments' | translate }}</span>
-                                </label>
-                            </div>
-                            <div class="form-group">
                                 <label>{{ 'Additional questionnaire' | translate }}</label>
                                 <select class="form-select-custom" [(ngModel)]="contextResolver.additional_questionnaire_id" name="contextResolver.additional_questionnaire_id">
                                     <option *ngIf="contextResolver.additional_questionnaire_id" [value]="null"></option>

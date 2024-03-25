@@ -54,13 +54,6 @@ export class TipCommentsComponent implements OnInit {
     return data;
   }
 
-  onEnableTwoWayCommentsChange() {
-    this.rTipService.operation("api/recipient/rtips/" + this.tipService.tip.id, "set", {
-      "key": "enable_two_way_comments",
-      "value": this.tipService.tip.enable_two_way_comments
-    });
-  }
-
   redactInformation(type:string, id:string, entry:string, content:string){
     this.maskService.redactInfo(type,id,entry,content,this.tipService.tip)
   }

@@ -14,8 +14,6 @@ export class WbTipData {
   tor: boolean;
   mobile: boolean;
   reminder_date: string;
-  enable_two_way_comments: boolean;
-  enable_attachments: boolean;
   enable_whistleblower_identity: boolean;
   last_access: string;
   score: number;

@@ -104,8 +104,6 @@ export interface Context {
   maximum_selectable_receivers: number;
   allow_recipients_selection: boolean;
   enable_comments: boolean;
-  enable_two_way_comments: boolean;
-  enable_attachments: boolean;
   score_threshold_medium: number;
   score_threshold_high: number;
   show_receivers_in_alphabetical_order: boolean;
