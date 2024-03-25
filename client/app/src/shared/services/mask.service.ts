@@ -127,7 +127,11 @@ export class MaskService {
 
   getRedaction(id: string, entry: string,tip:RecieverTipData | WbTipData): any {
     const redactionObjects = tip.redactions.filter((redaction:any) => {
-      return redaction.reference_id === id && redaction.entry === entry;
+      if(!entry){
+        return redaction.reference_id === id && redaction.entry === "0";
+      } else {
+        return redaction.reference_id === id && redaction.entry === entry;
+      }
     });
 
     return redactionObjects.length > 0 ? redactionObjects[0] : null;

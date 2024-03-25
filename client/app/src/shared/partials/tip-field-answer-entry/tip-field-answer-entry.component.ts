@@ -76,8 +76,12 @@ export class TipFieldAnswerEntryComponent implements OnInit {
       `api/recipient/wbfiles/${id}`;
   }
 
-  redactInformation(type:string, id:string, entry:string, content:string){
-    this.maskService.redactInfo(type,id,entry,content,this.tipService.tip)
+  redactInformation(type:string, field:any, entry:string, content:string){
+    if (field.instance === "template" && field.fieldgroup_id === "whistleblower_identity"){
+      this.maskService.redactInfo("whistleblower_identity",field.id,entry,content,this.tipService.tip);
+    } else {
+      this.maskService.redactInfo(type,field.id,entry,content,this.tipService.tip);
+    }
   }
 
   maskContent(id: string, index: string, value: string) {

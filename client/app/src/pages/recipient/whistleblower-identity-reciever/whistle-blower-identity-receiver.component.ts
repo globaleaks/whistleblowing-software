@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ReceiverTipService} from "@app/services/helper/receiver-tip.service";
 import {
@@ -13,6 +13,8 @@ import {UtilsService} from "@app/shared/services/utils.service";
   templateUrl: "./whistle-blower-identity-receiver.component.html"
 })
 export class WhistleBlowerIdentityReceiverComponent {
+  @Input() redactOperationTitle: string;
+  @Input() redactMode: boolean;
   collapsed: boolean = true;
 
   constructor(protected tipService: ReceiverTipService, protected utilsService: UtilsService, private httpService: HttpService, private modalService: NgbModal, private utils: UtilsService) {

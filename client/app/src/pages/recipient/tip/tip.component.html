@@ -101,7 +101,7 @@
                 [redactMode]="redactMode"></src-tip-questionnaire-answers>
         </div>
         <ng-container class="col-md-6" *ngIf="tip && tip.enable_whistleblower_identity">
-            <src-whistleblower-identity-reciever></src-whistleblower-identity-reciever>
+            <src-whistleblower-identity-reciever [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode"></src-whistleblower-identity-reciever>
         </ng-container>
     </div>
     <div class="row">

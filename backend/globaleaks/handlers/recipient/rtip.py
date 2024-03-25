@@ -442,6 +442,18 @@ def db_redact_answers(answers, redaction):
             else:
                 db_redact_answers(answer, redaction)
 
+def db_redact_whistleblower_identities(whistleblower_identities, redaction):
+    for key in whistleblower_identities:
+        if isinstance(whistleblower_identities[key], bool):
+            continue
+        for inner_idx, whistleblower_identity in enumerate(whistleblower_identities[key]):
+            if 'value' in whistleblower_identity:
+                if key == redaction.reference_id:
+                    whistleblower_identity['value'] = redact_content(whistleblower_identity['value'], redaction.permanent_redaction)
+                    return
+            else:
+                db_redact_whistleblower_identities(whistleblower_identity, redaction)
+
 
 def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, redaction_data, tip_data):
     currentMaskedData = next((masked_content for masked_content in tip_data['redactions'] if
@@ -474,6 +486,31 @@ def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, red
     if itip_answers:
         itip_answers.answers = _content
 
+def db_redact_whistleblower_identity(session, tid, user_id, itip_id, redaction, redaction_data, tip_data):
+    currentMaskedData = next((masked_content for masked_content in tip_data['redactions'] if
+                              masked_content['id'] == redaction_data['id']), None)
+
+    if not validate_ranges(currentMaskedData['temporary_redaction'], redaction_data['permanent_redaction']):
+        return
+
+    new_temporary_redaction = get_new_temporary_redaction(currentMaskedData['temporary_redaction'],
+                                                          copy.deepcopy(redaction_data['permanent_redaction']))
+
+    new_permanent_redaction = merge_and_sort_ranges(currentMaskedData['permanent_redaction'],
+                                                    redaction_data['permanent_redaction'])
+
+    db_redact_data(session, tid, user_id, redaction, new_temporary_redaction, new_permanent_redaction)
+   
+    whistleblower_identity = tip_data['data']['whistleblower_identity']
+    db_redact_whistleblower_identities(whistleblower_identity, redaction)
+    _content = whistleblower_identity
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(
+            GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(_content, cls=JSONEncoder).encode())).decode()
+    itip_whistleblower_identity = session.query(models.InternalTipData) \
+                        .filter_by(internaltip_id=currentMaskedData['internaltip_id']).first()
+    if itip_whistleblower_identity:
+        itip_whistleblower_identity.value = _content
 
 @transact
 def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id, motivation):
@@ -692,8 +729,7 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
-    max_date = time.time() + 3651 * 86400
-    max_date = max_date - max_date % 86400
+    max_date = 32503676400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
     expiration_date = datetime.utcfromtimestamp(expiration_date)
@@ -1021,7 +1057,8 @@ def update_redaction(session, tid, user_id, redaction_id, redaction_data, tip_da
                     redaction.temporary_redaction[0].get('start', False) == '-inf':
                 delete_wbfile(session, tid, user_id, redaction.reference_id)
                 session.delete(redaction)
-
+        elif content_type == 'whistleblower_identity':
+            db_redact_whistleblower_identity(session, tid, user_id, itip, redaction, redaction_data, tip_data)
 
 @transact
 def delete_rfile(session, tid, user_id, file_id):

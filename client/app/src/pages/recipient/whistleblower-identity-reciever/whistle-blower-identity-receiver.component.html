@@ -33,7 +33,7 @@
         <div *ngIf="tipService.tip.data.whistleblower_identity_provided">
             <div *ngIf="tipService.tip.iar && tipService.tip.iar.reply === 'authorized'">
                 <div *ngFor="let field of tipService.tip.whistleblower_identity_field.children ; let index = index">
-                    <src-tip-field [fields]=field [fieldAnswers]=tipService.tip.data.whistleblower_identity [index]="index"></src-tip-field>
+                    <src-tip-field [fields]=field [fieldAnswers]=tipService.tip.data.whistleblower_identity [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode" [index]="index"></src-tip-field>
                 </div>
             </div>
             <div *ngIf="!tipService.tip.iar || tipService.tip.iar.reply === 'denied'">
