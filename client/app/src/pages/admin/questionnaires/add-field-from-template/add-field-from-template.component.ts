@@ -48,20 +48,23 @@ export class AddFieldFromTemplateComponent implements OnInit {
     }
     if (this.type === "field") {
       const field = new NewField();
-      field.step_id = this.step.id;
       field.template_id = "";
+      field.fieldgroup_id = this.step.id;
 
       field.template_id = this.new_field.template_id;
       field.instance = "reference";
       field.y = this.utilsService.newItemOrder(this.step.children, "y");
-      this.httpService.requestAddAdminQuestionnaireField(field).subscribe((newField: Step) => {
-        this.step.children.push(newField);
-        this.new_field = {
-          template_id: ""
-        };
-        this.dataToParent.emit();
-        return this.questionnaireService.sendData();
-      });
+      field.template_id = this.new_field.template_id;
+      if(field.template_id !== field.fieldgroup_id){
+        this.httpService.requestAddAdminQuestionnaireField(field).subscribe((newField: Step) => {
+          this.step.children.push(newField);
+          this.new_field = {
+            template_id: ""
+          };
+          this.dataToParent.emit();
+          return this.questionnaireService.sendData();
+        });
+      }
     }
   }
 }
