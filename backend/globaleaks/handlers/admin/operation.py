@@ -278,7 +278,7 @@ class AdminOperationHandler(OperationHandler):
         return reset_smtp_settings(self.request.tid)
 
     def disable_2fa(self, req_args, *args, **kwargs):
-        return disable_2fa(self.request.tid, req_args['value'])
+        return disable_2fa(self.request.tid, self.request.user_id, req_args['value'])
 
     def set_user_password(self, req_args, *args, **kwargs):
         if self.session.user_id == req_args['user_id']:
@@ -301,12 +301,14 @@ class AdminOperationHandler(OperationHandler):
     def reset_onion_private_key(self, req_args, *args, **kargs):
         self.check_root_or_management_session()
 
-        self.state.tor.unload_onion_service(self.request.tid)
+        if self.state.tor:
+            self.state.tor.unload_onion_service(self.request.tid)
 
         hostname, key = generate_onion_service_v3()
         yield set_onion_service_info(self.request.tid, hostname, key)
 
-        yield self.state.tor.load_onion_service(self.request.tid, hostname, key)
+        if self.state.tor:
+            yield self.state.tor.load_onion_service(self.request.tid, hostname, key)
 
         returnValue({
             'onionservice': hostname

@@ -13,7 +13,7 @@ from globaleaks import models
 from globaleaks.models.config_desc import ConfigL10NFilters
 
 alphanumeric_str_regexp = r'^[^<>\/.{}\[\]]*$'
-numeric_str_regexp = r'^[0-9\-.+]*$'
+phone_regexp = r'^[+]?[0-9]*$'
 key_regexp = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
 key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
@@ -368,8 +368,6 @@ AdminContextDesc = {
     'receivers': [uuid_regexp],
     'select_all_receivers': bool,
     'allow_recipients_selection': bool,
-    'enable_two_way_comments': bool,
-    'enable_attachments': bool,
     'score_threshold_medium': int,
     'score_threshold_high': int,
     'order': int,
@@ -470,7 +468,6 @@ ContextDesc = {
     'tip_reminder': int,
     'allow_recipients_selection': bool,
     'maximum_selectable_receivers': int,
-    'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool,
     'picture': bool
 }
@@ -518,7 +515,7 @@ SignupDesc = {
     'name': alphanumeric_str_regexp,
     'surname': alphanumeric_str_regexp,
     'role': alphanumeric_str_regexp,
-    'phone': numeric_str_regexp,
+    'phone': phone_regexp,
     'email': email_regexp,
     'organization_name': str,
     'organization_tax_code': alphanumeric_str_regexp,

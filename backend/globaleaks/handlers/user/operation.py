@@ -116,7 +116,7 @@ def get_recovery_key(session, tid, user_id, user_cc):
 
 
 @transact
-def enable_2fa(session, tid, user_id, secret, token):
+def enable_2fa(session, tid, user_id, obj_id, secret, token):
     """
     Transact for the first step of 2fa enrollment (completion)
 
@@ -126,7 +126,7 @@ def enable_2fa(session, tid, user_id, secret, token):
     :param secret: A two factor secret
     :param token: The current two factor token
     """
-    user = db_get_user(session, tid, user_id)
+    user = db_get_user(session, tid, obj_id)
 
     try:
         State.totp_verify(secret, token)
@@ -135,9 +135,11 @@ def enable_2fa(session, tid, user_id, secret, token):
 
     user.two_factor_secret = secret
 
+    db_log(session, tid=tid, type='enable_2fa', user_id=user_id, object_id=obj_id)
+
 
 @transact
-def disable_2fa(session, tid, user_id):
+def disable_2fa(session, tid, user_id, obj_id):
     """
     Transaction for disabling the two factor authentication
 
@@ -145,9 +147,12 @@ def disable_2fa(session, tid, user_id):
     :param tid:
     :param user_id:
     """
-    user = db_get_user(session, tid, user_id)
+    user = db_get_user(session, tid, obj_id)
 
     user.two_factor_secret = ''
+
+    db_log(session, tid=tid, type='disable_2fa', user_id=user_id, object_id=obj_id)
+
 
 @transact
 def accepted_privacy_policy(session, tid, user_id):
@@ -187,16 +192,18 @@ class UserOperationHandler(OperationHandler):
     def enable_2fa(self, req_args, *args, **kwargs):
         return enable_2fa(self.session.user_tid,
                           self.session.user_id,
+                          self.session.user_id,
                           req_args['secret'],
                           req_args['token'])
 
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.session.user_tid,
+                           self.session.user_id,
                            self.session.user_id)
 
     def accepted_privacy_policy(self, req_args, *args, **kwargs):
         return accepted_privacy_policy(self.session.user_tid,
-                           self.session.user_id)
+                                       self.session.user_id)
 
     def operation_descriptors(self):
         return {

@@ -284,8 +284,6 @@ class MockDict:
             'maximum_selectable_receivers': 0,
             'show_context': True,
             'allow_recipients_selection': False,
-            'enable_two_way_comments': True,
-            'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
         }
 

@@ -32,8 +32,6 @@ class InternalTip_v_52(Model):
     mobile = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, default=datetime_never, nullable=False)
-    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
-    enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)

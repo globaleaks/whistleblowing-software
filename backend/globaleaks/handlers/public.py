@@ -317,8 +317,6 @@ def serialize_context(session, context, language, data=None):
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'allow_recipients_selection': context.allow_recipients_selection,
-        'enable_two_way_comments': context.enable_two_way_comments,
-        'enable_attachments': context.enable_attachments,
         'score_threshold_medium': context.score_threshold_medium,
         'score_threshold_high': context.score_threshold_high,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,

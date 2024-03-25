@@ -95,20 +95,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(response['change_email_address'], email)
 
 
-class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):
-    _handler = user.operation.UserOperationHandler
-
-    def test_put(self):
-        data_request = {
-            'operation': 'get_recovery_key',
-            'args': {}
-        }
-
-        handler = self.request(data_request, role='receiver')
-
-        return handler.put()
-
-
 class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
     _handler = user.operation.UserOperationHandler
 
@@ -152,7 +138,6 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
             'args': {}
         }
 
-
         current_token = totp.generate(time.time()).decode()
 
         handler = self.request(data_request, role='receiver', headers={'x-confirmation': current_token})
@@ -172,7 +157,7 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
         return self.request(data_request, role='receiver').put()
 
     @inlineCallbacks
-    def test_user_test_change_password(self):
+    def test_user_change_password(self):
         valid_password = 'validPassword1!'
 
         weak_passwords = [
@@ -197,3 +182,12 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
         yield self._test_operation_handler('change_password',
                                            {'password': valid_password,
                                             'current': helpers.VALID_PASSWORD1})
+
+    def test_user_get_recovery_key(self):
+        return self._test_operation_handler('get_recovery_key')
+
+    def test_user_get_usernames(self):
+        return self._test_operation_handler('get_users_names')
+
+    def test_user_accepted_privacy_policy(self):
+        return self._test_operation_handler('accepted_privacy_policy')

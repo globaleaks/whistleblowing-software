@@ -17,7 +17,7 @@ from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.utils.fs import srm
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, is_expired
+from globaleaks.utils.utility import datetime_never, datetime_now, is_expired
 
 
 __all__ = ['Cleaning']
@@ -97,6 +97,18 @@ class Cleaning(DailyJob):
                                                                models.Subscriber.registration_date < datetime_now() - timedelta(days=1)) \
                                                        .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
+
+        # delete expired audit logs older than 5 years and not pertaining any report
+        subquery = session.query(models.InternalTip.id).subquery()
+        db_del(session, models.AuditLog, (models.AuditLog.date <= datetime_now() - timedelta(days=5 * 365),
+                                          not_(models.AuditLog.object_id.in_(subquery))))
+
+        # delete expired change email tokens
+        session.query(models.User) \
+               .filter(models.User.change_email_date <= datetime_now() - timedelta(hours=72)) \
+               .update({'change_email_date': datetime_never(),
+                        'change_email_token': None,
+                        'change_email_address': ''})
 
     def perform_secure_deletion_of_files(self, path, valid_files):
         # Delete the customization files not associated to the database

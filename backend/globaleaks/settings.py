@@ -5,6 +5,14 @@ import sys
 from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug
 from globaleaks.utils.singleton import Singleton
 
+this_directory = os.path.dirname(__file__)
+
+possible_client_paths = [
+    '/usr/share/globaleaks/client/',
+    os.path.abspath(os.path.join(this_directory, '../../client/build/')),
+    os.path.abspath(os.path.join(this_directory, '../../client/app/'))
+]
+
 
 class SettingsClass(object, metaclass=Singleton):
     def __init__(self):
@@ -27,7 +35,6 @@ class SettingsClass(object, metaclass=Singleton):
         self.src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.backend_script = os.path.abspath(os.path.join(self.src_path, 'globaleaks/backend.py'))
 
-        self.client_path = '/usr/share/globaleaks/client/'
         self.ramdisk_path = '/dev/shm/globaleaks'
         self.working_path = '/var/globaleaks'
 
@@ -81,8 +88,9 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
+        self.tor_path = os.path.abspath(os.path.join(self.working_path, 'tor'))
+        self.tor_control = os.path.abspath(os.path.join(self.tor_path, 'tor_control'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
-        self.tor_control = os.path.abspath(os.path.join(self.tmp_path, 'tor_control'))
 
         self.db_file_path = os.path.abspath(os.path.join(self.working_path, 'globaleaks.db'))
 
@@ -90,8 +98,16 @@ class SettingsClass(object, metaclass=Singleton):
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.accesslogfile = os.path.abspath(os.path.join(self.log_path, "access.log"))
 
-        if not os.path.exists(self.client_path):
-             self.client_path = os.path.abspath(os.path.join(self.src_path, '../client/build/'))
+        # Client path detection
+        possible_client_paths.insert(0, os.path.join(self.working_path, 'client'))
+        for path in possible_client_paths:
+            if os.path.isfile(os.path.join(path, 'index.html')):
+                self.client_path = path
+                break
+
+        if not self.client_path:
+            print("Unable to find a directory to load the client from")
+            sys.exit(1)
 
         self.appdata_file = os.path.join(self.client_path, 'data/appdata.json')
         self.questionnaires_path = os.path.join(self.client_path, 'data/questionnaires')

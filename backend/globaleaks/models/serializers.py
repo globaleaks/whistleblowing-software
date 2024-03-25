@@ -190,8 +190,6 @@ def serialize_itip(session, internaltip, language):
         'tor': internaltip.tor,
         'mobile': internaltip.mobile,
         'reminder_date' : internaltip.reminder_date,
-        'enable_two_way_comments': internaltip.enable_two_way_comments,
-        'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'enable_whistleblower_download': not internaltip.deprecated_crypto_files_pub_key,
         'last_access': internaltip.last_access,

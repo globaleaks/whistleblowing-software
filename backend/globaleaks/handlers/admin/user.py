@@ -62,6 +62,10 @@ def db_create_user(session, tid, user_session, request, language):
     if not request['username']:
         user.username = user.id = uuid4()
 
+    existing_user = session.query(models.User).filter(models.User.tid == user.tid, models.User.username == user.username).first()
+    if existing_user:
+        raise errors.DuplicateUserError
+
     user.salt = GCE.generate_salt()
 
     user.language = request['language']
