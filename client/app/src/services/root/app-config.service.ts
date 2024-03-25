@@ -8,14 +8,16 @@ import {Router, NavigationEnd, ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {LanguagesSupported} from "@app/models/app/public-model";
 import {TitleService} from "@app/shared/services/title.service";
+import {CustomFileLoaderServiceService} from "@app/services/helper/custom-file-loader-service.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class AppConfigService {
   public sidebar: string = "";
+  private firstLoad = true;
 
-  constructor(private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
+  constructor(private customFileLoaderServiceService: CustomFileLoaderServiceService, private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
     this.init();
   }
 
@@ -62,38 +64,6 @@ export class AppConfigService {
         if (data.body !== null) {
           this.appDataService.public = data.body;
         }
-        let elem;
-        if (window.location.pathname === "/") {
-          if (this.appDataService.public.node.css) {
-            elem = document.getElementById("load-custom-css");
-            if (elem === null) {
-              elem = document.createElement("link");
-              elem.setAttribute("id", "load-custom-css");
-              elem.setAttribute("rel", "stylesheet");
-              elem.setAttribute("type", "text/css");
-              elem.setAttribute("href", "s/css");
-              document.getElementsByTagName("head")[0].appendChild(elem);
-            }
-          }
-
-          if (this.appDataService.public.node.script) {
-            elem = document.getElementById("load-custom-script");
-            if (elem === null) {
-              elem = document.createElement("script");
-              elem.setAttribute("id", "load-custom-script");
-              elem.setAttribute("src", "s/script");
-              document.getElementsByTagName("body")[0].appendChild(elem);
-            }
-          }
-
-          if (this.appDataService.public.node.favicon) {
-            const element = window.document.getElementById("favicon");
-            if (element !== null) {
-              element.setAttribute("href", "s/favicon");
-            }
-          }
-        }
-
         this.appDataService.contexts_by_id = this.utilsService.array_to_map(this.appDataService.public.contexts);
         this.appDataService.receivers_by_id = this.utilsService.array_to_map(this.appDataService.public.receivers);
         this.appDataService.questionnaires_by_id = this.utilsService.array_to_map(this.appDataService.public.questionnaires);
@@ -121,6 +91,11 @@ export class AppConfigService {
         this.appDataService.connection = {
           "tor": data.headers.get("X-Check-Tor") === "true" || location.host.match(/\.onion$/),
         };
+
+        if(this.firstLoad){
+          this.firstLoad = false;
+          this.customFileLoaderServiceService.loadCustomFiles();
+        }
 
         this.appDataService.privacy_badge_open = !this.appDataService.connection.tor;
         this.appDataService.languages_enabled = new Map<string, LanguagesSupported>();
@@ -193,6 +168,9 @@ export class AppConfigService {
   routeChangeListener() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        if (event.url === '/') {
+          this.customFileLoaderServiceService.loadCustomFiles();
+        }
         this.onValidateInitialConfiguration();
         const lastChildRoute = this.findLastChildRoute(this.router.routerState.root);
         if (lastChildRoute && lastChildRoute.snapshot.data && lastChildRoute.snapshot.data["pageTitle"]) {
