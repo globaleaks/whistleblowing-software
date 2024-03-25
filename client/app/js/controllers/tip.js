@@ -503,7 +503,11 @@ GL.controller("TipCtrl",
 
     $scope.getRedaction = function(id, entry) {
       var redactionObjects = $scope.tip.redactions.filter(function(redaction) {
-        return redaction.reference_id === id && redaction.entry === entry;
+        if(!entry){
+          return redaction.reference_id === id && redaction.entry === "0";
+        } else {
+          return redaction.reference_id === id && redaction.entry === entry;
+        }
       });
 
       return redactionObjects.length > 0 ? redactionObjects[0] : null;
