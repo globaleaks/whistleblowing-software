@@ -96,12 +96,14 @@
         </div>
     </ng-container>
     <div class="row">
-        <div class="col-md-12">
+        <div [ngClass]="{'col-md-12': !(tip && tip.enable_whistleblower_identity),'col-md-6': (tip && tip.enable_whistleblower_identity)}">
             <src-tip-questionnaire-answers [tipService]="RTipService" [redactOperationTitle]="redactOperationTitle"
                 [redactMode]="redactMode"></src-tip-questionnaire-answers>
         </div>
-        <ng-container class="col-md-6" *ngIf="tip && tip.enable_whistleblower_identity">
-            <src-whistleblower-identity-reciever [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode"></src-whistleblower-identity-reciever>
+        <ng-container *ngIf="tip && tip.enable_whistleblower_identity">
+            <div class="col-md-6">
+                <src-whistleblower-identity-reciever [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode"></src-whistleblower-identity-reciever>
+            </div>
         </ng-container>
     </div>
     <div class="row">
