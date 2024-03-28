@@ -225,7 +225,7 @@ export class VoiceRecorderComponent implements OnInit {
     this.mediaRecorder = null;
     this.seconds = 0;
     this.audioPlayer = null;
-    if (this.audioContext) {
+    if (this.audioContext && this.audioContext.state !== 'closed') {
       this.audioContext.close();
       this.audioContext = null;
     }

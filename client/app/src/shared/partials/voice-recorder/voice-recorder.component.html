@@ -12,7 +12,7 @@
             <button class="btn text-danger" [ngClass]="{'blink': activeButton === 'record'}" *ngIf="activeButton === 'record'" aria-label="Recording Indicator">
                 <i class="fas fa-circle-dot"></i>
             </button>
-            <button class="btn text-danger" *ngIf="!isRecording && seconds" (click)="deleteRecording()" aria-label="Delete Recording">
+            <button class="btn text-danger" *ngIf="!isRecording && seconds" id="delete_recording" (click)="deleteRecording()" aria-label="Delete Recording">
                 <i class="fas fa-trash"></i>
             </button>
         </div>
