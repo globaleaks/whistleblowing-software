@@ -111,7 +111,7 @@ describe("globaleaks process", function () {
     cy.get("#save_context").click();
     cy.logout();
   })
-  it("should run audio questionnaire", () => {
+  it("should run audio questionnaire ,run identity , upload file & additional questionnaire", () => {
     cy.visit("#/");
     cy.get("#WhistleblowingButton").click();
     cy.get("#step-0").should("be.visible");
@@ -119,14 +119,10 @@ describe("globaleaks process", function () {
     cy.get("#start_recording").click();
     cy.wait(6000);
     cy.get("#stop_recording").click();
-    cy.get("#NextStepButton").click();
-    cy.get("#SubmitButton").should("be.visible");
-    cy.get("#SubmitButton").click();
-  })
-  it("should run identity , upload file & additional questionnaire", () => {
-    cy.visit("#/");
-    cy.reload();
-    cy.get("#WhistleblowingButton").click();
+    cy.get("#delete_recording").click();
+    cy.get("#start_recording").click();
+    cy.wait(6000);
+    cy.get("#stop_recording").click();
     cy.get("#NextStepButton").click();
     cy.get("input[type='text']").eq(1).should("be.visible").type("abc");
     cy.get("input[type='text']").eq(2).should("be.visible").type("xyz");
