@@ -10,15 +10,9 @@
     </select>
     <div class="mt-2">
         <span>{{ 'Motivation' | translate }}</span>
-        <span *ngIf="arg.status?.status === 'closed' && !arg.motivation" data-toggle="tooltip"
-            title="{{'This field is mandatory' | translate}}" class="text-danger sup">*</span>
     </div>
     <div class="form-group">
-        <textarea name="reason" class="form-control"
-            [ngClass]="{'is-invalid': arg.status?.status === 'closed' && !arg.motivation}" [(ngModel)]="arg.motivation"
-            [required]="arg.status?.status === 'closed'"></textarea>
-        <span *ngIf="arg.status?.status === 'closed' && !arg.motivation" class="text-danger">{{ 'This field is mandatory' |
-            translate }}</span>
+        <textarea name="reason" class="form-control" [(ngModel)]="arg.motivation"></textarea>
     </div>
 </div>
 <div class="modal-footer">
