@@ -5,6 +5,7 @@ import {UtilsService} from "@app/shared/services/utils.service";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {AppConfigService} from "@app/services/root/app-config.service";
 import {Constants} from "@app/shared/constants/constants";
+import {AppDataService} from "@app/app-data.service";
 
 @Component({
   selector: "src-tab1",
@@ -15,7 +16,7 @@ export class Tab1Component {
   protected readonly Constants = Constants;
   @Input() contentForm: NgForm;
 
-  constructor(private appConfigService: AppConfigService, protected nodeResolver: NodeResolver, protected authenticationService: AuthenticationService, private utilsService: UtilsService) {
+  constructor(private appConfigService: AppConfigService, protected nodeResolver: NodeResolver,protected appDataService:AppDataService, protected authenticationService: AuthenticationService, private utilsService: UtilsService) {
   }
 
   updateNode() {

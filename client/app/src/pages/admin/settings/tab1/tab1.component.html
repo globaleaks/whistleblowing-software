@@ -36,7 +36,7 @@
             <label>{{ 'Whistleblowing button' | translate }}</label>
             <input name="nodeResolver.dataModel.whistleblowing_button" class="form-control" [(ngModel)]="nodeResolver.dataModel.whistleblowing_button" type="text" />
         </div>
-        <div class="form-group" *ngIf="nodeResolver.dataModel.mode === 'default'">
+        <div class="form-group" *ngIf="nodeResolver.dataModel.root_tenant || ['default', 'demo'].indexOf(appDataService.public.node.mode) !== -1">
             <label>{{ 'Disclaimer' | translate }}</label>
             <div>
                 <textarea name="nodeResolver.dataModel.disclaimer_text" class="form-control" [(ngModel)]="nodeResolver.dataModel.disclaimer_text"></textarea>
@@ -50,7 +50,7 @@
             <label>{{'Privacy Policy'|translate}}</label>
             <input name="footer_privacy_policy" class="form-control" [(ngModel)]="nodeResolver.dataModel.footer_privacy_policy" [pattern]="Constants.secureLocalUrlRegexp" [ngClass]="{'is-invalid': contentForm.form.get('footer_privacy_policy')?.errors?.['pattern']}" type="text" />
         </div>
-        <div class="form-group" *ngIf="nodeResolver.dataModel.mode === 'default'">
+        <div class="form-group" *ngIf="nodeResolver.dataModel.root_tenant || ['default', 'demo'].indexOf(appDataService.public.node.mode) !== -1">
             <label>{{ 'Footer' | translate }}</label>
             <div>
                 <textarea name="nodeResolver.dataModel.footer" class="form-control" [(ngModel)]="nodeResolver.dataModel.footer"></textarea>
