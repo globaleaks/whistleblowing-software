@@ -33,6 +33,9 @@
             <div *ngSwitchCase="14">
                 <span>{{'The upload request exceeds the size limit'|translate}}</span>
             </div>
+            <div *ngSwitchCase="17">
+                <span>{{'A user with this username already exists'|translate}}</span>
+            </div>
             <div *ngSwitchCase="15">
                 <strong><span class="text-danger">{{'Error loading custom files'|translate}}</span></strong>
                 <span>{{appDataService.errorCodes.message|translate}}</span>
