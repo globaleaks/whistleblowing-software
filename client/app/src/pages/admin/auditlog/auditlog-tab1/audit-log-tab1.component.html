@@ -4,7 +4,6 @@
         <tr>
             <th>{{'Date'|translate}}</th>
             <th>{{'Type'|translate}}</th>
-            <th>{{'Severity'|translate}}</th>
             <th>{{'User'|translate}}</th>
             <th>{{'Object'|translate}}</th>
         </tr>
@@ -13,7 +12,6 @@
         <tr *ngFor="let data of getPaginatedData()">
             <td>{{ data.date | date:'dd-MM-yyyy HH:mm' }}</td>
             <td>{{ data.type }}</td>
-            <td>{{ data.severity }}</td>
             <td>{{ data.user_id }}</td>
             <td>{{ data.object_id }}</td>
         </tr>
