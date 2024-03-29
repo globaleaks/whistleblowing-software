@@ -48,7 +48,7 @@ a:hover,
   font-family: monospace;
   font-size: 0.8rem;
   max-height: 40em;
-  max-width: 80rem;
+  max-width: 100%;
   overflow-y: scroll;
 }
 
