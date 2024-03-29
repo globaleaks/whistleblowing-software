@@ -281,12 +281,12 @@ export class VoiceRecorderComponent implements OnInit {
     const input: GainNode = audioContext.createGain();
     const output: GainNode = audioContext.createGain();
     input.gain.value = output.gain.value = 1;
-    const vocoderBands = this.generateVocoderBands(200, 16000, 128);
-    const vocoderPitchShift: number = -(1 / 12 - Math.random() / 24);
+    const vocoderBands = this.generateVocoderBands(100, 16000, 128);
+    const pitchShift = -1/12 * Math.random();
 
     for (let i = 0; i < vocoderBands.length; i++) {
       const carrier: OscillatorNode = audioContext.createOscillator();
-      carrier.frequency.value = vocoderBands[i].freq * Math.pow(2, vocoderPitchShift);
+      carrier.frequency.value = vocoderBands[i].freq * Math.pow(2, pitchShift - (1/12 * Math.random()));
       const modulatorBandFilter: BiquadFilterNode = audioContext.createBiquadFilter();
       modulatorBandFilter.type = 'bandpass';
       modulatorBandFilter.frequency.value = vocoderBands[i].freq;
