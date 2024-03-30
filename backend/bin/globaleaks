@@ -4,6 +4,8 @@ import os
 
 import platform
 
+import signal
+
 import sys
 
 # Avoid writing bytecode files at runtime
@@ -33,9 +35,13 @@ from twisted.scripts._twistd_unix import ServerOptions
 from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplicationRunner
 
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.rest.cache import Cache
 from globaleaks.settings import Settings
 from globaleaks.state import State, mail_exception_handler
 
+
+def SIGUSR1_handler(*args):
+    Cache.invalidate(1)
 
 parser = OptionParser()
 
@@ -106,6 +112,8 @@ except usage.error as ue:
     sys.exit(1)
 
 try:
+    signal.signal(signal.SIGUSR1, SIGUSR1_handler)
+
     TwistedApplicationRunner(config).run()
 except Exception as excep:
     print("Unable to start GlobaLeaks: %s" % excep)
