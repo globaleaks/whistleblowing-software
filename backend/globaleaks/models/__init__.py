@@ -23,23 +23,13 @@ class LocalizationEngine(object):
 
     def acquire_multilang_dict(self, obj):
         self._localized_strings = {}
-        for key in self._localized_keys:
-            value = obj[key] if key in obj else ''
-            self._localized_strings[key] = value
+        self._localized_strings = {key: obj.get(key, '') for key in self._localized_keys}
 
     def singlelang_to_multilang_dict(self, obj, language):
-        ret = {}
-
-        for key in self._localized_keys:
-            ret[key] = {language: obj[key]} if key in obj else {language: ''}
-
-        return ret
+        return {key: {language: obj.get(key, '')} for key in self._localized_keys}
 
     def dump_localized_key(self, key, language):
-        if key not in self._localized_strings:
-            return ""
-
-        translated_dict = self._localized_strings[key]
+        translated_dict = self._localized_strings.get(key, "")
 
         if not isinstance(translated_dict, dict):
             return ""
@@ -75,9 +65,7 @@ def get_localized_values(dictionary, obj, keys, language):
     if language is not None:
         dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
     else:
-        for key in keys:
-            value = mo._localized_strings[key] if key in mo._localized_strings else ''
-            dictionary.update({key: value})
+        dictionary.update({key: mo._localized_strings.get(key, '') for key in keys})
 
     return dictionary
 
@@ -181,7 +169,7 @@ class Model(object):
             if value is not None:
                 if k in self.localized_keys:
                     if language is not None:
-                        ret[k] = value[language] if language in value else ''
+                        ret[k] = value.get(language, '')
                     else:
                         ret[k] = value
 
