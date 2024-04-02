@@ -76,9 +76,6 @@ def prepare_tip_export(user_session, tip_export):
         tip_export['tip'] = yield redact_report(user_session.user_id, tip_export['tip'], True)
 
         for file_dict in tip_export['tip']['wbfiles']:
-            if file_dict.get('status', '') == 'encrypted':
-                continue
-
             if tip_export['deprecated_crypto_files_prv_key']:
                 files_prv_key = GCE.asymmetric_decrypt(user_session.cc, tip_export['deprecated_crypto_files_prv_key'])
             else:
@@ -94,9 +91,6 @@ def prepare_tip_export(user_session, tip_export):
             del filelocation
 
         for file_dict in tip_export['tip']['rfiles']:
-            if file_dict.get('status', '') == 'encrypted':
-                continue
-
             tip_prv_key = GCE.asymmetric_decrypt(user_session.cc, tip_export['crypto_tip_prv_key'])
             filelocation = os.path.join(Settings.attachments_path, file_dict['name'])
             directory_traversal_check(Settings.attachments_path, filelocation)
