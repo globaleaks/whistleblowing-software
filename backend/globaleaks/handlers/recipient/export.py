@@ -68,6 +68,8 @@ def get_tip_export(session, tid, user_id, itip_id, language):
 
 @inlineCallbacks
 def prepare_tip_export(user_session, tip_export):
+    tip_export['tip']['rfiles'] = list(filter(lambda x: x['visibility'] != 'personal', tip_export['tip']['rfiles']))
+
     files = tip_export['tip']['wbfiles'] + tip_export['tip']['rfiles']
 
     if tip_export['crypto_tip_prv_key']:

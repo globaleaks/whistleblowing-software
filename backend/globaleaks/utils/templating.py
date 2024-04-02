@@ -302,6 +302,9 @@ class TipKeyword(UserNodeKeyword):
     def dump_comments(self, comments):
         ret = ''
         for comment in comments:
+            if comment['visibility'] == 'personal':
+                continue
+
             data = copy.deepcopy(self.data)
             data['type'] = 'export_comment'
             data['comment'] = copy.deepcopy(comment)
@@ -353,12 +356,8 @@ class TipKeyword(UserNodeKeyword):
 
     def Comments(self):
         comments = self.data.get('comments', [])
-        if not len(comments):
-            return ''
-
-        ret = 'Comments:\n'
-        ret += self.dump_comments(comments) + '\n'
-        return ret + '\n'
+        comments = self.dump_comments(comments)
+        return 'Comments\n' + comments + '\n' if comments else ''
 
 
 class ExportMessageKeyword(TipKeyword):
