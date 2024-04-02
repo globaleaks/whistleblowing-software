@@ -373,8 +373,6 @@ ConfigL10NFilters = {
         'password_reset_validation_mail_title',
         'pgp_alert_mail_template',
         'pgp_alert_mail_title',
-        'receiver_notification_limit_reached_mail_template',
-        'receiver_notification_limit_reached_mail_title',
         'signup_mail_template',
         'signup_mail_title',
         'software_update_available_mail_template',
