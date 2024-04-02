@@ -870,8 +870,8 @@ class _Subscriber(Model):
     phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
     organization_name = Column(UnicodeText, default='', nullable=False)
-    organization_tax_code = Column(UnicodeText, default='', nullable=False)
-    organization_vat_code = Column(UnicodeText, default='', nullable=False)
+    organization_tax_code = Column(UnicodeText, unique=True, nullable=True)
+    organization_vat_code = Column(UnicodeText, unique=True, nullable=True)
     organization_location = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, unique=True)
     client_ip_address = Column(UnicodeText, nullable=False)
@@ -881,7 +881,6 @@ class _Subscriber(Model):
     tos2 = Column(UnicodeText, default='', nullable=False)
 
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'phone', 'email',
-                    'tax_code', 'vat_code',
                     'organization_name',  'organization_tax_code',
                     'organization_vat_code', 'organization_location',
                     'client_ip_address', 'client_user_agent']
@@ -893,7 +892,6 @@ class _Subscriber(Model):
     @declared_attr
     def __table_args__(self):
         return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-
 
 
 class _Tenant(Model):
