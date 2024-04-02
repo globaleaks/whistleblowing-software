@@ -1123,7 +1123,7 @@ class ReceiverContext(_ReceiverContext, Base):
     pass
 
 
-class WhistleblowerFile(_WhistleblowerFile, Base):
+class ReceiverFile(_ReceiverFile, Base):
     pass
 
 
@@ -1163,5 +1163,5 @@ class User(_User, Base):
     pass
 
 
-class ReceiverFile(_ReceiverFile, Base):
+class WhistleblowerFile(_WhistleblowerFile, Base):
     pass
