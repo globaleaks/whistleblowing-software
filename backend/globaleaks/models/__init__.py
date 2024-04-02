@@ -867,7 +867,6 @@ class _Subscriber(Model):
     language = Column(UnicodeText(12), nullable=False)
     name = Column(UnicodeText, nullable=False)
     surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default='', nullable=False)
     phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
     organization_name = Column(UnicodeText, default='', nullable=False)
@@ -881,7 +880,7 @@ class _Subscriber(Model):
     tos1 = Column(UnicodeText, default='', nullable=False)
     tos2 = Column(UnicodeText, default='', nullable=False)
 
-    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
+    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'phone', 'email',
                     'tax_code', 'vat_code',
                     'organization_name',  'organization_tax_code',
                     'organization_vat_code', 'organization_location',

@@ -337,7 +337,6 @@ def serialize_signup(signup):
     return {
         'name': signup.name,
         'surname': signup.surname,
-        'role': signup.role,
         'email': signup.email,
         'phone': signup.phone,
         'subdomain': signup.subdomain,
