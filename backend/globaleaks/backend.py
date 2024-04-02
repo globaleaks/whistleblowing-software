@@ -13,8 +13,8 @@ from twisted.web import resource, server
 from globaleaks.jobs import job, jobs_list
 from globaleaks.services import tor
 
-from globaleaks.db import create_db, init_db, update_db, \
-    sync_refresh_tenant_cache, sync_clean_untracked_files, sync_initialize_snimap
+from globaleaks.db import create_db, initialize_db, update_db, \
+    sync_refresh_tenant_cache, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -52,28 +52,7 @@ class Service(service.Service):
         self.state = State
         self.arw = resource.EncodingResourceWrapper(APIResourceWrapper(), [server.GzipEncoderFactory()])
         self.api_factory = Site(self.arw, logPath=Settings.accesslogfile, logFormatter=logFormatter)
-
         self.api_factory.displayTracebacks = False
-
-    def startService(self):
-        reactor.callLater(0, self.deferred_start)
-
-    def shutdown(self):
-        d = defer.Deferred()
-
-        def _shutdown(_):
-            if self._shutdown:
-                return
-
-            self._shutdown = True
-            self.state.orm_tp.stop()
-            d.callback(None)
-
-        reactor.callLater(30, _shutdown, None)
-
-        self.stop_jobs().addBoth(_shutdown)
-
-        return d
 
     def start_jobs(self):
         for j in jobs_list:
@@ -96,75 +75,55 @@ class Service(service.Service):
 
         return defer.DeferredList(deferred_list)
 
-    def _deferred_start(self):
-        ret = update_db()
-
-        if ret == -1:
-            reactor.stop()
-            return
-
-        if ret == 0:
-            create_db()
-            init_db()
-
-        sync_clean_untracked_files()
-
-        if self.state.settings.migrate_only:
-            reactor.stop()
-            return
-
-        sync_refresh_tenant_cache()
-        sync_initialize_snimap()
-
-        self.state.orm_tp.start()
-
-        reactor.addSystemEventTrigger('before', 'shutdown', self.shutdown)
-
-        for sock in self.state.http_socks:
-            listen_tcp_on_sock(reactor, sock.fileno(), self.api_factory)
-
-        for sock in self.state.https_socks:
-            listen_tls_on_sock(reactor,
-                               fd=sock.fileno(),
-                               contextFactory=self.state.snimap,
-                               factory=self.api_factory)
-
-        self.start_jobs()
-
-        self.print_listening_interfaces()
-
     @defer.inlineCallbacks
     def deferred_start(self):
         try:
-            yield self._deferred_start()
+            ret = update_db()
+
+            if ret == -1 or self.state.settings.migrate_only:
+                reactor.stop()
+                return
+
+            if ret == 0:
+                create_db()
+                initialize_db()
+
+            for sock in self.state.http_socks:
+                listen_tcp_on_sock(reactor, sock.fileno(), self.api_factory)
+
+            for sock in self.state.https_socks:
+                listen_tls_on_sock(reactor,
+                                   fd=sock.fileno(),
+                                   contextFactory=self.state.snimap,
+                                   factory=self.api_factory)
+
+            sync_refresh_tenant_cache()
+            sync_initialize_snimap()
+            self.state.orm_tp.start()
+            self.start_jobs()
+            self.state.print_listening_interfaces()
+
         except Exception as excep:
             fail_startup(excep)
 
-    def print_listening_interfaces(self):
-        print("GlobaLeaks is now running and accessible at the following urls:")
+    def startService(self):
+        reactor.callLater(0, self.deferred_start)
 
-        tenant_cache = self.state.tenants[1].cache
-
-        if self.state.settings.devel_mode:
-            print("- [HTTPS]: https://127.0.0.1:8443")
-
-        elif tenant_cache.reachable_via_web:
-            hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
-            print("- [HTTPS]: https://%s" % hostname)
-
-        if tenant_cache.onionservice:
-            print("- [Tor]:  http://%s" % tenant_cache.onionservice)
+    @defer.inlineCallbacks
+    def stopService(self):
+        yield self.state.orm_tp.stop()
+        yield self.stop_jobs()
 
 
 try:
     application = service.Application('GlobaLeaks')
 
     logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
+
     if Settings.nodaemon:
         addObserver(LogObserver(logfile).emit)
     else:
          application.setComponent(ILogObserver, LogObserver(logfile).emit)
-
 
     Service().setServiceParent(application)
 except Exception as excep:

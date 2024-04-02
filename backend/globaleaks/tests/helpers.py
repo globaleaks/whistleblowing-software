@@ -587,7 +587,7 @@ class TestGL(unittest.TestCase):
             )
         else:
             yield db.create_db()
-            yield db.init_db()
+            yield db.initialize_db()
 
         yield self.set_hostnames(1)
 
