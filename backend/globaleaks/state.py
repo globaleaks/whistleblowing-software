@@ -190,7 +190,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             print("- [HTTPS]: https://127.0.0.1:8443")
 
         elif tenant_cache.reachable_via_web:
-            hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
+            hostname = tenant_cache.hostname or '0.0.0.0'
             print("- [HTTPS]: https://%s" % hostname)
 
         if tenant_cache.onionservice:

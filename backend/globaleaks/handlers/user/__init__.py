@@ -133,7 +133,7 @@ def db_user_update_user(session, tid, user_session, request):
 
     user.language = request.get('language', State.tenants[tid].cache.default_language)
     user.name = request['name']
-    user.public_name = request['public_name'] if request['public_name'] else request['name']
+    user.public_name = request['public_name'] or request['name']
     user.notification = request['notification']
 
     # If the email address changed, send a validation email

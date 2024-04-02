@@ -128,7 +128,7 @@ def signup_activation(session, token, hostname, language):
     password_admin = generateRandomPassword(16)
     password_receiver = generateRandomPassword(16)
 
-    node_name = signup.organization_name if signup.organization_name else signup.subdomain
+    node_name = signup.organization_name or signup.subdomain
 
     wizard = {
         'node_language': signup.language,
