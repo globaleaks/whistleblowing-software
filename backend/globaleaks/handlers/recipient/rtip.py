@@ -897,7 +897,7 @@ def create_identityaccessrequest(session, tid, user_id, user_cc, itip_id, reques
     session.flush()
 
     custodians = 0
-    for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
+    for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.enabled == True):
         iarc = models.IdentityAccessRequestCustodian()
         iarc.identityaccessrequest_id = iar.id
         iarc.custodian_id = custodian.id
