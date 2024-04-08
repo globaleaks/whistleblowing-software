@@ -27,14 +27,18 @@ import {Option} from "@app/models/whistleblower/wb-tip-data";
 import {Status} from "@app/models/app/public-model";
 import {AppDataService} from "@app/app-data.service";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
-import { FlowFile } from "@flowjs/flow.js";
-import { AcceptAgreementComponent } from "../modals/accept-agreement/accept-agreement.component";
+import {FlowFile} from "@flowjs/flow.js";
+import {AcceptAgreementComponent} from "@app/shared/modals/accept-agreement/accept-agreement.component";
+import {WbFile} from "@app/models/app/shared-public-model";
+import {FileViewComponent} from "@app/shared/modals/file-view/file-view.component";
+import {CryptoService} from "@app/shared/services/crypto.service";
 @Injectable({
   providedIn: "root"
 })
 export class UtilsService {
+  supportedViewTypes = ["application/pdf", "audio/mpeg", "image/gif", "image/jpeg", "image/png", "text/csv", "text/plain", "video/mp4"];
 
-  constructor(private activatedRoute: ActivatedRoute, private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute,protected appDataService: AppDataService,private cryptoService: CryptoService, private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
   }
 
   updateNode(nodeResolverModel:nodeResolverModel) {
@@ -693,5 +697,31 @@ export class UtilsService {
     link.href = window.URL.createObjectURL(blob);
     link.download = `${fileName}.csv`;
     link.click();
+  }
+
+  public viewRFile(file: WbFile) {
+    const modalRef = this.modalService.open(FileViewComponent, {backdrop: 'static', keyboard: false});
+    modalRef.componentInstance.args = {
+      file: file,
+      loaded: false,
+      iframeHeight: window.innerHeight * 0.75
+    };
+  }
+
+  public downloadRFile(file: WbFile) {
+    const param = JSON.stringify({});
+    this.httpService.requestToken(param).subscribe
+    (
+      {
+        next: async token => {
+          this.cryptoService.proofOfWork(token.id).subscribe(
+              (ans) => {
+                window.open("api/recipient/wbfiles/" + file.id + "?token=" + token.id + ":" + ans);
+                this.appDataService.updateShowLoadingPanel(false);
+              }
+          );
+        }
+      }
+    );
   }
 }
