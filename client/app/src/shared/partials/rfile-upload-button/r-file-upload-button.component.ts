@@ -27,7 +27,6 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   @Input() formUploader: boolean = true;
   @Input() uploads: { [key: string]: any };
   @Input() field: Field | undefined = undefined;
-  @Input() session_id: string;
   @Input() file_id: string;
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild("flow") flow: FlowDirective;
@@ -51,7 +50,7 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
       allowDuplicateUploads: false,
       testChunks: false,
       permanentErrors: [500, 501],
-      headers: {"X-Session": this.session_id?this.session_id:this.authenticationService.session.id}
+      headers: {"X-Session": this.authenticationService.session?.id}
     };
     this.fileInput = this.field ? this.field.id : "status_page";
   }
@@ -83,6 +82,7 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
           this.confirmButton = true;
         }
       });
+      this.flow.flowJs.opts.headers={"X-Session": this.authenticationService.session.id};
       this.uploads[this.fileInput] = this.flow;
       this.notifyFileUpload.emit(this.uploads);
     });

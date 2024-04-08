@@ -20,7 +20,6 @@ export class FormComponent implements OnInit {
   @Input() entry: string;
   @Input() identity_provided: any;
   @Input() fileUploadUrl: string;
-  @Input() session_id: string;
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
   @Input() fieldEntry: string;
 

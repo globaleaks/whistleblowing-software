@@ -44,7 +44,7 @@
                                 <div [class.hidden]="navigation !== index" role="tabpanel">
                                     <div id="step-{{index}}" ngForm #stepform="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
                                         <markdown *ngIf="step.description" class="description" [data]="step.description | stripHtml"></markdown>
-                                        <src-form (notifyFileUpload)="notifyFileUpload($event)" [session_id]="getAuthSessionID()" [fileUploadUrl]="'api/whistleblower/submission/attachment'" [identity_provided]=identity_provided [uploads]="uploads" [displayErrors]="displayErrors()" [answers]="answers" [submission]="submissionService" [step]="step" [index]="index"></src-form>
+                                        <src-form (notifyFileUpload)="notifyFileUpload($event)" [fileUploadUrl]="'api/whistleblower/submission/attachment'" [identity_provided]=identity_provided [uploads]="uploads" [displayErrors]="displayErrors()" [answers]="answers" [submission]="submissionService" [step]="step" [index]="index"></src-form>
                                     </div>
                                 </div>
                             </span>

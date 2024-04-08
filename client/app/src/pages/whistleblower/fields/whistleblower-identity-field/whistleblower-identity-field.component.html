@@ -9,6 +9,6 @@
         <div>{{field.attrs.text_shown_upon_negative_answer.value|translate}}</div>
     </div>
     <div *ngIf="identity_provided">
-        <src-form [identity_provided]=false [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="step" [submission]="submission" [index]="index"></src-form>
+        <src-form [identity_provided]=false (notifyFileUpload)="notifyFileUpload.emit()" [uploads]="uploads"  [fileUploadUrl]="fileUploadUrl" [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="step" [submission]="submission" [index]="index"></src-form>
     </div>
 </div>

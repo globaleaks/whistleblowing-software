@@ -28,7 +28,6 @@ export class FormFieldInputsComponent implements OnInit {
   @Input() identity_provided: boolean;
   @Input() fileUploadUrl: string;
   @Input() fieldEntry: string;
-  @Input() session_id: string;
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
 
   fieldId: string;

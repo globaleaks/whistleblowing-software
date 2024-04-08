@@ -14,7 +14,7 @@ export class WhistleblowerIdentityFieldComponent implements OnInit {
   @Input() submission: SubmissionService;
   @Input() field: Field;
   @Output() stateChanged = new EventEmitter<boolean>();
-
+  @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
   @Input() stepId: string;
   @Input() fieldCol: number;
   @Input() fieldRow: number;
@@ -25,7 +25,9 @@ export class WhistleblowerIdentityFieldComponent implements OnInit {
   @Input() fields: Field;
   @Input() displayErrors: boolean;
   @Input() identity_provided: boolean = false;
-
+  @Input() uploads: { [key: string]: any };
+  @Input() fileUploadUrl: string;
+  
   ngOnInit(): void {
     this.identity_provided = true;
     this.stateChanged.emit(true);

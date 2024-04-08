@@ -310,13 +310,6 @@ export class SubmissionComponent {
     this.fieldUtilitiesService.onAnswersUpdate(this);
   }
 
-  getAuthSessionID(){
-    if(this.authenticationService.session){
-      return this.authenticationService.session.id;
-    }else {
-      return this.authenticationService.session;
-    }
-  }
   notifyFileUpload(uploads: any) {
     if (uploads) {
       this.uploads = uploads;

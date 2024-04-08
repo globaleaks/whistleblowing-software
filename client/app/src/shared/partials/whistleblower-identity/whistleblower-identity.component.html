@@ -26,7 +26,7 @@
         <div *ngIf="wbTipService.tip.status !== 'closed' && !wbTipService.tip.data.whistleblower_identity">
             <form #wbform="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
                 <ng-container *ngIf="identity_provided">
-                    <src-whistleblower-identity-field [step]="step" (stateChanged)="stateChanged($event)" [identity_provided]="identity_provided" [answers]="answers" [field]="field" [index]="0"></src-whistleblower-identity-field>
+                    <src-whistleblower-identity-field [step]="step" (notifyFileUpload)="notifyFileUpload.emit()" (stateChanged)="stateChanged($event)" [identity_provided]="identity_provided" [answers]="answers" [field]="field" [index]="0"></src-whistleblower-identity-field>
                 </ng-container>
                 <src-rfiles-upload-status [progress]="uploadProgress" [estimatedTime]="uploadEstimateTime" [uploading]="isUploading"></src-rfiles-upload-status>
                 <div id="SubmitBox">

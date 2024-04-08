@@ -1,7 +1,7 @@
 <div class="Question" [ngModelGroup]="fieldFormVarName" id="{{fieldFormVarName}}">
     <div [ngSwitch]="field.template_id">
         <div *ngSwitchCase="'whistleblower_identity'">
-            <src-whistleblower-identity-field [identity_provided]="identity_provided" [index]="index" [step]="rows" [entry]="entry" [fields]="fields" [answers]="answers" [displayErrors]="displayErrors" [submission]="submission" [field]="field"></src-whistleblower-identity-field>
+            <src-whistleblower-identity-field (notifyFileUpload)="notifyFileUpload.emit()" [fileUploadUrl]="fileUploadUrl" [uploads]="uploads" [identity_provided]="identity_provided" [index]="index" [step]="rows" [entry]="entry" [fields]="fields" [answers]="answers" [displayErrors]="displayErrors" [submission]="submission" [field]="field"></src-whistleblower-identity-field>
         </div>
         <div *ngSwitchDefault [ngSwitch]="field.type">
             <div *ngSwitchCase="'textarea'">
@@ -88,9 +88,7 @@
                 <src-voice-recorder (notifyFileUpload)="notifyFileUpload.emit()" [fileUploadUrl]="fileUploadUrl" [uploads]="uploads" [field]="field" [entryIndex]="entryIndex" [fieldEntry]="fieldEntry"></src-voice-recorder>
             </div>
             <div id="{{fieldEntry}}" *ngSwitchCase="'fileupload'">
-                <ng-container *ngIf="session_id">
-                    <src-rfile-upload-button [file_id]="fieldEntry" [session_id]="session_id" (notifyFileUpload)="notifyFileUpload.emit()" [fileUploadUrl]="fileUploadUrl" [uploads]="uploads" [field]="field" [formUploader]="true"></src-rfile-upload-button>
-                </ng-container>
+                <src-rfile-upload-button [file_id]="fieldEntry" (notifyFileUpload)="notifyFileUpload.emit()" [fileUploadUrl]="fileUploadUrl" [uploads]="uploads" [field]="field" [formUploader]="true"></src-rfile-upload-button>
             </div>
             <div *ngSwitchCase="'fieldgroup'">
                 <div [ngSwitch]="field.attrs.multimedia_type.value">
@@ -108,7 +106,7 @@
                         </video>
                     </div>
                 </div>
-                <src-form [session_id]="session_id" (notifyFileUpload)="notifyFileUpload.emit()" [identity_provided]="identity_provided" [fileUploadUrl] = fileUploadUrl [fieldEntry]="fieldEntry" [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="rows" [submission]="submission" [index]="index" [uploads]="uploads"></src-form>
+                <src-form (notifyFileUpload)="notifyFileUpload.emit()" [identity_provided]="identity_provided" [fileUploadUrl] = fileUploadUrl [fieldEntry]="fieldEntry" [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="rows" [submission]="submission" [index]="index" [uploads]="uploads"></src-form>
             </div>
             <div *ngSwitchDefault>
                 <input id="{{fieldEntry}}" [name]="fieldEntry" class="form-control inputelem" [(ngModel)]="entry['value']" [minlength]="field.attrs.min_len.value" [maxlength]="field.attrs.max_len.value" [required]=entry.required_status #defaultinput="ngModel" [pattern]="validator" [placeholder]="field.placeholder" [attr.aria-label]="field.label" type="text" />
