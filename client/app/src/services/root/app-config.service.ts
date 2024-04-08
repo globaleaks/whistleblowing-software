@@ -142,7 +142,7 @@ export class AppConfigService {
     if (this.appDataService.public.node) {
       if (!this.appDataService.public.node.wizard_done) {
         location.replace("/#/wizard");
-      } else if ((this.router.url === "/" || this.router.url === "/submission") && this.appDataService.public.node.adminonly && !this.authenticationService.session) {
+      } else if ((this.router.url === "/" || this.router.url === "/submission") && !this.appDataService.public.node.enable_signup && this.appDataService.public.node.adminonly && !this.authenticationService.session) {
         location.replace("/#/admin/home");
       } else if (this.router.url === "/" && this.appDataService.public.node.enable_signup && !location.href.endsWith("admin/home")) {
         location.replace("/#/signup");
