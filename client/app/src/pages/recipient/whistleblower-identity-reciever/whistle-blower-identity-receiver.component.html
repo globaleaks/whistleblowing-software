@@ -29,7 +29,7 @@
                 <label>{{'Reply motivation' | translate}}</label>: <span>{{tipService.tip.iar.reply_motivation}}</span>
             </div>
         </div>
-        <span *ngIf="!tipService.tip.data.whistleblower_identity_provided">-</span>
+        <span *ngIf="!tipService.tip?.data?.whistleblower_identity_provided">-</span>
         <div *ngIf="tipService.tip.data.whistleblower_identity_provided">
             <div *ngIf="tipService.tip.iar && tipService.tip.iar.reply === 'authorized'">
                 <div *ngFor="let field of tipService.tip.whistleblower_identity_field.children ; let index = index">
