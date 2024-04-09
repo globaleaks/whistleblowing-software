@@ -442,6 +442,7 @@ def db_redact_answers(answers, redaction):
             else:
                 db_redact_answers(answer, redaction)
 
+
 def db_redact_whistleblower_identities(whistleblower_identities, redaction):
     for key in whistleblower_identities:
         if isinstance(whistleblower_identities[key], bool):
@@ -486,6 +487,7 @@ def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, red
     if itip_answers:
         itip_answers.answers = _content
 
+
 def db_redact_whistleblower_identity(session, tid, user_id, itip_id, redaction, redaction_data, tip_data):
     currentMaskedData = next((masked_content for masked_content in tip_data['redactions'] if
                               masked_content['id'] == redaction_data['id']), None)
@@ -503,14 +505,17 @@ def db_redact_whistleblower_identity(session, tid, user_id, itip_id, redaction, 
 
     whistleblower_identity = tip_data['data']['whistleblower_identity']
     db_redact_whistleblower_identities(whistleblower_identity, redaction)
+
     _content = whistleblower_identity
     if itip_id.crypto_tip_pub_key:
         _content = base64.b64encode(
             GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(_content, cls=JSONEncoder).encode())).decode()
+
     itip_whistleblower_identity = session.query(models.InternalTipData) \
                         .filter_by(internaltip_id=currentMaskedData['internaltip_id']).first()
     if itip_whistleblower_identity:
         itip_whistleblower_identity.value = _content
+
 
 @transact
 def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id, motivation):
