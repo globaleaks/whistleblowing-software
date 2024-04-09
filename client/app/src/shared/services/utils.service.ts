@@ -38,7 +38,7 @@ import {CryptoService} from "@app/shared/services/crypto.service";
 export class UtilsService {
   supportedViewTypes = ["application/pdf", "audio/mpeg", "image/gif", "image/jpeg", "image/png", "text/csv", "text/plain", "video/mp4"];
 
-  constructor(private activatedRoute: ActivatedRoute,protected appDataService: AppDataService,private cryptoService: CryptoService, private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
+  constructor(private authenticationService: AuthenticationService,private activatedRoute: ActivatedRoute,protected appDataService: AppDataService,private cryptoService: CryptoService, private tokenResource: TokenResource,private translateService: TranslateService, private clipboardService: ClipboardService, private http: HttpClient, private httpService: HttpService, private modalService: NgbModal, private preferenceResolver: PreferenceResolver, private router: Router) {
   }
 
   updateNode(nodeResolverModel:nodeResolverModel) {
@@ -716,7 +716,8 @@ export class UtilsService {
         next: async token => {
           this.cryptoService.proofOfWork(token.id).subscribe(
               (ans) => {
-                window.open("api/recipient/wbfiles/" + file.id + "?token=" + token.id + ":" + ans);
+               const url = this.authenticationService.session.role === "whistleblower"?"api/whistleblower/wbtip/wbfiles/":"api/recipient/wbfiles/";
+                window.open(url + file.id + "?token=" + token.id + ":" + ans);
                 this.appDataService.updateShowLoadingPanel(false);
               }
           );
