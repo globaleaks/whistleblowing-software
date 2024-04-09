@@ -254,16 +254,20 @@ def serialize_rtip(session, itip, rtip, language):
           'name': receiver.name
         })
 
+    denied_identity_files = []
     if 'whistleblower_identity' in ret['data']:
         ret['data']['whistleblower_identity_provided'] = True
 
         if 'iar' not in ret or ret['iar']['reply'] == 'denied':
             del ret['data']['whistleblower_identity']
 
+            denied_identity_files = get_identity_files(ret['questionnaires'])
 
     for ifile, wbfile in session.query(models.InternalFile, models.WhistleblowerFile) \
                                .filter(models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
                                        models.WhistleblowerFile.receivertip_id == rtip.id):
+        if denied_identity_files is not None and ifile.reference_id in denied_identity_files:
+          continue
         ret['wbfiles'].append(serialize_wbfile(session, ifile, wbfile))
 
     for rfile in session.query(models.ReceiverFile) \
@@ -312,6 +316,24 @@ def serialize_wbtip(session, itip, language):
 
     return ret
 
+def get_identity_files(data):
+    ids = []
+
+    def extract_from_children(children):
+        for child in children:
+            if child.get('type') in ['fileupload', 'voice']:
+                ids.append(child.get('id'))
+            elif child.get('type') == 'fieldgroup':
+                extract_from_children(child.get('children', []))
+
+    for questionnaire in data:
+        for step in questionnaire.get('steps', []):
+            for child in step.get('children', []):
+                if child.get('template_id') == 'whistleblower_identity':
+                    extract_from_children(child.get('children', []))
+                    return ids
+
+    return ids
 
 def serialize_redirect(redirect):
     """

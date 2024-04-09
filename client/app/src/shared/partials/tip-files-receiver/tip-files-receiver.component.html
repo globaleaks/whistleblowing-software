@@ -21,7 +21,7 @@
                 </thead>
                 <tbody id="fileListBody">
                 <ng-container *ngFor="let file of getSortedWBFiles(tipService.tip.wbfiles | orderBy:'creation_date') as index">
-                    <tr id="file-{{index}}" *ngIf="(file.type !== 'audio.webm') && (!maskService.isMasked(file.ifile_id,tipService.tip) || redactMode)" [ngClass]="{ 'view-supported': utilsService.supportedViewTypes.includes(file.type) }">
+                    <tr id="file-{{index}}" *ngIf="(file.name !== 'audio.webm') && (!maskService.isMasked(file.ifile_id,tipService.tip) || redactMode)" [ngClass]="{ 'view-supported': utilsService.supportedViewTypes.includes(file.type) }">
                         <td>{{ file.name }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary tip-action-views-file" *ngIf="utilsService.supportedViewTypes.includes(file.type)" data-toggle="tooltip" [title]="'View' | translate" (click)="utilsService.viewRFile(file)">
