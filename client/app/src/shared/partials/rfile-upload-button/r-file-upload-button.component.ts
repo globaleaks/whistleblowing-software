@@ -50,7 +50,10 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
       allowDuplicateUploads: false,
       testChunks: false,
       permanentErrors: [500, 501],
-      headers: {"X-Session": this.authenticationService.session?.id}
+      headers: {"X-Session": this.authenticationService.session?.id},
+      query: {
+        reference_id: this.field?.id,
+      },
     };
     this.fileInput = this.field ? this.field.id : "status_page";
   }

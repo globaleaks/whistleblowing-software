@@ -44,8 +44,10 @@ export class TipFieldAnswerEntryComponent implements OnInit {
     if(this.tipService.tip){
       this.filteredWbFiles = this.filterWbFilesByReferenceId(this.tipService.tip.wbfiles);
     }
-    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("viewer/index.html");
-    this.loadAudioFile(this.field.id);
+    if(this.field.type === "voice"){
+      this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("viewer/index.html");
+      this.loadAudioFile(this.field.id);
+    }
   }
 
   loadAudioFile(reference_id: string): void {
