@@ -30,7 +30,8 @@ export class FileViewComponent implements OnInit {
   }
 
   viewFile() {
-    this.utilsService.view(this.authenticationService, "api/recipient/wbfiles/" + this.args.file.id, this.args.file.type, (blob: Blob) => {
+    const url = this.authenticationService.session.role === "whistleblower"?"api/whistleblower/wbtip/wbfiles/":"api/recipient/wbfiles/";
+    this.utilsService.view(this.authenticationService, url + this.args.file.id, this.args.file.type, (blob: Blob) => {
       this.args.loaded = true;
       window.addEventListener("message", () => {
         const data = {
