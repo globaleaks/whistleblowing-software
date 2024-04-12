@@ -262,6 +262,12 @@ class TLSServerContextFactory(ssl.ContextFactory):
         key = load_privatekey(FILETYPE_PEM, key)
         self.ctx.use_privatekey(key)
 
+        try:
+            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1)  # pylint: disable=no-member
+        except AttributeError:
+            # The function is present and should be run only in older version of OpenSSL
+            pass
+
     def getContext(self):
         return self.ctx
 
