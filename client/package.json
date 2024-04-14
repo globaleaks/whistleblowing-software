@@ -61,10 +61,10 @@
   "devDependencies": {
     "@babel/cli": "7.24.1",
     "@babel/core": "7.24.4",
-    "@cypress/code-coverage": "3.12.33",
+    "@cypress/code-coverage": "3.12.35",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.7.2",
-    "eslint": "8.57.0",
+    "cypress": "13.8.0",
+    "eslint": "9.0.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
