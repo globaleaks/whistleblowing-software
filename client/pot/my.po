@@ -87,7 +87,7 @@ msgstr "ပလက်ဖောင်း ဝိဇ္ဇာ"
 msgid "Label the report"
 msgstr "အစီရင်ခံစာကို အညွှန်းတပ်ပါ"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "သက်တမ်းကုန်ဆုံးရက် ရွှေ့ဆိုင်းပါ"
 
 msgid "Select all"
@@ -530,9 +530,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1160,7 +1157,7 @@ msgstr "အတင်းအကျပ် ရွေးချယ်ထားကြ�
 msgid "Allow the recipient to delete reports"
 msgstr "လက်ခံသူအား အစီရင်ခံစာများကို ဖျက်ခွင့်ပြုပါ"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "လက်ခံသူအား အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းခွင့်ပြုပါ"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1334,6 +1331,9 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

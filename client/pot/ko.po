@@ -87,7 +87,7 @@ msgstr "플랫폼 마법사"
 msgid "Label the report"
 msgstr "보고서 라벨링"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "만료 날짜 연기"
 
 msgid "Select all"
@@ -530,9 +530,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1160,7 +1157,7 @@ msgstr "강제로 선택"
 msgid "Allow the recipient to delete reports"
 msgstr "수신자가 보고서를 삭제할 수 있도록 허용"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1334,6 +1331,9 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

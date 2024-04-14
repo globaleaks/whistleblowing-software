@@ -88,7 +88,7 @@ msgstr "Plattform-veileder"
 msgid "Label the report"
 msgstr "Merk rapporten"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Utsett utløpsdato"
 
 msgid "Select all"
@@ -532,9 +532,6 @@ msgstr "Handle på vegne av en varsler"
 
 msgid "The link will expire in 7 days."
 msgstr "Lenken vil utløpe om 7 dager."
-
-msgid "Edit the expiration date"
-msgstr ""
 
 msgid "File a report"
 msgstr "Legg inn en rapport"
@@ -1161,7 +1158,7 @@ msgstr "Påtvunget forvalg"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillat mottakeren å slette rapporter"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tillat mottakeren å utsette utløpsdatoen for rapporten"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1335,6 +1332,9 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Du handler på vegne av en varsler."

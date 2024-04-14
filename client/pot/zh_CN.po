@@ -19,7 +19,7 @@
 # Qiaoyi Fang <selinaf1917@yahoo.com>, 2018
 # QinWeijie <qinweijie@live.com>, 2014
 # Runzhe Liang <18051080098@163.com>, 2020
-# Scott Lai <sonyfaye@gmail.com>, 2018,2020-2021
+# Scott Lai, 2018,2020-2021
 # YFdyh000 <yfdyh000@gmail.com>, 2015
 # YFdyh000 <yfdyh000@gmail.com>, 2015
 # 刘位, 2014
@@ -107,7 +107,7 @@ msgstr "平台向导"
 msgid "Label the report"
 msgstr "标记该报告"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "推迟过期日期"
 
 msgid "Select all"
@@ -550,9 +550,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1180,7 +1177,7 @@ msgstr "强制已选"
 msgid "Allow the recipient to delete reports"
 msgstr "允许接收人删除报告"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "允许接收人推迟报告过期日期"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1354,6 +1351,9 @@ msgstr "资源仅可通过 Tor 网络访问"
 
 msgid "The upload request exceeds the size limit"
 msgstr "上传请求超过文件大小限制"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

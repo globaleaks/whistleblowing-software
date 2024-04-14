@@ -98,7 +98,7 @@ msgstr "پلیٹ فارم وزرڈ"
 msgid "Label the report"
 msgstr "رپورٹ لیبل کریں"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "آخری اپ ڈیٹ کی تاریخ ملتوی"
 
 msgid "Select all"
@@ -541,9 +541,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1171,7 +1168,7 @@ msgstr "زبردستی منتخب شدہ"
 msgid "Allow the recipient to delete reports"
 msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز حذف کر سکیں"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1345,6 +1342,9 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

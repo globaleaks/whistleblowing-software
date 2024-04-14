@@ -109,7 +109,7 @@ msgstr "Plattformsguide"
 msgid "Label the report"
 msgstr "Ge rapporten en etikett"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Skjut up utgångsdatumet"
 
 msgid "Select all"
@@ -552,9 +552,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1182,7 +1179,7 @@ msgstr "Påtvingat val"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1356,6 +1353,9 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

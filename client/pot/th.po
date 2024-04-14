@@ -96,7 +96,7 @@ msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
 msgid "Label the report"
 msgstr "ติดป้ายกำกับรายงาน"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "เลื่อนวันหมดอายุ"
 
 msgid "Select all"
@@ -539,9 +539,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1169,7 +1166,7 @@ msgstr "บังคับเลือก"
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1343,6 +1340,9 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

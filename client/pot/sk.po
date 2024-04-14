@@ -96,7 +96,7 @@ msgstr "Sprievodca platformou"
 msgid "Label the report"
 msgstr "Označte oznámenie štítkom"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Odložiť vypršanie platnosti"
 
 msgid "Select all"
@@ -539,9 +539,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1169,7 +1166,7 @@ msgstr "Nastavené administrátorom"
 msgid "Allow the recipient to delete reports"
 msgstr "Povoliť príjemcom zmazať podania"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1343,6 +1340,9 @@ msgstr "Zdroj je prístupný iba v rámci siete Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Žiadosť na upload prekročila veľkostné limity"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

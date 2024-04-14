@@ -2,7 +2,7 @@
 # Translators:
 # Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020-2022
 # Eva Simonsson, 2020-2021,2023-2024
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022,2024
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Eva Simonsson, 2020-2021,2023-2024\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022,2024\n"
 "Language-Team: Finnish (http://app.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -96,8 +96,8 @@ msgstr "Ohjattu alustan luominen"
 msgid "Label the report"
 msgstr "Anna ilmoitukselle nimi"
 
-msgid "Postpone the expiration date"
-msgstr "Siirrä vanhentumispäivää myöhäisemmäksi"
+msgid "Edit the expiration date"
+msgstr "Muokkaa vanhentumispäivää"
 
 msgid "Select all"
 msgstr "Valitse kaikki"
@@ -540,9 +540,6 @@ msgstr "Toimi ilmoittajan puolesta"
 
 msgid "The link will expire in 7 days."
 msgstr "Linkki vanhenee 7 päivän kuluttua."
-
-msgid "Edit the expiration date"
-msgstr "Muokkaa vanhentumispäivää"
 
 msgid "File a report"
 msgstr "Jätä vihje"
@@ -1169,7 +1166,7 @@ msgstr "Pakotetusti valittu"
 msgid "Allow the recipient to delete reports"
 msgstr "Salli vastaanottajan poistaa raportteja"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Salli vastaanottajan lykätä raportin vanhentumispäivää"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1343,6 +1340,9 @@ msgstr "Resurssia voi käyttää vain Tor-verkon kautta"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Toimit ilmoittajan puolesta."

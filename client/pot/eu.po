@@ -104,7 +104,7 @@ msgstr "Plataformaren laguntzailea"
 msgid "Label the report"
 msgstr "Etiketatu salaketa"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Iraungitze data atzeratu"
 
 msgid "Select all"
@@ -547,9 +547,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1177,7 +1174,7 @@ msgstr "Automatikoki hautatua"
 msgid "Allow the recipient to delete reports"
 msgstr "Hartzaileei salaketak ezabatzen utzi"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Hartzaileari salaketaren iraungitze data jartzen utzi"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1351,6 +1348,9 @@ msgstr "Baliabide honetan Tor saretik bakarrik sar daiteke"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Igo nahi duzun fitxategiak zilegi den tamaina maximoa gainditzen du."
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

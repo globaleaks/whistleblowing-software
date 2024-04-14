@@ -107,7 +107,7 @@ msgstr "Майстер налаштування платформи"
 msgid "Label the report"
 msgstr "Позначте звіт"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Відтермінувати дату зачінчення терміну дії"
 
 msgid "Select all"
@@ -550,9 +550,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1180,7 +1177,7 @@ msgstr "Примусовий вибір"
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволити отримувачу видаляти звіти"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Дозволити отримувачам відтерміновувати видалення звітів"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1354,6 +1351,9 @@ msgstr "Ресурс доступний лише через браузер Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Завантаження перевищує дозволений розмір"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

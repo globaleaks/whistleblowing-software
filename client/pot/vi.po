@@ -101,7 +101,7 @@ msgstr "Trình hướng dẫn của hệ thống"
 msgid "Label the report"
 msgstr "Dán nhãn báo cáo"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Hoãn ngày hết hạn"
 
 msgid "Select all"
@@ -544,9 +544,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1174,7 +1171,7 @@ msgstr "Được chọn trước"
 msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa báo cáo"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1348,6 +1345,9 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

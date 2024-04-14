@@ -113,7 +113,7 @@ msgstr "دستیار پلتفرم"
 msgid "Label the report"
 msgstr "برچسب زدن گزارش"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "تعویق زمان انقضا"
 
 msgid "Select all"
@@ -556,9 +556,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1186,7 +1183,7 @@ msgstr "انتخاب شده به صورت اجباری"
 msgid "Allow the recipient to delete reports"
 msgstr "به گیرندگان اجازه دهید که گزارش‌ها را حذف کنند"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "به گیرنده اجازه دهید تا تاریخ انقضای گزارش را به تعویق بیاندازد"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1360,6 +1357,9 @@ msgstr "منبع فقط از طریق شبکهٔ Tor قابل دسترس است"
 
 msgid "The upload request exceeds the size limit"
 msgstr "درخواست بارگذاری از محدودهٔ حجم مجاز بیشتر است"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

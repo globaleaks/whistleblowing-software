@@ -87,7 +87,7 @@ msgstr "གླེང་སྟེགས་ཝི་ཛཌ།"
 msgid "Label the report"
 msgstr "སྙན་ཐོ་རྟགས་རྒྱག"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱ།"
 
 msgid "Select all"
@@ -530,9 +530,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1160,7 +1157,7 @@ msgstr "བཙན་སྐུལ་ངང་འདེམས་ཟིན།"
 msgid "Allow the recipient to delete reports"
 msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོ་བསུབ་དུ་འཇུག"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོའི་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་དུ་འཇུག"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1334,6 +1331,9 @@ msgstr "རྒྱུ་ཆ་དེ་ Tor དྲ་ལམ་ཁོ་ན་བ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "ཡར་འཇུག་རེ་ཞུའི་ཆ་ཚད་ཀྱི་ཚད་མཚམས་བརྒལ་འདུག"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""
