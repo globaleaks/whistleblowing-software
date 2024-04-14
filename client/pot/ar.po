@@ -55,7 +55,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024\n"
+"Last-Translator: Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023-2024\n"
 "Language-Team: Arabic (http://app.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -135,7 +135,7 @@ msgstr "معالج المنصة"
 msgid "Label the report"
 msgstr "صنّف البلاغ"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "تأجيل تاريخ نهاية الصلوحية"
 
 msgid "Select all"
@@ -579,9 +579,6 @@ msgstr "اعمل بالنيابة عن مخبر."
 
 msgid "The link will expire in 7 days."
 msgstr "ستنتهي صلاحية الرابط خلال 7 أيام."
-
-msgid "Edit the expiration date"
-msgstr "تأجيل تاريخ نهاية الصلوحية"
 
 msgid "File a report"
 msgstr "تقديم بلاغ"
@@ -1208,7 +1205,7 @@ msgstr "مختارة بالقوّة"
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1382,6 +1379,9 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
+
+msgid "A user with this username already exists"
+msgstr "هناك شخص يستخدم اسم المستخدم هذا بالفعل"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "أنت تعمل بالنيابة عن مخبر."

@@ -90,7 +90,7 @@ msgstr "Asistente de plataforma"
 msgid "Label the report"
 msgstr "Etiqueta a presentación"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Pospoñer a data de caducidade"
 
 msgid "Select all"
@@ -533,9 +533,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1163,7 +1160,7 @@ msgstr "Seleccionado á forza"
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr ""
 
 msgid "Give this user ability to grant user access to reports"
@@ -1337,6 +1334,9 @@ msgstr "Só se pode acceder ao recurso a través da rede Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "A solicitude de carga supera o límite de tamaño"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

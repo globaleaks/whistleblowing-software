@@ -86,7 +86,7 @@ msgstr "Supa séhirgeri"
 msgid "Label the report"
 msgstr "Melumatqa belge sal"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Sürük chéslasini keynige sür"
 
 msgid "Select all"
@@ -529,9 +529,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1159,7 +1156,7 @@ msgstr "Mejburiy tallandi"
 msgid "Allow the recipient to delete reports"
 msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1333,6 +1330,9 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

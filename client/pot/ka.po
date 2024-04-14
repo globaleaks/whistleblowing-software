@@ -86,7 +86,7 @@ msgstr "პლატფორმის ოსტატი"
 msgid "Label the report"
 msgstr "ანგარიშის დასათაურება"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "ვადის გასვლის თარიღის გადავადება"
 
 msgid "Select all"
@@ -529,9 +529,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1159,7 +1156,7 @@ msgstr "იძულებით შერჩეული"
 msgid "Allow the recipient to delete reports"
 msgstr "დართეთ ნება მიმღებს წაშალოს ანგარიშები"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "დართეთ ნება მიმღებს გადაავადოს ანგარიშის ვადის გასვლა"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1333,6 +1330,9 @@ msgstr "რესურსზე წვდომა შესაძლებე�
 
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვის მოთხოვნა აღემატება ზომის ლიმიტს"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

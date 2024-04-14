@@ -2,7 +2,7 @@
 # Translators:
 # A5h8d0wf0x <littleslyfoxie28@gmail.com>, 2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Jiří Skryja, 2022-2024\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,8 +99,8 @@ msgstr "Průvodce platformou"
 msgid "Label the report"
 msgstr "Označte oznámení štítkem"
 
-msgid "Postpone the expiration date"
-msgstr "Odložit datum vypršení"
+msgid "Edit the expiration date"
+msgstr " \nUpravte datum vypršení platnosti"
 
 msgid "Select all"
 msgstr "Označit vše"
@@ -543,9 +543,6 @@ msgstr "Jednat ve prospěch oznamovatele"
 
 msgid "The link will expire in 7 days."
 msgstr "Platnost odkazu vyprší za 7 dní."
-
-msgid "Edit the expiration date"
-msgstr "Upravte datum vypršení platnosti"
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -1172,7 +1169,7 @@ msgstr "Nastaveno administrátorem"
 msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat oznámení"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Povolit příjemci odložit datum expirace oznámení"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1346,6 +1343,9 @@ msgstr "Zdroj může být přístupný pouze uvnitř sítě Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Požadavek na upload přesahuje povolenou velikost."
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Jednáte ve prospěch oznamovatele."

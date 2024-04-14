@@ -88,7 +88,7 @@ msgstr "Платформен волшебник"
 msgid "Label the report"
 msgstr "Означи го извештајот"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Одложи го датумот на истекување"
 
 msgid "Select all"
@@ -531,9 +531,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1161,7 +1158,7 @@ msgstr "Принудно избрани"
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволи му на примачот да ги избрише извештаите"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Дозволи му на примачот да го одложи истекот на датумот на извештајот"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1335,6 +1332,9 @@ msgstr "На ресурсот може да му биде пристапено �
 
 msgid "The upload request exceeds the size limit"
 msgstr "Барањето за прикачувања го надмина ограничувањето за големина"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

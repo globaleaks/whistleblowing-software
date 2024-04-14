@@ -93,7 +93,7 @@ msgstr "平台設定精靈"
 msgid "Label the report"
 msgstr "標記分類報告"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "延後到期日"
 
 msgid "Select all"
@@ -536,9 +536,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1166,7 +1163,7 @@ msgstr "強迫選擇"
 msgid "Allow the recipient to delete reports"
 msgstr "收件者可以刪除報告"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "收件者可以延長報告期限"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1340,6 +1337,9 @@ msgstr "資源僅能透過 TOR 網路讀取"
 
 msgid "The upload request exceeds the size limit"
 msgstr "上傳的請求超出檔案大小上限"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

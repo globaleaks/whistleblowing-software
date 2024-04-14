@@ -5,7 +5,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Ettore Atalan <atalanttore@googlemail.com>, 2014-2024
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Jack Pudding, 2015
@@ -134,8 +134,8 @@ msgstr "Plattformassistent"
 msgid "Label the report"
 msgstr "Den Bericht bezeichnen"
 
-msgid "Postpone the expiration date"
-msgstr "Ablaufdatum hinausschieben"
+msgid "Edit the expiration date"
+msgstr "Ablaufdatum bearbeiten"
 
 msgid "Select all"
 msgstr "Alle auswählen"
@@ -578,9 +578,6 @@ msgstr "Im Auftrag eines Hinweisgebers handeln"
 
 msgid "The link will expire in 7 days."
 msgstr "Dieser Link wird in 7 Tagen ablaufen."
-
-msgid "Edit the expiration date"
-msgstr "Ablaufdatum bearbeiten"
 
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
@@ -1207,7 +1204,7 @@ msgstr "Zwingend ausgewählt"
 msgid "Allow the recipient to delete reports"
 msgstr "Empfängern das Löschen von Hinweisen erlauben"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1381,6 +1378,9 @@ msgstr "Ressource kann ausschließlich über das Tor-Netzwerk aufgerufen werden"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Der Upload überschreitet das eingestellte MB Limit."
+
+msgid "A user with this username already exists"
+msgstr "Ein Benutzer mit diesem Benutzernamen existiert bereits"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Sie handeln im Auftrag eines Hinweisgebers."

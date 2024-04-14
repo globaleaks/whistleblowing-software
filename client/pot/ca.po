@@ -8,7 +8,7 @@
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # estrella1876lc <estrella1876lc@gmail.com>, 2014-2015
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016,2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017-2021
@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Luis Ramirez, 2022-2023\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024\n"
 "Language-Team: Catalan (http://app.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -105,8 +105,8 @@ msgstr "Persona assistent de la plataforma informàtica"
 msgid "Label the report"
 msgstr "Etiqueta l’informe"
 
-msgid "Postpone the expiration date"
-msgstr "Posposa la data de caducitat"
+msgid "Edit the expiration date"
+msgstr "Editar la data de venciment"
 
 msgid "Select all"
 msgstr "Selecciona-ho tot"
@@ -549,9 +549,6 @@ msgstr "Actuar en nom d'un denunciant"
 
 msgid "The link will expire in 7 days."
 msgstr "L'enllaç expirarà en 7 dies"
-
-msgid "Edit the expiration date"
-msgstr "Editar la data de venciment"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1178,7 +1175,7 @@ msgstr "Obligatòriament seleccionats"
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari esborrar informes"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1352,6 +1349,9 @@ msgstr "Només es pot accedir a aquest recurs a través de la xarxa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La petició de pujada preval sobre els límits de volum de dades"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Vosté està operant en nom d'un denunciant"

@@ -90,7 +90,7 @@ msgstr "ជំនួយការវេទិកា"
 msgid "Label the report"
 msgstr "ដាក់ឈ្មោះរបាយការណ៍"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "ពន្យាកាលបរិច្ឆេទផុតកំណត់"
 
 msgid "Select all"
@@ -533,9 +533,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1163,7 +1160,7 @@ msgstr "ជ្រើសរើសដោយបង្ខំ"
 msgid "Allow the recipient to delete reports"
 msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយការណ៍"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1337,6 +1334,9 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

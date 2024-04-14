@@ -85,7 +85,7 @@ msgstr "Čarobnjak za platformu"
 msgid "Label the report"
 msgstr "Označi prijavu"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Odloži datum isteka"
 
 msgid "Select all"
@@ -528,9 +528,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1158,7 +1155,7 @@ msgstr "Prisilno odabrano"
 msgid "Allow the recipient to delete reports"
 msgstr "Dozvoli primaocu da briše prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Dozvoli primaocu da odloži datum isteka prijave"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1332,6 +1329,9 @@ msgstr "Resursu se može pristupiti samo putem Tor mreže"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za otpremanje premašuje ograničenje veličine"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

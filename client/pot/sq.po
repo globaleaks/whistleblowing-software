@@ -7,7 +7,7 @@
 # Bujar Tafili, 2015
 # Florent <fspahija@kdi-kosova.org>, 2021-2022
 # F Nilaj <activisti@protonmail.com>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022,2024
 # Jakub Srna <jaksrn@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 # Tibor Deak <deaktib@gmail.com>, 2019,2021
@@ -95,8 +95,8 @@ msgstr "Ndihmës platforme"
 msgid "Label the report"
 msgstr "I vini raportimit një etiketë"
 
-msgid "Postpone the expiration date"
-msgstr "Shtyjini datën e skadimit"
+msgid "Edit the expiration date"
+msgstr "Modifica la data di scadenza"
 
 msgid "Select all"
 msgstr "Përzgjidhi krejt"
@@ -539,9 +539,6 @@ msgstr "Veproni në këmbë të një nxjerrësi të fshehtash"
 
 msgid "The link will expire in 7 days."
 msgstr "Lidhja do të skadojë pas 7 ditësh"
-
-msgid "Edit the expiration date"
-msgstr "Përpunojini datën e skadimit"
 
 msgid "File a report"
 msgstr "Depozitoni një raportim"
@@ -1168,7 +1165,7 @@ msgstr "E përzgjedhur me zor"
 msgid "Allow the recipient to delete reports"
 msgstr "Lejoje marrësin të fshijë raportime"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1342,6 +1339,9 @@ msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
+
+msgid "A user with this username already exists"
+msgstr "Ka tashmë një përdorues me atë emër përdoruesi"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Po veproni në këmbë të një nxjerrësi të fshehtash."

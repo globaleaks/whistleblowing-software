@@ -26,7 +26,7 @@
 # Eduardo Bonsi, 2013
 # Eduardo Bonsi, 2013-2014
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022,2024
 # Hamilton Junior Mendes Lopes <gigas_x_141@hotmail.com>, 2015
 # Hellen Cristina Silva <hlncrsilva@gmail.com>, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Cauan Henrique Zorzenon <cauanzorzenon@gmail.com>, 2023-2024\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022,2024\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -126,8 +126,8 @@ msgstr "Assistente de plataforma"
 msgid "Label the report"
 msgstr "Etiquetar o relatório"
 
-msgid "Postpone the expiration date"
-msgstr "Adiar a data de expiração"
+msgid "Edit the expiration date"
+msgstr "Editar a data de expiração"
 
 msgid "Select all"
 msgstr "Selecione todas"
@@ -570,9 +570,6 @@ msgstr "Agir em nome de um denunciante"
 
 msgid "The link will expire in 7 days."
 msgstr "O link expirará em 7 dias."
-
-msgid "Edit the expiration date"
-msgstr "Editar a data de expiração"
 
 msgid "File a report"
 msgstr "Apresentar um relatório"
@@ -1199,7 +1196,7 @@ msgstr "Selecionado à força "
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que os destinatários apaguem as denúncias"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1373,6 +1370,9 @@ msgstr "Recurso só pode ser acessado dentro da rede Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "O pedido de envio excede os limites de tamanho"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Você está operando em nome de um denunciante."

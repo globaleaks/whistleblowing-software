@@ -96,7 +96,7 @@ msgstr "Съветник за платформата"
 msgid "Label the report"
 msgstr "Етикиране на доклада"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Отлагане на датата на изтичане"
 
 msgid "Select all"
@@ -539,9 +539,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1169,7 +1166,7 @@ msgstr "Принудително избрано"
 msgid "Allow the recipient to delete reports"
 msgstr "Разрешаване на получателите да изтриват сигнали"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Разрешаване на получателя да отлага датата на изтичане на сигнала"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1343,6 +1340,9 @@ msgstr "Достъп до ресурса може да се осъществи �
 
 msgid "The upload request exceeds the size limit"
 msgstr "Заявеният за качване файл превишава ограничението за размер"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

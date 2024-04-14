@@ -94,7 +94,7 @@ msgstr "Устоди платформа"
 msgid "Label the report"
 msgstr "Гузоришро қайд кунед"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Ба таъхир гузоштани мӯҳлати итмоми эътибор "
 
 msgid "Select all"
@@ -537,9 +537,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1167,7 +1164,7 @@ msgstr "Маҷбуран интихобшуда"
 msgid "Allow the recipient to delete reports"
 msgstr "Ба гиранда иҷозаи пок кардани гузоришро додан"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Ба гиранда иҷозаи ба таъхир гузоштани мӯҳлати анҷоми эътибори гузоришро додан"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1341,6 +1338,9 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

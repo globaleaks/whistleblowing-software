@@ -103,7 +103,7 @@ msgstr "אשף פלטפורמה"
 msgid "Label the report"
 msgstr "סווג את הדוח"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "דחה את תאריך התפוגה"
 
 msgid "Select all"
@@ -546,9 +546,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1176,7 +1173,7 @@ msgstr "נבחר בכוח"
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr ""
 
 msgid "Give this user ability to grant user access to reports"
@@ -1350,6 +1347,9 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

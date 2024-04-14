@@ -81,8 +81,8 @@ msgstr "Platform wizard"
 msgid "Label the report"
 msgstr "Label the report"
 
-msgid "Postpone the expiration date"
-msgstr "Postpone the expiration date"
+msgid "Edit the expiration date"
+msgstr "Edit the expiration date"
 
 msgid "Select all"
 msgstr "Select all"
@@ -644,9 +644,6 @@ msgstr "Maximum number of selectable recipients:"
 msgid "Show recipients in alphabetical order"
 msgstr "Show recipients in alphabetical order"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Allow the whistleblower to add attachments"
-
 msgid "Additional questionnaire"
 msgstr "Additional questionnaire"
 
@@ -1170,8 +1167,8 @@ msgstr "Forcefully selected"
 msgid "Allow the recipient to delete reports"
 msgstr "Allow the recipient to delete reports"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Allow the recipient to edit the report expiration date"
 
 msgid "Give this user ability to grant user access to reports"
 msgstr "Give this user ability to grant user access to reports"
@@ -1349,6 +1346,9 @@ msgstr "Resource can only be accessed via the Tor network"
 msgid "The upload request exceeds the size limit"
 msgstr "The upload request exceeds the size limit"
 
+msgid "A user with this username already exists"
+msgstr "A user with this username already exists"
+
 msgid "You are operating on behalf of a whistleblower."
 msgstr "You are operating on behalf of a whistleblower."
 
@@ -1418,9 +1418,6 @@ msgstr "Recipients have requested you to fill an additional questionnaire."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fill the additional questionnaire"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Allow the whistleblower to write comments"
 
 msgid "From:"
 msgstr "From:"
