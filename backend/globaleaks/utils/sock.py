@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import fcntl
 import socket
 
 from twisted.internet import abstract
@@ -29,6 +29,10 @@ def open_socket_listen(ip, port):
 
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.setblocking(False)
+
+    flags = fcntl.fcntl(s, fcntl.F_GETFD)
+    fcntl.fcntl(s, fcntl.F_SETFD, flags | fcntl.FD_CLOEXEC)
+
     s.bind((ip, port))
     s.listen(1024)
     return s
