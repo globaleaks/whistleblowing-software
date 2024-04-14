@@ -34,7 +34,8 @@ def open_socket_listen(ip, port):
     fcntl.fcntl(s, fcntl.F_SETFD, flags | fcntl.FD_CLOEXEC)
 
     s.bind((ip, port))
-    s.listen(1024)
+    s.listen(4096)
+
     return s
 
 
