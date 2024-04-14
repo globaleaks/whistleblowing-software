@@ -51,22 +51,6 @@ test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
 GLPID=/dev/shm/globaleaks/globaleaks.pid
 
-# Let's try to figure our some sane defaults:
-if [ -r /proc/sys/fs/file-max ]; then
-    system_max=`cat /proc/sys/fs/file-max`
-    if [ "$system_max" -gt "80000" ] ; then
-        MAX_FILEDESCRIPTORS=32768
-    elif [ "$system_max" -gt "40000" ] ; then
-        MAX_FILEDESCRIPTORS=16384
-    elif [ "$system_max" -gt "10000" ] ; then
-        MAX_FILEDESCRIPTORS=8192
-    else
-        MAX_FILEDESCRIPTORS=1024
-    fi
-else
-    MAX_FILEDESCRIPTORS=8192
-fi
-
 wait_for_deaddaemon () {
     pid=$1
     sleep 1
@@ -153,10 +137,6 @@ network_sandboxing_stop()
 
 globaleaks_start()
 {
-    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
-        ulimit -n "$MAX_FILEDESCRIPTORS"
-    fi
-
     if [ ! -d "/dev/shm/globaleaks" ]; then
         mkdir -m 700 /dev/shm/globaleaks && chown $USERNAME:$USERNAME /dev/shm/globaleaks
     fi
