@@ -1,3 +1,8 @@
+Changes in version 4.15.1
+    Apply revision and optimization to TLS configurations
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.15.0
     Fix issues #4019, #4020
     Do not loose channel selection when changing platform language
