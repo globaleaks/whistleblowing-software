@@ -91,7 +91,7 @@ msgstr "プラットフォーム ウィザード"
 msgid "Label the report"
 msgstr "報告にラベルを付ける"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "有効期限を延期する"
 
 msgid "Select all"
@@ -534,9 +534,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1164,7 +1161,7 @@ msgstr "強制的に選択"
 msgid "Allow the recipient to delete reports"
 msgstr "受信者が報告を削除することを許可する"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "受信者が報告の有効期限を延長することを許可する"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1338,6 +1335,9 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

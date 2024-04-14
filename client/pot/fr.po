@@ -10,7 +10,7 @@
 # AO <ao@localizationlab.org>, 2016-2017
 # AO <ao@localizationlab.org>, 2016
 # AO <ao@localizationlab.org>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -124,8 +124,8 @@ msgstr "Assistant de la plateforme"
 msgid "Label the report"
 msgstr "Étiqueter le signalement"
 
-msgid "Postpone the expiration date"
-msgstr "Différer la date d’expiration"
+msgid "Edit the expiration date"
+msgstr "Modifier la date d’expiration"
 
 msgid "Select all"
 msgstr "Tout sélectionner"
@@ -568,9 +568,6 @@ msgstr "Agir pour le compte d’un lanceur d’alerte."
 
 msgid "The link will expire in 7 days."
 msgstr "Le lien arrivera à expiration dans sept jours."
-
-msgid "Edit the expiration date"
-msgstr "Modifier la date d’expiration"
 
 msgid "File a report"
 msgstr "Remplir un signalement"
@@ -1197,8 +1194,8 @@ msgstr "Sélectionné de force"
 msgid "Allow the recipient to delete reports"
 msgstr "Permettre au destinataire de supprimer des signalements"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permettre au destinataire de différer la date d’expiration du signalement"
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Permettre au destinataire de modifier la date d’expiration du signalement"
 
 msgid "Give this user ability to grant user access to reports"
 msgstr "Donner à cet utilisateur la possibilité d’accorder l’accès des utilisateurs aux signalements"
@@ -1371,6 +1368,9 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
+
+msgid "A user with this username already exists"
+msgstr "Ce nom d’utilisateur existe déjà"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Vous agissez pour le compte d’un lanceur d’alerte."

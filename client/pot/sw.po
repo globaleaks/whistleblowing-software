@@ -86,7 +86,7 @@ msgstr "Kivinjari cha jukwaa"
 msgid "Label the report"
 msgstr "Lebo ripoti"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Ahirisha tarehe ya kumalizika muda"
 
 msgid "Select all"
@@ -529,9 +529,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1159,7 +1156,7 @@ msgstr "Imechaguliwa kwa nguvu"
 msgid "Allow the recipient to delete reports"
 msgstr "Ruhusu mpokeaji kufuta ripoti"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti."
 
 msgid "Give this user ability to grant user access to reports"
@@ -1333,6 +1330,9 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

@@ -86,7 +86,7 @@ msgstr "Супа сеһиргәри"
 msgid "Label the report"
 msgstr "мәлуматқа бәлгә сал"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Сүрүк чесласини кәйнигә сүр"
 
 msgid "Select all"
@@ -529,9 +529,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1159,7 +1156,7 @@ msgstr "Мәҗбурий талланди"
 msgid "Allow the recipient to delete reports"
 msgstr "Тапшуривалғучиларниң доклатларни өчүришигә рухсәт қил"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Тапшуривалғучиниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1333,6 +1330,9 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

@@ -88,7 +88,7 @@ msgstr "மேடை வழிகாட்டி"
 msgid "Label the report"
 msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "காலாவதி தேதி ஒத்தி"
 
 msgid "Select all"
@@ -531,9 +531,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1161,7 +1158,7 @@ msgstr "கட்டாயப்படுத்தி தேர்வு"
 msgid "Allow the recipient to delete reports"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1335,6 +1332,9 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

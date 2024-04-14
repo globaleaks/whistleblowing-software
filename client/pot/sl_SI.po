@@ -3,7 +3,7 @@
 # Aleš <ales.petan@digital.si>, 2016
 # Dagmar Šober, 2023-2024
 # Delo <prevajalci.delo@delo.si>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022,2024
 # Matija <matija@srebrni-galeb.si>, 2015
 # Štefan Baebler <stefan.baebler@gmail.com>, 2020
 # Vasja <vasja.cepic@transparency.si>, 2021
@@ -92,8 +92,8 @@ msgstr "Čarovnik platforme"
 msgid "Label the report"
 msgstr "Označi prijavo"
 
-msgid "Postpone the expiration date"
-msgstr "Spremeni datum poteka veljavnosti"
+msgid "Edit the expiration date"
+msgstr "Uredi datum poteka veljavnosti"
 
 msgid "Select all"
 msgstr "Označi vse"
@@ -536,9 +536,6 @@ msgstr "Ukrepanje v imenu prijavitelja nepravilnosti"
 
 msgid "The link will expire in 7 days."
 msgstr "Povezava bo potekla čez 7 dni."
-
-msgid "Edit the expiration date"
-msgstr "Uredi datum poteka veljavnosti"
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -1165,7 +1162,7 @@ msgstr "Vnaprej določeno"
 msgid "Allow the recipient to delete reports"
 msgstr "Dovoli prejemniku, da zbriše prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1339,6 +1336,9 @@ msgstr "Ta vir je dostopen le prek Tor omrežja"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahteva za prenos presega omejitev velikosti"
+
+msgid "A user with this username already exists"
+msgstr "Uporabnik s tem uporabniškim imenom že obstaja"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Delujete v imenu prijavitelja nepravilnosti."

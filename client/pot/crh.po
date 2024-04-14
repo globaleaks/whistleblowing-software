@@ -86,7 +86,7 @@ msgstr "Платформа устасы"
 msgid "Label the report"
 msgstr "Малюматлар берильгенини къайд этмек "
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Сонъ къуллама тарихини кериге чекмек"
 
 msgid "Select all"
@@ -529,9 +529,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1159,7 +1156,7 @@ msgstr "Джебрен сайланды"
 msgid "Allow the recipient to delete reports"
 msgstr "Алыджыгъа эсабатларны ёкъ этмеге изин бермек"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Алыджыгъа эсабат битме муддетини кечиктирмеге изин бермек"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1333,6 +1330,9 @@ msgstr "Ресурскъа иришим тек Tor агъындан мумкюн
 
 msgid "The upload request exceeds the size limit"
 msgstr "Серверге файл юклемесине соратма тайин этильген лимиттен устюндир"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

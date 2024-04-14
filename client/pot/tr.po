@@ -11,7 +11,7 @@
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
@@ -113,8 +113,8 @@ msgstr "Platform yardımcısı"
 msgid "Label the report"
 msgstr "İhbarı etiketle"
 
-msgid "Postpone the expiration date"
-msgstr "Geçerlilik sonu tarihini uzat"
+msgid "Edit the expiration date"
+msgstr "Geçerlilik sonu tarihini düzenle"
 
 msgid "Select all"
 msgstr "Tümünü seç"
@@ -557,9 +557,6 @@ msgstr "Bir muhbir adına işlem yap"
 
 msgid "The link will expire in 7 days."
 msgstr "Bağlantı 7 sonra geçersiz olacak."
-
-msgid "Edit the expiration date"
-msgstr "Geçerlilik sonu tarihini düzenle"
 
 msgid "File a report"
 msgstr "İhbar edin"
@@ -1186,8 +1183,8 @@ msgstr "Zorunlu olarak seçilmiş"
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcı ihbarları silebilsin"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Alıcı ihbarın geçerlilik sonu tarihini uzatabilsin"
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Alıcı ihbarın geçerlilik sonu tarihini düzenleyebilsin"
 
 msgid "Give this user ability to grant user access to reports"
 msgstr "Bu kullanıcı başka kullanıcılara ihbarlara erişme izni verebilsin"
@@ -1360,6 +1357,9 @@ msgstr "Kaynağa yalnızca Tor ağı üzerinden erişilebilir"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme isteğinin boyutu sınırı aşıyor"
+
+msgid "A user with this username already exists"
+msgstr "Aynı kullanıcı adlı bir kullanıcı zaten var"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Bir muhbir adına işlem yapıyorsunuz."

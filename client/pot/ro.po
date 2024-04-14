@@ -102,7 +102,7 @@ msgstr "Configurator platformă"
 msgid "Label the report"
 msgstr "Etichetează sesizarea"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Amână data de expirare"
 
 msgid "Select all"
@@ -545,9 +545,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1175,7 +1172,7 @@ msgstr "Selectat obligatoriu"
 msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1349,6 +1346,9 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

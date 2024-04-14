@@ -87,7 +87,7 @@ msgstr "Platformos vedlys"
 msgid "Label the report"
 msgstr "Ženklinti pranešimą"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Atidėti galiojimo pabaigos datą"
 
 msgid "Select all"
@@ -531,9 +531,6 @@ msgstr "Veikti pranešėjo vardu"
 
 msgid "The link will expire in 7 days."
 msgstr "Nuoroda baigs galioti po 7 dienų."
-
-msgid "Edit the expiration date"
-msgstr ""
 
 msgid "File a report"
 msgstr "Teikti pranešimą"
@@ -1160,7 +1157,7 @@ msgstr "Priverstinai atrinktas"
 msgid "Allow the recipient to delete reports"
 msgstr "Leisti gavėjui pranešimus ištrinti"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Leisti gavėjui atidėti pranešimo galiojimo pabaigos datą"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1334,6 +1331,9 @@ msgstr "Resursą galima pasiekti tik per „Tor“ tinklą"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Įkeliamas prašymas viršija dydžio limitą"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Jūs veikiate pranešėjo vardu."

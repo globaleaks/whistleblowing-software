@@ -108,8 +108,8 @@ msgstr "Installazione della piattaforma"
 msgid "Label the report"
 msgstr "Assegna una etichetta alla segnalazione"
 
-msgid "Postpone the expiration date"
-msgstr "Posticipa la data di scadenza"
+msgid "Edit the expiration date"
+msgstr "Modifica la data di scadenza"
 
 msgid "Select all"
 msgstr "Seleziona tutto"
@@ -552,9 +552,6 @@ msgstr "Agisci per conto di un segnalante"
 
 msgid "The link will expire in 7 days."
 msgstr "Il link ha una validità di 7 giorni."
-
-msgid "Edit the expiration date"
-msgstr "Modifica la data di scadenza"
 
 msgid "File a report"
 msgstr "Invia una segnalazione"
@@ -1181,7 +1178,7 @@ msgstr "Selezionato forzatamente"
 msgid "Allow the recipient to delete reports"
 msgstr "Permetti a questo ricevente di cancellare le segnalazioni."
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permetti al ricevente di posticipare la data di scadenza"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1355,6 +1352,9 @@ msgstr "La risorsa può essere acceduta solo all'interno della rete Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La richiesta di upload supera la dimensione massima in MB"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Stai operando per conto di un segnalante."

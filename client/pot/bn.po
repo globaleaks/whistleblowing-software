@@ -93,7 +93,7 @@ msgstr "প্লাটফর্ম উইজার্ড"
 msgid "Label the report"
 msgstr "রিপোর্টটিকে চিহ্নিত করুন"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "মেয়াদ উত্তীর্ণের তারিখ স্থগিত করুন"
 
 msgid "Select all"
@@ -536,9 +536,6 @@ msgid "Act on behalf of a whistleblower"
 msgstr ""
 
 msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid "Edit the expiration date"
 msgstr ""
 
 msgid "File a report"
@@ -1166,7 +1163,7 @@ msgstr "জোরপূর্বক নির্বাচিত"
 msgid "Allow the recipient to delete reports"
 msgstr "প্রাপককে প্রতিবেদনগুলি মুছে ফেলার অনুমতি দিন"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "প্রাপককে রিপোর্টের মেয়াদ শেষ হওয়ার তারিখ স্থগিত করার অনুমতি দিন"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1340,6 +1337,9 @@ msgstr "কেবলমাত্র টর নেটওয়ার্কের 
 
 msgid "The upload request exceeds the size limit"
 msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""
