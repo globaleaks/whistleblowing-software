@@ -205,7 +205,7 @@ def new_tls_server_context():
                     SSL.OP_NO_RENEGOTIATION)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
-    ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
+    ctx.set_session_cache_mode(SSL.SESS_CACHE_SERVER)
 
     ctx.set_cipher_list(TLS_CIPHER_LIST)
 
