@@ -1,5 +1,6 @@
 Changes in version 4.15.1
     Apply revision and optimization to TLS configurations
+    Fix bug on admin operation handlers preventing to reset 2fa of users
     Bump npm dependencies to latest versions
     Update translations
 
