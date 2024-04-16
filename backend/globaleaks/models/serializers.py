@@ -258,10 +258,11 @@ def serialize_rtip(session, itip, rtip, language):
     if 'whistleblower_identity' in ret['data']:
         ret['data']['whistleblower_identity_provided'] = True
 
-        if 'iar' not in ret or ret['iar']['reply'] == 'denied':
+    if 'iar' not in ret or ret['iar']['reply'] in ('denied', 'pending'):
+        if 'data' in ret and 'whistleblower_identity' in ret['data']:
             del ret['data']['whistleblower_identity']
-
-            denied_identity_files = get_identity_files(ret['questionnaires'])
+    
+        denied_identity_files = get_identity_files(ret.get('questionnaires', []))
 
     for ifile, wbfile in session.query(models.InternalFile, models.WhistleblowerFile) \
                                .filter(models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
