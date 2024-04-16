@@ -65,7 +65,7 @@
             </ol>
         </ng-container>
         <ng-container *ngIf="filteredWbFiles.length > 1">
-            <ng-select [items]="filteredWbFiles" class="w-25 pt-3" [virtualScroll]="true" [placeholder]="'Search' | translate" bindValue="name" (change)="selectedFile($event)">
+            <ng-select [items]="filteredWbFiles" [attr.data-cy]="'file_selection'" class="w-25 pt-3" [virtualScroll]="true" [placeholder]="'Search' | translate" bindValue="name" (change)="selectedFile($event)">
                 <ng-template ng-label-tmp let-item="item">
                     {{ item.name }}
                 </ng-template>

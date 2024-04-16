@@ -5,17 +5,26 @@ describe("globaleaks process", function () {
   let receipts: any = [];
   const comment = "comment";
 
-  const perform_submission = async () => {
+  const perform_submission = async (res?:string) => {
     const wbPage = pages.WhistleblowerPage;
 
-    wbPage.performSubmission().then((receipt) => {
+    wbPage.performSubmission(res).then((receipt) => {
       receipts.unshift(receipt);
     });
   };
 
 
   for (let i = 1; i <= N; i++) {
-    it("Whistleblowers should be able to perform a submission", function () {
+    it("Whistleblowers should be able to perform a submission with single attachement", function () {
+      perform_submission("single_file_upload");
+    });
+
+    it("Whistleblower actions with single attachement", function () {
+      cy.login_whistleblower(receipts[0]);
+      cy.logout();
+    });
+
+    it("Whistleblowers should be able to perform a submission with multiple attachement", function () {
       perform_submission();
     });
 
@@ -49,10 +58,15 @@ describe("globaleaks process", function () {
       cy.logout();
     });
 
-    it("Whistleblower actions", function () {
+    it("Whistleblower actions with multiple attachement", function () {
       const comment_reply = "comment reply";
 
       cy.login_whistleblower(receipts[0]);
+
+      cy.get('[data-cy="file_selection"]').click();
+      cy.get('.ng-dropdown-panel').should('be.visible');
+      cy.contains('.ng-option', 'evidence-1.pdf').click();
+
 
       cy.get("#comment-0").should("contain", comment);
 
