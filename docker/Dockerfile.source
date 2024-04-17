@@ -1,0 +1,38 @@
+# Author: Sai Karthik <kskarthik@disroot.org>
+# Summary: This dockerfile builds globaleaks from source
+# The build is done in multistage
+
+# Build the webapp
+FROM node:lts-alpine as webapp
+
+COPY . /globaleaks/
+
+WORKDIR /globaleaks/client
+
+RUN echo "installing dependencies" && \
+		npm i --incude=dev && \
+		echo "building webapp ..." && \
+		./node_modules/grunt/bin/grunt build && \
+		ls -al
+
+# Build the backend
+FROM python:3.12-slim
+
+RUN useradd -m -U gl
+
+USER gl
+
+# copy the globaleaks dir form the previous stage
+COPY --from=webapp /globaleaks /home/gl/globaleaks-src
+
+WORKDIR /home/gl/globaleaks-src/backend
+
+RUN echo "creating workingdir" && \
+		mkdir ~/globaleaks-data && \
+		echo "installing backend dependencies" && \
+		pip install -r requirements.txt && \
+		ls -al
+
+EXPOSE 8080 8443
+
+CMD ["python3", "bin/globaleaks", "-n", "--working-path=/home/gl/globaleaks-data"]
