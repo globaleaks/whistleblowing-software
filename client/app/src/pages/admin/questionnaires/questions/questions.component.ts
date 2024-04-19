@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {FieldTemplatesResolver} from "@app/shared/resolvers/field-templates-resolver.service";
 import {QuestionnairesResolver} from "@app/shared/resolvers/questionnaires.resolver";
 import {HttpService} from "@app/shared/services/http.service";
@@ -18,6 +18,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   fields: fieldtemplatesResolverModel[];
   questionnairesData: questionnaireResolverModel[] = [];
   step: Step;
+  @ViewChild('uploadInput') uploadInput: ElementRef<HTMLInputElement>;
 
   private destroy$ = new Subject<void>();
 
@@ -46,8 +47,15 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   importQuestion(files: FileList | null): void {
     if (files && files.length > 0) {
       this.utilsService.readFileAsText(files[0]).subscribe((txt) => {
-        return this.httpClient.post("api/admin/fieldtemplates?multilang=1", txt).subscribe(() => {
-          this.utilsService.reloadComponent();
+        return this.httpClient.post("api/admin/fieldtemplates?multilang=1", txt).subscribe({
+          next:()=>{
+            this.utilsService.reloadComponent();
+          },
+          error:()=>{
+            if (this.uploadInput) {
+                this.uploadInput.nativeElement.value = "";
+            }
+          }
         });
       });
     }

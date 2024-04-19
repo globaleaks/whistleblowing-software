@@ -11,7 +11,7 @@ import {FlowFile} from "@flowjs/flow.js";
   templateUrl: "./tip-upload-wb-file.component.html"
 })
 export class TipUploadWbFileComponent {
-  @ViewChild("uploader") uploaderElementRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('uploader') uploaderInput: ElementRef<HTMLInputElement>;
   @Input() tip: RecieverTipData;
   @Input() key: string;
   @Output() dataToParent = new EventEmitter<string>();
@@ -40,6 +40,9 @@ export class TipUploadWbFileComponent {
         },
         allowDuplicateUploads: false,
         testChunks: false,
+        generateUniqueIdentifier: () => {
+          return crypto.randomUUID();
+        },
         permanentErrors: [500, 501],
         headers: {"X-Session": this.authenticationService.session.id}
       });
@@ -50,6 +53,9 @@ export class TipUploadWbFileComponent {
       flowJsInstance.on("fileError", (file, _) => {
         this.showError = true;
         this.errorFile = file;
+        if (this.uploaderInput) {
+          this.uploaderInput.nativeElement.value = "";
+        }
         this.cdr.detectChanges();
       });
 

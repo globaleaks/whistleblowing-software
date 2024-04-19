@@ -14,7 +14,7 @@ import {AdminFile} from "@app/models/component-model/admin-file";
 export class AdminFileComponent implements OnInit {
   @Input() adminFile: AdminFile;
   nodeData: { [key: string]: string[] | boolean } = {};
-  @ViewChild("uploader") uploaderElementRef!: ElementRef<HTMLInputElement>;
+  @ViewChild("uploader") uploaderInput!: ElementRef<HTMLInputElement>;
 
   constructor(protected node: NodeResolver, protected appConfigService: AppConfigService, protected appDataService: AppDataService, protected utilsService: UtilsService, protected authenticationService: AuthenticationService) {
   }
@@ -28,14 +28,15 @@ export class AdminFileComponent implements OnInit {
   onFileSelected(files: FileList | null, filetype: string) {
     if (files && files.length > 0) {
       const file = files[0];
-
-
       const flowJsInstance = new Flow({
         target: "api/admin/files/" + filetype,
         singleFile: true,
         allowDuplicateUploads: false,
         testChunks: false,
         permanentErrors: [500, 501],
+        generateUniqueIdentifier: () => {
+          return crypto.randomUUID();
+        },
         query: {fileSizeLimit: this.node.dataModel.maximum_filesize * 1024 * 1024},
         headers: {"X-Session": this.authenticationService.session.id}
       });
@@ -43,6 +44,11 @@ export class AdminFileComponent implements OnInit {
       flowJsInstance.on("fileSuccess", (_) => {
         this.appConfigService.reinit(false);
         this.utilsService.reloadCurrentRoute();
+      });
+      flowJsInstance.on("fileError", (_) => {
+        if (this.uploaderInput) {
+          this.uploaderInput.nativeElement.value = "";
+        }
       });
       this.utilsService.onFlowUpload(flowJsInstance, file)
     }

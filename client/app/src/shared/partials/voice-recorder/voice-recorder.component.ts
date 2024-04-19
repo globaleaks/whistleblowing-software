@@ -82,6 +82,9 @@ export class VoiceRecorderComponent implements OnInit {
       allowDuplicateUploads: false,
       testChunks: false,
       permanentErrors: [500, 501],
+      generateUniqueIdentifier: () => {
+        return crypto.randomUUID();
+      },
       headers: {"X-Session": this.authenticationService.session.id},
       query: {
         type: "audio.webm",

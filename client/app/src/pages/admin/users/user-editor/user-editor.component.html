@@ -20,7 +20,7 @@
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" id="edit_user" (click)="toggleEditing();">
                     <span>{{ 'Edit' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_user" [disabled]="editUser.invalid" (click)="saveUser(user)">
+                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_user" [disabled]="editUser.invalid" (click)="saveUser(user);toggleEditing();">
                     <span>{{ 'Save' | translate }}</span>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing();">

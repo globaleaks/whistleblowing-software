@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AppDataService} from "@app/app-data.service";
@@ -23,7 +23,7 @@ export class UserEditorComponent implements OnInit {
   @Input() index: number;
   @Input() editUser: NgForm;
   @Output() dataToParent = new EventEmitter<string>();
-
+  @ViewChild("uploader") uploaderInput: ElementRef;
   editing = false;
   setPasswordArgs: { user_id: string, password: string };
   changePasswordArgs: { password_change_needed: string };
@@ -85,8 +85,15 @@ export class UserEditorComponent implements OnInit {
     if (user.pgp_key_public !== "") {
       user.pgp_key_remove = false;
     }
-    return this.utilsService.updateAdminUser(userData.id, userData).subscribe(_ => {
-      this.sendDataToParent();
+    return this.utilsService.updateAdminUser(userData.id, userData).subscribe({
+      next:()=>{
+        this.sendDataToParent();
+      },
+      error:()=>{
+        if (this.uploaderInput) {
+          this.uploaderInput.nativeElement.value = "";
+        }
+      }
     });
   }
 

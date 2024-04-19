@@ -45,10 +45,6 @@ export class ContextsComponent implements OnInit {
     });
   }
 
-  handleDataFromChild() {
-    this.utilsService.reloadComponent();
-  }
-
   newItemOrder(objects: any[], key: string): number {
     if (objects.length === 0) {
       return 0;

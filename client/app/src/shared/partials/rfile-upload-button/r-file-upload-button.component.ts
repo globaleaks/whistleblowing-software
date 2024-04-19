@@ -50,6 +50,9 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
       allowDuplicateUploads: false,
       testChunks: false,
       permanentErrors: [500, 501],
+      generateUniqueIdentifier: () => {
+        return crypto.randomUUID();
+      },
       headers: {"X-Session": this.authenticationService.session?.id},
       query: {
         reference_id: this.field?.id,

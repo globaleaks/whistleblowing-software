@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ConfirmationComponent} from "@app/shared/modals/confirmation/confirmation.component";
@@ -17,6 +17,10 @@ export class HttpsFilesComponent implements OnInit {
   @Output() dataToParent = new EventEmitter<string>();
   @Input() tlsConfig: TlsConfig;
   @Input() state: number = 0;
+  @ViewChild('pkInput') pkInput: ElementRef<HTMLInputElement>;
+  @ViewChild('certificateInput') certificateInput: ElementRef<HTMLInputElement>;
+  @ViewChild('iCertificateInput') iCertificateInput: ElementRef<HTMLInputElement>;
+
   nodeData: nodeResolverModel;
   fileResources: FileResources = {
     key: {name: "key"},
@@ -41,11 +45,14 @@ export class HttpsFilesComponent implements OnInit {
       this.utilsService.readFileAsText(file).subscribe(
         (str: string) => {
           resource.content = str;
-          this.httpService.requestCSRContentResource(resource.name, resource).subscribe(
-            () => {
+          this.httpService.requestCSRContentResource(resource.name, resource).subscribe({
+           next:() => {
               this.dataToParent.emit();
+            },
+           error:()=> {
+              this.clearInputFields();
             }
-          );
+          });
         },
       );
     }
@@ -63,12 +70,25 @@ export class HttpsFilesComponent implements OnInit {
     modalRef.componentInstance.arg = fileResource.name;
     modalRef.componentInstance.confirmFunction = (arg: string) => {
       return this.httpService.requestDeleteTlsConfigFilesResource(arg).subscribe(() => {
+        this.clearInputFields();
         this.dataToParent.emit();
       });
     };
     return modalRef.result;
   }
 
+  clearInputFields(){
+    if (this.pkInput) {
+      this.pkInput.nativeElement.value = "";
+    }
+    if (this.certificateInput) {
+      this.certificateInput.nativeElement.value = "";
+    }
+    if (this.iCertificateInput) {
+      this.iCertificateInput.nativeElement.value = "";
+    }
+  }
+  
   downloadCSR() {
     this.httpService.downloadCSRFile().subscribe(
       (response: Blob) => {

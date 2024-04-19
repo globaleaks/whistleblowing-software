@@ -18,7 +18,7 @@ import {AdminFile} from "@app/models/component-model/admin-file";
 export class Tab2Component implements OnInit {
   @Input() contentForm: NgForm;
   @ViewChild("flowAdvanced", {static: true}) flowAdvanced: FlowDirective;
-  @ViewChild("uploader") uploader: ElementRef;
+  @ViewChild("uploader") uploaderInput: ElementRef;
 
   files: FlowFile[] = [];
   flow: FlowDirective;
@@ -66,7 +66,6 @@ export class Tab2Component implements OnInit {
   onFileSelected(files: FileList | null) {
     if (files && files.length > 0) {
       const file = files[0];
-      console.log(files)
       const flowJsInstance = new Flow({
         target: "api/admin/files/custom",
         speedSmoothingFactor: 0.01,
@@ -74,6 +73,9 @@ export class Tab2Component implements OnInit {
         allowDuplicateUploads: true,
         testChunks: false,
         permanentErrors: [500, 501],
+        generateUniqueIdentifier: () => {
+          return crypto.randomUUID();
+        },
         query: {fileSizeLimit: this.nodeResolver.dataModel.maximum_filesize * 1024 * 1024},
         headers: {"X-Session": this.authenticationService.session.id}
       });
@@ -81,6 +83,11 @@ export class Tab2Component implements OnInit {
       flowJsInstance.on("fileSuccess", (_) => {
         this.appConfigService.reinit(false);
         this.utilsService.reloadComponent();
+      });
+      flowJsInstance.on("fileError", (_) => {
+        if (this.uploaderInput) {
+          this.uploaderInput.nativeElement.value = "";
+        }
       });
       this.utilsService.onFlowUpload(flowJsInstance, file)
     }
