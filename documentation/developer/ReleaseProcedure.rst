@@ -8,7 +8,7 @@ A release is represented by:
 * A version bump;
 * An updated CHANGELOG;
 * A commit titled "Bump to version $number";
-* A tag commit $version signed by a core developer with its own key;
+* A tag commit $version signed by a core developer with their own key;
 * An updated package on deb.globaleaks.org;
 * A signed repository.
 
