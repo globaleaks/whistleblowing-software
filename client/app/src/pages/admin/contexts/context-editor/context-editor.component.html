@@ -15,7 +15,7 @@
                 <button class="btn btn-sm btn-outline-secondary" id="edit_context" *ngIf="!editing" (click)="toggleEditing()">
                     <span>{{ 'Edit' | translate }}</span>
                 </button>
-                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_context" [disabled]="editContext.invalid" (click)="saveContext(contextResolver)">
+                <button class="btn btn-sm btn-primary" *ngIf="editing" id="save_context" [disabled]="editContext.invalid" (click)="saveContext(contextResolver);toggleEditing()">
                     <span>{{ 'Save' | translate }}</span>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="editing" (click)="toggleEditing()">

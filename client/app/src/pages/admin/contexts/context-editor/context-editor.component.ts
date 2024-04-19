@@ -128,11 +128,7 @@ export class ContextEditorComponent implements OnInit {
       context.additional_questionnaire_id = "";
     }
     this.utilsService.updateAdminContext(context, context.id).subscribe(_ => {
-      this.sendDataToParent();
     });
   }
 
-  sendDataToParent() {
-    this.dataToParent.emit();
-  }
 }

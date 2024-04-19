@@ -56,7 +56,7 @@
 <ng-container *ngIf="usersData.length > 0">
     <div class="userList" *ngFor="let user of usersData | orderBy:'name'; let index = index">
         <form id="user-{{index}}" name="editUser" #editUser="ngForm" novalidate>
-            <src-user-editor [user]="user" [editUser]="editUser" [index]="index" [users]="usersData" (dataToParent)="handleDataFromChild()"></src-user-editor>
+            <src-user-editor [user]="user" [editUser]="editUser" [index]="index" [users]="usersData"></src-user-editor>
         </form>
     </div>
 </ng-container>

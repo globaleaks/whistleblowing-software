@@ -38,10 +38,6 @@ export class UsersTab1Component implements OnInit {
     }
   }
 
-  handleDataFromChild() {
-    this.getResolver();
-  }
-
   addUser(): void {
     const user: NewUser = new NewUser();
 
