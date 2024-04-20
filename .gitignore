@@ -1,4 +1,4 @@
-node_modules/
-# mentioned in https://docs.globaleaks.org/en/main/developer/Environment.html#requirements
 backend/env/
+backend/workingdir/
 client/build
+client/node_modules/
