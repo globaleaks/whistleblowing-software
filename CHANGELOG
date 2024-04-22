@@ -1,3 +1,6 @@
+Changes in version 4.15.3
+    Do not consider opening a report for the first time as a report update
+
 Changes in version 4.15.2
     Correct definition of symbol OP_CLEANSE_PLAINTEXT causing malfunction
     on 4.15.1 in systems running with OpenSSL <= 3.0.0
