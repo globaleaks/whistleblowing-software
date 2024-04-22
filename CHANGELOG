@@ -1,3 +1,7 @@
+Changes in version 4.15.2
+    Correct definition of symbol OP_CLEANSE_PLAINTEXT causing malfunction
+    on 4.15.1 in systems running with OpenSSL <= 3.0.0
+
 Changes in version 4.15.1
     Apply revision and optimization to TLS configurations
     Fix bug on admin operation handlers preventing to reset 2fa of users
