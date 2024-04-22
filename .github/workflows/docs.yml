@@ -1,0 +1,29 @@
+name: Globaleaks Documentation
+
+on:
+  push:
+    paths:
+      - 'documentation/**'
+  pull_request:
+    paths:
+      - 'documentation/**'
+
+jobs:
+  build_docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.12"
+
+    - name: Install doc dependencies & build
+      run: |
+        cd documentation/
+        pip install -r requirements.txt
+        apt update && apt install -y build-essential
+        make html
