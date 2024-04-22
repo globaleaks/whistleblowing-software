@@ -644,10 +644,6 @@ def db_get_rtip(session, tid, user_id, itip_id, language):
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
-    if itip.status == 'new':
-        itip.update_date = rtip.last_access
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
-
     return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
 
