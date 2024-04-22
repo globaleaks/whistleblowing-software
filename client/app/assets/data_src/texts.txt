@@ -1,4 +1,3 @@
-
 0 = auto
 Accept multiple answers
 Accept multiple file uploads
@@ -81,7 +80,6 @@ Comments
 Computer
 Configure
 Confirm
-Confirmation
 Congratulations!
 Copy to clipboard
 Country
