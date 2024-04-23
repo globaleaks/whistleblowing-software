@@ -1,4 +1,4 @@
-FROM debian:12-slim
+FROM debian:stable-slim
 
 RUN apt-get update -q && \
     apt-get dist-upgrade -y && \
