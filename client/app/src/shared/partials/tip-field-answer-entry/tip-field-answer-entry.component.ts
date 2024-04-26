@@ -89,11 +89,31 @@ export class TipFieldAnswerEntryComponent implements OnInit {
   }
 
   redactInformation(type:string, field:any, entry:string, content:string){
-    if (field.instance === "template" && field.fieldgroup_id === "whistleblower_identity"){
+    if (this.checkIdExists(this.tipService.tip.data,field.id)){
       this.maskService.redactInfo("whistleblower_identity",field.id,entry,content,this.tipService.tip);
     } else {
       this.maskService.redactInfo(type,field.id,entry,content,this.tipService.tip);
     }
+  }
+
+  checkIdExists(data: any, id: string): boolean {
+    if (!data || typeof data !== 'object') {
+        return false;
+    }
+
+    if (data[id]) {
+        return true;
+    }
+
+    for (const key in data) {
+        if (typeof data[key] === 'object') {
+            if (this.checkIdExists(data[key], id)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
   }
 
   maskContent(id: string, index: string, value: string) {
