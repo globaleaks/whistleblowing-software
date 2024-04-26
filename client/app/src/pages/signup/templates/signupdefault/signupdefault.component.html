@@ -44,7 +44,9 @@
         <div class="col-md-6 form-group">
             <label>
                 <span>{{'Email address'|translate}}</span>
-                <span>(</span><span>{{'Confirm'|translate}}</span><span>)</span>
+                <span>(</span>
+                <span>{{'Confirmation'|translate}}</span>
+                <span>)</span>
                 <span class="text-danger" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
             </label>
             <input name="email" class="form-control" [(ngModel)]="confirmation_email" disableCcp="" type="email" [ngClass]="{'is-invalid': validated && signup.email !== confirmation_email}" required>

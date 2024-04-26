@@ -41,7 +41,7 @@
             <ng-container *ngIf="!tip || tip.context">
                 <span id="tip-action-postpone"
                     *ngIf="!tip || preferencesService.dataModel.can_postpone_expiration && tip.context.tip_timetolive > 0"
-                    (click)="tipPostpone()" data-toggle="tooltip" title="{{'Postpone the expiration date' | translate}}"
+                    (click)="tipPostpone()" data-toggle="tooltip" title="{{'Edit the expiration date' | translate}}"
                     class="btn btn-outline-secondary">
                     <i class="fa-solid fa-clock"></i>
                 </span>
