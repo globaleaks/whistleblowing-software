@@ -500,7 +500,7 @@ def db_redact_whistleblower_identity(session, tid, user_id, itip_id, redaction, 
                                                     redaction_data['permanent_redaction'])
 
     db_redact_data(session, tid, user_id, redaction, new_temporary_redaction, new_permanent_redaction)
-   
+
     whistleblower_identity = tip_data['data']['whistleblower_identity']
     db_redact_whistleblower_identities(whistleblower_identity, redaction)
     _content = whistleblower_identity
@@ -639,14 +639,9 @@ def db_get_rtip(session, tid, user_id, itip_id, language):
         rtip.access_date = rtip.last_access
 
     if itip.status == 'new':
-        itip.update_date = rtip.last_access
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
-
-    if itip.status == 'new':
-        itip.update_date = rtip.last_access
-        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
@@ -934,7 +929,7 @@ def create_identityaccessrequest(session, tid, user_id, user_cc, itip_id, reques
     session.flush()
 
     custodians = 0
-    for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
+    for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.enabled == True):
         iarc = models.IdentityAccessRequestCustodian()
         iarc.identityaccessrequest_id = iar.id
         iarc.custodian_id = custodian.id

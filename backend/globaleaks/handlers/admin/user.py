@@ -165,7 +165,7 @@ def db_get_users(session, tid, role=None, language=None):
         users = session.query(models.User).filter(models.User.tid == tid,
                                                   models.User.role == role)
 
-    language = language if language is not None else State.tenants[tid].cache.default_language
+    language = language or State.tenants[tid].cache.default_language
 
     return [user_serialize_user(session, user, language) for user in users]
 

@@ -39,6 +39,9 @@ def signup(session, request, language):
     request['activation_token'] = generateRandomKey()
     request['language'] = language
 
+    request['organization_tax_code'] = request['organization_tax_code'] or None
+    request['organization_vat_code'] = request['organization_vat_code'] or None
+
     # Delete the tenants created for the same subdomain that have still not been activated
     # Ticket reference: https://github.com/globaleaks/GlobaLeaks/issues/2640
     subquery = session.query(models.Tenant.id) \
@@ -125,7 +128,7 @@ def signup_activation(session, token, hostname, language):
     password_admin = generateRandomPassword(16)
     password_receiver = generateRandomPassword(16)
 
-    node_name = signup.organization_name if signup.organization_name else signup.subdomain
+    node_name = signup.organization_name or signup.subdomain
 
     wizard = {
         'node_language': signup.language,

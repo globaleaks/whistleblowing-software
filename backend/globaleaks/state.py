@@ -181,6 +181,21 @@ class StateClass(ObjectDict, metaclass=Singleton):
             else:
                 self.http_socks += [sock]
 
+    def print_listening_interfaces(self):
+        print("GlobaLeaks is now running and accessible at the following urls:")
+
+        tenant_cache = self.tenants[1].cache
+
+        if self.settings.devel_mode:
+            print("- [HTTPS]: https://127.0.0.1:8443")
+
+        elif tenant_cache.reachable_via_web:
+            hostname = tenant_cache.hostname or '0.0.0.0'
+            print("- [HTTPS]: https://%s" % hostname)
+
+        if tenant_cache.onionservice:
+            print("- [Tor]:  http://%s" % tenant_cache.onionservice)
+
     def reset_hourly(self):
         for tid in self.tenants:
             self.tenants[tid].reset_events()

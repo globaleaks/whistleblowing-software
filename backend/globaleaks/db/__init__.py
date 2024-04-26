@@ -62,7 +62,7 @@ def compact_db():
 
 
 @transact_sync
-def init_db(session):
+def initialize_db(session):
     """
     Transaction for initializing the application database
     :param session: An ORM session
@@ -95,6 +95,8 @@ def update_db():
             else:
                 migration.perform_data_update(db_file_path)
                 compact_db()
+
+            sync_clean_untracked_files()
 
     except Exception as exception:
         log.err('Failure: %s', exception)

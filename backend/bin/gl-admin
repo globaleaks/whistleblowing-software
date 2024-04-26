@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import re
+import signal
 import sqlite3
 import subprocess as sp
 import sys
@@ -51,17 +52,30 @@ def default_backup_path():
     return os.path.join("/tmp", name)
 
 
-def is_gl_running():
+def get_gl_pid():
     try:
         with open(Settings.pidfile_path, 'r') as fd:
-            gl_pid = int(fd.read())
-            try:
-                os.kill(gl_pid, 0)
-            except OSError:
-                return False
+            return int(fd.read())
+    except:
+        return 0
+
+
+def send_gl_signal(sig):
+    try:
+        pid = get_gl_pid()
+        if (pid):
+            os.kill(pid, sig)
             return True
-    except IOError:
+    except:
         return False
+
+
+def is_gl_running():
+    return send_gl_signal(0)
+
+
+def reset_gl_cache():
+    return send_gl_signal(signal.SIGUSR1)
 
 
 def backup(args):
@@ -269,6 +283,8 @@ def set_var(args, silent=False):
     c.execute(QUERY, (value, args.tid, args.varname))
     conn.commit()
     conn.close()
+
+    reset_gl_cache()
 
     if not silent:
         print("Success! {} set to '{}'".format(args.varname, args.value))

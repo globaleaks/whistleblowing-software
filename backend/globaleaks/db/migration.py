@@ -35,6 +35,7 @@ from globaleaks.db.migrations.update_65 import Comment_v_64, \
 from globaleaks.db.migrations.update_66 import SubmissionSubStatus_v_65
 from globaleaks.db.migrations.update_67 import \
         InternalTip_v_66, ReceiverFile_v_66, Redaction_v_66, User_v_66, WhistleblowerFile_v_66
+from globaleaks.db.migrations.update_68 import Subscriber_v_67
 
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
@@ -78,7 +79,7 @@ migration_mapping = OrderedDict([
     ('SubmissionSubStatus', [SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SubmissionSubStatus_v_65, 0, models._SubmissionSubStatus, 0]),
     ('SubmissionStatusChange', [SubmissionStatusChange_v_54, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Step', [models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Subscriber', [Subscriber_v_52, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0, 0, 0, 0]),
+    ('Subscriber', [Subscriber_v_52, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_67, 0, 0, 0, 0, models._Subscriber]),
     ('Tenant', [Tenant_v_52, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, User_v_66, 0, models._User, 0]),
     ('WhistleblowerFile', [WhistleblowerFile_v_57, 0, 0, 0, 0, 0, WhistleblowerFile_v_64, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_66, 0, models._WhistleblowerFile, 0]),

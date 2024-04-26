@@ -32,16 +32,6 @@ def uuid4():
     return str(uuid.uuid4())
 
 
-def sum_dicts(*dicts):
-    ret = {}
-
-    for d in dicts:
-        for k, v in d.items():
-            ret[k] = v
-
-    return ret
-
-
 def deferred_sleep(timeout):
     d = Deferred()
 

@@ -24,6 +24,7 @@ from globaleaks.utils.log import log
 SSL.OP_SINGLE_ECDH_USE = 0x00080000
 SSL.OP_NO_RENEGOTIATION = 0x40000000
 SSL.OP_PRIORITIZE_CHACHA = 0x00200000
+SSL.OP_CLEANSE_PLAINTEXT = 0x00000002
 
 TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
                   b'TLS13-CHACHA20-POLY1305-SHA256:' \
@@ -204,7 +205,7 @@ def new_tls_server_context():
                     SSL.OP_NO_RENEGOTIATION)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
-    ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
+    ctx.set_session_cache_mode(SSL.SESS_CACHE_SERVER)
 
     ctx.set_cipher_list(TLS_CIPHER_LIST)
 
@@ -220,7 +221,8 @@ def new_tls_client_context():
                     SSL.OP_NO_TLSv1_1 |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_NO_RENEGOTIATION)
+                    SSL.OP_NO_RENEGOTIATION |
+                    SSL.OP_CLEANSE_PLAINTEXT)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
     ctx.set_session_cache_mode(SSL.SESS_CACHE_OFF)
@@ -262,10 +264,11 @@ class TLSServerContextFactory(ssl.ContextFactory):
         key = load_privatekey(FILETYPE_PEM, key)
         self.ctx.use_privatekey(key)
 
-        # Configure ECDH with CURVE NID_secp384r1
-        ecdh = _lib.EC_KEY_new_by_curve_name(715)  # pylint: disable=no-member
-        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
-        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
+        try:
+            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1)  # pylint: disable=no-member
+        except AttributeError:
+            # The function is present and should be run only in older version of OpenSSL
+            pass
 
     def getContext(self):
         return self.ctx
