@@ -725,4 +725,18 @@ export class UtilsService {
       }
     );
   }
+
+  flowDefault = new Flow({
+    testChunks: false,
+    permanentErrors:[500, 501],
+    speedSmoothingFactor:0.01,
+    allowDuplicateUploads:false,
+    singleFile:false,
+    generateUniqueIdentifier:() => {
+      return crypto.randomUUID();
+    },
+    headers:() => {
+      return this.authenticationService.getHeader();
+    }
+  });
 }

@@ -5,6 +5,7 @@ import {SubmissionService} from "@app/services/helper/submission.service";
 import {Observable} from "rxjs";
 import {Field} from "@app/models/resolvers/field-template-model";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { UtilsService } from "@app/shared/services/utils.service";
 
 @Component({
   selector: "src-voice-recorder",
@@ -37,7 +38,7 @@ export class VoiceRecorderComponent implements OnInit {
   iframeUrl: SafeResourceUrl;
   @ViewChild("viewer") viewerFrame: ElementRef;
 
-  constructor(private cd: ChangeDetectorRef, private sanitizer: DomSanitizer, protected authenticationService: AuthenticationService, private submissionService: SubmissionService) {
+  constructor(private cd: ChangeDetectorRef,private utilsService: UtilsService,private sanitizer: DomSanitizer, protected authenticationService: AuthenticationService, private submissionService: SubmissionService) {
   }
 
   ngOnInit(): void {
@@ -74,24 +75,11 @@ export class VoiceRecorderComponent implements OnInit {
     this.activeButton = 'record';
     this.seconds = 0;
     this.startTime = Date.now();
-
-    this.flow = new Flow({
-      target: this.fileUploadUrl,
-      speedSmoothingFactor: 0.01,
-      singleFile: this.field !== undefined && !this.field.multi_entry,
-      allowDuplicateUploads: false,
-      testChunks: false,
-      permanentErrors: [500, 501],
-      generateUniqueIdentifier: () => {
-        return crypto.randomUUID();
-      },
-      headers: {"X-Session": this.authenticationService.session.id},
-      query: {
-        type: "audio.webm",
-        reference_id: fileId,
-      },
-    });
-
+    this.flow = this.utilsService.flowDefault;
+    this.flow.opts.target =  this.fileUploadUrl,
+    this.flow.opts.singleFile =  this.field !== undefined && !this.field.multi_entry;
+    this.flow.opts.query = {type: "audio.webm", reference_id: fileId},
+    this.flow.opts.headers = {"X-Session": this.authenticationService.session.id};
     this.secondsTracker = setInterval(() => {
       this.seconds += 1;
       if (this.seconds >= parseInt(this.field.attrs.max_len.value)) {

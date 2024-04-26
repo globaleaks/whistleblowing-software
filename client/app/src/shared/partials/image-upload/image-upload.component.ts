@@ -4,6 +4,7 @@ import {FlowDirective} from "@flowjs/ngx-flow";
 import {Subscription} from "rxjs";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {FlowOptions} from "@flowjs/flow.js";
+import { UtilsService } from "@app/shared/services/utils.service";
 
 @Component({
   selector: "src-image-upload",
@@ -24,12 +25,15 @@ export class ImageUploadComponent implements AfterViewInit, OnDestroy, OnInit {
   flowConfig: FlowOptions;
   @ViewChild('uploader') uploaderInput: ElementRef<HTMLInputElement>;
 
-  constructor(private http: HttpClient, protected authenticationService: AuthenticationService) {
+  constructor(private http: HttpClient, protected authenticationService: AuthenticationService,private utilsService: UtilsService) {
   }
 
   ngOnInit() {
     this.filemodel = this.imageUploadModel[this.imageUploadModelAttr];
-    this.flowConfig = {target: 'api/admin/files/'+this.imageUploadId, speedSmoothingFactor:0.01,singleFile:true ,allowDuplicateUploads:false, testChunks:false, generateUniqueIdentifier: () => {return crypto.randomUUID()}, permanentErrors : [ 500, 501 ], headers : {'X-Session':this.authenticationService.session?.id}}
+    this.flowConfig = this.utilsService.flowDefault.opts;
+    this.flowConfig.target = "api/admin/files/"+this.imageUploadId;
+    this.flowConfig.singleFile = true;
+    this.flowConfig.headers = {"X-Session": this.authenticationService.session.id};
   }
 
   ngAfterViewInit() {

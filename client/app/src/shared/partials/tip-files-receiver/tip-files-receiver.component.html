@@ -24,7 +24,8 @@
                     <tr id="file-{{index}}" *ngIf="(file.name !== 'audio.webm') && (!maskService.isMasked(file.ifile_id,tipService.tip) || redactMode)" [ngClass]="{ 'view-supported': utilsService.supportedViewTypes.includes(file.type) }">
                         <td>{{ file.name }}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary tip-action-views-file" *ngIf="utilsService.supportedViewTypes.includes(file.type)" data-toggle="tooltip" [title]="'View' | translate" (click)="utilsService.viewRFile(file)">
+                            <button class="btn btn-sm btn-primary tip-action-views-file"  [ngClass]="{'btn-secondary': !utilsService.supportedViewTypes.includes(file.type)}"
+                            [disabled]="!utilsService.supportedViewTypes.includes(file.type)" data-toggle="tooltip" [title]="'View' | translate" (click)="utilsService.viewRFile(file)">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                         </td>

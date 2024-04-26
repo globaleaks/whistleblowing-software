@@ -15,6 +15,7 @@ import {Subscription} from "rxjs";
 import {FlowOptions} from "@flowjs/flow.js";
 import {Field} from "@app/models/resolvers/field-template-model";
 import { AuthenticationService } from "@app/services/helper/authentication.service";
+import { UtilsService } from "@app/shared/services/utils.service";
 
 @Component({
   selector: "src-rfile-upload-button",
@@ -38,26 +39,17 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   confirmButton = false;
   flowConfig: FlowOptions;
 
-  constructor(private cdr: ChangeDetectorRef, protected appDataService: AppDataService,protected authenticationService:AuthenticationService) {
+  constructor(private cdr: ChangeDetectorRef, private utilsService: UtilsService, protected appDataService: AppDataService,protected authenticationService:AuthenticationService) {
   }
 
   ngOnInit(): void {
     this.file_id = this.file_id ? this.file_id:"status_page";
-    this.flowConfig = {
-      target: this.fileUploadUrl,
-      speedSmoothingFactor: 0.01,
-      singleFile: (this.field !== undefined && !this.field.multi_entry),
-      allowDuplicateUploads: false,
-      testChunks: false,
-      permanentErrors: [500, 501],
-      generateUniqueIdentifier: () => {
-        return crypto.randomUUID();
-      },
-      headers: {"X-Session": this.authenticationService.session?.id},
-      query: {
-        reference_id: this.field?.id,
-      },
-    };
+    this.flowConfig = this.utilsService.flowDefault.opts;
+
+    this.flowConfig.target = this.fileUploadUrl;
+    this.flowConfig.singleFile = (this.field !== undefined && !this.field.multi_entry);
+    this.flowConfig.query = {reference_id: this.field ? this.field.id:""};
+    this.flowConfig.headers = {"X-Session": this.authenticationService.session.id};
     this.fileInput = this.field ? this.field.id : "status_page";
   }
 

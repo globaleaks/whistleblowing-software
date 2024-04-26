@@ -28,24 +28,12 @@ export class TipUploadWbFileComponent {
   onFileSelected(files: FileList | null) {
     if (files && files.length > 0) {
       const file = files[0];
+      const flowJsInstance = this.utilsService.flowDefault;
 
-      const flowJsInstance = new Flow({
-        target: "api/recipient/rtips/" + this.tip.id + "/rfiles",
-        speedSmoothingFactor: 0.01,
-        singleFile: true,
-        query: {
-          description: this.file_upload_description,
-          visibility: this.key,
-          fileSizeLimit: this.appDataService.public.node.maximum_filesize * 1024 * 1024
-        },
-        allowDuplicateUploads: false,
-        testChunks: false,
-        generateUniqueIdentifier: () => {
-          return crypto.randomUUID();
-        },
-        permanentErrors: [500, 501],
-        headers: {"X-Session": this.authenticationService.session.id}
-      });
+      flowJsInstance.opts.target = "api/recipient/rtips/" + this.tip.id + "/rfiles";
+      flowJsInstance.opts.singleFile = true;
+      flowJsInstance.opts.query = {description: this.file_upload_description, visibility: this.key, fileSizeLimit: this.appDataService.public.node.maximum_filesize * 1024 * 1024},
+      flowJsInstance.opts.headers = {"X-Session": this.authenticationService.session.id};
       flowJsInstance.on("fileSuccess", (_) => {
         this.dataToParent.emit()
         this.errorFile = null;
