@@ -32,13 +32,13 @@ The package is built by means of the official official build script by issuing:
 
 .. code:: sh
 
-  cd GlobaLeaks && ./script/build -d all
+  cd GlobaLeaks && ./scripts/build -d all
 
 This command builds a package for each supported distribution and version.
 
 Package Publishing
 ==================
-The package is published on deb.globalekas.org by issuing:
+The package is published on https://deb.globaleaks.org by issuing:
 
 .. code:: sh
 
