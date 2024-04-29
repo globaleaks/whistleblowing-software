@@ -2,7 +2,7 @@
 
 set -e
 
-TARGETS="bionic bookworm bullseye buster focal jammy"
+TARGETS="bionic bookworm bullseye buster focal jammy noble"
 DISTRIBUTION="bookworm"
 TAG="main"
 LOCAL_ENV=0
@@ -15,7 +15,7 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: bionic, bookworm, bullseye, buster, focal, jammy)"
+  echo -e " -d distribution (available: bionic, bookworm, bullseye, buster, focal, jammy, noble)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
