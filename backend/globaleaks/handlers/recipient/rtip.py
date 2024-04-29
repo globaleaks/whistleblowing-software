@@ -598,7 +598,9 @@ def register_rfile_on_db(session, tid, user_id, itip_id, uploaded_file):
                                 models.InternalTip.status != 'closed',
                                 models.InternalTip.tid == tid).one()
 
-    itip.update_date = rtip.last_access = datetime_now()
+    rtip.last_access = datetime_now()
+    if visibility == 0:
+        itip.update_date = rtip.last_access
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'description', 'type', 'size']:
@@ -961,7 +963,9 @@ def create_comment(session, tid, user_id, itip_id, content, visibility=0):
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
-    itip.update_date = rtip.last_access = datetime_now()
+    rtip.last_access = datetime_now()
+    if visibility == 0:
+        itip.update_date = rtip.last_access
 
     _content = content
     if itip.crypto_tip_pub_key:
