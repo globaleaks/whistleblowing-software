@@ -1354,7 +1354,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "La richiesta di upload supera la dimensione massima in MB"
 
 msgid "A user with this username already exists"
-msgstr ""
+msgstr "Esiste già un utente con questo username"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Stai operando per conto di un segnalante."

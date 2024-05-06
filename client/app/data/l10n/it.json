@@ -430,7 +430,7 @@
   "The specified old password is not valid": "La password specificata in precedenza non è valida",
   "Resource can only be accessed via the Tor network": "La risorsa può essere acceduta solo all'interno della rete Tor",
   "The upload request exceeds the size limit": "La richiesta di upload supera la dimensione massima in MB",
-  "A user with this username already exists": "A user with this username already exists",
+  "A user with this username already exists": "Esiste già un utente con questo username",
   "You are operating on behalf of a whistleblower.": "Stai operando per conto di un segnalante.",
   "Current password": "Password attuale",
   "New password": "Nuova password",

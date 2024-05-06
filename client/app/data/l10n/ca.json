@@ -430,7 +430,7 @@
   "The specified old password is not valid": "La contrasenya anterior que has especificat no és vàlida",
   "Resource can only be accessed via the Tor network": "Només es pot accedir a aquest recurs a través de la xarxa Tor",
   "The upload request exceeds the size limit": "La petició de pujada preval sobre els límits de volum de dades",
-  "A user with this username already exists": "A user with this username already exists",
+  "A user with this username already exists": "Ja hi ha un usuari amb eixe nom",
   "You are operating on behalf of a whistleblower.": "Vosté està operant en nom d'un denunciant",
   "Current password": "Contrasenya actual",
   "New password": "Contrasenya nova",
