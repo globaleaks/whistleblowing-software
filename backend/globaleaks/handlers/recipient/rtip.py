@@ -645,6 +645,9 @@ def db_get_rtip(session, tid, user_id, itip_id, language):
     if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
 
+    if itip.reminder_date < rtip.last_access:
+        itip.reminder_date = datetime_null()
+
     if itip.status == 'new':
         itip.update_date = rtip.last_access
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
