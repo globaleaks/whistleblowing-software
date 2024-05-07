@@ -1,7 +1,8 @@
 # -*- coding: utf-8
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.crypto import GCE
-from globaleaks.utils.utility import uuid4
+from globaleaks.utils.utility import datetime_never, uuid4
 
 
 class Item:
@@ -105,6 +106,7 @@ ConfigDescriptor = {
     'threshold_free_disk_percentage_high': Int(default=3),
     'threshold_free_disk_percentage_low': Int(default=10),
     'timezone': Int(default=0),
+    'timestamp_daily_notifications': Int(default=0),
     'tip_expiration_threshold': Int(default=72),  # Hours
     'tor_onion_key': Unicode(),
     'two_factor': Bool(default=False),
@@ -114,6 +116,7 @@ ConfigDescriptor = {
     'wizard_done': Bool(default=False),
     'uuid': Unicode(default=uuid4)
 }
+
 
 ConfigFilters = {
     'node': [
@@ -129,6 +132,7 @@ ConfigFilters = {
         'description',
         'disable_privacy_badge',
         'disable_submissions',
+        'timestamp_daily_notifications_timestampdd',
         'enable_admin_exception_notification',
         'enable_custom_privacy_badge',
         'enable_developers_exception_notification',
@@ -173,6 +177,7 @@ ConfigFilters = {
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_low',
+        'timestamp_daily_notifications',
         'timezone',
         'two_factor',
         'unread_reminder_time',
@@ -392,6 +397,7 @@ ConfigL10NFilters = {
         'user_credentials'
     ]
 }
+
 
 ConfigL10NFilters['admin_node'] = ConfigL10NFilters['node']
 ConfigL10NFilters['public_node'] = ConfigL10NFilters['node']

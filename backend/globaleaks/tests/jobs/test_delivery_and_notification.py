@@ -5,12 +5,15 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.jobs.notification import Notification
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 @transact
 def simulate_unread_tips(session):
+    ConfigFactory(session, 1).set_val('timestamp_daily_notifications', 0)
+
     # Simulate that 8 days has passed recipients have not accessed reports
     for user in session.query(models.User):
         user.reminder_date = datetime_null()
@@ -24,7 +27,7 @@ def simulate_unread_tips(session):
 
 @transact
 def simulate_reminders(session):
-    Notification.next_daily_run = datetime_now()
+    ConfigFactory(session, 1).set_val('timestamp_daily_notifications', 0)
 
     for itip in session.query(models.InternalTip):
         itip.reminder_date = datetime_now() - timedelta(1)

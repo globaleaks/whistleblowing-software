@@ -4,6 +4,8 @@ ORM Models definitions.
 """
 import copy
 
+from datetime import datetime
+
 from globaleaks.models import config_desc
 from globaleaks.models.enums import *
 from globaleaks.models.properties import *
@@ -260,6 +262,9 @@ class _Config(Model):
 
         if isinstance(val, bytes):
             val = val.decode()
+
+        if isinstance(val, datetime):
+            val = int(datetime.timestamp(val))
 
         if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))

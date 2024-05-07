@@ -2,7 +2,7 @@
 # Implement the notification of new submissions
 import itertools
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from twisted.internet import defer
 
@@ -12,6 +12,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.models import serializers
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import db_del, transact, tw
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
@@ -69,6 +70,9 @@ class MailGenerator(object):
     @transact
     def generate(self, session):
         now = datetime_now()
+
+        config = ConfigFactory(session, 1)
+        timestamp_daily_notifications = config.get_val('timestamp_daily_notifications')
 
         rtips_ids = {}
         silent_tids = []
@@ -128,6 +132,11 @@ class MailGenerator(object):
             except:
                 pass
 
+        if now < datetime.fromtimestamp(timestamp_daily_notifications) + timedelta(1):
+            return
+
+        config.set_val('timestamp_daily_notifications', now)
+
         for user in session.query(models.User).filter(models.User.reminder_date < now - timedelta(reminder_time),
                                                       models.User.id == models.ReceiverTip.receiver_id,
                                                       models.ReceiverTip.last_access < models.InternalTip.update_date,
@@ -146,11 +155,6 @@ class MailGenerator(object):
                 self.process_mail_creation(session, tid, data)
             except:
                 pass
-
-        if now < Notification.next_daily_run:
-            return
-
-        Notification.next_daily_run = now + timedelta(1)
 
         for user in session.query(models.User).filter(models.User.id == models.ReceiverTip.receiver_id,
                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
@@ -192,7 +196,6 @@ def get_mails_from_the_pool(session):
 class Notification(LoopingJob):
     interval = 10
     monitor_interval = 3 * 60
-    next_daily_run = datetime_now()
 
     def generate_emails(self):
         return MailGenerator(self.state).generate()
