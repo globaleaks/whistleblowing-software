@@ -3,7 +3,7 @@
 import itertools
 
 from datetime import datetime, timedelta
-
+from sqlalchemy import not_
 from twisted.internet import defer
 
 from globaleaks import models
@@ -137,38 +137,31 @@ class MailGenerator(object):
 
         config.set_val('timestamp_daily_notifications', now)
 
-        for user in session.query(models.User).filter(models.User.reminder_date < now - timedelta(reminder_time),
-                                                      models.User.id == models.ReceiverTip.receiver_id,
+        for user in session.query(models.User).filter(models.User.id == models.ReceiverTip.receiver_id,
+                                                      not_(models.User.id.in_(silent_tids)),
+                                                      models.User.reminder_date < now - timedelta(reminder_time),
                                                       models.ReceiverTip.last_access < models.InternalTip.update_date,
                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                       models.InternalTip.update_date < now - timedelta(reminder_time)).distinct():
-            tid = user.tid
-
-            if tid in silent_tids:
-                continue
-
             user.reminder_date = now
             data = {'type': 'unread_tips'}
 
             try:
                 data['user'] = user_serialize_user(session, user, user.language)
-                self.process_mail_creation(session, tid, data)
+                self.process_mail_creation(session, user.tid, data)
             except:
                 pass
 
         for user in session.query(models.User).filter(models.User.id == models.ReceiverTip.receiver_id,
+                                                      not_(models.User.id.in_(silent_tids)),
                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                       models.InternalTip.reminder_date < now).distinct():
-            tid = user.tid
-
-            if tid in silent_tids:
-                continue
 
             data = {'type': 'tip_reminder'}
 
             try:
                 data['user'] = user_serialize_user(session, user, user.language)
-                self.process_mail_creation(session, tid, data)
+                self.process_mail_creation(session, user.tid, data)
             except:
                 pass
 
