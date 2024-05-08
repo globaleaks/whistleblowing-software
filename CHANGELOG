@@ -1,3 +1,10 @@
+Changes in version 4.15.4
+    Revert change introduced in 4.15.3 to prevent updating report date
+    at the time of first report opening following community preference
+    Add packaging for Ubuntu 24.04 (Noble Numbat)
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.15.3
     Do not consider opening a report for the first time as a report update
 
