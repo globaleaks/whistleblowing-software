@@ -169,7 +169,7 @@ GL.controller("TipCtrl",
                   }
                 } else {
                   x.status = x.id;
-                  x.substatus = '';
+                  x.substatus = "";
                   x.order = output.length;
                   output.push(x);
                 }
@@ -188,7 +188,7 @@ GL.controller("TipCtrl",
           cancelFun: null
         }
       });
-    }
+    };
 
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{
@@ -413,26 +413,22 @@ GL.controller("TipCtrl",
         $scope.downloadWBFile = RTipDownloadWBFile;
         $scope.viewWBFile = RTipViewWBFile;
 
-        var reloadUI = function() {
-          $scope.reload();
-        };
-
         $scope.redactFileOperation = function(operation, content_type, file) {
           var redactionData = {
             reference_id: file.ifile_id,
             internaltip_id: $scope.tip.id,
-            entry: '0',
+            entry: "0",
             operation: operation,
             content_type: content_type,
             temporary_redaction: [],
             permanent_redaction: []
+          };
+
+          if (operation === "full-mask") {
+            redactionData.temporary_redaction = [{"start": "-inf", "end": "inf"}];
           }
 
-          if (operation === 'full-mask') {
-            redactionData.temporary_redaction = [{'start': '-inf', 'end': 'inf'}];
-          }
-
-          let redaction = $scope.getRedaction(file.ifile_id, '0');
+          let redaction = $scope.getRedaction(file.ifile_id, "0");
 
           if (redaction) {
             redactionData.id = redaction.id;
@@ -499,11 +495,11 @@ GL.controller("TipCtrl",
       }
 
       return masked_value;
-    }
+    };
 
     $scope.getRedaction = function(id, entry) {
       var redactionObjects = $scope.tip.redactions.filter(function(redaction) {
-        if(!entry){
+        if (!entry) {
           return redaction.reference_id === id && redaction.entry === "0";
         } else {
           return redaction.reference_id === id && redaction.entry === entry;
@@ -511,11 +507,11 @@ GL.controller("TipCtrl",
       });
 
       return redactionObjects.length > 0 ? redactionObjects[0] : null;
-    }
+    };
 
     $scope.isMasked = function(id) {
-      return $scope.getRedaction(id, '0') !== null;
-    }
+      return $scope.getRedaction(id, "0") !== null;
+    };
 
     $scope.updateLabel = function(label) {
       $scope.tip.operation("set", {"key": "label", "value": label}).then(function() {
@@ -607,7 +603,7 @@ GL.controller("TipCtrl",
 
     $scope.toggleRedactMode = function() {
       $scope.redactMode = !$scope.redactMode;
-    }
+    };
 
     $scope.redactInformation = function(type, id, entry, content) {
       $uibModal.open({
@@ -756,7 +752,7 @@ controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
 controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
   $scope.uploads = {};
 }]).
-controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask", "$sce", "$uibModalInstance", "args", "$routeParams", "$http", function($scope, $document, $filter, mask, $sce, $uibModalInstance, args, $routeParams, $http) {
+controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask", "$sce", "$uibModalInstance", "args", function($scope, $document, $filter, mask, $sce, $uibModalInstance, args) {
   $scope.redaction = null;
   $scope.args = args;
   $scope.forced_visible = false;
@@ -777,7 +773,7 @@ controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask"
 
   $scope.toggleVisibility = function() {
     $scope.forced_visible = !$scope.forced_visible;
-  }
+  };
 
   $scope.initializeMasking = function() {
     $scope.redaction = $scope.args.redaction;
@@ -819,7 +815,7 @@ controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask"
     let response = mask.getSelectedRanges(false, $scope.ranges_selected);
     $scope.ranges_selected = response.new_ranges;
     $scope.content = mask.onUnHighlight($scope.content, $scope.unmaskedContent, [response.selected_ranges]);
-  }
+  };
 
   $scope.saveMasking = function() {
     let redactionData = {
@@ -848,7 +844,7 @@ controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask"
     }
 
     $scope.cancel();
-  }
+  };
 
   $scope.ignoreEdit = function(event) {
     if (event.keyCode >= 37 && event.keyCode <= 40) {
@@ -861,5 +857,5 @@ controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask"
     $scope.initializeMasking();
   };
 
-  $scope.initializeMasking()
+  $scope.initializeMasking();
 }]);

@@ -237,32 +237,32 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         file_count: tip.file_count,
         subscription: tip.subscription === 0 ? "Non sottoscritta" : tip.subscription === 1 ? "Sottoscritta" : "Sottoscritta successivamente",
         receiver_count: tip.receiver_count
-      }
-    })
-  }
+      };
+    });
+  };
 
   $scope.getDataCsvHeaders = function (){
-    return ['Id',
-            'Sequential',
-            'Important',
-            'Reminder',
-            'Channel',
-            'Label',
-            'Report Status',
-            'Date of Report',
-            'Last Update',
-            'Expiration date',
-            'Last Access',
-            'Number of Comments',
-            'Number of Files',
-            'Subscription',
-            'Number of Recipients'].map($filter('translate'));
-  }
+    return ["Id",
+            "Sequential",
+            "Important",
+            "Reminder",
+            "Channel",
+            "Label",
+            "Report Status",
+            "Date of Report",
+            "Last Update",
+            "Expiration date",
+            "Last Access",
+            "Number of Comments",
+            "Number of Files",
+            "Subscription",
+            "Number of Recipients"].map($filter("translate"));
+  };
 
   $scope.actAsWhistleblower = function () {
     $http.get("/api/auth/operatorauthswitch").then(function (result) {
       if (result.status === 200) {
-        var urlRedirect = window.location.origin + result.data.redirect
+        var urlRedirect = window.location.origin + result.data.redirect;
         window.open(urlRedirect, "_blank");
       }
     });

@@ -135,7 +135,7 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.updateRetentionOption = function(substatus) {
       if (substatus.tip_timetolive_option <= -1) {
         substatus.tip_timetolive = -1;
-      } else if (substatus.tip_timetolive_option == 0) {
+      } else if (substatus.tip_timetolive_option === 0) {
         if (substatus.tip_timetolive <= 0) {
           substatus.tip_timetolive = 30;
         }

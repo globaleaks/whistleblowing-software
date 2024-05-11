@@ -18,13 +18,13 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
 
   var c_1 = $scope.resources.stats.reports_tor;
   var c_2 = reports_count - $scope.resources.stats.reports_tor;
-  var totAcc = c_1 + c_2;
+  totAcc = c_1 + c_2;
   c_1 = ((c_1 / totAcc)*100).toFixed(1);
   c_2 = 100 - c_1;
 
   var d_1 = reports_count - $scope.resources.stats.reports_mobile;
   var d_2 = $scope.resources.stats.reports_mobile;
-  var totAcc = d_1 + d_2;
+  totAcc = d_1 + d_2;
   d_1 = ((d_1 / totAcc)*100).toFixed(1);
   d_2 = 100 - d_1;
 
@@ -37,18 +37,18 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
   
 
   // Adding percentages to labels after translation
-  returning_wb_labels[0] = `${returning_wb_labels[0]} ${a_1}% - (${reports_count - $scope.resources.stats.reports_with_no_access})`
-  returning_wb_labels[1] = `${returning_wb_labels[1]} ${a_2}% - (${$scope.resources.stats.reports_with_no_access})`
+  returning_wb_labels[0] = `${returning_wb_labels[0]} ${a_1}% - (${reports_count - $scope.resources.stats.reports_with_no_access})`;
+  returning_wb_labels[1] = `${returning_wb_labels[1]} ${a_2}% - (${$scope.resources.stats.reports_with_no_access})`;
 
-  anonymity_wb_labels[0] = `${anonymity_wb_labels[0]} ${b_1}% - (${$scope.resources.stats.reports_anonymous})`
-  anonymity_wb_labels[1] = `${anonymity_wb_labels[1]} ${b_2}% - (${$scope.resources.stats.reports_subscribed})`
-  anonymity_wb_labels[2] = `${anonymity_wb_labels[2]} ${b_3}% - (${$scope.resources.stats.reports_initially_anonymous})`
+  anonymity_wb_labels[0] = `${anonymity_wb_labels[0]} ${b_1}% - (${$scope.resources.stats.reports_anonymous})`;
+  anonymity_wb_labels[1] = `${anonymity_wb_labels[1]} ${b_2}% - (${$scope.resources.stats.reports_subscribed})`;
+  anonymity_wb_labels[2] = `${anonymity_wb_labels[2]} ${b_3}% - (${$scope.resources.stats.reports_initially_anonymous})`;
 
-  tor_wb_labels[0] = `${tor_wb_labels[0]} ${c_1}% - (${$scope.resources.stats.reports_tor})`
-  tor_wb_labels[1] = `${tor_wb_labels[1]} ${c_2}% - (${reports_count - $scope.resources.stats.reports_tor})`
+  tor_wb_labels[0] = `${tor_wb_labels[0]} ${c_1}% - (${$scope.resources.stats.reports_tor})`;
+  tor_wb_labels[1] = `${tor_wb_labels[1]} ${c_2}% - (${reports_count - $scope.resources.stats.reports_tor})`;
 
-  mobile_wb_labels[0] = `${mobile_wb_labels[0]} ${d_1}% - (${reports_count - $scope.resources.stats.reports_mobile})`
-  mobile_wb_labels[1] = `${mobile_wb_labels[1]} ${d_2}% - (${$scope.resources.stats.reports_mobile})`
+  mobile_wb_labels[0] = `${mobile_wb_labels[0]} ${d_1}% - (${reports_count - $scope.resources.stats.reports_mobile})`;
+  mobile_wb_labels[1] = `${mobile_wb_labels[1]} ${d_2}% - (${$scope.resources.stats.reports_mobile})`;
 
   // Chart declaration
   $scope.charts = [];
@@ -63,9 +63,9 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
       legend: {
         onClick: (e) => e.stopPropagation(),
         display: true,
-        position: 'left',
+        position: "left",
         labels: {
-          fontColor: '#333',
+          fontColor: "#333",
           fontSize: 12,
         }
       },
@@ -88,9 +88,9 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
       legend: {
         onClick: (e) => e.stopPropagation(),
         display: true,
-        position: 'left',
+        position: "left",
         labels: {
-          fontColor: '#333',
+          fontColor: "#333",
           fontSize: 12,
         }
       },
@@ -114,9 +114,9 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
       legend: {
         onClick: (e) => e.stopPropagation(),
         display: true,
-        position: 'left',
+        position: "left",
         labels: {
-          fontColor: '#333',
+          fontColor: "#333",
           fontSize: 12,
         }
       },
@@ -140,9 +140,9 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter)
       legend: {
         onClick: (e) => e.stopPropagation(),
         display: true,
-        position: 'left',
+        position: "left",
         labels: {
-          fontColor: '#333',
+          fontColor: "#333",
           fontSize: 12,
         }
       },

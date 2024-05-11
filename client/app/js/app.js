@@ -28,7 +28,7 @@ var GL = angular.module("GL", [
     $ariaProvider.config({ariaInvalid: false});
 }]).
   config(["ChartJsProvider", function(ChartJsProvider) {
-    ChartJsProvider.setOptions("global",{ colors : ['#EEF5FC', '#C4DEF8', '#9FC9F1', '#79B0E6', '#5797D5', '#377ABC', '#2866A2', '#205282', '#1F4365', '#103253']});
+    ChartJsProvider.setOptions("global",{ colors : ["#EEF5FC", "#C4DEF8", "#9FC9F1", "#79B0E6", "#5797D5", "#377ABC", "#2866A2", "#205282", "#1F4365", "#103253"]});
 }]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
@@ -358,7 +358,7 @@ var GL = angular.module("GL", [
       }).
       when("/analyst/preferences", {
         templateUrl: "views/partials/preferences.html",
-	    controller: "PreferencesCtrl",
+        controller: "PreferencesCtrl",
         header_title: "Preferences",
         sidebar: "views/analyst/sidebar.html",
         resolve: {
