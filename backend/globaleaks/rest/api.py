@@ -322,7 +322,7 @@ class APIResourceWrapper(Resource):
         if request.tid == 1:
             try:
                 match1 = re.match(b'^/t/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})(/.*)', request.path)
-                match2 = re.match(b'^/t/([0-9a-z\-]+)(/.*)$', request.path)
+                match2 = re.match(b'^/t/([0-9a-z-]+)(/.*)$', request.path)
 
                 if match1 is not None:
                     groups = match1.groups()

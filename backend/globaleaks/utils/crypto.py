@@ -68,7 +68,7 @@ def generateRandomPassword(N: int) -> str:
     if N < 10:
         N = 10
 
-    accessible_special_symbols = "!?@#+-/\*="
+    accessible_special_symbols = "!?@#+-/*="
     accessible_symbols_set = string.ascii_letters + string.digits + accessible_special_symbols
 
     password = ''.join(secrets.SystemRandom().choice(accessible_symbols_set) for _ in range(N-4))
