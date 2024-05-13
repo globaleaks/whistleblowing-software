@@ -1,0 +1,2065 @@
+# 
+# Translators:
+# Andrea Bras, 2018
+# Andrea Bras, 2018
+# Andre Julian <andrejulian30@gmail.com>, 2016-2017,2021
+# Arif Budiman <arifbudiman@gmail.com>, 2015
+# 60a7195fef6c024fc4543508ee7b9125_16c098e <65d84944c477a84ea662625b6f5f6919_712353>, 2018
+# Cadas Propopuli Azzam Baribin <cadas.propopuli@gmail.com>, 2018
+# Caroline Dianty <Diantycaroline@gmail.com>, 2018
+# Clara Priscilia <clara.priscilia78@gmail.com>, 2018
+# Edo Imantaka, 2021
+# Edo Imantaka, 2021
+# Evanna Audrey <evanna.n.audrey@gmail.com>, 2021
+# Fransisca Susanti <susanti@jaring.id>, 2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022
+# Helen Zhang <helen13zhang@gmail.com>, 2018
+# Ibnu Daru Aji, 2015
+# Ibnu Daru Aji, 2015
+# ical, 2018-2021
+# imron fauzi <imronfauzi@gmail.com>, 2015
+# Marcel Oomens <mail@marceloomens.com>, 2018
+# Margaret Megan <megan_marg@yahoo.com>, 2017
+# M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
+# M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
+# M Yusuf Fin <myusuffin@gmail.com>, 2018
+# M Yusuf Fin <myusuffin@gmail.com>, 2018,2020
+# nirel dede <nireldede2710@gmail.com>, 2018
+# Oenang Dewi <oenangdewi@gmail.com>, 2018
+# Ratna Ariyanti <ratna.ariyanti@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2013-05-29 17:59+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022\n"
+"Language-Team: Indonesian (http://app.transifex.com/otf/globaleaks/language/id/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
+
+msgid "0 = auto"
+msgstr "0 = otomatis"
+
+msgid "Accept multiple answers"
+msgstr "Menerima banyak jawaban"
+
+msgid "Accept multiple file uploads"
+msgstr "Menerima unggahan banyak berkas"
+
+msgid "Acceptable"
+msgstr "Sedang"
+
+msgid "Access control"
+msgstr "Kendali akses"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Access requested"
+msgstr "Akses yang diminta"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Akses untuk identitas informan publik telah diminta oleh pihak penjaga"
+
+msgid "Account recovery key"
+msgstr "Kunci pemulihan akun"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "Activities"
+msgstr "Aktivitas"
+
+msgid "Add"
+msgstr "Tambahkan"
+
+msgid "Add custom text"
+msgstr "Tambahkan teks kustom"
+
+msgid "Add multimedia content"
+msgstr "Tambahkan konten multimedia"
+
+msgid "Add new question"
+msgstr "Tambahkan pertanyaan baru"
+
+msgid "Add new questionnaire"
+msgstr "Tambahkan kuesioner baru"
+
+msgid "Add question from template"
+msgstr "Tambahkan pertanyaan dari format"
+
+msgid "Addition"
+msgstr "Tambahan"
+
+msgid "Additional questionnaire"
+msgstr "Kuesioner tambahan"
+
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
+
+msgid "Advanced"
+msgstr "Mahir"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Izinkan penerima untuk menghapus laporan"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
+
+msgid "Allow the whistleblower to add attachments"
+msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Izinkan informan publik untuk menulis komentar"
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "Izinkan pengguna untuk mendaftar"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Izinkan informan publik untuk memilih penerima laporan mereka"
+
+msgid "Allowed IP addresses"
+msgstr "Alamat IP yang diizinkan"
+
+msgid "An update is available:"
+msgstr "Pembaruan tersedia:"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Anomalies"
+msgstr "Anomali"
+
+msgid "Anomaly detection thresholds"
+msgstr "Batas deteksi anomali "
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr "Menganonimisasi koneksi keluar"
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Are you sure?"
+msgstr "Apakah Anda yakin?"
+
+msgid "Assign score points"
+msgstr "Menentukan poin skor "
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Attachment"
+msgstr "Lampiran"
+
+msgid "Attachments"
+msgstr "Lampiran"
+
+msgid "Attention"
+msgstr "Perhatian"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Audit log"
+msgstr "Catatan pemeriksaan"
+
+msgid "Authentication failed"
+msgstr "Autentikasi gagal"
+
+msgid "Authorization"
+msgstr "Otorisasi"
+
+msgid "Authorize"
+msgstr "Mengizinkan"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Izinkan akses ke identitas informan publik "
+
+msgid "Authorized"
+msgstr "Diizinkan"
+
+msgid "Auto-renewal"
+msgstr "Pembaruan otomatis"
+
+msgid "Automatic configuration"
+msgstr "Konfigurasi Otomatis"
+
+msgid "Available disk space"
+msgstr "Ruang penyimpanan yang masih tersedia"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Sebelum melanjutkan mohon baca dokumentasi dengan seksama di:"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Sebelum melanjutkan, silakan aktifkan autentikasi dua faktor."
+
+msgid "Before proceeding, please set a new password."
+msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
+
+msgid "Block the submission"
+msgstr "Blokir kiriman"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Dengan mengaktifkan fitur ini, Anda akan berkontribusi untuk pengembangan dan keamanan dari format tersebut "
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Case management"
+msgstr "Penanganan kasus"
+
+msgid "Certificate"
+msgstr "Sertifikat"
+
+msgid "Certificate Signing Request"
+msgstr "Permintaan Penandatanganan Sertifikat"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Change your password"
+msgstr "Ubah kata sandi"
+
+msgid "Changelog"
+msgstr "Catatan Perubahan "
+
+msgid "Channel"
+msgstr ""
+
+msgid "Channels"
+msgstr ""
+
+msgid "Check your inbox to activate it."
+msgstr "Periksa kotak masuk Anda untuk mengaktifkannya."
+
+msgid "Checkbox"
+msgstr "Kotak centang"
+
+msgid "Checkbox label"
+msgstr "Label kotak centang"
+
+msgid "City"
+msgstr "Kota"
+
+msgid "Close"
+msgstr "Tutup"
+
+msgid "Closed"
+msgstr "Tertutup"
+
+msgid "Collapse"
+msgstr "Tutup"
+
+msgid "Column"
+msgstr "Kolom"
+
+msgid "Comments"
+msgstr "Komentar"
+
+msgid "Computer"
+msgstr "Komputer"
+
+msgid "Configure"
+msgstr "Konfigurasikan"
+
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+msgid "Confirmation"
+msgstr "Konfirmasi"
+
+msgid "Congratulations!"
+msgstr "Selamat!"
+
+msgid "Copy to clipboard"
+msgstr "Salin ke papan klip"
+
+msgid "Country"
+msgstr "Negara"
+
+msgid "Country code"
+msgstr "Kode Negara"
+
+msgid "Creation date"
+msgstr "Tanggal pembuatan"
+
+msgid "Creation date:"
+msgstr "Tanggal dibuat:"
+
+msgid "Current password"
+msgstr "Kata sandi saat ini"
+
+msgid "Custodian"
+msgstr "Penjaga"
+
+msgid "Custom"
+msgstr "Kustom "
+
+msgid "Custom privacy panel"
+msgstr "Panel privasi kustom"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Custom text"
+msgstr "Teks kustom"
+
+msgid "Custom translation"
+msgstr "Terjemahan kustom"
+
+msgid "Date"
+msgstr "Tanggal"
+
+msgid "Date of the request"
+msgstr "Tanggal permintaan"
+
+msgid "Date range"
+msgstr "Rentang tanggal"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "Delete"
+msgstr "Hapus"
+
+msgid "Denied"
+msgstr "Ditolak"
+
+msgid "Deny"
+msgstr "Menolak"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Tolak akses ke identitas informan publik "
+
+msgid "Description"
+msgstr "Deskripsi"
+
+msgid "Deselect"
+msgstr "Batal pilih"
+
+msgid "Deselect all"
+msgstr "Batal memilih semua"
+
+msgid "Details"
+msgstr "Rincian"
+
+msgid "Details of the PGP key:"
+msgstr "Detil dari kunci PGP:"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Disable"
+msgstr "Nonaktifkan"
+
+msgid "Disable notifications to administrators"
+msgstr "Nonaktifkan notifikasi ke administrator"
+
+msgid "Disable notifications to custodians"
+msgstr "Nonaktifkan notifikasi ke pihak penjaga"
+
+msgid "Disable notifications to recipients"
+msgstr "Nonaktifkan notifikasi ke penerima"
+
+msgid "Disable submissions"
+msgstr "Menonaktifkan kiriman"
+
+msgid "Disable the privacy panel"
+msgstr "Menonaktifkan panel privasi"
+
+msgid "Disable two factor authentication"
+msgstr "Nonaktifkan autentikasi dua faktor"
+
+msgid "Disabled"
+msgstr "Nonaktifkan"
+
+msgid "Disclaimer"
+msgstr "Penafian"
+
+msgid "Display options alphabetically"
+msgstr "Tampilkan opsi sesuai abjad "
+
+msgid "Download"
+msgstr "Unduh"
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Unduh Peramban Tor"
+
+msgid "Duplicate"
+msgstr "Menggandakan"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Setiap masukan harus dipisahkan dengan koma."
+
+msgid "Earliest selectable date"
+msgstr "Tanggal paling awal yang dapat dipilih"
+
+msgid "Edit"
+msgstr "Sunting"
+
+msgid "Email"
+msgstr "Surel"
+
+msgid "Email address"
+msgstr "Alamat surel"
+
+msgid "Enable"
+msgstr "Aktifkan"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable administrators to change user passwords"
+msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktifkan panel privasi kustom"
+
+msgid "Enable email notifications"
+msgstr "Aktifkan notifikasi surel"
+
+msgid "Enable email notifications for:"
+msgstr "Aktifkan notifikasi surel untuk:"
+
+msgid "Enable encryption"
+msgstr "Aktifkan enkripsi"
+
+msgid "Enable scoring system"
+msgstr "Aktifkan sistem skor"
+
+msgid "Enable search engines indexing"
+msgstr "Aktifkan pengindeksan mesin pencari"
+
+msgid "Enable simplified login"
+msgstr "Aktifkan metode masuk yang mudah"
+
+msgid "Enable terms of service"
+msgstr "Aktifkan persyaratan layanan"
+
+msgid "Enable two factor authentication"
+msgstr "Aktifkan autentikasi dua faktor"
+
+msgid "Enabled"
+msgstr "Aktifkan"
+
+msgid "Enter a name for the copy"
+msgstr "Masukan nama untuk salinan"
+
+msgid "Enter the two factor authentication code"
+msgstr "Masukkan kode autentikasi dua faktor"
+
+msgid ""
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Masukkan kunci pemulihan akun Anda untuk menyelesaikan prosedur pengaturan ulang kata sandi"
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Masukkan nama pengguna akun anda atau alamat surel untuk meminta pengaturan ulang kata sandi "
+
+msgid "Enter your email address to request a password reset."
+msgstr "Masukkan alamat surel anda untuk meminta pengaturan ulang kata sandi."
+
+msgid "Error on input validation"
+msgstr "Gagal dalam memasukkan validasi"
+
+msgid "Error!"
+msgstr "Gagal!"
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Example:"
+msgstr "Contoh:"
+
+msgid "Expand"
+msgstr "Buka"
+
+msgid "Expiration date"
+msgstr "Tanggal kedaluwarsa"
+
+msgid "Export"
+msgstr "Ekspor"
+
+msgid "File size"
+msgstr "Ukuran berkas"
+
+msgid "File size not accepted."
+msgstr "Ukuran berkas tidak dapat diterima "
+
+msgid "Filename"
+msgstr "Nama file"
+
+msgid "Files"
+msgstr "Berkas"
+
+msgid "Files attached by recipients"
+msgstr "Berkas yang dilampirkan oleh penerima "
+
+msgid "Fill the additional questionnaire"
+msgstr "Isi kuesioner tambahan"
+
+msgid "Fingerprint"
+msgstr "Sidik jari"
+
+msgid "First"
+msgstr "Pertama"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Footer"
+msgstr "Catatan kaki"
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkala"
+
+msgid "For the user documentation, visit:"
+msgstr "Untuk dokumentasi pengguna, kunjungi:"
+
+msgid "Forbidden operation"
+msgstr "Pekerjaan terlarang"
+
+msgid "Force password change"
+msgstr "Memaksa penggantian kata sandi"
+
+msgid "Forcefully selected"
+msgstr "Secara paksa dipilih"
+
+msgid "Forgot password?"
+msgstr "Lupa kata sandi?"
+
+msgid "From"
+msgstr "Dari"
+
+msgid "From:"
+msgstr "Dari:"
+
+msgid "Generate"
+msgstr "Membuat"
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Izinkan akses administratif bagi pengguna untuk fitur berikut:"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Izinkan admin ini untuk mengubah kata sandi pengguna"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to mask information"
+msgstr ""
+
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Grant access"
+msgstr "Memberikan akses"
+
+msgid "Group of questions"
+msgstr "Sekelompok pertanyaan"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Apakah Anda telah mengirimkan laporan? Masukkan tanda terima Anda."
+
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+msgid "Hide"
+msgstr "Sembunyikan"
+
+msgid "High"
+msgstr "Tinggi"
+
+msgid "Hint"
+msgstr "Petunjuk"
+
+msgid "Home"
+msgstr "Beranda "
+
+msgid "Homepage title"
+msgstr "Judul laman utama"
+
+msgid "Hostname"
+msgstr "Nama host"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Saya telah membaca dan setuju dengan persyaratan lisensi."
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Identity"
+msgstr "Identitas"
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Jika tidak diaktifkan dalam 24 jam platform ini akan dihapus secara otomatis."
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jika Anda membutuhkan dukungan teknis, memiliki pertanyaan umum, atau ide baru untuk perangkat lunak:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak atau melaporkan sebuah gangguan, bukalah sebuah isu pada sistem tiket kami."
+
+msgid "Image"
+msgstr "Gambar"
+
+msgid "Import"
+msgstr "Impor"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Pada langkah ini, jawaban-jawaban pada pertanyaan berikut tidak lengkap atau tidak valid:"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Input validation"
+msgstr "Masukkan validasi"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Pasang aplikasi autentikator pada ponsel Anda"
+
+msgid "Intermediate Certificates"
+msgstr "Sertifikat Menengah"
+
+msgid "Internal server error"
+msgstr "Kegagalan server dari dalam"
+
+msgid "Invalid confirmation"
+msgstr "Konfirmasi tidak valid"
+
+msgid "Invalid email address"
+msgstr "Alamat surel tidak valid"
+
+msgid "Invalid phone number"
+msgstr "Nomor telepon tidak valid"
+
+msgid "Issuer:"
+msgstr "Penerbit:"
+
+msgid "Join our chat:"
+msgstr "Bergabung ke percakapan kami di:"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "Label the report"
+msgstr "Tandai laporan"
+
+msgid "Language"
+msgstr "Bahasa"
+
+msgid "Language:"
+msgstr "Bahasa:"
+
+msgid "Languages"
+msgstr "Bahasa"
+
+msgid "Last"
+msgstr "Terakhir"
+
+msgid "Last Access"
+msgstr "Akses terakhir"
+
+msgid "Last access"
+msgstr "Akses terakhir"
+
+msgid "Last update"
+msgstr "Pembaruan terakhir"
+
+msgid "Latest selectable date"
+msgstr "Tanggal paling akhir yang dapat dipilih"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Perbolehkan platform diakses tanpa menggunakan Tor"
+
+msgid "License"
+msgstr "Lisensi"
+
+msgid "Log accesses of internal users"
+msgstr "Akses catatan pengguna internal"
+
+msgid "Log in"
+msgstr "Masuk"
+
+msgid "Logging level"
+msgstr "Tingkat pencatatan"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logout"
+msgstr "Keluar"
+
+msgid "Low"
+msgstr "Bawah"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Buatlah salinan dan simpan pada tempat yang aman. Hal tersebut akan dibutuhkan ketika Anda kehilangan kata sandi untuk memulihkan akses ke akun Anda tanpa kehilangan data."
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Izinkan admin ini untuk mengatur ulang kata sandi pengguna."
+
+msgid "Mandatory"
+msgstr "Memerlukan"
+
+msgid "Manual configuration"
+msgstr "Konfigurasi manual"
+
+msgid "Mark as important"
+msgstr "Tandai sebagai penting"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Max"
+msgstr "Maks"
+
+msgid "Maximum file size is:"
+msgstr "Ukuran berkas maksimal adalah: "
+
+msgid "Maximum number of input characters"
+msgstr "Jumlah maksimal karakter yang dimasukkan"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Jumlah tertinggi penerima yang dapat dipilih:"
+
+msgid "Me only"
+msgstr ""
+
+msgid "Medium"
+msgstr "Sedang"
+
+msgid "Min"
+msgstr "Minimal"
+
+msgid "Minimum number of input characters"
+msgstr "Jumlah minimal karakter yang dimasukkan"
+
+msgid "Mobile"
+msgstr "Berpergian"
+
+msgid "Mode:"
+msgstr "Mode:"
+
+msgid "Motivation"
+msgstr "Motivasi"
+
+msgid "Move down"
+msgstr "Bergerak ke bawah"
+
+msgid "Move left"
+msgstr "Bergerak ke kiri"
+
+msgid "Move right"
+msgstr "Bergerak ke kanan"
+
+msgid "Move up"
+msgstr "Bergerak ke atas"
+
+msgid "Multi-line text input"
+msgstr "Masukan teks lebih dari satu baris"
+
+msgid "Multiple choice input"
+msgstr "Masukan pilihan ganda"
+
+msgid "Multiplier"
+msgstr "Pengganda"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "Network"
+msgstr "Jaringan"
+
+msgid "New"
+msgstr "Baru"
+
+msgid "New password"
+msgstr "Kata sandi baru"
+
+msgid "New request"
+msgstr "Permintaan baru"
+
+msgid "Next"
+msgstr "Selanjutnya"
+
+msgid "No"
+msgstr "Tidak"
+
+msgid "None"
+msgstr "Tidak ada"
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Notifications"
+msgstr "Notifikasi"
+
+msgid "Notify administrators of software problems"
+msgstr "Memberi tahu administrator tentang masalah perangkat lunak "
+
+msgid "Notify developers of software problems"
+msgstr "Memberi tahu pengembang tentang masalah perangkat lunak "
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Sekarang ketik kata sandi Anda, lalu klik 'Masuk'"
+
+msgid "Number"
+msgstr "Nomor"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Jumlah hari hingga memberitahukan laporan yang belum dibaca pada pengguna"
+
+msgid "Number of downloads"
+msgstr "Jumlah unduhan"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Jumlah jam sebelum mengirimkan peringatan kedaluwarsa laporan"
+
+msgid "Object"
+msgstr "Objek"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Satu penerima atau lebih belum masuk untuk pertama kali. Ini berarti mereka tidak akan menerima laporan."
+
+msgid "Opened"
+msgstr "Terbuka"
+
+msgid "Options"
+msgstr "Opsi"
+
+msgid "Organization"
+msgstr "Organisasi"
+
+msgid "Original text"
+msgstr "Teks asli"
+
+msgid "Original translation"
+msgstr "Terjemahan asli"
+
+msgid "Password"
+msgstr "Kata sandi"
+
+msgid "Password change interval"
+msgstr "Interval perubahan kata sandi"
+
+msgid "Password reset"
+msgstr "Atur ulang kata sandi"
+
+msgid "Password reset requested."
+msgstr "Pengaturan ulang kata sandi telah diminta "
+
+msgid "Phone number"
+msgstr "Nomor telepon"
+
+msgid "Placeholder"
+msgstr "Placeholder"
+
+msgid "Platform wizard"
+msgstr "Wisaya platform"
+
+msgid "Please check your inbox for further instructions."
+msgstr "Mohon cek kotak masuk anda untuk langkah lebih lanjut."
+
+msgid "Please choose a configuration profile:"
+msgstr "Mohon pilih konfigurasi profil:"
+
+msgid "Please choose a different username."
+msgstr "Mohon pilih nama pengguna lain."
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Harap dicatat bahwa semua data yang terkait akan dihapus secara permanen"
+
+msgid "Please select your account:"
+msgstr "Tolong pilih akun Anda"
+
+msgid "Postpone the expiration date"
+msgstr "Menunda tanggal kedaluwarsa"
+
+msgid "Preferences"
+msgstr "Preferensi"
+
+msgid "Presentation"
+msgstr "Presentasi"
+
+msgid "Preview"
+msgstr "Tinjauan"
+
+msgid "Previous"
+msgstr "Sebelumnya"
+
+msgid "Print"
+msgstr "Cetak"
+
+msgid "Privacy Policy"
+msgstr "Kebjiakan Privasi"
+
+msgid "Private Key"
+msgstr "Kunci Pribadi "
+
+msgid "Privileges"
+msgstr "Hak"
+
+msgid "Proceed"
+msgstr "Lanjutkan"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Project name"
+msgstr "Judul Proyek"
+
+msgid "Public name"
+msgstr "Nama publik"
+
+msgid "Question"
+msgstr "Pertanyaan"
+
+msgid "Question group"
+msgstr "Kelompok pertanyaan"
+
+msgid "Question templates"
+msgstr "Format pertanyaan"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pertanyaan untuk mengumpulkan kemungkinan informan publik"
+
+msgid "Questionnaire"
+msgstr "Kuesioner"
+
+msgid "Questionnaire answers"
+msgstr "Jawaban kuesioner"
+
+msgid "Questionnaires"
+msgstr "Kuesioner"
+
+msgid "Questions"
+msgstr "Pertanyaan"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Penerima"
+
+msgid "Recipient selection"
+msgstr "Seleksi penerima"
+
+msgid "Recipients"
+msgstr "Penerima"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Penerima meminta Anda untuk mengisi kuesioner tambahan."
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Penerima yang terpilih:"
+
+msgid "Redact"
+msgstr ""
+
+msgid "Refresh"
+msgstr "Perbarui"
+
+msgid "Regenerate"
+msgstr "Buat ulang"
+
+msgid "Regular expression"
+msgstr "Ekspresi reguler "
+
+msgid "Regular expression validator"
+msgstr "Validator ekspresi reguler "
+
+msgid "Remember your receipt for this report."
+msgstr "Ingat tanda terima Anda untuk laporan ini."
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Remove"
+msgstr "Hapus"
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Reply motivation"
+msgstr "Balas motivasi"
+
+msgid "Reply to the request"
+msgstr "Balas permintaan"
+
+msgid "Report"
+msgstr "Laporan"
+
+msgid "Report date"
+msgstr "Tanggal laporan"
+
+msgid "Report statuses"
+msgstr "Status laporan"
+
+msgid "Reports"
+msgstr "Laporan"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Meminta akses ke identitas informan publik"
+
+msgid "Request date"
+msgstr "Permintaan tanggal"
+
+msgid "Request motivation"
+msgstr "Motivasi permintaan"
+
+msgid "Request status"
+msgstr "Status permintaan"
+
+msgid "Request support"
+msgstr "Permintaan dukungan"
+
+msgid "Requests"
+msgstr "Permintaan"
+
+msgid "Require authentication"
+msgstr "Autentikasi dibutuhkan"
+
+msgid "Require two factor authentication"
+msgstr "Autentikasi dua faktor dibutuhkan"
+
+msgid "Reset"
+msgstr "Atur ulang"
+
+msgid "Reset SMTP configuration"
+msgstr "Atur ulang konfigurasi SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "Atur ulang format notifikasi ke bawaan"
+
+msgid "Reset reports"
+msgstr "Atur ulang laporan"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Sumber hanya dapat diakses melalui jaringan Tor"
+
+msgid "Resource not found"
+msgstr "Sumber tidak ditemukan "
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Batasi akses ke alamat IP tertentu"
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Mencabut akses"
+
+msgid "Role"
+msgstr "Peran"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Peran yang diaktifkan untuk menggunakan platform tanpa Tor"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domain awal yang digunakan untuk situs kedua"
+
+msgid "Row"
+msgstr "Baris"
+
+msgid "SMTP email address"
+msgstr "Alamat surel SMTP"
+
+msgid "SMTP server address"
+msgstr "Alamat server SMTP"
+
+msgid "SMTP server port"
+msgstr "Port server SMTP"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Save all"
+msgstr "Simpan semua"
+
+msgid "Scan the QR code with the app"
+msgstr "Pindai kode QR dengan aplikasi tersebut"
+
+msgid "Scheduled jobs"
+msgstr "Pekerjaan terjadwal"
+
+msgid "Score"
+msgstr "Skor"
+
+msgid "Scoring system options"
+msgstr "Opsi sistem skor"
+
+msgid "Search"
+msgstr "Cari "
+
+msgid "Security"
+msgstr "Keamanan"
+
+msgid "Select"
+msgstr "Pilih"
+
+msgid "Select a file or drag it here."
+msgstr "Pilih berkas atau seret ke sini."
+
+msgid "Select all"
+msgstr "Pilih semua"
+
+msgid "Select all recipients by default"
+msgstr "Pilih semua penerima secara bawaan"
+
+msgid "Select an option"
+msgstr "Pilih sebuah opsi"
+
+msgid "Select the recipients of your report"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Selection box"
+msgstr "Kotak pilihan"
+
+msgid "Send"
+msgstr "Kirim"
+
+msgid "Send a test email to your email address."
+msgstr "Kirim sebuah surel percobaan ke alamat surel Anda."
+
+msgid "Send activation link"
+msgstr "Kirim tautan aktivasi"
+
+msgid "Send reset link"
+msgstr "Kirim tautan pengaturan ulang"
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Set password"
+msgstr "Atur kata sandi"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Atur nilai ke 0 untuk menonaktifkan fitur ini "
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Memasang enkripsi dengan menyediakan kunci publik PGP"
+
+msgid "Settings"
+msgstr "Setelan"
+
+msgid "Severity"
+msgstr "Tingkat keparahan"
+
+msgid "Show"
+msgstr "Tampilkan"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Show recipients in alphabetical order"
+msgstr "Tunjukkan penerima-penerima berdasarkan susunan abjad"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Tampilkan antarmuka navigasi kuesioner"
+
+msgid "Sign up"
+msgstr "Daftar"
+
+msgid "Silence email notifications"
+msgstr "Senyapkan notifikasi surel"
+
+msgid "Single-line text input"
+msgstr "Masukan teks sebaris"
+
+msgid "Site"
+msgstr "Situs"
+
+msgid "Sites"
+msgstr "Situs"
+
+msgid "Size limit for file attachments"
+msgstr "Batasan ukuran untuk berkas lampiran "
+
+msgid "Size:"
+msgstr "Ukuran:"
+
+msgid "Skip the recipient account creation."
+msgstr "Lewati pembuatan akun penerima."
+
+msgid "Software version:"
+msgstr "Versi perangkat lunak: "
+
+msgid "Statistics"
+msgstr "Statistik"
+
+msgid "Stats"
+msgstr "Statistik"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Step"
+msgstr "Langkah "
+
+msgid "Steps"
+msgstr "Langkah"
+
+msgid "Strong"
+msgstr "Kuat"
+
+msgid "Subdomain"
+msgstr "Subdomain"
+
+msgid "Submissions disabled"
+msgstr "Pengiriman dinonaktifkan "
+
+msgid "Submit"
+msgstr "Kirim"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Substatuses"
+msgstr "Sub status"
+
+msgid "Success!"
+msgstr "Berhasil!"
+
+msgid "Sufficient"
+msgstr "Cukup"
+
+msgid "Surname"
+msgstr "Nama keluarga"
+
+msgid "Tax code"
+msgstr "Kode pajak"
+
+msgid "Template"
+msgstr "Format"
+
+msgid "Template override"
+msgstr "Penggantian format"
+
+msgid "Templates"
+msgstr "Format "
+
+msgid "Terms of service"
+msgstr "Persyaratan layanan"
+
+msgid "Test the configuration"
+msgstr "Mencoba konfigurasi"
+
+msgid "Text"
+msgstr "Teks"
+
+msgid "Text customization"
+msgstr "Kustomisasi teks"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Teks yang ditampilkan pada pengguna setelah opsi dipilih."
+
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
+
+msgid "Text shown upon negative answer"
+msgstr "Teks akan ditampilkan setelah jawaban negatif"
+
+msgid "Thank you."
+msgstr "Terima kasih."
+
+msgid "The answer is too short"
+msgstr "Jawaban terlalu singkat"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Kata sandi yang dipilih terlalu lemah. Kata sandi yang valid paling tidak harus berdasarkan 12 karakter dan mengandung beberapa variasi karakter yang meliputi paling tidak satu karakter huruf kecil, satu huruf kapital, satu angka, dan satu karakter spesial."
+
+msgid "The code is either invalid or expired."
+msgstr "Kode tidak valid atau telah kedaluwarsa."
+
+msgid "The connection is not secure."
+msgstr "Koneksi tidak aman."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Penerima berikut akan menerima laporan Anda dan tidak dapat dibatalkan."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Prosedur berurutan berikut akan memandu pembuatan platform laporan informasi publik anda."
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Wisaya konfigurasi manual akan memandu Anda ke pengaturan HTTPS dari otoritas yang mengeluarkan sertifikat alternatif. "
+
+msgid "The new password must be different from the current one."
+msgstr "Kata sandi baru harus berbeda dari yang sekarang."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platform masih belum dikonfigurasi untuk koneksi HTTPS dan sebaiknya hanya dipergunakan untuk keperluan uji coba."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Platform ini harus diakses menggunakan alamat IP publik dan nama host yang dipilih harus mempunyai DNS yang terhubung dengan alamat tersebut."
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platform mendukung konfigurasi HTTPS melalui antarmuka ini. "
+
+msgid "The provided recovery key is invalid."
+msgstr "Kunci pemulihan yang diberikan tidak valid."
+
+msgid "The provided reset token is invalid or expired."
+msgstr "Token pengaturan ulang yang diberikan tidak valid atau kedaluwarsa "
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Tanda terima tidak valid atau laporan telah kedaluwarsa."
+
+msgid "The specified input is not valid."
+msgstr "Masukan yang ditentukan tidak valid."
+
+msgid "The specified input is not valid:"
+msgstr "Masukan yang ditentukan tidak valid"
+
+msgid "The specified old password is not valid"
+msgstr "Kata sandi lama yang ditentukan tidak valid"
+
+msgid "The two passwords do not match"
+msgstr "Kedua kata sandi tidak cocok."
+
+msgid "The upload request exceeds the size limit"
+msgstr "Permintaan unggahan melebihi batas ukuran"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Pengguna diharuskan untuk mengganti kata sandi pada proses masuk berikutnya."
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Tautan validasi tidak benar atau sudah berakhir."
+
+msgid "The whistleblower has already read the last update"
+msgstr "Informan publik telah membaca pembaruan terakhir"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Informan publik belum membaca pembaruan terakhir"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Lalu, salin dan tempel alamat yang bersangkutan ke dalam Peramban Tor:"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Teks kustom tidak dapat ditampilkan lagi pada platform ini. Teks asli telah diganti atau dihapus."
+
+msgid "This domain name is not available."
+msgstr "Nama domain ini tidak tersedia."
+
+msgid "This field is mandatory"
+msgstr "Kolom ini wajib diisi"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ini adalah platform demo, mohon tidak menggunakannya untuk pengiriman yang asli."
+
+msgid "This user has not performed the first login yet."
+msgstr "Pengguna ini belum masuk untuk pertama kali."
+
+msgid "Threshold"
+msgstr "Batas"
+
+msgid "Title"
+msgstr "Judul"
+
+msgid "To"
+msgstr "Ke"
+
+msgid "To:"
+msgstr "Ke:"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Tor Onion Service"
+msgstr "Layanan Onion Tor"
+
+msgid "Transfer"
+msgstr "Transfer"
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "Trigger conditions"
+msgstr "Kondisi pemicu"
+
+msgid "Trigger question"
+msgstr "Pertanyaan pemicu"
+
+msgid "Triggered by score:"
+msgstr "Dipicu oleh skor:"
+
+msgid "Turn on email notifications"
+msgstr "Aktifkan notifikasi surel"
+
+msgid "Type"
+msgstr "Tipe"
+
+msgid "Type your new password again"
+msgstr "Ketik lagi kata sandi baru Anda."
+
+msgid "URL redirects"
+msgstr "Pengalihan URL"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Unselect"
+msgstr "Batal pilih"
+
+msgid "Upload"
+msgstr "Unggah"
+
+msgid "Upload a file:"
+msgstr "Mengunggah berkas: "
+
+msgid "Upload date"
+msgstr "Tanggal unggahan"
+
+msgid "Use as default"
+msgstr "Gunakan sebagai pengaturan bawaan"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setiap pesan yang kami kirimkan dan juga untuk menambah informasi tambahan."
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Gunakan situs pertama hanya untuk tujuan administratif"
+
+msgid "User"
+msgstr "Pengguna"
+
+msgid "Username"
+msgstr "Nama Pengguna"
+
+msgid "Users"
+msgstr "Pengguna"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Menggunakan konfigurasi HTTPS otomatis akan menangani seluruh proses permintaan, mengaktifkan, dan memperbarui sertifikat dari \"Let's Encrypt Certificate Authority\" "
+
+msgid "Valid until:"
+msgstr "Berlaku hingga:"
+
+msgid "Validation of email address change in progress."
+msgstr "Validasi perubahan alamat surel sedang berlangsung."
+
+msgid "Value"
+msgstr "Nilai"
+
+msgid "Video"
+msgstr "Video "
+
+msgid "View"
+msgstr "Lihat"
+
+msgid "View your report"
+msgstr "Lihat laporan Anda"
+
+msgid "Voice"
+msgstr ""
+
+msgid "Waiting for authorization"
+msgstr "Menunggu otorisasi"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Menunggu berkas untuk selesai diunggah."
+
+msgid "Warning"
+msgstr "Peringatan"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Kami menyarankan memilih opsi ini jika Anda ingin melindungi data agar tidak hilang dalam situasi saat penerima kehilangan kata sandinya. Di sisi lain, kami tidak menyarankan menggunakan fitur ini jika Anda ingin mengatur sebuah sistem di mana hanya penerima yang dapat mengakses kiriman."
+
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan akses Anda ke platform dan data Anda jika Anda lupa kata sandi."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kami akan menghubungi Anda secepatnya."
+
+msgid "Weak"
+msgstr "Lemah"
+
+msgid "Welcome!"
+msgstr "Selamat datang!"
+
+msgid "Whistleblower"
+msgstr "Informan publik"
+
+msgid "Whistleblower's last access"
+msgstr "Akses terakhir informan publik"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Whistleblowing button"
+msgstr "Tombol laporan informasi publik"
+
+msgid "Width"
+msgstr "Lebar"
+
+msgid "Yes"
+msgstr "Ya"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Anda sudah terhubung dengan server tanpa anonimitas dan server ini hanya mendukung pengiriman anonim "
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Anda sangat disarankan untuk mengunjungi situs ini dengan aplikasi Peramban Tor yang melindungi identitas Anda."
+
+msgid "You have completed the platform activation."
+msgstr "Anda telah menyelesaikan aktivasi platform."
+
+msgid "You have completed the platform wizard."
+msgstr "Anda telah menyelesaikan wisaya platform."
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Anda telah mencapai batas maksimal penerima yang dipilih."
+
+msgid "You must select at least one recipient."
+msgstr "Anda harus pilih minimal satu penerima."
+
+msgid "Your new email address has been validated."
+msgstr "Alamat surel baru Anda sudah divalidasi "
+
+msgid "Your report was successful."
+msgstr "Laporan Anda telah berhasil."
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Platform laporan informasi publik Anda hampir selesai!"
+
+msgid "days"
+msgstr "hari"
+
+msgid "file unavailable"
+msgstr "file tidak tersedia"
+
+msgid "megabytes"
+msgstr "megabita"
+
+msgid "percentage"
+msgstr "persentase"
+
+msgid "please enter a valid email address."
+msgstr "mohon masukkan alamat surel yang valid."
+
+msgid "please enter numbers only."
+msgstr "mohon hanya masukkan nomor."
+
+msgid "seconds"
+msgstr "detik"
+
+msgid "File a report"
+msgstr "Buat laporan"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Please summarize your report in a few words."
+msgstr "Deskripsikan laporan Anda dalam beberapa kata."
+
+msgid "Describe your report in detail."
+msgstr "Deskripsikan laporan Anda secara detail."
+
+msgid "Where did the facts happen?"
+msgstr "Di mana insiden itu terjadi?"
+
+msgid "When did the facts happen?"
+msgstr "Kapan insiden itu terjadi?"
+
+msgid "I'm a victim"
+msgstr "Saya korban"
+
+msgid "I'm involved in the facts"
+msgstr "Saya terlibat dalam insiden itu"
+
+msgid "I witnessed the facts in person"
+msgstr "Saya menyaksikan insiden itu secara langsung"
+
+msgid "I was personally told by a direct witness"
+msgstr "Saya pribadi diberitahu oleh saksi langsung"
+
+msgid "It is a rumor I heard"
+msgstr "Saya mendengar rumor tentang itu"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Apa keterlibatan Anda dalam insiden yang dilaporkan?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Apakah Anda memiliki bukti untuk mendukung laporan Anda?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Silakan lampirkan bukti untuk mendukung laporan Anda."
+
+msgid "Please describe the evidence in detail."
+msgstr "Silakan jelaskan bukti secara rinci."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Deskripsi menyeluruh dari bukti yang dikirimkan dapat meningkatkan kemampuan kami untuk mengevaluasi klaim dan menyelidiki. Dimohon untuk berhati-hati dalam merujuk bagian penting dari setiap video, gambar, atau dokumen yang dikirimkan sebagai bukti."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Sudahkah Anda melaporkan insiden tersebut ke organisasi lainnya?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Sebutkan organisasi yang telah Anda informasikan tentang insiden ini."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Apakah organisasi tersebut menyelidiki klaim Anda? Jika demikian, apa hasilnya?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Di mana insiden itu terjadi?"
+
+msgid "Would you like to tell us who you are?"
+msgstr ""
+
+msgid "First name"
+msgstr "Nama Depan"
+
+msgid "Last name"
+msgstr "Nama Belakang"
+
+msgid "Alternative contact method"
+msgstr "Kontak alternatif"
+
+msgid "I prefer to be contacted via this platform only"
+msgstr "Saya memilih untuk dihubungi hanya melalui platform ini"
+
+msgid "Other"
+msgstr "Lainnya"
+
+msgid "Specify"
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "Yang terhormat {RecipientName},"
+
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Anda menerima pesan ini karena sebuah akun telah dibuat untuk Anda di dalam sistem: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Nama pengguna: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Tautan aktivasi: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Silakan klik tautan aktivasi untuk melanjutkan pengaktifan akun dan mengatur kata sandi pengguna Anda."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Setelah aktivasi berhasil, Anda dapat mengakses sistem melalui tautan berikut: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Salam,"
+
+msgid "Account activation"
+msgstr "Aktivasi akun"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Platform laporan informasi publik Anda sekarang dapat diakses di:"
+
+msgid "To log in, visit:"
+msgstr "Untuk masuk, kunjungi:"
+
+msgid "Users' credentials:"
+msgstr "Kredensial pengguna:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Platform akan dihapus secara otomatis pada:"
+
+msgid "Access instructions"
+msgstr "Instruksi untuk mengakses"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Jumlah aktivitas yang baru-baru ini terdeteksi tampaknya lebih tinggi dari biasanya."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Ini bisa menjadi tanda sebuah serangan (contohnya, seseorang membanjiri server Anda dengan informasi palsu) atau hanya lonjakan penggunaan karena peningkatan visibilitas proyek Anda."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr "Periksa isu untuk menentukan apakah itu sah atau tidak"
+
+msgid "The activities with unusual stats are:"
+msgstr "Kegiatan dengan statistik yang tidak biasa adalah:"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr "Server tidak dapat menjamin bahwa laporan baru dapat disimpan, sehingga kiriman telah dinonaktifkan."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Tolong pertimbangkan untuk bertanya kepada teknisi pendukung Anda untuk membuat tempat penyimpanan data di server ini."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "Teknologi GlobaLeaks mencakup sebuah komponen pemeriksaan status server yang akan mengingatkan jika ada sesuatu yang membutuhkan perhatian anda."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Untuk info lebih lanjut, masuk ke antarmuka Administrator dan lihat ke pilihan \"Statistik Sistem\" dan \"Anomali\"."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "Anomali terdeteksi di {NodeName}"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Surel ini memberi tahu Anda bahwa kunci PGP dari pengguna berikut akan segera atau sudah berakhir:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "Tanpa kunci PGP yang sah, sistem tidak akan dapat mengirim notifikasi terenkripsi kepada mereka."
+
+msgid "PGP key expiration alert"
+msgstr "Peringatan kedaluwarsa Kunci PGP "
+
+msgid "A new whistleblowing site has been registered."
+msgstr "Sebuah situs laporan informasi publik yang baru telah terdaftar."
+
+msgid "Registration data:"
+msgstr "Data registrasi"
+
+msgid "Site: {Url}"
+msgstr "Situs: {Url}"
+
+msgid "Name: {Name}"
+msgstr "Nama: {Name}"
+
+msgid "Email: {Email}"
+msgstr "Surel: {Email}"
+
+msgid "New whistleblowing site registered"
+msgstr "Situs laporan informasi publik yang baru telah terdaftar"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Ini adalah surel percobaan yang dikirim keluar dari antarmuka administratif platform."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Penerimaan surel ini menunjukkan bahwa server dapat mengautentikasi ke, dan berinteraksi dengan, server surat SMTP"
+
+msgid "Test email"
+msgstr "Surel percobaan"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "Surel ini memberi tahu Anda bahwa sebuah permintaan telah diajukan untuk mengubah alamat surel Anda menjadi {NewEmailAddress}."
+
+msgid "Click the following link to validate this change:"
+msgstr "Klik tautan berikut untuk memvalidasi perubahan ini:"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "Jika Anda tidak meminta perubahan ini, ubah kata sandi Anda dan hubungi administrator sistem Anda."
+
+msgid "Email change request"
+msgstr "Permintaan perubahan surel"
+
+msgid "From: {Author}"
+msgstr "Dari: {Author}"
+
+msgid "Date: {EventTime}"
+msgstr "Tanggal: {EventTime} "
+
+msgid "From: Whistleblower"
+msgstr "Dari: Informan publik"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Tanggal: {SubmissionDate} "
+
+msgid "Label: {TipLabel}"
+msgstr "Label: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr "Status: {TipStatus}"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "Sertifikat HTTPS yang termuat pada platform akan segera, atau sudah kedaluwarsa."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Tanggal kedaluwarsa: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Tanpa sertifikat yang valid, platform hanya bisa diakses secara aman melalui Tor. "
+
+msgid "Log in to solve the issue."
+msgstr "Masuk untuk menyelesaikan masalah."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "Peringatan tanggal kedaluwarsa untuk sertifikat HTTPS"
+
+msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr "Pembaruan automatis sertifikat HTTPS yang dijadwalkan hari ini telah gagal."
+
+msgid "The system will keep trying."
+msgstr "Sistem akan terus mencoba."
+
+msgid "Failed HTTPS certificate renewal"
+msgstr "Pembaruan sertifikat HTTPS gagal"
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr "Surel ini memberi tahu Anda bahwa seorang pihak penjaga telah memberikan Anda akses terhadap identitas informan publik terkait laporannya {TipNum}."
+
+msgid "The report can be accessed at:"
+msgstr "Laporan dapat diakses di:"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Akses ke identitas informan publik telah diizinkan."
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" whistleblowing identity for the report {TipNum}."
+msgstr "Surel ini memberi tahu Anda bahwa seorang pihak penjaga telah menolak akses Anda terhadap identitas informan publik terkait laporannya {TipNum}."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Akses ke identitas informan publik telah ditolak "
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the report {TipNum}"
+msgstr "Surel ini memberi tahu Anda bahwa seorang penerima telah meminta akses ke identitas informan publik untuk laporan {TipNum}"
+
+msgid "The request can be accessed at:"
+msgstr "Permintaan dapat diakses di:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Permintaan baru untuk mengakses identitas informan publik "
+
+msgid ""
+"This is an email to notify you that the whistleblower for the report "
+"{TipNum} has provided their identity."
+msgstr "Surel ini memberi tahu Anda bahwa informan publik untuk laporan {TipNum} telah memberikan identitasnya."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Informan publik telah memberikan identitasnya"
+
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"the account: {Username}"
+msgstr "Anda menerima surel ini karena pengaturan ulang kata sandi telah diminta untuk akun: {Username}"
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "Jika Anda tidak membuat permintaan ini, Anda dapat mengabaikan dan menghapus email ini dengan aman."
+
+msgid "You can confirm your request by clicking the following link:"
+msgstr "Anda dapat mengkonfirmasi permintaan Anda dengan mengeklik tautan berikut:"
+
+msgid "Password reset instructions"
+msgstr "Instruksi pengaturan ulang kata sandi"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Surel ini memberi tahu Anda bahwa kunci PGP Anda akan berakhir atau sudah kedaluwarsa."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Anda harus memperpanjang keabsahan dan memperbarui kunci yang diberikan pada platform, atau mengunggah kunci baru."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "Tanpa kunci PGP yang valid, sistem tidak akan dapat mengenkripsi data yang diberikan kepada Anda."
+
+msgid "Click the link to activate the platform:"
+msgstr "Klik tautan untuk mengaktifkan platform"
+
+msgid "Activation"
+msgstr "Aktivasi"
+
+msgid "A software update is available."
+msgstr "Pembaruan perangkat lunak tersedia"
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Merupakan latihan keamanan yang baik untuk tetap memperbarui platform"
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Untuk mempelajari perihal fitur baru dan perbaikan bug di versi baru, konsultasikan dengan catatan perubahan di: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "Untuk instruksi tentang pembaruan perangkat lunak, silakan lihat dokumentasi di: {UpdateGuideUrl}"
+
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr "Surel ini memberi tahu Anda bahwa seorang penerima telah memberikan Anda akses ke satu atau beberapa laporan."
+
+msgid "New report"
+msgstr "Laporan baru"
+
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Tanggal kedaluwarsa paling awal adalah {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Harap ingat untuk memeriksanya sebelum terhapus."
+
+msgid "Some reports will expire soon"
+msgstr "Beberapa laporan akan segera kedaluwarsa"
+
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr "Surel ini memberi tahu bahwa salah satu laporan yang sudah ada telah diperbarui"
+
+msgid "Report updated"
+msgstr "Laporan diperbarui"
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr "Surel ini untuk mengingatkan Anda akan adanya laporan yang belum dibaca atau yang diperbarui "
+
+msgid "Reminder about unread or updated reports"
+msgstr "Pengingat tentang laporan yang belum dibaca atau yang diperbarui"
+
+msgid "Role: {Role}"
+msgstr "Peran: {Role}"
+
+msgid "Password: {Password}"
+msgstr "Kata sandi: {Password}"

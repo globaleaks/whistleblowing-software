@@ -9,8 +9,7 @@ this_directory = os.path.dirname(__file__)
 
 possible_client_paths = [
     '/usr/share/globaleaks/client/',
-    os.path.abspath(os.path.join(this_directory, '../../client/build/')),
-    os.path.abspath(os.path.join(this_directory, '../../client/app/'))
+    os.path.abspath(os.path.join(this_directory, '../../client/build/'))
 ]
 
 

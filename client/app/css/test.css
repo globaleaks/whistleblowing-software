@@ -1,0 +1,8 @@
+.reveal {
+  opacity: 1;
+  animation: fadeIn 0s forwards;
+}
+
+* {
+  transition: none !important;
+}

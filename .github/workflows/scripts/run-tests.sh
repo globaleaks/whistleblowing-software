@@ -17,30 +17,26 @@ function atexit {
 
 trap atexit EXIT
 
-setupClientDependencies() {
+setupClient() {
   cd  $GITHUB_WORKSPACE/client  # to install frontend dependencies
-  npm install
-  grunt instrument-client
+  npm install -d
+  ./node_modules/grunt/bin/grunt build_and_instrument
 }
 
-setupBackendDependencies() {
+setupBackend() {
   cd  $GITHUB_WORKSPACE/backend  # to install backend dependencies
   pip3 install -r requirements/requirements-$(lsb_release -cs).txt
 }
 
-setupDependencies() {
-  setupClientDependencies
-  setupBackendDependencies
-}
-
+echo "Running setup"
 sudo apt-get update
 sudo apt-get install -y tor
 npm install -g grunt grunt-cli
-
 pip install coverage
+setupClient
+setupBackend
 
 echo "Running backend unit tests"
-setupDependencies
 cd  $GITHUB_WORKSPACE/backend && coverage run setup.py test
 
 $GITHUB_WORKSPACE/backend/bin/globaleaks -z
@@ -51,5 +47,5 @@ cd  $GITHUB_WORKSPACE/client && npm test
 
 cd  $GITHUB_WORKSPACE/backend && coverage xml
 bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Python -r  $GITHUB_WORKSPACE/backend/coverage.xml
-bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r  $GITHUB_WORKSPACE/client/cypress/coverage/lcov.info
+bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l TypeScript -r  $GITHUB_WORKSPACE/client/cypress/coverage/lcov.info
 bash <(curl -Ls https://coverage.codacy.com/get.sh) final
