@@ -1,0 +1,2040 @@
+# 
+# Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
+# Timur Seber <seber.tatsoft@gmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2013-05-29 17:59+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
+"Language-Team: Tatar (http://app.transifex.com/otf/globaleaks/language/tt/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tt\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
+
+msgid "0 = auto"
+msgstr "0 = авто"
+
+msgid "Accept multiple answers"
+msgstr "Берничә җавапны кабул итү"
+
+msgid "Accept multiple file uploads"
+msgstr "Берничә файл йөкләүне рөхсәт итү"
+
+msgid "Acceptable"
+msgstr "Кабул итәрлек"
+
+msgid "Access control"
+msgstr "Керү белән идарә итү "
+
+msgid "Access date"
+msgstr ""
+
+msgid "Access requested"
+msgstr "Керү мөмкинлеге соралды"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr " Мәгълүмат җиткерүченең идентификаторына керү мөмкинлеген алу өчен җаваплы затка сорау җибәрелде"
+
+msgid "Account recovery key"
+msgstr "Шәхси сәхифәгезне кайтару ачкычы"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "Activities"
+msgstr "Гамәлләр"
+
+msgid "Add"
+msgstr "Өстәү"
+
+msgid "Add custom text"
+msgstr "Кулланучы текстын өстәү"
+
+msgid "Add multimedia content"
+msgstr "Мультимедиа контент өстәү"
+
+msgid "Add new question"
+msgstr "Яңа сорау өстәү"
+
+msgid "Add new questionnaire"
+msgstr "Яңа сораулык өстәү"
+
+msgid "Add question from template"
+msgstr "Өлгедән сорау өстәгез"
+
+msgid "Addition"
+msgstr "Өстәмә"
+
+msgid "Additional questionnaire"
+msgstr "Өстәмә сораулык"
+
+msgid "Address"
+msgstr ""
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Администраторлар кулланучыларның серсүзләрен үзгәртергә хокуклы:"
+
+msgid "Advanced"
+msgstr ""
+
+msgid "Allow the recipient to delete reports"
+msgstr "Алучыга хисапларны бетерергә рөхсәт итү"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
+
+msgid "Allow the whistleblower to add attachments"
+msgstr "Мәгълүмат җиткерүчегә хисапка кертелмәләр өстәргә рөхсәт итү"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "Мәгълүмат җиткерүчегә комментарий язарга рөхсәт итү"
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "Кулланучыларга теркәлергә рөхсәт итү"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Мәгълүмат җиткерүчеләргә алучыларны сайларга рөхсәт итү"
+
+msgid "Allowed IP addresses"
+msgstr "Рөхсәт ителгән IP адреслар"
+
+msgid "An update is available:"
+msgstr "Яңарту мөмкинлеге бар"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Anomalies"
+msgstr "Аномалияләр"
+
+msgid "Anomaly detection thresholds"
+msgstr "Аномалияне ачыклау чикләре"
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymize outgoing connections"
+msgstr "Чыгыш бәйләнешләрне яшерү"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Are you sure?"
+msgstr "Моны раслыйсызмы?"
+
+msgid "Assign score points"
+msgstr "Бәяләмә баллары бирү"
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Attachment"
+msgstr "Кертелмә"
+
+msgid "Attachments"
+msgstr "Кертелмәләр"
+
+msgid "Attention"
+msgstr ""
+
+msgid "Audio"
+msgstr "Аудиоязма"
+
+msgid "Audit log"
+msgstr "Аудит журналы"
+
+msgid "Authentication failed"
+msgstr "Аутентификация уңышсыз тәмамланды"
+
+msgid "Authorization"
+msgstr " Авторизация"
+
+msgid "Authorize"
+msgstr "Рөхсәт итү"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керергә рөхсәт бирү"
+
+msgid "Authorized"
+msgstr "Рөхсәт ителде"
+
+msgid "Auto-renewal"
+msgstr "Автомат яңарту"
+
+msgid "Automatic configuration"
+msgstr "Автомат конфигурация"
+
+msgid "Available disk space"
+msgstr "Дискта кулланырга мөмкин булган урын"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Башлар алдыннан, зинһар, түбәндәге документларны игътибар белән укыгыз:"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Дәвам итәр алдыннан, зинһар, ике адымлы аутентификацияне кабызыгыз."
+
+msgid "Before proceeding, please set a new password."
+msgstr "Дәвам итү өчен, зинһар, яңа серсүз урнаштырыгыз."
+
+msgid "Block the submission"
+msgstr "Документ җибәрүне блоклау"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Раслап, вакыты чыгу датасын бу көнгә кадәр кичектерәчәксез:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Бу функцияне кабызып, сез платформаның үсешенә һәм аның иминлегенә өлеш кертәчәксез."
+
+msgid "Cancel"
+msgstr "Баш тарту"
+
+msgid "Case management"
+msgstr "Эш белән идарә итү"
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Certificate Signing Request"
+msgstr "Сертификатка кул куюны сорау"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Change your password"
+msgstr "Серсүзегезне үзгәртегез"
+
+msgid "Changelog"
+msgstr "Үзгәрешләр журналы"
+
+msgid "Channel"
+msgstr ""
+
+msgid "Channels"
+msgstr ""
+
+msgid "Check your inbox to activate it."
+msgstr "Аны активлаштыру өчен \"Килгән хатлар\" папкагызны тикшерегез."
+
+msgid "Checkbox"
+msgstr "Байракчык кую кыры"
+
+msgid "Checkbox label"
+msgstr "Байракчык кырында тамга"
+
+msgid "City"
+msgstr "Шәһәр"
+
+msgid "Close"
+msgstr "Ябу"
+
+msgid "Closed"
+msgstr "Ябылды"
+
+msgid "Collapse"
+msgstr "Төрү"
+
+msgid "Column"
+msgstr "Багана"
+
+msgid "Comments"
+msgstr "Комментарийлар"
+
+msgid "Computer"
+msgstr ""
+
+msgid "Configure"
+msgstr "Көйләү"
+
+msgid "Confirm"
+msgstr "Раслау"
+
+msgid "Confirmation"
+msgstr "Раслау"
+
+msgid "Congratulations!"
+msgstr "Котлыйбыз!"
+
+msgid "Copy to clipboard"
+msgstr "Алмашу буферына күчереп алу"
+
+msgid "Country"
+msgstr "Ил"
+
+msgid "Country code"
+msgstr "Ил коды"
+
+msgid "Creation date"
+msgstr "Төзү датасы"
+
+msgid "Creation date:"
+msgstr "Төзү датасы:"
+
+msgid "Current password"
+msgstr "Хәзерге серсүз"
+
+msgid "Custodian"
+msgstr "Җаваплы зат"
+
+msgid "Custom"
+msgstr "Шәхси көйләүләр"
+
+msgid "Custom privacy panel"
+msgstr "Хосусыйлык панелен шәхсиләштерергә"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Custom text"
+msgstr "Кулланучы тексты"
+
+msgid "Custom translation"
+msgstr " Кулланучы тәрҗемәсе"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Date of the request"
+msgstr "Сорау датасы"
+
+msgid "Date range"
+msgstr "Дата диапазоны"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "Delete"
+msgstr "Бетерү"
+
+msgid "Denied"
+msgstr "Тыелды"
+
+msgid "Deny"
+msgstr "Тыю"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керүне тыю"
+
+msgid "Description"
+msgstr "Тасвирлама"
+
+msgid "Deselect"
+msgstr "Cайлап алуны бетерергә"
+
+msgid "Deselect all"
+msgstr "Берсен дә тамгаламау"
+
+msgid "Details"
+msgstr "Тәфсилле мәгълүмат"
+
+msgid "Details of the PGP key:"
+msgstr "PGP ачкычы турында тәфсилле мәгълүмат:"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Disable"
+msgstr "Cүндерү"
+
+msgid "Disable notifications to administrators"
+msgstr "Администраторлар өчен белдерүләрны сүндерү"
+
+msgid "Disable notifications to custodians"
+msgstr "Җаваплы затлар өчен белдерүләрны сүндерү"
+
+msgid "Disable notifications to recipients"
+msgstr "Алучылар өчен белдерүләрны сүндерү"
+
+msgid "Disable submissions"
+msgstr "Документ җибәрүне сүндерү"
+
+msgid "Disable the privacy panel"
+msgstr "Хосусыйлык панелен сүндерү"
+
+msgid "Disable two factor authentication"
+msgstr "Ике адымлы аутентификацияне cүндерү"
+
+msgid "Disabled"
+msgstr "Cүндерелгән"
+
+msgid "Disclaimer"
+msgstr "Җаваплылыктан баш тарту"
+
+msgid "Display options alphabetically"
+msgstr "Опцияләрне алфавит тәртибендә күрсәтү"
+
+msgid "Download"
+msgstr "Йөкләп алу"
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser кушымтасын йөкләп алу"
+
+msgid "Duplicate"
+msgstr "Кабатлау"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Һәр язма өтер белән аерылырга тиеш."
+
+msgid "Earliest selectable date"
+msgstr "Иң беренче сайланган дата"
+
+msgid "Edit"
+msgstr "Үзгәртү"
+
+msgid "Email"
+msgstr "Электрон почта"
+
+msgid "Email address"
+msgstr "Электрон почта адресы"
+
+msgid "Enable"
+msgstr "Кабызу"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable administrators to change user passwords"
+msgstr "Администраторларга кулланучыларның серсүзләрен үзгәртергә рөхсәт итү"
+
+msgid "Enable custom privacy panel"
+msgstr "Кулланучы хосусыйлык панелен кабызу"
+
+msgid "Enable email notifications"
+msgstr "Электрон почта аша белдерүләрны кабызу"
+
+msgid "Enable email notifications for:"
+msgstr "Электрон почта аша белдерүләргә түбәндәгеләр өчен рөхсәт итү:"
+
+msgid "Enable encryption"
+msgstr "Шифрлауны кабызу"
+
+msgid "Enable scoring system"
+msgstr "Баллы бәяләү системасын кабызу"
+
+msgid "Enable search engines indexing"
+msgstr "Эзләү системаларында индекслануны кабызу"
+
+msgid "Enable simplified login"
+msgstr "Гадиләштерелгән керүне кабызу"
+
+msgid "Enable terms of service"
+msgstr "Куллану шартларын раслау"
+
+msgid "Enable two factor authentication"
+msgstr "Ике адымлы аутентификацияне кабызу"
+
+msgid "Enabled"
+msgstr "Кабызылган"
+
+msgid "Enter a name for the copy"
+msgstr "Күчереп алу өчен исем кертегез"
+
+msgid "Enter the two factor authentication code"
+msgstr "Ике адымлы аутентификация кодын кертегез"
+
+msgid ""
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Серсүзне алыштыру процедурасын тәмамлау өчен, шифрлауны торгызу ачкычын кертегез"
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Серсүзне сорау өчен, шәхси сәхифәгезнең кулланучы исемен яки электрон почта адресыгызны кертегез."
+
+msgid "Enter your email address to request a password reset."
+msgstr "Серсүзне алыштыруны сорар өчен, электрон почта адресыгызны кертегез."
+
+msgid "Error on input validation"
+msgstr "Кертүне тикшерү хатасы"
+
+msgid "Error!"
+msgstr "Хата!"
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Example:"
+msgstr "Мисал:"
+
+msgid "Expand"
+msgstr "Җәеп күрсәтү"
+
+msgid "Expiration date"
+msgstr "Вакыты чыгу датасы"
+
+msgid "Export"
+msgstr "Экспортлау"
+
+msgid "File size"
+msgstr "Файл күләме"
+
+msgid "File size not accepted."
+msgstr "Файл күләме кабул ителмәде."
+
+msgid "Filename"
+msgstr "Файл исеме"
+
+msgid "Files"
+msgstr "Файллар"
+
+msgid "Files attached by recipients"
+msgstr "Алучылар тарафыннан кертелгән файллар"
+
+msgid "Fill the additional questionnaire"
+msgstr "Өстәмә сораулыкны тутыру"
+
+msgid "Fingerprint"
+msgstr "Бармак эзе"
+
+msgid "First"
+msgstr "Беренче"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Footer"
+msgstr "Аскы колонтитул"
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Иминлеккә бәйле сәбәпләр аркасында регуляр рәвештә серсүзне үзгәртү таләп ителә."
+
+msgid "For the user documentation, visit:"
+msgstr "Кулланучының документлары өчен монда керегез:"
+
+msgid "Forbidden operation"
+msgstr "Тыелган гамәл"
+
+msgid "Force password change"
+msgstr "Серсүзне мәҗбүри үзгәртү"
+
+msgid "Forcefully selected"
+msgstr "Мәҗбүри сайланды"
+
+msgid "Forgot password?"
+msgstr "Серсүзне оныттыгызмы?"
+
+msgid "From"
+msgstr "Кемнән"
+
+msgid "From:"
+msgstr "Кемнән:"
+
+msgid "Generate"
+msgstr "Төзү"
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Кулланучыга түбәндәге функцияләргә административ керү мөмкинлеген бирү:"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Бу администраторга кулланучы серсүзләрен үзгәртү мөмкинлеге бирү"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to mask information"
+msgstr ""
+
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Grant access"
+msgstr "Керү мөмкинлеге бирү"
+
+msgid "Group of questions"
+msgstr "Сораулар төркеме"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Сез хисап җибәрдегезме инде? Алу кодыгызны кертегез."
+
+msgid "Hidden"
+msgstr "Яшерен"
+
+msgid "Hide"
+msgstr "Яшерү"
+
+msgid "High"
+msgstr "Югары"
+
+msgid "Hint"
+msgstr "Ярдәм"
+
+msgid "Home"
+msgstr "Баш бит"
+
+msgid "Homepage title"
+msgstr "Баш бит башисеме"
+
+msgid "Hostname"
+msgstr "Хост исеме"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Мин лицензия шартларын укыдым һәм аларны кабул итәм."
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "ID"
+msgstr "Идентификация номеры"
+
+msgid "Identity"
+msgstr "Идентификатор"
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Әгәр 24 сәгать эчендә активлаштырылмаса, платформа автомат рәвештә бетереләчәк."
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Әгәр сезгә техник ярдәм кирәк булса, гомуми сорауларыгыз яисә программа өчен яңа идеяләрегез булса:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Әгәр сез программа үсешенә өлеш кертергә яки хата турында хәбәр итәргә теләсәгез, зинһар, безнең ярдәм системасына сорау җибәрегез:"
+
+msgid "Image"
+msgstr "Сурәт"
+
+msgid "Import"
+msgstr "Импортлау"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Бу адымда түбәндәге сорауларга җаваплар юк яки алар дөрес түгел:"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Input validation"
+msgstr "Кертүне тикшерү"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Телефоныгызга аутентификация кушымтасын урнаштыру"
+
+msgid "Intermediate Certificates"
+msgstr "Арадаш сертификатлар"
+
+msgid "Internal server error"
+msgstr "Серверның эчке хатасы"
+
+msgid "Invalid confirmation"
+msgstr "Яраксыз раслау"
+
+msgid "Invalid email address"
+msgstr "Ярашсыз электрон почта адресы"
+
+msgid "Invalid phone number"
+msgstr "Хаталы телефон номеры"
+
+msgid "Issuer:"
+msgstr "Биргән орган:"
+
+msgid "Join our chat:"
+msgstr "Безнең чатка кушылу:"
+
+msgid "Label"
+msgstr "Тамга"
+
+msgid "Label the report"
+msgstr "Хисапны тамгалау"
+
+msgid "Language"
+msgstr "Тел"
+
+msgid "Language:"
+msgstr "Тел:"
+
+msgid "Languages"
+msgstr "Телләр"
+
+msgid "Last"
+msgstr "Соңгы"
+
+msgid "Last Access"
+msgstr "Cоңгы керү"
+
+msgid "Last access"
+msgstr "Cоңгы керү"
+
+msgid "Last update"
+msgstr "Соңгы яңарту"
+
+msgid "Latest selectable date"
+msgstr "Иң соңгы сайланган дата"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Платформага Tor программасыннан башка керергә рөхсәт итү"
+
+msgid "License"
+msgstr "Лицензия"
+
+msgid "Log accesses of internal users"
+msgstr "Эчке кулланучыларның керү тарихын журналга язу"
+
+msgid "Log in"
+msgstr "Керү"
+
+msgid "Logging level"
+msgstr "Протокол алып бару дәрәҗәсе"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Logout"
+msgstr "Чыгу"
+
+msgid "Low"
+msgstr "Түбән"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Күчермә ясагыз һәм аны ышанычлы урында саклагыз. Әгәр серсүзегезне югалтсагыз, ул шәхси сәхифәгезгә мәгълүматны югалтмыйча керү мөмкинлеген кайтару өчен кирәк булачак."
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Бу администраторга кулланучы серсүзләрен алыштырырга рөхсәт итегез."
+
+msgid "Mandatory"
+msgstr "Таләп ителә"
+
+msgid "Manual configuration"
+msgstr "Кулидарәле конфигурация"
+
+msgid "Mark as important"
+msgstr "Мөһим буларак тамгалау"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Maximum file size is:"
+msgstr "Файлның максималь күләме:"
+
+msgid "Maximum number of input characters"
+msgstr "Кертү символларының максималь саны"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Сайлана торган алучыларның максималь саны:"
+
+msgid "Me only"
+msgstr ""
+
+msgid "Medium"
+msgstr "Уртача"
+
+msgid "Min"
+msgstr ""
+
+msgid "Minimum number of input characters"
+msgstr "Кертү символларының минималь саны"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Mode:"
+msgstr "Режим:"
+
+msgid "Motivation"
+msgstr "Сәбәп"
+
+msgid "Move down"
+msgstr "Аска күчерү"
+
+msgid "Move left"
+msgstr "Сулга күчерү"
+
+msgid "Move right"
+msgstr "Уңга күчерү"
+
+msgid "Move up"
+msgstr "Өскә күчерү"
+
+msgid "Multi-line text input"
+msgstr "Күп юллы текстны кертү"
+
+msgid "Multiple choice input"
+msgstr "Берничә вариантта кертү"
+
+msgid "Multiplier"
+msgstr "Тапкырлаучы"
+
+msgid "Name"
+msgstr "Исем"
+
+msgid "Network"
+msgstr ""
+
+msgid "New"
+msgstr "Яңа"
+
+msgid "New password"
+msgstr "Яңа пароль"
+
+msgid "New request"
+msgstr "Яңа сорау"
+
+msgid "Next"
+msgstr "Киләсе"
+
+msgid "No"
+msgstr "Юк"
+
+msgid "None"
+msgstr "Бернинди дә юк"
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Notifications"
+msgstr "Искәртүләр"
+
+msgid "Notify administrators of software problems"
+msgstr "Программа проблемалары турында администраторларга хәбәр итү"
+
+msgid "Notify developers of software problems"
+msgstr "Программа проблемалары турында җитештерүчеләргә хәбәр итү"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Хәзер серсүзегезне кертегез һәм 'Керү' төймәсенә басыгыз:"
+
+msgid "Number"
+msgstr "Сан"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Кулланучыларга укылмаган хисаплар турында белдерүгә кадәр көн саны"
+
+msgid "Number of downloads"
+msgstr "Йөкләүләр саны"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Хисапның вакыты чыгу турында белдерү җибәргәнче сәгатьләр саны"
+
+msgid "Object"
+msgstr "Объект"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Бер яки берничә алучы әле системага беренче керүне башкармаган. Бу – алар хисаплар алмаячак дигән сүз."
+
+msgid "Opened"
+msgstr "Ачылды"
+
+msgid "Options"
+msgstr "Опцияләр "
+
+msgid "Organization"
+msgstr "Оешма"
+
+msgid "Original text"
+msgstr "Башлангыч текст"
+
+msgid "Original translation"
+msgstr "Башлангыч тәрҗемә"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Password change interval"
+msgstr "Серсүзне үзгәртү интервалы"
+
+msgid "Password reset"
+msgstr "Парольне алыштыру"
+
+msgid "Password reset requested."
+msgstr "Серсүзне ташлату соралды"
+
+msgid "Phone number"
+msgstr "Телефон номеры"
+
+msgid "Placeholder"
+msgstr "Тутыргыч"
+
+msgid "Platform wizard"
+msgstr "Платформа остасы"
+
+msgid "Please check your inbox for further instructions."
+msgstr "Зинһар, өстәмә күрсәтмәләр өчен \"Килгән хатлар\" папкагызны тикшерегез."
+
+msgid "Please choose a configuration profile:"
+msgstr "Зинһар, конфигурация профилен сайлагыз:"
+
+msgid "Please choose a different username."
+msgstr "Зинһар, башка кулланучы исемен сайлагыз."
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Зинһар, барлык бәйләнгән мәгълүматларның бөтенләй бетереләчәген искә алыгыз."
+
+msgid "Please select your account:"
+msgstr "Зинһар, шәхси сәхифәгезне сайлагыз:"
+
+msgid "Postpone the expiration date"
+msgstr "Вакыты чыгу датасын кичектерү"
+
+msgid "Preferences"
+msgstr "Өстенлекле көйләүләр"
+
+msgid "Presentation"
+msgstr "Презентация"
+
+msgid "Preview"
+msgstr "Карап алу"
+
+msgid "Previous"
+msgstr "Әүвәлге"
+
+msgid "Print"
+msgstr "Бастыру"
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Private Key"
+msgstr "Xосусый ачкыч"
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Proceed"
+msgstr "Дәвам итү"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Project name"
+msgstr "Проект исеме"
+
+msgid "Public name"
+msgstr "Ачык исем"
+
+msgid "Question"
+msgstr "Сорау"
+
+msgid "Question group"
+msgstr "Сораулар төркеме"
+
+msgid "Question templates"
+msgstr "Сорау өлгеләре"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ихтимал мәгълүмат җиткерүчеләрне күбәйтү өчен сорау."
+
+msgid "Questionnaire"
+msgstr "Сораулык"
+
+msgid "Questionnaire answers"
+msgstr "Сораулык җаваплары"
+
+msgid "Questionnaires"
+msgstr "Сораулыклар"
+
+msgid "Questions"
+msgstr "Сораулар"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Алучы"
+
+msgid "Recipient selection"
+msgstr "Алучыларны сайлау"
+
+msgid "Recipients"
+msgstr "Алучылар"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Алучылар сездән өстәмә сораулык тутыруны сорадылар."
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Сайланган алучылар:"
+
+msgid "Redact"
+msgstr ""
+
+msgid "Refresh"
+msgstr "Яңарту"
+
+msgid "Regenerate"
+msgstr "Яңадан төзү"
+
+msgid "Regular expression"
+msgstr "Регуляр гыйбарә"
+
+msgid "Regular expression validator"
+msgstr "Даими гыйбарәләр валидаторы"
+
+msgid "Remember your receipt for this report."
+msgstr "Бу хисап өчен алу кодын истә калдырыгыз"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Remove"
+msgstr "Бетерү"
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Reply motivation"
+msgstr "Җавап сәбәбе"
+
+msgid "Reply to the request"
+msgstr "Сорауга җавап бирү"
+
+msgid "Report"
+msgstr ""
+
+msgid "Report date"
+msgstr "Хисап датасы"
+
+msgid "Report statuses"
+msgstr "Хисап статусы"
+
+msgid "Reports"
+msgstr "Хисаплар"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керү мөмкинлеген сорау"
+
+msgid "Request date"
+msgstr "Сорау датасы"
+
+msgid "Request motivation"
+msgstr "Cорау сәбәбе"
+
+msgid "Request status"
+msgstr "Сорау халәте"
+
+msgid "Request support"
+msgstr "Ярдәм сорау"
+
+msgid "Requests"
+msgstr "Мөрәҗәгатьләр"
+
+msgid "Require authentication"
+msgstr "Аутентификацияне таләп ителә"
+
+msgid "Require two factor authentication"
+msgstr "Ике адымлы аутентификация таләп ителә"
+
+msgid "Reset"
+msgstr "Ташлату"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP конфигурациясен ташлату"
+
+msgid "Reset notification templates to default"
+msgstr "Килешенгәнчә белдерү өлгеләрен ташлату"
+
+msgid "Reset reports"
+msgstr "Хисапны ташлату"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ресурсларга Tor челтәре аша гына кереп була"
+
+msgid "Resource not found"
+msgstr "Ресурс табылмады"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Билгеле IP адресларга керү мөмкинлеген чикләү"
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Керү мөмкинлеген бетерү"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Платформаны Tor программасыннан башка куллану өчен рольләр кабызылды"
+
+msgid "Root domain used for secondary sites"
+msgstr "Икенчел сайтлар өчен кулланылган тамыр домен"
+
+msgid "Row"
+msgstr "Юл"
+
+msgid "SMTP email address"
+msgstr "SMTP электрон почта адресы"
+
+msgid "SMTP server address"
+msgstr "SMTP сервер адресы"
+
+msgid "SMTP server port"
+msgstr "SMTP сервер порты"
+
+msgid "Save"
+msgstr "Саклау"
+
+msgid "Save all"
+msgstr "Барысын да саклау"
+
+msgid "Scan the QR code with the app"
+msgstr "Кушымта белән QR кодны сканерлагыз"
+
+msgid "Scheduled jobs"
+msgstr "Планлаштырылган биремнәр"
+
+msgid "Score"
+msgstr "Исәп"
+
+msgid "Scoring system options"
+msgstr "Баллы бәяләмә системасы көйләүләре"
+
+msgid "Search"
+msgstr "Эзләү"
+
+msgid "Security"
+msgstr "Иминлек"
+
+msgid "Select"
+msgstr "Сайлау"
+
+msgid "Select a file or drag it here."
+msgstr "Файлны сайлагыз яки аны монда тартып китерегез."
+
+msgid "Select all"
+msgstr "Барысын да тамгалау"
+
+msgid "Select all recipients by default"
+msgstr "Барлык алучыларны килешенгәнчә сайлау"
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select the recipients of your report"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Selection box"
+msgstr "Сайлау кыры"
+
+msgid "Send"
+msgstr "Җибәрү"
+
+msgid "Send a test email to your email address."
+msgstr "Электрон почта адресыгызга тикшерү өчен электрон хәбәр җибәрегез."
+
+msgid "Send activation link"
+msgstr "Активлаштыру сылтамасын җибәрү"
+
+msgid "Send reset link"
+msgstr "Ташлату сылтамасын җибәрү"
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Set password"
+msgstr "Серсүзе урнаштыру"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Бу функцияне сүндерү өчен санны \"0\" итеп кертегез."
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Ачык PGP ачкыч биреп, шифрлауны көйләү"
+
+msgid "Settings"
+msgstr "Көйләүләр"
+
+msgid "Severity"
+msgstr "Җитдилек"
+
+msgid "Show"
+msgstr "Күрсәтү"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Show recipients in alphabetical order"
+msgstr "Алучыларны алфавит тәртибендә күрсәтү"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Сораулык буенче навигация интерфейсын күрсәтү"
+
+msgid "Sign up"
+msgstr "Теркәлү"
+
+msgid "Silence email notifications"
+msgstr "Электрон почта аша белдерүләрне сүндерү "
+
+msgid "Single-line text input"
+msgstr "Бер юллы текстны кертү"
+
+msgid "Site"
+msgstr ""
+
+msgid "Sites"
+msgstr "Сайтлар"
+
+msgid "Size limit for file attachments"
+msgstr "Файл кертелмәләр өчен күләмне чикләү"
+
+msgid "Size:"
+msgstr "Зурлык:"
+
+msgid "Skip the recipient account creation."
+msgstr "Алучының шәхси сәхифәсен ясауны калдырып үтегез."
+
+msgid "Software version:"
+msgstr "Программа версиясе:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Stats"
+msgstr "Статистика"
+
+msgid "Status"
+msgstr "Халәт"
+
+msgid "Status:"
+msgstr "Халәт:"
+
+msgid "Step"
+msgstr "Адым"
+
+msgid "Steps"
+msgstr "Адымнар"
+
+msgid "Strong"
+msgstr "Ышанычлы"
+
+msgid "Subdomain"
+msgstr "Эчке домен"
+
+msgid "Submissions disabled"
+msgstr "Документ җибәрү мөмкинлеге сүндерелде"
+
+msgid "Submit"
+msgstr "Документ җибәрү"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Substatuses"
+msgstr "Эчке статуслар"
+
+msgid "Success!"
+msgstr "Уңышлы!"
+
+msgid "Sufficient"
+msgstr "Җитәрлек"
+
+msgid "Surname"
+msgstr "Фамилия"
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Template"
+msgstr "Өлге"
+
+msgid "Template override"
+msgstr "Өлгене үзгәртеп язу"
+
+msgid "Templates"
+msgstr "Өлгеләр"
+
+msgid "Terms of service"
+msgstr "Хезмәт күрсәтү шартлары"
+
+msgid "Test the configuration"
+msgstr "Конфигурацияне тикшерү"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Text customization"
+msgstr "Текстны шәхси көйләү"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Кулланучы опцияне сайлаганнан соң күрсәтелә торган текст."
+
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
+
+msgid "Text shown upon negative answer"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Рәхмәт."
+
+msgid "The answer is too short"
+msgstr "Җавап артык кыска"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Сайланган серсүз бик зәгыйфь. Дөрес серсүз кимендә 12 символ озынлыкта булырга тиеш һәм төрле символлардан, шул исәптән, кимендә юл хәреф, баш хәреф, сан һәм махсус символдан торырга тиеш."
+
+msgid "The code is either invalid or expired."
+msgstr "Код яраксыз яки аның вакыты чыккан."
+
+msgid "The connection is not secure."
+msgstr "Бәйләнеш хәвефле."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Түбәндәге алучылар хисабыгызны алачак һәм сайлау нәтиҗәсен үзгәртеп булмый:"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Түбәндәге адым-адым процедура сезгә мәгълүмат җиткерүче платформагызны булдыру өчен күрсәтмәләр бирәчәк."
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Кулдан көйләү остасы сезгә альтернатив сертификат үзәгеннән HTTPS протоколын урнаштыру күрсәтмәләрен бирәчәк."
+
+msgid "The new password must be different from the current one."
+msgstr "Яңа серсүз хәзерге серсүздән аерылырга тиеш."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа әле HTTPS бәйләнешләре өчен көйләнмәгән һәм шуңа күрә аны сынау максатлары өчен генә кулланырга кирәк."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Платформа ачык IP аша тоташырга тиеш, сайланган хост исемендә бу адреска сылтамалы тиешле DNS язмасы булырга тиеш. "
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформа бу интерфейс аша HTTPS конфигурациясен саклап тора."
+
+msgid "The provided recovery key is invalid."
+msgstr "Кертелгән коткару ачкычы дөрес түгел."
+
+msgid "The provided reset token is invalid or expired."
+msgstr "Кертелгән ташлау токены яраксыз яки аның вакыты чыккан."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Алу коды дөрес түгел яки хисапның вакыты чыккан."
+
+msgid "The specified input is not valid."
+msgstr "Кертелгән мәгълүмат дөрес түгел."
+
+msgid "The specified input is not valid:"
+msgstr "Кертелгән мәгълүмат дөрес түгел:"
+
+msgid "The specified old password is not valid"
+msgstr "Күрсәтелгән иске серсүз дөрес түгел"
+
+msgid "The two passwords do not match"
+msgstr "Ике серсүз туры килми"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Йөкләү өчен файл күләме билгеләнгән чиктән артык"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Кулланучы киләсе керүдә серсүзен үзгәртергә мәҗбүр булачак."
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Раслау сылтамасы яраксыз яки сылтаманың вакыты чыккан."
+
+msgid "The whistleblower has already read the last update"
+msgstr "Мәгълүмат җиткерүче соңгы яңартуны укыды инде"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Мәгълүмат җиткерүче соңгы яңартуны әле укымады"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Аннары түбәндәге адресны күчереп алып, Tor Browser кушымтасына куегыз:"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Бу кулланучы тексты платформада бүтән күрсәтелми. Башлангыч текст үзгәртелде яисә бетерелде."
+
+msgid "This domain name is not available."
+msgstr "Бу домен исемен куллану мөмкин түгел."
+
+msgid "This field is mandatory"
+msgstr "Бу кыр мәҗбүри"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Бу демо-платформа, зинһар, аны чыннан да документлар җибәрү өчен кулланмагыз."
+
+msgid "This user has not performed the first login yet."
+msgstr "Бу кулланучы әле системага беренче керүне башкармады."
+
+msgid "Threshold"
+msgstr "Чик"
+
+msgid "Title"
+msgstr "Башисем"
+
+msgid "To"
+msgstr "Кемгә"
+
+msgid "To:"
+msgstr "Кемгә:"
+
+msgid "Tor"
+msgstr ""
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion хезмәте"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "Trigger conditions"
+msgstr "Башлау шартлары"
+
+msgid "Trigger question"
+msgstr "Сорау чыгарту"
+
+msgid "Triggered by score:"
+msgstr "Исәп белән чыгарылды:"
+
+msgid "Turn on email notifications"
+msgstr "Электрон почта аша хәбәрләрне кабызу"
+
+msgid "Type"
+msgstr "Төр"
+
+msgid "Type your new password again"
+msgstr "Яңа серсүзегезне кабат кертегез"
+
+msgid "URL redirects"
+msgstr "URL юнәлешне үзгәртә "
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Upload"
+msgstr "Йөкләп җибәрү"
+
+msgid "Upload a file:"
+msgstr "Файлны йөкләтеп җибәрү:"
+
+msgid "Upload date"
+msgstr "Йөкләү датасы"
+
+msgid "Use as default"
+msgstr "Килешенгәнчә куллану"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Керү өчен 16-санлы алу кодын кулланыгыз. Бу без сезгә җибәргән теләсә нинди хәбәрне карарга, шулай ук өстәмә мәгълүмат өстәргә мөмкинлек бирәчәк."
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Беренче сайтны административ максатлар өчен генә куллану"
+
+msgid "User"
+msgstr "Кулланучы"
+
+msgid "Username"
+msgstr "Кулланучы исеме"
+
+msgid "Users"
+msgstr "Кулланучылар"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Автомат HTTPS конфигурациясен кулланганда, «Let's Encrypt» үзәгеннән сертификатларны сорау, рөхсәт алу һәм яңарту процессы белән тулысынча идарә ителәчәк."
+
+msgid "Valid until:"
+msgstr "Соңгы куллану вакыты:"
+
+msgid "Validation of email address change in progress."
+msgstr "Электрон почта адресын үзгәртүне тикшерү дәвам итә. "
+
+msgid "Value"
+msgstr "Дәрәҗә"
+
+msgid "Video"
+msgstr "Видеоязма"
+
+msgid "View"
+msgstr ""
+
+msgid "View your report"
+msgstr "Хисабыгызны карап алыгыз"
+
+msgid "Voice"
+msgstr ""
+
+msgid "Waiting for authorization"
+msgstr "Авторизацияне көтү"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Файл(лар)ны йөкләү тәмамланганын көтү."
+
+msgid "Warning"
+msgstr "Кисәтү хәбәре"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Әгәр сез, алучылар серсүзләрен онытканда, мәгълүмат югалтудан сакланырга телисез икән, бу опцияне сайларга киңәш итәбез. Икенче яктан, әгәр сез документ җибәрү өчен алучылар гына керә ала торган система урнаштырырга телисез икән, без бу опцияне кулланырга киңәш итмибез."
+
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "Шәхси сәхифәне торгызу ачкычын алу һәм аны ышанычлы саклау өчен, \"Өстенлекләр\" бүлегенә керергә киңәш итәбез. Бу ачкыч, серсүзегезне оныткан очракта, платформага һәм мәгълүматларыгызга керү мөмкинлеген кайтару өчен кирәк булачак."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Без сезнең белән иң якын арада элемтәгә керергә тырышырбыз."
+
+msgid "Weak"
+msgstr "Зәгыйфь"
+
+msgid "Welcome!"
+msgstr "Рәхим итегез!"
+
+msgid "Whistleblower"
+msgstr "Мәгълүмат җиткерүче"
+
+msgid "Whistleblower's last access"
+msgstr "Мәгълүмат җиткерүченең соңгы керүе"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Whistleblowing button"
+msgstr "Мәгълүмат җиткерүче төймәсе"
+
+msgid "Width"
+msgstr "Киңлек"
+
+msgid "Yes"
+msgstr "Әйе"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Сез серверга анонимлыкны тәэмин итмичә тоташтыгыз, ә бу сервер документларны аноним җибәрүне генә кабул итә."
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Сезгә бу сайтка Tor Browser кушымтасы аша керергә тәкъдим ителә, бу сезнең хосусыйлыгыгызны саклый."
+
+msgid "You have completed the platform activation."
+msgstr "Платформаны активлаштыруны тәмамладыгыз."
+
+msgid "You have completed the platform wizard."
+msgstr "Платформа остасы белән көйләү эше тәмамланды"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Сез алучыларны максималь санда сайлап алдыгыз."
+
+msgid "You must select at least one recipient."
+msgstr "Сез ким дигәндә бер алучыны сайларга тиеш."
+
+msgid "Your new email address has been validated."
+msgstr "Яңа электрон почта адресыгыз расланды."
+
+msgid "Your report was successful."
+msgstr "Сезнең хисабыгыз уңышлы булды."
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "Мәгълүмат җиткерүче платформагыз әзер диярлек!"
+
+msgid "days"
+msgstr "көннәр"
+
+msgid "file unavailable"
+msgstr "Файлны кулланып булмый"
+
+msgid "megabytes"
+msgstr "мегабайтлар"
+
+msgid "percentage"
+msgstr "процент"
+
+msgid "please enter a valid email address."
+msgstr "дөрес электрон почта адресын кертегез."
+
+msgid "please enter numbers only."
+msgstr "зинһар, саннарны генә кертегез."
+
+msgid "seconds"
+msgstr "секундлар"
+
+msgid "File a report"
+msgstr "Хисап бирү"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Please summarize your report in a few words."
+msgstr "Хисапны берничә сүз белән сурәтләп бирегез."
+
+msgid "Describe your report in detail."
+msgstr "Хисапны җентекләп сурәтләгез."
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
+
+msgid "Would you like to tell us who you are?"
+msgstr ""
+
+msgid "First name"
+msgstr "Исем"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Alternative contact method"
+msgstr "Альтернатив элемтә ысулы"
+
+msgid "I prefer to be contacted via this platform only"
+msgstr "Бу платформа аша гына элемтәгә керергә телим"
+
+msgid "Other"
+msgstr "Башка"
+
+msgid "Specify"
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr "Хөрмәтле {RecipientName},"
+
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr "Сез бу электрон хәбәрне түбәндәге системада сезнең өчен кулланучы шәхси сәхифәсе ясалганга күрә алдыгыз: {Site}"
+
+msgid "Username: {Username}"
+msgstr "Кулланучы исеме: {Username}"
+
+msgid "Activation link: {Url}"
+msgstr "Активлаштыру сылтамасы: {Url}"
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr "Шәхси сәхифәне активлаштыру һәм кулланучы cерсүзен урнаштыру өчен, зинһар, активлаштыру сылтамасына басыгыз."
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr "Уңышлы активлаштырудан соң сез системага түбәндәге сылтама ярдәмендә керә аласыз: {LoginUrl}"
+
+msgid "Kind regards,"
+msgstr "Хөрмәт белән,"
+
+msgid "Account activation"
+msgstr "Шәхси сәхифәне активлаштыру"
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr "Хәзер мәгълүмат җиткерүче платформагызга түбәндәге адрес белән кереп була:"
+
+msgid "To log in, visit:"
+msgstr "Керү өчен түбәндәге сылтамага басыгыз:"
+
+msgid "Users' credentials:"
+msgstr "Кулланучы мәгълүматлары:"
+
+msgid "The platform will be automatically deleted on:"
+msgstr "Платформа бу вакытта автомат рәвештә бетереләчәк:"
+
+msgid "Access instructions"
+msgstr "Керү күрсәтмәләре"
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr "Соңгы вакыттагы гамәлләр саны гадәттәгедән күбрәк булып чыкты."
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr "Бу һөҗүм билгесе (мәсәлән, кемдер сезнең серверны ялган мәгълүмат белән тутыра) булырга яки сезнең проектның күренүчәнлеге арту аркасында кулланучылар саны күбәю булырга мөмкин."
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr "Гамәлләрнең ышанычлылыгын ачыклау өчен, проблеманы тикшерегез."
+
+msgid "The activities with unusual stats are:"
+msgstr "Статистикада сәер дип тамгаланган вакыйгалар:"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr "Сервер яңа хисапның сакланачагына гарантия бирә алмый, шуңа күрә документлар җибәрү мөмкинлеге сүндерелде."
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr "Зинһар, серверда күбрәк диск урыны булдыру өчен, техник ярдәм хезмәтенә мөрәҗәгать итегез."
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr "GlobaLeaks технологиясе серверның статусын тикшерү компонентын үз эченә ала, проблемалар килеп туган очракта, ул сезне кисәтәчәк."
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr "Тулырак мәгълүмат алу өчен, идарә интерфейсына керегез һәм \"Система статистикасы\" һәм \"Аномалияләр\" бүлекләрен карагыз."
+
+msgid "Anomaly detected in {NodeName}"
+msgstr "{NodeName} эчендә аномалия ачыкланды"
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr "Бу электрон хат түбәндәге кулланучыларның PGP ачкыч вакыты чыгачак яки инде чыккан икәнен хәбәр итә:"
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr "PGP ачкычы дөрес булмаса, система аларга шифрланган белдерүләр җибәрә алмаячак."
+
+msgid "PGP key expiration alert"
+msgstr "PGP ачкычының вакыты чыгу турында кисәтү хәбәре"
+
+msgid "A new whistleblowing site has been registered."
+msgstr "Мәгълүмат җиткерүче өчен яңа сайт теркәлде."
+
+msgid "Registration data:"
+msgstr "Теркәлү мәгълүматлары:"
+
+msgid "Site: {Url}"
+msgstr "Сайт: {Url}"
+
+msgid "Name: {Name}"
+msgstr "Исем: {Name}"
+
+msgid "Email: {Email}"
+msgstr "Электрон почта: {Email}"
+
+msgid "New whistleblowing site registered"
+msgstr "Мәгълүмат җиткерүче өчен яңа сайт теркәлде"
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr "Бу – платформаның административ интерфейсыннан сынау өчен җибәрелгән электрон хат."
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr "Бу электрон хатны кабул итү сервер SMTP почта серверын күрә һәм аның белән багланыш кора алганын күрсәтә."
+
+msgid "Test email"
+msgstr "Сынау өчен электрон хат"
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr "Бу электрон хат сезнең электрон почта адресыгызны {NewEmailAddress} адресына үзгәртү турында сорау җибәрелгәнен хәбәр итә."
+
+msgid "Click the following link to validate this change:"
+msgstr "Бу үзгәрешне раслау өчен, түбәндәге сылтамага басыгыз:"
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr "Әгәр сез бу үзгәртүне сорамаган булсагыз, серсүзегезне үзгәртегез һәм система администраторыгызга мөрәҗәгать итегез."
+
+msgid "Email change request"
+msgstr "Электрон почтаны үзгәртү турында сорау"
+
+msgid "From: {Author}"
+msgstr "Кемнән: {Author}"
+
+msgid "Date: {EventTime}"
+msgstr "Дата: {EventTime}"
+
+msgid "From: Whistleblower"
+msgstr "Кемнән: Мәгълүмат җиткерүче"
+
+msgid "Date: {SubmissionDate}"
+msgstr "Дата: {SubmissionDate}"
+
+msgid "Label: {TipLabel}"
+msgstr "Тамга: {TipLabel}"
+
+msgid "Status: {TipStatus}"
+msgstr "Халәт: {TipStatus}"
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr "Платформага йөкләнгән HTTPS сертификатының вакыты чыгып килә яки инде вакыты чыккан."
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr "Вакыты чыгу көне: {ExpirationDate}"
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr "Дөрес сертификат булмаса, платформага Tor аша гына имин рәвештә керү мөмкин булачак."
+
+msgid "Log in to solve the issue."
+msgstr "Проблеманы чишү өчен, системага керегез."
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr "HTTPS сертификатының вакыты чыгу турында кисәтү"
+
+msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr " HTTPS сертификатын бүгенгә планлаштырылган автомат рәвештә яңарту уңышсыз тәмамланды."
+
+msgid "The system will keep trying."
+msgstr "Система омтылышларны кабатлаячак."
+
+msgid "Failed HTTPS certificate renewal"
+msgstr "HTTPS сертификаты яңартыла алмады "
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr "Бу электрон хат сезгә җаваплы зат хисап {TipNum} өчен мәгълүмат җиткерүченең идентификаторына керергә рөхсәт биргәнлеге турында хәбәр итә."
+
+msgid "The report can be accessed at:"
+msgstr "Xисапка бу адрестан кереп була:"
+
+msgid "Access to whistleblower's identity authorized"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керү рөхсәт ителде"
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" whistleblowing identity for the report {TipNum}."
+msgstr "Бу электрон хат сезгә җаваплы зат хисап {TipNum} өчен мәгълүмат җиткерүченең идентификаторына керергә рөхсәт бирмәгәнен хәбәр итә."
+
+msgid "Access to whistleblower's identity denied"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керү рөхсәт ителмәде"
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the report {TipNum}"
+msgstr "Бу электрон хат сезгә алучы тарафыннан хисап {TipNum} өчен мәгълүмат җиткерүченең идентификаторын керү мөмкинлеге соралганлыгы турында хәбәр итә."
+
+msgid "The request can be accessed at:"
+msgstr "Сорауга бу адрестан кереп була:"
+
+msgid "New request of access to a whistleblower's identity"
+msgstr "Мәгълүмат җиткерүченең идентификаторына керү өчен яңа сорау"
+
+msgid ""
+"This is an email to notify you that the whistleblower for the report "
+"{TipNum} has provided their identity."
+msgstr "Бу электрон хат сезгә мәгълүмат җиткерүченең үз идентификаторын {TipNum} хисап өчен биргәнлеге турында хәбәр итә."
+
+msgid "The whistleblower has provided their identity"
+msgstr "Мәгълүмат җиткерүче үз идентификаторын бирде"
+
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"the account: {Username}"
+msgstr "Сез бу электрон хатны түбәндәге шәхси сәхифә өчен серсүзне ташлату соралганга күрә алдыгыз: {Username}"
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr "Әгәр бу сорауны җибәрмәгән булсагыз, әлеге электрон хатка игътибар итмәгез яки аны бетерегез."
+
+msgid "You can confirm your request by clicking the following link:"
+msgstr "Cоравыгызны раслау өчен, түбәндәге сылтамага басыгыз:"
+
+msgid "Password reset instructions"
+msgstr "Серсүзне ташлату өчен күрсәтмәләр"
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr "Бу электрон хат сезнең PGP ачкычыгызның вакыты чыгу яки инде вакыты чыкканлыгы турында хәбәр итә."
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr "Сез аның гамәлдә булу вакытын озайтырга, платформада ачкычны яңартырга яисә яңа ачкыч йөкләргә тиеш."
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr "PGP ачкычы дөрес булмаса, система бирелгән мәгълүматны шифрлый алмаячак."
+
+msgid "Click the link to activate the platform:"
+msgstr "Платформаны активлаштыру өчен, бу сылтамага басыгыз:"
+
+msgid "Activation"
+msgstr "Активлаштыру"
+
+msgid "A software update is available."
+msgstr "Программаны яңарту мөмкинлеге бар"
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr "Платформаны яңартып тору – иминлекне тәэмин итү өчен яхшы тәҗрибә."
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr "Яңа версиядәге яңа функцияләр һәм хаталарны төзәтү компонентлары турында белү өчен, түбәндәге үзгәрешләр журналын карагыз: {ChangeLogUrl}"
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr "Программаны яңарту буенча күрсәтмәләр өчен, зинһар, түбәндәге адрестагы документларга мөрәҗәгать итегез:{UpdateGuideUrl}"
+
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr "Бу электрон хат сезгә алучының бер яки берничә хисапка керергә рөхсәт биргәнлеге турында хәбәр итә."
+
+msgid "New report"
+msgstr "Яңа хисап"
+
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr "Иң беренче вакыты чыгу датасы - {EarliestExpirationDate}."
+
+msgid "Please remember to check them before they are deleted."
+msgstr "Зинһар, аларны бетергәнче, тикшерергә онытмагыз."
+
+msgid "Some reports will expire soon"
+msgstr "Кайбер хисапларның тиздән вакыты чыгачак"
+
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr "Бу электрон хат гамәлдәге хисапның яңартылганлыгы турында хәбәр итә."
+
+msgid "Report updated"
+msgstr "Хисап яңартылды"
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr "Бу электрон хат сезгә укылмаган яки яңартылган хисаплар булуын искә төшерә."
+
+msgid "Reminder about unread or updated reports"
+msgstr "Укылмаган яки яңартылган хисаплар турында искәртү"
+
+msgid "Role: {Role}"
+msgstr "Роль: {Role}"
+
+msgid "Password: {Password}"
+msgstr "Пароль: {Password}"

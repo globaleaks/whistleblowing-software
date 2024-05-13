@@ -1,1 +1,0 @@
-GL.controller("EmptyCtrl", [function() {}]);

@@ -1,7 +1,0 @@
-ID: {TipNum}
-Date: {SubmissionDate}
-Label: {TipLabel}
-Status: {TipStatus}
-
-{QuestionnaireAnswers}
-{Comments}

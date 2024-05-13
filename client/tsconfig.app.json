@@ -1,0 +1,18 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [
+      "@angular/localize",
+      "node"
+    ]
+  },
+  "files": [
+    "app/main.ts",
+    "app/polyfills.ts"
+  ],
+  "include": [
+    "app/**/*.d.ts"
+  ]
+}

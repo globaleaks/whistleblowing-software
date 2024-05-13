@@ -1,0 +1,22 @@
+<div *ngIf="fields.enabled" class="field-answer">
+    <div>
+        <span *ngIf="!fields">{{index + 1}})</span>
+        <span>{{fields.label |translate}}</span>
+    </div>
+    <div *ngIf="fieldAnswers && fieldAnswers[fields.id]">
+        <div *ngIf="!hasMultipleEntries(fieldAnswers[fields.id])">
+            <src-tip-field-answer-entry [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode"
+                [field]="fields" [fieldAnswers]=fieldAnswers
+                [entry]="fieldAnswers[fields.id][0]"></src-tip-field-answer-entry>
+        </div>
+        <div *ngIf="hasMultipleEntries(fieldAnswers[fields.id])">
+            <div *ngFor="let entry of fieldAnswers[fields.id] | orderBy:['y', 'x'],let i = index">
+                <div class="">
+                    <span class="text-muted">#{{i + 1}}</span>
+                </div>
+                <src-tip-field-answer-entry [redactOperationTitle]="redactOperationTitle" [redactMode]="redactMode"
+                    [field]="fields" class="" [entry]="entry"></src-tip-field-answer-entry>
+            </div>
+        </div>
+    </div>
+</div>

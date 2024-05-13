@@ -1,0 +1,22 @@
+<div class="row mb-3" *ngIf="appDataService.public.node.contexts_clarification">
+    <b>
+        <markdown class="col-md-12" [data]="appDataService.public.node.contexts_clarification | stripHtml"></markdown>
+    </b>
+</div>
+<div id="SubmissionStepContext" class="row">
+    <div id="context-{{index}}" *ngFor="let context of (selectable_contexts| orderBy:contextsOrderPredicate);let index = index" (click)="selectContext.emit(context)" [class]="utilsService.getCardSize(selectable_contexts.length)">
+        <div class="select-card">
+            <div class="row">
+                <div class="col-md-12 title">{{context.name}}</div>
+            </div>
+            <div class="row" *ngIf="context.picture">
+                <div class="col-md-4">
+                    <img class="context-image" alt="context picture" *ngIf="context.picture" width="500" height="500" ngSrc="/s/{{context.id}}"/>
+                </div>
+            </div>
+            <div class="row" *ngIf="context.description">
+                <div class="col-md-12 description">{{context.description}}</div>
+            </div>
+        </div>
+    </div>
+</div>
