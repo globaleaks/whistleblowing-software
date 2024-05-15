@@ -5,7 +5,27 @@ import os
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
 from globaleaks.state import State
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, not_
+
+
+def get_identity_files(data):
+    ids = []
+
+    def extract_from_children(children):
+        for child in children:
+            if child.get('type') in ['fileupload', 'voice']:
+                ids.append(child.get('id'))
+            elif child.get('type') == 'fieldgroup':
+                extract_from_children(child.get('children', []))
+
+    for questionnaire in data:
+        for step in questionnaire.get('steps', []):
+            for child in step.get('children', []):
+                if child.get('template_id') == 'whistleblower_identity':
+                    extract_from_children(child.get('children', []))
+                    return ids
+
+    return ids
 
 
 def serialize_archived_field_recursively(field, language):
@@ -254,7 +274,7 @@ def serialize_rtip(session, itip, rtip, language):
           'name': receiver.name
         })
 
-    denied_identity_files = []
+    denied_identity_files = ['1']
     if 'whistleblower_identity' in ret['data']:
         ret['data']['whistleblower_identity_provided'] = True
 
@@ -266,26 +286,20 @@ def serialize_rtip(session, itip, rtip, language):
 
     for ifile, wbfile in session.query(models.InternalFile, models.WhistleblowerFile) \
                                .filter(models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
+                                       not_(models.InternalFile.reference_id.in_(denied_identity_files)),
                                        models.WhistleblowerFile.receivertip_id == rtip.id):
-        if denied_identity_files is not None and ifile.reference_id in denied_identity_files:
-          continue
-
         ret['wbfiles'].append(serialize_wbfile(session, ifile, wbfile))
 
     for rfile in session.query(models.ReceiverFile) \
                          .filter(models.ReceiverFile.internaltip_id == itip.id,
-                                 or_(models.ReceiverFile.visibility == 0,
-                                     models.ReceiverFile.visibility == 1,
-                                     and_(models.ReceiverFile.visibility == 2,
-                                          models.ReceiverFile.author_id == user_id))):
+                                 or_(models.ReceiverFile.visibility != 2,
+                                     models.ReceiverFile.author_id == user_id)):
         ret['rfiles'].append(serialize_rfile(session, rfile))
 
     for comment in session.query(models.Comment) \
                           .filter(models.Comment.internaltip_id == itip.id,
-                                  or_(models.Comment.visibility == 0,
-                                      models.Comment.visibility == 1,
-                                      and_(models.Comment.visibility == 2,
-                                           models.Comment.author_id == user_id))):
+                                  or_(models.Comment.visibility != 2,
+                                      models.Comment.author_id == user_id)):
         ret['comments'].append(serialize_comment(session, comment))
 
     return ret
@@ -318,24 +332,6 @@ def serialize_wbtip(session, itip, language):
 
     return ret
 
-def get_identity_files(data):
-    ids = []
-
-    def extract_from_children(children):
-        for child in children:
-            if child.get('type') in ['fileupload', 'voice']:
-                ids.append(child.get('id'))
-            elif child.get('type') == 'fieldgroup':
-                extract_from_children(child.get('children', []))
-
-    for questionnaire in data:
-        for step in questionnaire.get('steps', []):
-            for child in step.get('children', []):
-                if child.get('template_id') == 'whistleblower_identity':
-                    extract_from_children(child.get('children', []))
-                    return ids
-
-    return ids
 
 def serialize_redirect(redirect):
     """
