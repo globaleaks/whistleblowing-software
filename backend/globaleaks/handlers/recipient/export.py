@@ -25,7 +25,14 @@ from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null, msdos_encode
 from globaleaks.utils.zipstream import ZipStream
+import io
 
+import pkgutil
+if pkgutil.find_loader("fpdf") is not None:
+    fpdf_installed = True
+    from fpdf import FPDF
+else:
+    fpdf_installed = False
 
 def serialize_rtip_export(session, user, itip, rtip, context, language):
     rtip_dict = serializers.serialize_rtip(session, itip, rtip, language)
@@ -65,6 +72,65 @@ def get_tip_export(session, tid, user_id, itip_id, language):
 
     return user.pgp_key_public, serialize_rtip_export(session, user, itip, rtip, context, language)
 
+
+def create_pdf(input_text):
+    pdf = FPDF(orientation='P', unit='mm', format='A4')
+    fonts_directory = os.path.join('globaleaks', 'fonts')
+
+    fonts_data = {
+        'inter': 'inter.ttf',
+        'noto_sans_arabic': 'noto-sans-arabic.ttf',
+        'noto_sans_lao': 'noto-sans-lao.ttf',
+        'noto_sans_hebrew': 'noto-sans-hebrew.ttf',
+        'noto_sans_korean': 'noto-sans-korean.ttf',
+        'noto_sans_japanese': 'noto-sans-japanese.ttf',
+        'noto_sans_tamil': 'noto-sans-tamil.ttf',
+        'noto_sans_thai': 'noto-sans-thai.ttf',
+        'noto_sans_bengali': 'noto-sans-bengali.ttf',
+        'noto_sans_georgian': 'noto-sans-georgian.ttf',
+        'noto_sans_tibetan': 'noto-sans-tibetan.ttf',
+        'noto_sans_khmer': 'noto-sans-khmer.ttf',
+        'noto_sans_armenian': 'noto-sans-armenian.ttf',
+        'noto_sans_myanmar': 'noto-sans-myanmar.ttf',
+        'noto_sans_thaana': 'noto-sans-thaana.ttf',
+        'noto_sans_ethiopic': 'noto-sans-ethiopic.ttf',
+    }
+
+    # Register fonts with the PDF
+    for font_key, font_file in fonts_data.items():
+        pdf.add_font(family=font_key.upper(), style='', fname=os.path.join(fonts_directory, font_file))
+
+    pdf.set_font('INTER')
+    pdf.set_fallback_fonts([font_key.upper() for font_key in fonts_data if font_key != 'inter'])
+
+    pdf.set_auto_page_break(auto=True, margin=15)
+    line_height = 3
+    margin = 10
+
+    pdf.set_right_margin(margin)
+    pdf.set_left_margin(margin)
+    pdf.set_font_size(12)
+    pdf.add_page()
+
+    pdf.set_text_shaping(use_shaping_engine=True, direction="rtl")
+
+    # Process each line
+    for line in input_text.split('\n'):
+
+        if any('\u0590' <= char <= '\u06FF' for char in line):  # Check for characters in Hebrew or Arabic blocks
+            pdf.set_text_shaping(use_shaping_engine=True, direction="rtl")
+        else:
+            pdf.set_text_shaping(use_shaping_engine=True, direction="ltr")
+
+        pdf.set_font('INTER')
+        pdf.multi_cell(0, line_height, line.strip(), align='L')
+        pdf.ln()
+
+    # Generate PDF output as a bytearray
+    pdf_output = pdf.output()
+    output_buffer = io.BytesIO(pdf_output)
+    output_buffer.seek(0)
+    return output_buffer.getvalue()
 
 @inlineCallbacks
 def prepare_tip_export(user_session, tip_export):
@@ -113,7 +179,11 @@ def prepare_tip_export(user_session, tip_export):
     export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
     export_template = msdos_encode(export_template.decode()).encode()
 
-    files.append({'fo': BytesIO(export_template), 'name': 'report.txt'})
+    if fpdf_installed:
+        pdf_bytes = create_pdf(export_template.decode())
+        files.append({'fo': BytesIO(pdf_bytes), 'name': 'report.pdf'})
+    else:
+        files.append({'fo': BytesIO(export_template), 'name': 'report.txt'})
 
     return files
 
