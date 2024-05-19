@@ -318,17 +318,6 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      convert_fonts: {
-        command: function() {
-          // The directory containing the font files
-          var fontDir = 'app/fonts';
-          // FontForge script file
-          var scriptFile = 'scripts/fontforge';
-
-          // Command to find font files and process them with xargs and FontForge
-          return 'find ' + fontDir + ' -type f -name "*.woff2" | sed "s/.woff2//g" | xargs -I {} sh -c "test -f {}.ttf || fontforge -lang=ff -script scripts/fontforge {}.woff2"'
-        }
-      },
       npx_build: {
         command: "npx ng build --configuration=production --aot --source-map"
       },

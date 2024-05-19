@@ -27,6 +27,60 @@ from globaleaks.utils.utility import datetime_now, datetime_null, msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
+try:
+
+    import fpdf
+
+    class REPORTPDF(fpdf.FPDF):
+        report_default_font = "Inter-Regular.ttf"
+        report_fallback_fonts = ["GoNotoKurrent-Regular.ttf"]
+        report_direction = 'ltr'
+        report_line_height = 3
+        report_margin = 10
+
+        def __init__(self, *args, **kwargs):
+            super(REPORTPDF, self).__init__(*args, **kwargs)
+
+            fontspath = os.path.join(Settings.client_path, "fonts")
+            self.add_font(family="Inter-Regular.ttf", style='', fname=os.path.join(fontspath, "Inter-Regular.ttf"))
+            self.add_font(family="GoNotoKurrent-Regular.ttf", style='', fname=os.path.join(fontspath, "GoNotoKurrent-Regular.ttf"))
+
+            self.set_font(self.report_default_font, "", 11)
+            self.set_fallback_fonts(self.report_fallback_fonts)
+
+            self.set_auto_page_break(auto=True, margin=15)
+
+            self.set_author("GLOBALEAKS")
+            self.set_creator("GLOBALEAKS")
+            self.set_lang("EN")
+
+            self.set_right_margin(self.report_margin)
+            self.set_left_margin(self.report_margin)
+
+            self.set_text_shaping(use_shaping_engine=True, direction="ltr")
+
+        def header(self):
+            self.cell(80)
+            self.set_font("courier", "", 9)
+            self.set_text_shaping(use_shaping_engine=True, direction="ltr")
+            self.cell(30, 10, self.title, align="C")
+            self.set_text_shaping(use_shaping_engine=True, direction=self.report_direction)
+            self.set_font(self.report_default_font, "", 11)
+            self.ln(20)
+
+        def footer(self):
+            self.set_y(-15)
+            self.set_font("courier", "", 9)
+            self.set_text_shaping(use_shaping_engine=True, direction="ltr")
+            self.cell(0, 10, f"{self.page_no()}/{{nb}}", align="C")
+            self.set_text_shaping(use_shaping_engine=True, direction=self.report_direction)
+            self.set_font(self.report_default_font, "", 11)
+
+except ImportError:
+    REPORTPDF = None
+    pass
+
+
 def serialize_rtip_export(session, user, itip, rtip, context, language):
     rtip_dict = serializers.serialize_rtip(session, itip, rtip, language)
 
@@ -64,6 +118,30 @@ def get_tip_export(session, tid, user_id, itip_id, language):
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     return user.pgp_key_public, serialize_rtip_export(session, user, itip, rtip, context, language)
+
+
+def create_pdf_report(input_text, data):
+    pdf = REPORTPDF(orientation='P', unit='mm', format='A4')
+
+    pdf.set_title("REPORT " + str(data['tip']['progressive']) + " (" + str(data['tip']['id']) + ") [CONFIDENTIAL]")
+
+    pdf.add_page()
+
+    # Process each line
+    for line in input_text.split('\n'):
+        if any('\u0590' <= char <= '\u06FF' for char in line):  # Check for characters in Hebrew or Arabic blocks
+            if pdf.report_direction == 'ltr':
+                pdf.report_direction = 'rtl'
+                pdf.set_text_shaping(use_shaping_engine=True, direction=pdf.report_direction)
+        else:
+            if pdf.report_direction == 'rtl':
+                pdf.report_direction = 'ltr'
+                pdf.set_text_shaping(use_shaping_engine=True, direction=pdf.report_direction)
+
+        pdf.multi_cell(0, pdf.report_line_height, line.strip(), align='L')
+        pdf.ln()
+
+    return BytesIO(pdf.output())
 
 
 @inlineCallbacks
@@ -113,7 +191,10 @@ def prepare_tip_export(user_session, tip_export):
     export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
     export_template = msdos_encode(export_template.decode()).encode()
 
-    files.append({'fo': BytesIO(export_template), 'name': 'report.txt'})
+    if REPORTPDF:
+        files.append({'fo': create_pdf_report(export_template.decode(), tip_export), 'name': 'report.pdf'})
+    else:
+        files.append({'fo': BytesIO(export_template), 'name': 'report.txt'})
 
     return files
 
