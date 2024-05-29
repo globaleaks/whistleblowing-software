@@ -947,6 +947,7 @@ class _User(Model):
     change_email_token = Column(UnicodeText, unique=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
+    tip_update_notification = Column(Boolean, default=True, nullable=False)
     forcefully_selected = Column(Boolean, default=False, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=True, nullable=False)
@@ -981,6 +982,7 @@ class _User(Model):
     bool_keys = ['enabled',
                  'password_change_needed',
                  'notification',
+                 'tip_update_notification',
                  'can_delete_submission',
                  'can_postpone_expiration',
                  'can_reopen_reports',

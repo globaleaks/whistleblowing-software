@@ -73,6 +73,7 @@ def user_serialize_user(session, user, language):
         'picture': picture,
         'tid': user.tid,
         'notification': user.notification,
+        'tip_update_notification': user.tip_update_notification,
         'encryption': user.crypto_pub_key != '',
         'escrow': user.crypto_escrow_prv_key != '',
         'two_factor': user.two_factor_secret != '',
