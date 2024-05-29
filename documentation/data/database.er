@@ -199,6 +199,7 @@
     role {label:"INTEGER"}
     salt {label:"TEXT(24)"}
     tid {label:"INTEGER"}
+    tip_update_notification {label:"BOOLEAN"}
     two_factor_secret {label:"TEXT(32)"}
     username {label:"TEXT"}
 [internalfile]
