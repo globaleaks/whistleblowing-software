@@ -682,6 +682,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.pgp_key_expiration = "";
       user.language = "en";
       user.notification = true;
+      user.tip_update_notification = true;
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
       user.can_grant_access_to_reports = false;

@@ -136,6 +136,7 @@ def db_user_update_user(session, tid, user_session, request):
     user.name = request['name']
     user.public_name = request['public_name'] or request['name']
     user.notification = request['notification']
+    user.tip_update_notification = request['tip_update_notification']
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:

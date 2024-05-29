@@ -163,7 +163,8 @@ UserUserDesc = {
     'pgp_key_expiration': str,
     'pgp_key_public': str,
     'language': str,
-    'notification': bool
+    'notification': bool,
+    'tip_update_notification': bool
 }
 
 CommentDesc = {
