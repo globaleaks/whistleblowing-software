@@ -311,10 +311,10 @@ msgid "Text shown on top of the interface for selecting channels"
 msgstr "Texte affiché en haut de l’interface de sélection des canaux"
 
 msgid "Silence email notifications"
-msgstr "Désactiver les courriel de notification"
+msgstr "Désactiver les courriels de notification"
 
 msgid "Turn on email notifications"
-msgstr "Activer les courriel de notification"
+msgstr "Activer les courriels de notification"
 
 msgid "Input validation"
 msgstr "Validation de saisie"
@@ -1175,6 +1175,9 @@ msgstr "Langue"
 
 msgid "Enable email notifications"
 msgstr "Activer les notifications par courriel"
+
+msgid "Enable report update notifications"
+msgstr "Activer les notifications de mise à jour des signalements par courriel"
 
 msgid "Details of the PGP key:"
 msgstr "Détails de la clé PGP :"

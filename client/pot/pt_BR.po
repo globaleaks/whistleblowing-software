@@ -1178,6 +1178,9 @@ msgstr "Idioma"
 msgid "Enable email notifications"
 msgstr "Ativar notificações de email"
 
+msgid "Enable report update notifications"
+msgstr "Ativar notificações de atualização de denúncias por email"
+
 msgid "Details of the PGP key:"
 msgstr "Detalhes da chave PGP:"
 
