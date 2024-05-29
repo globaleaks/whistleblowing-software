@@ -51,6 +51,11 @@ class MailGenerator(object):
             log.debug("Discarding emails for %s due to receiver's preference.", user_id)
             return
 
+        # Do not spool emails if the receiver has disabled tip update notifications
+        if data['type'] == 'tip_update' and not data['user']['tip_update_notification']:
+            log.debug("Discarding tip update emails for %s due to receiver's preference.", user_id)
+            return
+
         data['node'] = self.serialize_config(session, 'node', tid, language)
 
         if data['node']['mode'] == 'default':
