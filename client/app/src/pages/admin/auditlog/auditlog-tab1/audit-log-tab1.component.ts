@@ -37,6 +37,6 @@ export class AuditLogTab1Component implements OnInit {
   }
 
   exportAuditLog() {
-    this.utilsService.generateCSV(JSON.stringify(this.auditLog), 'auditlog', ["Date", "Type", "Severity", "User", "Object", "data"]);
+    this.utilsService.generateCSV(JSON.stringify(this.auditLog), 'auditlog', ["Date", "Type", "User", "Object", "data"]);
   }
 }
