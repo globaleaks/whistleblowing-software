@@ -1,3 +1,7 @@
+Changes in version 4.15.5
+    Fix: Do not notify report updates when personal notes are loaded
+    Update translations
+
 Changes in version 4.15.4
     Revert change introduced in 4.15.3 to prevent updating report date
     at the time of first report opening following community preference
