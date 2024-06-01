@@ -108,9 +108,12 @@ class MailGenerator(object):
         for user, rtip, itip, obj in itertools.chain(results1, results2, results3):
             tid = user.tid
 
-            if (rtips_ids.get(rtip.id, False) or tid in silent_tids) or \
-               (isinstance(obj, models.Comment) and obj.author_id == user.id) or \
-               (rtip.last_notification > rtip.last_access):
+            if (tid in silent_tids) or \
+                rtips_ids.get(rtip.id, False) or \
+                rtip.last_notification > rtip.last_access or \
+                (isinstance(obj, models.Comment) and \
+                 (obj.author_id == user.id or
+                  obj.visibility == models.EnumVisibility.personal.name)):
                 obj.new = False
                 continue
 
