@@ -10,7 +10,7 @@ export default defineConfig({
   },
   env: {
     "coverage": true,
-    "default_language": "it",
+    "default_language": "en",
     "codeCoverage": {
       "enabled": true
     },
