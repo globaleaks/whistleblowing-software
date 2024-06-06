@@ -95,6 +95,10 @@ factory("Authentication",
               if (password) {
                 $rootScope.setPage("tippage");
               }
+
+              if (self.session.properties.operator_session) {
+                $location.path("/");
+              }
             } else {
               $location.path(self.session.homepage);
             }

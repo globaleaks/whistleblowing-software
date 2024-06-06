@@ -6,7 +6,7 @@
   "packages": {
     "": {
       "name": "GlobaLeaks",
-      "version": "4.15.4",
+      "version": "4.15.5",
       "license": "AGPL-3.0",
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
