@@ -4,12 +4,6 @@
 <div class="modal-body">
   <div data-translate>Status:</div>
   <select id="assignSubmissionStatus" class="form-control" data-ng-model="arg.status" data-ng-options="state as state.label | translate for state in arg.submission_statuses.slice(1)"></select>
-  <div class="mt-2">
-    <span data-translate>Motivation</span>
-  </div>
-  <div class="form-group">
-    <textarea name="reason" class="form-control " data-ng-model="arg.motivation" /></textarea>
-  </div>
 </div>
 <div class="modal-footer">
   <button id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm(arg)">
