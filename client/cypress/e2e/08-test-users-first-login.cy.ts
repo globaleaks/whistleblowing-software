@@ -25,7 +25,7 @@ describe("Recipient first login", () => {
     cy.takeScreenshot("user/recoverykey");
     cy.get("#close").click();
     cy.get("[name='two_factor']").click();
-    cy.takeScreenshot("user/2fa");
+    cy.takeScreenshot("user/2fa", 2);
     cy.get("#close").click();
   });
 });
