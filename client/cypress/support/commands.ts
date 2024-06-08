@@ -7,7 +7,7 @@ declare global {
       waitForLoader: () => void;
       waitForPageIdle: () => void;
       logout: () => void;
-      takeScreenshot: (filename: string, locator?: any) => void;
+      takeScreenshot: (filename: string, extendFactor ?: number = 1) => void;
       login_whistleblower: (receipt: string) => void;
       waitForTipImageUpload: (attempt?: number) => void;
       waitUntilClickable: (locator: string, timeout?: number) => void;
@@ -165,7 +165,7 @@ Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) =>
 
 });
 
-Cypress.Commands.add("takeScreenshot", (filename, _?: any) => {
+Cypress.Commands.add("takeScreenshot", (filename, extendFactor ?: number = 1) => {
   if (!Cypress.env("takeScreenshots")) {
     return;
   }
@@ -177,7 +177,7 @@ Cypress.Commands.add("takeScreenshot", (filename, _?: any) => {
   );
 
   return cy.document().then((doc) => {
-    cy.viewport(1280, doc.body.scrollHeight);
+    cy.viewport(1280, doc.body.scrollHeight * extendFactor);
 
     cy.waitForPageIdle();
 
@@ -185,6 +185,7 @@ Cypress.Commands.add("takeScreenshot", (filename, _?: any) => {
     cy.screenshot("../" + filename, {
       overwrite: true
     });
+    cy.viewport(1280, doc.body.scrollHeight);
   });
 });
 
@@ -285,5 +286,5 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
 });
 
 Cypress.Commands.add("logout", () => {
-  cy.get('a#LogoutLink').should('be.visible').click();
+  cy.get('[data-cy="logout"]').should('be.visible').click();
 });
