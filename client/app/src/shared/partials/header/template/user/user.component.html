@@ -32,7 +32,7 @@
             <i class="glyphicon glyphicon-user"></i>
         </span>
 		<span id="LogoutLinkBox">
-            <a href="#" id="LogoutLink" (click)="onLogout($event)" title="{{'Logout' | translate}}">
+            <a href="#" id="LogoutLink" data-cy="logout" (click)="onLogout($event)" title="{{'Logout' | translate}}">
                 <i class="pointer fa-solid fa-fw fa-sign-out-alt"></i>
                 <span *ngIf="authentication.session.role === 'whistleblower'">
                     <span></span>
