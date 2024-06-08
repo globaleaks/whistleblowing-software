@@ -1,3 +1,13 @@
+Changes in version 4.15.6
+    Fix act as operator functionality broken since 4.15.0 (#4099)
+    Temporarily remove interfaces to provide a motivation on report status change
+      Since the feature is not complete many users appear very confused of having
+      to enter a motivation that is not shown.
+      The functionality will be reintroduced soon soon with a complete implementation.
+    Raise complexity of proof of work on sessions
+    Implement basic QoS algorithm on handling of virtual hosting limiting
+      burst of traffic.
+
 Changes in version 4.15.5
     Fix: Do not notify report updates when personal notes are loaded
     Update translations
