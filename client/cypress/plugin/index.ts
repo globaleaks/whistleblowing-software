@@ -5,6 +5,13 @@ import * as fs from 'fs'
 import * as registerCodeCoverageTasks from "@cypress/code-coverage/task";
 
 export default (on, config) => {
+
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    launchOptions.preferences.width = 1280;
+    launchOptions.preferences.height = 1250;
+    return launchOptions;
+  });
+
   on('after:screenshot', (details) => {
     if (details.path.includes('failed')) {
       return;
