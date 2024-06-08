@@ -142,7 +142,7 @@
                { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/button.css" },
                { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/ng-select.css" },
                { "bundleName": "styles-rtl", "inject": false, "input": "app/css/bootstrap-fixes.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/test.css" },
+               { "bundleName": "styles-ltr", "inject": false, "input": "app/css/test.css" },
                { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" },
                { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/solid.css" },
                { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/regular.css" },
