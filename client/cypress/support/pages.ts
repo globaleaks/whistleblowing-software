@@ -1,7 +1,7 @@
 class WhistleblowerPage {
   public static performSubmission(arg?:string) {
     cy.visit("#/");
-    cy.takeScreenshot("whistleblower/home", 0);
+    cy.takeScreenshot("whistleblower/home");
 
     cy.get("#WhistleblowingButton").click();
     cy.get("#step-0").should("be.visible");

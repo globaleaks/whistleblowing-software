@@ -1,28 +1,4 @@
 describe("recipient admin tip actions", () => {
-  it("should revoke and grant access to reports", function () {
-    cy.login_receiver();
-
-    cy.visit("/#/recipient/reports");
-    cy.get("#tip-0").first().click();
-
-    cy.get("#tip-action-revoke-access").should('be.visible', { timeout: 10000 }).click();
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.get('.ng-dropdown-panel').should('be.visible');
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.contains('.ng-option', 'Recipient2').click();
-    cy.get("#modal-action-ok").click();
-
-    cy.get("#tip-action-grant-access").should('be.visible', { timeout: 10000 }).click();
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.get('.ng-dropdown-panel').should('be.visible');
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.contains('.ng-option', 'Recipient2').click();
-    cy.get("#modal-action-ok").click();
-
-
-    cy.logout();
-  });
-
   it("should close and reopen reports", function () {
     cy.login_receiver();
 
@@ -30,15 +6,16 @@ describe("recipient admin tip actions", () => {
     cy.get("#tip-0").first().click();
 
     cy.get("#tip-action-change-status").click();
-    cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(2);
-    cy.get('textarea[name="reason"]').type("This is a close status illatest motivation");
+    cy.get('#assignSubmissionStatus').select(2);
+    cy.get('textarea[name="reason"]').type("This is a close status test motivation");
     cy.get("#modal-action-ok").click();
     cy.get("#tip-action-reopen-status").click();
-    cy.get('textarea[name="motivation"]').type("This is a Reopen status test motivation");
+    cy.get('textarea[name="motivation"]').type("This is a reopen status test motivation");
     cy.get("#modal-action-ok").click();
 
     cy.logout();
   });
+
   it("recipient should file a report on behalf of whistleblower", function () {
     cy.login_receiver();
 
@@ -99,7 +76,7 @@ describe("recipient admin tip actions", () => {
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get("#tip-action-change-status").click();
-    cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(1);
+    cy.get('#assignSubmissionStatus').select(1);
     cy.get('textarea[name="reason"]').type("This is a test motivation");
     cy.get("#modal-action-ok").click();
     cy.logout();
@@ -178,6 +155,7 @@ describe("recipient admin tip actions", () => {
     cy.wait(500);
 
     cy.get('#tip-action-reload').click();
+
     cy.wait(500);
 
     cy.get('#tip-action-select-all').click();
@@ -190,24 +168,55 @@ describe("recipient admin tip actions", () => {
     cy.logout();
   });
 
-  it("should transfer access to recipient", function () {
+  it("should revoke report access to Recipient2", function () {
     cy.login_receiver();
-
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
-
-    cy.get("#tip-action-revoke-access").should('be.visible', { timeout: 10000 }).click();
+    cy.get("#tip-action-revoke-access").should('be.visible').click();
     cy.get('[data-cy="reciever_selection"]').click();
     cy.get('.ng-dropdown-panel').should('be.visible');
     cy.get('[data-cy="reciever_selection"]').click();
     cy.contains('.ng-option', 'Recipient2').click();
     cy.get("#modal-action-ok").click();
+    cy.logout();
+  });
 
-    cy.get("#tip-action-transfer-access").should('be.visible', { timeout: 10000 }).click();
+  it("should revoke report access to Recipient3", function () {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get("#tip-action-revoke-access").should('be.visible').click();
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.get('.ng-dropdown-panel').should('be.visible');
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.contains('.ng-option', 'Recipient3').click();
+    cy.get("#modal-action-ok").click();
+    cy.logout();
+  });
+
+  it("should grant report access to Recipient2", function () {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get("#tip-action-grant-access").should('be.visible').click();
     cy.get('[data-cy="reciever_selection"]').click();
     cy.get('.ng-dropdown-panel').should('be.visible');
     cy.get('[data-cy="reciever_selection"]').click();
     cy.contains('.ng-option', 'Recipient2').click();
     cy.get("#modal-action-ok").click();
+    cy.logout();
+  });
+
+  it("should transfer report access to Recipient3", function () {
+    cy.login_receiver();
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+    cy.get("#tip-action-transfer-access").should('be.visible').click();
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.get('.ng-dropdown-panel').should('be.visible');
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.contains('.ng-option', 'Recipient3').click();
+    cy.get("#modal-action-ok").click();
+    cy.logout();
   });
 });
