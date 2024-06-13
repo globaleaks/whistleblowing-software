@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {SitesComponent} from "@app/pages/admin/sites/sites.component";
 import {SitesTab1Component} from "@app/pages/admin/sites/sites-tab1/sites-tab1.component";
 import {SitesTab2Component} from "@app/pages/admin/sites/sites-tab2/sites-tab2.component";
+import {SitesTabProfilesComponent} from "@app/pages/admin/sites/sites-tab-profiles/sites-tab-profiles.component";
 import {SharedModule} from "@app/shared.module";
 import {NgbModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import {RouterModule} from "@angular/router";
@@ -18,6 +19,7 @@ import {SiteslistComponent} from "@app/pages/admin/sites/siteslist/siteslist.com
     SitesComponent,
     SitesTab1Component,
     SitesTab2Component,
+    SitesTabProfilesComponent,
     SiteslistComponent
   ],
   imports: [

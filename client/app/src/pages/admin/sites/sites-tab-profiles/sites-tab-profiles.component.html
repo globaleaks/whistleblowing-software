@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div>
-            <span>{{'Sites'|translate}}</span>
+            <span>{{'Profiles'|translate}}</span>
             <button class="btn btn-sm btn-primary show-add-tenant-btn" (click)="toggleAddTenant()">
                 <i class="fa-solid fa-plus"></i>
                 <span>{{'Add'|translate}}</span>
@@ -33,15 +33,6 @@
                     <option value="wbpa">WHISTLEBLOWINGPA</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>{{ 'Profile:' | translate }}</label>
-                <select name="profile" class="form-select-custom" [(ngModel)]="newTenant.profile_tenant_id" required>
-                    <option [value]="1">DEFAULT</option>
-                    <ng-container *ngFor="let tenant of tenants">
-                        <option *ngIf="tenant.is_profile" [value]="tenant.id">{{ tenant.name }}</option>
-                    </ng-container>
-                </select>
-            </div>
             <div class="form-group clearfix">
                 <button id="add-btn" class="float-start btn btn-primary" [disabled]="newTenantForm.invalid" (click)="addTenant();toggleAddTenant()" type="button">
                     <i class="fa-solid fa-plus"></i>
@@ -54,7 +45,7 @@
 <div class="row">
     <div class="col-md-12" *ngIf="tenants">
         <div *ngFor="let tenant of tenants | orderBy:'id' | filter:'name':search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index">
-            <ng-container *ngIf="!tenant.is_profile">
+            <ng-container *ngIf="tenant.is_profile">
                 <form id="tenant-{{index}}" #editTenant="ngForm" novalidate>
                     <src-siteslist [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants"></src-siteslist>
                 </form>
