@@ -527,7 +527,7 @@ msgid "Returning whistleblowers"
 msgstr ""
 
 msgid "Anonymity"
-msgstr ""
+msgstr "Anonimitas"
 
 msgid "Anonymous"
 msgstr "Anonim"

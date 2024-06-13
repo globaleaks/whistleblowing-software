@@ -1717,7 +1717,7 @@ msgid "Alternative contact method"
 msgstr "Metodo di contatto alternativo"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr "Preferisco essere contattato eclusivamente tramite questa piattaforma"
+msgstr "Preferisco essere contattato esclusivamente tramite questa piattaforma"
 
 msgid "Other"
 msgstr "Altro"
