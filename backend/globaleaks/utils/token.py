@@ -19,8 +19,7 @@ class Token(object):
     def serialize(self):
         return {
             'id': self.id,
-            'creation_date': self.creation_date,
-            'ttl': self.tokenlist.timeout
+            'creation_date': self.creation_date
         }
 
 
