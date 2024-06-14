@@ -13,6 +13,37 @@ from globaleaks.utils.json import JSONEncoder
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
+def decorator_qos(f):
+    # Decorator that keeps alternating request on different tenants giving:
+    #  - a burst of 60 requests for the root tenant
+    #  - a burts of 20 requests for the other tenants
+    QoS_Status = {
+      'TID': None,
+      'COUNTER': None
+    }
+
+    def wrapper(self, *args, **kwargs):
+        if QoS_Status['TID'] is None or QoS_Status['TID'] != self.request.tid:
+            QoS_Status['TID'] = self.request.tid
+            QoS_Status['COUNTER'] = 50 if self.request.tid == 1 else 20
+
+        QoS_Status['COUNTER'] -= 1
+        if QoS_Status['COUNTER'] == -1:
+            QoS_Status['TID'] = QoS_Status['COUNTER'] = None
+            d = deferred_sleep(0)
+
+            def callback(_):
+                return f(self, *args, **kwargs)
+
+            d.addCallback(callback)
+
+            return d
+        else:
+            return f(self, *args, **kwargs)
+
+    return wrapper
+
+
 def decorator_rate_limit(f):
     # Decorator that enforces rate limiting on authenticated whistleblowers' sessions
     def wrapper(self, *args, **kwargs):
@@ -40,7 +71,6 @@ def decorator_rate_limit(f):
 
 
     return wrapper
-
 
 
 def decorator_require_session_or_token(f):
@@ -128,6 +158,8 @@ def decorate_method(h, method):
         elif method in ['delete', 'post', 'put']:
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
+
+    f = decorator_qos(f)
 
     if method in ['delete', 'post', 'put']:
         f = decorator_require_session_or_token(f)
