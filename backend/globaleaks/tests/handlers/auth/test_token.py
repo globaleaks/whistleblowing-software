@@ -10,7 +10,7 @@ class Test_Token(helpers.TestHandlerWithPopulatedDB):
     _handler = token.TokenHandler
 
     def assert_default_token_values(self, token):
-        self.assertEqual(token['ttl'], 60)
+        self.assertEqual(token['complexity'], 4)
 
     @inlineCallbacks
     def test_post(self):

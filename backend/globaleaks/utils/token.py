@@ -19,7 +19,8 @@ class Token(object):
     def serialize(self):
         return {
             'id': self.id,
-            'creation_date': self.creation_date
+            'creation_date': self.creation_date,
+            'complexity': 4
         }
 
 
@@ -49,7 +50,7 @@ class TokenList(TempDict):
             if datetime_now() > token.creation_date + timedelta(seconds=self.timeout):
                 raise errors.InternalServerError("TokenFailure: Token is expired")
 
-            if not sha256(key + answer).endswith(b'00'):
+            if not sha256(key + answer).endswith(b'0000'):
                 raise errors.InternalServerError("TokenFailure: Token is not solved")
         except errors.InternalServerError:
             raise

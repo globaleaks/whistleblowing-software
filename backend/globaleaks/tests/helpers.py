@@ -979,9 +979,9 @@ class TestHandler(TestGLWithPopulatedDB):
         # during unit tests a token is always provided to any handler
         token = self.state.tokens.new(1)
         self.state.tokens.pop(token.id)
-        token.id = "PBmL2WGq8w8luxOjgH38MjqSti0WfL9YAfQYJddnxp" # answer: 406
+        token.id = "31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758"
         self.state.tokens[token.id] = token
-        headers[b'x-token'] = b"PBmL2WGq8w8luxOjgH38MjqSti0WfL9YAfQYJddnxp:406"
+        headers[b'x-token'] = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758:149619"
 
         if handler_cls is None:
             handler_cls = self._handler

@@ -26,7 +26,7 @@ GL.factory("glbcUtil", function() {
 
         webCrypto.digest({name: "SHA-256"}, toHash).then(function (hash) {
           hash = new Uint8Array(hash);
-          if (hash[31] === 0) {
+          if (hash[30] === 0 && hash[31] === 0) {
             deferred.resolve(i);
           } else {
             work(i+1);
