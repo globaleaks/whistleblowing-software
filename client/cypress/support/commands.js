@@ -20,12 +20,14 @@ Cypress.Commands.add("takeScreenshot", (filename, locator) => {
   );
 
   return cy.document().then((doc) => {
-    cy.viewport(1280, doc.body.scrollHeight);
+    cy.viewport(1920, doc.body.scrollHeight);
 
     cy.waitForPageIdle();
 
     cy.screenshot("../" + filename, {
-      overwrite: true
+      capture: "fullPage",
+      overwrite: true,
+      scale: true
     });
   });
 });
