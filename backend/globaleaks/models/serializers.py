@@ -2,8 +2,11 @@
 import copy
 import os
 
+from datetime import datetime
+
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
+from globaleaks.orm import transact
 from globaleaks.state import State
 from sqlalchemy import or_, and_, not_
 
@@ -385,3 +388,68 @@ def serialize_tenant(session, tenant, config=None):
         ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
 
     return ret
+
+
+def serialize_auditlog(log):
+    return {
+        'date': log.date,
+        'type': log.type,
+        'user_id': log.user_id,
+        'object_id': log.object_id,
+        'data': log.data
+    }
+
+
+def serialize_comment_log(log):
+    """
+    Serialize an audit log entry for external use.
+    """
+    return {
+        'id': log['object_id'],
+        'creation_date': log['date'],
+        'content': '',
+        'data': log.get('content', 'changed'),
+        'author_id': log["user_id"],
+        'visibility': 'public',
+        'type': 'auditlog',
+        'log_type': log['type']
+    }
+
+
+def get_label(session, label_id, table):
+    """
+    Fetch the label for a given UUID from the specified table.
+    """
+    result = session.query(table).filter_by(id=label_id).first()
+    return result.label['en'] if result else f"Unknown {table.__tablename__}"
+
+
+def get_audit_log(session, object_id):
+    """
+    Fetch audit logs for a given object_id where the type is 'update_report_status'.
+    """
+    logs = session.query(models.AuditLog).filter(
+        models.AuditLog.object_id == object_id,
+        models.AuditLog.type == 'update_report_status'
+    )
+    return [serialize_auditlog(log) for log in logs]
+
+
+def format_date(date):
+    """
+    Format the date to the desired string format.
+    """
+    return date.strftime("%B %d, %Y")
+
+
+@transact
+def process_logs(session, tip ,tip_id):
+    """
+    Process a list of logs to append their details to a tip dictionary.
+    """
+    logs = get_audit_log(session,tip_id)
+    for log in logs:
+        log['content'] = log.get('data', {})
+        tip['comments'].append(serialize_comment_log(log))
+
+    return tip
