@@ -2,10 +2,13 @@
 import copy
 import os
 
+from datetime import datetime
+
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
+from globaleaks.orm import transact
 from globaleaks.state import State
-from sqlalchemy import or_, and_, not_
+from sqlalchemy import or_, not_
 
 
 def get_identity_files(data):
@@ -84,6 +87,7 @@ def serialize_identityaccessrequest(session, identityaccessrequest):
         'submission_progressive': itip.progressive,
         'submission_date': itip.creation_date
     }
+
 
 def serialize_comment(session, comment):
     """
@@ -385,3 +389,49 @@ def serialize_tenant(session, tenant, config=None):
         ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
 
     return ret
+
+
+def serialize_auditlog_as_comment(log):
+    """
+    Serialize an audit log entry for external use.
+    """
+    return {
+        'id': log.id,
+        'creation_date': log.date,
+        'content': '',
+        'data': log.data,
+        'author_id': log.user_id,
+        'visibility': 'public',
+        'type': 'auditlog_' + log.type
+    }
+
+
+def get_label(session, label_id, table):
+    """
+    Fetch the label for a given UUID from the specified table.
+    """
+    result = session.query(table).filter_by(id=label_id).first()
+    return result.label['en'] if result else f"Unknown {table.__tablename__}"
+
+
+def format_date(date):
+    """
+    Format the date to the desired string format.
+    """
+    return date.strftime("%B %d, %Y")
+
+
+@transact
+def process_logs(session, tip, tip_id):
+    """
+    Process a list of logs to append their details to a tip dictionary.
+    """
+    logs = session.query(models.AuditLog).filter(
+        models.AuditLog.object_id == tip_id,
+        models.AuditLog.type.in_(['update_report_status', 'update_report_expiration'])
+    )
+
+    for log in logs:
+        tip['comments'].append(serialize_auditlog_as_comment(log))
+
+    return tip

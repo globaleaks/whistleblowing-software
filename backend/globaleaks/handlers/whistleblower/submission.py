@@ -68,7 +68,12 @@ def decrypt_tip(user_key, tip_prv_key, tip):
                 pass
 
     for x in tip['comments']:
-        x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
+        if x['content']:
+            x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
+
+        if 'data' in x and 'motivation' in x['data'] and x['data']['motivation']:
+            x['data']['motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['data']['motivation'].encode())).decode()
+
 
     for x in tip['wbfiles'] + tip['rfiles']:
         for k in ['name', 'description', 'type', 'size']:
