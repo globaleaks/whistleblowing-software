@@ -42,6 +42,7 @@
                         <div class="preformatted">{{comment.content}}</div>
                     </div>
                     <div *ngIf="comment.type == 'auditlog'" class="message">
+                        <span>Author: </span>{{tipService.tip.receivers_by_id[comment.author_id].name}}
                         <div class="preformatted">{{comment.content}}</div>
                     </div>
                 </div>

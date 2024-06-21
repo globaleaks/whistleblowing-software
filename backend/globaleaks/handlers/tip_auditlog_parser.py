@@ -49,13 +49,6 @@ def format_date(date):
     """
     return date.strftime("%B %d, %Y")
 
-def get_user_name(session, user_id):
-    """
-    Retrieve the user's name given their user ID.
-    """
-    user = session.query(models.User).filter_by(id=user_id).one_or_none()
-    return user.name if user else 'Unknown User'
-
 @transact
 def process_logs(session, tip ,tip_id):
     """
@@ -78,10 +71,8 @@ def process_logs(session, tip ,tip_id):
                     sub_status_label = get_label(session, sub_status, models.SubmissionSubStatus)
                     status_change_string += f" - {sub_status_label}"
 
-        author_name = get_user_name(session, log['user_id'])
         formatted_date = format_date(log['date'])
-        formatted_content = (f"Author: {author_name}\n"
-                             f"Date: {formatted_date}\n"
+        formatted_content = (f"Date: {formatted_date}\n"
                              f"Status: {status_change_string}")
 
         log['content'] = formatted_content
