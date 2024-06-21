@@ -133,6 +133,7 @@ export interface Comment {
   content: string;
   author_id: string;
   visibility: string;
+  type:string;
 }
 
 export interface WbFile {

@@ -23,7 +23,7 @@
         <div *ngIf="tipService.tip.comments && tipService.tip.comments.length">
             <div data-cy="SubmissionComments" id="SubmissionComments" *ngFor="let comment of getSortedComments(comments | orderBy:'creation_date': true | filter : 'visibility' : key) | slice: (currentCommentsPage-1) * itemsPerPage : (currentCommentsPage-1) * itemsPerPage + itemsPerPage; let index = index">
                 <div id="comment-{{index}}" class="mt-2">
-                    <div *ngIf="!comment.author_id" class="message-whistle-blower">
+                    <div *ngIf="!comment.author_id && !comment.type" class="message-whistle-blower">
                         <div class="row">
                             <div class="col-md-6">{{'Whistleblower'|translate}}</div>
                             <div class="col-md-6 text-end">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
@@ -34,11 +34,14 @@
                         </span>
                         <br/>
                     </div>
-                    <div *ngIf="comment.author_id" class="message">
+                    <div *ngIf="comment.author_id && !comment.type" class="message">
                         <div class="row">
                             <div class="col-md-6">{{tipService.tip.receivers_by_id[comment.author_id].name}}</div>
                             <div class="col-md-6 text-end">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
                         </div>
+                        <div class="preformatted">{{comment.content}}</div>
+                    </div>
+                    <div *ngIf="comment.type == 'auditlog'" class="message">
                         <div class="preformatted">{{comment.content}}</div>
                     </div>
                 </div>
