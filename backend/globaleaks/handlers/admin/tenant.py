@@ -28,6 +28,8 @@ def db_create(session, desc):
     t = models.Tenant()
 
     t.active = desc['active']
+    t.is_profile = desc['is_profile']
+    t.profile_tenant_id = desc['profile_tenant_id']
 
     session.add(t)
 

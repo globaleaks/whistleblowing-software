@@ -910,6 +910,8 @@ class _Tenant(Model):
     id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     active = Column(Boolean, default=False, nullable=False)
+    is_profile = Column(Boolean, default=False, nullable=False)
+    profile_tenant_id = Column(Integer, nullable=True)
 
     bool_keys = ['active']
 

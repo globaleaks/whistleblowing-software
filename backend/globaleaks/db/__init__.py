@@ -68,7 +68,7 @@ def initialize_db(session):
     :param session: An ORM session
     """
     from globaleaks.handlers.admin import tenant
-    tenant.db_create(session, {'active': True, 'mode': 'default', 'name': 'GLOBALEAKS', 'subdomain': ''})
+    tenant.db_create(session, {'active': True, 'mode': 'default', 'is_profile': False, 'profile_tenant_id': '', 'name': 'GLOBALEAKS', 'subdomain': ''})
 
 
 def update_db():
