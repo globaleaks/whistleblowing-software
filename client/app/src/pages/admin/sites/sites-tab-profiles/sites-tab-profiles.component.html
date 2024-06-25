@@ -44,12 +44,10 @@
 </div>
 <div class="row">
     <div class="col-md-12" *ngIf="tenants">
-        <div *ngFor="let tenant of tenants | orderBy:'id' | filter:'name':search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index">
-            <ng-container *ngIf="tenant.is_profile">
+        <div *ngFor="let tenant of tenants | orderBy:'id' | filter:'name':search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index;">
                 <form id="tenant-{{index}}" #editTenant="ngForm" novalidate>
-                    <src-siteslist [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants"></src-siteslist>
+                    <src-siteslist [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants" [indexNumber]="(index+1)"></src-siteslist>
                 </form>
-            </ng-container>
         </div>
         <div class="text-center" *ngIf="(tenants | filter:'name':search).length > 10">
             <ngb-pagination [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="(tenants | filter:'name':search).length" [boundaryLinks]="true">
