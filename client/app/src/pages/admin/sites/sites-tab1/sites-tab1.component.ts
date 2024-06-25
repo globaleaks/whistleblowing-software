@@ -20,11 +20,12 @@ export class SitesTab1Component implements OnInit {
   showAddTenant: boolean = false;
   itemsPerPage: number = 10;
   currentPage: number = 1;
+  indexNumber: number = 0;
 
   ngOnInit(): void {
     this.httpService.fetchTenant().subscribe(
-      tenant => {
-        this.tenants = tenant;
+      tenants => {
+        this.tenants = tenants.filter(tenant => !tenant.is_profile);
       }
     );
   }

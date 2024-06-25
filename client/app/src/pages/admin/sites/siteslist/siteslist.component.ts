@@ -18,6 +18,7 @@ export class SiteslistComponent {
   @Input() tenant: tenantResolverModel;
   @Input() tenants: tenantResolverModel[];
   @Input() index: number;
+  @Input() indexNumber: number;
   editing = false;
 
   constructor(protected nodeResolver: NodeResolver, protected appDataService: AppDataService, private modalService: NgbModal, private httpService: HttpService, private utilsService: UtilsService) {
