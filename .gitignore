@@ -16,3 +16,7 @@ e2e/*.map
 env
 venv
 
+
+#IDE
+.idea
+.vscode
