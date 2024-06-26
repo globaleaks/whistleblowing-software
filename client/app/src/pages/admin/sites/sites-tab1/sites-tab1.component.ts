@@ -17,6 +17,7 @@ export class SitesTab1Component implements OnInit {
     subdomain: ""
   };
   tenants: tenantResolverModel[];
+  profileTenants: tenantResolverModel[];
   showAddTenant: boolean = false;
   itemsPerPage: number = 10;
   currentPage: number = 1;
@@ -26,6 +27,7 @@ export class SitesTab1Component implements OnInit {
     this.httpService.fetchTenant().subscribe(
       tenants => {
         this.tenants = tenants.filter(tenant => !tenant.is_profile);
+        this.profileTenants = tenants.filter(tenant => tenant.is_profile);
       }
     );
   }
