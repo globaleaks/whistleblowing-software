@@ -2,7 +2,8 @@
   "name": "globaleaks",
   "version": "4.14.8",
   "scripts": {
-    "test": "npx cypress run && npx nyc report --reporter=lcov --report-dir=./cypress/coverage --reporter=text-summary --browser electron"
+    "test": "npx cypress run && npx nyc report --reporter=lcov --report-dir=./cypress/coverage --reporter=text-summary --browser electron",
+    "start": "ng serve --proxy-config proxy.conf.json"
   },
   "private": true,
   "dependencies": {
