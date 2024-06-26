@@ -1,6 +1,22 @@
 {
-  "*": {
+  "/api/": {
     "target": "https://127.0.0.1:8443",
-    "secure": false
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/l10n/": {
+    "target": "https://127.0.0.1:8443",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/data/": {
+    "target": "https://127.0.0.1:8443",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/s/": {
+    "target": "https://127.0.0.1:8443",
+    "secure": false,
+    "changeOrigin": true
   }
 }

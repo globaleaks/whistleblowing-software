@@ -13,9 +13,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "qrcode"
-            ],
+            "allowedCommonJsDependencies": ["qrcode"],
             "optimization": {
               "scripts": true,
               "styles": {
@@ -29,72 +27,318 @@
             "main": "app/main.ts",
             "polyfills": "app/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "app/assets"
-            ],
+            "assets": ["app/assets"],
             "styles": [
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/@ng-select/ng-select/themes/default.theme.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/bootstrap/dist/css/bootstrap.min.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/switch.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/select.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/date-picker.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/main.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/loader.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/button.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/ng-select.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/bootstrap-fixes.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/@ng-select/ng-select/themes/default.theme.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/switch.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/select.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/date-picker.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/main.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/loader.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/button.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/ng-select.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/bootstrap-fixes.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/solid.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/regular.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/inter/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-arabic/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-armenian/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-bengali/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-ethiopic/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-georgian/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hebrew/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hk/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-jp/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-khmer/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-kr/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-lao/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-myanmar/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-sc/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-tamil/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thaana/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thai/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-serif-tibetan/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/inter/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-arabic/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-armenian/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-bengali/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-ethiopic/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-georgian/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hebrew/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hk/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-jp/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-khmer/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-kr/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-lao/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-myanmar/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-sc/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-tamil/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thaana/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thai/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-serif-tibetan/700.css" }
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/switch.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/select.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/date-picker.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/main.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/loader.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/button.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/components/ng-select.css"
+              },
+              {
+                "bundleName": "styles-ltr",
+                "inject": true,
+                "input": "app/css/bootstrap-fixes.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/switch.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/select.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/date-picker.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/main.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/loader.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/button.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/components/ng-select.css"
+              },
+              {
+                "bundleName": "styles-rtl",
+                "inject": false,
+                "input": "app/css/bootstrap-fixes.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fortawesome/fontawesome-free/css/solid.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fortawesome/fontawesome-free/css/regular.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/inter/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-arabic/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-armenian/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-bengali/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-ethiopic/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-georgian/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-hebrew/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-hk/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-jp/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-khmer/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-kr/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-lao/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-myanmar/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-sc/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-tamil/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-thaana/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-thai/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-serif-tibetan/400.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/inter/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-arabic/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-armenian/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-bengali/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-ethiopic/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-georgian/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-hebrew/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-hk/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-jp/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-khmer/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-kr/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-lao/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-myanmar/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-sc/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-tamil/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-thaana/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-sans-thai/700.css"
+              },
+              {
+                "bundleName": "fonts",
+                "inject": true,
+                "input": "node_modules/@fontsource/noto-serif-tibetan/700.css"
+              }
             ]
           },
           "configurations": {
@@ -119,70 +363,316 @@
                 "path": "./webpack/test.config.ts"
               },
               "styles": [
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/@ng-select/ng-select/themes/default.theme.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "node_modules/bootstrap/dist/css/bootstrap.min.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/switch.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/select.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/date-picker.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/main.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/loader.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/button.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/components/ng-select.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/bootstrap-fixes.css" },
-               { "bundleName": "styles-ltr", "inject": true, "input": "app/css/test.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/@ng-select/ng-select/themes/default.theme.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/switch.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/select.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/date-picker.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/main.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/loader.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/button.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/components/ng-select.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/bootstrap-fixes.css" },
-               { "bundleName": "styles-rtl", "inject": false, "input": "app/css/test.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/solid.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/regular.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/inter/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-arabic/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-armenian/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-bengali/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-ethiopic/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-georgian/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hebrew/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hk/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-jp/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-khmer/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-kr/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-lao/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-myanmar/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-sc/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-tamil/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thaana/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thai/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-serif-tibetan/400.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/inter/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-arabic/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-armenian/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-bengali/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-ethiopic/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-georgian/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hebrew/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-hk/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-jp/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-khmer/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-kr/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-lao/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-myanmar/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-sc/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-tamil/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thaana/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-sans-thai/700.css" },
-               { "bundleName": "fonts", "inject": true, "input": "node_modules/@fontsource/noto-serif-tibetan/700.css" }
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/switch.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/select.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/date-picker.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/main.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/loader.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/button.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/components/ng-select.css"
+                },
+                {
+                  "bundleName": "styles-ltr",
+                  "inject": true,
+                  "input": "app/css/bootstrap-fixes.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/switch.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/select.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/date-picker.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/main.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/loader.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/button.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/components/ng-select.css"
+                },
+                {
+                  "bundleName": "styles-rtl",
+                  "inject": false,
+                  "input": "app/css/bootstrap-fixes.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fortawesome/fontawesome-free/css/solid.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fortawesome/fontawesome-free/css/regular.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/inter/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-arabic/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-armenian/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-bengali/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-ethiopic/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-georgian/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-hebrew/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-hk/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-jp/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-khmer/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-kr/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-lao/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-myanmar/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-sc/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-tamil/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-thaana/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-thai/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-serif-tibetan/400.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/inter/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-arabic/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-armenian/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-bengali/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-ethiopic/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-georgian/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-hebrew/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-hk/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-jp/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-khmer/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-kr/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-lao/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-myanmar/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-sc/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-tamil/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-thaana/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-sans-thai/700.css"
+                },
+                {
+                  "bundleName": "fonts",
+                  "inject": true,
+                  "input": "node_modules/@fontsource/noto-serif-tibetan/700.css"
+                }
               ]
             }
           },
@@ -198,7 +688,10 @@
               "buildTarget": "Globaleaks:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "./proxy.conf.json"
+          }
         }
       }
     }
