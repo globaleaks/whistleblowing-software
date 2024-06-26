@@ -38,7 +38,7 @@
                 <select name="profile" class="form-select-custom" [(ngModel)]="newTenant.profile_tenant_id" required>
                     <option [value]="1">DEFAULT</option>
                     <ng-container *ngFor="let tenant of profileTenants">
-                        <option [value]="tenant.id">{{ tenant.name }}</option>
+                        <option *ngIf="tenant.active" [value]="tenant.id">{{ tenant.name }}</option>
                     </ng-container>
                 </select>
             </div>
