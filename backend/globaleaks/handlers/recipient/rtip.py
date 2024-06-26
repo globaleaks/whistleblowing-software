@@ -195,7 +195,7 @@ def recalculate_data_retention(session, itip, report_reopen_request):
     :param itip: The internaltip ORM object
     :param report_reopen_request: boolean value, true if the report is being reopend
     """
-    new_retention = None
+    prev_expiration_date = itip.expiration_date
     if report_reopen_request:
         # use the context-defined data retention
         ttl = get_ttl(session, models.Context, itip.context_id)
@@ -207,6 +207,8 @@ def recalculate_data_retention(session, itip, report_reopen_request):
         ttl = get_ttl(session, models.SubmissionSubStatus, itip.substatus)
         if ttl > 0:
             itip.expiration_date = datetime_now() + timedelta(ttl)
+
+    return prev_expiration_date, itip.expiration_date
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation=None):
     """
@@ -237,7 +239,7 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     itip.status = status_id
     itip.substatus = substatus_id or None
 
-    recalculate_data_retention(session, itip, report_reopen_request)
+    prev_expiration_date, curr_expiration_date = recalculate_data_retention(session, itip, report_reopen_request)
 
     log_data = {
       'status': itip.status,
@@ -246,6 +248,13 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     }
 
     db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
+
+    log_data = {
+      'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
+      'curr_expiration_date': int(datetime.timestamp(curr_expiration_date))
+    }
+
+    db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 def db_update_temporary_redaction(session, tid, user_id, redaction, redaction_data):
@@ -735,6 +744,8 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
+    prev_expiration_date = itip.expiration_date
+
     max_date = 32503676400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
@@ -748,6 +759,8 @@ def db_postpone_expiration(session, itip, expiration_date):
 
     if expiration_date >= min_date:
         itip.expiration_date = expiration_date
+
+    return prev_expiration_date, expiration_date
 
 
 def db_set_reminder(session, itip, reminder_date):
@@ -824,7 +837,15 @@ def postpone_expiration(session, tid, user_id, itip_id, expiration_date):
     if not user.can_postpone_expiration:
         raise errors.ForbiddenOperation
 
-    db_postpone_expiration(session, itip, expiration_date)
+    prev_expiration_date, curr_expiration_date = db_postpone_expiration(session, itip, expiration_date)
+
+    log_data = {
+      'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
+      'curr_expiration_date': int(datetime.timestamp(curr_expiration_date))
+    }
+
+    db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
+
 
 
 @transact
