@@ -2,3 +2,17 @@ backend/env/
 backend/workingdir/
 client/build
 client/node_modules/
+
+.angular/
+
+# e2e
+e2e/*.js
+e2e/*.map
+
+.grunt
+
+# Environments
+.venv
+env
+venv
+
