@@ -1,3 +1,4 @@
+import {AppDataService} from "@app/app-data.service";
 import {ChangeDetectorRef, Component, Input, OnInit} from "@angular/core";
 import {WbtipService} from "@app/services/helper/wbtip.service";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
@@ -24,7 +25,7 @@ export class TipCommentsComponent implements OnInit {
   comments: Comment[] = [];
   newComments: Comment;
 
-  constructor(private maskService:MaskService,protected preferenceResolver:PreferenceResolver,private rTipService: ReceiverTipService, protected authenticationService: AuthenticationService, protected utilsService: UtilsService, private cdr: ChangeDetectorRef) {
+  constructor(private maskService:MaskService,protected preferenceResolver:PreferenceResolver,private rTipService: ReceiverTipService, protected authenticationService: AuthenticationService, protected utilsService: UtilsService, private cdr: ChangeDetectorRef, public appDataService: AppDataService) {
 
   }
 

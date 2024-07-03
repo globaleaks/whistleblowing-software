@@ -4,8 +4,9 @@ import os
 
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
+from globaleaks.orm import transact
 from globaleaks.state import State
-from sqlalchemy import or_, and_, not_
+from sqlalchemy import or_, not_
 
 
 def get_identity_files(data):
@@ -385,3 +386,54 @@ def serialize_tenant(session, tenant, config=None):
         ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
 
     return ret
+
+
+def serialize_auditlog(log):
+    return {
+        'date': log.date,
+        'type': log.type,
+        'user_id': log.user_id,
+        'object_id': log.object_id,
+        'data': log.data
+    }
+
+
+def comment_from_log(log, type: str):
+    """
+    Serialize an audit log entry for external use.
+    """
+    return {
+        'id': log['object_id'],
+        'creation_date': log['date'],
+        'content': '',
+        'data': log['data'],
+        'author_id': log["user_id"],
+        'visibility': 'public',
+        'is_audit_log': True,
+        'audit_log_type': type,
+        'log_type': log['type']
+    }
+
+
+def get_expiration_date_audit_log(session, object_id):
+    """
+    Fetch audit logs for a given object_id where the type is 'update_report_expiration'.
+    """
+    logs = session.query(models.AuditLog).filter(
+        models.AuditLog.object_id == object_id,
+        models.AuditLog.type == 'update_report_expiration'
+    )
+    return [serialize_auditlog(log) for log in logs]
+
+
+@transact
+def process_logs(session, tip, tip_id):
+    """
+    Process a list of logs to append their details to a tip dictionary.
+    """
+    expiration_date_audit_logs = get_expiration_date_audit_log(session, tip_id)
+    for log in expiration_date_audit_logs:
+        log['data'] = log.get('data', {})
+        tip['comments'].append(comment_from_log(log, 'update_report_expiration'))
+
+    return tip
