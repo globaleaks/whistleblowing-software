@@ -226,7 +226,8 @@
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
           <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i></td>
-          <td><i data-ng-if="!Utils.isNever(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
+          <td>
+            <i data-ng-if="!Utils.isNever(tip.reminder_date)" class="fa-solid fa-bell" data-ng-class="{'text-warning': Utils.isDatePassed(tip.reminder_date)}"></i>
           </td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
           <td class="TipInfoLabel">{{tip.label}}</td>

@@ -1190,6 +1190,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       });
     },
 
+    isDatePassed: function (time) {
+      var report_date = new Date(time);
+      var current_date = new Date();
+      return current_date > report_date;
+    },
+
     isNever: function(time) {
       var date = new Date(time);
       return date.getTime() === 32503680000000;
