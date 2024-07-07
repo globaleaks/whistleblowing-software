@@ -202,12 +202,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     return $scope.selected_tips.indexOf(id) !== -1;
   };
 
-  $scope.markReportStatus = function (date) {
-    var report_date = new Date(date);
-    var current_date = new Date();
-    return current_date > report_date;
-  };
-
   $scope.tips_export = function () {
     for(var i=0; i<$scope.selected_tips.length; i++) {
       (function(i) {
@@ -225,7 +219,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         id:tip.id,
         progressive: tip.progressive,
         important: tip.important,
-        reportStatus: $scope.markReportStatus(tip.reminder_date),
         context_name: tip.context_name,
         label:tip.label,
         status: tip.submissionStatusStr,
