@@ -121,6 +121,19 @@ var GL = angular.module("GL", [
       }];
     }
 
+    var originalWhen = $routeProvider.when;
+
+    $routeProvider.when = function(path, route) {
+        route.resolve || (route.resolve = {});
+        angular.extend(route.resolve, {
+          translateReady: ['$translate', function($translate) {
+            return $translate.onReady();
+          }]
+        });
+
+        return originalWhen.call($routeProvider, path, route);
+    };
+
     $routeProvider.
       when("/wizard", {
         templateUrl: "views/wizard/main.html",
