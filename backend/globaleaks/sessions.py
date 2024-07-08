@@ -43,6 +43,7 @@ class Session(object):
 
 class SessionsFactory(TempDict):
     """Extends TempDict to provide session management functions ontop of temp session keys"""
+    reset_timeout_on_access = False
 
     def revoke(self, tid, user_id):
         for k, v in list(self.items()):

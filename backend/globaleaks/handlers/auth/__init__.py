@@ -256,8 +256,10 @@ class SessionHandler(BaseHandler):
 
     def get(self):
         """
-        Refresh and retrive session
+        Reset session timout
         """
+        Sessions.reset_timeout(self.session)
+
         return self.session.serialize()
 
     @inlineCallbacks
