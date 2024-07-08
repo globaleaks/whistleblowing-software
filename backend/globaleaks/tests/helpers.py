@@ -43,7 +43,7 @@ from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
-from globaleaks.utils import tempdict
+from globaleaks.utils import tempdict, token
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, uuid4
@@ -72,7 +72,8 @@ USER_REC_KEY_PLAIN = Base32Encoder.encode(USER_REC_KEY_PLAIN).replace(b'=', b'')
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
-
+TOKEN = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758"
+TOKEN_ANSWER = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758:149619"
 def mock_nullfunction(*args, **kwargs):
     return
 
@@ -164,6 +165,14 @@ def mock_users_keys(session):
         user.crypto_pub_key = USER_PUB_KEY
         user.crypto_bkp_key = USER_BKP_KEY
         user.crypto_rec_key = USER_REC_KEY
+
+
+def get_token():
+    token = State.tokens.new(1)
+    State.tokens.pop(token.id)
+    token.id = TOKEN
+    State.tokens[token.id] = token
+    return TOKEN_ANSWER
 
 
 def get_dummy_step():
@@ -973,11 +982,7 @@ class TestHandler(TestGLWithPopulatedDB):
             headers[b'x-session'] = session.id.encode()
 
         # during unit tests a token is always provided to any handler
-        token = self.state.tokens.new(1)
-        self.state.tokens.pop(token.id)
-        token.id = "31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758"
-        self.state.tokens[token.id] = token
-        headers[b'x-token'] = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758:149619"
+        headers[b'x-token'] = get_token()
 
         if handler_cls is None:
             handler_cls = self._handler

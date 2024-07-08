@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from globaleaks.settings import Settings
+from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, uuid4
@@ -21,6 +22,7 @@ class Session(object):
         self.ratelimit_count = 0
         self.files = []
         self.expireCall = None
+        self.token = State.tokens.new(tid)
 
     def getTime(self):
         return self.expireCall.getTime() if self.expireCall else 0
@@ -37,7 +39,8 @@ class Session(object):
             'user_name': self.user_name,
             'session_expiration': self.getTime(),
             'properties': self.properties,
-            'permissions': self.permissions
+            'permissions': self.permissions,
+            'token': self.token.serialize()
         }
 
 

@@ -266,7 +266,10 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
 class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
-    def test_successful_admin_logout(self):
+    def test_successful_admin_session_setup_renewal_and_logout(self):
+        # since all logins for roles admin, receiver and custodian happen
+        # in the same way, the following tests are performed on the admin user.
+
         self._handler = auth.AuthenticationHandler
 
         # Login
@@ -283,8 +286,21 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
         self._handler = auth.SessionHandler
 
-        # Logout
         session_id = response['id']
+        session = Sessions.get(session_id)
+        session.token.id = helpers.TOKEN
+
+        # Wrong Session Renewal
+        handler = self.request({'token': 'wrong_token:666'}, headers={'x-session': session_id})
+        response = yield handler.post()
+        self.assertEqual(response['token']['id'], helpers.TOKEN.decode())
+
+        # Correct Session Renewal
+        handler = self.request({'token': helpers.TOKEN_ANSWER.decode()}, headers={'x-session': session_id})
+        response = yield handler.post()
+        self.assertNotEqual(response['token']['id'], helpers.TOKEN.decode())
+
+        # Logout
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
 
@@ -315,7 +331,7 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = auth.TokenAuthHandler
 
     # since all logins for roles admin, receiver and custodian happen
-    # in the same way, the following tests are performed on the admin user.
+    # in the same way, the following tests are performed on the recipient user.
 
     @inlineCallbacks
     def setUp(self):

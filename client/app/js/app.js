@@ -493,12 +493,12 @@ var GL = angular.module("GL", [
 }]).
   config(["IdleProvider", "KeepaliveProvider", "TitleProvider", function(IdleProvider, KeepaliveProvider, TitleProvider) {
     IdleProvider.idle(300);
-    IdleProvider.timeout(1800);
-    KeepaliveProvider.interval(600);
+    IdleProvider.timeout(300);
+    KeepaliveProvider.interval(30);
     TitleProvider.enabled(false);
 }]).
-  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Idle", "Authentication", "SessionResource", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
-      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Idle, Authentication, SessionResource, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
+  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Idle", "Authentication", "SessionResource", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access", "glbcProofOfWork",
+      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Idle, Authentication, SessionResource, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access, glbcProofOfWork) {
     $rootScope.started = false;
 
     $rootScope.page = "homepage";
@@ -744,7 +744,12 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("Keepalive", function() {
       if ($rootScope.Authentication && $rootScope.Authentication.session) {
-        return SessionResource.get();
+        var token = $rootScope.Authentication.session.token;
+        return glbcProofOfWork.proofOfWork(token.id).then(function(result) {
+          new SessionResource({"token": token.id + ":" + result}).$save().then(function(result) {
+            $rootScope.Authentication.session.token = result.token;
+          });
+	});
       }
     });
 
