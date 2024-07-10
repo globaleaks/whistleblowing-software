@@ -41,7 +41,8 @@ from globaleaks.state import State, mail_exception_handler
 
 
 def SIGUSR1_handler(*args):
-    Cache.invalidate(1)
+    State.reset_cache = True
+
 
 parser = OptionParser()
 

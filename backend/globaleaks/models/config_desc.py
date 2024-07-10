@@ -105,6 +105,8 @@ ConfigDescriptor = {
     'threshold_free_disk_megabytes_low': Int(default=1000),
     'threshold_free_disk_percentage_high': Int(default=3),
     'threshold_free_disk_percentage_low': Int(default=10),
+    'threshold_reports_per_hour_per_tenant': Int(default=20),
+    'threshold_reports_per_hour_per_tenant_per_ip': Int(default=5),
     'timezone': Int(default=0),
     'timestamp_daily_notifications': Int(default=0),
     'tip_expiration_threshold': Int(default=72),  # Hours
@@ -225,6 +227,8 @@ ConfigFilters = {
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_low',
+        'threshold_reports_per_hour_per_tenant',
+        'threshold_reposts_per_hour_per_tenant_per_ip',
         'timezone',
         'tor',
         'two_factor',
