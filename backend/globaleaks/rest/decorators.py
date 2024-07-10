@@ -10,6 +10,7 @@ from globaleaks.rest import errors
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
 from globaleaks.utils.json import JSONEncoder
+from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
@@ -48,6 +49,13 @@ def decorator_rate_limit(f):
     # Decorator that enforces rate limiting on authenticated whistleblowers' sessions
     def wrapper(self, *args, **kwargs):
         if self.session and self.session.user_role == 'whistleblower':
+            if self.request.path == b'/api/whistleblower/submission':
+                if 1 in State.tenants:
+                    State.RateLimitingTable.check(self.request.path + b'#' + str(self.request.tid).encode(),
+                                                  State.tenants[1].cache.threshold_reports_per_hour)
+                    State.RateLimitingTable.check(self.request.path + b'#' + self.request.client_ip.encode(),
+                                                  State.tenants[1].cache.threshold_reports_per_hour_per_ip)
+
             now = datetime_now()
             if now > self.session.ratelimit_time + timedelta(seconds=1):
                 self.session.ratelimit_time = now
