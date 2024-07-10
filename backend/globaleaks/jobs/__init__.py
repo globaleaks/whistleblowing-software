@@ -1,4 +1,5 @@
 from globaleaks.jobs import anomalies, \
+                            cache_reset, \
                             certificate_check, \
                             cleaning, \
                             delivery, \
@@ -11,6 +12,7 @@ from globaleaks.jobs import anomalies, \
 
 jobs_list = [
     anomalies.Anomalies,
+    cache_reset.CacheReset,
     certificate_check.CertificateCheck,
     cleaning.Cleaning,
     delivery.Delivery,

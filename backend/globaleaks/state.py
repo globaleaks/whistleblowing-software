@@ -71,6 +71,7 @@ class TenantState(object):
 
 class StateClass(ObjectDict, metaclass=Singleton):
     def __init__(self):
+        self.reset_cache = False
         self.start_time = datetime_now()
         self.settings = Settings
 
