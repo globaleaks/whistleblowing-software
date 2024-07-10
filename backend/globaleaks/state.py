@@ -33,7 +33,7 @@ from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.tor_exit_set import TorExitSet
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 silenced_exceptions = (
@@ -49,6 +49,27 @@ silenced_exceptions = (
   TorProtocolError,
   ValidationError
 )
+
+
+class RateLimitingStatus(object):
+    def __init__(self):
+        self.counter = 0
+
+
+class RateLimitingDict(TempDict):
+    def check(self, key, limit):
+        if key not in self:
+            self[key] = RateLimitingStatus()
+
+        status = self[key]
+
+        if status.counter >= limit:
+            raise errors.ForbiddenOperation()
+
+        status.counter += 1
+
+
+RateLimitingTable = RateLimitingDict(3600)
 
 
 class TenantState(object):
@@ -106,6 +127,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.TempKeys = TempDict(3600 * 72)
         self.TwoFactorTokens = TempDict(120)
         self.TempUploadFiles = TempDict(3600)
+        self.RateLimitingTable = RateLimitingDict(3600)
 
         self.shutdown = False
 
