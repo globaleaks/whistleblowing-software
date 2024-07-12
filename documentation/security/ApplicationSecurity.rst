@@ -66,6 +66,12 @@ Users are enabled to enroll for 2FA via their own preferences and administrators
 
 We recommend using `FreeOTP <https://freeotp.github.io/>`_ available `for Android <https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_ and `for iOS <https://apps.apple.com/us/app/freeotp-authenticator/id872559395>`_.
 
+Slowdown on Failed Login Attempts
+---------------------------------
+The system identifies multiple failed login attempts and implement a slowdown procedure where an authenticating client should wait up to 42 seconds to complete an authentication.
+
+This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
+
 Password Change on First Login
 ------------------------------
 The system enforces users to change their own password at their first login.
@@ -77,20 +83,6 @@ Periodic Password Change
 By default the system enforces users to change their own password at least every year.
 
 This period is configurable by administrators.
-
-Proof of Work on Login and Submissions
---------------------------------------
-The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that requires every client to request a token, solve a computational problem before being able to perform a login or file a submission.
-
-Rate Limit on Anonymous Sessions
---------------------------------
-The system implements rate limiting on whistleblowers' sessions preventing to execute more than 5 requests per second.
-
-Slowdown on Failed Login Attempts
----------------------------------
-The system identifies multiple failed login attempts and implement a slowdown procedure where an authenticating client should wait up to 42 seconds to complete an authentication.
-
-This feature is intended to slow down possible attacks requiring more resources to users in terms of time, computation and memory.
 
 Password Recovery
 -----------------
@@ -161,7 +153,7 @@ The backend implements the following `Cross-Origin-Resource-Policy (CORP) <https
   Cross-Origin-Resource-Policy: same-origin
 
 Permissions-Policy
-++++++++++++++
+++++++++++++++++++
 The backend implements the following Permissions-Policy header configuration to limit the possible de-anonymization of the user by disabling dangerous browser features:
 ::
   Permissions-Policy: camera=() display-capture=() document-domain=() fullscreen=() geolocation=() microphone=() serial=() usb=() web-share=()
@@ -191,7 +183,7 @@ To prevent or limit the the forensic traces left on the device used by whistlebl
   Cache-Control: no-store
 
 Crawlers Policy
-------------
+---------------
 For security reasons the backend instructs crawlers to avoid any caching and indexing of the application and uses the ``Robots.txt`` file to enable crawling only of the home page; indexing of the home page is in fact considered best practice in order to be able to widespread the information about the existance of the platform and ease access to possible whistleblowers.
 
 The configuration implemented is the following:
@@ -327,12 +319,38 @@ This is implemented by using the ```conn.set_authorizer``` API and using a stric
 
 DoS Resiliency
 ==============
-To avoid applicative and database denial of service, GlobaLeaks apply the following measures:
+To limit possibilities for denial of service attacks , GlobaLeaks apply the following measures:
 
 * It tries to limit the possibility of automating any operation by implement a proof of work on each unauthenticared request (hashcash)
-* It applies rete limiting on any authenticated session
+* It applies rate limiting on any authenticated session
 * It is written to limit the possibility of triggering CPU intensive routines by an external user (e.g. by implementing limits on queries and jobs execution time)
 * It implements monitoring of each activity trying to implement detection of attacks and implement proactively security measures to prevent DoS (e.g. implementing slowdown on fast-operations)
+
+Proof of Work on Users' Sessions
+--------------------------------
+The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ based on the hashcash algorithm on every user session requiring every client to request a token and continously solve a computational problem before being able to acquire and renews the session.
+
+Rate Limit on User' Sessions
+----------------------------
+The system implements rate limiting on users' sessions preventing to execute more than 5 requests per second and applying increasing delay on requests exceeding the threshold.
+
+Rate Limit on Whistleblowers' Reports and Attachments
+-----------------------------------------------------
+The system implements rate limiting on whistleblowers reports and attachments preventing to file new submission and upload new files if the thresholds are exceeded.
+
+Implemented thresholds are:
+
+.. csv-table::
+   :header: "Threshold Variable", "Goal", "Default Threshold Setting"
+
+   "threshold_reports_per_hour", "Limit the number of reports that could be filed per hour", "20"
+   "threshold_reports_per_hour_per_ip", "Limit the number of reports that could be filed per hour by the same IP address", "5"
+   "threshold_attachments_per_hour_per_ip", "Limit the number of attachments that could be loaded per hour by the same IP address", "120"
+   "threshold_attachments_per_hour_per_report", "Limit the number of attachments that could be loaded per hour on a report", "30"
+
+In case of necessity thresholds configuration could be varied using the ``gl-admin`` command like:
+::
+  gl-admin setvar threshold_reports_per_hour 1
 
 Other Measures
 ==============
