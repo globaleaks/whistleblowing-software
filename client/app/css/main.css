@@ -1103,11 +1103,6 @@ i.fa-solid.fa-chevron-right {
   height: 4em;
 }
 
-.analyst-graph{
-  padding-left: 27%;
-  padding-right: 27%
-}
-
 .disabled {
   opacity: 0.2;
   pointer-events: none;

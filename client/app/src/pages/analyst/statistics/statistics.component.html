@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">{{ chart.title | translate }}</div>
             <div class="card-body analyst-graph">
-                <canvas baseChart class="chart chart-pie" [type]="'pie'" [datasets]="[{ data: chart.values, label: chart.labels,backgroundColor:chart.colors }]">
+              <canvas baseChart class="chart chart-pie" [type]="'pie'" [labels]="chart.labels" [datasets]="chart.datasets" [legend]="true">
                 </canvas>
             </div>
         </div>
