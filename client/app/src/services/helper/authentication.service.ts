@@ -52,8 +52,11 @@ export class AuthenticationService {
   }
 
   setSession(response: Session) {
+    console.log(response);
     this.session = response;
-    if (this.session.role !== "whistleblower") {
+    if (this.session.role === "whistleblower") {
+      this.session.homepage = "/";
+    } else {
       const role = this.session.role === "receiver" ? "recipient" : this.session.role;
 
       this.session.homepage = "/" + role + "/home";
@@ -134,6 +137,8 @@ export class AuthenticationService {
               if (password) {
                 this.appDataService.receipt = password;
                 this.titleService.setPage("tippage");
+              } else if (this.session.properties.operator_session) {
+                this.router.navigate(['/']);
               }
             } else {
               if (!callback) {

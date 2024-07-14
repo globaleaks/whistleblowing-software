@@ -218,8 +218,7 @@ export class TipsComponent implements OnInit {
     this.http.get('/api/auth/operatorauthswitch', { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
         if (response.status === 200) {
-          const urlRedirect = window.location.origin + response.body.redirect;
-          window.open(urlRedirect, '_blank');
+          window.open(window.location.origin + response.body.redirect);
         }
       },
     );
