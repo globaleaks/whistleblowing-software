@@ -1134,3 +1134,7 @@ i.fa-solid.fa-chevron-right {
   width: auto;
   height: auto;
 }
+
+.underline {
+  text-decoration: underline;
+}
