@@ -1,3 +1,14 @@
+Changes in version 4.15.7
+    Apply proof of work to sessions renewal
+    Implement rate limiting on whistleblowers' reports and attachments
+    Implement cache reset when a configuration variable is varied with gl-admin
+    Revise reminder implementation in relation to ticket #4121
+    Fix bell icon indicating reports with active reminder date
+    Ensure app shows app after loading all the translations
+    Silence reporting of exceptions of type sqlalchemy.exc.OperationalError
+    Bump npm dependencies to latest versions
+    [doc] Update application security specs about rate limiting features
+
 Changes in version 4.15.6
     Fix act as operator functionality broken since 4.15.0 (#4099)
     Temporarily remove interfaces to provide a motivation on report status change
