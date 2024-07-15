@@ -36,6 +36,7 @@ The security of communication with respect to third party transmission monitorin
 
 .. csv-table::
    :header: "Security level", "Description"
+
    "High security", "Tor is used and the communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
    "Medium security", "HTTPS is used and the communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  user's communication's line or the GlobaLeaks platform communication's line is not possible."
 
@@ -44,7 +45,6 @@ Independently of the anonymity matrix, various users may decide to, or be requir
 
 .. csv-table::
    :header: "Identity disclosure matrix", "Definition"
-   :header: "User", "Definition"
 
    "Undisclosed", "The user's identity is not disclosed and its disclosure is not likely."
    "Optionally disclosed", "The user's identity is by default not disclosed, but they are given the chance to disclose it on a voluntary basis (e.g., in some workflows an anonymous tip-off MAY receive a follow-up, while a formal report with identity disclosed MUST receive a follow-up)."
