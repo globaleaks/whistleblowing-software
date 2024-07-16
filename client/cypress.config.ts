@@ -34,7 +34,7 @@ export default defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      return require("./cypress/plugin/index.ts").default(on, config);
+      return require("./cypress/plugins/index.ts").default(on, config);
     },
     baseUrl: "https://127.0.0.1:8443",
   },
