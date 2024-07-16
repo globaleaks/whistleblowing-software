@@ -208,12 +208,6 @@ export class TipsComponent implements OnInit {
     this.appDataService.updateShowLoadingPanel(false);
   }
 
-  markReportStatus(date: string): boolean {
-    const report_date = new Date(date);
-    const current_date = new Date();
-    return current_date > report_date;
-  }
-
   actAsWhistleblower() {
     this.http.get('/api/auth/operatorauthswitch', { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
@@ -410,7 +404,7 @@ export class TipsComponent implements OnInit {
       id: tip.id,
       progressive: tip.progressive,
       important: tip.important,
-      reportStatus: this.markReportStatus(tip.reminder_date),
+      reportStatus: this.utils.isDatePassed(tip.reminder_date),
       context_name: tip.context_name,
       label: tip.label,
       status: tip.submissionStatusStr,

@@ -307,6 +307,12 @@ export class UtilsService {
     return text?text:"";
   }
 
+  isDatePassed(time: string) {
+    var report_date = new Date(time);
+    var current_date = new Date();
+    return current_date > report_date;
+  }
+
   isNever(time: string) {
     const date = new Date(time);
     return date.getTime() === 32503680000000;

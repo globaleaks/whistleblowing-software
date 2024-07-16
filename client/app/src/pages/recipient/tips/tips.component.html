@@ -216,7 +216,7 @@
                         <td>
                             <i *ngIf="tip.important" class="fa-solid fa-star text-warning"></i>
                         <td>
-                            <i *ngIf="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
+                            <i *ngIf="!utils.isNever(tip.reminder_date)" class="fa-solid fa-bell" [ngClass]="{'text-warning': utils.isDatePassed(tip.reminder_date)}"></i>
                         </td>
                         <td class="TipInfoID">{{tip.progressive}}</td>
                         <td class="TipInfoContext" *ngIf="appDataService.public.contexts.length > 1">{{tip.context_name}}</td>
