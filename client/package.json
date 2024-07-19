@@ -32,7 +32,7 @@
     "@fontsource/noto-sans-thaana": "5.0.14",
     "@fontsource/noto-sans-thai": "5.0.14",
     "@fontsource/noto-serif-tibetan": "5.0.13",
-    "@fortawesome/fontawesome-free": "6.5.2",
+    "@fortawesome/fontawesome-free": "6.6.0",
     "angular": "1.8.3",
     "angular-aria": "1.8.3",
     "angular-chart.js": "1.1.1",
@@ -60,11 +60,11 @@
   },
   "devDependencies": {
     "@babel/cli": "7.24.8",
-    "@babel/core": "7.24.8",
-    "@cypress/code-coverage": "3.12.41",
+    "@babel/core": "7.24.9",
+    "@cypress/code-coverage": "3.12.42",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.13.0",
-    "eslint": "9.6.0",
+    "cypress": "13.13.1",
+    "eslint": "9.7.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -84,14 +84,14 @@
     "npm-check-updates": "16.14.20",
     "nyc": "17.0.0",
     "postcss-rtl": "2.0.0",
-    "stylelint": "16.6.1",
+    "stylelint": "16.7.0",
     "stylelint-config-standard": "36.0.1",
     "superagent": "9.0.2",
-    "terser": "5.31.2"
+    "terser": "5.31.3"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "16.6.1"
+      "stylelint": "16.7.0"
     }
   }
 }
