@@ -6,15 +6,8 @@ import {switchMap} from "rxjs/operators";
   providedIn: "root"
 })
 export class CryptoService {
-
   data: string;
   counter: number = 0;
-
-  getWebCrypto(): SubtleCrypto | undefined {
-    return typeof window !== "undefined" && window.isSecureContext
-      ? window.crypto.subtle
-      : undefined;
-  }
 
   calculateHash(hash: any): Observable<number> {
     hash = new Uint8Array(hash);
@@ -38,21 +31,14 @@ export class CryptoService {
   }
 
   work(): Observable<number> {
-    const webCrypto = this.getWebCrypto();
+    const webCrypto = window.crypto.subtle;
 
-    if (webCrypto) {
-      const toHash = this.str2Uint8Array(this.data + this.counter);
-      const digestPremise = from(webCrypto.digest({name: "SHA-256"}, toHash));
+    const toHash = this.str2Uint8Array(this.data + this.counter);
+    const digestPremise = from(webCrypto.digest({name: "SHA-256"}, toHash));
 
-      return digestPremise.pipe(
-          switchMap((res) => this.calculateHash(res))
-      );
-    } else {
-      return new Observable<number>((observer) => {
-        observer.next(-1);
-        observer.complete();
-      });
-    }
+    return digestPremise.pipe(
+      switchMap((res) => this.calculateHash(res))
+    );
   }
 
   proofOfWork(data: string): Observable<number> {

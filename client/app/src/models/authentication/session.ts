@@ -12,9 +12,14 @@ export class Session {
   receipt: any;
   two_factor: boolean;
   permissions: { can_upload_files: boolean };
+  token: any;
 }
 
 export interface Properties {
   management_session: any
   new_receipt: string;
+}
+
+export class SessionRefresh {
+  token: string;
 }

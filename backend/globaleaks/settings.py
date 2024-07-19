@@ -37,7 +37,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.ramdisk_path = '/dev/shm/globaleaks'
         self.working_path = '/var/globaleaks'
 
-        self.authentication_lifetime = 1800
+        self.authentication_lifetime = 120
 
         self.accept_submissions = True
 

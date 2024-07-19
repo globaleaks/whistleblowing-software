@@ -13,10 +13,6 @@ export class TokenResource {
   constructor(private cryptoService: CryptoService, private http: HttpClient) {
   }
 
-  getToken(id: string) {
-    this.http.post<any>(this.baseUrl.replace(":id", id), {}).subscribe();
-  }
-
   getWithProofOfWork(): Observable<any> {
     return from(this.http.post("api/auth/token", {})).pipe(
       switchMap((response: any) => {

@@ -254,11 +254,19 @@ class SessionHandler(BaseHandler):
     """
     check_roles = {'user', 'whistleblower'}
 
-    def get(self):
+    def post(self):
         """
         Reset session timout
         """
-        Sessions.reset_timeout(self.session)
+        request = self.validate_request(self.request.content.read(), requests.SessionUpdateDesc)
+
+        try:
+            self.session.token.validate(request['token'].encode())
+            Sessions.reset_timeout(self.session)
+        except:
+            pass
+        else:
+            self.session.token = self.state.tokens.new(self.request.tid)
 
         return self.session.serialize()
 

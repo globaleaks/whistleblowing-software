@@ -52,7 +52,6 @@ export class AuthenticationService {
   }
 
   setSession(response: Session) {
-    console.log(response);
     this.session = response;
     if (this.session.role === "whistleblower") {
       this.session.homepage = "/";

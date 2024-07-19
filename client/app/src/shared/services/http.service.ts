@@ -21,7 +21,7 @@ import {Field, fieldtemplatesResolverModel} from "@app/models/resolvers/field-te
 import {contextResolverModel} from "@app/models/resolvers/context-resolver-model";
 import {Root, Status, Substatus} from "@app/models/app/public-model";
 import {notificationResolverModel} from "@app/models/resolvers/notification-resolver-model";
-import {Session} from "@app/models/authentication/session";
+import {Session, SessionRefresh} from "@app/models/authentication/session";
 import {RFile, Comment} from "@app/models/app/shared-public-model";
 import {preferenceResolverModel} from "@app/models/resolvers/preference-resolver-model";
 import {TokenResponse} from "@app/models/authentication/token-response";
@@ -59,6 +59,10 @@ export class HttpService {
 
   requestWhistleBlowerLogin(param: string, header: HttpHeaders): Observable<Session> {
     return this.httpClient.post<Session>("api/auth/receiptauth", param, {headers: header});
+  }
+
+  requestRefreshUserSession(param: SessionRefresh): Observable<Session> {
+    return this.httpClient.post<Session>("api/auth/session", param);
   }
 
   requestDeleteUserSession(): Observable<Session> {
