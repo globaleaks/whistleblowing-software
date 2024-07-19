@@ -18,15 +18,14 @@ class Token(object):
     def serialize(self):
         return {
             'id': self.id.decode(),
-            'creation_date': self.creation_date,
-            'complexity': 4
+            'creation_date': self.creation_date
         }
 
     def validate(self, token_answer):
         try:
             key, answer = token_answer.split(b":")
 
-            if not sha256(key + answer).endswith(b'0000'):
+            if not sha256(key + answer).endswith(b'00'):
                 raise errors.InternalServerError("TokenFailure: Invalid Token")
         except:
             raise errors.InternalServerError("TokenFailure: Invalid token")
