@@ -15,7 +15,7 @@
 # Joan Montané, 2020
 # Joan Montané, 2020
 # Joan Redon, 2022
-# José Luis Ramirez, 2022-2023
+# José Luis Ramirez, 2022-2024
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -554,7 +554,7 @@ msgid "File a report"
 msgstr "Presentar un informe"
 
 msgid "Select a reporting channel:"
-msgstr "Trie un canal de denúncia:"
+msgstr "Tria un canal de denúncia:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
