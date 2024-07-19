@@ -1,3 +1,8 @@
+Changes in version 4.15.8
+    Revert raising of proof of work token complexity requiring more testing
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.15.7
     Apply proof of work to sessions renewal
     Implement rate limiting on whistleblowers' reports and attachments
