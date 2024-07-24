@@ -470,7 +470,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 def forge_request(uri=b'https://www.globaleaks.org/',
-                  headers=None, body='', args=None, client_addr=None, method=b'GET'):
+                  headers=None, body='', args=None, client_addr=b'127.0.0.1', method=b'GET'):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
@@ -504,7 +504,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.code = 200
     request.hostname = b''
     request.headers = None
-    request.client_ip = b'127.0.0.1'
+    request.client_ip = client_addr
     request.client_ua = b''
     request.client_using_mobile = False
     request.client_using_tor = False
@@ -530,14 +530,10 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
     request.getResponseBody = getResponseBody
 
-    if client_addr is None:
-        request.client = IPv4Address('TCP', b'1.2.3.4', 12345)
-    else:
-        request.client = client_addr
-
     def getHost():
-        return IPv4Address('TCP', b'127.0.0.1', port)
+        return IPv4Address('TCP', request.client_ip, port)
 
+    request.client = getHost()
     request.getHost = getHost
 
     def notifyFinish():
@@ -950,7 +946,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
                 user_id=None, role=None, multilang=False, headers=None, args=None,
-                client_addr=None, handler_cls=None, attached_file=None,
+                client_addr=b'127.0.0.1', handler_cls=None, attached_file=None,
                 kwargs=None, token=False):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
