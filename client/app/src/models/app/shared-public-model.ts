@@ -133,6 +133,9 @@ export interface Comment {
   content: string;
   author_id: string;
   visibility: string;
+  is_audit_log?: boolean;
+  audit_log_type?: string;
+  data: any; // TODO: Find possible values for data and create a type for it.
 }
 
 export interface WbFile {

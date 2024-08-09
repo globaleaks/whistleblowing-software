@@ -23,6 +23,7 @@ from globaleaks.handlers.whistleblower.submission import db_create_receivertip, 
 from globaleaks.handlers.whistleblower.wbtip import db_notify_report_update
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
+from globaleaks.models.serializers import process_logs
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -749,11 +750,11 @@ def db_postpone_expiration(session, itip, expiration_date):
     max_date = 32503676400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
-    expiration_date = datetime.utcfromtimestamp(expiration_date)
+    expiration_date = datetime.fromtimestamp(expiration_date)
 
     min_date = time.time() + 91 * 86400
     min_date = min_date - min_date % 86400
-    min_date = datetime.utcfromtimestamp(min_date)
+    min_date = datetime.fromtimestamp(min_date)
     if itip.expiration_date <= min_date:
         min_date = itip.expiration_date
 
@@ -773,7 +774,7 @@ def db_set_reminder(session, itip, reminder_date):
     """
     reminder_date = reminder_date / 1000
     reminder_date = min(reminder_date, 32503680000)
-    reminder_date = datetime.utcfromtimestamp(reminder_date)
+    reminder_date = datetime.fromtimestamp(reminder_date)
 
     itip.reminder_date = reminder_date
 
@@ -1148,6 +1149,7 @@ class RTipInstance(OperationHandler):
             tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
 
         tip = yield redact_report(self.session.user_id, tip)
+        tip = yield process_logs(tip, tip['id'])
 
         returnValue(tip)
 
