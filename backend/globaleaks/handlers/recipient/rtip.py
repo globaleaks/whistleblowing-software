@@ -30,7 +30,7 @@ from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never
+from globaleaks.utils.utility import datetime_now, datetime_null, datetime_never, get_expiration
 from globaleaks.utils.json import JSONEncoder
 
 
@@ -200,15 +200,16 @@ def recalculate_data_retention(session, itip, report_reopen_request):
         # use the context-defined data retention
         ttl = get_ttl(session, models.Context, itip.context_id)
         if ttl > 0:
-            itip.expiration_date = datetime_now() + timedelta(ttl)
+            itip.expiration_date = get_expiration(ttl)
         else:
             itip.expiration_date = datetime_never()
     elif itip.status == "closed" and itip.substatus is not None:
         ttl = get_ttl(session, models.SubmissionSubStatus, itip.substatus)
         if ttl > 0:
-            itip.expiration_date = datetime_now() + timedelta(ttl)
+            itip.expiration_date = get_expiration(timedettl)
 
     return prev_expiration_date, itip.expiration_date
+
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation=None):
     """
@@ -249,12 +250,13 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
 
     db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
 
-    log_data = {
-      'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
-      'curr_expiration_date': int(datetime.timestamp(curr_expiration_date))
-    }
+    if prev_expiration_date != curr_expiration_date:
+        log_data = {
+            'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
+            'curr_expiration_date': int(datetime.timestamp(curr_expiration_date))
+        }
 
-    db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
+        db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 def db_update_temporary_redaction(session, tid, user_id, redaction, redaction_data):
