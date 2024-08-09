@@ -11,6 +11,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {TranslateModule} from "@ngx-translate/core";
 import {SitesRoutingModule} from "@app/pages/admin/sites/sites-routing.module";
 import {SiteslistComponent} from "@app/pages/admin/sites/siteslist/siteslist.component";
+import {ProfilelistComponent} from "@app/pages/admin/sites//profilelist/profilelist.component";
+import {SitesTab3Component} from "@app/pages/admin/sites//sites-tab3/sites-tab3.component";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {SiteslistComponent} from "@app/pages/admin/sites/siteslist/siteslist.com
     SitesComponent,
     SitesTab1Component,
     SitesTab2Component,
-    SiteslistComponent
+    SitesTab3Component,
+    SiteslistComponent,
+    ProfilelistComponent
   ],
   imports: [
     CommonModule,

@@ -33,6 +33,15 @@
                     <option value="wbpa">WHISTLEBLOWINGPA</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label>{{ 'Profile:' | translate }}</label>
+                <select name="profile" class="form-select-custom" [(ngModel)]="newTenant.default_profile" required>
+                    <option value="default">DEFAULT</option>
+                    <ng-container *ngFor="let tenant of profileTenants">
+                        <option *ngIf="tenant.active" [value]="tenant.id">{{ tenant.name }}</option>
+                    </ng-container>
+                </select>
+            </div>
             <div class="form-group clearfix">
                 <button id="add-btn" class="float-start btn btn-primary" [disabled]="newTenantForm.invalid" (click)="addTenant();toggleAddTenant()" type="button">
                     <i class="fa-solid fa-plus"></i>
@@ -45,9 +54,9 @@
 <div class="row">
     <div class="col-md-12" *ngIf="tenants">
         <div *ngFor="let tenant of tenants | orderBy:'id' | filter:'name':search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index">
-          <form id="tenant-{{index}}"  #editTenant="ngForm" novalidate> 
-              <src-siteslist  [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants"></src-siteslist>
-          </form>
+                <form id="tenant-{{index}}" #editTenant="ngForm" novalidate>
+                    <src-siteslist [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants" [indexNumber]="(index+1)"></src-siteslist>
+                </form>
         </div>
         <div class="text-center" *ngIf="(tenants | filter:'name':search).length > 10">
             <ngb-pagination [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="(tenants | filter:'name':search).length" [boundaryLinks]="true">
