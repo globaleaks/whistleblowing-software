@@ -24,23 +24,23 @@ def get_default(default):
     return default
 
 def process_items(combined_values, default_profile_id, tid, pid):
-        result = {}
-        default_tenant_result = {}
-        t_result = {}
-        p_result = {}
-        for item in combined_values:
-            if item.tid == default_profile_id:
-                default_tenant_result[item.var_name] = item
-                if item.var_name not in result:
-                    result[item.var_name] = item
-            if item.tid == pid:
-                p_result[item.var_name] = item
-                if item.var_name not in result or item.var_name not in t_result:
-                    result[item.var_name] = item
-            if item.tid == tid:
-                t_result[item.var_name] = item
+    result = {}
+    default_tenant_result = {}
+    t_result = {}
+    p_result = {}
+    for item in combined_values:
+        if item.tid == default_profile_id:
+            default_tenant_result[item.var_name] = item
+            if item.var_name not in result:
                 result[item.var_name] = item
-        return result, default_tenant_result, t_result, p_result
+        if item.tid == pid:
+            p_result[item.var_name] = item
+            if item.var_name not in result or item.var_name not in t_result:
+                result[item.var_name] = item
+        if item.tid == tid:
+            t_result[item.var_name] = item
+            result[item.var_name] = item
+    return result, default_tenant_result, t_result, p_result
 
 def db_get_configs(session, filter_name):
     configs = {}
