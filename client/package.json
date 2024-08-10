@@ -14,20 +14,20 @@
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
-    "@fontsource/inter": "5.0.19",
+    "@fontsource/inter": "5.0.20",
     "@fontsource/noto-sans-arabic": "5.0.13",
     "@fontsource/noto-sans-armenian": "5.0.14",
     "@fontsource/noto-sans-bengali": "5.0.13",
     "@fontsource/noto-sans-ethiopic": "5.0.18",
     "@fontsource/noto-sans-georgian": "5.0.22",
     "@fontsource/noto-sans-hebrew": "5.0.22",
-    "@fontsource/noto-sans-hk": "5.0.19",
-    "@fontsource/noto-sans-jp": "5.0.19",
+    "@fontsource/noto-sans-hk": "5.0.20",
+    "@fontsource/noto-sans-jp": "5.0.20",
     "@fontsource/noto-sans-khmer": "5.0.14",
     "@fontsource/noto-sans-kr": "5.0.19",
     "@fontsource/noto-sans-lao": "5.0.18",
     "@fontsource/noto-sans-myanmar": "5.0.13",
-    "@fontsource/noto-sans-sc": "5.0.19",
+    "@fontsource/noto-sans-sc": "5.0.20",
     "@fontsource/noto-sans-tamil": "5.0.13",
     "@fontsource/noto-sans-thaana": "5.0.14",
     "@fontsource/noto-sans-thai": "5.0.14",
@@ -60,11 +60,11 @@
   },
   "devDependencies": {
     "@babel/cli": "7.24.8",
-    "@babel/core": "7.24.9",
-    "@cypress/code-coverage": "3.12.42",
+    "@babel/core": "7.25.2",
+    "@cypress/code-coverage": "3.12.44",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.13.1",
-    "eslint": "9.7.0",
+    "cypress": "13.13.2",
+    "eslint": "9.9.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -81,17 +81,17 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.14.20",
+    "npm-check-updates": "17.0.6",
     "nyc": "17.0.0",
     "postcss-rtl": "2.0.0",
-    "stylelint": "16.7.0",
+    "stylelint": "16.8.1",
     "stylelint-config-standard": "36.0.1",
-    "superagent": "9.0.2",
-    "terser": "5.31.3"
+    "superagent": "10.0.0",
+    "terser": "5.31.5"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "16.7.0"
+      "stylelint": "16.8.1"
     }
   }
 }
