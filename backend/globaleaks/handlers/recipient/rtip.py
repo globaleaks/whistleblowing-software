@@ -752,11 +752,11 @@ def db_postpone_expiration(session, itip, expiration_date):
     max_date = 32503676400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
-    expiration_date = datetime.utcfromtimestamp(expiration_date)
+    expiration_date = datetime.fromtimestamp(expiration_date)
 
     min_date = time.time() + 91 * 86400
     min_date = min_date - min_date % 86400
-    min_date = datetime.utcfromtimestamp(min_date)
+    min_date = datetime.fromtimestamp(min_date)
     if itip.expiration_date <= min_date:
         min_date = itip.expiration_date
 
@@ -776,7 +776,7 @@ def db_set_reminder(session, itip, reminder_date):
     """
     reminder_date = reminder_date / 1000
     reminder_date = min(reminder_date, 32503680000)
-    reminder_date = datetime.utcfromtimestamp(reminder_date)
+    reminder_date = datetime.fromtimestamp(reminder_date)
 
     itip.reminder_date = reminder_date
 
