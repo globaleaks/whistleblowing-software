@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
         const token = params["token"];
         this.authentication.login(0, "", "", "", token);
       } else {
-        if (this.authentication.session && this.authentication.session.homepage) {
+        if (this.authentication.session && this.authentication.session.role !== "whistleblower" && this.authentication.session.homepage) {
           this.router.navigateByUrl(this.authentication.session.homepage).then();
         }
       }

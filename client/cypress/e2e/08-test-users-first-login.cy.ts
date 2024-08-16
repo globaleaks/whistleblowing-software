@@ -1,5 +1,6 @@
 describe("Recipient first login", () => {
   it("should require password change upon successful authentication", () => {
+    cy.wait(2000)
     cy.login_receiver("Recipient", Cypress.env("init_password"), "#/login", true);
     cy.takeScreenshot("user/password");
     cy.get('input[name="changePasswordArgs.password"]').should('be.visible', { timeout: 10000 }).clear().type(Cypress.env("user_password"));
