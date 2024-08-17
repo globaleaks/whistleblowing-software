@@ -1,3 +1,45 @@
+Changes in version 5.0.0
+    Implement full client rewrite on the base of Angular 18 and Bootstrap 5
+    Display report expiration date changes on report page (#4116)
+    Display report status changes and their motivations on report page. (#4115)
+    Bump client dependencies to latest version
+    Update translations
+
+Changes in version 4.15.9
+    Fix setting of expiration date upon report repopening
+    Bump npm dependencies to latest versions
+    Update translations
+
+Changes in version 4.15.8
+    Revert raising of proof of work token complexity requiring more testing
+    Bump npm dependencies to latest versions
+    Update translations
+
+Changes in version 4.15.7
+    Apply proof of work to sessions renewal
+    Implement rate limiting on whistleblowers' reports and attachments
+    Implement cache reset when a configuration variable is varied with gl-admin
+    Revise reminder implementation in relation to ticket #4121
+    Fix bell icon indicating reports with active reminder date
+    Ensure app shows app after loading all the translations
+    Silence reporting of exceptions of type sqlalchemy.exc.OperationalError
+    Bump npm dependencies to latest versions
+    [doc] Update application security specs about rate limiting features
+
+Changes in version 4.15.6
+    Fix act as operator functionality broken since 4.15.0 (#4099)
+    Temporarily remove interfaces to provide a motivation on report status change
+      Since the feature is not complete many users appear very confused of having
+      to enter a motivation that is not shown.
+      The functionality will be reintroduced soon soon with a complete implementation.
+    Raise complexity of proof of work on sessions
+    Implement basic QoS algorithm on handling of virtual hosting limiting
+      burst of traffic.
+
+Changes in version 4.15.5
+    Fix: Do not notify report updates when personal notes are loaded
+    Update translations
+
 Changes in version 4.15.4
     Revert change introduced in 4.15.3 to prevent updating report date
     at the time of first report opening following community preference
