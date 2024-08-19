@@ -4,7 +4,7 @@ export class tenantResolverModel {
   active: boolean;
   hostname: string;
   mode: string;
-  default_profile: string;
+  profile: string;
   name: string;
   onionservice: string;
   rootdomain: string;

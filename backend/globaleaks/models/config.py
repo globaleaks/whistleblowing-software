@@ -23,6 +23,7 @@ def get_default(default):
 
     return default
 
+
 def process_items(combined_values, default_profile_id, tid, pid):
     result = {}
     default_tenant_result = {}
@@ -42,6 +43,7 @@ def process_items(combined_values, default_profile_id, tid, pid):
             result[item.var_name] = item
     return result, default_tenant_result, t_result, p_result
 
+
 def db_get_configs(session, filter_name):
     configs = {}
     _configs = session.query(Config).filter(Config.var_name.in_(ConfigFilters[filter_name]))
@@ -60,29 +62,29 @@ class ConfigFactory(object):
         self.session = session
         self.default_profile_id = 1000000
         self.tid = tid
-    
+
     def get_all(self, filter_name):
-        default_profile_value = None
+        profile_value = None
         filters = [Config.var_name.in_(ConfigFilters[filter_name])]
 
-        default_profile = self.session.query(Config.value).filter(
+        profile = self.session.query(Config.value).filter(
             Config.tid == self.tid,
-            Config.var_name == 'default_profile',
+            Config.var_name == 'profile',
         ).scalar()
 
-        if default_profile is not None:
-            default_profile_value = int(default_profile)
+        if profile is not None:
+            profile_value = int(profile)
 
         filters.append(
             or_(
                 Config.tid == self.default_profile_id,
                 Config.tid == self.tid,
-                Config.tid == default_profile_value
+                Config.tid == profile_value
             )
         )
 
         combined_values = self.session.query(Config).filter(*filters).all()
-        return process_items(combined_values, self.default_profile_id, self.tid, default_profile_value)
+        return process_items(combined_values, self.default_profile_id, self.tid, profile_value)
 
     def update(self, filter_name, data):
         result, default_tenant_result, t_result, p_result = self.get_all(filter_name)
@@ -107,7 +109,7 @@ class ConfigFactory(object):
             self.sync_profile(default_tenant_result, t_result)
 
     def sync_profile(self, default_tenant_result, t_result):
-        result = self.session.query(Config).filter(Config.var_name == 'default_profile', Config.value == str(self.tid)).all()
+        result = self.session.query(Config).filter(Config.var_name == 'profile', Config.value == str(self.tid)).all()
         tid_list = [config.tid for config in result]
 
         for entry in self.session.query(Config).filter(Config.tid.in_(tid_list)).all():
@@ -169,28 +171,27 @@ class ConfigL10NFactory(object):
                 self.session.add(ConfigL10N({'tid': self.tid, 'lang': lang, 'var_name': key, 'value': value}))
 
     def get_all(self, filter_name, lang):
-
-        default_profile_value = None
+        profile_value = None
         filters = [ConfigL10N.lang == lang,ConfigL10N.var_name.in_(ConfigL10NFilters[filter_name])]
 
-        default_profile = self.session.query(Config.value).filter(
+        profile = self.session.query(Config.value).filter(
             Config.tid == self.tid,
-            Config.var_name == 'default_profile',
+            Config.var_name == 'profile',
         ).scalar()
 
-        if default_profile is not None:
-            default_profile_value = int(default_profile)
+        if profile is not None:
+            profile_value = int(profile)
 
         filters.append(
             or_(
                 ConfigL10N.tid == self.default_profile_id,
                 ConfigL10N.tid == self.tid,
-                ConfigL10N.tid == default_profile_value
+                ConfigL10N.tid == profile_value
             )
         )
 
         combined_values = self.session.query(ConfigL10N).filter(*filters).all()
-        result, default_tenant_result, t_result ,p_result = process_items(combined_values, self.default_profile_id, self.tid, default_profile_value)
+        result, default_tenant_result, t_result ,p_result = process_items(combined_values, self.default_profile_id, self.tid, profile_value)
         return list(result.values()), default_tenant_result, t_result,p_result
 
     def serialize(self, filter_name, lang):
@@ -221,7 +222,7 @@ class ConfigL10NFactory(object):
             self.sync_profile(lang, default_tenant_result, t_result)
 
     def sync_profile(self, lang, default_tenant_result, t_result):
-        result = self.session.query(Config).filter(Config.var_name == 'default_profile', Config.value == str(self.tid)).all()
+        result = self.session.query(Config).filter(Config.var_name == 'profile', Config.value == str(self.tid)).all()
         tid_list = [config.tid for config in result]
 
         for entry in self.session.query(ConfigL10N).filter(ConfigL10N.tid.in_(tid_list)).all():
@@ -294,16 +295,16 @@ def initialize_config(session, tid, data):
             variables[name] = root_tenant_node[name]
 
     if tid in (1, 1000000):
-        variables.pop('default_profile', None)
+        variables.pop('profile', None)
 
     for name, value in variables.items():
         if tid in (1, 1000000) or name in default_tenant_keys:
             session.add(Config({'tid': tid, 'var_name': name, 'value': value}))
 
-    default_profile = data.get('default_profile')
-    if default_profile and default_profile != 'default':
-        variables['default_profile'] = default_profile
-        session.add(Config({'tid': tid, 'var_name': 'default_profile', 'value': default_profile}))
+    profile = data.get('profile')
+    if profile and profile != 'default':
+        variables['profile'] = profile
+        session.add(Config({'tid': tid, 'var_name': 'profile', 'value': profile}))
 
 def add_new_lang(session, tid, lang, appdata_dict):
     l = EnabledLanguage()

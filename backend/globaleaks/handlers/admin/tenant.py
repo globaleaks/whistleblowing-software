@@ -14,6 +14,7 @@ from twisted.internet.defer import inlineCallbacks
 
 default_profile_id = 1000000
 
+
 def db_initialize_tenant_submission_statuses(session, tid):
     """
     Transaction for initializing the submission statuses of a tenant
@@ -84,9 +85,9 @@ def create(session, desc, *args, **kwargs):
     return serializers.serialize_tenant(session, t)
 
 @transact
-def is_profile_mapped(session, tid):
-    if int(tid) > 1000000:
-        return session.query(Config).filter_by(value=tid, var_name='default_profile').first() is not None
+def check_profile_use(session, tid):
+    if tid > 1000000:
+        return session.query(Config).filter_by(value=tid, var_name='profile').first() is not None
     else:
         return False
 
@@ -193,10 +194,10 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
+        tid = int(tid)
 
-        profile_mapped_status = yield is_profile_mapped(tid)
-        if profile_mapped_status:
+        profile_in_use = yield check_profile_use(tid)
+        if profile_in_use:
             raise errors.ForbiddenOperation
 
-        tid = int(tid)
         tw(db_del, models.Tenant, models.Tenant.id == tid)

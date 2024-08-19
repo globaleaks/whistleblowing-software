@@ -8,11 +8,11 @@ import {HttpService} from "@app/shared/services/http.service";
 })
 export class SitesTab1Component implements OnInit {
   search: string;
-  newTenant: { name: string, active: boolean, mode: string,is_profile:boolean, default_profile: string, subdomain: string } = {
+  newTenant: { name: string, active: boolean, mode: string,is_profile:boolean, profile: string, subdomain: string } = {
     name: "",
     active: true,
     mode: "default",
-    default_profile: "default",
+    profile: "1000001",
     subdomain: "",
     is_profile: false,
   };
@@ -30,12 +30,12 @@ export class SitesTab1Component implements OnInit {
   fetchTenants() {
     this.httpService.fetchTenant().subscribe(
       tenants => {
-        this.tenants = tenants.filter(tenant => tenant.id < 1000000);
-        this.profileTenants = tenants.filter(tenant => tenant.id > 1000000);
+        this.tenants = tenants.filter(tenant => tenant.id < 1000001);
+        this.profileTenants = tenants.filter(tenant => tenant.id > 1000001);
       }
     );
   }
-  
+
   toggleAddTenant() {
     this.showAddTenant = !this.showAddTenant;
   }
@@ -47,7 +47,7 @@ export class SitesTab1Component implements OnInit {
     this.httpService.addTenant(this.newTenant).subscribe(res => {
       this.tenants.push(res);
       this.newTenant.name = "";
-      this.newTenant.default_profile = "default";
+      this.newTenant.profile = "1000001";
     });
   }
 }
