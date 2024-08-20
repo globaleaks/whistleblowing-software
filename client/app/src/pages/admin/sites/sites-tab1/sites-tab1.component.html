@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label>{{ 'Profile:' | translate }}</label>
-                <select name="profile" class="form-select-custom" [(ngModel)]="newTenant.default_profile" required>
+                <select name="profile" class="form-select-custom" [(ngModel)]="newTenant.profile" required>
                     <option value="default">DEFAULT</option>
                     <ng-container *ngFor="let tenant of profileTenants">
                         <option *ngIf="tenant.active" [value]="tenant.id">{{ tenant.name }}</option>
