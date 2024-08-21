@@ -38,8 +38,6 @@ describe("admin configure, add, and delete contexts", () => {
     add_context("Topic A");
     add_context("Topic B");
     add_context("Topic C");
-
-    cy.takeScreenshot("admin/contextstest-admin-contexts");
   });
 
   it("should delete existing contexts", () => {

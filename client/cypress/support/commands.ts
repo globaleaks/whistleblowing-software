@@ -189,6 +189,8 @@ Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
 
     cy.waitForPageIdle();
 
+    cy.wait(500);
+
     if (locator && locator !== ".modal") {
       return cy.get(locator).screenshot("../" + filename, {overwrite: true, scale: true});
     }
@@ -196,14 +198,7 @@ Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
     return cy.screenshot("../" + filename, {
       capture: "fullPage",
       overwrite: true,
-      scale: true,
-      /*onAfterScreenshot($el, props) {
-        cy.get("html, body").invoke(
-          "attr",
-          "style",
-          "height: 100%;"
-        );
-      }*/
+      scale: true
     });
   });
 });
