@@ -87,7 +87,7 @@ Cypress.Commands.add("simple_login_receiver", (username, password, url, firstlog
 Cypress.Commands.add("simple_login_admin", (username, password, url, firstlogin) => {
   username = username === undefined ? "admin" : username;
   password = password === undefined ? Cypress.env("user_password") : password;
-  url = url === undefined ? "#/admin/" : url;
+  url = url === undefined ? "#/admin" : url;
 
   let finalURL = "";
 
