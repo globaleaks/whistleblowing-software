@@ -1,6 +1,6 @@
 {
   "name": "globaleaks",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "scripts": {
     "test": "npx cypress run && npx nyc report --reporter=lcov --report-dir=./cypress/coverage --reporter=text-summary --browser electron"
   },

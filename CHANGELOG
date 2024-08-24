@@ -1,3 +1,12 @@
+Changes in version 5.0.1
+    Avoid to send emails when handlers exceed execution threshold
+    Enable to use markdown in ToSs' labels
+    Correct login interface for admin in relation to simplified login
+    Revise interface showing files on related questions
+    Bump client dependencies to latest version
+    [ci] Revise tests and improve screenshots collection
+    [doc] Update documentation images
+
 Changes in version 5.0.0
     Implement full client rewrite on the base of Angular 18 and Bootstrap 5
     Display report expiration date changes on report page (#4116)
