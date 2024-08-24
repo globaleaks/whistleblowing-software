@@ -1,0 +1,23 @@
+name: Release Globaleaks
+
+on:
+  push:
+    # this workflow only runs on tag names prefixed with "v"
+    # and suffixed with "-docker"
+    tags:
+      - "v*-docker"
+
+jobs:
+  publish_docker_image:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        env:
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: |
+          ./.github/workflows/scripts/build_docker.sh
