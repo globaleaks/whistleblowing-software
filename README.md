@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <a href="https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-AGPLv3%2B-green" alt="License"></a> <a href="https://github.com/globaleaks/GlobaLeaks/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Code of Conduct"></a>
+  <a href="https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-AGPLv3%2B-green" alt="License"></a> <a href="https://github.com/globaleaks/GlobaLeaks/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Code of Conduct"></a>
 </div>
 
 [GlobaLeaks](https://www.globaleaks.org/) is free, open source software enabling anyone to easily set up and maintain a secure whistleblowing platform.
