@@ -1,7 +1,7 @@
 =======================
 Development Environment
 =======================
-This guide describe how to set up an environment in order to contribute to the development of GlobaLeaks.
+This guide describes how to set up an environment in order to contribute to the development of GlobaLeaks.
 
 Requirements
 ============
