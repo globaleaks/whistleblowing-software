@@ -16,9 +16,7 @@ from globaleaks.utils.utility import \
     datetime_to_pretty_str, \
     datetime_to_day_str, \
     bytes_to_pretty_str, \
-    ISO8601_to_day_str, \
-    ISO8601_to_pretty_str
-
+    ISO8601_to_day_str
 
 node_keywords = [
     '{NodeName}',
