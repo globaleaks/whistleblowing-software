@@ -337,9 +337,14 @@ description:
       - documentation/images/recipient/reports.png
       - documentation/images/recipient/report.png
 usedBy:
+  - Agenzia per l'Italia Digitale (AgID)
   - ANAC - Autorità Nazionale Anticorruzione
+  - Autorità Garante nelle Comunicazioni (AgCOM)
+  - Avvocatura dello stato
+  - Corte dei Conti
   - Ministero della Difesa
   - Ministero della Giustizia
+  - Presidenza del Consiglio dei Ministri
   - A.s.l. Napoli 1 Centro
   - Abbanoa
   - Abc Latina
