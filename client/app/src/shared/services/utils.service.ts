@@ -519,9 +519,12 @@ export class UtilsService {
 
   getConfirmation(): Observable<string> {
     return new Observable((observer) => {
-      let modalRef = this.modalService.open(ConfirmationWithPasswordComponent,{backdrop: "static",keyboard: false});
+      let modalRef;
+
       if (this.preferenceResolver.dataModel.two_factor) {
         modalRef = this.modalService.open(ConfirmationWith2faComponent,{backdrop: "static",keyboard: false});
+      } else {
+        modalRef = this.modalService.open(ConfirmationWithPasswordComponent,{backdrop: "static",keyboard: false});
       }
 
       modalRef.componentInstance.confirmFunction = (secret: string) => {
