@@ -1,4 +1,5 @@
-import {Component, QueryList, ViewChild, ViewChildren} from "@angular/core";
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import {AppDataService} from "@app/app-data.service";
 import {WhistleblowerLoginResolver} from "@app/shared/resolvers/whistleblower-login.resolver";
 import {FieldUtilitiesService} from "@app/shared/services/field-utilities.service";
@@ -41,15 +42,21 @@ export class SubmissionComponent {
   show_steps_navigation_bar = false;
   receivedData: Flow[];
 
-  constructor(protected whistleblowerSubmissionService:WhistleblowerSubmissionService,private titleService: TitleService, private router: Router, private appConfigService: AppConfigService, private whistleblowerLoginResolver: WhistleblowerLoginResolver, protected authenticationService: AuthenticationService, private appDataService: AppDataService, private utilsService: UtilsService, private fieldUtilitiesService: FieldUtilitiesService, public submissionService: SubmissionService) {
+  constructor(private route:ActivatedRoute, protected whistleblowerSubmissionService:WhistleblowerSubmissionService,private titleService: TitleService, private router: Router, private appConfigService: AppConfigService, private whistleblowerLoginResolver: WhistleblowerLoginResolver, protected authenticationService: AuthenticationService, private appDataService: AppDataService, private utilsService: UtilsService, private fieldUtilitiesService: FieldUtilitiesService, public submissionService: SubmissionService) {
     this.selectable_contexts = [];
     this.receivedData = this.submissionService.getSharedData();
 
     this.appConfigService.setPage("submissionpage");
     this.whistleblowerLoginResolver.resolve()
     this.resetForm();
-    this.initializeSubmission();
 
+  }
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      this.context_id = params.get('context') || "";
+      this.initializeSubmission();
+    });
   }
 
   firstStepIndex() {
@@ -108,10 +115,12 @@ export class SubmissionComponent {
     this.selectable_contexts = this.appDataService.public.contexts.filter(context => !context.hidden);
 
     if (this.context_id) {
-      context = this.appDataService.public.contexts.find(context => context.id === this.context?.id);
-      this.prepareSubmission(context);
+      context = this.appDataService.public.contexts.find(context => context.id === this.context_id);
     } else if (this.selectable_contexts.length === 1) {
       context = this.selectable_contexts[0];
+    }
+
+    if (context) {
       this.prepareSubmission(context);
     }
   }
