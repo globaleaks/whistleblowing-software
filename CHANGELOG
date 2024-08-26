@@ -1,3 +1,10 @@
+Changes in version 5.0.2
+    Fix loading of channels when context id is provided as URL parameter
+    Fix implementation of file enabler in relation to 2fa confirmation
+    Implement few fixes as by suggestion #4058
+    Add version bump script
+    Update client dependencies to latest version
+
 Changes in version 5.0.1
     Avoid to send emails when handlers exceed execution threshold
     Enable to use markdown in ToSs' labels
