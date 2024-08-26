@@ -70,7 +70,7 @@
         "@angular/cli": "18.2.1",
         "@angular/compiler": "18.2.1",
         "@angular/compiler-cli": "18.2.1",
-        "@cypress/code-coverage": "3.12.45",
+        "@cypress/code-coverage": "3.12.46",
         "@cypress/schematic": "2.5.2",
         "@istanbuljs/nyc-config-typescript": "1.0.2",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
@@ -93,7 +93,7 @@
         "nyc": "17.0.0",
         "stylelint": "16.8.2",
         "stylelint-config-standard": "36.0.1",
-        "superagent": "10.0.2",
+        "superagent": "10.1.0",
         "ts-node": "10.9.2",
         "typescript": "5.5.4",
         "webpack-dev-server": "5.0.4"
@@ -3096,9 +3096,9 @@
       }
     },
     "node_modules/@cypress/code-coverage": {
-      "version": "3.12.45",
-      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.45.tgz",
-      "integrity": "sha512-QRvdc9Zmner/CxQ1F5jcNVZR8P8VrRTyE8THcisxnB6D3AMIKKSmjYUGH6OnWBDF/vi3CqimuMSbrUfzmPzmhw==",
+      "version": "3.12.46",
+      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.46.tgz",
+      "integrity": "sha512-Y6lG3VjJX8R64mZH5lSqZPw2aj89C1v7e8uC9Ngob1r1DgaAVRQtXZD6mXeHm23FHh131ZMckQ9b+AzCUeJ0mg==",
       "dev": true,
       "dependencies": {
         "@cypress/webpack-preprocessor": "^6.0.0",
@@ -18951,9 +18951,9 @@
       "optional": true
     },
     "node_modules/superagent": {
-      "version": "10.0.2",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-10.0.2.tgz",
-      "integrity": "sha512-rvcN5ciYmVRaZLyM/9thpmNSDGscx1FXNwT5LJjsl+2nhdE4ppd53L2c9iSQSM6FA1poBVwlw+0h2Ofxwr3DoQ==",
+      "version": "10.1.0",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-10.1.0.tgz",
+      "integrity": "sha512-JMmik7PbnXGlq7g528Gi6apHbVbTz2vrE3du6fuG4kIPSb2PnLoSOPvfjKn8aQYuJcBWAKW6ZG90qPPsE5jZxQ==",
       "dev": true,
       "dependencies": {
         "component-emitter": "^1.3.0",

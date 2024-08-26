@@ -68,7 +68,7 @@
     "@angular/cli": "18.2.1",
     "@angular/compiler": "18.2.1",
     "@angular/compiler-cli": "18.2.1",
-    "@cypress/code-coverage": "3.12.45",
+    "@cypress/code-coverage": "3.12.46",
     "@cypress/schematic": "2.5.2",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
@@ -91,7 +91,7 @@
     "nyc": "17.0.0",
     "stylelint": "16.8.2",
     "stylelint-config-standard": "36.0.1",
-    "superagent": "10.0.2",
+    "superagent": "10.1.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
     "webpack-dev-server": "5.0.4"
