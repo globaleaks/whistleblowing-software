@@ -139,12 +139,10 @@ class BaseHandler(object):
         if session_id is None:
             return
 
-        session = Sessions.get(session_id.decode())
+        self.session = Sessions.get(session_id.decode())
 
-        if session is None or session.tid != self.request.tid:
+        if self.session is None or self.session.tid != self.request.tid:
             return
-
-        self.session = session
 
         if self.session.user_role != 'whistleblower' and \
            self.state.tenants[1].cache.get('log_accesses_of_internal_users', False):
