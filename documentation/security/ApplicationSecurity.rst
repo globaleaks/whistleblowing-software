@@ -104,6 +104,12 @@ The session implementation follows the `OWASP Session Management Cheat Sheet <ht
 
 The system assigns a Session to each authenticated user. The Session ID is 256bits long secret generated randomly by the backend. Each session expire accordingly to a timeout of 60 minutes. Session IDs are exchanged by the client with the backend by means of an header (``X-Session``) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
 
+Session Encryption
+------------------
+In order to minimize the exposure of users' encryption keys, the keys are stored in an encrypted format and are decrypted only upon each client request.
+
+The implementation uses Libsodium's SecretBox, where the client's session key is used as the secret. Only the client maintains a copy of the session key, while the server retains only a SHA-256 hash.
+
 Cookies and XSRF Prevention
 ---------------------------
 Cookies are not used intentionally to minimize XSRF attacks and any possible attack based on them. Instead than using Cookies authentication is based on a custom HTTP Session Header sent by the client on authenticated requests.
