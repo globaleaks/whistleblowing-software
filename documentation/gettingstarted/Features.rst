@@ -63,7 +63,7 @@ Technical Features
 - Designed in adherence to `Directive (EU) 2019/882 <https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32019L0882>`_, `Directive (EU) 2016/2102 <https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016L2102>`_, `ETSI EN 301 549 <https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf>`_, `W3C WCAG 2.2 <https://www.w3.org/TR/WCAG22/>`_ and `WAI-ARIA 2.2 <https://www.w3.org/TR/wai-aria-1.2/>`_ recommendations for accessibility compliance
 - Automated Software Quality Measurement and Continuous Integration Testing
 - Long-Term Support plan (LTS)
-- Built with lightweight framework technologies (`AngularJS <https://angularjs.org/>`_ and `Python Twisted <https://twisted.org/>`_)
+- Built with lightweight framework technologies (`Angular <https://angular.dev/>`_ and `Python Twisted <https://twisted.org/>`_)
 - Integrated `SQLite <https://sqlite.org>`_ database
 - Automatic setup of `Tor Onion Services Version 3 <https://www.torproject.org/>`_
 - Support for self-service signup for whistleblowing SaaS service setup
