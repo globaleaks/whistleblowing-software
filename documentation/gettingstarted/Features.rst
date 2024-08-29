@@ -25,7 +25,7 @@ User Features
 Legal Features
 --------------
 
-- Designed in adherence with `ISO 37002:2021 <https://www.iso.org/standard/65035.html>`_ and `EU Directive 2019/1937 <https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32019L1937>`_
+- Designed in adherence to `ISO 37002:2021 <https://www.iso.org/standard/65035.html>`_ and `EU Directive 2019/1937 <https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32019L1937>`_ recommendations for whistleblowing compliance
 - Bidirectional anonymous communication (comments/messages)
 - Customizable case management workflow (statuses/sub-statuses)
 - Whistleblower identity conditional reporting workflow
@@ -42,13 +42,12 @@ Legal Features
 Security Features
 -----------------
 
-- Designed in adherence with `ISO 27001:2022 <https://www.iso.org/standard/82875.html>`_
+- Designed in adherence to `ISO 27001:2022 <https://www.iso.org/standard/82875.html>`_, `CSA STAR <https://cloudsecurityalliance.org/star>`_ and `OWASP <https://owasp.org/>`_ recommendations for security compliance
 - Full data encryption of whistleblower reports and recipient communication
 - Digital anonymity support with `Tor <https://www.torproject.org/>`_ integration
 - Built-in HTTPS support with `TLS 1.3 <https://tools.ietf.org/html/rfc8446>`_ standard (`SSLabs A+ <https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_ rating)
 - Automatic free digital certificate enrollment (`Let’s Encrypt <https://letsencrypt.org/>`_)
 - Multiple penetration tests with full public reports
-- Conform to industry standards and best practices for application security (`OWASP <https://owasp.org/>`_)
 - Two-Factor authentication (2FA) support compliant with standard `TOTP RFC 6238 <https://tools.ietf.org/html/rfc6238>`_
 - Integrated network sandboxing with iptables
 - Integrated application sandboxing with `AppArmor <http://wiki.apparmor.net/>`_
@@ -59,10 +58,9 @@ Security Features
 
 Technical Features
 ------------------
-
 - Multi-site support enabling to run multiple virtual site on the same setup
 - Responsive user interfaces made with `Boostrap <https://getbootstrap.com/>`_ CSS Framework
-- Built-in Accessibility Support with `WAI-ARIA <https://www.w3.org/WAI/standards-guidelines/aria/>`_ compliance
+- Designed in adherence to `Directive (EU) 2019/882 <https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32019L0882>`_, `Directive (EU) 2016/2102 <https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016L2102>`_, `ETSI EN 301 549 <https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf>`_, `W3C WCAG 2.2 <https://www.w3.org/TR/WCAG22/>`_ and `WAI-ARIA 2.2 <https://www.w3.org/TR/wai-aria-1.2/>`_ recommendations for accessibility compliance
 - Automated Software Quality Measurement and Continuous Integration Testing
 - Long-Term Support plan (LTS)
 - Built with lightweight framework technologies (`AngularJS <https://angularjs.org/>`_ and `Python Twisted <https://twisted.org/>`_)
@@ -73,4 +71,5 @@ Technical Features
 - Debian packaging with repository for update/upgrades
 - Fully self-contained application
 - Easy integration of the platform with existing websites
+- Built and packaged with `reproducibility <https://en.wikipedia.org/wiki/Reproducible_builds>`_ in mind
 - Rest API
