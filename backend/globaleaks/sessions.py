@@ -70,4 +70,5 @@ Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
 
 
 def initialize_submission_session(tid):
-    return Sessions.new(tid, uuid4(), tid, 'whistleblower', 'whistleblower')
+    prv_key, pub_key = GCE.generate_keypair()
+    return Sessions.new(tid, uuid4(), tid, 'whistleblower', 'whistleblower', prv_key)
