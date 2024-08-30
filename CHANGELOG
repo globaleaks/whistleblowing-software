@@ -1,3 +1,17 @@
+Changes in version 5.0.3
+    Implement encrypted sessions minimizing exposure of users keys
+    Revise implementation of questionnaires' step navigation
+    Make new reports expire at 23:59:59 UTC
+    Fix visualization of disabled reminder showing incorrecly as '3000-01-01'
+    Fix issue #4172
+    [doc] Update application security spec with detail on session encryption
+    [doc] Update documentation about usage of Angualar in place of AngularJS
+    [doc] Revise software features descriptions
+    [doc] Update list of italian public agencies using the software
+    [doc] Update documentation images
+    Bump client dependencies to latest version
+    Update translations
+
 Changes in version 5.0.2
     Fix loading of channels when context id is provided as URL parameter
     Fix implementation of file enabler in relation to 2fa confirmation
