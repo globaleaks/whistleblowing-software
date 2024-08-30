@@ -21,7 +21,7 @@ import {WhistleblowerSubmissionService} from "@app/pages/whistleblower/whistlebl
   templateUrl: "./submission.component.html",
   providers: [SubmissionService]
 })
-export class SubmissionComponent {
+export class SubmissionComponent implements OnInit {
   @ViewChild("submissionForm") public submissionForm: NgForm;
   @ViewChildren("stepform") stepForms: QueryList<NgForm>;
 

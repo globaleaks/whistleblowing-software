@@ -1,4 +1,4 @@
-import {HostListener, NgModule, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {HostListener, NgModule, CUSTOM_ELEMENTS_SCHEMA, OnDestroy} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppRoutingModule} from "@app/app-routing.module";
 import {AppComponent} from "@app/pages/app/app.component";
@@ -107,7 +107,7 @@ const translationModule = TranslateModule.forRoot({
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {
+export class AppModule implements OnDestroy {
 
   timedOut = false;
   title = "angular-idle-timeout";
@@ -129,9 +129,9 @@ export class AppModule {
 
     this.keepalive.onPing.subscribe(() => {
       if (this.authenticationService && this.authenticationService.session) {
-        var token = this.authenticationService.session.token;
+        const token = this.authenticationService.session.token;
         this.cryptoService.proofOfWork(token.id).subscribe((result) => {
-	  var param = {'token': token.id + ":" + result};
+	  const param = {'token': token.id + ":" + result};
           this.httpService.requestRefreshUserSession(param).subscribe((result => {
             this.authenticationService.session.token = result.token;
 	  }));

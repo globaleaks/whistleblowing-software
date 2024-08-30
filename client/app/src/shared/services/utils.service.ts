@@ -308,8 +308,8 @@ export class UtilsService {
   }
 
   isDatePassed(time: string) {
-    var report_date = new Date(time);
-    var current_date = new Date();
+    const report_date = new Date(time);
+    const current_date = new Date();
     return current_date > report_date;
   }
 
