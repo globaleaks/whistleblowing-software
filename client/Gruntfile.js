@@ -343,7 +343,7 @@ module.exports = function(grunt) {
 
   let agent = superagent.agent(),
       baseurl = "https://rest.api.transifex.com",
-      sourceFile = "pot/en.po",
+      sourceFile = "app/assets/data_src/pot/en.po",
       transifexApiKey = readTransifexApiKey();
 
   function updateTxSource(cb){
