@@ -14,129 +14,155 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = aptumatik"
+msgid "Log in"
+msgstr "Tizimgha kir"
 
-msgid "Accept multiple answers"
-msgstr "Köp jawapni qobul qil"
+msgid "Languages"
+msgstr "Tillar"
 
-msgid "Accept multiple file uploads"
-msgstr "Köp höjjet yükleshni qobul qil"
-
-msgid "Acceptable"
-msgstr "Qobul qilishqa bolidu"
-
-msgid "Access control"
-msgstr "Ziyaret kontroli"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Ziyaret hoquqi telep qilindi"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Saqlighuchi pash qilghuchining kimligini ziyaret qilishni telep qildi."
-
-msgid "Account recovery key"
-msgstr "Hésap eslige keltürüsh achquchi"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Pa’aliyetler"
-
-msgid "Add"
-msgstr "Qosh"
-
-msgid "Add custom text"
-msgstr "Ixtiyari tékist qosh"
-
-msgid "Add multimedia content"
-msgstr "Köp wastilik mezmun qosh"
-
-msgid "Add new question"
-msgstr "Yéngi su’al qosh"
-
-msgid "Add new questionnaire"
-msgstr "Yéngi ray sinash qosh"
-
-msgid "Add question from template"
-msgstr "Qéliptin yéngi su’al qosh"
-
-msgid "Addition"
-msgstr "Qoshumche"
-
-msgid "Additional questionnaire"
-msgstr "Qoshumche ray sinash"
-
-msgid "Address"
-msgstr "Adrés"
-
-msgid "Admin"
-msgstr "Bashqurghuchi"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: "
+msgid "Text customization"
+msgstr "Tékist ixtiyari"
 
 msgid "Advanced"
 msgstr ""
 
-msgid "Allow the recipient to delete reports"
-msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
+msgid "Question templates"
+msgstr "Su’al qélipliri"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
+msgid "Questionnaires"
+msgstr "Ray sinashlar"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
+msgid "Add new questionnaire"
+msgstr "Yéngi ray sinash qosh"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Pash qilghuchining baha yézishige ruxset qil"
+msgid "Home"
+msgstr "Bash sehipe"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Özgertish xatirisi"
 
-msgid "Allow users to sign up"
-msgstr "Ishletküchilerning tizimlitishigha ruxset qil"
+msgid "License"
+msgstr "Neshr hoquqi"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Pash qilghuchilarning öz tapshuriwalghuchilirini tallishigha ruxset qil"
+msgid "Templates"
+msgstr "Qéliplar"
 
-msgid "Allowed IP addresses"
-msgstr "Ruxset qilin’ghan IP adrésliri"
-
-msgid "An update is available:"
-msgstr "Bir yéngilanma bar:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Öchür"
 
 msgid "Anomalies"
 msgstr "Binormalliqlar"
 
-msgid "Anomaly detection thresholds"
-msgstr "Normalsizliqni tekshürüsh chéki"
+msgid "Preferences"
+msgstr "Mayilliqlar"
 
-msgid "Anonymity"
-msgstr "Namsiz"
-
-msgid "Anonymize outgoing connections"
-msgstr "Sirtqa ulanmilarni namsizlashtur"
-
-msgid "Anonymous"
+msgid "Notifications"
 msgstr ""
 
-msgid "Are you sure?"
-msgstr "Jezim qilamsiz?"
+msgid "file unavailable"
+msgstr "Höjjetni ishletküsiz "
 
-msgid "Assign score points"
-msgstr "Nomur nuqtilirini belgileng"
+msgid "Date"
+msgstr "Chésla"
 
-msgid "Assigned to"
+msgid "Expiration date"
+msgstr "Sürük chésla"
+
+msgid "Last Access"
+msgstr "Axirqi ziyaret"
+
+msgid "Files"
+msgstr "Höjjetler"
+
+msgid "Comments"
+msgstr "Inkaslar"
+
+msgid "Details"
+msgstr "Tepsilatlar"
+
+msgid "Platform wizard"
+msgstr "Supa séhirgeri"
+
+msgid "Label the report"
+msgstr "Melumatqa belge sal"
+
+msgid "Edit the expiration date"
+msgstr "Sürük chéslasini keynige sür"
+
+msgid "Select all"
+msgstr "Hemmini talla"
+
+msgid "Deselect all"
+msgstr "Hemmini bikar qil"
+
+msgid "Refresh"
+msgstr "Yéngila"
+
+msgid "Channel"
 msgstr ""
+
+msgid "Preview"
+msgstr "Aldin kör"
+
+msgid "The whistleblower has already read the last update"
+msgstr "Pash qilghuchi axirqi yéngilanmini alliqachan oqudi"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Pash qilghuchi axirqi yéngilanmini téxi oqumidi"
+
+msgid "Move up"
+msgstr "Yuqirigha yötke"
+
+msgid "Move down"
+msgstr "Töwen’ge yötke"
+
+msgid "Move left"
+msgstr "Solgha yötke"
+
+msgid "Move right"
+msgstr "Onggha yötke"
+
+msgid "Import"
+msgstr "Ekir"
+
+msgid "Export"
+msgstr "Chiqar"
+
+msgid "Save all"
+msgstr "Hemmini saqla"
+
+msgid "Access control"
+msgstr "Ziyaret kontroli"
+
+msgid "Number"
+msgstr "San"
+
+msgid "Email"
+msgstr "Élxet"
+
+msgid "Regular expression validator"
+msgstr "Muntizim ipade toghrilughuchi"
+
+msgid "Minimum number of input characters"
+msgstr "Kirgüzilidighan herplerning eng az sani "
+
+msgid "Maximum number of input characters"
+msgstr "Kirgüzilidighan herplerning eng köp sani "
+
+msgid "Earliest selectable date"
+msgstr "Tallashqa bolidighan eng baldurqi chisla"
+
+msgid "Latest selectable date"
+msgstr "Tallashqa bolidighan eng kéyinki chisla"
+
+msgid "0 = auto"
+msgstr "0 = aptumatik"
+
+msgid "Yes"
+msgstr "He’e"
+
+msgid "No"
+msgstr "Yaq"
 
 msgid "Attachment"
 msgstr "Qoshumche"
@@ -144,186 +170,56 @@ msgstr "Qoshumche"
 msgid "Attachments"
 msgstr "Qoshumchilar"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Ün"
-
-msgid "Audit log"
-msgstr "Mupettish xatirisi"
-
-msgid "Authentication failed"
-msgstr "Toghrulash meghlup boldi"
-
-msgid "Authorization"
-msgstr "Hoquq"
-
-msgid "Authorize"
-msgstr "Hoquq ber"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq ber"
-
-msgid "Authorized"
-msgstr "Hoquq bérilgen"
-
-msgid "Auto-renewal"
-msgstr "Aptumatik yéngilash"
-
-msgid "Automatic configuration"
-msgstr "Aptumatik seplime"
-
-msgid "Available disk space"
-msgstr "Qalghan diska boshluqi"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Dawam qilishtin burun, ikki qedemlik toghrulashni qozghiting."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
-
-msgid "Block the submission"
-msgstr "Tapshurushni chekle"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu iqtidarni qozghitish arqiliq, supining tereqqiyati we bixeterliki üchün hesse qoshalaysiz."
-
-msgid "Cancel"
-msgstr "Waz kech"
-
-msgid "Case management"
-msgstr "Ehwal bashqurush"
-
-msgid "Certificate"
-msgstr "Guwahname"
-
-msgid "Certificate Signing Request"
-msgstr "Guwahname imzalash telipi"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Parolingizni özgerting"
 
-msgid "Changelog"
-msgstr "Özgertish xatirisi"
+msgid "User"
+msgstr "Ishletküchi"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "Meqset"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "Ehwali"
 
-msgid "Check your inbox to activate it."
-msgstr "Élxet sanduqingizni tekshürüp uni aktiplang."
+msgid "Request motivation"
+msgstr "Telep meqsiti"
 
-msgid "Checkbox"
-msgstr "Testiq ramkisi"
+msgid "Reply motivation"
+msgstr "Jawap qayturush meqsiti"
 
-msgid "Checkbox label"
-msgstr "Testiq ramka belgisi"
-
-msgid "City"
-msgstr "Sheher"
-
-msgid "Close"
-msgstr "Taqa"
-
-msgid "Closed"
-msgstr "Taqalghan"
-
-msgid "Collapse"
-msgstr "Qatla"
-
-msgid "Column"
-msgstr "Ston"
-
-msgid "Comments"
-msgstr "Inkaslar"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "Seple"
-
-msgid "Confirm"
-msgstr "Jezimle"
-
-msgid "Confirmation"
-msgstr "Jezmleng"
-
-msgid "Congratulations!"
-msgstr "Tebrikleymiz!"
-
-msgid "Copy to clipboard"
-msgstr "Chaplaq taxtisigha chapla"
-
-msgid "Country"
-msgstr "Dölet"
-
-msgid "Country code"
-msgstr "Dölet kodi"
-
-msgid "Creation date"
-msgstr "Qurulghan chésla"
-
-msgid "Creation date:"
-msgstr "Qurulghan chésla:"
-
-msgid "Current password"
-msgstr "Hazirqi parol"
+msgid "Request status"
+msgstr "Telep halet"
 
 msgid "Custodian"
 msgstr "Saqlighuchi"
 
-msgid "Custom"
-msgstr "Ixtiyari"
+msgid "Identity"
+msgstr "Kimlik"
 
-msgid "Custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisi"
+msgid "Access requested"
+msgstr "Ziyaret hoquqi telep qilindi"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Pash qilghuchining kimlikini ziyaret qilishni telep qiling"
 
-msgid "Custom text"
-msgstr "Ixtiyari tékist"
+msgid "Reply to the request"
+msgstr "Telepke jawab ber"
 
-msgid "Custom translation"
-msgstr "Ixtiyari terjime"
-
-msgid "Date"
-msgstr "Chésla"
-
-msgid "Date of the request"
-msgstr "Telep qilghan chésla"
-
-msgid "Date range"
-msgstr "Chésla da’irisi"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Öchür"
+msgid "Authorized"
+msgstr "Hoquq bérilgen"
 
 msgid "Denied"
 msgstr "Ret qilin’ghan"
+
+msgid "Waiting for authorization"
+msgstr "Hoquq bérishni kütiwatidu"
+
+msgid "New request"
+msgstr "Yéngi telep"
+
+msgid "Authorize"
+msgstr "Hoquq ber"
 
 msgid "Deny"
 msgstr "Ret qil"
@@ -331,26 +227,20 @@ msgstr "Ret qil"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Pash qilghuchining kimlikini ziyaret qilishni ret qiling"
 
-msgid "Description"
-msgstr "Chüshendürüsh"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq ber"
 
-msgid "Deselect"
-msgstr "Tallima"
+msgid "URL redirects"
+msgstr "URL qayta yéteklesh"
 
-msgid "Deselect all"
-msgstr "Hemmini bikar qil"
+msgid "Anomaly detection thresholds"
+msgstr "Normalsizliqni tekshürüsh chéki"
 
-msgid "Details"
-msgstr "Tepsilatlar"
+msgid "Available disk space"
+msgstr "Qalghan diska boshluqi"
 
-msgid "Details of the PGP key:"
-msgstr "‏PGP achquchining tepsilati:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Chekle"
+msgid "Last update"
+msgstr "Axirqi yéngilinishi"
 
 msgid "Disable notifications to administrators"
 msgstr "Bashqurghuchigha uqturush ewetishni chekle"
@@ -361,197 +251,221 @@ msgstr "Saqlighuchilargha uqturush ewetishni chekleng"
 msgid "Disable notifications to recipients"
 msgstr "Tapshuruwalghuchilargha uqturush ewetishni chekle"
 
-msgid "Disable submissions"
-msgstr "Tapshurushlarni cheklesh"
+msgid "Score"
+msgstr "Netije"
 
-msgid "Disable the privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini chekle"
+msgid "Trigger question"
+msgstr "Qozghatquch su’al"
 
-msgid "Disable two factor authentication"
-msgstr "Ikki qedemlik toghrulashni toxtat"
+msgid "Triggered by score:"
+msgstr "Nomur bilen qozghat:"
 
-msgid "Disabled"
-msgstr "Cheklen’gen"
+msgid "Weak"
+msgstr "Ajiz"
 
-msgid "Disclaimer"
-msgstr "Mes’ul bolmasliq bayanati"
+msgid "Acceptable"
+msgstr "Qobul qilishqa bolidu"
 
-msgid "Display options alphabetically"
-msgstr "Tallashlarni élipbe tertipide körset"
+msgid "Strong"
+msgstr "Küchlük"
 
-msgid "Download"
-msgstr "Chüshürüsh"
-
-msgid "Download copy of the Privacy Policy"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "Tor tor körgüchini chüshürüng"
+msgid "Silence email notifications"
+msgstr "Élxet uqturushni jim qil"
 
-msgid "Duplicate"
-msgstr "Köpeyt"
+msgid "Turn on email notifications"
+msgstr "Élxet uqturshini ach"
 
-msgid "Each entry must be separated with a comma."
-msgstr "Her bir kirgüzülgen pesh bilen ayrilsun."
-
-msgid "Earliest selectable date"
-msgstr "Tallashqa bolidighan eng baldurqi chisla"
-
-msgid "Edit"
-msgstr "Tehrirle"
-
-msgid "Email"
-msgstr "Élxet"
+msgid "Input validation"
+msgstr "Kirgüzüshni delille"
 
 msgid "Email address"
 msgstr "Élxet adrési"
 
-msgid "Enable"
-msgstr "Qozghat"
+msgid "Custom"
+msgstr "Ixtiyari"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Héchnime"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun"
+msgid "Regular expression"
+msgstr "Muntizim ipade"
 
-msgid "Enable custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini qozghat"
-
-msgid "Enable email notifications"
-msgstr "Élxet uqturushni qozghat"
-
-msgid "Enable email notifications for:"
-msgstr "Bulargha élxet uqturshini qozghat:"
-
-msgid "Enable encryption"
-msgstr "Shifirleshni qozghat"
-
-msgid "Enable scoring system"
-msgstr "Nomur qoyüsh sistémisini qozghat"
-
-msgid "Enable search engines indexing"
-msgstr "Axturush matorlirining indékislishini qozghat"
-
-msgid "Enable simplified login"
-msgstr "Addilashqan tizimgha kirishni qozghat"
-
-msgid "Enable terms of service"
-msgstr "Mulazimet shertlirini qozghat"
-
-msgid "Enable two factor authentication"
-msgstr "Ikki qedemlik toghrulashni qozghat"
-
-msgid "Enabled"
-msgstr "Qozghitilghan"
-
-msgid "Enter a name for the copy"
-msgstr "Kupiye üchün bir nam kirgüzüng"
-
-msgid "Enter the two factor authentication code"
-msgstr "Ikki qedemlik toghrulash kodini kirgüz"
+msgid "Search"
+msgstr "Axturush"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Parolni qayta seplesh jeryanini tamamlash üchün hésabatingizning eslige keltürüsh achquchini kirgüzüng"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Ixtiyari tékist bu supida emdi körünmeydu. esli tékist özgertiwétigen yaki öchüriwétilgen. "
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Hésabat namingiz yaki élxet adrésingizni kirgüzüp, paolingizni qayta sepleshni telep qiling."
+msgid "Audit log"
+msgstr "Mupettish xatirisi"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Élxet adrésingizni kirgüzüp parolingizni qayta sepleshni telep qiling."
+msgid "Stats"
+msgstr "Istatistika"
 
-msgid "Error on input validation"
-msgstr "Kirgüzüshni delilleshte xata"
+msgid "Activities"
+msgstr "Pa’aliyetler"
 
-msgid "Error!"
-msgstr "Xataliq!"
+msgid "Reports"
+msgstr "Melumatlar"
 
-msgid "Everyone"
+msgid "Report"
 msgstr ""
 
-msgid "Example:"
-msgstr "Mesilen:"
-
-msgid "Expand"
-msgstr "Yay"
-
-msgid "Expiration date"
-msgstr "Sürük chésla"
-
-msgid "Export"
-msgstr "Chiqar"
-
-msgid "File size"
-msgstr "Höjjet chongluqi"
-
-msgid "File size not accepted."
-msgstr "Höjjet sighimini qobul qilmidi."
-
-msgid "Filename"
-msgstr "Höjjet nami"
-
-msgid "Files"
-msgstr "Höjjetler"
-
-msgid "Files attached by recipients"
-msgstr "Höjjetler tapshuriwalghuchilar teripidin qoshup qoyuldi"
-
-msgid "Fill the additional questionnaire"
-msgstr "Bu qoshumche ray sinashni toshquz"
-
-msgid "Fingerprint"
-msgstr "Barmaq izi"
-
-msgid "First"
-msgstr "Bashtiki"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Bet asti"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Bixeterlikni közde tutup, qerellik parol özgertish telep qilinidu."
-
-msgid "For the user documentation, visit:"
-msgstr "Ishletküchi höjjiti üchün bu yerge qarang:"
-
-msgid "Forbidden operation"
-msgstr "Cheklen’gen meshghulat"
-
-msgid "Force password change"
-msgstr "Parol yéngilashqa mejburla"
-
-msgid "Forcefully selected"
-msgstr "Mejburiy tallandi"
-
-msgid "Forgot password?"
-msgstr "Parolingizni unuttungizmu?"
+msgid "Users"
+msgstr "Ishletküchiler"
 
 msgid "From"
 msgstr "Jedwel"
 
-msgid "From:"
-msgstr "Ewetküchi:"
+msgid "Number of downloads"
+msgstr "Chüshürgenlerning sani"
 
-msgid "Generate"
-msgstr "Hasillash"
+msgid "File size not accepted."
+msgstr "Höjjet sighimini qobul qilmidi."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
+msgid "Maximum file size is:"
+msgstr "Eng chong höjjet sighimi bolsa:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Bu bashqurghuchigha ishletküchilerning parolini özgertish iqtidari ber"
+msgid "Scheduled jobs"
+msgstr "Pilanlan’ghan xizmetler"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Qayta hasilla"
+
+msgid "Display options alphabetically"
+msgstr "Tallashlarni élipbe tertipide körset"
+
+msgid "Enable email notifications for:"
+msgstr "Bulargha élxet uqturshini qozghat:"
+
+msgid "Disable"
+msgstr "Chekle"
+
+msgid "Remove"
+msgstr "Öchür"
+
+msgid "Use as default"
+msgstr "Köngüldikidek ishlet"
+
+msgid "Collapse"
+msgstr "Qatla"
+
+msgid "Expand"
+msgstr "Yay"
+
+msgid "Select"
+msgstr "Talla"
+
+msgid "Deselect"
+msgstr "Tallima"
+
+msgid "Surname"
+msgstr "Famile"
+
+msgid "New"
+msgstr "Yéngi"
+
+msgid "Opened"
+msgstr "Échilghan"
+
+msgid "Closed"
+msgstr "Taqalghan"
+
+msgid "Placeholder"
+msgstr "Orun alghuchi"
+
+msgid "Print"
+msgstr "Bésish"
+
+msgid "Previous"
+msgstr "Aldinqi"
+
+msgid "Next"
+msgstr "Kéyinki"
+
+msgid "First"
+msgstr "Bashtiki"
+
+msgid "Last"
+msgstr "Axirqi"
+
+msgid "Send a test email to your email address."
+msgstr "Élxet adrésingizge sinaq élxet eweting."
+
+msgid "Block the submission"
+msgstr "Tapshurushni chekle"
+
+msgid "Skip the recipient account creation."
+msgstr "Tapshuwriwalghuchi hésabi qurushtin atla"
+
+msgid "Send activation link"
+msgstr "Aktiplash élxeti ewet"
+
+msgid "Password reset"
+msgstr "Parolni qayta seple"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Bir yaki birdin köp tapshuriwalghuchilar téxiche tunji tizimgha kirishni ijra qilmaptu. Bu ular melumatlarni tapshuriwalalmaydu, dégenlik."
+
+msgid "This user has not performed the first login yet."
+msgstr "Bu ishletküchi téxiche tunji tizimgha kirishni ijra qilmaptu."
+
+msgid "seconds"
+msgstr "Sékont"
+
+msgid "This domain name is not available."
+msgstr "Bu da’ire nami bosh emes."
+
+msgid "Mark as important"
+msgstr "Muhim dep belge qoy"
+
+msgid "Copy to clipboard"
+msgstr "Chaplaq taxtisigha chapla"
+
+msgid "Logout"
+msgstr "Tizimdin chiq"
+
+msgid "Grant access"
+msgstr "Hoquq ber"
+
+msgid "Revoke access"
+msgstr "Hoquqni qayturiwal"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "Yoshur"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -560,54 +474,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Hoquq ber"
-
-msgid "Group of questions"
-msgstr "Su’al guruppiliri"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Alliburun bir melumat toshquzghanmitingiz? taloningizni kirgüzüng:"
-
-msgid "Hidden"
-msgstr "Yoshurun"
-
-msgid "Hide"
-msgstr "Yoshur"
-
-msgid "High"
-msgstr "Yuquri"
-
-msgid "Hint"
-msgstr "Isharet"
-
-msgid "Home"
-msgstr "Bash sehipe"
-
-msgid "Homepage title"
-msgstr "Bash bet témisi"
-
-msgid "Hostname"
-msgstr "Mulazimétir nami"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Men ijazet shertlirini oqudum hemde qoshulimen."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Namsiz"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Bir melumat yolla"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Dawam qilishtin burun, ikki qedemlik toghrulashni qozghiting."
+
+msgid "Enable"
+msgstr "Qozghat"
+
+msgid "Type"
+msgstr "Türi"
+
+msgid "Severity"
+msgstr "Muhimliqi"
+
+msgid "Object"
+msgstr "Obyékt"
 
 msgid "ID"
 msgstr "Kimlik"
 
-msgid "Identity"
-msgstr "Kimlik"
+msgid "Username"
+msgstr "Ishletküchi nami"
+
+msgid "Role"
+msgstr "Roli"
+
+msgid "Name"
+msgstr "Nami"
+
+msgid "Creation date"
+msgstr "Qurulghan chésla"
+
+msgid "Last access"
+msgstr "Axirqi ziyaret"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Pash qilghuchining axirqi ziyariti"
+
+msgid "Substatuses"
+msgstr "Qismi haletler"
+
+msgid "Add"
+msgstr "Qosh"
+
+msgid "Label"
+msgstr "Belge"
+
+msgid "This field is mandatory"
+msgstr "Bu bölek mejburiy"
+
+msgid "Edit"
+msgstr "Tehrirle"
+
+msgid "Save"
+msgstr "Saqla"
+
+msgid "Cancel"
+msgstr "Waz kech"
+
+msgid "days"
+msgstr "Künler"
+
+msgid "Disabled"
+msgstr "Cheklen’gen"
+
+msgid "Report statuses"
+msgstr "Doklat haletliri"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "Yoshurun"
+
+msgid "Description"
+msgstr "Chüshendürüsh"
+
+msgid "Questionnaire"
+msgstr "Ray sinash"
+
+msgid "Recipients"
+msgstr "Tapshuriwalghuchilar"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Ray sinash yéteklime ara yüzini körset"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Pash qilghuchilarning öz tapshuriwalghuchilirini tallishigha ruxset qil"
+
+msgid "Select all recipients by default"
+msgstr "Köngülde barliq tapshuriwalghuchilar tallan’ghan bolsun"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Tallan’ghan tapshuriwalghuchilar sani eng köp bolghanda:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Tapshuriwalghuchilarni élipbe tertipi boyiche körset"
+
+msgid "Additional questionnaire"
+msgstr "Qoshumche ray sinash"
+
+msgid "Scoring system options"
+msgstr "Nomur qoyush sistémisining tallashliri"
+
+msgid "Threshold"
+msgstr "Bosugha"
+
+msgid "Value"
+msgstr "Qimmet"
+
+msgid "Medium"
+msgstr "Otturihal"
+
+msgid "High"
+msgstr "Yuquri"
+
+msgid "Software version:"
+msgstr "Yumshaq détal neshri:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Ziyaret qilishni belgilen’gen IP adrésliri bilenla chekle"
+
+msgid "Enabled"
+msgstr "Qozghitilghan"
+
+msgid "Allowed IP addresses"
+msgstr "Ruxset qilin’ghan IP adrésliri"
+
+msgid "Admin"
+msgstr "Bashqurghuchi"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Tapshuriwalghuchi"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Her bir kirgüzülgen pesh bilen ayrilsun."
+
+msgid "Example:"
+msgstr "Mesilen:"
+
+msgid "Hostname"
+msgstr "Mulazimétir nami"
+
+msgid "Organization"
+msgstr "Organ"
+
+msgid "Invalid email address"
+msgstr "Inawetsiz élxet adrési"
+
+msgid "City"
+msgstr "Sheher"
+
+msgid "Country"
+msgstr "Dölet"
+
+msgid "Country code"
+msgstr "Dölet kodi"
+
+msgid "Generate"
+msgstr "Hasillash"
+
+msgid "Private Key"
+msgstr "Shexsiy achquch"
+
+msgid "Certificate Signing Request"
+msgstr "Guwahname imzalash telipi"
+
+msgid "Certificate"
+msgstr "Guwahname"
+
+msgid "Valid until:"
+msgstr "Axirqi inawetlik waqti:"
+
+msgid "Issuer:"
+msgstr "Tarqatquchi:"
+
+msgid "Intermediate Certificates"
+msgstr "Ariliqtiki guwahnamiler"
+
+msgid "Reset"
+msgstr "Qayta seple"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Eger 24 sa’etkiche aktiplimisngiz, bu supa aptomatik öchürülidu."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Bu supa HTTPS seplimisini bu éghiz arqiliq qollaydu."
+
+msgid "Automatic configuration"
+msgstr "Aptumatik seplime"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Aptumatik HTTPS seplimisini ishlitish,  Let's Encrypt orginidin guwahname telep qilish, qozghitish we yéngilash qatarliq pütün jeryanlarni bir terep qilidu."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Bu supigha ammiwi IP adrési bilen baghlanghili bolishi we tallanghan mulazimétér namining bu adrésqa munasip DNS rékorti bolushi kérek."
+
+msgid "Proceed"
+msgstr "Dawamlashtur"
+
+msgid "Manual configuration"
+msgstr "Qolda seplime"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Qolda seplesh séhirgeri sizning HTTPS seplimisni bashqa bir guwahname orgini arqiliq seplishingizge yétekchilik qilidu."
+
+msgid "Auto-renewal"
+msgstr "Aptumatik yéngilash"
+
+msgid "Tor Onion Service"
+msgstr "‏Tor Onion mulazimiti"
+
+msgid "Anonymize outgoing connections"
+msgstr "Sirtqa ulanmilarni namsizlashtur"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Bu soupini Tor ishletmeymu ulan’ghili bolidighan qil"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Bu supini Tor ishletmey shliteleydighan rollar"
+
+msgid "Whistleblower"
+msgstr "Pash qilghuchi"
+
+msgid "To"
+msgstr "Tapshuriwalghuchi"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "‏SMTP élxet adrési"
+
+msgid "SMTP server address"
+msgstr "‏‏SMTP mulazimétér adrési"
+
+msgid "SMTP server port"
+msgstr "‏‏‏SMTP mulazimétér porti"
+
+msgid "Security"
+msgstr "Bixeterlik"
+
+msgid "Require authentication"
+msgstr "Kimlik toghrulashni telep qilidu"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Melumatning sürüki toshqanliq agahlandurush ewetishtin burunqi sa’et sani"
+
+msgid "Test the configuration"
+msgstr "Seplimlilerni sinash"
+
+msgid "Reset SMTP configuration"
+msgstr "‏SMTP seplimisini qayta seplesh"
+
+msgid "Reset notification templates to default"
+msgstr "Uqturush qéliplirini köngüldikikige qaytur"
+
+msgid "Template"
+msgstr "Qélip"
+
+msgid "Question"
+msgstr "Su’al"
+
+msgid "Single-line text input"
+msgstr "Taq qurluq tékist kirgüzüsh"
+
+msgid "Multi-line text input"
+msgstr "Köp qurluq tékist kirgüzüsh"
+
+msgid "Selection box"
+msgstr "Tallash ramkisi"
+
+msgid "Multiple choice input"
+msgstr "Köptin tallap kirgüzüsh"
+
+msgid "Checkbox"
+msgstr "Testiq ramkisi"
+
+msgid "Terms of service"
+msgstr "Mulazimet shertliri"
+
+msgid "Date range"
+msgstr "Chésla da’irisi"
+
+msgid "Group of questions"
+msgstr "Su’al guruppiliri"
+
+msgid "Row"
+msgstr "Qur"
+
+msgid "Column"
+msgstr "Ston"
+
+msgid "Width"
+msgstr "Kengliki"
+
+msgid "Question group"
+msgstr "Su’al guruppisi"
+
+msgid "Hint"
+msgstr "Isharet"
+
+msgid "Mandatory"
+msgstr "Lazimliq"
+
+msgid "Accept multiple file uploads"
+msgstr "Köp höjjet yükleshni qobul qil"
+
+msgid "Accept multiple answers"
+msgstr "Köp jawapni qobul qil"
+
+msgid "Template override"
+msgstr "Qéliipning üstige yaz"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Téléfon nomuri"
+
+msgid "Text"
+msgstr "Tékist"
+
+msgid "Checkbox label"
+msgstr "Testiq ramka belgisi"
+
+msgid "Add multimedia content"
+msgstr "Köp wastilik mezmun qosh"
+
+msgid "Image"
+msgstr "Resim"
+
+msgid "Audio"
+msgstr "Ün"
+
+msgid "Video"
+msgstr "Sin"
+
+msgid "Text shown upon negative answer"
+msgstr "Selbiy jawabta körsitilidighan tékist"
+
+msgid "Low"
+msgstr "Töwen"
+
+msgid "Trigger conditions"
+msgstr "Qozghitilish shertler"
+
+msgid "Sufficient"
+msgstr "Yéterlik"
+
+msgid "Options"
+msgstr "Tallashlar"
+
+msgid "Addition"
+msgstr "Qoshumche"
+
+msgid "Multiplier"
+msgstr "Köpeytme"
+
+msgid "Questions"
+msgstr "Su’allar"
+
+msgid "Add new question"
+msgstr "Yéngi su’al qosh"
+
+msgid "Add question from template"
+msgstr "Qéliptin yéngi su’al qosh"
+
+msgid "Duplicate"
+msgstr "Köpeyt"
+
+msgid "Steps"
+msgstr "Qedemler"
+
+msgid "Logo"
+msgstr "Tugh"
+
+msgid "Project name"
+msgstr "Tür nami"
+
+msgid "Homepage title"
+msgstr "Bash bet témisi"
+
+msgid "Presentation"
+msgstr "Körsetme"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pash qilghuchi bolush mümkinchiligi bar kishilerdin sorilidighan su’allar"
+
+msgid "Whistleblowing button"
+msgstr "Pash qilish kunupkisi"
+
+msgid "Disclaimer"
+msgstr "Mes’ul bolmasliq bayanati"
+
+msgid "Footer"
+msgstr "Bet asti"
+
+msgid "Upload"
+msgstr "Yüklesh"
+
+msgid "Download"
+msgstr "Chüshürüsh"
+
+msgid "Language:"
+msgstr "Til:"
+
+msgid "Add custom text"
+msgstr "Ixtiyari tékist qosh"
+
+msgid "Custom text"
+msgstr "Ixtiyari tékist"
+
+msgid "Original text"
+msgstr "Esli tékist"
+
+msgid "Original translation"
+msgstr "Esli terjime"
+
+msgid "Custom translation"
+msgstr "Ixtiyari terjime"
+
+msgid "Disable submissions"
+msgstr "Tapshurushlarni cheklesh"
+
+msgid "Enable encryption"
+msgstr "Shifirleshni qozghat"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: "
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Addilashqan tizimgha kirishni qozghat"
+
+msgid "Enable search engines indexing"
+msgstr "Axturush matorlirining indékislishini qozghat"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
+
+msgid "megabytes"
+msgstr "Mégabayts"
+
+msgid "Require two factor authentication"
+msgstr "Ikki qedemlik toghrulashni telep qil"
+
+msgid "Password change interval"
+msgstr "Parol özgertish ariliqi"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Bixeterlikni közde tutup, qerellik parol özgertish telep qilinidu."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini chekle"
+
+msgid "Enable custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini qozghat"
+
+msgid "Custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisi"
+
+msgid "Enable scoring system"
+msgstr "Nomur qoyüsh sistémisini qozghat"
+
+msgid "Logging level"
+msgstr "Xatirige élish sewiyesi"
+
+msgid "percentage"
+msgstr "Pirsenti"
+
+msgid "Log accesses of internal users"
+msgstr "Ichki ishletküchilerning ziyaretlirini xatirile"
+
+msgid "Notify administrators of software problems"
+msgstr "Yumshaq détal mesililirini bashqurghuchilargha uqtu"
+
+msgid "Notify developers of software problems"
+msgstr "Yumshaq détal mesililirini achquchilargha uqtur"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu iqtidarni qozghitish arqiliq, supining tereqqiyati we bixeterliki üchün hesse qoshalaysiz."
+
+msgid "Reset reports"
+msgstr "Melumatlarni qayta seplesh"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Case management"
+msgstr "Ehwal bashqurush"
+
+msgid "Network"
+msgstr ""
+
+msgid "Sites"
+msgstr "Béketler"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "Seple"
+
+msgid "Subdomain"
+msgstr "Qismi da’ire"
+
+msgid "Mode:"
+msgstr "Haliti:"
+
+msgid "Creation date:"
+msgstr "Qurulghan chésla:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Birinchi béketni peqetla bashqurush meqsitide ishlet"
+
+msgid "Root domain used for secondary sites"
+msgstr "Ikkilemchi tor béketlerge ishlitilidighan yiltiz da’ire"
+
+msgid "Allow users to sign up"
+msgstr "Ishletküchilerning tizimlitishigha ruxset qil"
+
+msgid "Enable terms of service"
+msgstr "Mulazimet shertlirini qozghat"
+
+msgid "Title"
+msgstr "Téma"
+
+msgid "Public name"
+msgstr "Ammiwi nami"
+
+msgid "Send reset link"
+msgstr "Qayta seplesh ulanmisini ewet"
+
+msgid "Set password"
+msgstr "Parol seplesh"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Таллиған паролиңиз бәк аҗиз. Бир инавәтлик парол әң аз дегәндә охшаш болмиған 10 бәлгә узунлиқида болиши, әң аз бир кичик һәрп, бир чоң һәрп,бир рәқәм вә бир алаһидә бәлгидин тәркип тепиши керәк."
+
+msgid "Force password change"
+msgstr "Parol yéngilashqa mejburla"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Ishletküchiler kéyinki qétim tizimgha kirgende, parolini özgertishke mejburlinidu."
+
+msgid "Disable two factor authentication"
+msgstr "Ikki qedemlik toghrulashni toxtat"
+
+msgid "Language"
+msgstr "Til"
+
+msgid "Enable email notifications"
+msgstr "Élxet uqturushni qozghat"
+
+msgid "Details of the PGP key:"
+msgstr "‏PGP achquchining tepsilati:"
+
+msgid "Fingerprint"
+msgstr "Barmaq izi"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Teminlen’gen bir PGP ammiwi achquchi bilen shifrileshni tengshe"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Bu bashqurghuchigha ishletküchilerning parolini özgertish iqtidari ber"
+
+msgid "Forcefully selected"
+msgstr "Mejburiy tallandi"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Telep chéslasi"
+
+msgid "Report date"
+msgstr "Melumat chéslasi"
+
+msgid "Authorization"
+msgstr "Hoquq"
+
+msgid "Requests"
+msgstr "Telepler"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Delillesh ulanmisi xata yaki sürüki toshqan."
+
+msgid "Your new email address has been validated."
+msgstr "Sizning yéngi élxet adrésingiz delillendi."
+
+msgid "Forgot password?"
+msgstr "Parolingizni unuttungizmu?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Ikki qedemlik toghrulash kodini kirgüz"
+
+msgid "Authentication failed"
+msgstr "Toghrulash meghlup boldi"
+
+msgid "The code is either invalid or expired."
+msgstr "Bu kod inawetsiz yaki sürüki toshqan."
+
+msgid "Please select your account:"
+msgstr "Hésabingizni tallang:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Hazir yéngi parolingizni kirgüzüng, andin «tizimgha kir»ni chéking:"
+
+msgid "Confirm"
+msgstr "Jezimle"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Ishletküchi tallanmini tallighandin kéyin tékist körsitilidu."
+
+msgid "Assign score points"
+msgstr "Nomur nuqtilirini belgileng"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Halet:"
+
+msgid "Are you sure?"
+msgstr "Jezim qilamsiz?"
+
+msgid "Close"
+msgstr "Taqa"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
+
+msgid "Enable two factor authentication"
+msgstr "Ikki qedemlik toghrulashni qozghat"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
+
+msgid "Account recovery key"
+msgstr "Hésap eslige keltürüsh achquchi"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Bir kupiyesini éling we ixeter yerde saqlang. eger parolingizni untup qélip, hésabitingizdiki melumatlarni yoqatmastin ziyaret qilmaqchi bolghiningizda lazim bolghusi."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Kupiye üchün bir nam kirgüzüng"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Yardem telep"
+
+msgid "Thank you."
+msgstr "Rehmet sizge."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
+
+msgid "Submit"
+msgstr "Yolla"
+
+msgid "The connection is not secure."
+msgstr "Bu ulanma bixeter emes."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
+
+msgid "Send"
+msgstr "Ewet"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Télifoningizgha bir delilligüchi ep qachilang"
+
+msgid "Scan the QR code with the app"
+msgstr "QR kodini bu ep bilen tariting"
+
+msgid "Error!"
+msgstr "Xataliq!"
+
+msgid "Internal server error"
+msgstr "Ichki mulazimétir xatasi"
+
+msgid "Error on input validation"
+msgstr "Kirgüzüshni delilleshte xata"
+
+msgid "Resource not found"
+msgstr "Menbe tépilmidi"
+
+msgid "Forbidden operation"
+msgstr "Cheklen’gen meshghulat"
+
+msgid "The specified old password is not valid"
+msgstr "Körsetken kona parolingiz inawetsiz"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
+
+msgid "The upload request exceeds the size limit"
+msgstr "Yüklime telipi chongluq chékidin éship ketti"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Hazirqi parol"
+
+msgid "New password"
+msgstr "Yéngi parol"
+
+msgid "The new password must be different from the current one."
+msgstr "Yéngi parol hazirqi paroldin perqliq bolishi lazim."
+
+msgid "Type your new password again"
+msgstr "Yéngi parolingizni tekrar kirgüzüng"
+
+msgid "The two passwords do not match"
+msgstr "Bu ikki parol oxshash emes"
+
+msgid "Validation of email address change in progress."
+msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Téximu köp körsetmiler üchün élxet qobullash sanduqingizni tekshürüng."
+
+msgid "Warning"
+msgstr "Agahlandurush"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Sizge bu béketni Tor tor körgüchi ismlik, shexsiyitingizni qoghdaydighan epni ishlitip ziyaret qilishingizni küchlük tewsiye qilimiz."
+
+msgid "Download the Tor Browser"
+msgstr "Tor tor körgüchini chüshürüng"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Arqidin, keynidiki adrésni köchürüp, Tor tor körgüchige chaplang:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Alliburun bir melumat toshquzghanmitingiz? taloningizni kirgüzüng:"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Taloningz inawetsiz yaki melumatingizning sürüki toshüp ketken."
+
+msgid "Filename"
+msgstr "Höjjet nami"
+
+msgid "Size:"
+msgstr "Chongluqi:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Adrés"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
+
+msgid "Fill the additional questionnaire"
+msgstr "Bu qoshumche ray sinashni toshquz"
+
+msgid "From:"
+msgstr "Ewetküchi:"
+
+msgid "To:"
+msgstr "Tapshuriwalghuchi:"
+
+msgid "View"
+msgstr ""
+
+msgid "Upload date"
+msgstr "Yüklen’gen chésla"
+
+msgid "File size"
+msgstr "Höjjet chongluqi"
+
+msgid "Questionnaire answers"
+msgstr "Ray sinash jawabliri"
+
+msgid "Step"
+msgstr "Qedem"
+
+msgid "Files attached by recipients"
+msgstr "Höjjetler tapshuriwalghuchilar teripidin qoshup qoyuldi"
+
+msgid "Upload a file:"
+msgstr "Bir höjjet yükle:"
+
+msgid "Welcome!"
+msgstr "Xosh kepsiz!"
+
+msgid "For the user documentation, visit:"
+msgstr "Ishletküchi höjjiti üchün bu yerge qarang:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -619,915 +1445,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Yumshaq détal échishqa töhpe qoshmaqchi yaki kemtük melum qilmaqchi bolsingiz , xataliq melum  qilish sistémisimizdin melumat éching:"
 
-msgid "Image"
-msgstr "Resim"
-
-msgid "Import"
-msgstr "Ekir"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Bu qedemde töwendiki su’allargha bérilgen jawaplar xata yaki inawetsiz."
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Kirgüzüshni delille"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Télifoningizgha bir delilligüchi ep qachilang"
-
-msgid "Intermediate Certificates"
-msgstr "Ariliqtiki guwahnamiler"
-
-msgid "Internal server error"
-msgstr "Ichki mulazimétir xatasi"
-
-msgid "Invalid confirmation"
-msgstr "Inawetsiz jezimlesh"
-
-msgid "Invalid email address"
-msgstr "Inawetsiz élxet adrési"
-
-msgid "Invalid phone number"
-msgstr "Inawetsiz téléfon nomuri"
-
-msgid "Issuer:"
-msgstr "Tarqatquchi:"
-
 msgid "Join our chat:"
 msgstr "Söhbitimizge qétiling:"
 
-msgid "Label"
-msgstr "Belge"
-
-msgid "Label the report"
-msgstr "Melumatqa belge sal"
-
-msgid "Language"
-msgstr "Til"
-
-msgid "Language:"
-msgstr "Til:"
-
-msgid "Languages"
-msgstr "Tillar"
-
-msgid "Last"
-msgstr "Axirqi"
-
-msgid "Last Access"
-msgstr "Axirqi ziyaret"
-
-msgid "Last access"
-msgstr "Axirqi ziyaret"
-
-msgid "Last update"
-msgstr "Axirqi yéngilinishi"
-
-msgid "Latest selectable date"
-msgstr "Tallashqa bolidighan eng kéyinki chisla"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Bu soupini Tor ishletmeymu ulan’ghili bolidighan qil"
-
-msgid "License"
-msgstr "Neshr hoquqi"
-
-msgid "Log accesses of internal users"
-msgstr "Ichki ishletküchilerning ziyaretlirini xatirile"
-
-msgid "Log in"
-msgstr "Tizimgha kir"
-
-msgid "Logging level"
-msgstr "Xatirige élish sewiyesi"
-
-msgid "Logo"
-msgstr "Tugh"
-
-msgid "Logout"
-msgstr "Tizimdin chiq"
-
-msgid "Low"
-msgstr "Töwen"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Bir kupiyesini éling we ixeter yerde saqlang. eger parolingizni untup qélip, hésabitingizdiki melumatlarni yoqatmastin ziyaret qilmaqchi bolghiningizda lazim bolghusi."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Bu bashqurghuchigha ishletkuchilerning parolini qayta seplesh imkaniyiti béring."
-
-msgid "Mandatory"
-msgstr "Lazimliq"
-
-msgid "Manual configuration"
-msgstr "Qolda seplime"
-
-msgid "Mark as important"
-msgstr "Muhim dep belge qoy"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Eng chong höjjet sighimi bolsa:"
-
-msgid "Maximum number of input characters"
-msgstr "Kirgüzilidighan herplerning eng köp sani "
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Tallan’ghan tapshuriwalghuchilar sani eng köp bolghanda:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Otturihal"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Kirgüzilidighan herplerning eng az sani "
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "Haliti:"
-
-msgid "Motivation"
-msgstr "Meqset"
-
-msgid "Move down"
-msgstr "Töwen’ge yötke"
-
-msgid "Move left"
-msgstr "Solgha yötke"
-
-msgid "Move right"
-msgstr "Onggha yötke"
-
-msgid "Move up"
-msgstr "Yuqirigha yötke"
-
-msgid "Multi-line text input"
-msgstr "Köp qurluq tékist kirgüzüsh"
-
-msgid "Multiple choice input"
-msgstr "Köptin tallap kirgüzüsh"
-
-msgid "Multiplier"
-msgstr "Köpeytme"
-
-msgid "Name"
-msgstr "Nami"
-
-msgid "Network"
-msgstr ""
-
-msgid "New"
-msgstr "Yéngi"
-
-msgid "New password"
-msgstr "Yéngi parol"
-
-msgid "New request"
-msgstr "Yéngi telep"
-
-msgid "Next"
-msgstr "Kéyinki"
-
-msgid "No"
-msgstr "Yaq"
-
-msgid "None"
-msgstr "Héchnime"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr ""
-
-msgid "Notify administrators of software problems"
-msgstr "Yumshaq détal mesililirini bashqurghuchilargha uqtu"
-
-msgid "Notify developers of software problems"
-msgstr "Yumshaq détal mesililirini achquchilargha uqtur"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Hazir yéngi parolingizni kirgüzüng, andin «tizimgha kir»ni chéking:"
-
-msgid "Number"
-msgstr "San"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
-
-msgid "Number of downloads"
-msgstr "Chüshürgenlerning sani"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Melumatning sürüki toshqanliq agahlandurush ewetishtin burunqi sa’et sani"
-
-msgid "Object"
-msgstr "Obyékt"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Bir yaki birdin köp tapshuriwalghuchilar téxiche tunji tizimgha kirishni ijra qilmaptu. Bu ular melumatlarni tapshuriwalalmaydu, dégenlik."
-
-msgid "Opened"
-msgstr "Échilghan"
-
-msgid "Options"
-msgstr "Tallashlar"
-
-msgid "Organization"
-msgstr "Organ"
-
-msgid "Original text"
-msgstr "Esli tékist"
-
-msgid "Original translation"
-msgstr "Esli terjime"
-
-msgid "Password"
-msgstr "Parol"
-
-msgid "Password change interval"
-msgstr "Parol özgertish ariliqi"
-
-msgid "Password reset"
-msgstr "Parolni qayta seple"
-
-msgid "Password reset requested."
-msgstr "Parolingizni qayta seplesh telep qilindi."
-
-msgid "Phone number"
-msgstr "Téléfon nomuri"
-
-msgid "Placeholder"
-msgstr "Orun alghuchi"
-
-msgid "Platform wizard"
-msgstr "Supa séhirgeri"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Téximu köp körsetmiler üchün élxet qobullash sanduqingizni tekshürüng."
-
-msgid "Please choose a configuration profile:"
-msgstr "Bir seplime terjimhali tallang:"
-
-msgid "Please choose a different username."
-msgstr "Perqliq bir ishletküchi nami tallang."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
-
-msgid "Please select your account:"
-msgstr "Hésabingizni tallang:"
-
-msgid "Postpone the expiration date"
-msgstr "Sürük chéslasini keynige sür"
-
-msgid "Preferences"
-msgstr "Mayilliqlar"
-
-msgid "Presentation"
-msgstr "Körsetme"
-
-msgid "Preview"
-msgstr "Aldin kör"
-
-msgid "Previous"
-msgstr "Aldinqi"
-
-msgid "Print"
-msgstr "Bésish"
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "Private Key"
-msgstr "Shexsiy achquch"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "Dawamlashtur"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "Tür nami"
-
-msgid "Public name"
-msgstr "Ammiwi nami"
-
-msgid "Question"
-msgstr "Su’al"
-
-msgid "Question group"
-msgstr "Su’al guruppisi"
-
-msgid "Question templates"
-msgstr "Su’al qélipliri"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pash qilghuchi bolush mümkinchiligi bar kishilerdin sorilidighan su’allar"
-
-msgid "Questionnaire"
-msgstr "Ray sinash"
-
-msgid "Questionnaire answers"
-msgstr "Ray sinash jawabliri"
-
-msgid "Questionnaires"
-msgstr "Ray sinashlar"
-
-msgid "Questions"
-msgstr "Su’allar"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "Tapshuriwalghuchi"
-
-msgid "Recipient selection"
-msgstr "Tapshuriwalghuchi tallash"
-
-msgid "Recipients"
-msgstr "Tapshuriwalghuchilar"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Tallan’ghan tapshuriwalghuchilar:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Yéngila"
-
-msgid "Regenerate"
-msgstr "Qayta hasilla"
-
-msgid "Regular expression"
-msgstr "Muntizim ipade"
-
-msgid "Regular expression validator"
-msgstr "Muntizim ipade toghrilughuchi"
-
-msgid "Remember your receipt for this report."
-msgstr "Bu melumatning talonini ésingizde tutung."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Öchür"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Jawap qayturush meqsiti"
-
-msgid "Reply to the request"
-msgstr "Telepke jawab ber"
-
-msgid "Report"
-msgstr ""
-
-msgid "Report date"
-msgstr "Melumat chéslasi"
-
-msgid "Report statuses"
-msgstr "Doklat haletliri"
-
-msgid "Reports"
-msgstr "Melumatlar"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Pash qilghuchining kimlikini ziyaret qilishni telep qiling"
-
-msgid "Request date"
-msgstr "Telep chéslasi"
-
-msgid "Request motivation"
-msgstr "Telep meqsiti"
-
-msgid "Request status"
-msgstr "Telep halet"
-
-msgid "Request support"
-msgstr "Yardem telep"
-
-msgid "Requests"
-msgstr "Telepler"
-
-msgid "Require authentication"
-msgstr "Kimlik toghrulashni telep qilidu"
-
-msgid "Require two factor authentication"
-msgstr "Ikki qedemlik toghrulashni telep qil"
-
-msgid "Reset"
-msgstr "Qayta seple"
-
-msgid "Reset SMTP configuration"
-msgstr "‏SMTP seplimisini qayta seplesh"
-
-msgid "Reset notification templates to default"
-msgstr "Uqturush qéliplirini köngüldikikige qaytur"
-
-msgid "Reset reports"
-msgstr "Melumatlarni qayta seplesh"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
-
-msgid "Resource not found"
-msgstr "Menbe tépilmidi"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Ziyaret qilishni belgilen’gen IP adrésliri bilenla chekle"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Hoquqni qayturiwal"
-
-msgid "Role"
-msgstr "Roli"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Bu supini Tor ishletmey shliteleydighan rollar"
-
-msgid "Root domain used for secondary sites"
-msgstr "Ikkilemchi tor béketlerge ishlitilidighan yiltiz da’ire"
-
-msgid "Row"
-msgstr "Qur"
-
-msgid "SMTP email address"
-msgstr "‏SMTP élxet adrési"
-
-msgid "SMTP server address"
-msgstr "‏‏SMTP mulazimétér adrési"
-
-msgid "SMTP server port"
-msgstr "‏‏‏SMTP mulazimétér porti"
-
-msgid "Save"
-msgstr "Saqla"
-
-msgid "Save all"
-msgstr "Hemmini saqla"
-
-msgid "Scan the QR code with the app"
-msgstr "QR kodini bu ep bilen tariting"
-
-msgid "Scheduled jobs"
-msgstr "Pilanlan’ghan xizmetler"
-
-msgid "Score"
-msgstr "Netije"
-
-msgid "Scoring system options"
-msgstr "Nomur qoyush sistémisining tallashliri"
-
-msgid "Search"
-msgstr "Axturush"
-
-msgid "Security"
-msgstr "Bixeterlik"
-
-msgid "Select"
-msgstr "Talla"
-
-msgid "Select a file or drag it here."
-msgstr "Bir höjjet tallang yaki bu yerge sörep tashlang."
-
-msgid "Select all"
-msgstr "Hemmini talla"
-
-msgid "Select all recipients by default"
-msgstr "Köngülde barliq tapshuriwalghuchilar tallan’ghan bolsun"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Tallash ramkisi"
-
-msgid "Send"
-msgstr "Ewet"
-
-msgid "Send a test email to your email address."
-msgstr "Élxet adrésingizge sinaq élxet eweting."
-
-msgid "Send activation link"
-msgstr "Aktiplash élxeti ewet"
-
-msgid "Send reset link"
-msgstr "Qayta seplesh ulanmisini ewet"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Parol seplesh"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Teminlen’gen bir PGP ammiwi achquchi bilen shifrileshni tengshe"
-
-msgid "Settings"
-msgstr ""
-
-msgid "Severity"
-msgstr "Muhimliqi"
-
-msgid "Show"
-msgstr "Körset"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Tapshuriwalghuchilarni élipbe tertipi boyiche körset"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Ray sinash yéteklime ara yüzini körset"
-
-msgid "Sign up"
-msgstr "tizimliting"
-
-msgid "Silence email notifications"
-msgstr "Élxet uqturushni jim qil"
-
-msgid "Single-line text input"
-msgstr "Taq qurluq tékist kirgüzüsh"
-
-msgid "Site"
-msgstr ""
-
-msgid "Sites"
-msgstr "Béketler"
-
-msgid "Size limit for file attachments"
-msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
-
-msgid "Size:"
-msgstr "Chongluqi:"
-
-msgid "Skip the recipient account creation."
-msgstr "Tapshuwriwalghuchi hésabi qurushtin atla"
-
-msgid "Software version:"
-msgstr "Yumshaq détal neshri:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Istatistika"
-
-msgid "Status"
-msgstr "Ehwali"
-
-msgid "Status:"
-msgstr "Halet:"
-
-msgid "Step"
-msgstr "Qedem"
-
-msgid "Steps"
-msgstr "Qedemler"
-
-msgid "Strong"
-msgstr "Küchlük"
-
-msgid "Subdomain"
-msgstr "Qismi da’ire"
-
-msgid "Submissions disabled"
-msgstr "Yollash toxtitildi"
-
-msgid "Submit"
-msgstr "Yolla"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Qismi haletler"
-
-msgid "Success!"
-msgstr "Muweppiqiyetlik!"
-
-msgid "Sufficient"
-msgstr "Yéterlik"
-
-msgid "Surname"
-msgstr "Famile"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "Qélip"
-
-msgid "Template override"
-msgstr "Qéliipning üstige yaz"
-
-msgid "Templates"
-msgstr "Qéliplar"
-
-msgid "Terms of service"
-msgstr "Mulazimet shertliri"
-
-msgid "Test the configuration"
-msgstr "Seplimlilerni sinash"
-
-msgid "Text"
-msgstr "Tékist"
-
-msgid "Text customization"
-msgstr "Tékist ixtiyari"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Ishletküchi tallanmini tallighandin kéyin tékist körsitilidu."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "Selbiy jawabta körsitilidighan tékist"
-
-msgid "Thank you."
-msgstr "Rehmet sizge."
-
-msgid "The answer is too short"
-msgstr "Jawap bek qisqa"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Таллиған паролиңиз бәк аҗиз. Бир инавәтлик парол әң аз дегәндә охшаш болмиған 10 бәлгә узунлиқида болиши, әң аз бир кичик һәрп, бир чоң һәрп,бир рәқәм вә бир алаһидә бәлгидин тәркип тепиши керәк."
-
-msgid "The code is either invalid or expired."
-msgstr "Bu kod inawetsiz yaki sürüki toshqan."
-
-msgid "The connection is not secure."
-msgstr "Bu ulanma bixeter emes."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Töwendiki tapshuriwalghuchilar sizning melumatingizni tashuriwalidu we tallashtin qalduralmaysiz:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Töwendiki qedemmu-qedem sizning öz pash qilish supingizni qurup chiqishingizgha yétekchilik qilidu."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Qolda seplesh séhirgeri sizning HTTPS seplimisni bashqa bir guwahname orgini arqiliq seplishingizge yétekchilik qilidu."
-
-msgid "The new password must be different from the current one."
-msgstr "Yéngi parol hazirqi paroldin perqliq bolishi lazim."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Bu supigha ammiwi IP adrési bilen baghlanghili bolishi we tallanghan mulazimétér namining bu adrésqa munasip DNS rékorti bolushi kérek."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Bu supa HTTPS seplimisini bu éghiz arqiliq qollaydu."
-
-msgid "The provided recovery key is invalid."
-msgstr "Teminlen’gen eslige keltürüsh achquchi inawetsiz."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Teminlen’gen eslige qayturush belgisi inawetsiz yaki sürüki toshqan."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Taloningz inawetsiz yaki melumatingizning sürüki toshüp ketken."
-
-msgid "The specified input is not valid."
-msgstr "Körsetken kirgüzüsh inawetsiz."
-
-msgid "The specified input is not valid:"
-msgstr "Körsetken kirgüzüsh inawetsiz:"
-
-msgid "The specified old password is not valid"
-msgstr "Körsetken kona parolingiz inawetsiz"
-
-msgid "The two passwords do not match"
-msgstr "Bu ikki parol oxshash emes"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Yüklime telipi chongluq chékidin éship ketti"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Ishletküchiler kéyinki qétim tizimgha kirgende, parolini özgertishke mejburlinidu."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Delillesh ulanmisi xata yaki sürüki toshqan."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Pash qilghuchi axirqi yéngilanmini alliqachan oqudi"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Pash qilghuchi axirqi yéngilanmini téxi oqumidi"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Arqidin, keynidiki adrésni köchürüp, Tor tor körgüchige chaplang:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Ixtiyari tékist bu supida emdi körünmeydu. esli tékist özgertiwétigen yaki öchüriwétilgen. "
-
-msgid "This domain name is not available."
-msgstr "Bu da’ire nami bosh emes."
-
-msgid "This field is mandatory"
-msgstr "Bu bölek mejburiy"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."
-
-msgid "This user has not performed the first login yet."
-msgstr "Bu ishletküchi téxiche tunji tizimgha kirishni ijra qilmaptu."
-
-msgid "Threshold"
-msgstr "Bosugha"
-
-msgid "Title"
-msgstr "Téma"
-
-msgid "To"
-msgstr "Tapshuriwalghuchi"
-
-msgid "To:"
-msgstr "Tapshuriwalghuchi:"
-
-msgid "Tor"
-msgstr ""
-
-msgid "Tor Onion Service"
-msgstr "‏Tor Onion mulazimiti"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Qozghitilish shertler"
-
-msgid "Trigger question"
-msgstr "Qozghatquch su’al"
-
-msgid "Triggered by score:"
-msgstr "Nomur bilen qozghat:"
-
-msgid "Turn on email notifications"
-msgstr "Élxet uqturshini ach"
-
-msgid "Type"
-msgstr "Türi"
-
-msgid "Type your new password again"
-msgstr "Yéngi parolingizni tekrar kirgüzüng"
-
-msgid "URL redirects"
-msgstr "URL qayta yéteklesh"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Yüklesh"
-
-msgid "Upload a file:"
-msgstr "Bir höjjet yükle:"
-
-msgid "Upload date"
-msgstr "Yüklen’gen chésla"
-
-msgid "Use as default"
-msgstr "Köngüldikidek ishlet"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Tizimgha kirish üchün 16 xaniliq talon kodini ishliting. u sizning biz ewetken herqandaq uchurni körüshingiz, hemde qoshumche uchur qoshushingizgha ruxset qilidu."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Birinchi béketni peqetla bashqurush meqsitide ishlet"
-
-msgid "User"
-msgstr "Ishletküchi"
-
-msgid "Username"
-msgstr "Ishletküchi nami"
-
-msgid "Users"
-msgstr "Ishletküchiler"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "Aptumatik HTTPS seplimisini ishlitish,  Let's Encrypt orginidin guwahname telep qilish, qozghitish we yéngilash qatarliq pütün jeryanlarni bir terep qilidu."
-
-msgid "Valid until:"
-msgstr "Axirqi inawetlik waqti:"
-
-msgid "Validation of email address change in progress."
-msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
-
-msgid "Value"
-msgstr "Qimmet"
-
-msgid "Video"
-msgstr "Sin"
-
-msgid "View"
-msgstr ""
-
-msgid "View your report"
-msgstr "Melumatingizni körüng"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Hoquq bérishni kütiwatidu"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Höjjet(ler)ning yüklinip bolishini saqlawatidu."
-
-msgid "Warning"
-msgstr "Agahlandurush"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Eger tapshuriwalghuchilar parolini yüttürüp qoyghanda ehwallarda, melumatlarni qoghdap qalmaqchi bolsingiz, bu tallashni tallishingizni tewsiye qilimiz. yene bir tereptin, eger siz peqet tabshuriwalghuchilarla yollanmilarni ziyaret qilalaydighan bir sistéma qurmaqchi bolsingiz, bu tallashni tallishingizni tewsiye qilmaymiz."
+msgid "An update is available:"
+msgstr "Bir yéngilanma bar:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1536,78 +1458,85 @@ msgid ""
 "your password."
 msgstr "«Hésabatni eslige keltürüsh achquchi» ni yighip bixeter saqlap qoyush üchün, «mayilliq» bölikini ziyaret qilishingizni tewsiye qilimiz. Bu achquch parolni untup qalghan waqtingizda, supa we sanliq melumatliringizni ziyaret qilishni eslige keltürüsh üchün lazim bolidu."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
+msgid "Select a file or drag it here."
+msgstr "Bir höjjet tallang yaki bu yerge sörep tashlang."
 
-msgid "Weak"
-msgstr "Ajiz"
+msgid "The provided recovery key is invalid."
+msgstr "Teminlen’gen eslige keltürüsh achquchi inawetsiz."
 
-msgid "Welcome!"
-msgstr "Xosh kepsiz!"
-
-msgid "Whistleblower"
-msgstr "Pash qilghuchi"
-
-msgid "Whistleblower's last access"
-msgstr "Pash qilghuchining axirqi ziyariti"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Pash qilish kunupkisi"
-
-msgid "Width"
-msgstr "Kengliki"
-
-msgid "Yes"
-msgstr "He’e"
+msgid "The provided reset token is invalid or expired."
+msgstr "Teminlen’gen eslige qayturush belgisi inawetsiz yaki sürüki toshqan."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Siz mulazimétirgha namsizlashmay turup uliniwatisiz, hemde bu mulazimétir peqet namsiz yollashnila qollaydu"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Hésabat namingiz yaki élxet adrésingizni kirgüzüp, paolingizni qayta sepleshni telep qiling."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Élxet adrésingizni kirgüzüp parolingizni qayta sepleshni telep qiling."
+
+msgid "Password reset requested."
+msgstr "Parolingizni qayta seplesh telep qilindi."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Sizge bu béketni Tor tor körgüchi ismlik, shexsiyitingizni qoghdaydighan epni ishlitip ziyaret qilishingizni küchlük tewsiye qilimiz."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Parolni qayta seplesh jeryanini tamamlash üchün hésabatingizning eslige keltürüsh achquchini kirgüzüng"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Saqlighuchi pash qilghuchining kimligini ziyaret qilishni telep qildi."
+
+msgid "Date of the request"
+msgstr "Telep qilghan chésla"
+
+msgid "Show"
+msgstr "Körset"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Tebrikleymiz!"
 
 msgid "You have completed the platform activation."
 msgstr "Siz supa aktiplashni tamamlidingiz."
 
-msgid "You have completed the platform wizard."
-msgstr "Supa séhirgerini pütttürdingiz."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Tallashqa bolidighan tapshuriwalghuchilar san chékige yettingiz."
-
-msgid "You must select at least one recipient."
-msgstr "Az dégende bir tapshuriwalghuchi tallishingiz kérek."
-
-msgid "Your new email address has been validated."
-msgstr "Sizning yéngi élxet adrésingiz delillendi."
-
-msgid "Your report was successful."
-msgstr "Melumatingiz muweppiqiyetlik boldi."
+msgid "Success!"
+msgstr "Muweppiqiyetlik!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Sizning pash qilish supingiz teyyar bolay dep qaldi!"
 
-msgid "days"
-msgstr "Künler"
+msgid "Check your inbox to activate it."
+msgstr "Élxet sanduqingizni tekshürüp uni aktiplang."
 
-msgid "file unavailable"
-msgstr "Höjjetni ishletküsiz "
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Eger 24 sa’etkiche aktiplimisngiz, bu supa aptomatik öchürülidu."
 
-msgid "megabytes"
-msgstr "Mégabayts"
+msgid "Sign up"
+msgstr "tizimliting"
 
-msgid "percentage"
-msgstr "Pirsenti"
+msgid "Invalid confirmation"
+msgstr "Inawetsiz jezimlesh"
+
+msgid "Invalid phone number"
+msgstr "Inawetsiz téléfon nomuri"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Jezmleng"
+
+msgid "The answer is too short"
+msgstr "Jawap bek qisqa"
+
+msgid "The specified input is not valid."
+msgstr "Körsetken kirgüzüsh inawetsiz."
+
+msgid "The specified input is not valid:"
+msgstr "Körsetken kirgüzüsh inawetsiz:"
 
 msgid "please enter a valid email address."
 msgstr "Inaetlik bir élxet adrésini kirgüzüng."
@@ -1615,14 +1544,82 @@ msgstr "Inaetlik bir élxet adrésini kirgüzüng."
 msgid "please enter numbers only."
 msgstr "Peqetla san kirgüzüng"
 
-msgid "seconds"
-msgstr "Sékont"
+msgid "Submissions disabled"
+msgstr "Yollash toxtitildi"
 
-msgid "File a report"
-msgstr "Bir melumat yolla"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Siz mulazimétirgha namsizlashmay turup uliniwatisiz, hemde bu mulazimétir peqet namsiz yollashnila qollaydu"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Melumatingiz muweppiqiyetlik boldi."
+
+msgid "Remember your receipt for this report."
+msgstr "Bu melumatning talonini ésingizde tutung."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Tizimgha kirish üchün 16 xaniliq talon kodini ishliting. u sizning biz ewetken herqandaq uchurni körüshingiz, hemde qoshumche uchur qoshushingizgha ruxset qilidu."
+
+msgid "View your report"
+msgstr "Melumatingizni körüng"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Tallan’ghan tapshuriwalghuchilar:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Tallashqa bolidighan tapshuriwalghuchilar san chékige yettingiz."
+
+msgid "You must select at least one recipient."
+msgstr "Az dégende bir tapshuriwalghuchi tallishingiz kérek."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Töwendiki tapshuriwalghuchilar sizning melumatingizni tashuriwalidu we tallashtin qalduralmaysiz:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Bu qedemde töwendiki su’allargha bérilgen jawaplar xata yaki inawetsiz."
+
+msgid "Recipient selection"
+msgstr "Tapshuriwalghuchi tallash"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Höjjet(ler)ning yüklinip bolishini saqlawatidu."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Töwendiki qedemmu-qedem sizning öz pash qilish supingizni qurup chiqishingizgha yétekchilik qilidu."
+
+msgid "Please choose a configuration profile:"
+msgstr "Bir seplime terjimhali tallang:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Bu bashqurghuchigha ishletkuchilerning parolini qayta seplesh imkaniyiti béring."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Eger tapshuriwalghuchilar parolini yüttürüp qoyghanda ehwallarda, melumatlarni qoghdap qalmaqchi bolsingiz, bu tallashni tallishingizni tewsiye qilimiz. yene bir tereptin, eger siz peqet tabshuriwalghuchilarla yollanmilarni ziyaret qilalaydighan bir sistéma qurmaqchi bolsingiz, bu tallashni tallishingizni tewsiye qilmaymiz."
+
+msgid "Please choose a different username."
+msgstr "Perqliq bir ishletküchi nami tallang."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Men ijazet shertlirini oqudum hemde qoshulimen."
+
+msgid "You have completed the platform wizard."
+msgstr "Supa séhirgerini pütttürdingiz."
 
 msgid "Please summarize your report in a few words."
 msgstr "Ikki éghiz gep bilen melumatingizni chüshendürüng."

@@ -24,129 +24,155 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = อัตโนมัติ"
+msgid "Log in"
+msgstr "ลงชื่อเข้า"
 
-msgid "Accept multiple answers"
-msgstr "ยอมรับคำตอบหลายคำตอบ"
+msgid "Languages"
+msgstr "ภาษา"
 
-msgid "Accept multiple file uploads"
-msgstr "ยอมรับการอัปโหลดหลายแฟ้ม"
-
-msgid "Acceptable"
-msgstr "ยอมรับได้"
-
-msgid "Access control"
-msgstr "การควบคุมการเข้าถึง"
-
-msgid "Access date"
-msgstr "วันที่เข้าถึง"
-
-msgid "Access requested"
-msgstr "การเข้าถึงที่ร้องขอ"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "คำร้องขอเพื่อเข้าถึงตัวตนของผู้แจ้งเบาะแส ได้ถูกส่งไปยังผู้พิทักษ์แล้ว"
-
-msgid "Account recovery key"
-msgstr "กุญแจกู้คืนบัญชี"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "กิจกรรม"
-
-msgid "Add"
-msgstr "เพิ่ม"
-
-msgid "Add custom text"
-msgstr "เพิ่มข้อความปรับแต่งเอง"
-
-msgid "Add multimedia content"
-msgstr "เพิ่มเนื้อหามัลติมีเดีย"
-
-msgid "Add new question"
-msgstr "เพิ่มคำถามใหม่"
-
-msgid "Add new questionnaire"
-msgstr "เพิ่มแบบสอบถามใหม่"
-
-msgid "Add question from template"
-msgstr "เพิ่มคำถามจากแม่แบบ"
-
-msgid "Addition"
-msgstr "การบวก"
-
-msgid "Additional questionnaire"
-msgstr "แบบสอบถามเพิ่มเติม"
-
-msgid "Address"
-msgstr "ที่อยู่"
-
-msgid "Admin"
-msgstr "ผู้ดูแลระบบ"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
+msgid "Text customization"
+msgstr "การกำหนดค่าข้อความ"
 
 msgid "Advanced"
 msgstr "ขั้นสูง"
 
-msgid "Allow the recipient to delete reports"
-msgstr "อนุญาตให้ผู้รับลบรายงานได้"
+msgid "Question templates"
+msgstr "แม่แบบคำถาม"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
+msgid "Questionnaires"
+msgstr "แบบสอบถาม"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
+msgid "Add new questionnaire"
+msgstr "เพิ่มแบบสอบถามใหม่"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
+msgid "Home"
+msgstr "หน้าหลัก"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "บันทึกการเปลี่ยนแปลง"
 
-msgid "Allow users to sign up"
-msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
+msgid "License"
+msgstr "สัญญาอนุญาต"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเลือกผู้รับของตนเอง"
+msgid "Templates"
+msgstr "แม่แบบ"
 
-msgid "Allowed IP addresses"
-msgstr "อนุญาตที่อยู่ไอพี"
-
-msgid "An update is available:"
-msgstr "รายการอัปเดตพร้อมแล้ว:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "ลบ"
 
 msgid "Anomalies"
 msgstr "ความผิดปกติ"
 
-msgid "Anomaly detection thresholds"
-msgstr "ค่าเกณฑ์การตรวจจับความผิดปกติ"
+msgid "Preferences"
+msgstr "การตั้งค่า"
 
-msgid "Anonymity"
-msgstr ""
+msgid "Notifications"
+msgstr "การเเจ้งเตือน"
 
-msgid "Anonymize outgoing connections"
-msgstr "ทำให้การเชื่อมต่อขาออกเป็นนิรนาม"
+msgid "file unavailable"
+msgstr "ไม่มีแฟ้มที่ใช้ได้"
 
-msgid "Anonymous"
-msgstr "นิรนาม"
+msgid "Date"
+msgstr "วันที่"
 
-msgid "Are you sure?"
-msgstr "คุณแน่ใจหรือไม่?"
+msgid "Expiration date"
+msgstr "วันหมดอายุ"
 
-msgid "Assign score points"
-msgstr "กำหนดแต้มคะแนน"
+msgid "Last Access"
+msgstr "เข้าถึงล่าสุด"
 
-msgid "Assigned to"
-msgstr "มอบหมายให้"
+msgid "Files"
+msgstr "แฟ้ม"
+
+msgid "Comments"
+msgstr "ความคิดเห็น"
+
+msgid "Details"
+msgstr "รายละเอียด"
+
+msgid "Platform wizard"
+msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
+
+msgid "Label the report"
+msgstr "ติดป้ายกำกับรายงาน"
+
+msgid "Edit the expiration date"
+msgstr "เลื่อนวันหมดอายุ"
+
+msgid "Select all"
+msgstr "เลือกทั้งหมด"
+
+msgid "Deselect all"
+msgstr "เลิกเลือกทั้งหมด"
+
+msgid "Refresh"
+msgstr "เรียกใหม่"
+
+msgid "Channel"
+msgstr "ช่อง"
+
+msgid "Preview"
+msgstr "ดูตัวอย่าง"
+
+msgid "The whistleblower has already read the last update"
+msgstr "ผู้แจ้งเบาะแสได้อ่านข่าวสารล่าสุดแล้ว"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "ผู้แจ้งเบาะแสยังไม่ได้อ่านข่าวสารล่าสุด"
+
+msgid "Move up"
+msgstr "เลื่อนขึ้น"
+
+msgid "Move down"
+msgstr "เลื่อนลง"
+
+msgid "Move left"
+msgstr "เลื่อนซ้าย"
+
+msgid "Move right"
+msgstr "เลื่อนขวา"
+
+msgid "Import"
+msgstr "นำเข้า"
+
+msgid "Export"
+msgstr "ส่งออก"
+
+msgid "Save all"
+msgstr "บันทึกทั้งหมด"
+
+msgid "Access control"
+msgstr "การควบคุมการเข้าถึง"
+
+msgid "Number"
+msgstr "จำนวน"
+
+msgid "Email"
+msgstr "อีเมล"
+
+msgid "Regular expression validator"
+msgstr "ตัวตรวจรูปแบบ regular expression"
+
+msgid "Minimum number of input characters"
+msgstr "จำนวนตัวอักษรต่ำสุดสำหรับอินพุท"
+
+msgid "Maximum number of input characters"
+msgstr "จำนวนตัวอักษรสูงสุดสำหรับอินพุท"
+
+msgid "Earliest selectable date"
+msgstr "วันที่แรกสุดที่ให้เลือกได้"
+
+msgid "Latest selectable date"
+msgstr "วันที่สุดท้ายที่ให้เลือกได้"
+
+msgid "0 = auto"
+msgstr "0 = อัตโนมัติ"
+
+msgid "Yes"
+msgstr "ใช่"
+
+msgid "No"
+msgstr "ไม่"
 
 msgid "Attachment"
 msgstr "เอกสารแนบ"
@@ -154,186 +180,56 @@ msgstr "เอกสารแนบ"
 msgid "Attachments"
 msgstr "เอกสารแนบ"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "เสียง"
-
-msgid "Audit log"
-msgstr "บันทึกการตรวจสอบบัญชี"
-
-msgid "Authentication failed"
-msgstr "การยืนยันตัวตนล้มเหลว"
-
-msgid "Authorization"
-msgstr "การอนุญาต"
-
-msgid "Authorize"
-msgstr "มอบอำนาจ"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "อนุญาตให้เข้าถึงตัวตนของผู้แจ้งเบาะแส"
-
-msgid "Authorized"
-msgstr "อนุญาตแล้ว"
-
-msgid "Auto-renewal"
-msgstr "ต่ออายุอัตโนมัติ"
-
-msgid "Automatic configuration"
-msgstr "การปรับค่าอัตโนมัติ"
-
-msgid "Available disk space"
-msgstr "พื้นที่ดิสก์ที่ใช้ได้"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างรอบคอบที่:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "ก่อนจะไปต่อ กรุณาเปิดใช้การยืนยันตัวตนสองชั้น"
-
-msgid "Before proceeding, please set a new password."
-msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
-
-msgid "Block the submission"
-msgstr "ปิดกั้นการส่ง"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr "เมื่อยืนยัน คุณจะตั้งให้แจ้งเตือนในวันที่:"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "โดยการเปิดใช้ความสามารถนี้ คุณจะช่วยสนับสนุนการพัฒนาและความปลอดภัยของแพลตฟอร์ม"
-
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-msgid "Case management"
-msgstr "การจัดการเรื่อง"
-
-msgid "Certificate"
-msgstr "ใบรับรอง"
-
-msgid "Certificate Signing Request"
-msgstr "คำขอให้เซ็นชื่อใบรับรอง"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "เปลี่ยนรหัสผ่านของคุณ"
 
-msgid "Changelog"
-msgstr "บันทึกการเปลี่ยนแปลง"
+msgid "User"
+msgstr "ผู้ใช้"
 
-msgid "Channel"
-msgstr "ช่อง"
+msgid "Motivation"
+msgstr "เหตุจูงใจ"
 
-msgid "Channels"
-msgstr "ช่อง"
+msgid "Status"
+msgstr "สถานะ"
 
-msgid "Check your inbox to activate it."
-msgstr "ตรวจสอบกล่องขาเข้าของคุณเพื่อเปิดใช้งาน"
+msgid "Request motivation"
+msgstr "เหตุจูงใจในการร้องขอ"
 
-msgid "Checkbox"
-msgstr "ช่องกาเครื่องหมาย"
+msgid "Reply motivation"
+msgstr "เหตุจูงใจในการตอบกลับ"
 
-msgid "Checkbox label"
-msgstr "ข้อความกำกับช่องกาเครื่องหมาย"
-
-msgid "City"
-msgstr "เมือง"
-
-msgid "Close"
-msgstr "ปิด"
-
-msgid "Closed"
-msgstr "ปิดแล้ว"
-
-msgid "Collapse"
-msgstr "ยุบ"
-
-msgid "Column"
-msgstr "คอลัมน์"
-
-msgid "Comments"
-msgstr "ความคิดเห็น"
-
-msgid "Computer"
-msgstr "คอมพิวเตอร์"
-
-msgid "Configure"
-msgstr "ปรับค่า"
-
-msgid "Confirm"
-msgstr "ยืนยัน"
-
-msgid "Confirmation"
-msgstr "การยืนยัน"
-
-msgid "Congratulations!"
-msgstr "ยินดีด้วย!"
-
-msgid "Copy to clipboard"
-msgstr "คัดลอกไปยังคลิปบอร์ด"
-
-msgid "Country"
-msgstr "ประเทศ"
-
-msgid "Country code"
-msgstr "รหัสประเทศ"
-
-msgid "Creation date"
-msgstr "วันที่สร้าง"
-
-msgid "Creation date:"
-msgstr "วันที่สร้าง:"
-
-msgid "Current password"
-msgstr "รหัสผ่านปัจจุบัน"
+msgid "Request status"
+msgstr "สถานะคำขอ"
 
 msgid "Custodian"
 msgstr "ผู้พิทักษ์"
 
-msgid "Custom"
-msgstr "ปรับแต่งเอง"
+msgid "Identity"
+msgstr "อัตลักษณ์"
 
-msgid "Custom privacy panel"
-msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
+msgid "Access requested"
+msgstr "การเข้าถึงที่ร้องขอ"
 
-msgid "Custom support URL"
-msgstr "URL สนับสนุนแบบปรับแต่งเอง"
+msgid "Request access to the whistleblower's identity"
+msgstr "ร้องขอการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
-msgid "Custom text"
-msgstr "ข้อความปรับแต่งเอง"
+msgid "Reply to the request"
+msgstr "ตอบกลับคำขอ"
 
-msgid "Custom translation"
-msgstr "คำแปลปรับแต่งเอง"
-
-msgid "Date"
-msgstr "วันที่"
-
-msgid "Date of the request"
-msgstr "วันที่ร้องขอ"
-
-msgid "Date range"
-msgstr "ช่วงวัน"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr "ใช้การปรับค่าอีเมลตามค่าปริยายอยู่ โปรดพิจารณาใช้เซิร์ฟเวอร์อีเมลส่วนตัว"
-
-msgid "Delete"
-msgstr "ลบ"
+msgid "Authorized"
+msgstr "อนุญาตแล้ว"
 
 msgid "Denied"
 msgstr "ถูกปฏิเสธ"
+
+msgid "Waiting for authorization"
+msgstr "กำลังรอการอนุญาต"
+
+msgid "New request"
+msgstr "คำขอใหม่"
+
+msgid "Authorize"
+msgstr "มอบอำนาจ"
 
 msgid "Deny"
 msgstr "ปฏิเสธ"
@@ -341,26 +237,20 @@ msgstr "ปฏิเสธ"
 msgid "Deny access to the whistleblower's identity"
 msgstr "ปฏิเสธการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
-msgid "Description"
-msgstr "คำอธิบาย"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "อนุญาตให้เข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
-msgid "Deselect"
-msgstr "เลิกเลือก"
+msgid "URL redirects"
+msgstr "เปลี่ยนเส้นทาง URL"
 
-msgid "Deselect all"
-msgstr "เลิกเลือกทั้งหมด"
+msgid "Anomaly detection thresholds"
+msgstr "ค่าเกณฑ์การตรวจจับความผิดปกติ"
 
-msgid "Details"
-msgstr "รายละเอียด"
+msgid "Available disk space"
+msgstr "พื้นที่ดิสก์ที่ใช้ได้"
 
-msgid "Details of the PGP key:"
-msgstr "รายละเอียดของกุญแจ PGP:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "ปิดใช้งาน"
+msgid "Last update"
+msgstr "การปรับปรุงล่าสุด"
 
 msgid "Disable notifications to administrators"
 msgstr "ปิดการแจ้งเตือนผู้ดูแลระบบ"
@@ -371,198 +261,222 @@ msgstr "ปิดการแจ้งเตือนผู้พิทักษ
 msgid "Disable notifications to recipients"
 msgstr "ปิดการแจ้งเตือนผู้รับ"
 
-msgid "Disable submissions"
-msgstr "ปิดรับการส่ง"
+msgid "Score"
+msgstr "คะแนน"
 
-msgid "Disable the privacy panel"
-msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
+msgid "Trigger question"
+msgstr "คำถามเรียกทำงาน"
 
-msgid "Disable two factor authentication"
-msgstr "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย"
+msgid "Triggered by score:"
+msgstr "ถูกเรียกทำงานด้วยคะแนน:"
 
-msgid "Disabled"
-msgstr "ปิดใช้งาน"
+msgid "Weak"
+msgstr "อ่อนแอ"
 
-msgid "Disclaimer"
-msgstr "การปฏิเสธความรับผิดชอบ"
+msgid "Acceptable"
+msgstr "ยอมรับได้"
 
-msgid "Display options alphabetically"
-msgstr "แสดงตัวเลือกเรียงตามตัวอักษร"
+msgid "Strong"
+msgstr "แข็งแรง"
 
-msgid "Download"
-msgstr "ดาวน์โหลด"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "ข้อความที่แสดงที่ส่วนบนสุดของอินเทอร์เฟซของช่องที่เลือก"
 
-msgid "Download copy of the Privacy Policy"
-msgstr "ดาวน์โหลดสำเนานโยบายความเป็นส่วนตัว"
+msgid "Silence email notifications"
+msgstr "ปิดการแจ้งเตือนทางอีเมล"
 
-msgid "Download the Tor Browser"
-msgstr "ดาวน์โหลด Tor Browser"
+msgid "Turn on email notifications"
+msgstr "เปิดการแจ้งเตือนทางอีเมล"
 
-msgid "Duplicate"
-msgstr "ทำซ้ำ"
-
-msgid "Each entry must be separated with a comma."
-msgstr "แต่ละรายการจะต้องคั่นด้วยเครื่องหมายจุลภาค ( , )"
-
-msgid "Earliest selectable date"
-msgstr "วันที่แรกสุดที่ให้เลือกได้"
-
-msgid "Edit"
-msgstr "แก้ไข"
-
-msgid "Email"
-msgstr "อีเมล"
+msgid "Input validation"
+msgstr "การตรวจรูปแบบอินพุท"
 
 msgid "Email address"
 msgstr "ที่อยู่อีเมล"
 
-msgid "Enable"
-msgstr "เปิดใช้งาน"
+msgid "Custom"
+msgstr "ปรับแต่งเอง"
 
-msgid "Enable PGP"
-msgstr "เปิดใช้ PGP"
+msgid "None"
+msgstr "ไม่มี"
 
-msgid "Enable administrators to change user passwords"
-msgstr "เปิดให้ผู้ดูแลระบบเปลี่ยนรหัสผ่านของผู้ใช้ได้"
+msgid "Regular expression"
+msgstr "regular expression"
 
-msgid "Enable custom privacy panel"
-msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
-
-msgid "Enable email notifications"
-msgstr "เปิดใช้การแจ้งเตือนทางอีเมล"
-
-msgid "Enable email notifications for:"
-msgstr "เปิดการแจ้งเตือนทางอีเมลสำหรับ:"
-
-msgid "Enable encryption"
-msgstr "เปิดใช้การเข้ารหัสลับ"
-
-msgid "Enable scoring system"
-msgstr "เปิดใช้งานระบบให้คะแนน"
-
-msgid "Enable search engines indexing"
-msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
-
-msgid "Enable simplified login"
-msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
-
-msgid "Enable terms of service"
-msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
-
-msgid "Enable two factor authentication"
-msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
-
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
-
-msgid "Enter a name for the copy"
-msgstr "ใส่ชื่อสำหรับสำเนา"
-
-msgid "Enter the two factor authentication code"
-msgstr "ใส่รหัสการยืนยันตัวตนแบบสองปัจจัย"
+msgid "Search"
+msgstr "ค้นหา"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "ใส่กุญแจกู้คืนการเข้ารหัสลับของคุณ เพื่อทำให้กระบวนการตั้งรหัสผ่านใหม่สมบูรณ์"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "ข้อความปรับแต่งเองจะไม่ถูกแสดงบนแพลตฟอร์มอีกต่อไป ข้อความต้นฉบับถูกเปลี่ยนหรือถูกลบไปแล้ว"
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "ใส่ชื่อผู้ใช้ของบัญชีของคุณและที่อยู่อีเมลของคุณ เพื่อขอให้ล้างและตั้งรหัสผ่านใหม่"
+msgid "Audit log"
+msgstr "บันทึกการตรวจสอบบัญชี"
 
-msgid "Enter your email address to request a password reset."
-msgstr "ใส่ที่อยู่อีเมลของคุณ เพื่อขอให้ล้างและตั้งรหัสผ่านใหม่"
+msgid "Stats"
+msgstr "สถิติ"
 
-msgid "Error on input validation"
-msgstr "เกิดข้อผิดพลาดในการตรวจรูปแบบอินพุท"
+msgid "Activities"
+msgstr "กิจกรรม"
 
-msgid "Error!"
-msgstr "ข้อผิดพลาด!"
+msgid "Reports"
+msgstr "รายงาน"
 
-msgid "Everyone"
-msgstr "ทุกคน"
+msgid "Report"
+msgstr "รายงาน"
 
-msgid "Example:"
-msgstr "ตัวอย่าง:"
-
-msgid "Expand"
-msgstr "ขยาย"
-
-msgid "Expiration date"
-msgstr "วันหมดอายุ"
-
-msgid "Export"
-msgstr "ส่งออก"
-
-msgid "File size"
-msgstr "ขนาดแฟ้ม"
-
-msgid "File size not accepted."
-msgstr "ไม่ยอมรับขนาดแฟ้ม"
-
-msgid "Filename"
-msgstr "ชื่อแฟ้ม"
-
-msgid "Files"
-msgstr "แฟ้ม"
-
-msgid "Files attached by recipients"
-msgstr "แฟ้มที่แนบมาโดยผู้รับ"
-
-msgid "Fill the additional questionnaire"
-msgstr "กรอกแบบสอบถามเพิ่มเติม"
-
-msgid "Fingerprint"
-msgstr "ลายนิ้วมือ"
-
-msgid "First"
-msgstr "ส่วนแรก"
-
-msgid "Fiscal code"
-msgstr "รหัสการเงิน"
-
-msgid "Footer"
-msgstr "ส่วนท้าย"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "ด้วยเหตุผลความปลอดภัย ระบบจะให้เปลี่ยนรหัสผ่านเป็นประจำตามช่วงเวลาที่กำหนด"
-
-msgid "For the user documentation, visit:"
-msgstr "สำหรับเอกสารผู้ใช้ ไปที่:"
-
-msgid "Forbidden operation"
-msgstr "การดำเนินการต้องห้าม"
-
-msgid "Force password change"
-msgstr "บังคับเปลี่ยนรหัสผ่าน"
-
-msgid "Forcefully selected"
-msgstr "บังคับเลือก"
-
-msgid "Forgot password?"
-msgstr "ลืมรหัสผ่านใช่ไหม?"
+msgid "Users"
+msgstr "ผู้ใช้"
 
 msgid "From"
 msgstr "จาก"
 
-msgid "From:"
-msgstr "จาก:"
+msgid "Number of downloads"
+msgstr "จำนวนการดาวน์โหลด"
 
-msgid "Generate"
-msgstr "สร้าง"
+msgid "File size not accepted."
+msgstr "ไม่ยอมรับขนาดแฟ้ม"
 
-msgid "Give the user administrative access to the following features:"
-msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
+msgid "Maximum file size is:"
+msgstr "ขนาดแฟ้มสูงสุดคือ:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "ให้ผู้ดูแลรายนี้สามารถเปลี่ยนรหัสผ่านของผู้ใช้ได้"
+msgid "Scheduled jobs"
+msgstr "งานที่กำหนดเวลาไว้"
 
-msgid "Give this user ability to grant user access to reports"
-msgstr "ให้ผู้ใช้คนนี้สามารถมอบสิทธิ์เข้าถึงให้กับผู้ใช้คนอื่นได้"
+msgid "Regenerate"
+msgstr "สร้างใหม่"
+
+msgid "Display options alphabetically"
+msgstr "แสดงตัวเลือกเรียงตามตัวอักษร"
+
+msgid "Enable email notifications for:"
+msgstr "เปิดการแจ้งเตือนทางอีเมลสำหรับ:"
+
+msgid "Disable"
+msgstr "ปิดใช้งาน"
+
+msgid "Remove"
+msgstr "ลบ"
+
+msgid "Use as default"
+msgstr "ใช้เป็นค่าปริยาย"
+
+msgid "Collapse"
+msgstr "ยุบ"
+
+msgid "Expand"
+msgstr "ขยาย"
+
+msgid "Select"
+msgstr "เลือก"
+
+msgid "Deselect"
+msgstr "เลิกเลือก"
+
+msgid "Surname"
+msgstr "นามสกุล"
+
+msgid "New"
+msgstr "ใหม่"
+
+msgid "Opened"
+msgstr "เปิดแล้ว"
+
+msgid "Closed"
+msgstr "ปิดแล้ว"
+
+msgid "Placeholder"
+msgstr "ตัวยึดตำแหน่ง"
+
+msgid "Print"
+msgstr "พิมพ์"
+
+msgid "Previous"
+msgstr "ก่อนหน้า"
+
+msgid "Next"
+msgstr "ถัดไป"
+
+msgid "First"
+msgstr "ส่วนแรก"
+
+msgid "Last"
+msgstr "ส่วนสุดท้าย"
+
+msgid "Send a test email to your email address."
+msgstr "ส่งอีเมลทดสอบไปยังที่อยู่อีเมลของคุณ"
+
+msgid "Block the submission"
+msgstr "ปิดกั้นการส่ง"
+
+msgid "Skip the recipient account creation."
+msgstr "ข้ามการสร้างบัญชีผู้รับ"
+
+msgid "Send activation link"
+msgstr "ส่งลิงก์ยืนยันการเปิดใช้งาน"
+
+msgid "Password reset"
+msgstr "ล้างและตั้งรหัสผ่านใหม่"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "ผู้รับอย่างน้อยหนึ่งรายยังไม่ได้ลงชื่อเข้าครั้งแรก ซึ่งหมายความว่าพวกเขาจะไม่ได้รับรายงาน"
+
+msgid "This user has not performed the first login yet."
+msgstr "ผู้ใช้รายนี้ยังไม่เคยลงชื่อเข้าใช้ครั้งแรก"
+
+msgid "seconds"
+msgstr "วินาที"
+
+msgid "This domain name is not available."
+msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
+
+msgid "Mark as important"
+msgstr "ทำเครื่องหมายว่าสำคัญ"
+
+msgid "Copy to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ด"
+
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+msgid "Grant access"
+msgstr "มอบสิทธิเข้าถึง"
+
+msgid "Revoke access"
+msgstr "เพิกถอนการเข้าถึง"
+
+msgid "Transfer"
+msgstr "ถ่ายโอน"
+
+msgid "Assigned to"
+msgstr "มอบหมายให้"
+
+msgid "Not provided."
+msgstr "ไม่ได้ให้มา"
+
+msgid "Set a reminder"
+msgstr "ตั้งเตือนความจำ"
+
+msgid "Privileges"
+msgstr "สิทธิพิเศษ"
+
+msgid "Hide"
+msgstr "ซ่อน"
+
+msgid "Unhide"
+msgstr "เลิกซ่อน"
+
+msgid "Redact"
+msgstr "ถมดำ"
+
+msgid "Select an option"
+msgstr "เลือกตัวเลือก"
+
+msgid "Select your language"
+msgstr "เลือกภาษาของคุณ"
 
 msgid "Give this user ability to mask information"
 msgstr "ให้ผู้ใช้คนนี้สามารถบังซ่อนข้อมูลได้"
@@ -570,54 +484,966 @@ msgstr "ให้ผู้ใช้คนนี้สามารถบังซ
 msgid "Give this user ability to permanently redact masked information"
 msgstr "ให้ผู้ใช้คนนี้สามารถถมดำถาวรข้อมูลที่ถูกบังซ่อนอยู่ได้"
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr "ให้ผู้ใช้คนนี้สามารถโอนรายงานไปยังผู้ใช้คนอื่นได้"
-
-msgid "Grant access"
-msgstr "มอบสิทธิเข้าถึง"
-
-msgid "Group of questions"
-msgstr "กลุ่มคำถาม"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "คุณได้ยื่นรายงานแล้วใช่ไหม? ใส่ใบรับของคุณ"
-
-msgid "Hidden"
-msgstr "ถูกซ่อนอยู่"
-
-msgid "Hide"
-msgstr "ซ่อน"
-
-msgid "High"
-msgstr "สูง"
-
-msgid "Hint"
-msgstr "คำแนะนำ"
-
-msgid "Home"
-msgstr "หน้าหลัก"
-
-msgid "Homepage title"
-msgstr "ชื่อหน้าหลัก"
-
-msgid "Hostname"
-msgstr "ชื่อโฮสต์"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "ฉันได้อ่านและยอมรับเงื่อนไขในสัญญาอนุญาต"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "ฉันได้อ่านและยอมรับนโยบายความเป็นส่วนตัว"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "ดาวน์โหลดสำเนานโยบายความเป็นส่วนตัว"
+
+msgid "Privacy Policy"
+msgstr "นโยบายความเป็นส่วนตัว"
+
+msgid "Whistleblowing Policy"
+msgstr "นโยบายการแจ้งเบาะแส"
+
+msgid "Voice"
+msgstr "เสียง"
+
+msgid "Everyone"
+msgstr "ทุกคน"
+
+msgid "Recipients only"
+msgstr "เฉพาะผู้รับ"
+
+msgid "Me only"
+msgstr "เฉพาะฉัน"
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "นิรนาม"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "คอมพิวเตอร์"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "ยื่นรายงาน"
+
+msgid "Select a reporting channel:"
+msgstr "เลือกช่องทางรายงาน:"
+
+msgid "Before proceeding, please set a new password."
+msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "ก่อนจะไปต่อ กรุณาเปิดใช้การยืนยันตัวตนสองชั้น"
+
+msgid "Enable"
+msgstr "เปิดใช้งาน"
+
+msgid "Type"
+msgstr "ประเภท"
+
+msgid "Severity"
+msgstr "ความรุนแรง"
+
+msgid "Object"
+msgstr "วัตถุ"
 
 msgid "ID"
 msgstr "รหัส"
 
-msgid "Identity"
-msgstr "อัตลักษณ์"
+msgid "Username"
+msgstr "ชื่อผู้ใช้"
+
+msgid "Role"
+msgstr "บทบาท"
+
+msgid "Name"
+msgstr "ชื่อ"
+
+msgid "Creation date"
+msgstr "วันที่สร้าง"
+
+msgid "Last access"
+msgstr "เข้าถึงล่าสุด"
+
+msgid "Receivers"
+msgstr "ผู้รับแจ้งเบาะแส"
+
+msgid "Whistleblower's last access"
+msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
+
+msgid "Substatuses"
+msgstr "สถานะย่อย"
+
+msgid "Add"
+msgstr "เพิ่ม"
+
+msgid "Label"
+msgstr "ฉลาก"
+
+msgid "This field is mandatory"
+msgstr "ช่องนี้จำเป็นต้องกรอก"
+
+msgid "Edit"
+msgstr "แก้ไข"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+msgid "days"
+msgstr "วัน"
+
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
+
+msgid "Report statuses"
+msgstr "สถานะรายงาน"
+
+msgid "Channels"
+msgstr "ช่อง"
+
+msgid "Hidden"
+msgstr "ถูกซ่อนอยู่"
+
+msgid "Description"
+msgstr "คำอธิบาย"
+
+msgid "Questionnaire"
+msgstr "แบบสอบถาม"
+
+msgid "Recipients"
+msgstr "ผู้รับ"
+
+msgid "Reminder date"
+msgstr "วันที่ให้เตือน"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณสมบัตินี้"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "แสดงหน้าจอการนำทางแบบสอบถาม"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "อนุญาตให้ผู้แจ้งเบาะแสเลือกผู้รับของตนเอง"
+
+msgid "Select all recipients by default"
+msgstr "เลือกผู้รับทั้งหมดเป็นค่าปริยาย"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "จำนวนสูงสุดของผู้รับที่เลือกได้:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "แสดงผู้รับตามลำดับอักษร"
+
+msgid "Additional questionnaire"
+msgstr "แบบสอบถามเพิ่มเติม"
+
+msgid "Scoring system options"
+msgstr "ตัวเลือกระบบให้คะแนน"
+
+msgid "Threshold"
+msgstr "ค่าเกณฑ์"
+
+msgid "Value"
+msgstr "ค่า"
+
+msgid "Medium"
+msgstr "กลาง"
+
+msgid "High"
+msgstr "สูง"
+
+msgid "Software version:"
+msgstr "เวอร์ชันซอฟต์แวร์:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง"
+
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
+msgid "Allowed IP addresses"
+msgstr "อนุญาตที่อยู่ไอพี"
+
+msgid "Admin"
+msgstr "ผู้ดูแลระบบ"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "ผู้รับ"
+
+msgid "Each entry must be separated with a comma."
+msgstr "แต่ละรายการจะต้องคั่นด้วยเครื่องหมายจุลภาค ( , )"
+
+msgid "Example:"
+msgstr "ตัวอย่าง:"
+
+msgid "Hostname"
+msgstr "ชื่อโฮสต์"
+
+msgid "Organization"
+msgstr "องค์กร"
+
+msgid "Invalid email address"
+msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
+
+msgid "City"
+msgstr "เมือง"
+
+msgid "Country"
+msgstr "ประเทศ"
+
+msgid "Country code"
+msgstr "รหัสประเทศ"
+
+msgid "Generate"
+msgstr "สร้าง"
+
+msgid "Private Key"
+msgstr "กุญแจส่วนตัว"
+
+msgid "Certificate Signing Request"
+msgstr "คำขอให้เซ็นชื่อใบรับรอง"
+
+msgid "Certificate"
+msgstr "ใบรับรอง"
+
+msgid "Valid until:"
+msgstr "ใช้ได้จนถึง:"
+
+msgid "Issuer:"
+msgstr "ผู้ออก:"
+
+msgid "Intermediate Certificates"
+msgstr "ใบรับรองขั้นกลาง"
+
+msgid "Reset"
+msgstr "รีเซ็ต"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "ถ้าคุณไม่ได้ยืนยันการเปิดใช้งานภายใน 24 ชั่วโมง แพลตฟอร์มจะถูกลบทิ้งโดยอัตโนมัติ"
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "แพลตฟอร์มนี้รองรับการปรับค่า HTTPS ผ่านหน้าจอนี้"
+
+msgid "Automatic configuration"
+msgstr "การปรับค่าอัตโนมัติ"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "การใช้การปรับค่า HTTPS อัตโนมัติ จะจัดการกระบวนการขอรับใบอนุญาต เปิดใช้ใบอนุญาต และต่ออายุใบอนุญาตจาก Certificate Authority ของ Let's Encrypt ให้ทั้งหมด"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "แพลตฟอร์มจะต้องสามารถเห็นได้ทางที่อยู่ไอพีสาธารณะ และชื่อโฮสต์ที่เลือกจะต้องมีระเบียน DNS ที่ชี้มาที่อยู่ดังกล่าว"
+
+msgid "Proceed"
+msgstr "ดำเนินการ"
+
+msgid "Manual configuration"
+msgstr "การปรับค่าด้วยตัวเอง"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
+
+msgid "Auto-renewal"
+msgstr "ต่ออายุอัตโนมัติ"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion Service"
+
+msgid "Anonymize outgoing connections"
+msgstr "ทำให้การเชื่อมต่อขาออกเป็นนิรนาม"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "เปิดให้แพลตฟอร์มสามารถถูกมองเห็นได้แม้ไม่ใช้ Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "บทบาทที่อนุญาตให้เข้าใช้แพลตฟอร์มได้แม้ไม่ใช้ Tor"
+
+msgid "Whistleblower"
+msgstr "ผู้แจ้งเบาะแส"
+
+msgid "To"
+msgstr "ถึง"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "ใช้การปรับค่าอีเมลตามค่าปริยายอยู่ โปรดพิจารณาใช้เซิร์ฟเวอร์อีเมลส่วนตัว"
+
+msgid "SMTP email address"
+msgstr "ที่อยู่อีเมล SMTP"
+
+msgid "SMTP server address"
+msgstr "ที่อยู่เซิร์ฟเวอร์ SMTP"
+
+msgid "SMTP server port"
+msgstr "พอร์ตเซิร์ฟเวอร์ SMTP"
+
+msgid "Security"
+msgstr "การรักษาความปลอดภัย"
+
+msgid "Require authentication"
+msgstr "ต้องใช้การยืนยันตัวตน"
+
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งการเตือนถึงการหมดอายุของรายงาน"
+
+msgid "Test the configuration"
+msgstr "ทดสอบการปรับค่า"
+
+msgid "Reset SMTP configuration"
+msgstr "ล้างการปรับค่า SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "ล้างแม่แบบการแจ้งเตือนเป็นค่าปริยาย"
+
+msgid "Template"
+msgstr "แม่แบบ"
+
+msgid "Question"
+msgstr "คำถาม"
+
+msgid "Single-line text input"
+msgstr "อินพุทข้อความบรรทัดเดียว"
+
+msgid "Multi-line text input"
+msgstr "อินพุทข้อความหลายบรรทัด"
+
+msgid "Selection box"
+msgstr "กล่องตัวเลือก"
+
+msgid "Multiple choice input"
+msgstr "อินพุทหลายตัวเลือก"
+
+msgid "Checkbox"
+msgstr "ช่องกาเครื่องหมาย"
+
+msgid "Terms of service"
+msgstr "เงื่อนไขการให้บริการ"
+
+msgid "Date range"
+msgstr "ช่วงวัน"
+
+msgid "Group of questions"
+msgstr "กลุ่มคำถาม"
+
+msgid "Row"
+msgstr "แถว"
+
+msgid "Column"
+msgstr "คอลัมน์"
+
+msgid "Width"
+msgstr "ความกว้าง"
+
+msgid "Question group"
+msgstr "กลุ่มคำถาม"
+
+msgid "Hint"
+msgstr "คำแนะนำ"
+
+msgid "Mandatory"
+msgstr "จำเป็นต้องมี"
+
+msgid "Accept multiple file uploads"
+msgstr "ยอมรับการอัปโหลดหลายแฟ้ม"
+
+msgid "Accept multiple answers"
+msgstr "ยอมรับคำตอบหลายคำตอบ"
+
+msgid "Template override"
+msgstr "แทนที่แม่แบบ"
+
+msgid "Min"
+msgstr "ต่ำสุด"
+
+msgid "Max"
+msgstr "สูงสุด"
+
+msgid "Phone number"
+msgstr "หมายเลขโทรศัพท์"
+
+msgid "Text"
+msgstr "ข้อความ"
+
+msgid "Checkbox label"
+msgstr "ข้อความกำกับช่องกาเครื่องหมาย"
+
+msgid "Add multimedia content"
+msgstr "เพิ่มเนื้อหามัลติมีเดีย"
+
+msgid "Image"
+msgstr "ภาพ"
+
+msgid "Audio"
+msgstr "เสียง"
+
+msgid "Video"
+msgstr "วิดีโอ"
+
+msgid "Text shown upon negative answer"
+msgstr "ข้อความแสดงเมื่อได้คำตอบปฏิเสธ"
+
+msgid "Low"
+msgstr "ต่ำ"
+
+msgid "Trigger conditions"
+msgstr "เงื่อนไขเริ่มทำงาน"
+
+msgid "Sufficient"
+msgstr "เพียงพอ"
+
+msgid "Options"
+msgstr "ตัวเลือก"
+
+msgid "Addition"
+msgstr "การบวก"
+
+msgid "Multiplier"
+msgstr "ตัวคูณ"
+
+msgid "Questions"
+msgstr "คำถาม"
+
+msgid "Add new question"
+msgstr "เพิ่มคำถามใหม่"
+
+msgid "Add question from template"
+msgstr "เพิ่มคำถามจากแม่แบบ"
+
+msgid "Duplicate"
+msgstr "ทำซ้ำ"
+
+msgid "Steps"
+msgstr "ขั้นตอน"
+
+msgid "Logo"
+msgstr "โลโก้"
+
+msgid "Project name"
+msgstr "ชื่อโครงการ"
+
+msgid "Homepage title"
+msgstr "ชื่อหน้าหลัก"
+
+msgid "Presentation"
+msgstr "การนำเสนอ"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "คำถามที่จะจูงใจผู้ที่อาจะเป็นผู้แจ้งเบาะแสได้"
+
+msgid "Whistleblowing button"
+msgstr "ปุ่มแจ้งเบาะแส"
+
+msgid "Disclaimer"
+msgstr "การปฏิเสธความรับผิดชอบ"
+
+msgid "Footer"
+msgstr "ส่วนท้าย"
+
+msgid "Upload"
+msgstr "อัปโหลด"
+
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+msgid "Language:"
+msgstr "ภาษา:"
+
+msgid "Add custom text"
+msgstr "เพิ่มข้อความปรับแต่งเอง"
+
+msgid "Custom text"
+msgstr "ข้อความปรับแต่งเอง"
+
+msgid "Original text"
+msgstr "ข้อความต้นฉบับ"
+
+msgid "Original translation"
+msgstr "คำแปลเดิม"
+
+msgid "Custom translation"
+msgstr "คำแปลปรับแต่งเอง"
+
+msgid "Disable submissions"
+msgstr "ปิดรับการส่ง"
+
+msgid "Enable encryption"
+msgstr "เปิดใช้การเข้ารหัสลับ"
+
+msgid "Enable administrators to change user passwords"
+msgstr "เปิดให้ผู้ดูแลระบบเปลี่ยนรหัสผ่านของผู้ใช้ได้"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
+
+msgid "Enable PGP"
+msgstr "เปิดใช้ PGP"
+
+msgid "Enable simplified login"
+msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
+
+msgid "Enable search engines indexing"
+msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
+
+msgid "Show channels in alphabetical order"
+msgstr "แสดงช่องตามลำดับตัวอักษร"
+
+msgid "Size limit for file attachments"
+msgstr "ขีดจำกัดขนาดเอกสารแนบ"
+
+msgid "megabytes"
+msgstr "เมกะไบต์"
+
+msgid "Require two factor authentication"
+msgstr "ต้องใช้การยืนยันตัวตนสองชั้น"
+
+msgid "Password change interval"
+msgstr "กำหนดเวลาสำหรับเปลี่ยนรหัสผ่าน"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "ด้วยเหตุผลความปลอดภัย ระบบจะให้เปลี่ยนรหัสผ่านเป็นประจำตามช่วงเวลาที่กำหนด"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "จำนวนวันจนกว่าจะแจ้งผู้ใช้ถึงรายงานที่ยังไม่ได้อ่าน"
+
+msgid "Custom support URL"
+msgstr "URL สนับสนุนแบบปรับแต่งเอง"
+
+msgid "Disable the privacy panel"
+msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
+
+msgid "Enable custom privacy panel"
+msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
+
+msgid "Custom privacy panel"
+msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
+
+msgid "Enable scoring system"
+msgstr "เปิดใช้งานระบบให้คะแนน"
+
+msgid "Logging level"
+msgstr "ระดับการบันทึก"
+
+msgid "percentage"
+msgstr "ร้อยละ"
+
+msgid "Log accesses of internal users"
+msgstr "บันทึกการเข้าถึงของผู้ใช้ภายใน"
+
+msgid "Notify administrators of software problems"
+msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้ดูแลระบบ"
+
+msgid "Notify developers of software problems"
+msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้พัฒนา"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "โดยการเปิดใช้ความสามารถนี้ คุณจะช่วยสนับสนุนการพัฒนาและความปลอดภัยของแพลตฟอร์ม"
+
+msgid "Reset reports"
+msgstr "ล้างรายงาน"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Case management"
+msgstr "การจัดการเรื่อง"
+
+msgid "Network"
+msgstr "เครือข่าย"
+
+msgid "Sites"
+msgstr "ไซต์"
+
+msgid "Profile"
+msgstr "โพรไฟล์"
+
+msgid "Configure"
+msgstr "ปรับค่า"
+
+msgid "Subdomain"
+msgstr "โดเมนย่อย"
+
+msgid "Mode:"
+msgstr "โหมด:"
+
+msgid "Creation date:"
+msgstr "วันที่สร้าง:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
+
+msgid "Root domain used for secondary sites"
+msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
+
+msgid "Allow users to sign up"
+msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
+
+msgid "Enable terms of service"
+msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
+
+msgid "Title"
+msgstr "ชื่อเรื่อง"
+
+msgid "Public name"
+msgstr "ชื่อสาธารณะ"
+
+msgid "Send reset link"
+msgstr "ส่งลิงก์รีเซ็ต"
+
+msgid "Set password"
+msgstr "ตั้งรหัสผ่าน"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "รหัสผ่านที่เลือกนั้นอ่อนแอเกินไป รหัสผ่านที่ใช้ได้ควรมีความยาวอย่างน้อย 12 ตัวอักษรและมีตัวอักษรหลากหลายชนิด มีอักษรพิมพ์เล็ก อักษรพิมพ์ใหญ่ ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยอย่างละตัว"
+
+msgid "Force password change"
+msgstr "บังคับเปลี่ยนรหัสผ่าน"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "ผู้ใช้จะถูกบังคับให้เปลี่ยนรหัสผ่านในการลงชื่อเข้าระบบครั้งหน้า"
+
+msgid "Disable two factor authentication"
+msgstr "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย"
+
+msgid "Language"
+msgstr "ภาษา"
+
+msgid "Enable email notifications"
+msgstr "เปิดใช้การแจ้งเตือนทางอีเมล"
+
+msgid "Details of the PGP key:"
+msgstr "รายละเอียดของกุญแจ PGP:"
+
+msgid "Fingerprint"
+msgstr "ลายนิ้วมือ"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "ตั้งค่าให้เข้ารหัสลับโดยการให้กุญแจสาธารณะ PGP"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "ให้ผู้ดูแลรายนี้สามารถเปลี่ยนรหัสผ่านของผู้ใช้ได้"
+
+msgid "Forcefully selected"
+msgstr "บังคับเลือก"
+
+msgid "Allow the recipient to delete reports"
+msgstr "อนุญาตให้ผู้รับลบรายงานได้"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr "ให้ผู้ใช้คนนี้สามารถมอบสิทธิ์เข้าถึงให้กับผู้ใช้คนอื่นได้"
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "ให้ผู้ใช้คนนี้สามารถโอนรายงานไปยังผู้ใช้คนอื่นได้"
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "วันที่ร้องขอ"
+
+msgid "Report date"
+msgstr "วันที่รายงาน"
+
+msgid "Authorization"
+msgstr "การอนุญาต"
+
+msgid "Requests"
+msgstr "คำขอ"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "ลิงก์ยืนยันความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"
+
+msgid "Your new email address has been validated."
+msgstr "ที่อยู่อีเมลใหม่ของคุณได้รับการยืนยันความถูกต้องแล้ว"
+
+msgid "Forgot password?"
+msgstr "ลืมรหัสผ่านใช่ไหม?"
+
+msgid "Enter the two factor authentication code"
+msgstr "ใส่รหัสการยืนยันตัวตนแบบสองปัจจัย"
+
+msgid "Authentication failed"
+msgstr "การยืนยันตัวตนล้มเหลว"
+
+msgid "The code is either invalid or expired."
+msgstr "รหัสไม่ถูกต้องหรือหมดอายุแล้ว"
+
+msgid "Please select your account:"
+msgstr "กรุณาเลือกบัญชีของคุณ:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ':"
+
+msgid "Confirm"
+msgstr "ยืนยัน"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ข้อความแสดงหลังจากผู้ใช้ได้เลือกตัวเลือก"
+
+msgid "Assign score points"
+msgstr "กำหนดแต้มคะแนน"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "สถานะ:"
+
+msgid "Are you sure?"
+msgstr "คุณแน่ใจหรือไม่?"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
+
+msgid "Enable two factor authentication"
+msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างรอบคอบที่:"
+
+msgid "Account recovery key"
+msgstr "กุญแจกู้คืนบัญชี"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "ทำสำเนาและเก็บไว้ในที่ปลอดภัย ข้อมูลนี้มีความจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณโดยไม่มีข้อมูลสูญหาย"
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "ใส่ชื่อสำหรับสำเนา"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "ขอการสนับสนุน"
+
+msgid "Thank you."
+msgstr "ขอบคุณ"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
+
+msgid "Submit"
+msgstr "ส่ง"
+
+msgid "The connection is not secure."
+msgstr "การเชื่อมต่อไม่ปลอดภัย"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
+
+msgid "Send"
+msgstr "ส่ง"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr "เมื่อยืนยัน คุณจะตั้งให้แจ้งเตือนในวันที่:"
+
+msgid "Transfer access"
+msgstr "โอนการเข้าถึง"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
+
+msgid "Install an authenticator app on your phone"
+msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"
+
+msgid "Scan the QR code with the app"
+msgstr "สแกนรหัส QR ด้วยแอป"
+
+msgid "Error!"
+msgstr "ข้อผิดพลาด!"
+
+msgid "Internal server error"
+msgstr "Internal server error"
+
+msgid "Error on input validation"
+msgstr "เกิดข้อผิดพลาดในการตรวจรูปแบบอินพุท"
+
+msgid "Resource not found"
+msgstr "ไม่พบทรัพยากร"
+
+msgid "Forbidden operation"
+msgstr "การดำเนินการต้องห้าม"
+
+msgid "The specified old password is not valid"
+msgstr "รหัสผ่านเดิมที่ระบุไม่ถูกต้อง"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "สามารถเข้าถึงทรัพยากรได้ผ่านเครือข่าย Tor เท่านั้น"
+
+msgid "The upload request exceeds the size limit"
+msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "รหัสผ่านปัจจุบัน"
+
+msgid "New password"
+msgstr "รหัสผ่านใหม่"
+
+msgid "The new password must be different from the current one."
+msgstr "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน"
+
+msgid "Type your new password again"
+msgstr "พิมพ์รหัสผ่านใหม่ของคุณอีกครั้ง"
+
+msgid "The two passwords do not match"
+msgstr "รหัสผ่านสองชุดไม่ตรงกัน"
+
+msgid "Validation of email address change in progress."
+msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
+
+msgid "Please check your inbox for further instructions."
+msgstr "กรุณาดูกล่องขาเข้าของคุณสำหรับคำแนะนำต่อไป"
+
+msgid "Warning"
+msgstr "คำเตือน"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "เราแนะนำเป็นอย่างยิ่ง ให้คุณเข้าถึงเว็บไซต์นี้ด้วยแอปที่ชื่อ Tor Browser มันจะปกป้องตัวตนของคุณ"
+
+msgid "Download the Tor Browser"
+msgstr "ดาวน์โหลด Tor Browser"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "จากนั้น คัดลอกและวางที่อยู่นี้ลงใน Tor Browser:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "คุณได้ยื่นรายงานแล้วใช่ไหม? ใส่ใบรับของคุณ"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "ใบรับนั้นไม่ถูกต้อง หรือรายงานหมดอายุแล้ว"
+
+msgid "Filename"
+msgstr "ชื่อแฟ้ม"
+
+msgid "Size:"
+msgstr "ขนาด:"
+
+msgid "Access date"
+msgstr "วันที่เข้าถึง"
+
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "Fiscal code"
+msgstr "รหัสการเงิน"
+
+msgid "Tax code"
+msgstr "เลขประจำตัวผู้เสียภาษี"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
+
+msgid "Fill the additional questionnaire"
+msgstr "กรอกแบบสอบถามเพิ่มเติม"
+
+msgid "From:"
+msgstr "จาก:"
+
+msgid "To:"
+msgstr "ถึง:"
+
+msgid "View"
+msgstr "มองดู"
+
+msgid "Upload date"
+msgstr "วันที่อัปโหลด"
+
+msgid "File size"
+msgstr "ขนาดแฟ้ม"
+
+msgid "Questionnaire answers"
+msgstr "คำตอบของแบบสอบถาม"
+
+msgid "Step"
+msgstr "ขั้นตอน"
+
+msgid "Files attached by recipients"
+msgstr "แฟ้มที่แนบมาโดยผู้รับ"
+
+msgid "Upload a file:"
+msgstr "อัปโหลดแฟ้ม:"
+
+msgid "Welcome!"
+msgstr "ยินดีต้อนรับ!"
+
+msgid "For the user documentation, visit:"
+msgstr "สำหรับเอกสารผู้ใช้ ไปที่:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -629,915 +1455,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "ถ้าคุณต้องการช่วยในการพัฒนาซอฟต์แวร์หรือรายงานข้อผิดพลาด กรุณาเปิดประเด็น (issue) ในระบบติดตามตั๋วงานของเรา:"
 
-msgid "Image"
-msgstr "ภาพ"
-
-msgid "Import"
-msgstr "นำเข้า"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "ในขั้นตอนนี้ คำตอบต่อคำถามเหล่านี้หายไปหรือไม่ถูกต้องตามรูปแบบ:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "การตรวจรูปแบบอินพุท"
-
-msgid "Install an authenticator app on your phone"
-msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"
-
-msgid "Intermediate Certificates"
-msgstr "ใบรับรองขั้นกลาง"
-
-msgid "Internal server error"
-msgstr "Internal server error"
-
-msgid "Invalid confirmation"
-msgstr "การยืนยันไม่ถูกต้อง"
-
-msgid "Invalid email address"
-msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
-
-msgid "Invalid phone number"
-msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
-
-msgid "Issuer:"
-msgstr "ผู้ออก:"
-
 msgid "Join our chat:"
 msgstr "เข้าร่วมการแชตกับเรา:"
 
-msgid "Label"
-msgstr "ฉลาก"
-
-msgid "Label the report"
-msgstr "ติดป้ายกำกับรายงาน"
-
-msgid "Language"
-msgstr "ภาษา"
-
-msgid "Language:"
-msgstr "ภาษา:"
-
-msgid "Languages"
-msgstr "ภาษา"
-
-msgid "Last"
-msgstr "ส่วนสุดท้าย"
-
-msgid "Last Access"
-msgstr "เข้าถึงล่าสุด"
-
-msgid "Last access"
-msgstr "เข้าถึงล่าสุด"
-
-msgid "Last update"
-msgstr "การปรับปรุงล่าสุด"
-
-msgid "Latest selectable date"
-msgstr "วันที่สุดท้ายที่ให้เลือกได้"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "เปิดให้แพลตฟอร์มสามารถถูกมองเห็นได้แม้ไม่ใช้ Tor"
-
-msgid "License"
-msgstr "สัญญาอนุญาต"
-
-msgid "Log accesses of internal users"
-msgstr "บันทึกการเข้าถึงของผู้ใช้ภายใน"
-
-msgid "Log in"
-msgstr "ลงชื่อเข้า"
-
-msgid "Logging level"
-msgstr "ระดับการบันทึก"
-
-msgid "Logo"
-msgstr "โลโก้"
-
-msgid "Logout"
-msgstr "ออกจากระบบ"
-
-msgid "Low"
-msgstr "ต่ำ"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "ทำสำเนาและเก็บไว้ในที่ปลอดภัย ข้อมูลนี้มีความจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณโดยไม่มีข้อมูลสูญหาย"
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "ให้ผู้ดูแลสามารถล้างรหัสผ่านผู้ใช้เพื่อตั้งใหม่ได้"
-
-msgid "Mandatory"
-msgstr "จำเป็นต้องมี"
-
-msgid "Manual configuration"
-msgstr "การปรับค่าด้วยตัวเอง"
-
-msgid "Mark as important"
-msgstr "ทำเครื่องหมายว่าสำคัญ"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr "สูงสุด"
-
-msgid "Maximum file size is:"
-msgstr "ขนาดแฟ้มสูงสุดคือ:"
-
-msgid "Maximum number of input characters"
-msgstr "จำนวนตัวอักษรสูงสุดสำหรับอินพุท"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "จำนวนสูงสุดของผู้รับที่เลือกได้:"
-
-msgid "Me only"
-msgstr "เฉพาะฉัน"
-
-msgid "Medium"
-msgstr "กลาง"
-
-msgid "Min"
-msgstr "ต่ำสุด"
-
-msgid "Minimum number of input characters"
-msgstr "จำนวนตัวอักษรต่ำสุดสำหรับอินพุท"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "โหมด:"
-
-msgid "Motivation"
-msgstr "เหตุจูงใจ"
-
-msgid "Move down"
-msgstr "เลื่อนลง"
-
-msgid "Move left"
-msgstr "เลื่อนซ้าย"
-
-msgid "Move right"
-msgstr "เลื่อนขวา"
-
-msgid "Move up"
-msgstr "เลื่อนขึ้น"
-
-msgid "Multi-line text input"
-msgstr "อินพุทข้อความหลายบรรทัด"
-
-msgid "Multiple choice input"
-msgstr "อินพุทหลายตัวเลือก"
-
-msgid "Multiplier"
-msgstr "ตัวคูณ"
-
-msgid "Name"
-msgstr "ชื่อ"
-
-msgid "Network"
-msgstr "เครือข่าย"
-
-msgid "New"
-msgstr "ใหม่"
-
-msgid "New password"
-msgstr "รหัสผ่านใหม่"
-
-msgid "New request"
-msgstr "คำขอใหม่"
-
-msgid "Next"
-msgstr "ถัดไป"
-
-msgid "No"
-msgstr "ไม่"
-
-msgid "None"
-msgstr "ไม่มี"
-
-msgid "Not provided."
-msgstr "ไม่ได้ให้มา"
-
-msgid "Notifications"
-msgstr "การเเจ้งเตือน"
-
-msgid "Notify administrators of software problems"
-msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้ดูแลระบบ"
-
-msgid "Notify developers of software problems"
-msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้พัฒนา"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ':"
-
-msgid "Number"
-msgstr "จำนวน"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "จำนวนวันจนกว่าจะแจ้งผู้ใช้ถึงรายงานที่ยังไม่ได้อ่าน"
-
-msgid "Number of downloads"
-msgstr "จำนวนการดาวน์โหลด"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งการเตือนถึงการหมดอายุของรายงาน"
-
-msgid "Object"
-msgstr "วัตถุ"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "ผู้รับอย่างน้อยหนึ่งรายยังไม่ได้ลงชื่อเข้าครั้งแรก ซึ่งหมายความว่าพวกเขาจะไม่ได้รับรายงาน"
-
-msgid "Opened"
-msgstr "เปิดแล้ว"
-
-msgid "Options"
-msgstr "ตัวเลือก"
-
-msgid "Organization"
-msgstr "องค์กร"
-
-msgid "Original text"
-msgstr "ข้อความต้นฉบับ"
-
-msgid "Original translation"
-msgstr "คำแปลเดิม"
-
-msgid "Password"
-msgstr "รหัสผ่าน"
-
-msgid "Password change interval"
-msgstr "กำหนดเวลาสำหรับเปลี่ยนรหัสผ่าน"
-
-msgid "Password reset"
-msgstr "ล้างและตั้งรหัสผ่านใหม่"
-
-msgid "Password reset requested."
-msgstr "ส่งคำขอรีเซ็ตรหัสผ่านแล้ว"
-
-msgid "Phone number"
-msgstr "หมายเลขโทรศัพท์"
-
-msgid "Placeholder"
-msgstr "ตัวยึดตำแหน่ง"
-
-msgid "Platform wizard"
-msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
-
-msgid "Please check your inbox for further instructions."
-msgstr "กรุณาดูกล่องขาเข้าของคุณสำหรับคำแนะนำต่อไป"
-
-msgid "Please choose a configuration profile:"
-msgstr "กรุณาเลือกโปรไฟล์การปรับค่า:"
-
-msgid "Please choose a different username."
-msgstr "กรุณาเลือกชื่อผู้ใช้อื่น:"
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
-
-msgid "Please select your account:"
-msgstr "กรุณาเลือกบัญชีของคุณ:"
-
-msgid "Postpone the expiration date"
-msgstr "เลื่อนวันหมดอายุ"
-
-msgid "Preferences"
-msgstr "การตั้งค่า"
-
-msgid "Presentation"
-msgstr "การนำเสนอ"
-
-msgid "Preview"
-msgstr "ดูตัวอย่าง"
-
-msgid "Previous"
-msgstr "ก่อนหน้า"
-
-msgid "Print"
-msgstr "พิมพ์"
-
-msgid "Privacy Policy"
-msgstr "นโยบายความเป็นส่วนตัว"
-
-msgid "Private Key"
-msgstr "กุญแจส่วนตัว"
-
-msgid "Privileges"
-msgstr "สิทธิพิเศษ"
-
-msgid "Proceed"
-msgstr "ดำเนินการ"
-
-msgid "Profile"
-msgstr "โพรไฟล์"
-
-msgid "Project name"
-msgstr "ชื่อโครงการ"
-
-msgid "Public name"
-msgstr "ชื่อสาธารณะ"
-
-msgid "Question"
-msgstr "คำถาม"
-
-msgid "Question group"
-msgstr "กลุ่มคำถาม"
-
-msgid "Question templates"
-msgstr "แม่แบบคำถาม"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "คำถามที่จะจูงใจผู้ที่อาจะเป็นผู้แจ้งเบาะแสได้"
-
-msgid "Questionnaire"
-msgstr "แบบสอบถาม"
-
-msgid "Questionnaire answers"
-msgstr "คำตอบของแบบสอบถาม"
-
-msgid "Questionnaires"
-msgstr "แบบสอบถาม"
-
-msgid "Questions"
-msgstr "คำถาม"
-
-msgid "Receivers"
-msgstr "ผู้รับแจ้งเบาะแส"
-
-msgid "Recipient"
-msgstr "ผู้รับ"
-
-msgid "Recipient selection"
-msgstr "การเลือกผู้รับ"
-
-msgid "Recipients"
-msgstr "ผู้รับ"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
-
-msgid "Recipients only"
-msgstr "เฉพาะผู้รับ"
-
-msgid "Recipients selected:"
-msgstr "ผู้รับที่ถูกเลือก:"
-
-msgid "Redact"
-msgstr "ถมดำ"
-
-msgid "Refresh"
-msgstr "เรียกใหม่"
-
-msgid "Regenerate"
-msgstr "สร้างใหม่"
-
-msgid "Regular expression"
-msgstr "regular expression"
-
-msgid "Regular expression validator"
-msgstr "ตัวตรวจรูปแบบ regular expression"
-
-msgid "Remember your receipt for this report."
-msgstr "โปรดจดจำใบรับของคุณสำหรับรายงานนี้"
-
-msgid "Reminder date"
-msgstr "วันที่ให้เตือน"
-
-msgid "Remove"
-msgstr "ลบ"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "เหตุจูงใจในการตอบกลับ"
-
-msgid "Reply to the request"
-msgstr "ตอบกลับคำขอ"
-
-msgid "Report"
-msgstr "รายงาน"
-
-msgid "Report date"
-msgstr "วันที่รายงาน"
-
-msgid "Report statuses"
-msgstr "สถานะรายงาน"
-
-msgid "Reports"
-msgstr "รายงาน"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "ร้องขอการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
-
-msgid "Request date"
-msgstr "วันที่ร้องขอ"
-
-msgid "Request motivation"
-msgstr "เหตุจูงใจในการร้องขอ"
-
-msgid "Request status"
-msgstr "สถานะคำขอ"
-
-msgid "Request support"
-msgstr "ขอการสนับสนุน"
-
-msgid "Requests"
-msgstr "คำขอ"
-
-msgid "Require authentication"
-msgstr "ต้องใช้การยืนยันตัวตน"
-
-msgid "Require two factor authentication"
-msgstr "ต้องใช้การยืนยันตัวตนสองชั้น"
-
-msgid "Reset"
-msgstr "รีเซ็ต"
-
-msgid "Reset SMTP configuration"
-msgstr "ล้างการปรับค่า SMTP"
-
-msgid "Reset notification templates to default"
-msgstr "ล้างแม่แบบการแจ้งเตือนเป็นค่าปริยาย"
-
-msgid "Reset reports"
-msgstr "ล้างรายงาน"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "สามารถเข้าถึงทรัพยากรได้ผ่านเครือข่าย Tor เท่านั้น"
-
-msgid "Resource not found"
-msgstr "ไม่พบทรัพยากร"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "เพิกถอนการเข้าถึง"
-
-msgid "Role"
-msgstr "บทบาท"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "บทบาทที่อนุญาตให้เข้าใช้แพลตฟอร์มได้แม้ไม่ใช้ Tor"
-
-msgid "Root domain used for secondary sites"
-msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
-
-msgid "Row"
-msgstr "แถว"
-
-msgid "SMTP email address"
-msgstr "ที่อยู่อีเมล SMTP"
-
-msgid "SMTP server address"
-msgstr "ที่อยู่เซิร์ฟเวอร์ SMTP"
-
-msgid "SMTP server port"
-msgstr "พอร์ตเซิร์ฟเวอร์ SMTP"
-
-msgid "Save"
-msgstr "บันทึก"
-
-msgid "Save all"
-msgstr "บันทึกทั้งหมด"
-
-msgid "Scan the QR code with the app"
-msgstr "สแกนรหัส QR ด้วยแอป"
-
-msgid "Scheduled jobs"
-msgstr "งานที่กำหนดเวลาไว้"
-
-msgid "Score"
-msgstr "คะแนน"
-
-msgid "Scoring system options"
-msgstr "ตัวเลือกระบบให้คะแนน"
-
-msgid "Search"
-msgstr "ค้นหา"
-
-msgid "Security"
-msgstr "การรักษาความปลอดภัย"
-
-msgid "Select"
-msgstr "เลือก"
-
-msgid "Select a file or drag it here."
-msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
-
-msgid "Select all"
-msgstr "เลือกทั้งหมด"
-
-msgid "Select all recipients by default"
-msgstr "เลือกผู้รับทั้งหมดเป็นค่าปริยาย"
-
-msgid "Select an option"
-msgstr "เลือกตัวเลือก"
-
-msgid "Select the recipients of your report"
-msgstr "เลือกผู้ที่จะรับรายงานของคุณ"
-
-msgid "Select your language"
-msgstr "เลือกภาษาของคุณ"
-
-msgid "Selection box"
-msgstr "กล่องตัวเลือก"
-
-msgid "Send"
-msgstr "ส่ง"
-
-msgid "Send a test email to your email address."
-msgstr "ส่งอีเมลทดสอบไปยังที่อยู่อีเมลของคุณ"
-
-msgid "Send activation link"
-msgstr "ส่งลิงก์ยืนยันการเปิดใช้งาน"
-
-msgid "Send reset link"
-msgstr "ส่งลิงก์รีเซ็ต"
-
-msgid "Set a reminder"
-msgstr "ตั้งเตือนความจำ"
-
-msgid "Set password"
-msgstr "ตั้งรหัสผ่าน"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณสมบัตินี้"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "ตั้งค่าให้เข้ารหัสลับโดยการให้กุญแจสาธารณะ PGP"
-
-msgid "Settings"
-msgstr "การตั้งค่า"
-
-msgid "Severity"
-msgstr "ความรุนแรง"
-
-msgid "Show"
-msgstr "แสดง"
-
-msgid "Show channels in alphabetical order"
-msgstr "แสดงช่องตามลำดับตัวอักษร"
-
-msgid "Show recipients in alphabetical order"
-msgstr "แสดงผู้รับตามลำดับอักษร"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "แสดงหน้าจอการนำทางแบบสอบถาม"
-
-msgid "Sign up"
-msgstr "ลงชื่อสมัคร"
-
-msgid "Silence email notifications"
-msgstr "ปิดการแจ้งเตือนทางอีเมล"
-
-msgid "Single-line text input"
-msgstr "อินพุทข้อความบรรทัดเดียว"
-
-msgid "Site"
-msgstr "เว็บไซต์"
-
-msgid "Sites"
-msgstr "ไซต์"
-
-msgid "Size limit for file attachments"
-msgstr "ขีดจำกัดขนาดเอกสารแนบ"
-
-msgid "Size:"
-msgstr "ขนาด:"
-
-msgid "Skip the recipient account creation."
-msgstr "ข้ามการสร้างบัญชีผู้รับ"
-
-msgid "Software version:"
-msgstr "เวอร์ชันซอฟต์แวร์:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "สถิติ"
-
-msgid "Status"
-msgstr "สถานะ"
-
-msgid "Status:"
-msgstr "สถานะ:"
-
-msgid "Step"
-msgstr "ขั้นตอน"
-
-msgid "Steps"
-msgstr "ขั้นตอน"
-
-msgid "Strong"
-msgstr "แข็งแรง"
-
-msgid "Subdomain"
-msgstr "โดเมนย่อย"
-
-msgid "Submissions disabled"
-msgstr "การส่งถูกปิดใช้งาน"
-
-msgid "Submit"
-msgstr "ส่ง"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr "วันที่สมัคร"
-
-msgid "Substatuses"
-msgstr "สถานะย่อย"
-
-msgid "Success!"
-msgstr "สำเร็จ!"
-
-msgid "Sufficient"
-msgstr "เพียงพอ"
-
-msgid "Surname"
-msgstr "นามสกุล"
-
-msgid "Tax code"
-msgstr "เลขประจำตัวผู้เสียภาษี"
-
-msgid "Template"
-msgstr "แม่แบบ"
-
-msgid "Template override"
-msgstr "แทนที่แม่แบบ"
-
-msgid "Templates"
-msgstr "แม่แบบ"
-
-msgid "Terms of service"
-msgstr "เงื่อนไขการให้บริการ"
-
-msgid "Test the configuration"
-msgstr "ทดสอบการปรับค่า"
-
-msgid "Text"
-msgstr "ข้อความ"
-
-msgid "Text customization"
-msgstr "การกำหนดค่าข้อความ"
-
-msgid "Text shown after the user has selected the option."
-msgstr "ข้อความแสดงหลังจากผู้ใช้ได้เลือกตัวเลือก"
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr "ข้อความที่แสดงที่ส่วนบนสุดของอินเทอร์เฟซของช่องที่เลือก"
-
-msgid "Text shown upon negative answer"
-msgstr "ข้อความแสดงเมื่อได้คำตอบปฏิเสธ"
-
-msgid "Thank you."
-msgstr "ขอบคุณ"
-
-msgid "The answer is too short"
-msgstr "คำตอบสั้นเกินไป"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "รหัสผ่านที่เลือกนั้นอ่อนแอเกินไป รหัสผ่านที่ใช้ได้ควรมีความยาวอย่างน้อย 12 ตัวอักษรและมีตัวอักษรหลากหลายชนิด มีอักษรพิมพ์เล็ก อักษรพิมพ์ใหญ่ ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยอย่างละตัว"
-
-msgid "The code is either invalid or expired."
-msgstr "รหัสไม่ถูกต้องหรือหมดอายุแล้ว"
-
-msgid "The connection is not secure."
-msgstr "การเชื่อมต่อไม่ปลอดภัย"
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "ผู้รับดังต่อไปนี้จะได้รับรายงานของคุณและจะไม่สามารถเลิกเลือกได้:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "กระบวนการทีละขั้นตอนดังต่อไปนี้ จะแนะแนวทางให้คุณสร้างแพลตฟอร์มแจ้งเบาะแสของคุณเอง"
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
-
-msgid "The new password must be different from the current one."
-msgstr "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "แพลตฟอร์มจะต้องสามารถเห็นได้ทางที่อยู่ไอพีสาธารณะ และชื่อโฮสต์ที่เลือกจะต้องมีระเบียน DNS ที่ชี้มาที่อยู่ดังกล่าว"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "แพลตฟอร์มนี้รองรับการปรับค่า HTTPS ผ่านหน้าจอนี้"
-
-msgid "The provided recovery key is invalid."
-msgstr "กุญแจกู้คืนที่ให้มานั้นไม่ถูกต้อง"
-
-msgid "The provided reset token is invalid or expired."
-msgstr "โทเค็นสำหรับรีเซ็ตไม่ถูกต้องหรือหมดอายุแล้ว"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "ใบรับนั้นไม่ถูกต้อง หรือรายงานหมดอายุแล้ว"
-
-msgid "The specified input is not valid."
-msgstr "อินพุทที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
-
-msgid "The specified input is not valid:"
-msgstr "อินพุทที่ระบุมีรูปแบบไม่ถูกต้อง:"
-
-msgid "The specified old password is not valid"
-msgstr "รหัสผ่านเดิมที่ระบุไม่ถูกต้อง"
-
-msgid "The two passwords do not match"
-msgstr "รหัสผ่านสองชุดไม่ตรงกัน"
-
-msgid "The upload request exceeds the size limit"
-msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "ผู้ใช้จะถูกบังคับให้เปลี่ยนรหัสผ่านในการลงชื่อเข้าระบบครั้งหน้า"
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "ลิงก์ยืนยันความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"
-
-msgid "The whistleblower has already read the last update"
-msgstr "ผู้แจ้งเบาะแสได้อ่านข่าวสารล่าสุดแล้ว"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "ผู้แจ้งเบาะแสยังไม่ได้อ่านข่าวสารล่าสุด"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "จากนั้น คัดลอกและวางที่อยู่นี้ลงใน Tor Browser:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "ข้อความปรับแต่งเองจะไม่ถูกแสดงบนแพลตฟอร์มอีกต่อไป ข้อความต้นฉบับถูกเปลี่ยนหรือถูกลบไปแล้ว"
-
-msgid "This domain name is not available."
-msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
-
-msgid "This field is mandatory"
-msgstr "ช่องนี้จำเป็นต้องกรอก"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
-
-msgid "This user has not performed the first login yet."
-msgstr "ผู้ใช้รายนี้ยังไม่เคยลงชื่อเข้าใช้ครั้งแรก"
-
-msgid "Threshold"
-msgstr "ค่าเกณฑ์"
-
-msgid "Title"
-msgstr "ชื่อเรื่อง"
-
-msgid "To"
-msgstr "ถึง"
-
-msgid "To:"
-msgstr "ถึง:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Tor Onion Service"
-
-msgid "Transfer"
-msgstr "ถ่ายโอน"
-
-msgid "Transfer access"
-msgstr "โอนการเข้าถึง"
-
-msgid "Trigger conditions"
-msgstr "เงื่อนไขเริ่มทำงาน"
-
-msgid "Trigger question"
-msgstr "คำถามเรียกทำงาน"
-
-msgid "Triggered by score:"
-msgstr "ถูกเรียกทำงานด้วยคะแนน:"
-
-msgid "Turn on email notifications"
-msgstr "เปิดการแจ้งเตือนทางอีเมล"
-
-msgid "Type"
-msgstr "ประเภท"
-
-msgid "Type your new password again"
-msgstr "พิมพ์รหัสผ่านใหม่ของคุณอีกครั้ง"
-
-msgid "URL redirects"
-msgstr "เปลี่ยนเส้นทาง URL"
-
-msgid "Unhide"
-msgstr "เลิกซ่อน"
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "อัปโหลด"
-
-msgid "Upload a file:"
-msgstr "อัปโหลดแฟ้ม:"
-
-msgid "Upload date"
-msgstr "วันที่อัปโหลด"
-
-msgid "Use as default"
-msgstr "ใช้เป็นค่าปริยาย"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "ใช้รหัสการรับ 16 หลักเพื่อเข้าสู่ระบบ ซึ่งจะอนุญาตให้คุณดูข้อความที่เราส่งให้คุณ และอนุญาตให้เพิ่มข้อมูลเพิ่มเติมได้"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
-
-msgid "User"
-msgstr "ผู้ใช้"
-
-msgid "Username"
-msgstr "ชื่อผู้ใช้"
-
-msgid "Users"
-msgstr "ผู้ใช้"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "การใช้การปรับค่า HTTPS อัตโนมัติ จะจัดการกระบวนการขอรับใบอนุญาต เปิดใช้ใบอนุญาต และต่ออายุใบอนุญาตจาก Certificate Authority ของ Let's Encrypt ให้ทั้งหมด"
-
-msgid "Valid until:"
-msgstr "ใช้ได้จนถึง:"
-
-msgid "Validation of email address change in progress."
-msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
-
-msgid "Value"
-msgstr "ค่า"
-
-msgid "Video"
-msgstr "วิดีโอ"
-
-msgid "View"
-msgstr "มองดู"
-
-msgid "View your report"
-msgstr "ดูรายงานของคุณ"
-
-msgid "Voice"
-msgstr "เสียง"
-
-msgid "Waiting for authorization"
-msgstr "กำลังรอการอนุญาต"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "รอให้แฟ้มอัปโหลดเสร็จ"
-
-msgid "Warning"
-msgstr "คำเตือน"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "เราแนะนำให้เลือกตัวเลือกนี้ ถ้าคุณต้องการปกป้องข้อมูลจากการสูญหาย ในสถานการณ์ที่ผู้รับลืมรหัสผ่านของตนเอง อย่างไรก็ตาม เราไม่แนะนำให้คุณใช้ความสามารถนี้ถ้าคุณต้องการตั้งค่าระบบที่ให้ผู้รับเท่านั้นที่จะสามารถเข้าถึงสิ่งที่ส่งไปได้"
+msgid "An update is available:"
+msgstr "รายการอัปเดตพร้อมแล้ว:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1546,78 +1468,85 @@ msgid ""
 "your password."
 msgstr "เราแนะนำให้คุณไปที่ส่วน \"การปรับแต่ง\" เพื่อเรียกรับ \"กุญแจกู้คืนบัญชี\" ของคุณ และเก็บเอาไว้ในที่ปลอดภัย กุญแจนี้จำเป็นสำหรับการกู้คืนสิทธิ์เข้าถึงแพลตฟอร์มของคุณและสำหรับการกู้คืนข้อมูล ในกรณีที่คุณลืมรหัสผ่าน"
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
+msgid "Select a file or drag it here."
+msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
 
-msgid "Weak"
-msgstr "อ่อนแอ"
+msgid "The provided recovery key is invalid."
+msgstr "กุญแจกู้คืนที่ให้มานั้นไม่ถูกต้อง"
 
-msgid "Welcome!"
-msgstr "ยินดีต้อนรับ!"
-
-msgid "Whistleblower"
-msgstr "ผู้แจ้งเบาะแส"
-
-msgid "Whistleblower's last access"
-msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
-
-msgid "Whistleblowing Policy"
-msgstr "นโยบายการแจ้งเบาะแส"
-
-msgid "Whistleblowing button"
-msgstr "ปุ่มแจ้งเบาะแส"
-
-msgid "Width"
-msgstr "ความกว้าง"
-
-msgid "Yes"
-msgstr "ใช่"
+msgid "The provided reset token is invalid or expired."
+msgstr "โทเค็นสำหรับรีเซ็ตไม่ถูกต้องหรือหมดอายุแล้ว"
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "คุณกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์โดยไม่ได้เป็นนิรนาม และเซิร์ฟเวอร์นี้รองรับการส่งรายงานอย่างเป็นนิรนามเท่านั้น"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "ใส่ชื่อผู้ใช้ของบัญชีของคุณและที่อยู่อีเมลของคุณ เพื่อขอให้ล้างและตั้งรหัสผ่านใหม่"
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "ใส่ที่อยู่อีเมลของคุณ เพื่อขอให้ล้างและตั้งรหัสผ่านใหม่"
+
+msgid "Password reset requested."
+msgstr "ส่งคำขอรีเซ็ตรหัสผ่านแล้ว"
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "เราแนะนำเป็นอย่างยิ่ง ให้คุณเข้าถึงเว็บไซต์นี้ด้วยแอปที่ชื่อ Tor Browser มันจะปกป้องตัวตนของคุณ"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "ใส่กุญแจกู้คืนการเข้ารหัสลับของคุณ เพื่อทำให้กระบวนการตั้งรหัสผ่านใหม่สมบูรณ์"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "คำร้องขอเพื่อเข้าถึงตัวตนของผู้แจ้งเบาะแส ได้ถูกส่งไปยังผู้พิทักษ์แล้ว"
+
+msgid "Date of the request"
+msgstr "วันที่ร้องขอ"
+
+msgid "Show"
+msgstr "แสดง"
+
+msgid "Subscription date"
+msgstr "วันที่สมัคร"
+
+msgid "Congratulations!"
+msgstr "ยินดีด้วย!"
 
 msgid "You have completed the platform activation."
 msgstr "คุณเสร็จสิ้นการเปิดใช้งานแพลตฟอร์มแล้ว"
 
-msgid "You have completed the platform wizard."
-msgstr "คุณได้ดำเนินการตัวช่วยตั้งค่าแพล็ตฟอร์มเสร็จสิ้นแล้ว"
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "คุณเลือกผู้รับจนเต็มจำนวนที่เลือกได้แล้ว"
-
-msgid "You must select at least one recipient."
-msgstr "คุณต้องเลือกผู้รับอย่างน้อยหนึ่งราย"
-
-msgid "Your new email address has been validated."
-msgstr "ที่อยู่อีเมลใหม่ของคุณได้รับการยืนยันความถูกต้องแล้ว"
-
-msgid "Your report was successful."
-msgstr "การรายงานของคุณสำเร็จแล้ว"
+msgid "Success!"
+msgstr "สำเร็จ!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "แพลตฟอร์มแจ้งเบาะแสของคุณใกล้พร้อมแล้ว!"
 
-msgid "days"
-msgstr "วัน"
+msgid "Check your inbox to activate it."
+msgstr "ตรวจสอบกล่องขาเข้าของคุณเพื่อเปิดใช้งาน"
 
-msgid "file unavailable"
-msgstr "ไม่มีแฟ้มที่ใช้ได้"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "ถ้าคุณไม่ได้ยืนยันการเปิดใช้งานภายใน 24 ชั่วโมง แพลตฟอร์มจะถูกลบทิ้งโดยอัตโนมัติ"
 
-msgid "megabytes"
-msgstr "เมกะไบต์"
+msgid "Sign up"
+msgstr "ลงชื่อสมัคร"
 
-msgid "percentage"
-msgstr "ร้อยละ"
+msgid "Invalid confirmation"
+msgstr "การยืนยันไม่ถูกต้อง"
+
+msgid "Invalid phone number"
+msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
+
+msgid "Site"
+msgstr "เว็บไซต์"
+
+msgid "Confirmation"
+msgstr "การยืนยัน"
+
+msgid "The answer is too short"
+msgstr "คำตอบสั้นเกินไป"
+
+msgid "The specified input is not valid."
+msgstr "อินพุทที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
+
+msgid "The specified input is not valid:"
+msgstr "อินพุทที่ระบุมีรูปแบบไม่ถูกต้อง:"
 
 msgid "please enter a valid email address."
 msgstr "กรุณาใส่ที่อยู่อีเมลที่ถูกรูปแบบ"
@@ -1625,14 +1554,82 @@ msgstr "กรุณาใส่ที่อยู่อีเมลที่ถ
 msgid "please enter numbers only."
 msgstr "กรุณาใส่ตัวเลขเท่านั้น"
 
-msgid "seconds"
-msgstr "วินาที"
+msgid "Submissions disabled"
+msgstr "การส่งถูกปิดใช้งาน"
 
-msgid "File a report"
-msgstr "ยื่นรายงาน"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "คุณกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์โดยไม่ได้เป็นนิรนาม และเซิร์ฟเวอร์นี้รองรับการส่งรายงานอย่างเป็นนิรนามเท่านั้น"
 
-msgid "Select a reporting channel:"
-msgstr "เลือกช่องทางรายงาน:"
+msgid "Your report was successful."
+msgstr "การรายงานของคุณสำเร็จแล้ว"
+
+msgid "Remember your receipt for this report."
+msgstr "โปรดจดจำใบรับของคุณสำหรับรายงานนี้"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "ใช้รหัสการรับ 16 หลักเพื่อเข้าสู่ระบบ ซึ่งจะอนุญาตให้คุณดูข้อความที่เราส่งให้คุณ และอนุญาตให้เพิ่มข้อมูลเพิ่มเติมได้"
+
+msgid "View your report"
+msgstr "ดูรายงานของคุณ"
+
+msgid "Select the recipients of your report"
+msgstr "เลือกผู้ที่จะรับรายงานของคุณ"
+
+msgid "Recipients selected:"
+msgstr "ผู้รับที่ถูกเลือก:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "คุณเลือกผู้รับจนเต็มจำนวนที่เลือกได้แล้ว"
+
+msgid "You must select at least one recipient."
+msgstr "คุณต้องเลือกผู้รับอย่างน้อยหนึ่งราย"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "ผู้รับดังต่อไปนี้จะได้รับรายงานของคุณและจะไม่สามารถเลิกเลือกได้:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "ในขั้นตอนนี้ คำตอบต่อคำถามเหล่านี้หายไปหรือไม่ถูกต้องตามรูปแบบ:"
+
+msgid "Recipient selection"
+msgstr "การเลือกผู้รับ"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "รอให้แฟ้มอัปโหลดเสร็จ"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "กระบวนการทีละขั้นตอนดังต่อไปนี้ จะแนะแนวทางให้คุณสร้างแพลตฟอร์มแจ้งเบาะแสของคุณเอง"
+
+msgid "Please choose a configuration profile:"
+msgstr "กรุณาเลือกโปรไฟล์การปรับค่า:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "ให้ผู้ดูแลสามารถล้างรหัสผ่านผู้ใช้เพื่อตั้งใหม่ได้"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "เราแนะนำให้เลือกตัวเลือกนี้ ถ้าคุณต้องการปกป้องข้อมูลจากการสูญหาย ในสถานการณ์ที่ผู้รับลืมรหัสผ่านของตนเอง อย่างไรก็ตาม เราไม่แนะนำให้คุณใช้ความสามารถนี้ถ้าคุณต้องการตั้งค่าระบบที่ให้ผู้รับเท่านั้นที่จะสามารถเข้าถึงสิ่งที่ส่งไปได้"
+
+msgid "Please choose a different username."
+msgstr "กรุณาเลือกชื่อผู้ใช้อื่น:"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "ฉันได้อ่านและยอมรับเงื่อนไขในสัญญาอนุญาต"
+
+msgid "You have completed the platform wizard."
+msgstr "คุณได้ดำเนินการตัวช่วยตั้งค่าแพล็ตฟอร์มเสร็จสิ้นแล้ว"
 
 msgid "Please summarize your report in a few words."
 msgstr "อธิบายรายงานของคุณในไม่กี่คำ"

@@ -35,129 +35,155 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = auto"
+msgid "Log in"
+msgstr "Увійти"
 
-msgid "Accept multiple answers"
-msgstr "Дозволити декілька відповідей"
+msgid "Languages"
+msgstr "Мови"
 
-msgid "Accept multiple file uploads"
-msgstr "Дозволити завантаження декількох файлів"
-
-msgid "Acceptable"
-msgstr "Прийнятний"
-
-msgid "Access control"
-msgstr "Контроль доступу"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr " Зроблено запит на доступ"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Запит на інформацію про особу інформатора було надіслано зберігачу"
-
-msgid "Account recovery key"
-msgstr "Ключ для відновлення облікового запису"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Активність"
-
-msgid "Add"
-msgstr "Додати"
-
-msgid "Add custom text"
-msgstr "Додати власний текст"
-
-msgid "Add multimedia content"
-msgstr "Додати мультимедійний контент"
-
-msgid "Add new question"
-msgstr "Додати нове питання"
-
-msgid "Add new questionnaire"
-msgstr "Створити нову анкету"
-
-msgid "Add question from template"
-msgstr "Додати нове питання з шаблону"
-
-msgid "Addition"
-msgstr "Додаткове"
-
-msgid "Additional questionnaire"
-msgstr "Додаткова анкета"
-
-msgid "Address"
-msgstr "Адреса"
-
-msgid "Admin"
-msgstr "Адміністратор"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Адміністраторам дозволено змінювати паролі користувачів:"
+msgid "Text customization"
+msgstr "Налаштування тексту"
 
 msgid "Advanced"
 msgstr "Розширений"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Дозволити отримувачу видаляти звіти"
+msgid "Question templates"
+msgstr "Шаблони питань"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Дозволити отримувачам відтерміновувати видалення звітів"
+msgid "Questionnaires"
+msgstr "Анкети"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Дозволити інформаторам додавати файли до звіту"
+msgid "Add new questionnaire"
+msgstr "Створити нову анкету"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Дозволити інформатору коментувати"
+msgid "Home"
+msgstr "Головна"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Журнал змін"
 
-msgid "Allow users to sign up"
-msgstr "Дозволити користувачам зареєструватися"
+msgid "License"
+msgstr "Ліцензія"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Дозволити інформаторам обирати отримувачів"
+msgid "Templates"
+msgstr "Шаблони"
 
-msgid "Allowed IP addresses"
-msgstr "Дозволені IP-адреси"
-
-msgid "An update is available:"
-msgstr "Доступне оновлення:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Видалити"
 
 msgid "Anomalies"
 msgstr "Аномальна активність "
 
-msgid "Anomaly detection thresholds"
-msgstr "Пороги виявлення аномалій"
+msgid "Preferences"
+msgstr "Налаштування"
 
-msgid "Anonymity"
-msgstr "Анонімність"
+msgid "Notifications"
+msgstr "Сповіщення"
 
-msgid "Anonymize outgoing connections"
-msgstr "Анонімізувати вихідні з'єднання"
+msgid "file unavailable"
+msgstr "файл недоступний"
 
-msgid "Anonymous"
-msgstr "Анонімно"
+msgid "Date"
+msgstr "Дата"
 
-msgid "Are you sure?"
-msgstr "Ви впевнені?"
+msgid "Expiration date"
+msgstr "Дата закінчення терміну дії "
 
-msgid "Assign score points"
-msgstr "Оцінити"
+msgid "Last Access"
+msgstr "Останній Доступ"
 
-msgid "Assigned to"
+msgid "Files"
+msgstr "Файли"
+
+msgid "Comments"
+msgstr "Коментарі"
+
+msgid "Details"
+msgstr "Деталі"
+
+msgid "Platform wizard"
+msgstr "Майстер налаштування платформи"
+
+msgid "Label the report"
+msgstr "Позначте звіт"
+
+msgid "Edit the expiration date"
+msgstr "Відтермінувати дату зачінчення терміну дії"
+
+msgid "Select all"
+msgstr "Вибрати все"
+
+msgid "Deselect all"
+msgstr "Скасувати вибір всього"
+
+msgid "Refresh"
+msgstr "Оновити"
+
+msgid "Channel"
 msgstr ""
+
+msgid "Preview"
+msgstr "Попередній перегляд"
+
+msgid "The whistleblower has already read the last update"
+msgstr "Інформатор прочитав останні оновлення"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Інформатор ще не прочитав останні оновлення"
+
+msgid "Move up"
+msgstr "Вгору"
+
+msgid "Move down"
+msgstr "Вниз"
+
+msgid "Move left"
+msgstr "Вліво"
+
+msgid "Move right"
+msgstr "Вправо"
+
+msgid "Import"
+msgstr "Імпортувати"
+
+msgid "Export"
+msgstr "Експортувати"
+
+msgid "Save all"
+msgstr "Зберегти все"
+
+msgid "Access control"
+msgstr "Контроль доступу"
+
+msgid "Number"
+msgstr "Номер"
+
+msgid "Email"
+msgstr "Електронна пошта"
+
+msgid "Regular expression validator"
+msgstr "Валідатор регулярних виразів"
+
+msgid "Minimum number of input characters"
+msgstr "Мінімальна кількість символів, що вводять"
+
+msgid "Maximum number of input characters"
+msgstr "Максимальна кількість символів, що вводять"
+
+msgid "Earliest selectable date"
+msgstr "Найдавніша дата вибору"
+
+msgid "Latest selectable date"
+msgstr "Остання дата вибору"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "No"
+msgstr "Ні"
 
 msgid "Attachment"
 msgstr "Додаток"
@@ -165,186 +191,56 @@ msgstr "Додаток"
 msgid "Attachments"
 msgstr "Додатки"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Аудіо"
-
-msgid "Audit log"
-msgstr "Журнал аудиту"
-
-msgid "Authentication failed"
-msgstr "Помилка аутентифікації"
-
-msgid "Authorization"
-msgstr "Авторизація"
-
-msgid "Authorize"
-msgstr "Дозволити"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Надати право доступу до інформації про особу інформатора"
-
-msgid "Authorized"
-msgstr "Дозволено"
-
-msgid "Auto-renewal"
-msgstr "Автоматичне оновлення"
-
-msgid "Automatic configuration"
-msgstr "Автоматичне налаштування"
-
-msgid "Available disk space"
-msgstr "Вільне місце на диску"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Перш ніж продовжити, уважно ознайомтесь з документацією на сторінці:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Перед тим як продовжити, просимо включити двофакторну аутентифікацію."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
-
-msgid "Block the submission"
-msgstr "Заблокувати подання"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Після підтвердження термін дії буде до:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Включивши цю функцію, ви зробите свій внесок у розвиток і безпеку платформи."
-
-msgid "Cancel"
-msgstr "Скасувати"
-
-msgid "Case management"
-msgstr "Ведення справ"
-
-msgid "Certificate"
-msgstr "Сертифікат"
-
-msgid "Certificate Signing Request"
-msgstr "Запит на Підписання Сертифікату"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Змінити пароль"
 
-msgid "Changelog"
-msgstr "Журнал змін"
+msgid "User"
+msgstr "Користувач"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "Мета"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "Статус"
 
-msgid "Check your inbox to activate it."
-msgstr "Перевірте пошту в папці “Вхідні”, щоб активувати її."
+msgid "Request motivation"
+msgstr "Мета запиту"
 
-msgid "Checkbox"
-msgstr " Прапорець"
+msgid "Reply motivation"
+msgstr "Мета відповіді"
 
-msgid "Checkbox label"
-msgstr "Мітка прапорця"
-
-msgid "City"
-msgstr "Місто"
-
-msgid "Close"
-msgstr "Закрити"
-
-msgid "Closed"
-msgstr "Закрито"
-
-msgid "Collapse"
-msgstr "Закрити"
-
-msgid "Column"
-msgstr "Колонка"
-
-msgid "Comments"
-msgstr "Коментарі"
-
-msgid "Computer"
-msgstr "Комп'ютер"
-
-msgid "Configure"
-msgstr "Налаштувати"
-
-msgid "Confirm"
-msgstr "Підтвердити"
-
-msgid "Confirmation"
-msgstr "Підтвердження"
-
-msgid "Congratulations!"
-msgstr "Вітаємо!"
-
-msgid "Copy to clipboard"
-msgstr "Копіювати у буфер обміну"
-
-msgid "Country"
-msgstr "Країна"
-
-msgid "Country code"
-msgstr "Код країни"
-
-msgid "Creation date"
-msgstr "Дата Створення"
-
-msgid "Creation date:"
-msgstr "Дата створення:"
-
-msgid "Current password"
-msgstr "Поточний пароль"
+msgid "Request status"
+msgstr "Статус запиту"
 
 msgid "Custodian"
 msgstr "Зберігач"
 
-msgid "Custom"
-msgstr "Індивідуальний"
+msgid "Identity"
+msgstr "Особисті дані"
 
-msgid "Custom privacy panel"
-msgstr "Панель для налаштування параметрів конфіденційності"
+msgid "Access requested"
+msgstr " Зроблено запит на доступ"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Зробити запит на  особисті дані інформатора"
 
-msgid "Custom text"
-msgstr "Індивідуальний текст"
+msgid "Reply to the request"
+msgstr "Відповідь на запит"
 
-msgid "Custom translation"
-msgstr "Індивідуальний переклад"
-
-msgid "Date"
-msgstr "Дата"
-
-msgid "Date of the request"
-msgstr "Дата запиту"
-
-msgid "Date range"
-msgstr "Діапазон дат"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Видалити"
+msgid "Authorized"
+msgstr "Дозволено"
 
 msgid "Denied"
 msgstr "Відхилено"
+
+msgid "Waiting for authorization"
+msgstr "В очікуванні дозволу"
+
+msgid "New request"
+msgstr "Новий запит"
+
+msgid "Authorize"
+msgstr "Дозволити"
 
 msgid "Deny"
 msgstr "Відхилити"
@@ -352,26 +248,20 @@ msgstr "Відхилити"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Відхилити право доступу до інформації про особу інформатора"
 
-msgid "Description"
-msgstr "Опис"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Надати право доступу до інформації про особу інформатора"
 
-msgid "Deselect"
-msgstr "Скасувати вибір"
+msgid "URL redirects"
+msgstr "Перенаправлення URL"
 
-msgid "Deselect all"
-msgstr "Скасувати вибір всього"
+msgid "Anomaly detection thresholds"
+msgstr "Пороги виявлення аномалій"
 
-msgid "Details"
-msgstr "Деталі"
+msgid "Available disk space"
+msgstr "Вільне місце на диску"
 
-msgid "Details of the PGP key:"
-msgstr "Інформація про ключ PGP:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Вимкнути"
+msgid "Last update"
+msgstr "Останні оновлення"
 
 msgid "Disable notifications to administrators"
 msgstr "Відключити сповіщення адміністраторам"
@@ -382,198 +272,222 @@ msgstr "Відключити сповіщення зберігачам"
 msgid "Disable notifications to recipients"
 msgstr "Відключити сповіщення отримувачам"
 
-msgid "Disable submissions"
-msgstr "Відключити подання"
+msgid "Score"
+msgstr "Бал"
 
-msgid "Disable the privacy panel"
-msgstr "Відключити панель настройки конфіденційності"
+msgid "Trigger question"
+msgstr "Ініційоване питання"
 
-msgid "Disable two factor authentication"
-msgstr "Вимкнути двофакторну аутентифікацію"
+msgid "Triggered by score:"
+msgstr "Ініціюється оцінкою:"
 
-msgid "Disabled"
-msgstr "Вимкнено"
+msgid "Weak"
+msgstr "Слабкий"
 
-msgid "Disclaimer"
-msgstr "Про обмежену відповідальність"
+msgid "Acceptable"
+msgstr "Прийнятний"
 
-msgid "Display options alphabetically"
-msgstr "Відобразити опції в алфавітному порядку"
+msgid "Strong"
+msgstr "Надійний"
 
-msgid "Download"
-msgstr "Завантажити"
-
-msgid "Download copy of the Privacy Policy"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "Завантажити Tor браузер"
+msgid "Silence email notifications"
+msgstr "Вимкнути сповіщення на електронну пошту"
 
-msgid "Duplicate"
-msgstr "Дублювання"
+msgid "Turn on email notifications"
+msgstr "Увімкнути сповішення на електронну пошту"
 
-msgid "Each entry must be separated with a comma."
-msgstr "Кожен запис має бути відокремлений комою."
-
-msgid "Earliest selectable date"
-msgstr "Найдавніша дата вибору"
-
-msgid "Edit"
-msgstr "Редагування"
-
-msgid "Email"
-msgstr "Електронна пошта"
+msgid "Input validation"
+msgstr "Перевірка вводу"
 
 msgid "Email address"
 msgstr "Електронна пошта"
 
-msgid "Enable"
-msgstr "Увімкнути"
+msgid "Custom"
+msgstr "Індивідуальний"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Жодний"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Дозволити адміністраторам змінювати паролі користувачів"
+msgid "Regular expression"
+msgstr "Регулярний вираз"
 
-msgid "Enable custom privacy panel"
-msgstr "Увімкнути панель настройки конфіденційності"
-
-msgid "Enable email notifications"
-msgstr "Включити сповіщення електронною поштою"
-
-msgid "Enable email notifications for:"
-msgstr "Увімкнути сповіщення електронною поштою для:"
-
-msgid "Enable encryption"
-msgstr "Включити шифрування"
-
-msgid "Enable scoring system"
-msgstr "Увімкніть систему оцінки"
-
-msgid "Enable search engines indexing"
-msgstr "Включити індексацію пошуковими системами"
-
-msgid "Enable simplified login"
-msgstr "Дозволити спрощений вхід"
-
-msgid "Enable terms of service"
-msgstr "Включити умови використання"
-
-msgid "Enable two factor authentication"
-msgstr "Увімкніть двофакторну аутентифікацію"
-
-msgid "Enabled"
-msgstr "Увімкнений"
-
-msgid "Enter a name for the copy"
-msgstr "Введіть ім'я копії"
-
-msgid "Enter the two factor authentication code"
-msgstr "Введіть код двофакторної аутентифікації"
+msgid "Search"
+msgstr "Шукати"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Введіть ваш ключ відновлення шифрування, щоб завершити процедуру скидання паролю"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Цей текст більше не відображається на платформі. Початковий текст було змінено, або видалено."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Введіть ім'я користувача, або електронну адресу, щоб надіслати запит на скидання пароля."
+msgid "Audit log"
+msgstr "Журнал аудиту"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Введіть вашу адресу електронної пошти, щоб відправити запит на скидання пароля."
+msgid "Stats"
+msgstr "Статистика"
 
-msgid "Error on input validation"
-msgstr "Помилка вхідних даних"
+msgid "Activities"
+msgstr "Активність"
 
-msgid "Error!"
-msgstr "Помилка!"
+msgid "Reports"
+msgstr "Звіти"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Звіт"
 
-msgid "Example:"
-msgstr "Приклад:"
-
-msgid "Expand"
-msgstr "Відкрити"
-
-msgid "Expiration date"
-msgstr "Дата закінчення терміну дії "
-
-msgid "Export"
-msgstr "Експортувати"
-
-msgid "File size"
-msgstr "Розмір файлу"
-
-msgid "File size not accepted."
-msgstr "Розмір файлу завеликий."
-
-msgid "Filename"
-msgstr "Назва файлу"
-
-msgid "Files"
-msgstr "Файли"
-
-msgid "Files attached by recipients"
-msgstr "Файли, прикріплені отримувачами"
-
-msgid "Fill the additional questionnaire"
-msgstr "Заповнити додаткову анкету"
-
-msgid "Fingerprint"
-msgstr "Цифровий відбиток пальця"
-
-msgid "First"
-msgstr "Перший"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Нижній колонтитул"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "З причин безпеки необхідно регулярно змінювати пароль."
-
-msgid "For the user documentation, visit:"
-msgstr "З документацією користувача можна ознайомитися на сторінці:"
-
-msgid "Forbidden operation"
-msgstr "Заборонена операція"
-
-msgid "Force password change"
-msgstr "Примусова зміна пароля"
-
-msgid "Forcefully selected"
-msgstr "Примусовий вибір"
-
-msgid "Forgot password?"
-msgstr "Забули пароль?"
+msgid "Users"
+msgstr "Користувачі"
 
 msgid "From"
 msgstr "Від"
 
-msgid "From:"
-msgstr "Від:"
+msgid "Number of downloads"
+msgstr "Кількість завантажень"
 
-msgid "Generate"
-msgstr "Генерувати"
+msgid "File size not accepted."
+msgstr "Розмір файлу завеликий."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Надайте користувачеві адміністративний доступ до таких функцій:"
+msgid "Maximum file size is:"
+msgstr "Максимально допустимий розмір файлу:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Надати адміністратору можливість змінювати паролі користувачів"
+msgid "Scheduled jobs"
+msgstr "Заплановані завдання"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Відновити"
+
+msgid "Display options alphabetically"
+msgstr "Відобразити опції в алфавітному порядку"
+
+msgid "Enable email notifications for:"
+msgstr "Увімкнути сповіщення електронною поштою для:"
+
+msgid "Disable"
+msgstr "Вимкнути"
+
+msgid "Remove"
+msgstr "Вилучити"
+
+msgid "Use as default"
+msgstr "Використовувати за замовчуванням"
+
+msgid "Collapse"
+msgstr "Закрити"
+
+msgid "Expand"
+msgstr "Відкрити"
+
+msgid "Select"
+msgstr "Вибрати"
+
+msgid "Deselect"
+msgstr "Скасувати вибір"
+
+msgid "Surname"
+msgstr "Прізвище"
+
+msgid "New"
+msgstr "Новий"
+
+msgid "Opened"
+msgstr "Відкрито"
+
+msgid "Closed"
+msgstr "Закрито"
+
+msgid "Placeholder"
+msgstr "Заповнювач"
+
+msgid "Print"
+msgstr "Друк"
+
+msgid "Previous"
+msgstr "Попередній"
+
+msgid "Next"
+msgstr "Вперед"
+
+msgid "First"
+msgstr "Перший"
+
+msgid "Last"
+msgstr "Останній"
+
+msgid "Send a test email to your email address."
+msgstr "Відправити тестовий лист на Вашу електронну адресу."
+
+msgid "Block the submission"
+msgstr "Заблокувати подання"
+
+msgid "Skip the recipient account creation."
+msgstr "Пропустити створення облікового запису отримувача."
+
+msgid "Send activation link"
+msgstr "Надіслати посилання для активації"
+
+msgid "Password reset"
+msgstr "Скинути пароль"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Один або декілька отримувачів ще не виконали перший вхід. Це означає, що вони не будуть отримувати звіти."
+
+msgid "This user has not performed the first login yet."
+msgstr "Цей користувач ще не виконав перший вхід."
+
+msgid "seconds"
+msgstr "секунд"
+
+msgid "This domain name is not available."
+msgstr "Це ім'я домену не доступне."
+
+msgid "Mark as important"
+msgstr "Позначити як важливе"
+
+msgid "Copy to clipboard"
+msgstr "Копіювати у буфер обміну"
+
+msgid "Logout"
+msgstr "Вихід"
+
+msgid "Grant access"
+msgstr "Дозволити доступ"
+
+msgid "Revoke access"
+msgstr "Відкликати доступ"
+
+msgid "Transfer"
+msgstr "Перенести"
+
+msgid "Assigned to"
 msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "привілеї"
+
+msgid "Hide"
+msgstr "Приховати"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "Виберіть параметр"
+
+msgid "Select your language"
+msgstr "Оберіть свою мову"
 
 msgid "Give this user ability to mask information"
 msgstr ""
@@ -581,54 +495,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Дозволити доступ"
-
-msgid "Group of questions"
-msgstr "Група питань"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ви вже надавали звіт? Вкажіть номер квитанції."
-
-msgid "Hidden"
-msgstr "Прихований"
-
-msgid "Hide"
-msgstr "Приховати"
-
-msgid "High"
-msgstr "Високий"
-
-msgid "Hint"
-msgstr "Підказка"
-
-msgid "Home"
-msgstr "Головна"
-
-msgid "Homepage title"
-msgstr "Назва домашньої сторінки"
-
-msgid "Hostname"
-msgstr "Ім'я хосту"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Я прочитав умови ліцензії і погоджуюсь з ними."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Політика конфіденційності"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Анонімність"
+
+msgid "Anonymous"
+msgstr "Анонімно"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Комп'ютер"
+
+msgid "Mobile"
+msgstr "Мобільний"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Подати звіт"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Перш ніж продовжити, будь ласка, встановіть новий пароль."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Перед тим як продовжити, просимо включити двофакторну аутентифікацію."
+
+msgid "Enable"
+msgstr "Увімкнути"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Severity"
+msgstr "Важливість"
+
+msgid "Object"
+msgstr "Об'єкт"
 
 msgid "ID"
 msgstr "ІD"
 
-msgid "Identity"
-msgstr "Особисті дані"
+msgid "Username"
+msgstr "Ім'я користувача"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Creation date"
+msgstr "Дата Створення"
+
+msgid "Last access"
+msgstr "Останній вхід"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Останній доступ Інформатора"
+
+msgid "Substatuses"
+msgstr "Субстатуси"
+
+msgid "Add"
+msgstr "Додати"
+
+msgid "Label"
+msgstr "Позначка"
+
+msgid "This field is mandatory"
+msgstr "Це поле є обов'язковим"
+
+msgid "Edit"
+msgstr "Редагування"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "days"
+msgstr "дн."
+
+msgid "Disabled"
+msgstr "Вимкнено"
+
+msgid "Report statuses"
+msgstr "Статуси звітів"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "Прихований"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Questionnaire"
+msgstr "Анкета"
+
+msgid "Recipients"
+msgstr "Отримувачі"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Встановіть значення 0, щоб відключити цю функцію."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Показати інтерфейс управління анкетою"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Дозволити інформаторам обирати отримувачів"
+
+msgid "Select all recipients by default"
+msgstr "Вибрати всіх отримувачів за замовчуванням"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Максимальна кількість обраних отримувачів:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Упорядкувати отримувачів за алфавітом"
+
+msgid "Additional questionnaire"
+msgstr "Додаткова анкета"
+
+msgid "Scoring system options"
+msgstr "Опції системи оцінки"
+
+msgid "Threshold"
+msgstr "Поріг"
+
+msgid "Value"
+msgstr "Значення"
+
+msgid "Medium"
+msgstr "Середній"
+
+msgid "High"
+msgstr "Високий"
+
+msgid "Software version:"
+msgstr "Версія програмного забезпечення:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Обмежити доступу до певних IP-адрес"
+
+msgid "Enabled"
+msgstr "Увімкнений"
+
+msgid "Allowed IP addresses"
+msgstr "Дозволені IP-адреси"
+
+msgid "Admin"
+msgstr "Адміністратор"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Отримувач"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Кожен запис має бути відокремлений комою."
+
+msgid "Example:"
+msgstr "Приклад:"
+
+msgid "Hostname"
+msgstr "Ім'я хосту"
+
+msgid "Organization"
+msgstr "Організація"
+
+msgid "Invalid email address"
+msgstr "Недійсна електронна адреса"
+
+msgid "City"
+msgstr "Місто"
+
+msgid "Country"
+msgstr "Країна"
+
+msgid "Country code"
+msgstr "Код країни"
+
+msgid "Generate"
+msgstr "Генерувати"
+
+msgid "Private Key"
+msgstr "Приватний Ключ"
+
+msgid "Certificate Signing Request"
+msgstr "Запит на Підписання Сертифікату"
+
+msgid "Certificate"
+msgstr "Сертифікат"
+
+msgid "Valid until:"
+msgstr "Дійсний до:"
+
+msgid "Issuer:"
+msgstr "Джерело:"
+
+msgid "Intermediate Certificates"
+msgstr "Проміжні Сертифікати"
+
+msgid "Reset"
+msgstr "Скинути налаштування"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Якщо не активувати платформу протягом 24 годин, вона буде автоматично видалена."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Платформа підтримує налаштування HTTPS через цей інтерфейс."
+
+msgid "Automatic configuration"
+msgstr "Автоматичне налаштування"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Автонастрoйка HTTPS керує всім процесом запиту, запуску і поновлення сертифікатів Let's Encrypt Certificate Authority."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Платформа повинна бути доступна через публічну IP-адресу і для обраного імені хоста повинен бути відповідний DNS-запис."
+
+msgid "Proceed"
+msgstr "Продовжити"
+
+msgid "Manual configuration"
+msgstr "Налаштування вручну"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Майстер ручної настройки проведе вас через процес налаштування HTTPS з альтернативного Центру Сертифікації."
+
+msgid "Auto-renewal"
+msgstr "Автоматичне оновлення"
+
+msgid "Tor Onion Service"
+msgstr "Сервіс Tor Onion"
+
+msgid "Anonymize outgoing connections"
+msgstr "Анонімізувати вихідні з'єднання"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Дозволити доступ до платформи без Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Ролі, які можуть використовувати платформу без браузера Tor"
+
+msgid "Whistleblower"
+msgstr "Інформатор"
+
+msgid "To"
+msgstr "До"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "SMTP email адреса"
+
+msgid "SMTP server address"
+msgstr "Адреса SMTP сервера"
+
+msgid "SMTP server port"
+msgstr "Порт SMTP сервера"
+
+msgid "Security"
+msgstr "Безпека"
+
+msgid "Require authentication"
+msgstr "Вимагає аутентифікацію"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Кількість годин до надсилання повідомлення про закінчення терміну дії звіту"
+
+msgid "Test the configuration"
+msgstr "Протестувати конфігурацію"
+
+msgid "Reset SMTP configuration"
+msgstr "Скидання конфігурації SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "Очистити шаблони сповіщень до значень за замовчуванням"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Question"
+msgstr "Питання"
+
+msgid "Single-line text input"
+msgstr "Введення тексту одним рядком"
+
+msgid "Multi-line text input"
+msgstr "Введення тексту багатьма рядками"
+
+msgid "Selection box"
+msgstr "Поле вибору"
+
+msgid "Multiple choice input"
+msgstr "Ввід з множинним вибором варіантів"
+
+msgid "Checkbox"
+msgstr " Прапорець"
+
+msgid "Terms of service"
+msgstr "Умови використання"
+
+msgid "Date range"
+msgstr "Діапазон дат"
+
+msgid "Group of questions"
+msgstr "Група питань"
+
+msgid "Row"
+msgstr "Рядок"
+
+msgid "Column"
+msgstr "Колонка"
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Question group"
+msgstr "Група питань"
+
+msgid "Hint"
+msgstr "Підказка"
+
+msgid "Mandatory"
+msgstr "Обов'язково"
+
+msgid "Accept multiple file uploads"
+msgstr "Дозволити завантаження декількох файлів"
+
+msgid "Accept multiple answers"
+msgstr "Дозволити декілька відповідей"
+
+msgid "Template override"
+msgstr "Перевизначення шаблону"
+
+msgid "Min"
+msgstr "Мінімальне"
+
+msgid "Max"
+msgstr "Максимальне"
+
+msgid "Phone number"
+msgstr "Номер телефону"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Checkbox label"
+msgstr "Мітка прапорця"
+
+msgid "Add multimedia content"
+msgstr "Додати мультимедійний контент"
+
+msgid "Image"
+msgstr "Зображення"
+
+msgid "Audio"
+msgstr "Аудіо"
+
+msgid "Video"
+msgstr "Відео"
+
+msgid "Text shown upon negative answer"
+msgstr ""
+
+msgid "Low"
+msgstr "Низький"
+
+msgid "Trigger conditions"
+msgstr "Умови запуску"
+
+msgid "Sufficient"
+msgstr "Достатня"
+
+msgid "Options"
+msgstr "Опції"
+
+msgid "Addition"
+msgstr "Додаткове"
+
+msgid "Multiplier"
+msgstr " Множник "
+
+msgid "Questions"
+msgstr "Питання"
+
+msgid "Add new question"
+msgstr "Додати нове питання"
+
+msgid "Add question from template"
+msgstr "Додати нове питання з шаблону"
+
+msgid "Duplicate"
+msgstr "Дублювання"
+
+msgid "Steps"
+msgstr "Кроки"
+
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Project name"
+msgstr "Назва проекту"
+
+msgid "Homepage title"
+msgstr "Назва домашньої сторінки"
+
+msgid "Presentation"
+msgstr "Презентація"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Запитання  для потенційних інформаторів"
+
+msgid "Whistleblowing button"
+msgstr "Сигнальна Кнопка "
+
+msgid "Disclaimer"
+msgstr "Про обмежену відповідальність"
+
+msgid "Footer"
+msgstr "Нижній колонтитул"
+
+msgid "Upload"
+msgstr "Додати"
+
+msgid "Download"
+msgstr "Завантажити"
+
+msgid "Language:"
+msgstr "Мова:"
+
+msgid "Add custom text"
+msgstr "Додати власний текст"
+
+msgid "Custom text"
+msgstr "Індивідуальний текст"
+
+msgid "Original text"
+msgstr "Оригінальний текст"
+
+msgid "Original translation"
+msgstr "Оригінальний переклад"
+
+msgid "Custom translation"
+msgstr "Індивідуальний переклад"
+
+msgid "Disable submissions"
+msgstr "Відключити подання"
+
+msgid "Enable encryption"
+msgstr "Включити шифрування"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Дозволити адміністраторам змінювати паролі користувачів"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Адміністраторам дозволено змінювати паролі користувачів:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Дозволити спрощений вхід"
+
+msgid "Enable search engines indexing"
+msgstr "Включити індексацію пошуковими системами"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Обмеження розміру доданих файлів"
+
+msgid "megabytes"
+msgstr "мегабайт"
+
+msgid "Require two factor authentication"
+msgstr "Вимагає двофакторну аутентифікацію"
+
+msgid "Password change interval"
+msgstr "Інтервал для зміни пароля"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "З причин безпеки необхідно регулярно змінювати пароль."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Кількість днів до сповіщення користувачів про непрочитані звіти"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Відключити панель настройки конфіденційності"
+
+msgid "Enable custom privacy panel"
+msgstr "Увімкнути панель настройки конфіденційності"
+
+msgid "Custom privacy panel"
+msgstr "Панель для налаштування параметрів конфіденційності"
+
+msgid "Enable scoring system"
+msgstr "Увімкніть систему оцінки"
+
+msgid "Logging level"
+msgstr "Рівень запису журналів"
+
+msgid "percentage"
+msgstr "відсотків"
+
+msgid "Log accesses of internal users"
+msgstr "Журнал авторизації внутрішніх користувачів"
+
+msgid "Notify administrators of software problems"
+msgstr "Повідомте адміністраторів про проблеми із програмним забезпеченням"
+
+msgid "Notify developers of software problems"
+msgstr "Повідомте розробників про проблеми із програмним забезпеченням"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Включивши цю функцію, ви зробите свій внесок у розвиток і безпеку платформи."
+
+msgid "Reset reports"
+msgstr "Очистити звіти"
+
+msgid "Settings"
+msgstr "Налаштування"
+
+msgid "Case management"
+msgstr "Ведення справ"
+
+msgid "Network"
+msgstr "Мережа"
+
+msgid "Sites"
+msgstr "Сайти"
+
+msgid "Profile"
+msgstr "Профіль"
+
+msgid "Configure"
+msgstr "Налаштувати"
+
+msgid "Subdomain"
+msgstr "Субдомен"
+
+msgid "Mode:"
+msgstr "Режим:"
+
+msgid "Creation date:"
+msgstr "Дата створення:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Використовувати перший сайт тільки в адміністративних цілях"
+
+msgid "Root domain used for secondary sites"
+msgstr "Кореневий домен, який використовується для вторинних сайтів"
+
+msgid "Allow users to sign up"
+msgstr "Дозволити користувачам зареєструватися"
+
+msgid "Enable terms of service"
+msgstr "Включити умови використання"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Public name"
+msgstr "Публічне ім'я"
+
+msgid "Send reset link"
+msgstr "Надіслати посилання для скидання"
+
+msgid "Set password"
+msgstr "Встановити пароль"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Вибраний пароль занадто слабкий. Допустимий пароль повинен складатися не менш ніж з 12 символів і містити різні символи, включаючи, як мінімум, рядковий символ, прописний символ, цифру і спеціальний символ."
+
+msgid "Force password change"
+msgstr "Примусова зміна пароля"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Користувач буде змушений змінити пароль при наступному вході."
+
+msgid "Disable two factor authentication"
+msgstr "Вимкнути двофакторну аутентифікацію"
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Enable email notifications"
+msgstr "Включити сповіщення електронною поштою"
+
+msgid "Details of the PGP key:"
+msgstr "Інформація про ключ PGP:"
+
+msgid "Fingerprint"
+msgstr "Цифровий відбиток пальця"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Налаштування шифрування за допомогою відкритого ключа PGP"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Надати адміністратору можливість змінювати паролі користувачів"
+
+msgid "Forcefully selected"
+msgstr "Примусовий вибір"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Дозволити отримувачу видаляти звіти"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Дозволити отримувачам відтерміновувати видалення звітів"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Надайте користувачеві адміністративний доступ до таких функцій:"
+
+msgid "Statistics"
+msgstr "Статистика"
+
+msgid "Request date"
+msgstr "Дата запиту"
+
+msgid "Report date"
+msgstr "Дата звіту"
+
+msgid "Authorization"
+msgstr "Авторизація"
+
+msgid "Requests"
+msgstr "Запити"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Посилання для перевірки невірне або закінчився термін його дії."
+
+msgid "Your new email address has been validated."
+msgstr "Ваша нова адреса електронної пошти перевірена."
+
+msgid "Forgot password?"
+msgstr "Забули пароль?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Введіть код двофакторної аутентифікації"
+
+msgid "Authentication failed"
+msgstr "Помилка аутентифікації"
+
+msgid "The code is either invalid or expired."
+msgstr "Код недійсний або його термін дії закінчився."
+
+msgid "Please select your account:"
+msgstr "Будь ласка, оберіть ваш обліковий запис:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Введіть пароль і натисніть \"Увійти\":"
+
+msgid "Confirm"
+msgstr "Підтвердити"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Текст, що показується після вибору опції користувачем."
+
+msgid "Assign score points"
+msgstr "Оцінити"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус"
+
+msgid "Are you sure?"
+msgstr "Ви впевнені?"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Зверніть увагу, що всі пов'язані дані будуть безповоротно втрачені."
+
+msgid "Enable two factor authentication"
+msgstr "Увімкніть двофакторну аутентифікацію"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Перш ніж продовжити, уважно ознайомтесь з документацією на сторінці:"
+
+msgid "Account recovery key"
+msgstr "Ключ для відновлення облікового запису"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Зробіть копію і помістіть її в безпечне місце. Вона знадобиться для відновлення доступу до облікового запису без втрати даних, якщо ви втратите свій пароль."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Введіть ім'я копії"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Запит на підтримку"
+
+msgid "Thank you."
+msgstr "Дякую."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ми постараємося зв’язатися з вами у найближчий час."
+
+msgid "Submit"
+msgstr "Надіслати"
+
+msgid "The connection is not secure."
+msgstr "Інтернет з'єднання недостатньо безпечне."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа все ще не налаштована на з'єднання HTTPS і тому повинна використовуватися виключно для тестування."
+
+msgid "Send"
+msgstr "Відправити"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Після підтвердження термін дії буде до:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Це тестова платформа. Не використовуйте її для подачі реальних документів."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Встановіть на свій телефон додаток для аутентифікації"
+
+msgid "Scan the QR code with the app"
+msgstr "Відскануйте QR-код за допомогою програми"
+
+msgid "Error!"
+msgstr "Помилка!"
+
+msgid "Internal server error"
+msgstr "Внутрішня помилка сервера"
+
+msgid "Error on input validation"
+msgstr "Помилка вхідних даних"
+
+msgid "Resource not found"
+msgstr "Ресурс не знайдено"
+
+msgid "Forbidden operation"
+msgstr "Заборонена операція"
+
+msgid "The specified old password is not valid"
+msgstr "Вказаний старий пароль не вірний"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ресурс доступний лише через браузер Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Завантаження перевищує дозволений розмір"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Поточний пароль"
+
+msgid "New password"
+msgstr "Новий пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Новий пароль повинен відрізнятися від поточного."
+
+msgid "Type your new password again"
+msgstr "Введіть ваш пароль знову"
+
+msgid "The two passwords do not match"
+msgstr "Два паролі не збігаються"
+
+msgid "Validation of email address change in progress."
+msgstr "Перевірка зміни адреси електронної пошти в процесі."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Будь ласка, перевірте вашу поштову скриньку для подальших інструкцій."
+
+msgid "Warning"
+msgstr "Попередження"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Ми настійливо рекомендуємо  використовувати Tor Browser для відвідування цього сайту. Він захистить ваші особисті дані."
+
+msgid "Download the Tor Browser"
+msgstr "Завантажити Tor браузер"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Потім зкопіюйте та вставте наступну адресу у Tor Browser:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Ви вже надавали звіт? Вкажіть номер квитанції."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Квитанція недійсна, або термін дії звіту закінчився."
+
+msgid "Filename"
+msgstr "Назва файлу"
+
+msgid "Size:"
+msgstr "Розмір:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Отримувачі попросили вас заповнити додаткову анкету."
+
+msgid "Fill the additional questionnaire"
+msgstr "Заповнити додаткову анкету"
+
+msgid "From:"
+msgstr "Від:"
+
+msgid "To:"
+msgstr "Кому:"
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Upload date"
+msgstr "Дата завантаження"
+
+msgid "File size"
+msgstr "Розмір файлу"
+
+msgid "Questionnaire answers"
+msgstr "Відповіді на питання анкети"
+
+msgid "Step"
+msgstr "Крок"
+
+msgid "Files attached by recipients"
+msgstr "Файли, прикріплені отримувачами"
+
+msgid "Upload a file:"
+msgstr "Завантажити файл:"
+
+msgid "Welcome!"
+msgstr "Ласкаво просимо!"
+
+msgid "For the user documentation, visit:"
+msgstr "З документацією користувача можна ознайомитися на сторінці:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -640,915 +1466,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Якщо ви хочете брати участь в розробці програмного забезпечення або повідомити про помилку, будь ласка, надішліть запит у нашу систему підтримки:"
 
-msgid "Image"
-msgstr "Зображення"
-
-msgid "Import"
-msgstr "Імпортувати"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "На даному кроці відсутні або недостовірні відповіді на наступні питання:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Перевірка вводу"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Встановіть на свій телефон додаток для аутентифікації"
-
-msgid "Intermediate Certificates"
-msgstr "Проміжні Сертифікати"
-
-msgid "Internal server error"
-msgstr "Внутрішня помилка сервера"
-
-msgid "Invalid confirmation"
-msgstr "Помилка підтвердження"
-
-msgid "Invalid email address"
-msgstr "Недійсна електронна адреса"
-
-msgid "Invalid phone number"
-msgstr "Недійсний номер телефону"
-
-msgid "Issuer:"
-msgstr "Джерело:"
-
 msgid "Join our chat:"
 msgstr "Приєднуйтеся до нашого чату:"
 
-msgid "Label"
-msgstr "Позначка"
-
-msgid "Label the report"
-msgstr "Позначте звіт"
-
-msgid "Language"
-msgstr "Мова"
-
-msgid "Language:"
-msgstr "Мова:"
-
-msgid "Languages"
-msgstr "Мови"
-
-msgid "Last"
-msgstr "Останній"
-
-msgid "Last Access"
-msgstr "Останній Доступ"
-
-msgid "Last access"
-msgstr "Останній вхід"
-
-msgid "Last update"
-msgstr "Останні оновлення"
-
-msgid "Latest selectable date"
-msgstr "Остання дата вибору"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Дозволити доступ до платформи без Tor"
-
-msgid "License"
-msgstr "Ліцензія"
-
-msgid "Log accesses of internal users"
-msgstr "Журнал авторизації внутрішніх користувачів"
-
-msgid "Log in"
-msgstr "Увійти"
-
-msgid "Logging level"
-msgstr "Рівень запису журналів"
-
-msgid "Logo"
-msgstr "Логотип"
-
-msgid "Logout"
-msgstr "Вихід"
-
-msgid "Low"
-msgstr "Низький"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Зробіть копію і помістіть її в безпечне місце. Вона знадобиться для відновлення доступу до облікового запису без втрати даних, якщо ви втратите свій пароль."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Надайте цьому адміністратору можливість скидати паролі користувачів."
-
-msgid "Mandatory"
-msgstr "Обов'язково"
-
-msgid "Manual configuration"
-msgstr "Налаштування вручну"
-
-msgid "Mark as important"
-msgstr "Позначити як важливе"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr "Максимальне"
-
-msgid "Maximum file size is:"
-msgstr "Максимально допустимий розмір файлу:"
-
-msgid "Maximum number of input characters"
-msgstr "Максимальна кількість символів, що вводять"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Максимальна кількість обраних отримувачів:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Середній"
-
-msgid "Min"
-msgstr "Мінімальне"
-
-msgid "Minimum number of input characters"
-msgstr "Мінімальна кількість символів, що вводять"
-
-msgid "Mobile"
-msgstr "Мобільний"
-
-msgid "Mode:"
-msgstr "Режим:"
-
-msgid "Motivation"
-msgstr "Мета"
-
-msgid "Move down"
-msgstr "Вниз"
-
-msgid "Move left"
-msgstr "Вліво"
-
-msgid "Move right"
-msgstr "Вправо"
-
-msgid "Move up"
-msgstr "Вгору"
-
-msgid "Multi-line text input"
-msgstr "Введення тексту багатьма рядками"
-
-msgid "Multiple choice input"
-msgstr "Ввід з множинним вибором варіантів"
-
-msgid "Multiplier"
-msgstr " Множник "
-
-msgid "Name"
-msgstr "Назва"
-
-msgid "Network"
-msgstr "Мережа"
-
-msgid "New"
-msgstr "Новий"
-
-msgid "New password"
-msgstr "Новий пароль"
-
-msgid "New request"
-msgstr "Новий запит"
-
-msgid "Next"
-msgstr "Вперед"
-
-msgid "No"
-msgstr "Ні"
-
-msgid "None"
-msgstr "Жодний"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr "Сповіщення"
-
-msgid "Notify administrators of software problems"
-msgstr "Повідомте адміністраторів про проблеми із програмним забезпеченням"
-
-msgid "Notify developers of software problems"
-msgstr "Повідомте розробників про проблеми із програмним забезпеченням"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Введіть пароль і натисніть \"Увійти\":"
-
-msgid "Number"
-msgstr "Номер"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Кількість днів до сповіщення користувачів про непрочитані звіти"
-
-msgid "Number of downloads"
-msgstr "Кількість завантажень"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Кількість годин до надсилання повідомлення про закінчення терміну дії звіту"
-
-msgid "Object"
-msgstr "Об'єкт"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Один або декілька отримувачів ще не виконали перший вхід. Це означає, що вони не будуть отримувати звіти."
-
-msgid "Opened"
-msgstr "Відкрито"
-
-msgid "Options"
-msgstr "Опції"
-
-msgid "Organization"
-msgstr "Організація"
-
-msgid "Original text"
-msgstr "Оригінальний текст"
-
-msgid "Original translation"
-msgstr "Оригінальний переклад"
-
-msgid "Password"
-msgstr "Пароль"
-
-msgid "Password change interval"
-msgstr "Інтервал для зміни пароля"
-
-msgid "Password reset"
-msgstr "Скинути пароль"
-
-msgid "Password reset requested."
-msgstr "Надіслано запит на скидання пароля."
-
-msgid "Phone number"
-msgstr "Номер телефону"
-
-msgid "Placeholder"
-msgstr "Заповнювач"
-
-msgid "Platform wizard"
-msgstr "Майстер налаштування платформи"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Будь ласка, перевірте вашу поштову скриньку для подальших інструкцій."
-
-msgid "Please choose a configuration profile:"
-msgstr "Будь ласка, виберіть профіль конфігурації:"
-
-msgid "Please choose a different username."
-msgstr "Виберіть інше ім'я користувача."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Зверніть увагу, що всі пов'язані дані будуть безповоротно втрачені."
-
-msgid "Please select your account:"
-msgstr "Будь ласка, оберіть ваш обліковий запис:"
-
-msgid "Postpone the expiration date"
-msgstr "Відтермінувати дату зачінчення терміну дії"
-
-msgid "Preferences"
-msgstr "Налаштування"
-
-msgid "Presentation"
-msgstr "Презентація"
-
-msgid "Preview"
-msgstr "Попередній перегляд"
-
-msgid "Previous"
-msgstr "Попередній"
-
-msgid "Print"
-msgstr "Друк"
-
-msgid "Privacy Policy"
-msgstr "Політика конфіденційності"
-
-msgid "Private Key"
-msgstr "Приватний Ключ"
-
-msgid "Privileges"
-msgstr "привілеї"
-
-msgid "Proceed"
-msgstr "Продовжити"
-
-msgid "Profile"
-msgstr "Профіль"
-
-msgid "Project name"
-msgstr "Назва проекту"
-
-msgid "Public name"
-msgstr "Публічне ім'я"
-
-msgid "Question"
-msgstr "Питання"
-
-msgid "Question group"
-msgstr "Група питань"
-
-msgid "Question templates"
-msgstr "Шаблони питань"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Запитання  для потенційних інформаторів"
-
-msgid "Questionnaire"
-msgstr "Анкета"
-
-msgid "Questionnaire answers"
-msgstr "Відповіді на питання анкети"
-
-msgid "Questionnaires"
-msgstr "Анкети"
-
-msgid "Questions"
-msgstr "Питання"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "Отримувач"
-
-msgid "Recipient selection"
-msgstr "Вибір отримувача"
-
-msgid "Recipients"
-msgstr "Отримувачі"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Отримувачі попросили вас заповнити додаткову анкету."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Обрані отримувачі:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Оновити"
-
-msgid "Regenerate"
-msgstr "Відновити"
-
-msgid "Regular expression"
-msgstr "Регулярний вираз"
-
-msgid "Regular expression validator"
-msgstr "Валідатор регулярних виразів"
-
-msgid "Remember your receipt for this report."
-msgstr "Збережіть вашу квитанцію для цього звіту."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Вилучити"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Мета відповіді"
-
-msgid "Reply to the request"
-msgstr "Відповідь на запит"
-
-msgid "Report"
-msgstr "Звіт"
-
-msgid "Report date"
-msgstr "Дата звіту"
-
-msgid "Report statuses"
-msgstr "Статуси звітів"
-
-msgid "Reports"
-msgstr "Звіти"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Зробити запит на  особисті дані інформатора"
-
-msgid "Request date"
-msgstr "Дата запиту"
-
-msgid "Request motivation"
-msgstr "Мета запиту"
-
-msgid "Request status"
-msgstr "Статус запиту"
-
-msgid "Request support"
-msgstr "Запит на підтримку"
-
-msgid "Requests"
-msgstr "Запити"
-
-msgid "Require authentication"
-msgstr "Вимагає аутентифікацію"
-
-msgid "Require two factor authentication"
-msgstr "Вимагає двофакторну аутентифікацію"
-
-msgid "Reset"
-msgstr "Скинути налаштування"
-
-msgid "Reset SMTP configuration"
-msgstr "Скидання конфігурації SMTP"
-
-msgid "Reset notification templates to default"
-msgstr "Очистити шаблони сповіщень до значень за замовчуванням"
-
-msgid "Reset reports"
-msgstr "Очистити звіти"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Ресурс доступний лише через браузер Tor"
-
-msgid "Resource not found"
-msgstr "Ресурс не знайдено"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Обмежити доступу до певних IP-адрес"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Відкликати доступ"
-
-msgid "Role"
-msgstr "Роль"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Ролі, які можуть використовувати платформу без браузера Tor"
-
-msgid "Root domain used for secondary sites"
-msgstr "Кореневий домен, який використовується для вторинних сайтів"
-
-msgid "Row"
-msgstr "Рядок"
-
-msgid "SMTP email address"
-msgstr "SMTP email адреса"
-
-msgid "SMTP server address"
-msgstr "Адреса SMTP сервера"
-
-msgid "SMTP server port"
-msgstr "Порт SMTP сервера"
-
-msgid "Save"
-msgstr "Зберегти"
-
-msgid "Save all"
-msgstr "Зберегти все"
-
-msgid "Scan the QR code with the app"
-msgstr "Відскануйте QR-код за допомогою програми"
-
-msgid "Scheduled jobs"
-msgstr "Заплановані завдання"
-
-msgid "Score"
-msgstr "Бал"
-
-msgid "Scoring system options"
-msgstr "Опції системи оцінки"
-
-msgid "Search"
-msgstr "Шукати"
-
-msgid "Security"
-msgstr "Безпека"
-
-msgid "Select"
-msgstr "Вибрати"
-
-msgid "Select a file or drag it here."
-msgstr "Виберіть файл або перетягніть його сюди."
-
-msgid "Select all"
-msgstr "Вибрати все"
-
-msgid "Select all recipients by default"
-msgstr "Вибрати всіх отримувачів за замовчуванням"
-
-msgid "Select an option"
-msgstr "Виберіть параметр"
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr "Оберіть свою мову"
-
-msgid "Selection box"
-msgstr "Поле вибору"
-
-msgid "Send"
-msgstr "Відправити"
-
-msgid "Send a test email to your email address."
-msgstr "Відправити тестовий лист на Вашу електронну адресу."
-
-msgid "Send activation link"
-msgstr "Надіслати посилання для активації"
-
-msgid "Send reset link"
-msgstr "Надіслати посилання для скидання"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Встановити пароль"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Встановіть значення 0, щоб відключити цю функцію."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Налаштування шифрування за допомогою відкритого ключа PGP"
-
-msgid "Settings"
-msgstr "Налаштування"
-
-msgid "Severity"
-msgstr "Важливість"
-
-msgid "Show"
-msgstr "Показати"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Упорядкувати отримувачів за алфавітом"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Показати інтерфейс управління анкетою"
-
-msgid "Sign up"
-msgstr "Зареєструватися"
-
-msgid "Silence email notifications"
-msgstr "Вимкнути сповіщення на електронну пошту"
-
-msgid "Single-line text input"
-msgstr "Введення тексту одним рядком"
-
-msgid "Site"
-msgstr "Сайт"
-
-msgid "Sites"
-msgstr "Сайти"
-
-msgid "Size limit for file attachments"
-msgstr "Обмеження розміру доданих файлів"
-
-msgid "Size:"
-msgstr "Розмір:"
-
-msgid "Skip the recipient account creation."
-msgstr "Пропустити створення облікового запису отримувача."
-
-msgid "Software version:"
-msgstr "Версія програмного забезпечення:"
-
-msgid "Statistics"
-msgstr "Статистика"
-
-msgid "Stats"
-msgstr "Статистика"
-
-msgid "Status"
-msgstr "Статус"
-
-msgid "Status:"
-msgstr "Статус"
-
-msgid "Step"
-msgstr "Крок"
-
-msgid "Steps"
-msgstr "Кроки"
-
-msgid "Strong"
-msgstr "Надійний"
-
-msgid "Subdomain"
-msgstr "Субдомен"
-
-msgid "Submissions disabled"
-msgstr "Подання недоступне"
-
-msgid "Submit"
-msgstr "Надіслати"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Субстатуси"
-
-msgid "Success!"
-msgstr "Успіх!"
-
-msgid "Sufficient"
-msgstr "Достатня"
-
-msgid "Surname"
-msgstr "Прізвище"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "Шаблон"
-
-msgid "Template override"
-msgstr "Перевизначення шаблону"
-
-msgid "Templates"
-msgstr "Шаблони"
-
-msgid "Terms of service"
-msgstr "Умови використання"
-
-msgid "Test the configuration"
-msgstr "Протестувати конфігурацію"
-
-msgid "Text"
-msgstr "Текст"
-
-msgid "Text customization"
-msgstr "Налаштування тексту"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Текст, що показується після вибору опції користувачем."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Дякую."
-
-msgid "The answer is too short"
-msgstr "Відповідь дуже коротка"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Вибраний пароль занадто слабкий. Допустимий пароль повинен складатися не менш ніж з 12 символів і містити різні символи, включаючи, як мінімум, рядковий символ, прописний символ, цифру і спеціальний символ."
-
-msgid "The code is either invalid or expired."
-msgstr "Код недійсний або його термін дії закінчився."
-
-msgid "The connection is not secure."
-msgstr "Інтернет з'єднання недостатньо безпечне."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Наступні отримувачі  одержать ваш звіт, вибір яких не можна скасувати:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Наступна покрокова процедура дозволить вам створити платформу для інформування."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Майстер ручної настройки проведе вас через процес налаштування HTTPS з альтернативного Центру Сертифікації."
-
-msgid "The new password must be different from the current one."
-msgstr "Новий пароль повинен відрізнятися від поточного."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформа все ще не налаштована на з'єднання HTTPS і тому повинна використовуватися виключно для тестування."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Платформа повинна бути доступна через публічну IP-адресу і для обраного імені хоста повинен бути відповідний DNS-запис."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Платформа підтримує налаштування HTTPS через цей інтерфейс."
-
-msgid "The provided recovery key is invalid."
-msgstr "Наданий ключ відновлення недійсний."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Вказаний маркер для скидання недійсний, або термін його дії закінчився."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Квитанція недійсна, або термін дії звіту закінчився."
-
-msgid "The specified input is not valid."
-msgstr "Вказані дані недійсні."
-
-msgid "The specified input is not valid:"
-msgstr "Вказані дані недійсні:"
-
-msgid "The specified old password is not valid"
-msgstr "Вказаний старий пароль не вірний"
-
-msgid "The two passwords do not match"
-msgstr "Два паролі не збігаються"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Завантаження перевищує дозволений розмір"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Користувач буде змушений змінити пароль при наступному вході."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Посилання для перевірки невірне або закінчився термін його дії."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Інформатор прочитав останні оновлення"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Інформатор ще не прочитав останні оновлення"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Потім зкопіюйте та вставте наступну адресу у Tor Browser:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Цей текст більше не відображається на платформі. Початковий текст було змінено, або видалено."
-
-msgid "This domain name is not available."
-msgstr "Це ім'я домену не доступне."
-
-msgid "This field is mandatory"
-msgstr "Це поле є обов'язковим"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Це тестова платформа. Не використовуйте її для подачі реальних документів."
-
-msgid "This user has not performed the first login yet."
-msgstr "Цей користувач ще не виконав перший вхід."
-
-msgid "Threshold"
-msgstr "Поріг"
-
-msgid "Title"
-msgstr "Заголовок"
-
-msgid "To"
-msgstr "До"
-
-msgid "To:"
-msgstr "Кому:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Сервіс Tor Onion"
-
-msgid "Transfer"
-msgstr "Перенести"
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Умови запуску"
-
-msgid "Trigger question"
-msgstr "Ініційоване питання"
-
-msgid "Triggered by score:"
-msgstr "Ініціюється оцінкою:"
-
-msgid "Turn on email notifications"
-msgstr "Увімкнути сповішення на електронну пошту"
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Type your new password again"
-msgstr "Введіть ваш пароль знову"
-
-msgid "URL redirects"
-msgstr "Перенаправлення URL"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Додати"
-
-msgid "Upload a file:"
-msgstr "Завантажити файл:"
-
-msgid "Upload date"
-msgstr "Дата завантаження"
-
-msgid "Use as default"
-msgstr "Використовувати за замовчуванням"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Використовуйте 16-значний номер квитанції, щоб увійти в систему і переглянути повідомлення та коментарі, або щоб надати додаткову інформацію."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Використовувати перший сайт тільки в адміністративних цілях"
-
-msgid "User"
-msgstr "Користувач"
-
-msgid "Username"
-msgstr "Ім'я користувача"
-
-msgid "Users"
-msgstr "Користувачі"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "Автонастрoйка HTTPS керує всім процесом запиту, запуску і поновлення сертифікатів Let's Encrypt Certificate Authority."
-
-msgid "Valid until:"
-msgstr "Дійсний до:"
-
-msgid "Validation of email address change in progress."
-msgstr "Перевірка зміни адреси електронної пошти в процесі."
-
-msgid "Value"
-msgstr "Значення"
-
-msgid "Video"
-msgstr "Відео"
-
-msgid "View"
-msgstr "Вид"
-
-msgid "View your report"
-msgstr "Переглянути ваш звіт"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "В очікуванні дозволу"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Відбувається завантаження файлу(-ів)."
-
-msgid "Warning"
-msgstr "Попередження"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Ми рекомендуємо вибрати цю опцію, якщо ви хочете зберегти дані від втрати в ситуації, коли отримувачі втрачають свої паролі. З іншого боку, ми не рекомендуємо використовувати цю функцію, якщо ви хочете налаштувати систему таким чином, щоб тільки отримувачі мали доступ до наданих матеріалів."
+msgid "An update is available:"
+msgstr "Доступне оновлення:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1557,78 +1479,85 @@ msgid ""
 "your password."
 msgstr "Ми рекомендуємо вам увійти в розділ \"Налаштування\", щоб отримати \"ключ для відновлення облікового запису\" і зберегти його в безпечному місці. Цей ключ знадобиться для відновлення доступу до платформи і ваших даних у тому випадку, якщо ви забудете свій пароль."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ми постараємося зв’язатися з вами у найближчий час."
+msgid "Select a file or drag it here."
+msgstr "Виберіть файл або перетягніть його сюди."
 
-msgid "Weak"
-msgstr "Слабкий"
+msgid "The provided recovery key is invalid."
+msgstr "Наданий ключ відновлення недійсний."
 
-msgid "Welcome!"
-msgstr "Ласкаво просимо!"
-
-msgid "Whistleblower"
-msgstr "Інформатор"
-
-msgid "Whistleblower's last access"
-msgstr "Останній доступ Інформатора"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Сигнальна Кнопка "
-
-msgid "Width"
-msgstr "Ширина"
-
-msgid "Yes"
-msgstr "Так"
+msgid "The provided reset token is invalid or expired."
+msgstr "Вказаний маркер для скидання недійсний, або термін його дії закінчився."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Введіть ім'я користувача, або електронну адресу, щоб надіслати запит на скидання пароля."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Введіть вашу адресу електронної пошти, щоб відправити запит на скидання пароля."
+
+msgid "Password reset requested."
+msgstr "Надіслано запит на скидання пароля."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Ми настійливо рекомендуємо  використовувати Tor Browser для відвідування цього сайту. Він захистить ваші особисті дані."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Введіть ваш ключ відновлення шифрування, щоб завершити процедуру скидання паролю"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Запит на інформацію про особу інформатора було надіслано зберігачу"
+
+msgid "Date of the request"
+msgstr "Дата запиту"
+
+msgid "Show"
+msgstr "Показати"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Вітаємо!"
 
 msgid "You have completed the platform activation."
 msgstr "Ви завершили активацію платформи."
 
-msgid "You have completed the platform wizard."
-msgstr "Ви закінчили роботу з майстром налаштування платформи."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Ви досягли максимальної кількості можливих отримувачів."
-
-msgid "You must select at least one recipient."
-msgstr "Ви повинні вибрати щонайменше одного отримувача."
-
-msgid "Your new email address has been validated."
-msgstr "Ваша нова адреса електронної пошти перевірена."
-
-msgid "Your report was successful."
-msgstr "Ваш звіт успішно відправлено."
+msgid "Success!"
+msgstr "Успіх!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Ваша платформа для інформування майже готова!"
 
-msgid "days"
-msgstr "дн."
+msgid "Check your inbox to activate it."
+msgstr "Перевірте пошту в папці “Вхідні”, щоб активувати її."
 
-msgid "file unavailable"
-msgstr "файл недоступний"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Якщо не активувати платформу протягом 24 годин, вона буде автоматично видалена."
 
-msgid "megabytes"
-msgstr "мегабайт"
+msgid "Sign up"
+msgstr "Зареєструватися"
 
-msgid "percentage"
-msgstr "відсотків"
+msgid "Invalid confirmation"
+msgstr "Помилка підтвердження"
+
+msgid "Invalid phone number"
+msgstr "Недійсний номер телефону"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Confirmation"
+msgstr "Підтвердження"
+
+msgid "The answer is too short"
+msgstr "Відповідь дуже коротка"
+
+msgid "The specified input is not valid."
+msgstr "Вказані дані недійсні."
+
+msgid "The specified input is not valid:"
+msgstr "Вказані дані недійсні:"
 
 msgid "please enter a valid email address."
 msgstr "будь ласка, введіть дійсну адресу електронної пошти."
@@ -1636,14 +1565,82 @@ msgstr "будь ласка, введіть дійсну адресу елект
 msgid "please enter numbers only."
 msgstr "будь ласка, введіть лише цифри."
 
-msgid "seconds"
-msgstr "секунд"
+msgid "Submissions disabled"
+msgstr "Подання недоступне"
 
-msgid "File a report"
-msgstr "Подати звіт"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Ваш звіт успішно відправлено."
+
+msgid "Remember your receipt for this report."
+msgstr "Збережіть вашу квитанцію для цього звіту."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Використовуйте 16-значний номер квитанції, щоб увійти в систему і переглянути повідомлення та коментарі, або щоб надати додаткову інформацію."
+
+msgid "View your report"
+msgstr "Переглянути ваш звіт"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Обрані отримувачі:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Ви досягли максимальної кількості можливих отримувачів."
+
+msgid "You must select at least one recipient."
+msgstr "Ви повинні вибрати щонайменше одного отримувача."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Наступні отримувачі  одержать ваш звіт, вибір яких не можна скасувати:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "На даному кроці відсутні або недостовірні відповіді на наступні питання:"
+
+msgid "Recipient selection"
+msgstr "Вибір отримувача"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Відбувається завантаження файлу(-ів)."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Наступна покрокова процедура дозволить вам створити платформу для інформування."
+
+msgid "Please choose a configuration profile:"
+msgstr "Будь ласка, виберіть профіль конфігурації:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Надайте цьому адміністратору можливість скидати паролі користувачів."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Ми рекомендуємо вибрати цю опцію, якщо ви хочете зберегти дані від втрати в ситуації, коли отримувачі втрачають свої паролі. З іншого боку, ми не рекомендуємо використовувати цю функцію, якщо ви хочете налаштувати систему таким чином, щоб тільки отримувачі мали доступ до наданих матеріалів."
+
+msgid "Please choose a different username."
+msgstr "Виберіть інше ім'я користувача."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Я прочитав умови ліцензії і погоджуюсь з ними."
+
+msgid "You have completed the platform wizard."
+msgstr "Ви закінчили роботу з майстром налаштування платформи."
 
 msgid "Please summarize your report in a few words."
 msgstr "Опишіть кількома словами наданий вами звіт."

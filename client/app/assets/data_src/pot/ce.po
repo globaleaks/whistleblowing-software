@@ -16,129 +16,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = авто"
+msgid "Log in"
+msgstr "Системи чувала"
 
-msgid "Accept multiple answers"
-msgstr "Масех жоп тlеэца"
+msgid "Languages"
+msgstr "Меттанаш"
 
-msgid "Accept multiple file uploads"
-msgstr "Масех файл дIахIоттор тlеэца"
-
-msgid "Acceptable"
-msgstr "Тарлуш ду"
-
-msgid "Access control"
-msgstr "Тlекхочийлина урхалладар"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Тlекхочийла дехна"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Iорадаккхархочун цIарна тlекхочийла дехна lуналхочуьнга."
-
-msgid "Account recovery key"
-msgstr "Аккаунт меттахIоторан догlа"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Жигараллаш"
-
-msgid "Add"
-msgstr "Тlетоха"
-
-msgid "Add custom text"
-msgstr "БIегIийла йина текст тlетоха"
-
-msgid "Add multimedia content"
-msgstr "Мултимедин чулацам тlетоха"
-
-msgid "Add new question"
-msgstr "Керла хаттар тlетоха"
-
-msgid "Add new questionnaire"
-msgstr "Керла хеттар тlетоха"
-
-msgid "Add question from template"
-msgstr "Шаблон юккъера хаттар тlетоха"
-
-msgid "Addition"
-msgstr "Тlетохар"
-
-msgid "Additional questionnaire"
-msgstr "ТIеоьшуш долу хеттар"
-
-msgid "Address"
-msgstr ""
-
-msgid "Admin"
-msgstr "Администратор"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
+msgid "Text customization"
+msgstr "Текст бIегIийла яр"
 
 msgid "Advanced"
 msgstr ""
 
-msgid "Allow the recipient to delete reports"
-msgstr "ДIаэцархочунна аьрзнаш дIадайъа бакъо луо"
+msgid "Question templates"
+msgstr "Хаттаран шаблонаш"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "ДIаэцархочунна арз чекхдаларан хан дIататта бакъо луо "
+msgid "Questionnaires"
+msgstr "Хеттарш"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
+msgid "Add new questionnaire"
+msgstr "Керла хеттар тlетоха"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
+msgid "Home"
+msgstr "ЦIа"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Хийцамийн журнал"
 
-msgid "Allow users to sign up"
-msgstr "Пайдаэцархошна чуязбала магаде"
+msgid "License"
+msgstr "Лицензи"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Iорадаккхархошна шайн дIаэцархой харжа пурба дала"
+msgid "Templates"
+msgstr "Шаблонаш"
 
-msgid "Allowed IP addresses"
-msgstr "Магийна IP-адресаш"
-
-msgid "An update is available:"
-msgstr "ЦIиндар долуш ду:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Дlадаккха"
 
 msgid "Anomalies"
 msgstr "Аномалеш"
 
-msgid "Anomaly detection thresholds"
-msgstr "Аномали гучуяккхаран киртигаш"
+msgid "Preferences"
+msgstr "Гlолениг харжар"
 
-msgid "Anonymity"
+msgid "Notifications"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr "Арайоьлху зIенаш хьулъе"
+msgid "file unavailable"
+msgstr "файл тlекхочийлехь яц"
 
-msgid "Anonymous"
+msgid "Date"
+msgstr "Дата"
+
+msgid "Expiration date"
+msgstr "Чекхдаларан хан"
+
+msgid "Last Access"
+msgstr "Тlаьххьара тIекхачар"
+
+msgid "Files"
+msgstr "Файлаш"
+
+msgid "Comments"
+msgstr "Комменташ"
+
+msgid "Details"
+msgstr "Деталш"
+
+msgid "Platform wizard"
+msgstr "Платформин пхьар"
+
+msgid "Label the report"
+msgstr "Орзана тIе билгало хIоттае"
+
+msgid "Edit the expiration date"
+msgstr "Чекхдаларан хан дlататта"
+
+msgid "Select all"
+msgstr "Дерриг харжа"
+
+msgid "Deselect all"
+msgstr "Дерриг харжар духаэца"
+
+msgid "Refresh"
+msgstr "ЦӀинде"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Are you sure?"
-msgstr "Баккъал бахий ахь?"
+msgid "Preview"
+msgstr "Юьхьанца хьажа"
 
-msgid "Assign score points"
-msgstr "Баллаш хIиттае"
+msgid "The whistleblower has already read the last update"
+msgstr "Iорадаккхархочо хlинцале дешна тlаьххьара карладаккхар"
 
-msgid "Assigned to"
-msgstr ""
+msgid "The whistleblower has not read the last update yet"
+msgstr "Iорадаккхархочо хlинца а ца дешна тlаьххьара карладаккхар"
+
+msgid "Move up"
+msgstr "Хьаладахийта"
+
+msgid "Move down"
+msgstr "Охьадахийта"
+
+msgid "Move left"
+msgstr "Аьрру агlор дахийта"
+
+msgid "Move right"
+msgstr "Аьтту агlор дахийта"
+
+msgid "Import"
+msgstr "Импорт е"
+
+msgid "Export"
+msgstr "Экспорт е"
+
+msgid "Save all"
+msgstr "Дерриг дӀаӀалашде"
+
+msgid "Access control"
+msgstr "Тlекхочийлина урхалладар"
+
+msgid "Number"
+msgstr "Лоьмар"
+
+msgid "Email"
+msgstr "Электронан пошта"
+
+msgid "Regular expression validator"
+msgstr "Рожехь болу гайтамаш бакъдаран гlирс"
+
+msgid "Minimum number of input characters"
+msgstr "Чудохучу хьаьркийн лахара терахь"
+
+msgid "Maximum number of input characters"
+msgstr "Чудохучу хьаьркийн лакхара терахь"
+
+msgid "Earliest selectable date"
+msgstr "Харжа йишйолу уггар гергара терахь"
+
+msgid "Latest selectable date"
+msgstr "Харжа йишйолу уггар тlаьххьара терахь"
+
+msgid "0 = auto"
+msgstr "0 = авто"
+
+msgid "Yes"
+msgstr "Хlаъ"
+
+msgid "No"
+msgstr "Хlан-хlа"
 
 msgid "Attachment"
 msgstr "Юкъайиллина файл"
@@ -146,186 +172,56 @@ msgstr "Юкъайиллина файл"
 msgid "Attachments"
 msgstr "Юкъаехкина файлаш"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Аудио"
-
-msgid "Audit log"
-msgstr "Талламан журнал"
-
-msgid "Authentication failed"
-msgstr "Аутентификаци ца нисъелла"
-
-msgid "Authorization"
-msgstr "Бакъо ялар"
-
-msgid "Authorize"
-msgstr "Бакъо яла"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Iорадаккхархочун цIарна тlекхачар бакъо луо"
-
-msgid "Authorized"
-msgstr "Бакъо елла"
-
-msgid "Auto-renewal"
-msgstr "Шашах юхацIиндар"
-
-msgid "Automatic configuration"
-msgstr "Шашах конфигураци"
-
-msgid "Available disk space"
-msgstr "Диска тlехь мукъа меттиг"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Кхин дIавахале, тидамца документаци ешахь кхузахь:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Кхин дIавахале, ши-факторан аутентификаци магаехьа."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Кхин дIавахале, керла парол хIоттаехьа."
-
-msgid "Block the submission"
-msgstr "Чудаларна блок хIоттае"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Тlечlагlдича, ахь чекхдаларан хан дlатотту:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Хlара башхало магаярца ахь дакъа лоцу платформа кхолларехь а, цуьнан кхерамзалла чIагIярехь а."
-
-msgid "Cancel"
-msgstr "Юхаэца"
-
-msgid "Case management"
-msgstr "Гlуллакхана урхалладар"
-
-msgid "Certificate"
-msgstr "Сертификат"
-
-msgid "Certificate Signing Request"
-msgstr "Сертификатана куьг таIо дехар дахьийтар"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Хьайн парол хийца"
 
-msgid "Changelog"
-msgstr "Хийцамийн журнал"
+msgid "User"
+msgstr "Пайдаэцархо"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "Мотиваци"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "Статус"
 
-msgid "Check your inbox to activate it."
-msgstr "Цунна активаци ян, почтин яьшки чу хьажа"
+msgid "Request motivation"
+msgstr "Хатта мотивацех лаьцна"
 
-msgid "Checkbox"
-msgstr "Кор"
+msgid "Reply motivation"
+msgstr "Жоп ло мотивацех лаьцна"
 
-msgid "Checkbox label"
-msgstr "Коран билгало"
-
-msgid "City"
-msgstr "Гlала"
-
-msgid "Close"
-msgstr "Дlачlагlа"
-
-msgid "Closed"
-msgstr "Къевлина"
-
-msgid "Collapse"
-msgstr "ДIахьарчаде"
-
-msgid "Column"
-msgstr "Ирх-аса"
-
-msgid "Comments"
-msgstr "Комменташ"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "Конфигураци е"
-
-msgid "Confirm"
-msgstr "ТIечIагIде"
-
-msgid "Confirmation"
-msgstr "Тlечlагlдар"
-
-msgid "Congratulations!"
-msgstr "Декъалво хьо!"
-
-msgid "Copy to clipboard"
-msgstr "Хийцаран буфер чу копи яккха"
-
-msgid "Country"
-msgstr "Мохк"
-
-msgid "Country code"
-msgstr "Мехкан код"
-
-msgid "Creation date"
-msgstr "Кхолларан дата"
-
-msgid "Creation date:"
-msgstr "Кхолларан дата:"
-
-msgid "Current password"
-msgstr "Карара парол"
+msgid "Request status"
+msgstr "Хатта статусах лаьцна"
 
 msgid "Custodian"
 msgstr "lуналхо"
 
-msgid "Custom"
-msgstr "БӀегӀийла"
+msgid "Identity"
+msgstr "ЦIе"
 
-msgid "Custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел"
+msgid "Access requested"
+msgstr "Тlекхочийла дехна"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Iорадаккхархочун цIарна тlекхачар деха"
 
-msgid "Custom text"
-msgstr "БIегIийла йина текст"
+msgid "Reply to the request"
+msgstr "Дехарна жоп луо"
 
-msgid "Custom translation"
-msgstr "БIегIийла дина гочдар"
-
-msgid "Date"
-msgstr "Дата"
-
-msgid "Date of the request"
-msgstr "Дехаран дата"
-
-msgid "Date range"
-msgstr "Датийн диапазон"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Дlадаккха"
+msgid "Authorized"
+msgstr "Бакъо елла"
 
 msgid "Denied"
 msgstr "ТIе ца дитина"
+
+msgid "Waiting for authorization"
+msgstr "Бакъо яларе хьоьжу"
+
+msgid "New request"
+msgstr "Керла дехар"
+
+msgid "Authorize"
+msgstr "Бакъо яла"
 
 msgid "Deny"
 msgstr "Тlе ма эца"
@@ -333,26 +229,20 @@ msgstr "Тlе ма эца"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Iорадаккхархочун цIарна тlекхачар дехка"
 
-msgid "Description"
-msgstr "Сурт хIоттор"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Iорадаккхархочун цIарна тlекхачар бакъо луо"
 
-msgid "Deselect"
-msgstr "Харжар юхадаккха"
+msgid "URL redirects"
+msgstr "URL кхин адресца доьду"
 
-msgid "Deselect all"
-msgstr "Дерриг харжар духаэца"
+msgid "Anomaly detection thresholds"
+msgstr "Аномали гучуяккхаран киртигаш"
 
-msgid "Details"
-msgstr "Деталш"
+msgid "Available disk space"
+msgstr "Диска тlехь мукъа меттиг"
 
-msgid "Details of the PGP key:"
-msgstr "PGP догlанан деталш"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Мага ма де"
+msgid "Last update"
+msgstr "Тlаьххьара цIиндар"
 
 msgid "Disable notifications to administrators"
 msgstr "Администраторшка хаамбар мага ма де"
@@ -363,197 +253,221 @@ msgstr "lуналхошка хаамбар мага ма де"
 msgid "Disable notifications to recipients"
 msgstr "ДIаэцархошка хаамбар мага ма де"
 
-msgid "Disable submissions"
-msgstr "Чудаларш мага ма де"
+msgid "Score"
+msgstr "Чот"
 
-msgid "Disable the privacy panel"
-msgstr "Шайлахьйолу панел мага ма е"
+msgid "Trigger question"
+msgstr "Къастамаллин хаттар"
 
-msgid "Disable two factor authentication"
-msgstr "Ши-факторан аутентификаци мага ма е"
+msgid "Triggered by score:"
+msgstr "Къастамаллин баллаш:"
 
-msgid "Disabled"
-msgstr "Магийна доцу"
+msgid "Weak"
+msgstr "Гlийла"
 
-msgid "Disclaimer"
-msgstr "Жоьпалла тIе ца лацар"
+msgid "Acceptable"
+msgstr "Тарлуш ду"
 
-msgid "Display options alphabetically"
-msgstr "Абатан рогlаллехь гайта опцеш"
+msgid "Strong"
+msgstr "Чlогlа"
 
-msgid "Download"
-msgstr "Схьаэца"
-
-msgid "Download copy of the Privacy Policy"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "Tor браузер схьаэца"
+msgid "Silence email notifications"
+msgstr "Электронан поштехула хаамбар тиедие"
 
-msgid "Duplicate"
-msgstr "Шалхадаккха"
+msgid "Turn on email notifications"
+msgstr "Электронан поштехула хаамбар латаде"
 
-msgid "Each entry must be separated with a comma."
-msgstr "Хlора чуязор цlоьмалгаца къастийна хила деза."
-
-msgid "Earliest selectable date"
-msgstr "Харжа йишйолу уггар гергара терахь"
-
-msgid "Edit"
-msgstr "Тодан"
-
-msgid "Email"
-msgstr "Электронан пошта"
+msgid "Input validation"
+msgstr "Чудаккхар нийса хилар бакъдар"
 
 msgid "Email address"
 msgstr "Электронан поштин адрес"
 
-msgid "Enable"
-msgstr "Магаде"
+msgid "Custom"
+msgstr "БӀегӀийла"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Цхьа а"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Администраторшна пайдаэцархочун парол хийцар магаде"
+msgid "Regular expression"
+msgstr "Рожехь болу гайтам"
 
-msgid "Enable custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел магае"
-
-msgid "Enable email notifications"
-msgstr "Электронан поштехула хаамбар магийта"
-
-msgid "Enable email notifications for:"
-msgstr "Электронан почтехула хаамбар магаде кхунна:"
-
-msgid "Enable encryption"
-msgstr "ШифрхIоттор магаде"
-
-msgid "Enable scoring system"
-msgstr "Баллийн система магае"
-
-msgid "Enable search engines indexing"
-msgstr "Лохуршна индексаци ян магаде"
-
-msgid "Enable simplified login"
-msgstr "Системина чолхаза чувалар магаде"
-
-msgid "Enable terms of service"
-msgstr "Сервисан билламаш магабе"
-
-msgid "Enable two factor authentication"
-msgstr "Ши-факторан аутентификаци магае"
-
-msgid "Enabled"
-msgstr "Магийна"
-
-msgid "Enter a name for the copy"
-msgstr "Копин цlе чуязъе"
-
-msgid "Enter the two factor authentication code"
-msgstr "Ши-факторан аутентификацин код чуязъе"
+msgid "Search"
+msgstr "Лаха"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Парол юхакирдар чекхдаккха, чуязде аккаунт меттахlотторан догlа"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Хlара бӀегӀийла йина текст платформи тlехь кхин гуш яц. Дуьххьарлера текст я хийцина, я дlаяьккхина."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Парол юхакирдар деха, аккаунтан пайдаэцархочун цIе я электронан поштин адрес чуязде."
+msgid "Audit log"
+msgstr "Талламан журнал"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Парол юхакирдар деха, хьайн электронан почтин адрес чуязде."
+msgid "Stats"
+msgstr "Статистика"
 
-msgid "Error on input validation"
-msgstr "Чуяздар бакъдарехь гlалат"
+msgid "Activities"
+msgstr "Жигараллаш"
 
-msgid "Error!"
-msgstr "Гlалат!"
+msgid "Reports"
+msgstr "Аьрзнаш"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Арз"
 
-msgid "Example:"
-msgstr "Масал:"
-
-msgid "Expand"
-msgstr "Даржаде"
-
-msgid "Expiration date"
-msgstr "Чекхдаларан хан"
-
-msgid "Export"
-msgstr "Экспорт е"
-
-msgid "File size"
-msgstr "Файлан барам"
-
-msgid "File size not accepted."
-msgstr "Файлан барам тlеоьцуш бац."
-
-msgid "Filename"
-msgstr "Файлан цlе"
-
-msgid "Files"
-msgstr "Файлаш"
-
-msgid "Files attached by recipients"
-msgstr "ДIаэцархоша юкъаехкина файлаш"
-
-msgid "Fill the additional questionnaire"
-msgstr "ТIеоьшуш долу хеттар язде"
-
-msgid "Fingerprint"
-msgstr "Пlелган томмагlа"
-
-msgid "First"
-msgstr "Хьалхара"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Лахара колонтитул"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Кхерамзаллин бахьанашца парол хийцар тIедожийна ду шен-шен рожехь."
-
-msgid "For the user documentation, visit:"
-msgstr "Пайдаэцархойн документацига хьажа, кхуза гIуо:"
-
-msgid "Forbidden operation"
-msgstr "Бихкина ардам"
-
-msgid "Force password change"
-msgstr "Парол хийцар тIедилла"
-
-msgid "Forcefully selected"
-msgstr "Нуьцкъала хаьржина"
-
-msgid "Forgot password?"
-msgstr "Парол йицъелла?"
+msgid "Users"
+msgstr "Пайдаэцархой"
 
 msgid "From"
 msgstr "Кхуьнгара"
 
-msgid "From:"
-msgstr "Хьаьнгара:"
+msgid "Number of downloads"
+msgstr "Схьаэцарийн терахь"
 
-msgid "Generate"
-msgstr "Кхолла"
+msgid "File size not accepted."
+msgstr "Файлан барам тlеоьцуш бац."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Администраторна хIокху башхаллошна тlекхочийла луо:"
+msgid "Maximum file size is:"
+msgstr "Файлан лаккхара барам бу:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "ХIокху администраторна таро ло пайдаэцархойн паролш хийца"
+msgid "Scheduled jobs"
+msgstr "Регламентаца беш болу белхаш"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "МеттахӀотто"
+
+msgid "Display options alphabetically"
+msgstr "Абатан рогlаллехь гайта опцеш"
+
+msgid "Enable email notifications for:"
+msgstr "Электронан почтехула хаамбар магаде кхунна:"
+
+msgid "Disable"
+msgstr "Мага ма де"
+
+msgid "Remove"
+msgstr "Дlадаккха"
+
+msgid "Use as default"
+msgstr "Пайдаэца юьхьанцарчу рожах санна"
+
+msgid "Collapse"
+msgstr "ДIахьарчаде"
+
+msgid "Expand"
+msgstr "Даржаде"
+
+msgid "Select"
+msgstr "Харжа"
+
+msgid "Deselect"
+msgstr "Харжар юхадаккха"
+
+msgid "Surname"
+msgstr "Доьзалан цlе"
+
+msgid "New"
+msgstr "Керла"
+
+msgid "Opened"
+msgstr "Диллина"
+
+msgid "Closed"
+msgstr "Къевлина"
+
+msgid "Placeholder"
+msgstr "Дузург"
+
+msgid "Print"
+msgstr "Зорба тоха"
+
+msgid "Previous"
+msgstr "Хьалха догIу"
+
+msgid "Next"
+msgstr "ТIаьхьа догIу"
+
+msgid "First"
+msgstr "Хьалхара"
+
+msgid "Last"
+msgstr "Тlаьххьара"
+
+msgid "Send a test email to your email address."
+msgstr "Хьайн электронан пошти тlе тестан электронан кехат дIатасахь."
+
+msgid "Block the submission"
+msgstr "Чудаларна блок хIоттае"
+
+msgid "Skip the recipient account creation."
+msgstr "ДIаэцархочун аккаунт кхоллар юкъахдита."
+
+msgid "Send activation link"
+msgstr "Активацин линк яхьийта"
+
+msgid "Password reset"
+msgstr "Парол юхакиръяр"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Цхьамма я масех дIаэцархочо системи чувалар кхочуш ца дина. Цундела цаьрга аьрзнаш кхочур дац."
+
+msgid "This user has not performed the first login yet."
+msgstr "Кху пайдаэцархочо хlинца а кхочуш ца дина дуьххьара системи чувалар."
+
+msgid "seconds"
+msgstr "сикондаш"
+
+msgid "This domain name is not available."
+msgstr "Хlокху доменан цIе тIекхочехь яц."
+
+msgid "Mark as important"
+msgstr "Ладам болуш санна билгалде"
+
+msgid "Copy to clipboard"
+msgstr "Хийцаран буфер чу копи яккха"
+
+msgid "Logout"
+msgstr "Системи чуьра аравалар"
+
+msgid "Grant access"
+msgstr "ТIекхача бакъо луо"
+
+msgid "Revoke access"
+msgstr "Тlекхочийла юхадаккха"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "Къайладаккха"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -562,54 +476,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "ТIекхача бакъо луо"
-
-msgid "Group of questions"
-msgstr "Хаттарийн гулам"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ахь арз хIинцале чуделлий? Хьайн квитанци чуязде."
-
-msgid "Hidden"
-msgstr "Хьулдина"
-
-msgid "Hide"
-msgstr "Къайладаккха"
-
-msgid "High"
-msgstr "Лакхара"
-
-msgid "Hint"
-msgstr "Къадор"
-
-msgid "Home"
-msgstr "ЦIа"
-
-msgid "Homepage title"
-msgstr "Коьртачу агlонан цlе"
-
-msgid "Hostname"
-msgstr "Шедан цlе"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Ас бешна лицензин билламаш, уьш тIеоьцу ас."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Арз чудала"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Кхин дIавахале, керла парол хIоттаехьа."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Кхин дIавахале, ши-факторан аутентификаци магаехьа."
+
+msgid "Enable"
+msgstr "Магаде"
+
+msgid "Type"
+msgstr "Тайпа"
+
+msgid "Severity"
+msgstr "Луьралла"
+
+msgid "Object"
+msgstr "Объект"
 
 msgid "ID"
 msgstr "ЦIе"
 
-msgid "Identity"
-msgstr "ЦIе"
+msgid "Username"
+msgstr "Пайдаэцархочун цIе"
+
+msgid "Role"
+msgstr "Дакъа"
+
+msgid "Name"
+msgstr "Цlе"
+
+msgid "Creation date"
+msgstr "Кхолларан дата"
+
+msgid "Last access"
+msgstr "Тlаьххьара тlекхачар"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Iорадаккхархочун тlаьххьара тlекхачар"
+
+msgid "Substatuses"
+msgstr "Субстатусаш"
+
+msgid "Add"
+msgstr "Тlетоха"
+
+msgid "Label"
+msgstr "Билгало"
+
+msgid "This field is mandatory"
+msgstr "Хlара хас дуьзна хила деза"
+
+msgid "Edit"
+msgstr "Тодан"
+
+msgid "Save"
+msgstr "ДӀаӀалашде"
+
+msgid "Cancel"
+msgstr "Юхаэца"
+
+msgid "days"
+msgstr "денош"
+
+msgid "Disabled"
+msgstr "Магийна доцу"
+
+msgid "Report statuses"
+msgstr "Аьрзнийн статусаш"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "Хьулдина"
+
+msgid "Description"
+msgstr "Сурт хIоттор"
+
+msgid "Questionnaire"
+msgstr "Хеттар"
+
+msgid "Recipients"
+msgstr "ДIаэцархой"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIоттаде."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Хеттарш тIехь урхаллин интерфейс гайта"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Iорадаккхархошна шайн дIаэцархой харжа пурба дала"
+
+msgid "Select all recipients by default"
+msgstr "Массо дIаэцархо юьхьанцарчу рожехь харжа"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Харжа мегачу дIаэцархойн лакхара терахь:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "ДIаэцархой абатан рогlаллехь гайта"
+
+msgid "Additional questionnaire"
+msgstr "ТIеоьшуш долу хеттар"
+
+msgid "Scoring system options"
+msgstr "Баллийн системин опцеш"
+
+msgid "Threshold"
+msgstr "Киртиг"
+
+msgid "Value"
+msgstr "Мехалла"
+
+msgid "Medium"
+msgstr "Юккъера"
+
+msgid "High"
+msgstr "Лакхара"
+
+msgid "Software version:"
+msgstr "Софтан верси:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Билггалчу IP-адресашна тlекхачарна доза тоха"
+
+msgid "Enabled"
+msgstr "Магийна"
+
+msgid "Allowed IP addresses"
+msgstr "Магийна IP-адресаш"
+
+msgid "Admin"
+msgstr "Администратор"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "ДIаэцархо"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Хlора чуязор цlоьмалгаца къастийна хила деза."
+
+msgid "Example:"
+msgstr "Масал:"
+
+msgid "Hostname"
+msgstr "Шедан цlе"
+
+msgid "Organization"
+msgstr "Цхьаьнакхетаралла"
+
+msgid "Invalid email address"
+msgstr "Бакъдоцу электронан поштин адрес"
+
+msgid "City"
+msgstr "Гlала"
+
+msgid "Country"
+msgstr "Мохк"
+
+msgid "Country code"
+msgstr "Мехкан код"
+
+msgid "Generate"
+msgstr "Кхолла"
+
+msgid "Private Key"
+msgstr "Шайлахьдолу догlа"
+
+msgid "Certificate Signing Request"
+msgstr "Сертификатана куьг таIо дехар дахьийтар"
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Valid until:"
+msgstr "Бакъду хIара хан тIекхаччалц:"
+
+msgid "Issuer:"
+msgstr "Арахоьцург:"
+
+msgid "Intermediate Certificates"
+msgstr "Юккъера сертификаташ"
+
+msgid "Reset"
+msgstr "Юхакирде"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Платформина 24 сахьт далале активаци ца яхь, иза шашах дlаер ю."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "HTTPS-ан конфигурацина хIокху интерфейсехула гIортор йо платформо."
+
+msgid "Automatic configuration"
+msgstr "Шашах конфигураци"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "HTTPS-ан шашах конфигурацех пайдаэцаро Let's Encrypt Certificate Authority сертификаташ дехаран а, магоран а, карладаккхаран а ерриг процесс кхочушйийр ю."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Платформа диллинчу IP адресехула тlекхача йиш йолуш хила еза, ткъа хаьржинчу шедан цlеран DNS язор хила деза, и адрес балгадоккхуш."
+
+msgid "Proceed"
+msgstr "КхидIа дIагIо"
+
+msgid "Manual configuration"
+msgstr "Куьйга конфигураци"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Куьйга конфигурацин пхьеро гойтур ду, HTTPS алтернативе Certificate Authority чуьра муха дIахIотто еза."
+
+msgid "Auto-renewal"
+msgstr "Шашах юхацIиндар"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion сервис"
+
+msgid "Anonymize outgoing connections"
+msgstr "Арайоьлху зIенаш хьулъе"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Tor а йоцуш, тlекхочийлехь хилийта платформа"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Tor а йоцуш, платформех пайдаэца дакъош магийна"
+
+msgid "Whistleblower"
+msgstr "Iорадаккхархо"
+
+msgid "To"
+msgstr "Хьаьнга"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "SMTP электронан поштин адрес"
+
+msgid "SMTP server address"
+msgstr "SMTP серверан адрес"
+
+msgid "SMTP server port"
+msgstr "SMTP серверан порт"
+
+msgid "Security"
+msgstr "Кхерамзалла"
+
+msgid "Require authentication"
+msgstr "Аутентификаци тIейожае"
+
+msgid "Password"
+msgstr "Парол"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Орзан хан дlаяларх дlахьедар дахьийта дисинчу сахьтийн терахь"
+
+msgid "Test the configuration"
+msgstr "Конфигураци зиэ"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP конфигураци юхакиръян"
+
+msgid "Reset notification templates to default"
+msgstr "Хаамбарийн шаблонаш юьхьанцарчу рожехь юхакиръе"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Question"
+msgstr "Хаттар"
+
+msgid "Single-line text input"
+msgstr "Цхьалха могӀанан текст чуязъяр"
+
+msgid "Multi-line text input"
+msgstr "ТIекIал могӀанан текст чуязъяр"
+
+msgid "Selection box"
+msgstr "Харжаман хас"
+
+msgid "Multiple choice input"
+msgstr "Дукхаллин харжаман чуяздар"
+
+msgid "Checkbox"
+msgstr "Кор"
+
+msgid "Terms of service"
+msgstr "Сервисан билламаш"
+
+msgid "Date range"
+msgstr "Датийн диапазон"
+
+msgid "Group of questions"
+msgstr "Хаттарийн гулам"
+
+msgid "Row"
+msgstr "Могlа"
+
+msgid "Column"
+msgstr "Ирх-аса"
+
+msgid "Width"
+msgstr "Шоралла"
+
+msgid "Question group"
+msgstr "Хаттарийн гулам"
+
+msgid "Hint"
+msgstr "Къадор"
+
+msgid "Mandatory"
+msgstr "Тlедожийна"
+
+msgid "Accept multiple file uploads"
+msgstr "Масех файл дIахIоттор тlеэца"
+
+msgid "Accept multiple answers"
+msgstr "Масех жоп тlеэца"
+
+msgid "Template override"
+msgstr "Шаблон юхаяккхар"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Телпонан лоьмар"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Checkbox label"
+msgstr "Коран билгало"
+
+msgid "Add multimedia content"
+msgstr "Мултимедин чулацам тlетоха"
+
+msgid "Image"
+msgstr "Васт"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Text shown upon negative answer"
+msgstr ""
+
+msgid "Low"
+msgstr "Лахара"
+
+msgid "Trigger conditions"
+msgstr "Къастамаллин билламаш"
+
+msgid "Sufficient"
+msgstr "Кхачаме"
+
+msgid "Options"
+msgstr "Опцеш"
+
+msgid "Addition"
+msgstr "Тlетохар"
+
+msgid "Multiplier"
+msgstr "Оьцург"
+
+msgid "Questions"
+msgstr "Хаттарш"
+
+msgid "Add new question"
+msgstr "Керла хаттар тlетоха"
+
+msgid "Add question from template"
+msgstr "Шаблон юккъера хаттар тlетоха"
+
+msgid "Duplicate"
+msgstr "Шалхадаккха"
+
+msgid "Steps"
+msgstr "Гlулчаш"
+
+msgid "Logo"
+msgstr "Логотайпа"
+
+msgid "Project name"
+msgstr "Проектан цlе"
+
+msgid "Homepage title"
+msgstr "Коьртачу агlонан цlе"
+
+msgid "Presentation"
+msgstr "Презентаци"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Хила тарлуш болу Iорадаккхархой тlеозон хаттар"
+
+msgid "Whistleblowing button"
+msgstr "Iорадаккхаран нуьйда"
+
+msgid "Disclaimer"
+msgstr "Жоьпалла тIе ца лацар"
+
+msgid "Footer"
+msgstr "Лахара колонтитул"
+
+msgid "Upload"
+msgstr "ДIахIоттае"
+
+msgid "Download"
+msgstr "Схьаэца"
+
+msgid "Language:"
+msgstr "Мотт:"
+
+msgid "Add custom text"
+msgstr "БIегIийла йина текст тlетоха"
+
+msgid "Custom text"
+msgstr "БIегIийла йина текст"
+
+msgid "Original text"
+msgstr "Юьхьанцара текст"
+
+msgid "Original translation"
+msgstr "Юьхьанцара гочдар"
+
+msgid "Custom translation"
+msgstr "БIегIийла дина гочдар"
+
+msgid "Disable submissions"
+msgstr "Чудаларш мага ма де"
+
+msgid "Enable encryption"
+msgstr "ШифрхIоттор магаде"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Администраторшна пайдаэцархочун парол хийцар магаде"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Системина чолхаза чувалар магаде"
+
+msgid "Enable search engines indexing"
+msgstr "Лохуршна индексаци ян магаде"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Юкъаехкинчу файлийн бараман доза"
+
+msgid "megabytes"
+msgstr "мегабайташ"
+
+msgid "Require two factor authentication"
+msgstr "Ши-факторан аутентификаци тӀейожае"
+
+msgid "Password change interval"
+msgstr "Парол хийцаран интервал"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Кхерамзаллин бахьанашца парол хийцар тIедожийна ду шен-шен рожехь."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Шайлахьйолу панел мага ма е"
+
+msgid "Enable custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел магае"
+
+msgid "Custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел"
+
+msgid "Enable scoring system"
+msgstr "Баллийн система магае"
+
+msgid "Logging level"
+msgstr "Журнал лелоран тlегlа"
+
+msgid "percentage"
+msgstr "процент"
+
+msgid "Log accesses of internal users"
+msgstr "Чоьхьарчу пайдаэцархойн журналашна тlекхочийла"
+
+msgid "Notify administrators of software problems"
+msgstr "Софтан анпалех администратошка хаамбе"
+
+msgid "Notify developers of software problems"
+msgstr "Софтан анпалех девелопершка хаамбе"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Хlара башхало магаярца ахь дакъа лоцу платформа кхолларехь а, цуьнан кхерамзалла чIагIярехь а."
+
+msgid "Reset reports"
+msgstr "Аьрзнаш юхакирде"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Case management"
+msgstr "Гlуллакхана урхалладар"
+
+msgid "Network"
+msgstr ""
+
+msgid "Sites"
+msgstr "Сайташ"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "Конфигураци е"
+
+msgid "Subdomain"
+msgstr "Субдомен"
+
+msgid "Mode:"
+msgstr "Раж:"
+
+msgid "Creation date:"
+msgstr "Кхолларан дата:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Хьалхарчу сайтах урхалла даран lалашонца бен пайда ма эца"
+
+msgid "Root domain used for secondary sites"
+msgstr "Шолгlачу сайташна лелош йолу ораман домен"
+
+msgid "Allow users to sign up"
+msgstr "Пайдаэцархошна чуязбала магаде"
+
+msgid "Enable terms of service"
+msgstr "Сервисан билламаш магабе"
+
+msgid "Title"
+msgstr "ЦӀе"
+
+msgid "Public name"
+msgstr "Нахана евза цlе"
+
+msgid "Send reset link"
+msgstr "Юхакирдаран линк яхьийта"
+
+msgid "Set password"
+msgstr "Парол хlоттае"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 12 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
+
+msgid "Force password change"
+msgstr "Парол хийцар тIедилла"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Пайдаэцархочунна парол хийцар тIедиллина хир ду, юха системи чуволуш"
+
+msgid "Disable two factor authentication"
+msgstr "Ши-факторан аутентификаци мага ма е"
+
+msgid "Language"
+msgstr "Мотт"
+
+msgid "Enable email notifications"
+msgstr "Электронан поштехула хаамбар магийта"
+
+msgid "Details of the PGP key:"
+msgstr "PGP догlанан деталш"
+
+msgid "Fingerprint"
+msgstr "Пlелган томмагlа"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Шифр хIоттае, PGP диллина догIа а луш"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "ХIокху администраторна таро ло пайдаэцархойн паролш хийца"
+
+msgid "Forcefully selected"
+msgstr "Нуьцкъала хаьржина"
+
+msgid "Allow the recipient to delete reports"
+msgstr "ДIаэцархочунна аьрзнаш дIадайъа бакъо луо"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "ДIаэцархочунна арз чекхдаларан хан дIататта бакъо луо "
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Администраторна хIокху башхаллошна тlекхочийла луо:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Дехаран дата"
+
+msgid "Report date"
+msgstr "Орзан дата"
+
+msgid "Authorization"
+msgstr "Бакъо ялар"
+
+msgid "Requests"
+msgstr "Дехарш"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Бакъдаран линк я нийса яц, я цуьнан леларан хан чекхъяьлла."
+
+msgid "Your new email address has been validated."
+msgstr "Хьан электронан поштин керла адрес бакъдина."
+
+msgid "Forgot password?"
+msgstr "Парол йицъелла?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Ши-факторан аутентификацин код чуязъе"
+
+msgid "Authentication failed"
+msgstr "Аутентификаци ца нисъелла"
+
+msgid "The code is either invalid or expired."
+msgstr "Код я бакъ яц, я цуьнан леларан хан дlаяьлла."
+
+msgid "Please select your account:"
+msgstr "Хьайн аккаунт харжахь:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Хlинца хьайн парол чуязъе, тlаккха \"Чувала\" тlетаlайе:"
+
+msgid "Confirm"
+msgstr "ТIечIагIде"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Пайдаэцархочо хlара опци хаьржинчул тlаьхьа гучуйолуш йолу текст."
+
+msgid "Assign score points"
+msgstr "Баллаш хIиттае"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Статус:"
+
+msgid "Are you sure?"
+msgstr "Баккъал бахий ахь?"
+
+msgid "Close"
+msgstr "Дlачlагlа"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Тидам белаш, кхуьнца йоьзна йолу информаци меттахIотто йиш а йоцуш дIайоккхур ю."
+
+msgid "Enable two factor authentication"
+msgstr "Ши-факторан аутентификаци магае"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Кхин дIавахале, тидамца документаци ешахь кхузахь:"
+
+msgid "Account recovery key"
+msgstr "Аккаунт меттахIоторан догlа"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Копи а яй, и кхерамза меттехь ларъе. Иза хьуна оьшур ю, парол яйъахь, хьайн аккаунтана, информаци а ца йовш, тIекхочийла меттахIоттош."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Копин цlе чуязъе"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Гlортор еха"
+
+msgid "Thank you."
+msgstr "Баркалла."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ма-хуьллу сиха хьуна жоп дала хьовсур тхо."
+
+msgid "Submit"
+msgstr "Чулуо"
+
+msgid "The connection is not secure."
+msgstr "ЗIе кхерамза яц."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "HTTPS зIенашца конфигураци йина яц платформа, цундела зерийн lалашонца бен лело ца мега и."
+
+msgid "Send"
+msgstr "ДIатаса"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Тlечlагlдича, ахь чекхдаларан хан дlатотту:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Хlара гайтаман платформа ю, баккъал а долчу чудаларшна лела ма елаш хIара."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Пайдаэцархо боккъалверг хилар тоьшалдан аппликаци дIахIоттае хьайн телпон тlе"
+
+msgid "Scan the QR code with the app"
+msgstr "QR-код сканерх яккха аппликацица"
+
+msgid "Error!"
+msgstr "Гlалат!"
+
+msgid "Internal server error"
+msgstr "Серверан чоьхьара гlалат"
+
+msgid "Error on input validation"
+msgstr "Чуяздар бакъдарехь гlалат"
+
+msgid "Resource not found"
+msgstr "Ресурс ца карийна"
+
+msgid "Forbidden operation"
+msgstr "Бихкина ардам"
+
+msgid "The specified old password is not valid"
+msgstr "Ялийна шира парол бакъ яц"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Tor машанехула бен тlекхочийла дац ресурсана"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Бараман лаккхарчу тlегlанал тlехдаьлла дIахIотторан дехар"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Карара парол"
+
+msgid "New password"
+msgstr "Керла парол"
+
+msgid "The new password must be different from the current one."
+msgstr "Керла парол хьалхалерчух къаста езаш ю."
+
+msgid "Type your new password again"
+msgstr "Керла парол кхин цкъа а чуязъе"
+
+msgid "The two passwords do not match"
+msgstr "Хlара ши парол цхьаьнайогlуш яц"
+
+msgid "Validation of email address change in progress."
+msgstr "Электронан поштин адрес хийцаран бакъдар дIадоьдуш ду."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Почтин яьшки чу хьажахь кхидlа долчу куьйгаллина."
+
+msgid "Warning"
+msgstr "Варе"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "ТӀедожжийна долу дехар ду кху сайт тIе шайн къайле ларъеш йолчу Tor браузерций бен ца довлар."
+
+msgid "Download the Tor Browser"
+msgstr "Tor браузер схьаэца"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "ТIаккха копи а яй, Tor браузер чу хlара адрес юкъадилла:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Ахь арз хIинцале чуделлий? Хьайн квитанци чуязде."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Квитанци я бакъ дац, я цуьнан леларан хан дlаяьлла."
+
+msgid "Filename"
+msgstr "Файлан цlе"
+
+msgid "Size:"
+msgstr "Барам"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар яздан."
+
+msgid "Fill the additional questionnaire"
+msgstr "ТIеоьшуш долу хеттар язде"
+
+msgid "From:"
+msgstr "Хьаьнгара:"
+
+msgid "To:"
+msgstr "Хьаьнга:"
+
+msgid "View"
+msgstr ""
+
+msgid "Upload date"
+msgstr "ДIахIотторан дата"
+
+msgid "File size"
+msgstr "Файлан барам"
+
+msgid "Questionnaire answers"
+msgstr "Хеттаршна жоьпаш"
+
+msgid "Step"
+msgstr "Гlулч"
+
+msgid "Files attached by recipients"
+msgstr "ДIаэцархоша юкъаехкина файлаш"
+
+msgid "Upload a file:"
+msgstr "Файл дIахIоттае:"
+
+msgid "Welcome!"
+msgstr "Марша догlийла!"
+
+msgid "For the user documentation, visit:"
+msgstr "Пайдаэцархойн документацига хьажа, кхуза гIуо:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -621,915 +1447,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Софтан кхолларехь дакъа лаца я гlалатах лаьцна хаам бан хьуна лаахь, гIуллакх айъа тхан гIортаран системехь:"
 
-msgid "Image"
-msgstr "Васт"
-
-msgid "Import"
-msgstr "Импорт е"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Кху гIулчехь хIокху хаттаршна жоьпаш я доцуш ду, я уьш бакъ дац:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Чудаккхар нийса хилар бакъдар"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Пайдаэцархо боккъалверг хилар тоьшалдан аппликаци дIахIоттае хьайн телпон тlе"
-
-msgid "Intermediate Certificates"
-msgstr "Юккъера сертификаташ"
-
-msgid "Internal server error"
-msgstr "Серверан чоьхьара гlалат"
-
-msgid "Invalid confirmation"
-msgstr "Тlечlагlдар бакъ дац"
-
-msgid "Invalid email address"
-msgstr "Бакъдоцу электронан поштин адрес"
-
-msgid "Invalid phone number"
-msgstr "Телпонан лоьмар бакъ яц"
-
-msgid "Issuer:"
-msgstr "Арахоьцург:"
-
 msgid "Join our chat:"
 msgstr "Тхан чат юккъе дуьйла:"
 
-msgid "Label"
-msgstr "Билгало"
-
-msgid "Label the report"
-msgstr "Орзана тIе билгало хIоттае"
-
-msgid "Language"
-msgstr "Мотт"
-
-msgid "Language:"
-msgstr "Мотт:"
-
-msgid "Languages"
-msgstr "Меттанаш"
-
-msgid "Last"
-msgstr "Тlаьххьара"
-
-msgid "Last Access"
-msgstr "Тlаьххьара тIекхачар"
-
-msgid "Last access"
-msgstr "Тlаьххьара тlекхачар"
-
-msgid "Last update"
-msgstr "Тlаьххьара цIиндар"
-
-msgid "Latest selectable date"
-msgstr "Харжа йишйолу уггар тlаьххьара терахь"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Tor а йоцуш, тlекхочийлехь хилийта платформа"
-
-msgid "License"
-msgstr "Лицензи"
-
-msgid "Log accesses of internal users"
-msgstr "Чоьхьарчу пайдаэцархойн журналашна тlекхочийла"
-
-msgid "Log in"
-msgstr "Системи чувала"
-
-msgid "Logging level"
-msgstr "Журнал лелоран тlегlа"
-
-msgid "Logo"
-msgstr "Логотайпа"
-
-msgid "Logout"
-msgstr "Системи чуьра аравалар"
-
-msgid "Low"
-msgstr "Лахара"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Копи а яй, и кхерамза меттехь ларъе. Иза хьуна оьшур ю, парол яйъахь, хьайн аккаунтана, информаци а ца йовш, тIекхочийла меттахIоттош."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "ХIокху администраторна таро ло пайдаэцархойн паролш юхакирдан."
-
-msgid "Mandatory"
-msgstr "Тlедожийна"
-
-msgid "Manual configuration"
-msgstr "Куьйга конфигураци"
-
-msgid "Mark as important"
-msgstr "Ладам болуш санна билгалде"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Файлан лаккхара барам бу:"
-
-msgid "Maximum number of input characters"
-msgstr "Чудохучу хьаьркийн лакхара терахь"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Харжа мегачу дIаэцархойн лакхара терахь:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Юккъера"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Чудохучу хьаьркийн лахара терахь"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "Раж:"
-
-msgid "Motivation"
-msgstr "Мотиваци"
-
-msgid "Move down"
-msgstr "Охьадахийта"
-
-msgid "Move left"
-msgstr "Аьрру агlор дахийта"
-
-msgid "Move right"
-msgstr "Аьтту агlор дахийта"
-
-msgid "Move up"
-msgstr "Хьаладахийта"
-
-msgid "Multi-line text input"
-msgstr "ТIекIал могӀанан текст чуязъяр"
-
-msgid "Multiple choice input"
-msgstr "Дукхаллин харжаман чуяздар"
-
-msgid "Multiplier"
-msgstr "Оьцург"
-
-msgid "Name"
-msgstr "Цlе"
-
-msgid "Network"
-msgstr ""
-
-msgid "New"
-msgstr "Керла"
-
-msgid "New password"
-msgstr "Керла парол"
-
-msgid "New request"
-msgstr "Керла дехар"
-
-msgid "Next"
-msgstr "ТIаьхьа догIу"
-
-msgid "No"
-msgstr "Хlан-хlа"
-
-msgid "None"
-msgstr "Цхьа а"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr ""
-
-msgid "Notify administrators of software problems"
-msgstr "Софтан анпалех администратошка хаамбе"
-
-msgid "Notify developers of software problems"
-msgstr "Софтан анпалех девелопершка хаамбе"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Хlинца хьайн парол чуязъе, тlаккха \"Чувала\" тlетаlайе:"
-
-msgid "Number"
-msgstr "Лоьмар"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
-
-msgid "Number of downloads"
-msgstr "Схьаэцарийн терахь"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Орзан хан дlаяларх дlахьедар дахьийта дисинчу сахьтийн терахь"
-
-msgid "Object"
-msgstr "Объект"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Цхьамма я масех дIаэцархочо системи чувалар кхочуш ца дина. Цундела цаьрга аьрзнаш кхочур дац."
-
-msgid "Opened"
-msgstr "Диллина"
-
-msgid "Options"
-msgstr "Опцеш"
-
-msgid "Organization"
-msgstr "Цхьаьнакхетаралла"
-
-msgid "Original text"
-msgstr "Юьхьанцара текст"
-
-msgid "Original translation"
-msgstr "Юьхьанцара гочдар"
-
-msgid "Password"
-msgstr "Парол"
-
-msgid "Password change interval"
-msgstr "Парол хийцаран интервал"
-
-msgid "Password reset"
-msgstr "Парол юхакиръяр"
-
-msgid "Password reset requested."
-msgstr "Парол юхакирдар дехна."
-
-msgid "Phone number"
-msgstr "Телпонан лоьмар"
-
-msgid "Placeholder"
-msgstr "Дузург"
-
-msgid "Platform wizard"
-msgstr "Платформин пхьар"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Почтин яьшки чу хьажахь кхидlа долчу куьйгаллина."
-
-msgid "Please choose a configuration profile:"
-msgstr "Конфигурацин кеп харжахьа:"
-
-msgid "Please choose a different username."
-msgstr "Кхин пайдаэцархочун цIе харжахь."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Тидам белаш, кхуьнца йоьзна йолу информаци меттахIотто йиш а йоцуш дIайоккхур ю."
-
-msgid "Please select your account:"
-msgstr "Хьайн аккаунт харжахь:"
-
-msgid "Postpone the expiration date"
-msgstr "Чекхдаларан хан дlататта"
-
-msgid "Preferences"
-msgstr "Гlолениг харжар"
-
-msgid "Presentation"
-msgstr "Презентаци"
-
-msgid "Preview"
-msgstr "Юьхьанца хьажа"
-
-msgid "Previous"
-msgstr "Хьалха догIу"
-
-msgid "Print"
-msgstr "Зорба тоха"
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "Private Key"
-msgstr "Шайлахьдолу догlа"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "КхидIа дIагIо"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "Проектан цlе"
-
-msgid "Public name"
-msgstr "Нахана евза цlе"
-
-msgid "Question"
-msgstr "Хаттар"
-
-msgid "Question group"
-msgstr "Хаттарийн гулам"
-
-msgid "Question templates"
-msgstr "Хаттаран шаблонаш"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Хила тарлуш болу Iорадаккхархой тlеозон хаттар"
-
-msgid "Questionnaire"
-msgstr "Хеттар"
-
-msgid "Questionnaire answers"
-msgstr "Хеттаршна жоьпаш"
-
-msgid "Questionnaires"
-msgstr "Хеттарш"
-
-msgid "Questions"
-msgstr "Хаттарш"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "ДIаэцархо"
-
-msgid "Recipient selection"
-msgstr "ДIаэцархо харжар"
-
-msgid "Recipients"
-msgstr "ДIаэцархой"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар яздан."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Хаьржина дIаэцархой:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "ЦӀинде"
-
-msgid "Regenerate"
-msgstr "МеттахӀотто"
-
-msgid "Regular expression"
-msgstr "Рожехь болу гайтам"
-
-msgid "Regular expression validator"
-msgstr "Рожехь болу гайтамаш бакъдаран гlирс"
-
-msgid "Remember your receipt for this report."
-msgstr "ХIокху орзах делла квитанци дагахь латтаде."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Дlадаккха"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Жоп ло мотивацех лаьцна"
-
-msgid "Reply to the request"
-msgstr "Дехарна жоп луо"
-
-msgid "Report"
-msgstr "Арз"
-
-msgid "Report date"
-msgstr "Орзан дата"
-
-msgid "Report statuses"
-msgstr "Аьрзнийн статусаш"
-
-msgid "Reports"
-msgstr "Аьрзнаш"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Iорадаккхархочун цIарна тlекхачар деха"
-
-msgid "Request date"
-msgstr "Дехаран дата"
-
-msgid "Request motivation"
-msgstr "Хатта мотивацех лаьцна"
-
-msgid "Request status"
-msgstr "Хатта статусах лаьцна"
-
-msgid "Request support"
-msgstr "Гlортор еха"
-
-msgid "Requests"
-msgstr "Дехарш"
-
-msgid "Require authentication"
-msgstr "Аутентификаци тIейожае"
-
-msgid "Require two factor authentication"
-msgstr "Ши-факторан аутентификаци тӀейожае"
-
-msgid "Reset"
-msgstr "Юхакирде"
-
-msgid "Reset SMTP configuration"
-msgstr "SMTP конфигураци юхакиръян"
-
-msgid "Reset notification templates to default"
-msgstr "Хаамбарийн шаблонаш юьхьанцарчу рожехь юхакиръе"
-
-msgid "Reset reports"
-msgstr "Аьрзнаш юхакирде"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Tor машанехула бен тlекхочийла дац ресурсана"
-
-msgid "Resource not found"
-msgstr "Ресурс ца карийна"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Билггалчу IP-адресашна тlекхачарна доза тоха"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Тlекхочийла юхадаккха"
-
-msgid "Role"
-msgstr "Дакъа"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Tor а йоцуш, платформех пайдаэца дакъош магийна"
-
-msgid "Root domain used for secondary sites"
-msgstr "Шолгlачу сайташна лелош йолу ораман домен"
-
-msgid "Row"
-msgstr "Могlа"
-
-msgid "SMTP email address"
-msgstr "SMTP электронан поштин адрес"
-
-msgid "SMTP server address"
-msgstr "SMTP серверан адрес"
-
-msgid "SMTP server port"
-msgstr "SMTP серверан порт"
-
-msgid "Save"
-msgstr "ДӀаӀалашде"
-
-msgid "Save all"
-msgstr "Дерриг дӀаӀалашде"
-
-msgid "Scan the QR code with the app"
-msgstr "QR-код сканерх яккха аппликацица"
-
-msgid "Scheduled jobs"
-msgstr "Регламентаца беш болу белхаш"
-
-msgid "Score"
-msgstr "Чот"
-
-msgid "Scoring system options"
-msgstr "Баллийн системин опцеш"
-
-msgid "Search"
-msgstr "Лаха"
-
-msgid "Security"
-msgstr "Кхерамзалла"
-
-msgid "Select"
-msgstr "Харжа"
-
-msgid "Select a file or drag it here."
-msgstr "Файл харжа я кхуза схьатакхае."
-
-msgid "Select all"
-msgstr "Дерриг харжа"
-
-msgid "Select all recipients by default"
-msgstr "Массо дIаэцархо юьхьанцарчу рожехь харжа"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Харжаман хас"
-
-msgid "Send"
-msgstr "ДIатаса"
-
-msgid "Send a test email to your email address."
-msgstr "Хьайн электронан пошти тlе тестан электронан кехат дIатасахь."
-
-msgid "Send activation link"
-msgstr "Активацин линк яхьийта"
-
-msgid "Send reset link"
-msgstr "Юхакирдаран линк яхьийта"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Парол хlоттае"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIоттаде."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Шифр хIоттае, PGP диллина догIа а луш"
-
-msgid "Settings"
-msgstr ""
-
-msgid "Severity"
-msgstr "Луьралла"
-
-msgid "Show"
-msgstr "Гайта"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "ДIаэцархой абатан рогlаллехь гайта"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Хеттарш тIехь урхаллин интерфейс гайта"
-
-msgid "Sign up"
-msgstr "Язлуо"
-
-msgid "Silence email notifications"
-msgstr "Электронан поштехула хаамбар тиедие"
-
-msgid "Single-line text input"
-msgstr "Цхьалха могӀанан текст чуязъяр"
-
-msgid "Site"
-msgstr ""
-
-msgid "Sites"
-msgstr "Сайташ"
-
-msgid "Size limit for file attachments"
-msgstr "Юкъаехкинчу файлийн бараман доза"
-
-msgid "Size:"
-msgstr "Барам"
-
-msgid "Skip the recipient account creation."
-msgstr "ДIаэцархочун аккаунт кхоллар юкъахдита."
-
-msgid "Software version:"
-msgstr "Софтан верси:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Статистика"
-
-msgid "Status"
-msgstr "Статус"
-
-msgid "Status:"
-msgstr "Статус:"
-
-msgid "Step"
-msgstr "Гlулч"
-
-msgid "Steps"
-msgstr "Гlулчаш"
-
-msgid "Strong"
-msgstr "Чlогlа"
-
-msgid "Subdomain"
-msgstr "Субдомен"
-
-msgid "Submissions disabled"
-msgstr "Чудаларш ца магийна"
-
-msgid "Submit"
-msgstr "Чулуо"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Субстатусаш"
-
-msgid "Success!"
-msgstr "Кхиам!"
-
-msgid "Sufficient"
-msgstr "Кхачаме"
-
-msgid "Surname"
-msgstr "Доьзалан цlе"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "Шаблон"
-
-msgid "Template override"
-msgstr "Шаблон юхаяккхар"
-
-msgid "Templates"
-msgstr "Шаблонаш"
-
-msgid "Terms of service"
-msgstr "Сервисан билламаш"
-
-msgid "Test the configuration"
-msgstr "Конфигураци зиэ"
-
-msgid "Text"
-msgstr "Текст"
-
-msgid "Text customization"
-msgstr "Текст бIегIийла яр"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Пайдаэцархочо хlара опци хаьржинчул тlаьхьа гучуйолуш йолу текст."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Баркалла."
-
-msgid "The answer is too short"
-msgstr "Жоп дукха доца ду"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 12 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
-
-msgid "The code is either invalid or expired."
-msgstr "Код я бакъ яц, я цуьнан леларан хан дlаяьлла."
-
-msgid "The connection is not secure."
-msgstr "ЗIе кхерамза яц."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Хьан арз хIокху дIаэцархошка кхочур ду, уьш юкъара дIабаха йиш яц:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "ХIокху гIулчашца йолчу процедуро гойтур ду, хьайн Iорадаккхархочун платформа муха кхолла еза."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Куьйга конфигурацин пхьеро гойтур ду, HTTPS алтернативе Certificate Authority чуьра муха дIахIотто еза."
-
-msgid "The new password must be different from the current one."
-msgstr "Керла парол хьалхалерчух къаста езаш ю."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "HTTPS зIенашца конфигураци йина яц платформа, цундела зерийн lалашонца бен лело ца мега и."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Платформа диллинчу IP адресехула тlекхача йиш йолуш хила еза, ткъа хаьржинчу шедан цlеран DNS язор хила деза, и адрес балгадоккхуш."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "HTTPS-ан конфигурацина хIокху интерфейсехула гIортор йо платформо."
-
-msgid "The provided recovery key is invalid."
-msgstr "ХIара меттахIоторан догlа бакъ дац."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Схьайелла йолу юхакирдаран маркер я бакъ яц, я цуьнан хан дlаяьлла. "
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Квитанци я бакъ дац, я цуьнан леларан хан дlаяьлла."
-
-msgid "The specified input is not valid."
-msgstr "Билгалдина чуяздар бакъ дац."
-
-msgid "The specified input is not valid:"
-msgstr "Билгалдина чуяздар бакъ дац:"
-
-msgid "The specified old password is not valid"
-msgstr "Ялийна шира парол бакъ яц"
-
-msgid "The two passwords do not match"
-msgstr "Хlара ши парол цхьаьнайогlуш яц"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Бараман лаккхарчу тlегlанал тlехдаьлла дIахIотторан дехар"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Пайдаэцархочунна парол хийцар тIедиллина хир ду, юха системи чуволуш"
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Бакъдаран линк я нийса яц, я цуьнан леларан хан чекхъяьлла."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Iорадаккхархочо хlинцале дешна тlаьххьара карладаккхар"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Iорадаккхархочо хlинца а ца дешна тlаьххьара карладаккхар"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "ТIаккха копи а яй, Tor браузер чу хlара адрес юкъадилла:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Хlара бӀегӀийла йина текст платформи тlехь кхин гуш яц. Дуьххьарлера текст я хийцина, я дlаяьккхина."
-
-msgid "This domain name is not available."
-msgstr "Хlокху доменан цIе тIекхочехь яц."
-
-msgid "This field is mandatory"
-msgstr "Хlара хас дуьзна хила деза"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Хlара гайтаман платформа ю, баккъал а долчу чудаларшна лела ма елаш хIара."
-
-msgid "This user has not performed the first login yet."
-msgstr "Кху пайдаэцархочо хlинца а кхочуш ца дина дуьххьара системи чувалар."
-
-msgid "Threshold"
-msgstr "Киртиг"
-
-msgid "Title"
-msgstr "ЦӀе"
-
-msgid "To"
-msgstr "Хьаьнга"
-
-msgid "To:"
-msgstr "Хьаьнга:"
-
-msgid "Tor"
-msgstr ""
-
-msgid "Tor Onion Service"
-msgstr "Tor Onion сервис"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Къастамаллин билламаш"
-
-msgid "Trigger question"
-msgstr "Къастамаллин хаттар"
-
-msgid "Triggered by score:"
-msgstr "Къастамаллин баллаш:"
-
-msgid "Turn on email notifications"
-msgstr "Электронан поштехула хаамбар латаде"
-
-msgid "Type"
-msgstr "Тайпа"
-
-msgid "Type your new password again"
-msgstr "Керла парол кхин цкъа а чуязъе"
-
-msgid "URL redirects"
-msgstr "URL кхин адресца доьду"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "ДIахIоттае"
-
-msgid "Upload a file:"
-msgstr "Файл дIахIоттае:"
-
-msgid "Upload date"
-msgstr "ДIахIотторан дата"
-
-msgid "Use as default"
-msgstr "Пайдаэца юьхьанцарчу рожах санна"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Системи чувала, 16 терахь долчу квитанцех пайдаэца.  Цо таро лур ю хьуна оха дlадоуьйтучу а косте хьажа, ткъа иштта сов информации тIетоха. "
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Хьалхарчу сайтах урхалла даран lалашонца бен пайда ма эца"
-
-msgid "User"
-msgstr "Пайдаэцархо"
-
-msgid "Username"
-msgstr "Пайдаэцархочун цIе"
-
-msgid "Users"
-msgstr "Пайдаэцархой"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "HTTPS-ан шашах конфигурацех пайдаэцаро Let's Encrypt Certificate Authority сертификаташ дехаран а, магоран а, карладаккхаран а ерриг процесс кхочушйийр ю."
-
-msgid "Valid until:"
-msgstr "Бакъду хIара хан тIекхаччалц:"
-
-msgid "Validation of email address change in progress."
-msgstr "Электронан поштин адрес хийцаран бакъдар дIадоьдуш ду."
-
-msgid "Value"
-msgstr "Мехалла"
-
-msgid "Video"
-msgstr "Видео"
-
-msgid "View"
-msgstr ""
-
-msgid "View your report"
-msgstr "Хьайн орзе хьажа"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Бакъо яларе хьоьжу"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Файл(аш) дIахIоттор дерзаре хьоьжу."
-
-msgid "Warning"
-msgstr "Варе"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Оха хьехар до хlара опци харжа, хьайн информаци lалашъян хьуна лаахь, дIаэцархоша шайн паролш яйъича. Вуьшта, оха хьехар ца до кху башхалонах пайдаэца, хьуна дIаэцархой бен хьан чудаларшна тlе ца кхочуьйтуш, система нисъян лаахь."
+msgid "An update is available:"
+msgstr "ЦIиндар долуш ду:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1538,78 +1460,85 @@ msgid ""
 "your password."
 msgstr "Охьа хьехар, \"ГIоленаш\" декъе дехьа а валий, хьайн \"Аккаунт меттахIоторан догlа\" схьа а эцна, и кхерамзаллин кепехь лардар. И догlа хьуна оьшур ду платформиний, хьан информациний тlекхочийла меттахlоттон, хьуна хьайн парол йицъелча."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ма-хуьллу сиха хьуна жоп дала хьовсур тхо."
+msgid "Select a file or drag it here."
+msgstr "Файл харжа я кхуза схьатакхае."
 
-msgid "Weak"
-msgstr "Гlийла"
+msgid "The provided recovery key is invalid."
+msgstr "ХIара меттахIоторан догlа бакъ дац."
 
-msgid "Welcome!"
-msgstr "Марша догlийла!"
-
-msgid "Whistleblower"
-msgstr "Iорадаккхархо"
-
-msgid "Whistleblower's last access"
-msgstr "Iорадаккхархочун тlаьххьара тlекхачар"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Iорадаккхаран нуьйда"
-
-msgid "Width"
-msgstr "Шоралла"
-
-msgid "Yes"
-msgstr "Хlаъ"
+msgid "The provided reset token is invalid or expired."
+msgstr "Схьайелла йолу юхакирдаран маркер я бакъ яц, я цуьнан хан дlаяьлла. "
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Хьо цIехьулъяр доцуш тlетасалуш ву серверна, хIокху серверо цIехьулъеш чудаларшна бен гIортор еш яц"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Парол юхакирдар деха, аккаунтан пайдаэцархочун цIе я электронан поштин адрес чуязде."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Парол юхакирдар деха, хьайн электронан почтин адрес чуязде."
+
+msgid "Password reset requested."
+msgstr "Парол юхакирдар дехна."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "ТӀедожжийна долу дехар ду кху сайт тIе шайн къайле ларъеш йолчу Tor браузерций бен ца довлар."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Парол юхакирдар чекхдаккха, чуязде аккаунт меттахlотторан догlа"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Iорадаккхархочун цIарна тlекхочийла дехна lуналхочуьнга."
+
+msgid "Date of the request"
+msgstr "Дехаран дата"
+
+msgid "Show"
+msgstr "Гайта"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Декъалво хьо!"
 
 msgid "You have completed the platform activation."
 msgstr "Платформин активаци яр чекхдаьккхи ахь."
 
-msgid "You have completed the platform wizard."
-msgstr "Хьо платформин пхьерах чекхваьлла."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Харжа мегачу дIаэцархойн лаккхарчу терахье кхаьчна хьо."
-
-msgid "You must select at least one recipient."
-msgstr "Мел кIезга а цхьа дIаэцархо харжа веза ахь."
-
-msgid "Your new email address has been validated."
-msgstr "Хьан электронан поштин керла адрес бакъдина."
-
-msgid "Your report was successful."
-msgstr "Хьан арз кхиамца схьакхаьчна."
+msgid "Success!"
+msgstr "Кхиам!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Iорадаккхархочун платформа кийча хила герга ю!"
 
-msgid "days"
-msgstr "денош"
+msgid "Check your inbox to activate it."
+msgstr "Цунна активаци ян, почтин яьшки чу хьажа"
 
-msgid "file unavailable"
-msgstr "файл тlекхочийлехь яц"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Платформина 24 сахьт далале активаци ца яхь, иза шашах дlаер ю."
 
-msgid "megabytes"
-msgstr "мегабайташ"
+msgid "Sign up"
+msgstr "Язлуо"
 
-msgid "percentage"
-msgstr "процент"
+msgid "Invalid confirmation"
+msgstr "Тlечlагlдар бакъ дац"
+
+msgid "Invalid phone number"
+msgstr "Телпонан лоьмар бакъ яц"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Тlечlагlдар"
+
+msgid "The answer is too short"
+msgstr "Жоп дукха доца ду"
+
+msgid "The specified input is not valid."
+msgstr "Билгалдина чуяздар бакъ дац."
+
+msgid "The specified input is not valid:"
+msgstr "Билгалдина чуяздар бакъ дац:"
 
 msgid "please enter a valid email address."
 msgstr "бакъ долу электронан адрес чуяздехьа."
@@ -1617,14 +1546,82 @@ msgstr "бакъ долу электронан адрес чуяздехьа."
 msgid "please enter numbers only."
 msgstr "терахьаш бен ма яздехьа."
 
-msgid "seconds"
-msgstr "сикондаш"
+msgid "Submissions disabled"
+msgstr "Чудаларш ца магийна"
 
-msgid "File a report"
-msgstr "Арз чудала"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Хьо цIехьулъяр доцуш тlетасалуш ву серверна, хIокху серверо цIехьулъеш чудаларшна бен гIортор еш яц"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Хьан арз кхиамца схьакхаьчна."
+
+msgid "Remember your receipt for this report."
+msgstr "ХIокху орзах делла квитанци дагахь латтаде."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Системи чувала, 16 терахь долчу квитанцех пайдаэца.  Цо таро лур ю хьуна оха дlадоуьйтучу а косте хьажа, ткъа иштта сов информации тIетоха. "
+
+msgid "View your report"
+msgstr "Хьайн орзе хьажа"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Хаьржина дIаэцархой:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Харжа мегачу дIаэцархойн лаккхарчу терахье кхаьчна хьо."
+
+msgid "You must select at least one recipient."
+msgstr "Мел кIезга а цхьа дIаэцархо харжа веза ахь."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Хьан арз хIокху дIаэцархошка кхочур ду, уьш юкъара дIабаха йиш яц:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Кху гIулчехь хIокху хаттаршна жоьпаш я доцуш ду, я уьш бакъ дац:"
+
+msgid "Recipient selection"
+msgstr "ДIаэцархо харжар"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Файл(аш) дIахIоттор дерзаре хьоьжу."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "ХIокху гIулчашца йолчу процедуро гойтур ду, хьайн Iорадаккхархочун платформа муха кхолла еза."
+
+msgid "Please choose a configuration profile:"
+msgstr "Конфигурацин кеп харжахьа:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "ХIокху администраторна таро ло пайдаэцархойн паролш юхакирдан."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Оха хьехар до хlара опци харжа, хьайн информаци lалашъян хьуна лаахь, дIаэцархоша шайн паролш яйъича. Вуьшта, оха хьехар ца до кху башхалонах пайдаэца, хьуна дIаэцархой бен хьан чудаларшна тlе ца кхочуьйтуш, система нисъян лаахь."
+
+msgid "Please choose a different username."
+msgstr "Кхин пайдаэцархочун цIе харжахь."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Ас бешна лицензин билламаш, уьш тIеоьцу ас."
+
+msgid "You have completed the platform wizard."
+msgstr "Хьо платформин пхьерах чекхваьлла."
 
 msgid "Please summarize your report in a few words."
 msgstr "Хьайн арз масех дашца довзийтахь."

@@ -58,129 +58,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = automatisch"
+msgid "Log in"
+msgstr "Inloggen"
 
-msgid "Accept multiple answers"
-msgstr "Aanvaard meerdere antwoorden"
+msgid "Languages"
+msgstr "Talen"
 
-msgid "Accept multiple file uploads"
-msgstr "Aanvaard uploads van meerdere bestanden"
-
-msgid "Acceptable"
-msgstr "Redelijk"
-
-msgid "Access control"
-msgstr "Toegangscontrole"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Toegang gevraagd"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
-
-msgid "Account recovery key"
-msgstr "Herstelcode voor je account"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Activiteiten"
-
-msgid "Add"
-msgstr "Toevoegen"
-
-msgid "Add custom text"
-msgstr "Voeg aangepaste tekst toe"
-
-msgid "Add multimedia content"
-msgstr "Multimediainhoud toevoegen"
-
-msgid "Add new question"
-msgstr "Nieuwe vraag toevoegen"
-
-msgid "Add new questionnaire"
-msgstr "Nieuwe vragenlijst toevoegen"
-
-msgid "Add question from template"
-msgstr "Vraag toevoegen van sjabloon"
-
-msgid "Addition"
-msgstr "Toevoeging"
-
-msgid "Additional questionnaire"
-msgstr "Toegevoegde vragenformulier"
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
+msgid "Text customization"
+msgstr "Tekst aanpassing"
 
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Sta ontvangers toe tips te verwijderen"
+msgid "Question templates"
+msgstr "Formuliersjablonen"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
+msgid "Questionnaires"
+msgstr "Vragenlijsten"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
+msgid "Add new questionnaire"
+msgstr "Nieuwe vragenlijst toevoegen"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "De klokkenluider toestaan reacties achter te laten"
+msgid "Home"
+msgstr "Home"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Changelog"
 
-msgid "Allow users to sign up"
-msgstr "Gebruikers toestaan zich in te schijven"
+msgid "License"
+msgstr "Licentie"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Klokkenluiders toestaan hun ontvangers te selecteren"
+msgid "Templates"
+msgstr "Sjablonen"
 
-msgid "Allowed IP addresses"
-msgstr "Toegestane IP-adressen"
-
-msgid "An update is available:"
-msgstr "Een update is beschikbaar:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Verwijderen"
 
 msgid "Anomalies"
 msgstr "Afwijkingen"
 
-msgid "Anomaly detection thresholds"
-msgstr "Drempels voor anomaliedetectie"
+msgid "Preferences"
+msgstr "Voorkeuren"
 
-msgid "Anonymity"
-msgstr ""
+msgid "Notifications"
+msgstr "Meldingen"
 
-msgid "Anonymize outgoing connections"
-msgstr "Anonimiseer uitgaande verbindingen"
+msgid "file unavailable"
+msgstr "bestand niet beschikbaar"
 
-msgid "Anonymous"
-msgstr "Anoniem"
+msgid "Date"
+msgstr "Datum"
 
-msgid "Are you sure?"
-msgstr "Weet je het zeker?"
+msgid "Expiration date"
+msgstr "Vervaldatum"
 
-msgid "Assign score points"
-msgstr "Scorepunten toekennen"
+msgid "Last Access"
+msgstr "Laatste bezoek"
 
-msgid "Assigned to"
-msgstr ""
+msgid "Files"
+msgstr "Bestanden"
+
+msgid "Comments"
+msgstr "Reacties"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Platform wizard"
+msgstr "Platformwizard"
+
+msgid "Label the report"
+msgstr "Label de inzending"
+
+msgid "Edit the expiration date"
+msgstr "Vervaldatum uitstellen"
+
+msgid "Select all"
+msgstr "Alles selecteren"
+
+msgid "Deselect all"
+msgstr "Niets selecteren"
+
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+msgid "Channel"
+msgstr "Kanaal"
+
+msgid "Preview"
+msgstr "Voorbeeld"
+
+msgid "The whistleblower has already read the last update"
+msgstr "De klokkenluider heeft de laatste update al gelezen"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "De klokkenluider heeft de laatste update nog niet gelezen"
+
+msgid "Move up"
+msgstr "Omhoog"
+
+msgid "Move down"
+msgstr "Omlaag"
+
+msgid "Move left"
+msgstr "Naar links"
+
+msgid "Move right"
+msgstr "Naar rechts"
+
+msgid "Import"
+msgstr "Importeren"
+
+msgid "Export"
+msgstr "Exporteren"
+
+msgid "Save all"
+msgstr "Alles opslaan"
+
+msgid "Access control"
+msgstr "Toegangscontrole"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Regular expression validator"
+msgstr "Reguliere expressie controleren"
+
+msgid "Minimum number of input characters"
+msgstr "Minimaal aantal karakters"
+
+msgid "Maximum number of input characters"
+msgstr "Maximaal aantal karakters"
+
+msgid "Earliest selectable date"
+msgstr "Vroegst mogelijke datum"
+
+msgid "Latest selectable date"
+msgstr "Uiterste datum"
+
+msgid "0 = auto"
+msgstr "0 = automatisch"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nee"
 
 msgid "Attachment"
 msgstr "Bijlage"
@@ -188,186 +214,56 @@ msgstr "Bijlage"
 msgid "Attachments"
 msgstr "Bijlagen"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Geluid"
-
-msgid "Audit log"
-msgstr "Audit logboek"
-
-msgid "Authentication failed"
-msgstr "Authenticatie is mislukt"
-
-msgid "Authorization"
-msgstr "Autorisatie"
-
-msgid "Authorize"
-msgstr "Verlenen"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Verleen toegang tot de identiteit van de klokkenluider"
-
-msgid "Authorized"
-msgstr "Verleend"
-
-msgid "Auto-renewal"
-msgstr "Auto-hernieuwing"
-
-msgid "Automatic configuration"
-msgstr "Automatische configuratie"
-
-msgid "Available disk space"
-msgstr "Beschikbare schijfruimte"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Lees voor je doorgaat zorgvuldig de documentatie door op:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Zet two-factor-authentication aan voordat je verdergaat."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
-
-msgid "Block the submission"
-msgstr "Blokkeer de inzending"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Door te bevestigen, verander je de vervaldatum van de tip in:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Door dit in te schakelen draag je bij aan de ontwikkeling en veiligheid van het platvorm."
-
-msgid "Cancel"
-msgstr "Annuleren"
-
-msgid "Case management"
-msgstr "Casus management"
-
-msgid "Certificate"
-msgstr "Certificaat"
-
-msgid "Certificate Signing Request"
-msgstr "Certificaatondertekeningsverzoek"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Wachtwoord wijzigen"
 
-msgid "Changelog"
-msgstr "Changelog"
+msgid "User"
+msgstr "Gebruiker"
 
-msgid "Channel"
-msgstr "Kanaal"
+msgid "Motivation"
+msgstr "Reden"
 
-msgid "Channels"
-msgstr "Kanalen"
+msgid "Status"
+msgstr "Status"
 
-msgid "Check your inbox to activate it."
-msgstr "Kijk in je postvak-in om het te activeren."
+msgid "Request motivation"
+msgstr "Motivatie bij de aanvraag"
 
-msgid "Checkbox"
-msgstr "Selectievakje"
+msgid "Reply motivation"
+msgstr "Reactie op de motivatie"
 
-msgid "Checkbox label"
-msgstr "Selectievakje label"
-
-msgid "City"
-msgstr "Plaats"
-
-msgid "Close"
-msgstr "Sluiten"
-
-msgid "Closed"
-msgstr "Gesloten"
-
-msgid "Collapse"
-msgstr "Inklappen"
-
-msgid "Column"
-msgstr "Kolom"
-
-msgid "Comments"
-msgstr "Reacties"
-
-msgid "Computer"
-msgstr "Computer"
-
-msgid "Configure"
-msgstr "Configureer"
-
-msgid "Confirm"
-msgstr "Bevestig extentie"
-
-msgid "Confirmation"
-msgstr "Bevestiging"
-
-msgid "Congratulations!"
-msgstr "Gefeliciteerd!"
-
-msgid "Copy to clipboard"
-msgstr "Kopieer naar klembord"
-
-msgid "Country"
-msgstr "Land"
-
-msgid "Country code"
-msgstr "Landcode"
-
-msgid "Creation date"
-msgstr "Datum van aanmaken"
-
-msgid "Creation date:"
-msgstr "Datum van aanmaak:"
-
-msgid "Current password"
-msgstr "Huidig wachtwoord"
+msgid "Request status"
+msgstr "Status van de aanvraag"
 
 msgid "Custodian"
 msgstr "Vertrouwenspersoon"
 
-msgid "Custom"
-msgstr "Aanpassing"
+msgid "Identity"
+msgstr "Identiteit"
 
-msgid "Custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel"
+msgid "Access requested"
+msgstr "Toegang gevraagd"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Vraag toegang tot de identiteit van de klokkenluider"
 
-msgid "Custom text"
-msgstr "Aangepaste tekst"
+msgid "Reply to the request"
+msgstr "Reactie op de aanvraag"
 
-msgid "Custom translation"
-msgstr "Aangepaste vertaling"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Date of the request"
-msgstr "Datum aanvraag"
-
-msgid "Date range"
-msgstr "Datum-bereik"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Verwijderen"
+msgid "Authorized"
+msgstr "Verleend"
 
 msgid "Denied"
 msgstr "Afgewezen"
+
+msgid "Waiting for authorization"
+msgstr "Wachten op toegang"
+
+msgid "New request"
+msgstr "Nieuwe aanvraag"
+
+msgid "Authorize"
+msgstr "Verlenen"
 
 msgid "Deny"
 msgstr "Afwijzen"
@@ -375,26 +271,20 @@ msgstr "Afwijzen"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Wijs toegang tot de identiteit van de klokkenluider af"
 
-msgid "Description"
-msgstr "Omschrijving"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Verleen toegang tot de identiteit van de klokkenluider"
 
-msgid "Deselect"
-msgstr "Deselecteren"
+msgid "URL redirects"
+msgstr "URL-verwijzingen"
 
-msgid "Deselect all"
-msgstr "Niets selecteren"
+msgid "Anomaly detection thresholds"
+msgstr "Drempels voor anomaliedetectie"
 
-msgid "Details"
-msgstr "Details"
+msgid "Available disk space"
+msgstr "Beschikbare schijfruimte"
 
-msgid "Details of the PGP key:"
-msgstr "Details van de PGP-sleutel:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Uitschakelen"
+msgid "Last update"
+msgstr "Voor het laatst bijgewerkt"
 
 msgid "Disable notifications to administrators"
 msgstr "Berichten aan managers uitschakelen"
@@ -405,198 +295,222 @@ msgstr "Berichten aan vertrouwenspersonen uitschakelen"
 msgid "Disable notifications to recipients"
 msgstr "Berichten aan ontvangers uitschakelen"
 
-msgid "Disable submissions"
-msgstr "Inzendingen uitschakelen"
+msgid "Score"
+msgstr "Score"
 
-msgid "Disable the privacy panel"
-msgstr "Privacy-paneel uitschakelen"
+msgid "Trigger question"
+msgstr "Trigger vraag"
 
-msgid "Disable two factor authentication"
-msgstr "Deactiveer two-factor-authentication"
+msgid "Triggered by score:"
+msgstr "Geïnitieerd door waardering:"
 
-msgid "Disabled"
-msgstr "Uitgeschakeld"
+msgid "Weak"
+msgstr "Zwak"
 
-msgid "Disclaimer"
-msgstr "Disclaimer"
+msgid "Acceptable"
+msgstr "Redelijk"
 
-msgid "Display options alphabetically"
-msgstr "Toon opties alfabetisch"
+msgid "Strong"
+msgstr "Sterk"
 
-msgid "Download"
-msgstr "Downloaden"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgid "Silence email notifications"
+msgstr "E-mailmeldingen uitschakelen"
 
-msgid "Download the Tor Browser"
-msgstr "De Tor-browser downloaden"
+msgid "Turn on email notifications"
+msgstr "E-mailmeldingen inschakelen"
 
-msgid "Duplicate"
-msgstr "Een kopie maken"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Elke invoer moet worden gescheiden door middel van een komma."
-
-msgid "Earliest selectable date"
-msgstr "Vroegst mogelijke datum"
-
-msgid "Edit"
-msgstr "Bewerken"
-
-msgid "Email"
-msgstr "E-mail"
+msgid "Input validation"
+msgstr "Invoervelden valideren"
 
 msgid "Email address"
 msgstr "Emailadres"
 
-msgid "Enable"
-msgstr "Inschakelen"
+msgid "Custom"
+msgstr "Aanpassing"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Geen"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
+msgid "Regular expression"
+msgstr "Reguliere expressie"
 
-msgid "Enable custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel inschakelen"
-
-msgid "Enable email notifications"
-msgstr "E-mail meldingen inschakelen"
-
-msgid "Enable email notifications for:"
-msgstr "Activeer e-mailmelding voor:"
-
-msgid "Enable encryption"
-msgstr "Encryptie inschakelen"
-
-msgid "Enable scoring system"
-msgstr "Waarderingssysteem inschakelen"
-
-msgid "Enable search engines indexing"
-msgstr "Zoekmachine-indexering inschakelen"
-
-msgid "Enable simplified login"
-msgstr "Vereenvoudigde login inschakelen"
-
-msgid "Enable terms of service"
-msgstr "Gebruiksvoorwaarden inschakelen"
-
-msgid "Enable two factor authentication"
-msgstr "Twee-factor-authenticatie inschakelen"
-
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
-msgid "Enter a name for the copy"
-msgstr "Voer een naam in voor de kopie"
-
-msgid "Enter the two factor authentication code"
-msgstr "Vul de two-factor-authentication code in"
+msgid "Search"
+msgstr "Zoeken"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Deze aangepaste text is niet meer zichtbaar op het platform. De originele text is gewijzigd of verwijderd."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen."
+msgid "Audit log"
+msgstr "Audit logboek"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Voer je e-mailadres in om een wachtwoordherstel aan te vragen."
+msgid "Stats"
+msgstr "Statistieken"
 
-msgid "Error on input validation"
-msgstr "Fout bij invoer validatie"
+msgid "Activities"
+msgstr "Activiteiten"
 
-msgid "Error!"
-msgstr "Mislukt!"
+msgid "Reports"
+msgstr "Inzendingen"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Inzending"
 
-msgid "Example:"
-msgstr "Voorbeeld:"
-
-msgid "Expand"
-msgstr "Uitklappen"
-
-msgid "Expiration date"
-msgstr "Vervaldatum"
-
-msgid "Export"
-msgstr "Exporteren"
-
-msgid "File size"
-msgstr "Bestandsgrootte"
-
-msgid "File size not accepted."
-msgstr "Bestandsgrootte wordt niet geacepteerd."
-
-msgid "Filename"
-msgstr "Bestandsnaam"
-
-msgid "Files"
-msgstr "Bestanden"
-
-msgid "Files attached by recipients"
-msgstr "Bestanden die door ontvangers zijn toegevoegd"
-
-msgid "Fill the additional questionnaire"
-msgstr "De toegevoegde vragenlijst invullen"
-
-msgid "Fingerprint"
-msgstr "Vingerafdruk"
-
-msgid "First"
-msgstr "Eerste"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Voettekst"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
-
-msgid "For the user documentation, visit:"
-msgstr "Voor de gebruikershandleiding, bezoek:"
-
-msgid "Forbidden operation"
-msgstr "Verboden operatie"
-
-msgid "Force password change"
-msgstr "Forceer wachtwoord verandering"
-
-msgid "Forcefully selected"
-msgstr "Actief geselecteerd"
-
-msgid "Forgot password?"
-msgstr "Wachtwoord vergeten?"
+msgid "Users"
+msgstr "Gebruikers"
 
 msgid "From"
 msgstr "Afzender"
 
-msgid "From:"
-msgstr "Van:"
+msgid "Number of downloads"
+msgstr "Aantal keer gedownload"
 
-msgid "Generate"
-msgstr "Aanmaken"
+msgid "File size not accepted."
+msgstr "Bestandsgrootte wordt niet geacepteerd."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Geef de gebruiker beheerderstoegang tot de volgende functies:"
+msgid "Maximum file size is:"
+msgstr "Maximale bestandsgrootte:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Geef deze administrator het vermogen om gebruikerswachtwoorden te veranderen"
+msgid "Scheduled jobs"
+msgstr "Geplande werkzaamheden"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Regenereren"
+
+msgid "Display options alphabetically"
+msgstr "Toon opties alfabetisch"
+
+msgid "Enable email notifications for:"
+msgstr "Activeer e-mailmelding voor:"
+
+msgid "Disable"
+msgstr "Uitschakelen"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "Use as default"
+msgstr "Markeer als standaard"
+
+msgid "Collapse"
+msgstr "Inklappen"
+
+msgid "Expand"
+msgstr "Uitklappen"
+
+msgid "Select"
+msgstr "Selecteren"
+
+msgid "Deselect"
+msgstr "Deselecteren"
+
+msgid "Surname"
+msgstr "Achternaam"
+
+msgid "New"
+msgstr "Nieuw"
+
+msgid "Opened"
+msgstr "Geopend"
+
+msgid "Closed"
+msgstr "Gesloten"
+
+msgid "Placeholder"
+msgstr "Plaatshouder"
+
+msgid "Print"
+msgstr "Afdrukken"
+
+msgid "Previous"
+msgstr "Vorige"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "First"
+msgstr "Eerste"
+
+msgid "Last"
+msgstr "Laatste"
+
+msgid "Send a test email to your email address."
+msgstr "Verstuur een mailtje om je e-mailadres te testen."
+
+msgid "Block the submission"
+msgstr "Blokkeer de inzending"
+
+msgid "Skip the recipient account creation."
+msgstr "Sla het aanmaken van een account voor de ontvanger over."
+
+msgid "Send activation link"
+msgstr "Verstuur activatielink"
+
+msgid "Password reset"
+msgstr "Wachtwoord resetten"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Een of meer ontvangers hebben nog nooit ingelogd. Dit betekent dat ze geen meldingen ontvangen."
+
+msgid "This user has not performed the first login yet."
+msgstr "Deze gebruiker heeft nog nooit ingelogd."
+
+msgid "seconds"
+msgstr "seconden"
+
+msgid "This domain name is not available."
+msgstr "Deze domeinnaam is niet beschikbaar."
+
+msgid "Mark as important"
+msgstr "Markeer als belangrijk"
+
+msgid "Copy to clipboard"
+msgstr "Kopieer naar klembord"
+
+msgid "Logout"
+msgstr "Log uit"
+
+msgid "Grant access"
+msgstr "Toegang verlenen"
+
+msgid "Revoke access"
+msgstr "Toegang herroepen"
+
+msgid "Transfer"
+msgstr "Verplaatsen"
+
+msgid "Assigned to"
 msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Bevoegdheden"
+
+msgid "Hide"
+msgstr "Verberg"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "Selecteer een optie"
+
+msgid "Select your language"
+msgstr "Selecteer uw taal"
 
 msgid "Give this user ability to mask information"
 msgstr ""
@@ -604,54 +518,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Toegang verlenen"
-
-msgid "Group of questions"
-msgstr "Vragengroep"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Hebt u al een inzending ingediend? Voer uw 16 cijferige code in."
-
-msgid "Hidden"
-msgstr "Verborgen"
-
-msgid "Hide"
-msgstr "Verberg"
-
-msgid "High"
-msgstr "Hoog"
-
-msgid "Hint"
-msgstr "Hint"
-
-msgid "Home"
-msgstr "Home"
-
-msgid "Homepage title"
-msgstr "Titel van hoofdpagina"
-
-msgid "Hostname"
-msgstr "Hostnaam"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Ik heb de voorwaarden van de licentie gelezen en ga hiermee akkoord."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privacybeleid"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anoniem"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "Mobiel"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Dien een rapport in"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Zet two-factor-authentication aan voordat je verdergaat."
+
+msgid "Enable"
+msgstr "Inschakelen"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Severity"
+msgstr "Ernst"
+
+msgid "Object"
+msgstr "Voorwerp"
 
 msgid "ID"
 msgstr "ID"
 
-msgid "Identity"
-msgstr "Identiteit"
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Creation date"
+msgstr "Datum van aanmaken"
+
+msgid "Last access"
+msgstr "Laatste toegang"
+
+msgid "Receivers"
+msgstr "Ontvangers"
+
+msgid "Whistleblower's last access"
+msgstr "Laatste toegang van de klokkenluider"
+
+msgid "Substatuses"
+msgstr "Onderstatussen"
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Label"
+msgstr "Label"
+
+msgid "This field is mandatory"
+msgstr "Dit veld is verplicht"
+
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Save"
+msgstr "Bewaar"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "days"
+msgstr "dagen"
+
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgid "Report statuses"
+msgstr "Status van de inzending"
+
+msgid "Channels"
+msgstr "Kanalen"
+
+msgid "Hidden"
+msgstr "Verborgen"
+
+msgid "Description"
+msgstr "Omschrijving"
+
+msgid "Questionnaire"
+msgstr "Vragenformulier"
+
+msgid "Recipients"
+msgstr "Ontvangers"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Toon het navigatie-ineractiescherm van de vragenlijst"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Klokkenluiders toestaan hun ontvangers te selecteren"
+
+msgid "Select all recipients by default"
+msgstr "Selecteer standaard alle ontvangers"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maximaal aantal selecteerbare ontvangers:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Toon ontvangers in alfabetische volgorde"
+
+msgid "Additional questionnaire"
+msgstr "Toegevoegde vragenformulier"
+
+msgid "Scoring system options"
+msgstr "Beoordelingssysteem opties"
+
+msgid "Threshold"
+msgstr "Drempelwaarde"
+
+msgid "Value"
+msgstr "Waarde"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "High"
+msgstr "Hoog"
+
+msgid "Software version:"
+msgstr "Softwareversie:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Beperk toegang voor specifieke IP-adressen"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgid "Allowed IP addresses"
+msgstr "Toegestane IP-adressen"
+
+msgid "Admin"
+msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Ontvanger"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Elke invoer moet worden gescheiden door middel van een komma."
+
+msgid "Example:"
+msgstr "Voorbeeld:"
+
+msgid "Hostname"
+msgstr "Hostnaam"
+
+msgid "Organization"
+msgstr "Organisatie"
+
+msgid "Invalid email address"
+msgstr "Ongeldig e-mailadres"
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Country code"
+msgstr "Landcode"
+
+msgid "Generate"
+msgstr "Aanmaken"
+
+msgid "Private Key"
+msgstr "Privésleutel"
+
+msgid "Certificate Signing Request"
+msgstr "Certificaatondertekeningsverzoek"
+
+msgid "Certificate"
+msgstr "Certificaat"
+
+msgid "Valid until:"
+msgstr "Geldig tot:"
+
+msgid "Issuer:"
+msgstr "Uitgever:"
+
+msgid "Intermediate Certificates"
+msgstr "Tussenliggende certificaten"
+
+msgid "Reset"
+msgstr "Reset"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wordt geactiveerd."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
+
+msgid "Automatic configuration"
+msgstr "Automatische configuratie"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Het gebruik van automatische HTTPS configuratie doorloopt het gehele proces van aanvragen, activeren en vernieuwen van certificaten van de Let's Encrypt Certificate Athuthority"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Het platform moet bereikbaar zijn via een publiekelijk IP-adres en de geselecteerde hostname moet een DNS regel bevatten welke verwijst naar dat adres."
+
+msgid "Proceed"
+msgstr "Gaat u verder"
+
+msgid "Manual configuration"
+msgstr "Handmatige configuratie"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
+
+msgid "Auto-renewal"
+msgstr "Auto-hernieuwing"
+
+msgid "Tor Onion Service"
+msgstr "Tor-onion-dienst"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonimiseer uitgaande verbindingen"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Het platform is bereikbaar zonder Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Rollen ingeschakeld om het platform te gebruiken zonder TOR"
+
+msgid "Whistleblower"
+msgstr "Klokkenluider"
+
+msgid "To"
+msgstr "Aan"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "SMTP-e-mailadres"
+
+msgid "SMTP server address"
+msgstr "SMTP-serveradres"
+
+msgid "SMTP server port"
+msgstr "SMTP-serverpoort"
+
+msgid "Security"
+msgstr "Beveiliging"
+
+msgid "Require authentication"
+msgstr "Vereis authenticatie"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Aantal uur voordat de melding verstuurd wordt dat een inzending verloopt"
+
+msgid "Test the configuration"
+msgstr "Test de instellingen"
+
+msgid "Reset SMTP configuration"
+msgstr "Reset SMTP configuratie"
+
+msgid "Reset notification templates to default"
+msgstr "Notificatiesjablonen herstellen naar standaardversie"
+
+msgid "Template"
+msgstr "Sjabloon"
+
+msgid "Question"
+msgstr "Vraag"
+
+msgid "Single-line text input"
+msgstr "Één regel tekst"
+
+msgid "Multi-line text input"
+msgstr "Meerdere regels tekst"
+
+msgid "Selection box"
+msgstr "Vinkje"
+
+msgid "Multiple choice input"
+msgstr "Meerkeuzevraag"
+
+msgid "Checkbox"
+msgstr "Selectievakje"
+
+msgid "Terms of service"
+msgstr "Serviceovereenkomst"
+
+msgid "Date range"
+msgstr "Datum-bereik"
+
+msgid "Group of questions"
+msgstr "Vragengroep"
+
+msgid "Row"
+msgstr "Rij"
+
+msgid "Column"
+msgstr "Kolom"
+
+msgid "Width"
+msgstr "Breedte"
+
+msgid "Question group"
+msgstr "Vragengroep"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Mandatory"
+msgstr "Vereist"
+
+msgid "Accept multiple file uploads"
+msgstr "Aanvaard uploads van meerdere bestanden"
+
+msgid "Accept multiple answers"
+msgstr "Aanvaard meerdere antwoorden"
+
+msgid "Template override"
+msgstr "Sjabloon overschrijven"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Checkbox label"
+msgstr "Selectievakje label"
+
+msgid "Add multimedia content"
+msgstr "Multimediainhoud toevoegen"
+
+msgid "Image"
+msgstr "Afbeelding"
+
+msgid "Audio"
+msgstr "Geluid"
+
+msgid "Video"
+msgstr "Film/Beeld"
+
+msgid "Text shown upon negative answer"
+msgstr "Tekst welke wordt getoond bij een ontkennend antwoord"
+
+msgid "Low"
+msgstr "Laag"
+
+msgid "Trigger conditions"
+msgstr "Initiatie-voorwaarden"
+
+msgid "Sufficient"
+msgstr "Voldoende"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Addition"
+msgstr "Toevoeging"
+
+msgid "Multiplier"
+msgstr "Vermenigvuldiger"
+
+msgid "Questions"
+msgstr "Vragen"
+
+msgid "Add new question"
+msgstr "Nieuwe vraag toevoegen"
+
+msgid "Add question from template"
+msgstr "Vraag toevoegen van sjabloon"
+
+msgid "Duplicate"
+msgstr "Een kopie maken"
+
+msgid "Steps"
+msgstr "Stappen"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Naam van initiatief"
+
+msgid "Homepage title"
+msgstr "Titel van hoofdpagina"
+
+msgid "Presentation"
+msgstr "Presentatie"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Vraag om potentiële klokkenluiders aan te spreken"
+
+msgid "Whistleblowing button"
+msgstr "Klokkenluid-knop"
+
+msgid "Disclaimer"
+msgstr "Disclaimer"
+
+msgid "Footer"
+msgstr "Voettekst"
+
+msgid "Upload"
+msgstr "Uploaden"
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "Language:"
+msgstr "Taal:"
+
+msgid "Add custom text"
+msgstr "Voeg aangepaste tekst toe"
+
+msgid "Custom text"
+msgstr "Aangepaste tekst"
+
+msgid "Original text"
+msgstr "Orginele tekst"
+
+msgid "Original translation"
+msgstr "Orginele vertaling"
+
+msgid "Custom translation"
+msgstr "Aangepaste vertaling"
+
+msgid "Disable submissions"
+msgstr "Inzendingen uitschakelen"
+
+msgid "Enable encryption"
+msgstr "Encryptie inschakelen"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Vereenvoudigde login inschakelen"
+
+msgid "Enable search engines indexing"
+msgstr "Zoekmachine-indexering inschakelen"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Maximale grootte voor bestandsbijlagen"
+
+msgid "megabytes"
+msgstr "megabytes"
+
+msgid "Require two factor authentication"
+msgstr "Vereis two-factor-authentication"
+
+msgid "Password change interval"
+msgstr "Wachtwoord-wijzigingsinterval"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Privacy-paneel uitschakelen"
+
+msgid "Enable custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel inschakelen"
+
+msgid "Custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel"
+
+msgid "Enable scoring system"
+msgstr "Waarderingssysteem inschakelen"
+
+msgid "Logging level"
+msgstr "Niveau van loggen"
+
+msgid "percentage"
+msgstr "percentage"
+
+msgid "Log accesses of internal users"
+msgstr "Log toegang door interne-gebruikers"
+
+msgid "Notify administrators of software problems"
+msgstr "Stel administratoren op de hoogte van software problemen"
+
+msgid "Notify developers of software problems"
+msgstr "Meld programmafouten bij ontwikkelaars"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Door dit in te schakelen draag je bij aan de ontwikkeling en veiligheid van het platvorm."
+
+msgid "Reset reports"
+msgstr "Inzendingen resetten"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Case management"
+msgstr "Casus management"
+
+msgid "Network"
+msgstr "Netwerk"
+
+msgid "Sites"
+msgstr "Weblocaties"
+
+msgid "Profile"
+msgstr "Profiel"
+
+msgid "Configure"
+msgstr "Configureer"
+
+msgid "Subdomain"
+msgstr "Subdomein"
+
+msgid "Mode:"
+msgstr "Modus:"
+
+msgid "Creation date:"
+msgstr "Datum van aanmaak:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
+
+msgid "Root domain used for secondary sites"
+msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
+
+msgid "Allow users to sign up"
+msgstr "Gebruikers toestaan zich in te schijven"
+
+msgid "Enable terms of service"
+msgstr "Gebruiksvoorwaarden inschakelen"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Public name"
+msgstr "Publieke naam"
+
+msgid "Send reset link"
+msgstr "Verstuur reset link"
+
+msgid "Set password"
+msgstr "Wachtwoord instellen"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 12 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
+
+msgid "Force password change"
+msgstr "Forceer wachtwoord verandering"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
+
+msgid "Disable two factor authentication"
+msgstr "Deactiveer two-factor-authentication"
+
+msgid "Language"
+msgstr "Taal"
+
+msgid "Enable email notifications"
+msgstr "E-mail meldingen inschakelen"
+
+msgid "Details of the PGP key:"
+msgstr "Details van de PGP-sleutel:"
+
+msgid "Fingerprint"
+msgstr "Vingerafdruk"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Versleuteling instellen met een PGP-publieke sleutel"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Geef deze administrator het vermogen om gebruikerswachtwoorden te veranderen"
+
+msgid "Forcefully selected"
+msgstr "Actief geselecteerd"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Sta ontvangers toe tips te verwijderen"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Geef de gebruiker beheerderstoegang tot de volgende functies:"
+
+msgid "Statistics"
+msgstr "Statistieken"
+
+msgid "Request date"
+msgstr "Aanvraagdatum"
+
+msgid "Report date"
+msgstr "Datum van de inzending"
+
+msgid "Authorization"
+msgstr "Autorisatie"
+
+msgid "Requests"
+msgstr "Aanvragen"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "De validatiekoppeling is ofwel incorrect of is verlopen."
+
+msgid "Your new email address has been validated."
+msgstr "Jouw nieuwe e-mail adres is gevalideerd."
+
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Vul de two-factor-authentication code in"
+
+msgid "Authentication failed"
+msgstr "Authenticatie is mislukt"
+
+msgid "The code is either invalid or expired."
+msgstr "De code is ofwel ongeldig of verlopen."
+
+msgid "Please select your account:"
+msgstr "Selecteer je account:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
+
+msgid "Confirm"
+msgstr "Bevestig extentie"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
+
+msgid "Assign score points"
+msgstr "Scorepunten toekennen"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Are you sure?"
+msgstr "Weet je het zeker?"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen worden."
+
+msgid "Enable two factor authentication"
+msgstr "Twee-factor-authenticatie inschakelen"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Lees voor je doorgaat zorgvuldig de documentatie door op:"
+
+msgid "Account recovery key"
+msgstr "Herstelcode voor je account"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Maak een kopie en sla deze in een veilige plaats op. Als je je wachtwoord kwijtraakt zal je dit nodig hebben om de toegang tot je account te herstellen zonder het verlies van data."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Voer een naam in voor de kopie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Vraag ondersteuning"
+
+msgid "Thank you."
+msgstr "Bedankt."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
+
+msgid "Submit"
+msgstr "Verstuur"
+
+msgid "The connection is not secure."
+msgstr "De verbinding is onbeveiligd."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
+
+msgid "Send"
+msgstr "Verzend"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Door te bevestigen, verander je de vervaldatum van de tip in:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Dit is een test platform, gebruik het niet voor echte inzendingen."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installeer een authenticatie app op je telefoon"
+
+msgid "Scan the QR code with the app"
+msgstr "Scan de QR code met de app"
+
+msgid "Error!"
+msgstr "Mislukt!"
+
+msgid "Internal server error"
+msgstr "Interne server fout"
+
+msgid "Error on input validation"
+msgstr "Fout bij invoer validatie"
+
+msgid "Resource not found"
+msgstr "Bron niet gevonden"
+
+msgid "Forbidden operation"
+msgstr "Verboden operatie"
+
+msgid "The specified old password is not valid"
+msgstr "Het oude wachtwoord is niet geldig"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
+
+msgid "The upload request exceeds the size limit"
+msgstr "De uploadaanvraag overstijgt de MB limiet"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Huidig wachtwoord"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "The new password must be different from the current one."
+msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
+
+msgid "Type your new password again"
+msgstr "Typ je wachtwoord opnieuw"
+
+msgid "The two passwords do not match"
+msgstr "De wachtwoorden komen niet overeen"
+
+msgid "Validation of email address change in progress."
+msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
+
+msgid "Warning"
+msgstr "Waarschuwing"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "U wordt sterk aangeraden om deze site te bezoeken met de app genaamd Tor Browser, welke uw identiteit beschermt."
+
+msgid "Download the Tor Browser"
+msgstr "De Tor-browser downloaden"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Hebt u al een inzending ingediend? Voer uw 16 cijferige code in."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "De code is of ongeldig ofwel verlopen."
+
+msgid "Filename"
+msgstr "Bestandsnaam"
+
+msgid "Size:"
+msgstr "Grootte:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "BTW-code / Belastingwetgeving"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
+
+msgid "Fill the additional questionnaire"
+msgstr "De toegevoegde vragenlijst invullen"
+
+msgid "From:"
+msgstr "Van:"
+
+msgid "To:"
+msgstr "Aan:"
+
+msgid "View"
+msgstr "Bekijk"
+
+msgid "Upload date"
+msgstr "Upload datum"
+
+msgid "File size"
+msgstr "Bestandsgrootte"
+
+msgid "Questionnaire answers"
+msgstr "Antwoorden vragenformulier"
+
+msgid "Step"
+msgstr "Stap"
+
+msgid "Files attached by recipients"
+msgstr "Bestanden die door ontvangers zijn toegevoegd"
+
+msgid "Upload a file:"
+msgstr "Upload een bestand:"
+
+msgid "Welcome!"
+msgstr "Welkom"
+
+msgid "For the user documentation, visit:"
+msgstr "Voor de gebruikershandleiding, bezoek:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -663,915 +1489,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software of een fout wilt rapporteren kunt u dit doen door een nieuw ticket te openen in ons ticketsysteem:"
 
-msgid "Image"
-msgstr "Afbeelding"
-
-msgid "Import"
-msgstr "Importeren"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "In deze stap ontbreken antwoorden of zijn ongeldig op de volgende vragen:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Invoervelden valideren"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Installeer een authenticatie app op je telefoon"
-
-msgid "Intermediate Certificates"
-msgstr "Tussenliggende certificaten"
-
-msgid "Internal server error"
-msgstr "Interne server fout"
-
-msgid "Invalid confirmation"
-msgstr "Bevestiging ongeldig"
-
-msgid "Invalid email address"
-msgstr "Ongeldig e-mailadres"
-
-msgid "Invalid phone number"
-msgstr "Ongeldig telefoonnummer"
-
-msgid "Issuer:"
-msgstr "Uitgever:"
-
 msgid "Join our chat:"
 msgstr "Neem deel aan onze chat:"
 
-msgid "Label"
-msgstr "Label"
-
-msgid "Label the report"
-msgstr "Label de inzending"
-
-msgid "Language"
-msgstr "Taal"
-
-msgid "Language:"
-msgstr "Taal:"
-
-msgid "Languages"
-msgstr "Talen"
-
-msgid "Last"
-msgstr "Laatste"
-
-msgid "Last Access"
-msgstr "Laatste bezoek"
-
-msgid "Last access"
-msgstr "Laatste toegang"
-
-msgid "Last update"
-msgstr "Voor het laatst bijgewerkt"
-
-msgid "Latest selectable date"
-msgstr "Uiterste datum"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Het platform is bereikbaar zonder Tor"
-
-msgid "License"
-msgstr "Licentie"
-
-msgid "Log accesses of internal users"
-msgstr "Log toegang door interne-gebruikers"
-
-msgid "Log in"
-msgstr "Inloggen"
-
-msgid "Logging level"
-msgstr "Niveau van loggen"
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Logout"
-msgstr "Log uit"
-
-msgid "Low"
-msgstr "Laag"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Maak een kopie en sla deze in een veilige plaats op. Als je je wachtwoord kwijtraakt zal je dit nodig hebben om de toegang tot je account te herstellen zonder het verlies van data."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Maak het voor deze beheerder (admin) mogelijk om gebruikerswachtwoorden te resetten."
-
-msgid "Mandatory"
-msgstr "Vereist"
-
-msgid "Manual configuration"
-msgstr "Handmatige configuratie"
-
-msgid "Mark as important"
-msgstr "Markeer als belangrijk"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr "Max"
-
-msgid "Maximum file size is:"
-msgstr "Maximale bestandsgrootte:"
-
-msgid "Maximum number of input characters"
-msgstr "Maximaal aantal karakters"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Maximaal aantal selecteerbare ontvangers:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Medium"
-
-msgid "Min"
-msgstr "Min"
-
-msgid "Minimum number of input characters"
-msgstr "Minimaal aantal karakters"
-
-msgid "Mobile"
-msgstr "Mobiel"
-
-msgid "Mode:"
-msgstr "Modus:"
-
-msgid "Motivation"
-msgstr "Reden"
-
-msgid "Move down"
-msgstr "Omlaag"
-
-msgid "Move left"
-msgstr "Naar links"
-
-msgid "Move right"
-msgstr "Naar rechts"
-
-msgid "Move up"
-msgstr "Omhoog"
-
-msgid "Multi-line text input"
-msgstr "Meerdere regels tekst"
-
-msgid "Multiple choice input"
-msgstr "Meerkeuzevraag"
-
-msgid "Multiplier"
-msgstr "Vermenigvuldiger"
-
-msgid "Name"
-msgstr "Naam"
-
-msgid "Network"
-msgstr "Netwerk"
-
-msgid "New"
-msgstr "Nieuw"
-
-msgid "New password"
-msgstr "Nieuw wachtwoord"
-
-msgid "New request"
-msgstr "Nieuwe aanvraag"
-
-msgid "Next"
-msgstr "Volgende"
-
-msgid "No"
-msgstr "Nee"
-
-msgid "None"
-msgstr "Geen"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr "Meldingen"
-
-msgid "Notify administrators of software problems"
-msgstr "Stel administratoren op de hoogte van software problemen"
-
-msgid "Notify developers of software problems"
-msgstr "Meld programmafouten bij ontwikkelaars"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Typ nu je wachtwoord, klik dan op 'Log in':"
-
-msgid "Number"
-msgstr "Nummer"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
-
-msgid "Number of downloads"
-msgstr "Aantal keer gedownload"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Aantal uur voordat de melding verstuurd wordt dat een inzending verloopt"
-
-msgid "Object"
-msgstr "Voorwerp"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Een of meer ontvangers hebben nog nooit ingelogd. Dit betekent dat ze geen meldingen ontvangen."
-
-msgid "Opened"
-msgstr "Geopend"
-
-msgid "Options"
-msgstr "Opties"
-
-msgid "Organization"
-msgstr "Organisatie"
-
-msgid "Original text"
-msgstr "Orginele tekst"
-
-msgid "Original translation"
-msgstr "Orginele vertaling"
-
-msgid "Password"
-msgstr "Wachtwoord"
-
-msgid "Password change interval"
-msgstr "Wachtwoord-wijzigingsinterval"
-
-msgid "Password reset"
-msgstr "Wachtwoord resetten"
-
-msgid "Password reset requested."
-msgstr "Wachtwoord veranderen aangevraagd."
-
-msgid "Phone number"
-msgstr "Telefoonnummer"
-
-msgid "Placeholder"
-msgstr "Plaatshouder"
-
-msgid "Platform wizard"
-msgstr "Platformwizard"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
-
-msgid "Please choose a configuration profile:"
-msgstr "Kies een configuratie-profiel:"
-
-msgid "Please choose a different username."
-msgstr "Kies een andere gebruikersnaam."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen worden."
-
-msgid "Please select your account:"
-msgstr "Selecteer je account:"
-
-msgid "Postpone the expiration date"
-msgstr "Vervaldatum uitstellen"
-
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-msgid "Presentation"
-msgstr "Presentatie"
-
-msgid "Preview"
-msgstr "Voorbeeld"
-
-msgid "Previous"
-msgstr "Vorige"
-
-msgid "Print"
-msgstr "Afdrukken"
-
-msgid "Privacy Policy"
-msgstr "Privacybeleid"
-
-msgid "Private Key"
-msgstr "Privésleutel"
-
-msgid "Privileges"
-msgstr "Bevoegdheden"
-
-msgid "Proceed"
-msgstr "Gaat u verder"
-
-msgid "Profile"
-msgstr "Profiel"
-
-msgid "Project name"
-msgstr "Naam van initiatief"
-
-msgid "Public name"
-msgstr "Publieke naam"
-
-msgid "Question"
-msgstr "Vraag"
-
-msgid "Question group"
-msgstr "Vragengroep"
-
-msgid "Question templates"
-msgstr "Formuliersjablonen"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Vraag om potentiële klokkenluiders aan te spreken"
-
-msgid "Questionnaire"
-msgstr "Vragenformulier"
-
-msgid "Questionnaire answers"
-msgstr "Antwoorden vragenformulier"
-
-msgid "Questionnaires"
-msgstr "Vragenlijsten"
-
-msgid "Questions"
-msgstr "Vragen"
-
-msgid "Receivers"
-msgstr "Ontvangers"
-
-msgid "Recipient"
-msgstr "Ontvanger"
-
-msgid "Recipient selection"
-msgstr "Ontvangerselectie"
-
-msgid "Recipients"
-msgstr "Ontvangers"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Ontvangers geselecteerd:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Vernieuwen"
-
-msgid "Regenerate"
-msgstr "Regenereren"
-
-msgid "Regular expression"
-msgstr "Reguliere expressie"
-
-msgid "Regular expression validator"
-msgstr "Reguliere expressie controleren"
-
-msgid "Remember your receipt for this report."
-msgstr "Onthoud de code voor uw inzending."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Verwijder"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Reactie op de motivatie"
-
-msgid "Reply to the request"
-msgstr "Reactie op de aanvraag"
-
-msgid "Report"
-msgstr "Inzending"
-
-msgid "Report date"
-msgstr "Datum van de inzending"
-
-msgid "Report statuses"
-msgstr "Status van de inzending"
-
-msgid "Reports"
-msgstr "Inzendingen"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Vraag toegang tot de identiteit van de klokkenluider"
-
-msgid "Request date"
-msgstr "Aanvraagdatum"
-
-msgid "Request motivation"
-msgstr "Motivatie bij de aanvraag"
-
-msgid "Request status"
-msgstr "Status van de aanvraag"
-
-msgid "Request support"
-msgstr "Vraag ondersteuning"
-
-msgid "Requests"
-msgstr "Aanvragen"
-
-msgid "Require authentication"
-msgstr "Vereis authenticatie"
-
-msgid "Require two factor authentication"
-msgstr "Vereis two-factor-authentication"
-
-msgid "Reset"
-msgstr "Reset"
-
-msgid "Reset SMTP configuration"
-msgstr "Reset SMTP configuratie"
-
-msgid "Reset notification templates to default"
-msgstr "Notificatiesjablonen herstellen naar standaardversie"
-
-msgid "Reset reports"
-msgstr "Inzendingen resetten"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
-
-msgid "Resource not found"
-msgstr "Bron niet gevonden"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Beperk toegang voor specifieke IP-adressen"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Toegang herroepen"
-
-msgid "Role"
-msgstr "Rol"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Rollen ingeschakeld om het platform te gebruiken zonder TOR"
-
-msgid "Root domain used for secondary sites"
-msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
-
-msgid "Row"
-msgstr "Rij"
-
-msgid "SMTP email address"
-msgstr "SMTP-e-mailadres"
-
-msgid "SMTP server address"
-msgstr "SMTP-serveradres"
-
-msgid "SMTP server port"
-msgstr "SMTP-serverpoort"
-
-msgid "Save"
-msgstr "Bewaar"
-
-msgid "Save all"
-msgstr "Alles opslaan"
-
-msgid "Scan the QR code with the app"
-msgstr "Scan de QR code met de app"
-
-msgid "Scheduled jobs"
-msgstr "Geplande werkzaamheden"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Scoring system options"
-msgstr "Beoordelingssysteem opties"
-
-msgid "Search"
-msgstr "Zoeken"
-
-msgid "Security"
-msgstr "Beveiliging"
-
-msgid "Select"
-msgstr "Selecteren"
-
-msgid "Select a file or drag it here."
-msgstr "Selecteer een bestand of sleep het hierheen."
-
-msgid "Select all"
-msgstr "Alles selecteren"
-
-msgid "Select all recipients by default"
-msgstr "Selecteer standaard alle ontvangers"
-
-msgid "Select an option"
-msgstr "Selecteer een optie"
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr "Selecteer uw taal"
-
-msgid "Selection box"
-msgstr "Vinkje"
-
-msgid "Send"
-msgstr "Verzend"
-
-msgid "Send a test email to your email address."
-msgstr "Verstuur een mailtje om je e-mailadres te testen."
-
-msgid "Send activation link"
-msgstr "Verstuur activatielink"
-
-msgid "Send reset link"
-msgstr "Verstuur reset link"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Wachtwoord instellen"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Versleuteling instellen met een PGP-publieke sleutel"
-
-msgid "Settings"
-msgstr "Instellingen"
-
-msgid "Severity"
-msgstr "Ernst"
-
-msgid "Show"
-msgstr "Tonen"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Toon ontvangers in alfabetische volgorde"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Toon het navigatie-ineractiescherm van de vragenlijst"
-
-msgid "Sign up"
-msgstr "Aanmelden"
-
-msgid "Silence email notifications"
-msgstr "E-mailmeldingen uitschakelen"
-
-msgid "Single-line text input"
-msgstr "Één regel tekst"
-
-msgid "Site"
-msgstr "Site"
-
-msgid "Sites"
-msgstr "Weblocaties"
-
-msgid "Size limit for file attachments"
-msgstr "Maximale grootte voor bestandsbijlagen"
-
-msgid "Size:"
-msgstr "Grootte:"
-
-msgid "Skip the recipient account creation."
-msgstr "Sla het aanmaken van een account voor de ontvanger over."
-
-msgid "Software version:"
-msgstr "Softwareversie:"
-
-msgid "Statistics"
-msgstr "Statistieken"
-
-msgid "Stats"
-msgstr "Statistieken"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Step"
-msgstr "Stap"
-
-msgid "Steps"
-msgstr "Stappen"
-
-msgid "Strong"
-msgstr "Sterk"
-
-msgid "Subdomain"
-msgstr "Subdomein"
-
-msgid "Submissions disabled"
-msgstr "Inzendingen uitgeschakeld"
-
-msgid "Submit"
-msgstr "Verstuur"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Onderstatussen"
-
-msgid "Success!"
-msgstr "Succes!"
-
-msgid "Sufficient"
-msgstr "Voldoende"
-
-msgid "Surname"
-msgstr "Achternaam"
-
-msgid "Tax code"
-msgstr "BTW-code / Belastingwetgeving"
-
-msgid "Template"
-msgstr "Sjabloon"
-
-msgid "Template override"
-msgstr "Sjabloon overschrijven"
-
-msgid "Templates"
-msgstr "Sjablonen"
-
-msgid "Terms of service"
-msgstr "Serviceovereenkomst"
-
-msgid "Test the configuration"
-msgstr "Test de instellingen"
-
-msgid "Text"
-msgstr "Tekst"
-
-msgid "Text customization"
-msgstr "Tekst aanpassing"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst welke wordt getoond nadat de gebruiker de optie heeft gekozen"
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
-
-msgid "Text shown upon negative answer"
-msgstr "Tekst welke wordt getoond bij een ontkennend antwoord"
-
-msgid "Thank you."
-msgstr "Bedankt."
-
-msgid "The answer is too short"
-msgstr "Het antwoord is te kort"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 12 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
-
-msgid "The code is either invalid or expired."
-msgstr "De code is ofwel ongeldig of verlopen."
-
-msgid "The connection is not secure."
-msgstr "De verbinding is onbeveiligd."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "De volgende ontvangers zullen uw inzending ontvangen en kunnen niet worden gedeselecteerd:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "De volgende stap voor stap procedure helpt je bij het opzetten van je klokkenluiders-platvorm."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
-
-msgid "The new password must be different from the current one."
-msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Het platform moet bereikbaar zijn via een publiekelijk IP-adres en de geselecteerde hostname moet een DNS regel bevatten welke verwijst naar dat adres."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Het platform ondersteunt de configuratie van HTTPS via deze koppeling."
-
-msgid "The provided recovery key is invalid."
-msgstr "De ingediende herstelcode is ongeldig."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "De ingediende herstel token is ongeldig of verlopen."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "De code is of ongeldig ofwel verlopen."
-
-msgid "The specified input is not valid."
-msgstr "Deze invoer is niet geldig."
-
-msgid "The specified input is not valid:"
-msgstr "Deze invoer is niet geldig:"
-
-msgid "The specified old password is not valid"
-msgstr "Het oude wachtwoord is niet geldig"
-
-msgid "The two passwords do not match"
-msgstr "De wachtwoorden komen niet overeen"
-
-msgid "The upload request exceeds the size limit"
-msgstr "De uploadaanvraag overstijgt de MB limiet"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "De validatiekoppeling is ofwel incorrect of is verlopen."
-
-msgid "The whistleblower has already read the last update"
-msgstr "De klokkenluider heeft de laatste update al gelezen"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "De klokkenluider heeft de laatste update nog niet gelezen"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Kopieer en plak vervolgens het volgende adres in de Tor-browser:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Deze aangepaste text is niet meer zichtbaar op het platform. De originele text is gewijzigd of verwijderd."
-
-msgid "This domain name is not available."
-msgstr "Deze domeinnaam is niet beschikbaar."
-
-msgid "This field is mandatory"
-msgstr "Dit veld is verplicht"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Dit is een test platform, gebruik het niet voor echte inzendingen."
-
-msgid "This user has not performed the first login yet."
-msgstr "Deze gebruiker heeft nog nooit ingelogd."
-
-msgid "Threshold"
-msgstr "Drempelwaarde"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "To"
-msgstr "Aan"
-
-msgid "To:"
-msgstr "Aan:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Tor-onion-dienst"
-
-msgid "Transfer"
-msgstr "Verplaatsen"
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Initiatie-voorwaarden"
-
-msgid "Trigger question"
-msgstr "Trigger vraag"
-
-msgid "Triggered by score:"
-msgstr "Geïnitieerd door waardering:"
-
-msgid "Turn on email notifications"
-msgstr "E-mailmeldingen inschakelen"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Type your new password again"
-msgstr "Typ je wachtwoord opnieuw"
-
-msgid "URL redirects"
-msgstr "URL-verwijzingen"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Uploaden"
-
-msgid "Upload a file:"
-msgstr "Upload een bestand:"
-
-msgid "Upload date"
-msgstr "Upload datum"
-
-msgid "Use as default"
-msgstr "Markeer als standaard"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Gebruik deze 16-cijferige code om in te loggen. Hiermee heeft u de mogelijkheid berichten te bekijken die ontvangers aan y verstuurd hebben, en u kun tevens extra informatie toevoegen"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
-
-msgid "User"
-msgstr "Gebruiker"
-
-msgid "Username"
-msgstr "Gebruikersnaam"
-
-msgid "Users"
-msgstr "Gebruikers"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "Het gebruik van automatische HTTPS configuratie doorloopt het gehele proces van aanvragen, activeren en vernieuwen van certificaten van de Let's Encrypt Certificate Athuthority"
-
-msgid "Valid until:"
-msgstr "Geldig tot:"
-
-msgid "Validation of email address change in progress."
-msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
-
-msgid "Value"
-msgstr "Waarde"
-
-msgid "Video"
-msgstr "Film/Beeld"
-
-msgid "View"
-msgstr "Bekijk"
-
-msgid "View your report"
-msgstr "Bekijk je inzending"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Wachten op toegang"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Wacht totdat de bestanden volledig zijn verzonden."
-
-msgid "Warning"
-msgstr "Waarschuwing"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "We raden u aan deze optie te selecteren als u wilt voorkomen dat gegevens verloren gaan in het geval dat ontvangers hun wachtwoord kwijtraken. Aan de andere kant raden we u het gebruik van deze functie af indien u een systeem wilt opzetten waarbij alleen de ontvangers toegang hebben tot inzendingen."
+msgid "An update is available:"
+msgstr "Een update is beschikbaar:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1580,78 +1502,85 @@ msgid ""
 "your password."
 msgstr "We raden u aan de sectie \"Voorkeuren\" te openen om uw \"Accountherstel-sleutel\" op te halen en deze veilig op te slaan. Deze sleutel is nodig om uw toegang tot het platform en uw gegevens te herstellen in het geval u uw wachtwoord vergeet."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
+msgid "Select a file or drag it here."
+msgstr "Selecteer een bestand of sleep het hierheen."
 
-msgid "Weak"
-msgstr "Zwak"
+msgid "The provided recovery key is invalid."
+msgstr "De ingediende herstelcode is ongeldig."
 
-msgid "Welcome!"
-msgstr "Welkom"
-
-msgid "Whistleblower"
-msgstr "Klokkenluider"
-
-msgid "Whistleblower's last access"
-msgstr "Laatste toegang van de klokkenluider"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Klokkenluid-knop"
-
-msgid "Width"
-msgstr "Breedte"
-
-msgid "Yes"
-msgstr "Ja"
+msgid "The provided reset token is invalid or expired."
+msgstr "De ingediende herstel token is ongeldig of verlopen."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen met de server en deze server ondersteunt alleen anonieme inzendingen"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Voer je e-mailadres in om een wachtwoordherstel aan te vragen."
+
+msgid "Password reset requested."
+msgstr "Wachtwoord veranderen aangevraagd."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "U wordt sterk aangeraden om deze site te bezoeken met de app genaamd Tor Browser, welke uw identiteit beschermt."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
+
+msgid "Date of the request"
+msgstr "Datum aanvraag"
+
+msgid "Show"
+msgstr "Tonen"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Gefeliciteerd!"
 
 msgid "You have completed the platform activation."
 msgstr "Je hebt de activatie van het platform afgerond."
 
-msgid "You have completed the platform wizard."
-msgstr "Je hebt de wizard geheel doorlopen."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Het maximum aantal selecteerbare ontvangers is bereikt."
-
-msgid "You must select at least one recipient."
-msgstr "Je moet ten minste één ontvanger selecteren."
-
-msgid "Your new email address has been validated."
-msgstr "Jouw nieuwe e-mail adres is gevalideerd."
-
-msgid "Your report was successful."
-msgstr "Je inzending was succesvol."
+msgid "Success!"
+msgstr "Succes!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Je klokkenluiders-platvorm is bijna klaar!"
 
-msgid "days"
-msgstr "dagen"
+msgid "Check your inbox to activate it."
+msgstr "Kijk in je postvak-in om het te activeren."
 
-msgid "file unavailable"
-msgstr "bestand niet beschikbaar"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wordt geactiveerd."
 
-msgid "megabytes"
-msgstr "megabytes"
+msgid "Sign up"
+msgstr "Aanmelden"
 
-msgid "percentage"
-msgstr "percentage"
+msgid "Invalid confirmation"
+msgstr "Bevestiging ongeldig"
+
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Bevestiging"
+
+msgid "The answer is too short"
+msgstr "Het antwoord is te kort"
+
+msgid "The specified input is not valid."
+msgstr "Deze invoer is niet geldig."
+
+msgid "The specified input is not valid:"
+msgstr "Deze invoer is niet geldig:"
 
 msgid "please enter a valid email address."
 msgstr "vul een geldig e-mailadres in."
@@ -1659,14 +1588,82 @@ msgstr "vul een geldig e-mailadres in."
 msgid "please enter numbers only."
 msgstr "vul enkel getallen in."
 
-msgid "seconds"
-msgstr "seconden"
+msgid "Submissions disabled"
+msgstr "Inzendingen uitgeschakeld"
 
-msgid "File a report"
-msgstr "Dien een rapport in"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen met de server en deze server ondersteunt alleen anonieme inzendingen"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Je inzending was succesvol."
+
+msgid "Remember your receipt for this report."
+msgstr "Onthoud de code voor uw inzending."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Gebruik deze 16-cijferige code om in te loggen. Hiermee heeft u de mogelijkheid berichten te bekijken die ontvangers aan y verstuurd hebben, en u kun tevens extra informatie toevoegen"
+
+msgid "View your report"
+msgstr "Bekijk je inzending"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Ontvangers geselecteerd:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Het maximum aantal selecteerbare ontvangers is bereikt."
+
+msgid "You must select at least one recipient."
+msgstr "Je moet ten minste één ontvanger selecteren."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "De volgende ontvangers zullen uw inzending ontvangen en kunnen niet worden gedeselecteerd:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "In deze stap ontbreken antwoorden of zijn ongeldig op de volgende vragen:"
+
+msgid "Recipient selection"
+msgstr "Ontvangerselectie"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Wacht totdat de bestanden volledig zijn verzonden."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "De volgende stap voor stap procedure helpt je bij het opzetten van je klokkenluiders-platvorm."
+
+msgid "Please choose a configuration profile:"
+msgstr "Kies een configuratie-profiel:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Maak het voor deze beheerder (admin) mogelijk om gebruikerswachtwoorden te resetten."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "We raden u aan deze optie te selecteren als u wilt voorkomen dat gegevens verloren gaan in het geval dat ontvangers hun wachtwoord kwijtraken. Aan de andere kant raden we u het gebruik van deze functie af indien u een systeem wilt opzetten waarbij alleen de ontvangers toegang hebben tot inzendingen."
+
+msgid "Please choose a different username."
+msgstr "Kies een andere gebruikersnaam."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Ik heb de voorwaarden van de licentie gelezen en ga hiermee akkoord."
+
+msgid "You have completed the platform wizard."
+msgstr "Je hebt de wizard geheel doorlopen."
 
 msgid "Please summarize your report in a few words."
 msgstr "Beschrijf je inzending in een paar woorden."

@@ -19,129 +19,155 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = auto"
+msgid "Log in"
+msgstr "Ienākt"
 
-msgid "Accept multiple answers"
-msgstr "Pieņemt vairākas atbildes"
+msgid "Languages"
+msgstr "Valodas"
 
-msgid "Accept multiple file uploads"
-msgstr "Pieņemt vairāku failu augšupielādes"
-
-msgid "Acceptable"
-msgstr "Pieņemama"
-
-msgid "Access control"
-msgstr "Pieejas kontrole"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Piekļuves pieprasījums"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Piekļuve trauksmes cēlēja identitātei lūgta glabātājam."
-
-msgid "Account recovery key"
-msgstr "Konta atkopšanas atslēga"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Darbības"
-
-msgid "Add"
-msgstr "Pievienot"
-
-msgid "Add custom text"
-msgstr "Pievienot pielāgotu tekstu"
-
-msgid "Add multimedia content"
-msgstr "Pievienojiet multivides saturu"
-
-msgid "Add new question"
-msgstr "Pievienot jaunu jautājumu"
-
-msgid "Add new questionnaire"
-msgstr "Pievienot jaunu aptauju"
-
-msgid "Add question from template"
-msgstr "Pievienot jautājumu no veidnes"
-
-msgid "Addition"
-msgstr "Papildinājums"
-
-msgid "Additional questionnaire"
-msgstr "Papildu aptauja"
-
-msgid "Address"
-msgstr "Adrese"
-
-msgid "Admin"
-msgstr "Administrators"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administratori, kas tiesīgi mainīt lietotāju paroles:"
+msgid "Text customization"
+msgstr "Teksta pielāgošana"
 
 msgid "Advanced"
 msgstr "Papildus"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Atļaut adresātam dzēst ziņojumus"
+msgid "Question templates"
+msgstr "Jautājumu formas"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Atļaut adresātam atlikt ziņojuma termiņu"
+msgid "Questionnaires"
+msgstr "Aptaujas"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Atļaut trauksmes cēlējam pievienot pielikumus"
+msgid "Add new questionnaire"
+msgstr "Pievienot jaunu aptauju"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Atļaut trauksmes cēlējam rakstīt komentārus"
+msgid "Home"
+msgstr "Mājas"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Izmaiņu žurnāls"
 
-msgid "Allow users to sign up"
-msgstr "Atļaut lietotājiem reģistrēties"
+msgid "License"
+msgstr "Licence"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Atļaut trauksmes cēlējiem izvēlēties saņēmējus"
+msgid "Templates"
+msgstr "Formas"
 
-msgid "Allowed IP addresses"
-msgstr "Atļautās IP adreses"
-
-msgid "An update is available:"
-msgstr "Ir pieejams atjauninājums:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Dzēst"
 
 msgid "Anomalies"
 msgstr "Anomālijas"
 
-msgid "Anomaly detection thresholds"
-msgstr "Anomāliju noteikšanas sliekšņi"
+msgid "Preferences"
+msgstr "Iestatījumi"
 
-msgid "Anonymity"
-msgstr ""
+msgid "Notifications"
+msgstr "Paziņojumi"
 
-msgid "Anonymize outgoing connections"
-msgstr "Anonimizēt izejošos savienojumus"
+msgid "file unavailable"
+msgstr "fails nav pieejams"
 
-msgid "Anonymous"
-msgstr ""
+msgid "Date"
+msgstr "Datums"
 
-msgid "Are you sure?"
-msgstr "Esiet pārliecināts?"
+msgid "Expiration date"
+msgstr "Termiņa datums"
 
-msgid "Assign score points"
-msgstr "Piešķiriet punktus"
+msgid "Last Access"
+msgstr "Pēdējā piekļuve"
 
-msgid "Assigned to"
-msgstr "Piešķirts"
+msgid "Files"
+msgstr "Faili"
+
+msgid "Comments"
+msgstr "Komentāri"
+
+msgid "Details"
+msgstr "Detaļas"
+
+msgid "Platform wizard"
+msgstr "Platformas vednis"
+
+msgid "Label the report"
+msgstr "Marķēt ziņojumu"
+
+msgid "Edit the expiration date"
+msgstr "Atlikt termiņa beigas"
+
+msgid "Select all"
+msgstr "Atlasīt visu"
+
+msgid "Deselect all"
+msgstr "Atmest visu"
+
+msgid "Refresh"
+msgstr "Atsvaidzināt"
+
+msgid "Channel"
+msgstr "Kanāls"
+
+msgid "Preview"
+msgstr "Priekšskatījums"
+
+msgid "The whistleblower has already read the last update"
+msgstr "Trauksmes cēlējs ir izlasījis pēdējos jaunumus"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Trauksmes cēlējs nav izlasījis pēdējos jaunumus"
+
+msgid "Move up"
+msgstr "Doties augšup"
+
+msgid "Move down"
+msgstr "Doties lejup"
+
+msgid "Move left"
+msgstr "Doties pa kreisi"
+
+msgid "Move right"
+msgstr "Doties pa labi"
+
+msgid "Import"
+msgstr "Importēt"
+
+msgid "Export"
+msgstr "Eksportēt"
+
+msgid "Save all"
+msgstr "Saglabāt visu"
+
+msgid "Access control"
+msgstr "Pieejas kontrole"
+
+msgid "Number"
+msgstr "Skaits"
+
+msgid "Email"
+msgstr "E-pasts"
+
+msgid "Regular expression validator"
+msgstr "Parastais izteiksmes pārbaudītājs"
+
+msgid "Minimum number of input characters"
+msgstr "Minimālais zīmju skaits"
+
+msgid "Maximum number of input characters"
+msgstr "Maksimālais zīmju skaits"
+
+msgid "Earliest selectable date"
+msgstr "Agrākais atzīmējamais datums"
+
+msgid "Latest selectable date"
+msgstr "Vēlākais atzīmējamais datums"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "Yes"
+msgstr "Jā"
+
+msgid "No"
+msgstr "Nē"
 
 msgid "Attachment"
 msgstr "Pielikums"
@@ -149,186 +175,56 @@ msgstr "Pielikums"
 msgid "Attachments"
 msgstr "Pielikumi"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Audio"
-
-msgid "Audit log"
-msgstr "Audita žurnāls"
-
-msgid "Authentication failed"
-msgstr "Autentifikācija neizdevās"
-
-msgid "Authorization"
-msgstr "Autorizācija"
-
-msgid "Authorize"
-msgstr "Atļauj"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Atļaut piekļuvi trauksmes cēlēja identitātei"
-
-msgid "Authorized"
-msgstr "Atļauts"
-
-msgid "Auto-renewal"
-msgstr "Automātiskā atjaunošana"
-
-msgid "Automatic configuration"
-msgstr "Automātiska konfigurācija"
-
-msgid "Available disk space"
-msgstr "Pieejamā vieta diskā"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Pirms turpināt, lūdzu, uzmanīgi izlasiet dokumentāciju:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Pirms turpināt, lūdzu, iespējojiet divu faktoru autentifikāciju."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Pirms turpināt, lūdzu, iestatiet jaunu paroli."
-
-msgid "Block the submission"
-msgstr "Bloķējiet iesniegšanu"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Apstiprinot, jūs pārcelsiet derīguma termiņu uz:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Iespējojot šo funkciju, jūs veicināsiet platformas attīstību un drošību."
-
-msgid "Cancel"
-msgstr "Atcelt"
-
-msgid "Case management"
-msgstr "Lietu vadība"
-
-msgid "Certificate"
-msgstr "Sertifikāts"
-
-msgid "Certificate Signing Request"
-msgstr "Sertifikāta parakstīšanas pieprasījums"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Mainīt paroli"
 
-msgid "Changelog"
-msgstr "Izmaiņu žurnāls"
+msgid "User"
+msgstr "Lietotājs"
 
-msgid "Channel"
-msgstr "Kanāls"
+msgid "Motivation"
+msgstr "Pamatojums"
 
-msgid "Channels"
-msgstr "Kanāli"
+msgid "Status"
+msgstr "Statuss"
 
-msgid "Check your inbox to activate it."
-msgstr "Pārbaudiet savu iesūtni, lai to aktivizētu."
+msgid "Request motivation"
+msgstr "Pieteikuma pamatojums"
 
-msgid "Checkbox"
-msgstr "Izvēles rūtiņa"
+msgid "Reply motivation"
+msgstr "Atbildes pamatojums"
 
-msgid "Checkbox label"
-msgstr "Izvēles rūtiņas marķējums"
-
-msgid "City"
-msgstr "Pilsēta"
-
-msgid "Close"
-msgstr "Aizvērt"
-
-msgid "Closed"
-msgstr "Aizvērts"
-
-msgid "Collapse"
-msgstr "Sakļaut"
-
-msgid "Column"
-msgstr "Kolonna"
-
-msgid "Comments"
-msgstr "Komentāri"
-
-msgid "Computer"
-msgstr "Dators"
-
-msgid "Configure"
-msgstr "Konfigurēt"
-
-msgid "Confirm"
-msgstr "Apstiprināt"
-
-msgid "Confirmation"
-msgstr "Apstiprinājums"
-
-msgid "Congratulations!"
-msgstr "Apsveicam!"
-
-msgid "Copy to clipboard"
-msgstr "Kopēt starpliktuvē"
-
-msgid "Country"
-msgstr "Valsts"
-
-msgid "Country code"
-msgstr "Valsts kods"
-
-msgid "Creation date"
-msgstr "Izveidošanas datums"
-
-msgid "Creation date:"
-msgstr "Izveidošanas datums:"
-
-msgid "Current password"
-msgstr "Pašreizējā parole"
+msgid "Request status"
+msgstr "Pieprasījuma statuss"
 
 msgid "Custodian"
 msgstr "Aizbildnis"
 
-msgid "Custom"
-msgstr "Pielāgots"
+msgid "Identity"
+msgstr "Identitāte"
 
-msgid "Custom privacy panel"
-msgstr "Pielāgotais privātuma panelis"
+msgid "Access requested"
+msgstr "Piekļuves pieprasījums"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Pieprasīt piekļuvi trauksmes cēlēja identitātei"
 
-msgid "Custom text"
-msgstr "Pielāgots teksts"
+msgid "Reply to the request"
+msgstr "Atbildēt uz pieprasījumu"
 
-msgid "Custom translation"
-msgstr "Pielāgotais tulkojums"
-
-msgid "Date"
-msgstr "Datums"
-
-msgid "Date of the request"
-msgstr "Pieprasījuma datums"
-
-msgid "Date range"
-msgstr "Datumu diapazons"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr "Tiek izmantota noklusējuma pasta konfigurācija. Lūdzu, apsveriet iespēju izmantot privātu pasta serveri."
-
-msgid "Delete"
-msgstr "Dzēst"
+msgid "Authorized"
+msgstr "Atļauts"
 
 msgid "Denied"
 msgstr "Liegts"
+
+msgid "Waiting for authorization"
+msgstr "Gaida apstiprinājumu"
+
+msgid "New request"
+msgstr "Jauns pieprasījums"
+
+msgid "Authorize"
+msgstr "Atļauj"
 
 msgid "Deny"
 msgstr "Liedz"
@@ -336,26 +232,20 @@ msgstr "Liedz"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Liegt piekļuvi trauksmes cēlēja identitātei"
 
-msgid "Description"
-msgstr "Apraksts"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Atļaut piekļuvi trauksmes cēlēja identitātei"
 
-msgid "Deselect"
-msgstr "Atmest"
+msgid "URL redirects"
+msgstr "URL novirzīšana"
 
-msgid "Deselect all"
-msgstr "Atmest visu"
+msgid "Anomaly detection thresholds"
+msgstr "Anomāliju noteikšanas sliekšņi"
 
-msgid "Details"
-msgstr "Detaļas"
+msgid "Available disk space"
+msgstr "Pieejamā vieta diskā"
 
-msgid "Details of the PGP key:"
-msgstr "Sīkāka informācija par PGP atslēgu:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Atspējot"
+msgid "Last update"
+msgstr "Pēdējā atjaunošana"
 
 msgid "Disable notifications to administrators"
 msgstr "Atspējot paziņojumus administratoriem"
@@ -366,198 +256,222 @@ msgstr "Atspējot paziņojumus aizbildņiem"
 msgid "Disable notifications to recipients"
 msgstr "Atspējot paziņojumus adresātiem"
 
-msgid "Disable submissions"
-msgstr "Atspējot iesniegšanu"
+msgid "Score"
+msgstr "Rezultāts"
 
-msgid "Disable the privacy panel"
-msgstr "Atspējojiet privātuma paneli"
+msgid "Trigger question"
+msgstr "Aktivizējošais jautājums"
 
-msgid "Disable two factor authentication"
-msgstr "Atspējot divu faktoru autentifikāciju"
+msgid "Triggered by score:"
+msgstr "Aktivizēts pēc rezultāta:"
 
-msgid "Disabled"
-msgstr "Atspējots"
+msgid "Weak"
+msgstr "Vāja"
 
-msgid "Disclaimer"
-msgstr "Atruna"
+msgid "Acceptable"
+msgstr "Pieņemama"
 
-msgid "Display options alphabetically"
-msgstr "Parādīt opcijas alfabētiskā secībā"
+msgid "Strong"
+msgstr "Spēcīga"
 
-msgid "Download"
-msgstr "Lejupielādēt"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Kanālu atlases izvēlnes augšpusē redzamais teksts"
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgid "Silence email notifications"
+msgstr "Noklusināt e-pasta paziņojumus"
 
-msgid "Download the Tor Browser"
-msgstr "Lejupielādēt Tor Browser lietotni"
+msgid "Turn on email notifications"
+msgstr "Ieslēgt e-pasta paziņojumus"
 
-msgid "Duplicate"
-msgstr "Dublēt"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Katrs ieraksts ir jāatdala ar komatu."
-
-msgid "Earliest selectable date"
-msgstr "Agrākais atzīmējamais datums"
-
-msgid "Edit"
-msgstr "Rediģēt"
-
-msgid "Email"
-msgstr "E-pasts"
+msgid "Input validation"
+msgstr "Ievades apstiprināšana"
 
 msgid "Email address"
 msgstr "E-pasta adrese"
 
-msgid "Enable"
-msgstr "Iespējot"
+msgid "Custom"
+msgstr "Pielāgots"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Nav"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Atļaut administratoriem mainīt lietotāju paroles"
+msgid "Regular expression"
+msgstr "Regulāra izteiksme"
 
-msgid "Enable custom privacy panel"
-msgstr "Iespējot pielāgoto privātuma paneli"
-
-msgid "Enable email notifications"
-msgstr "Iespējot e-pasta paziņojumus"
-
-msgid "Enable email notifications for:"
-msgstr "Iespējot e-pasta paziņojumus:"
-
-msgid "Enable encryption"
-msgstr "Iespējot šifrēšanu"
-
-msgid "Enable scoring system"
-msgstr "Iespējot vērtēšanas sistēmu"
-
-msgid "Enable search engines indexing"
-msgstr "Iespējot meklētājprogrammu indeksēšanu"
-
-msgid "Enable simplified login"
-msgstr "Iespējot vienkāršotu pieteikšanos"
-
-msgid "Enable terms of service"
-msgstr "Iespējot pakalpojumu sniegšanas noteikumus"
-
-msgid "Enable two factor authentication"
-msgstr "Iespējot divu faktoru autentifikāciju"
-
-msgid "Enabled"
-msgstr "Iespējots"
-
-msgid "Enter a name for the copy"
-msgstr "Ievadiet kopijas nosaukumu"
-
-msgid "Enter the two factor authentication code"
-msgstr "Ievadīt divu faktoru autentifikācijas kodu"
+msgid "Search"
+msgstr "Meklēt"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Ievadiet sava konta atkopšanas atslēgu, lai pabeigtu paroles atiestatīšanas procedūru"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Šis pielāgotais teksts platformā vairs netiek rādīts. Sākotnējais teksts ir mainīts vai noņemts."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Ievadiet sava konta lietotājvārdu vai e-pasta adresi, lai pieprasītu paroles atiestatīšanu."
+msgid "Audit log"
+msgstr "Audita žurnāls"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Ievadiet savu e-pasta adresi, lai pieprasītu paroles atiestatīšanu."
+msgid "Stats"
+msgstr "Statistika"
 
-msgid "Error on input validation"
-msgstr "Kļūda ievades validācijā"
+msgid "Activities"
+msgstr "Darbības"
 
-msgid "Error!"
-msgstr "Kļūda!"
+msgid "Reports"
+msgstr "Pārskati"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Pārskats"
 
-msgid "Example:"
-msgstr "Piemērs:"
-
-msgid "Expand"
-msgstr "Izvērst"
-
-msgid "Expiration date"
-msgstr "Termiņa datums"
-
-msgid "Export"
-msgstr "Eksportēt"
-
-msgid "File size"
-msgstr "Faila izmērs"
-
-msgid "File size not accepted."
-msgstr "Faila lielums nav pieņemts."
-
-msgid "Filename"
-msgstr "Faila nosaukums"
-
-msgid "Files"
-msgstr "Faili"
-
-msgid "Files attached by recipients"
-msgstr "Saņēmēju pievienotie faili"
-
-msgid "Fill the additional questionnaire"
-msgstr "Aizpildiet papildu aptauju"
-
-msgid "Fingerprint"
-msgstr "Ciparvirkne"
-
-msgid "First"
-msgstr "Pirmais"
-
-msgid "Fiscal code"
-msgstr "Fiskālais kods"
-
-msgid "Footer"
-msgstr "Kājene"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Drošības apsvērumu dēļ paroles ir regulāri jāmaina."
-
-msgid "For the user documentation, visit:"
-msgstr "Lai iegūtu lietotāja dokumentāciju, apmeklējiet:"
-
-msgid "Forbidden operation"
-msgstr "Aizliegta darbība"
-
-msgid "Force password change"
-msgstr "Piespiedu paroles maiņa"
-
-msgid "Forcefully selected"
-msgstr "Piespiedu kārtā atlasīts"
-
-msgid "Forgot password?"
-msgstr "Aizmirsāt paroli?"
+msgid "Users"
+msgstr "Lietotāji"
 
 msgid "From"
 msgstr "No"
 
-msgid "From:"
-msgstr "No:"
+msgid "Number of downloads"
+msgstr "Lejupielādes skaits"
 
-msgid "Generate"
-msgstr "Ģenerēt"
+msgid "File size not accepted."
+msgstr "Faila lielums nav pieņemts."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Piešķirt lietotājam administratīvo piekļuvi šādām funkcijām:"
+msgid "Maximum file size is:"
+msgstr "Maksimālais faila lielums ir:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Dot šim administratoram iespēju mainīt lietotāju paroles"
+msgid "Scheduled jobs"
+msgstr "Plānotie darbi"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Atjaunot"
+
+msgid "Display options alphabetically"
+msgstr "Parādīt opcijas alfabētiskā secībā"
+
+msgid "Enable email notifications for:"
+msgstr "Iespējot e-pasta paziņojumus:"
+
+msgid "Disable"
+msgstr "Atspējot"
+
+msgid "Remove"
+msgstr "Noņemt"
+
+msgid "Use as default"
+msgstr "Izmantot kā noklusējumu"
+
+msgid "Collapse"
+msgstr "Sakļaut"
+
+msgid "Expand"
+msgstr "Izvērst"
+
+msgid "Select"
+msgstr "Izvēlēties"
+
+msgid "Deselect"
+msgstr "Atmest"
+
+msgid "Surname"
+msgstr "Uzvārds"
+
+msgid "New"
+msgstr "Jauns"
+
+msgid "Opened"
+msgstr "Atvērts"
+
+msgid "Closed"
+msgstr "Aizvērts"
+
+msgid "Placeholder"
+msgstr "Vietturis"
+
+msgid "Print"
+msgstr "Drukāt"
+
+msgid "Previous"
+msgstr "Iepriekšējais"
+
+msgid "Next"
+msgstr "Nākamais"
+
+msgid "First"
+msgstr "Pirmais"
+
+msgid "Last"
+msgstr "Pēdējais"
+
+msgid "Send a test email to your email address."
+msgstr "Nosūtīt testa e-pastu uz jūsu e-pasta adresi."
+
+msgid "Block the submission"
+msgstr "Bloķējiet iesniegšanu"
+
+msgid "Skip the recipient account creation."
+msgstr "Izlaist adresāta konta izveidi."
+
+msgid "Send activation link"
+msgstr "Nosūtīt aktivizācijas saiti"
+
+msgid "Password reset"
+msgstr "Paroles atjaunošana"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Viens vai vairāki adresāti vēl nav veikuši pirmo pieslēgšanos. Tas nozīmē, ka viņi nesaņems ziņojumus."
+
+msgid "This user has not performed the first login yet."
+msgstr "Šis lietotājs vēl nav veicis pirmo pieslēgšanos."
+
+msgid "seconds"
+msgstr "sekundes"
+
+msgid "This domain name is not available."
+msgstr "Šis domēna nosaukums nav pieejams."
+
+msgid "Mark as important"
+msgstr "Atzīmēt kā svarīgu"
+
+msgid "Copy to clipboard"
+msgstr "Kopēt starpliktuvē"
+
+msgid "Logout"
+msgstr "Iziet"
+
+msgid "Grant access"
+msgstr "Piešķirt piekļuvi"
+
+msgid "Revoke access"
+msgstr "Atsaukt piekļuvi"
+
+msgid "Transfer"
 msgstr ""
+
+msgid "Assigned to"
+msgstr "Piešķirts"
+
+msgid "Not provided."
+msgstr "Nav paredzēts."
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "Slēpt"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "Izvēlieties savu valoda"
 
 msgid "Give this user ability to mask information"
 msgstr ""
@@ -565,54 +479,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Piešķirt piekļuvi"
-
-msgid "Group of questions"
-msgstr "Jautājumu grupa"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Vai esat jau iesniedzis ziņojumu? Ievadiet ziņojuma numuru."
-
-msgid "Hidden"
-msgstr "Apslēpts"
-
-msgid "Hide"
-msgstr "Slēpt"
-
-msgid "High"
-msgstr "Augsts"
-
-msgid "Hint"
-msgstr "Mājiens"
-
-msgid "Home"
-msgstr "Mājas"
-
-msgid "Homepage title"
-msgstr "Mājas lapas nosaukums"
-
-msgid "Hostname"
-msgstr "Saimniekdatora nosaukums"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Esmu izlasījis licences noteikumus un piekrītu tiem."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Dators"
+
+msgid "Mobile"
+msgstr "Mobils"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Iesniegt ziņojumu"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Pirms turpināt, lūdzu, iestatiet jaunu paroli."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Pirms turpināt, lūdzu, iespējojiet divu faktoru autentifikāciju."
+
+msgid "Enable"
+msgstr "Iespējot"
+
+msgid "Type"
+msgstr "Veids"
+
+msgid "Severity"
+msgstr "Smaguma pakāpe"
+
+msgid "Object"
+msgstr "Objekts"
 
 msgid "ID"
 msgstr "ID"
 
-msgid "Identity"
-msgstr "Identitāte"
+msgid "Username"
+msgstr "Lietotājvārds"
+
+msgid "Role"
+msgstr "Loma"
+
+msgid "Name"
+msgstr "Vārds"
+
+msgid "Creation date"
+msgstr "Izveidošanas datums"
+
+msgid "Last access"
+msgstr "Pēdējā piekļuve"
+
+msgid "Receivers"
+msgstr "Saņēmēji"
+
+msgid "Whistleblower's last access"
+msgstr "Trauksmes cēlēja pēdēja piekļuve"
+
+msgid "Substatuses"
+msgstr "Apakšstatusi"
+
+msgid "Add"
+msgstr "Pievienot"
+
+msgid "Label"
+msgstr "Marķējums"
+
+msgid "This field is mandatory"
+msgstr "Šis lauks ir obligāts"
+
+msgid "Edit"
+msgstr "Rediģēt"
+
+msgid "Save"
+msgstr "Saglabāt"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "days"
+msgstr "dienas"
+
+msgid "Disabled"
+msgstr "Atspējots"
+
+msgid "Report statuses"
+msgstr "Ziņojuma statusi"
+
+msgid "Channels"
+msgstr "Kanāli"
+
+msgid "Hidden"
+msgstr "Apslēpts"
+
+msgid "Description"
+msgstr "Apraksts"
+
+msgid "Questionnaire"
+msgstr "Aptauja"
+
+msgid "Recipients"
+msgstr "Saņēmēji"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Iestatiet vērtību uz 0, lai atspējotu šo funkciju."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Parādīt anketas navigācijas saskarni"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Atļaut trauksmes cēlējiem izvēlēties saņēmējus"
+
+msgid "Select all recipients by default"
+msgstr "Pēc noklusējuma atlasīt visus saņēmējus"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maksimālais atlasāmo saņēmēju skaits:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Rādīt saņēmējus alfabētiskā secībā"
+
+msgid "Additional questionnaire"
+msgstr "Papildu aptauja"
+
+msgid "Scoring system options"
+msgstr "Vērtēšanas sistēmas iespējas"
+
+msgid "Threshold"
+msgstr "Slieksnis"
+
+msgid "Value"
+msgstr "Vērtība"
+
+msgid "Medium"
+msgstr "Vidējs"
+
+msgid "High"
+msgstr "Augsts"
+
+msgid "Software version:"
+msgstr "Programmatūras versija:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Ierobežojiet piekļuvi noteiktām IP adresēm"
+
+msgid "Enabled"
+msgstr "Iespējots"
+
+msgid "Allowed IP addresses"
+msgstr "Atļautās IP adreses"
+
+msgid "Admin"
+msgstr "Administrators"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Saņēmējs"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Katrs ieraksts ir jāatdala ar komatu."
+
+msgid "Example:"
+msgstr "Piemērs:"
+
+msgid "Hostname"
+msgstr "Saimniekdatora nosaukums"
+
+msgid "Organization"
+msgstr "Organizācija"
+
+msgid "Invalid email address"
+msgstr "E-pasta adrese nav derīga"
+
+msgid "City"
+msgstr "Pilsēta"
+
+msgid "Country"
+msgstr "Valsts"
+
+msgid "Country code"
+msgstr "Valsts kods"
+
+msgid "Generate"
+msgstr "Ģenerēt"
+
+msgid "Private Key"
+msgstr "Privātā atslēga"
+
+msgid "Certificate Signing Request"
+msgstr "Sertifikāta parakstīšanas pieprasījums"
+
+msgid "Certificate"
+msgstr "Sertifikāts"
+
+msgid "Valid until:"
+msgstr "Derīgs līdz:"
+
+msgid "Issuer:"
+msgstr "Izdevējs:"
+
+msgid "Intermediate Certificates"
+msgstr "Vidēja līmeņa sertifikāti"
+
+msgid "Reset"
+msgstr "Atiestatīt"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Ja platforma netiks aktivizēta 24 stundu laikā, tā tiks automātiski dzēsta."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platforma atbalsta HTTPS konfigurāciju, izmantojot šo saskarni."
+
+msgid "Automatic configuration"
+msgstr "Automātiska konfigurācija"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Izmantojot automātisko HTTPS konfigurāciju, tiks veikts viss sertifikātu pieprasīšanas, iespējošanas un atjaunošanas process no sertifikācijas iestādes Let's Encrypt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Platformai ir jābūt sasniedzamai, izmantojot publisku IP adresi, un atlasītajam saimniekdatora nosaukumam ir jāiekļauj DNS ierakstu, kas atsaucas uz šo adresi."
+
+msgid "Proceed"
+msgstr "Turpināt"
+
+msgid "Manual configuration"
+msgstr "Manuāla konfigurācija"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Manuālās konfigurācijas vednis palīdzēs jums iestatīt HTTPS no alternatīvas sertifikācijas iestādes."
+
+msgid "Auto-renewal"
+msgstr "Automātiskā atjaunošana"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion Serviss"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonimizēt izejošos savienojumus"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Ļaut platformai būtu sasniedzamai bez Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Lomas, kas ļauj izmantot platformu bez Tor"
+
+msgid "Whistleblower"
+msgstr "Trauksmes cēlējs"
+
+msgid "To"
+msgstr "Kam"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Tiek izmantota noklusējuma pasta konfigurācija. Lūdzu, apsveriet iespēju izmantot privātu pasta serveri."
+
+msgid "SMTP email address"
+msgstr "SMTP e-pasta adrese"
+
+msgid "SMTP server address"
+msgstr "SMTP servera adrese"
+
+msgid "SMTP server port"
+msgstr "SMTP servera ports"
+
+msgid "Security"
+msgstr "Drošība"
+
+msgid "Require authentication"
+msgstr "Pieprasīt autentifikāciju"
+
+msgid "Password"
+msgstr "Parole"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Stundu skaits pirms ziņojuma derīguma termiņa brīdinājuma nosūtīšanas"
+
+msgid "Test the configuration"
+msgstr "Pārbaudīt konfigurāciju"
+
+msgid "Reset SMTP configuration"
+msgstr "Atiestatīt SMTP konfigurāciju"
+
+msgid "Reset notification templates to default"
+msgstr "Atiestatīt paziņojumu veidnes uz noklusējuma iestatījumiem"
+
+msgid "Template"
+msgstr "Veidne"
+
+msgid "Question"
+msgstr "Jautājums"
+
+msgid "Single-line text input"
+msgstr "Vienas rindiņas teksta ievade"
+
+msgid "Multi-line text input"
+msgstr "Vairāku rindiņu teksta ievade"
+
+msgid "Selection box"
+msgstr "Atlases lodziņš"
+
+msgid "Multiple choice input"
+msgstr "Atbilžu variantu ievade"
+
+msgid "Checkbox"
+msgstr "Izvēles rūtiņa"
+
+msgid "Terms of service"
+msgstr "Pakalpojuma noteikumi"
+
+msgid "Date range"
+msgstr "Datumu diapazons"
+
+msgid "Group of questions"
+msgstr "Jautājumu grupa"
+
+msgid "Row"
+msgstr "Rinda"
+
+msgid "Column"
+msgstr "Kolonna"
+
+msgid "Width"
+msgstr "Platums"
+
+msgid "Question group"
+msgstr "Jautājumu grupa"
+
+msgid "Hint"
+msgstr "Mājiens"
+
+msgid "Mandatory"
+msgstr "Obligāts"
+
+msgid "Accept multiple file uploads"
+msgstr "Pieņemt vairāku failu augšupielādes"
+
+msgid "Accept multiple answers"
+msgstr "Pieņemt vairākas atbildes"
+
+msgid "Template override"
+msgstr "Veidnes ignorēšana"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Tālruņa numurs"
+
+msgid "Text"
+msgstr "Teksts"
+
+msgid "Checkbox label"
+msgstr "Izvēles rūtiņas marķējums"
+
+msgid "Add multimedia content"
+msgstr "Pievienojiet multivides saturu"
+
+msgid "Image"
+msgstr "Attēls"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Teksts, kas tiek parādīts pēc negatīvas atbildes"
+
+msgid "Low"
+msgstr "Zems"
+
+msgid "Trigger conditions"
+msgstr "Aktivizējoši nosacījumi"
+
+msgid "Sufficient"
+msgstr "Pietiekams"
+
+msgid "Options"
+msgstr "Iespējas"
+
+msgid "Addition"
+msgstr "Papildinājums"
+
+msgid "Multiplier"
+msgstr "Reizinātājs"
+
+msgid "Questions"
+msgstr "Jautājumi"
+
+msgid "Add new question"
+msgstr "Pievienot jaunu jautājumu"
+
+msgid "Add question from template"
+msgstr "Pievienot jautājumu no veidnes"
+
+msgid "Duplicate"
+msgstr "Dublēt"
+
+msgid "Steps"
+msgstr "Soļi"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Projekta nosaukums"
+
+msgid "Homepage title"
+msgstr "Mājas lapas nosaukums"
+
+msgid "Presentation"
+msgstr "Prezentācija"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Jautājums, lai uzrunātu iespējamos trauksmes cēlējus"
+
+msgid "Whistleblowing button"
+msgstr "Trauksmes celšanas poga"
+
+msgid "Disclaimer"
+msgstr "Atruna"
+
+msgid "Footer"
+msgstr "Kājene"
+
+msgid "Upload"
+msgstr "Augšupielādēt"
+
+msgid "Download"
+msgstr "Lejupielādēt"
+
+msgid "Language:"
+msgstr "Valoda:"
+
+msgid "Add custom text"
+msgstr "Pievienot pielāgotu tekstu"
+
+msgid "Custom text"
+msgstr "Pielāgots teksts"
+
+msgid "Original text"
+msgstr "Oriģinālais teksts"
+
+msgid "Original translation"
+msgstr "Oriģinālais tulkojums"
+
+msgid "Custom translation"
+msgstr "Pielāgotais tulkojums"
+
+msgid "Disable submissions"
+msgstr "Atspējot iesniegšanu"
+
+msgid "Enable encryption"
+msgstr "Iespējot šifrēšanu"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Atļaut administratoriem mainīt lietotāju paroles"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administratori, kas tiesīgi mainīt lietotāju paroles:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Iespējot vienkāršotu pieteikšanos"
+
+msgid "Enable search engines indexing"
+msgstr "Iespējot meklētājprogrammu indeksēšanu"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Pielikumu lieluma ierobežojums"
+
+msgid "megabytes"
+msgstr "megabaiti"
+
+msgid "Require two factor authentication"
+msgstr "Nepieciešama divu faktoru autentifikācija"
+
+msgid "Password change interval"
+msgstr "Paroles maiņas intervāls"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Drošības apsvērumu dēļ paroles ir regulāri jāmaina."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Dienu skaits līdz nelasīto pārskatu paziņošanai lietotājiem"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Atspējojiet privātuma paneli"
+
+msgid "Enable custom privacy panel"
+msgstr "Iespējot pielāgoto privātuma paneli"
+
+msgid "Custom privacy panel"
+msgstr "Pielāgotais privātuma panelis"
+
+msgid "Enable scoring system"
+msgstr "Iespējot vērtēšanas sistēmu"
+
+msgid "Logging level"
+msgstr "Logošanās līmenis"
+
+msgid "percentage"
+msgstr "procenti"
+
+msgid "Log accesses of internal users"
+msgstr "Iekšējo lietotāju piekļuves žurnāliem"
+
+msgid "Notify administrators of software problems"
+msgstr "Paziņot administratoriem par programmatūras problēmām"
+
+msgid "Notify developers of software problems"
+msgstr "Paziņot izstrādātājiem par programmatūras problēmām"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Iespējojot šo funkciju, jūs veicināsiet platformas attīstību un drošību."
+
+msgid "Reset reports"
+msgstr "Atiestatīt pārskatus"
+
+msgid "Settings"
+msgstr "Iestatījumi"
+
+msgid "Case management"
+msgstr "Lietu vadība"
+
+msgid "Network"
+msgstr "Tīkls"
+
+msgid "Sites"
+msgstr "Vietnes"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "Konfigurēt"
+
+msgid "Subdomain"
+msgstr "Apakšdomēns"
+
+msgid "Mode:"
+msgstr "Mods:"
+
+msgid "Creation date:"
+msgstr "Izveidošanas datums:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Izmantojiet pirmo vietni tikai administratīviem nolūkiem"
+
+msgid "Root domain used for secondary sites"
+msgstr "Saknes domēns tiek izmantots sekundārajām vietnēm"
+
+msgid "Allow users to sign up"
+msgstr "Atļaut lietotājiem reģistrēties"
+
+msgid "Enable terms of service"
+msgstr "Iespējot pakalpojumu sniegšanas noteikumus"
+
+msgid "Title"
+msgstr "Virsraksts"
+
+msgid "Public name"
+msgstr "Publiskais nosaukums"
+
+msgid "Send reset link"
+msgstr "Nosūtīt atiestatīšanas saiti"
+
+msgid "Set password"
+msgstr "Iestatīt paroli"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Izvēlētā parole ir pārāk vāja. Derīgai parolei ir jābūt vismaz 12 rakstzīmes garai, un tajā jāiekļauj dažādas rakstzīmes, tostarp vismaz mazais burts, lielais burts, cipars un speciālā rakstzīme."
+
+msgid "Force password change"
+msgstr "Piespiedu paroles maiņa"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Nākamajā pieteikšanās reizē lietotājs būs spiests mainīt savu paroli."
+
+msgid "Disable two factor authentication"
+msgstr "Atspējot divu faktoru autentifikāciju"
+
+msgid "Language"
+msgstr "Valoda"
+
+msgid "Enable email notifications"
+msgstr "Iespējot e-pasta paziņojumus"
+
+msgid "Details of the PGP key:"
+msgstr "Sīkāka informācija par PGP atslēgu:"
+
+msgid "Fingerprint"
+msgstr "Ciparvirkne"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Iestatiet šifrēšanu, nodrošinot PGP publisko atslēgu"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Dot šim administratoram iespēju mainīt lietotāju paroles"
+
+msgid "Forcefully selected"
+msgstr "Piespiedu kārtā atlasīts"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Atļaut adresātam dzēst ziņojumus"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Atļaut adresātam atlikt ziņojuma termiņu"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Piešķirt lietotājam administratīvo piekļuvi šādām funkcijām:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Pieprasījuma datums"
+
+msgid "Report date"
+msgstr "Ziņojuma datums"
+
+msgid "Authorization"
+msgstr "Autorizācija"
+
+msgid "Requests"
+msgstr "Pieprasījumi"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Validācijas saite ir nepareiza vai tai ir beidzies derīguma termiņš."
+
+msgid "Your new email address has been validated."
+msgstr "Jūsu jaunā e-pasta adrese ir apstiprināta."
+
+msgid "Forgot password?"
+msgstr "Aizmirsāt paroli?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Ievadīt divu faktoru autentifikācijas kodu"
+
+msgid "Authentication failed"
+msgstr "Autentifikācija neizdevās"
+
+msgid "The code is either invalid or expired."
+msgstr "Kods ir nederīgs vai tam ir beidzies derīguma termiņš."
+
+msgid "Please select your account:"
+msgstr "Lūdzu, izvēlieties savu kontu:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Tagad ierakstiet savu paroli un pēc tam noklikšķiniet uz \"Ienākt\":"
+
+msgid "Confirm"
+msgstr "Apstiprināt"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Teksts tiek parādīts pēc tam, kad lietotājs ir izvēlējies iespēju."
+
+msgid "Assign score points"
+msgstr "Piešķiriet punktus"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Statuss:"
+
+msgid "Are you sure?"
+msgstr "Esiet pārliecināts?"
+
+msgid "Close"
+msgstr "Aizvērt"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Lūdzu, ņemiet vērā, ka visi saistītie dati tiks neatgriezeniski dzēsti."
+
+msgid "Enable two factor authentication"
+msgstr "Iespējot divu faktoru autentifikāciju"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Pirms turpināt, lūdzu, uzmanīgi izlasiet dokumentāciju:"
+
+msgid "Account recovery key"
+msgstr "Konta atkopšanas atslēga"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Izveidojiet kopiju un uzglabājiet to drošā vietā. Ja pazaudēsiet paroli, tas būs nepieciešams, lai bez datu zaudēšanas atgūtu piekļuvi savam kontam."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Ievadiet kopijas nosaukumu"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Pieprasīt atbalstu"
+
+msgid "Thank you."
+msgstr "Paldies."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Mēs centīsimies ar jums sazināties iespējami drīz."
+
+msgid "Submit"
+msgstr "Iesniegt"
+
+msgid "The connection is not secure."
+msgstr "Savienojums nav drošs."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma joprojām nav konfigurēta HTTPS savienojumiem, un tāpēc to vajadzētu izmantot tikai testēšanas nolūkos."
+
+msgid "Send"
+msgstr "Nosūtīt"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Apstiprinot, jūs pārcelsiet derīguma termiņu uz:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Šī ir demo platforma, lūdzu, neizmantojiet to reāliem iesniegumiem."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Tālrunī instalējiet autentifikācijas lietotni"
+
+msgid "Scan the QR code with the app"
+msgstr "Skenējiet QR kodu, izmantojot lietotni"
+
+msgid "Error!"
+msgstr "Kļūda!"
+
+msgid "Internal server error"
+msgstr "Iekšējā servera kļūda"
+
+msgid "Error on input validation"
+msgstr "Kļūda ievades validācijā"
+
+msgid "Resource not found"
+msgstr "Avots nav atrasts"
+
+msgid "Forbidden operation"
+msgstr "Aizliegta darbība"
+
+msgid "The specified old password is not valid"
+msgstr "Norādītā vecā parole nav derīga"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Saturam var piekļūt tikai Tor tīklā"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Augšupielādes pieprasījums pārsniedz maksimālo pieļaujamo izmēru"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Pašreizējā parole"
+
+msgid "New password"
+msgstr "Jauna parole"
+
+msgid "The new password must be different from the current one."
+msgstr "Jaunajai parolei ir jāatšķiras no pašreizējās."
+
+msgid "Type your new password again"
+msgstr "Ievadiet savu jauno paroli vēlreiz"
+
+msgid "The two passwords do not match"
+msgstr "Abas paroles nesakrīt"
+
+msgid "Validation of email address change in progress."
+msgstr "Notiek e-pasta adreses maiņas apstiprināšana."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Lūdzu, pārbaudiet savu iesūtni, lai iegūtu papildu norādījumus."
+
+msgid "Warning"
+msgstr "Brīdinājums"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Šo vietni iesakām apmeklēt, izmantojot lietotni Tor Browser, jo tā aizsargā jūsu identitāti."
+
+msgid "Download the Tor Browser"
+msgstr "Lejupielādēt Tor Browser lietotni"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Pēc tam nokopējiet un ielīmējiet šo adresi Tor Browser lietotnē:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Vai esat jau iesniedzis ziņojumu? Ievadiet ziņojuma numuru."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Ziņojuma numurs ir nederīgs, vai arī ziņojumam ir beidzies derīguma termiņš."
+
+msgid "Filename"
+msgstr "Faila nosaukums"
+
+msgid "Size:"
+msgstr "Izmērs:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Adrese"
+
+msgid "Fiscal code"
+msgstr "Fiskālais kods"
+
+msgid "Tax code"
+msgstr "Nodokļu maksātāja kods"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Saņēmēji ir lūguši jūs aizpildīt papildu aptauju."
+
+msgid "Fill the additional questionnaire"
+msgstr "Aizpildiet papildu aptauju"
+
+msgid "From:"
+msgstr "No:"
+
+msgid "To:"
+msgstr "Kam:"
+
+msgid "View"
+msgstr "Skatīt"
+
+msgid "Upload date"
+msgstr "Augšupielādes datums"
+
+msgid "File size"
+msgstr "Faila izmērs"
+
+msgid "Questionnaire answers"
+msgstr "Aptaujas atbildes"
+
+msgid "Step"
+msgstr "Solis"
+
+msgid "Files attached by recipients"
+msgstr "Saņēmēju pievienotie faili"
+
+msgid "Upload a file:"
+msgstr "Augšupielādēt failu:"
+
+msgid "Welcome!"
+msgstr "Sveicināti!"
+
+msgid "For the user documentation, visit:"
+msgstr "Lai iegūtu lietotāja dokumentāciju, apmeklējiet:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -624,915 +1450,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Ja vēlaties piedalīties programmatūras izstrādē vai ziņot par kļūdu, lūdzu, atveriet problēmu mūsu sistēmā:"
 
-msgid "Image"
-msgstr "Attēls"
-
-msgid "Import"
-msgstr "Importēt"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Šajā darbībā trūkst atbilžu uz tālāk norādītajiem jautājumiem, vai tās ir nederīgas:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Ievades apstiprināšana"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Tālrunī instalējiet autentifikācijas lietotni"
-
-msgid "Intermediate Certificates"
-msgstr "Vidēja līmeņa sertifikāti"
-
-msgid "Internal server error"
-msgstr "Iekšējā servera kļūda"
-
-msgid "Invalid confirmation"
-msgstr "Nederīgs apstiprinājums"
-
-msgid "Invalid email address"
-msgstr "E-pasta adrese nav derīga"
-
-msgid "Invalid phone number"
-msgstr "Nederīgs tālruņa numurs"
-
-msgid "Issuer:"
-msgstr "Izdevējs:"
-
 msgid "Join our chat:"
 msgstr "Pievienoties mūsu čatam:"
 
-msgid "Label"
-msgstr "Marķējums"
-
-msgid "Label the report"
-msgstr "Marķēt ziņojumu"
-
-msgid "Language"
-msgstr "Valoda"
-
-msgid "Language:"
-msgstr "Valoda:"
-
-msgid "Languages"
-msgstr "Valodas"
-
-msgid "Last"
-msgstr "Pēdējais"
-
-msgid "Last Access"
-msgstr "Pēdējā piekļuve"
-
-msgid "Last access"
-msgstr "Pēdējā piekļuve"
-
-msgid "Last update"
-msgstr "Pēdējā atjaunošana"
-
-msgid "Latest selectable date"
-msgstr "Vēlākais atzīmējamais datums"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Ļaut platformai būtu sasniedzamai bez Tor"
-
-msgid "License"
-msgstr "Licence"
-
-msgid "Log accesses of internal users"
-msgstr "Iekšējo lietotāju piekļuves žurnāliem"
-
-msgid "Log in"
-msgstr "Ienākt"
-
-msgid "Logging level"
-msgstr "Logošanās līmenis"
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Logout"
-msgstr "Iziet"
-
-msgid "Low"
-msgstr "Zems"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Izveidojiet kopiju un uzglabājiet to drošā vietā. Ja pazaudēsiet paroli, tas būs nepieciešams, lai bez datu zaudēšanas atgūtu piekļuvi savam kontam."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Dodiet šim administratoram iespēju atiestatīt lietotāju paroles."
-
-msgid "Mandatory"
-msgstr "Obligāts"
-
-msgid "Manual configuration"
-msgstr "Manuāla konfigurācija"
-
-msgid "Mark as important"
-msgstr "Atzīmēt kā svarīgu"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Maksimālais faila lielums ir:"
-
-msgid "Maximum number of input characters"
-msgstr "Maksimālais zīmju skaits"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Maksimālais atlasāmo saņēmēju skaits:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Vidējs"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Minimālais zīmju skaits"
-
-msgid "Mobile"
-msgstr "Mobils"
-
-msgid "Mode:"
-msgstr "Mods:"
-
-msgid "Motivation"
-msgstr "Pamatojums"
-
-msgid "Move down"
-msgstr "Doties lejup"
-
-msgid "Move left"
-msgstr "Doties pa kreisi"
-
-msgid "Move right"
-msgstr "Doties pa labi"
-
-msgid "Move up"
-msgstr "Doties augšup"
-
-msgid "Multi-line text input"
-msgstr "Vairāku rindiņu teksta ievade"
-
-msgid "Multiple choice input"
-msgstr "Atbilžu variantu ievade"
-
-msgid "Multiplier"
-msgstr "Reizinātājs"
-
-msgid "Name"
-msgstr "Vārds"
-
-msgid "Network"
-msgstr "Tīkls"
-
-msgid "New"
-msgstr "Jauns"
-
-msgid "New password"
-msgstr "Jauna parole"
-
-msgid "New request"
-msgstr "Jauns pieprasījums"
-
-msgid "Next"
-msgstr "Nākamais"
-
-msgid "No"
-msgstr "Nē"
-
-msgid "None"
-msgstr "Nav"
-
-msgid "Not provided."
-msgstr "Nav paredzēts."
-
-msgid "Notifications"
-msgstr "Paziņojumi"
-
-msgid "Notify administrators of software problems"
-msgstr "Paziņot administratoriem par programmatūras problēmām"
-
-msgid "Notify developers of software problems"
-msgstr "Paziņot izstrādātājiem par programmatūras problēmām"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Tagad ierakstiet savu paroli un pēc tam noklikšķiniet uz \"Ienākt\":"
-
-msgid "Number"
-msgstr "Skaits"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Dienu skaits līdz nelasīto pārskatu paziņošanai lietotājiem"
-
-msgid "Number of downloads"
-msgstr "Lejupielādes skaits"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Stundu skaits pirms ziņojuma derīguma termiņa brīdinājuma nosūtīšanas"
-
-msgid "Object"
-msgstr "Objekts"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Viens vai vairāki adresāti vēl nav veikuši pirmo pieslēgšanos. Tas nozīmē, ka viņi nesaņems ziņojumus."
-
-msgid "Opened"
-msgstr "Atvērts"
-
-msgid "Options"
-msgstr "Iespējas"
-
-msgid "Organization"
-msgstr "Organizācija"
-
-msgid "Original text"
-msgstr "Oriģinālais teksts"
-
-msgid "Original translation"
-msgstr "Oriģinālais tulkojums"
-
-msgid "Password"
-msgstr "Parole"
-
-msgid "Password change interval"
-msgstr "Paroles maiņas intervāls"
-
-msgid "Password reset"
-msgstr "Paroles atjaunošana"
-
-msgid "Password reset requested."
-msgstr "Paroles atiestatīšana pieprasīta."
-
-msgid "Phone number"
-msgstr "Tālruņa numurs"
-
-msgid "Placeholder"
-msgstr "Vietturis"
-
-msgid "Platform wizard"
-msgstr "Platformas vednis"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Lūdzu, pārbaudiet savu iesūtni, lai iegūtu papildu norādījumus."
-
-msgid "Please choose a configuration profile:"
-msgstr "Lūdzu, izvēlieties konfigurācijas profilu:"
-
-msgid "Please choose a different username."
-msgstr "Lūdzu, izvēlieties citu lietotājvārdu."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Lūdzu, ņemiet vērā, ka visi saistītie dati tiks neatgriezeniski dzēsti."
-
-msgid "Please select your account:"
-msgstr "Lūdzu, izvēlieties savu kontu:"
-
-msgid "Postpone the expiration date"
-msgstr "Atlikt termiņa beigas"
-
-msgid "Preferences"
-msgstr "Iestatījumi"
-
-msgid "Presentation"
-msgstr "Prezentācija"
-
-msgid "Preview"
-msgstr "Priekšskatījums"
-
-msgid "Previous"
-msgstr "Iepriekšējais"
-
-msgid "Print"
-msgstr "Drukāt"
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "Private Key"
-msgstr "Privātā atslēga"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "Turpināt"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "Projekta nosaukums"
-
-msgid "Public name"
-msgstr "Publiskais nosaukums"
-
-msgid "Question"
-msgstr "Jautājums"
-
-msgid "Question group"
-msgstr "Jautājumu grupa"
-
-msgid "Question templates"
-msgstr "Jautājumu formas"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Jautājums, lai uzrunātu iespējamos trauksmes cēlējus"
-
-msgid "Questionnaire"
-msgstr "Aptauja"
-
-msgid "Questionnaire answers"
-msgstr "Aptaujas atbildes"
-
-msgid "Questionnaires"
-msgstr "Aptaujas"
-
-msgid "Questions"
-msgstr "Jautājumi"
-
-msgid "Receivers"
-msgstr "Saņēmēji"
-
-msgid "Recipient"
-msgstr "Saņēmējs"
-
-msgid "Recipient selection"
-msgstr "Saņēmēju izvēle"
-
-msgid "Recipients"
-msgstr "Saņēmēji"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Saņēmēji ir lūguši jūs aizpildīt papildu aptauju."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Izvēlētie saņēmēji:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Atsvaidzināt"
-
-msgid "Regenerate"
-msgstr "Atjaunot"
-
-msgid "Regular expression"
-msgstr "Regulāra izteiksme"
-
-msgid "Regular expression validator"
-msgstr "Parastais izteiksmes pārbaudītājs"
-
-msgid "Remember your receipt for this report."
-msgstr "Atcerieties šī ziņojuma numuru."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Noņemt"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Atbildes pamatojums"
-
-msgid "Reply to the request"
-msgstr "Atbildēt uz pieprasījumu"
-
-msgid "Report"
-msgstr "Pārskats"
-
-msgid "Report date"
-msgstr "Ziņojuma datums"
-
-msgid "Report statuses"
-msgstr "Ziņojuma statusi"
-
-msgid "Reports"
-msgstr "Pārskati"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Pieprasīt piekļuvi trauksmes cēlēja identitātei"
-
-msgid "Request date"
-msgstr "Pieprasījuma datums"
-
-msgid "Request motivation"
-msgstr "Pieteikuma pamatojums"
-
-msgid "Request status"
-msgstr "Pieprasījuma statuss"
-
-msgid "Request support"
-msgstr "Pieprasīt atbalstu"
-
-msgid "Requests"
-msgstr "Pieprasījumi"
-
-msgid "Require authentication"
-msgstr "Pieprasīt autentifikāciju"
-
-msgid "Require two factor authentication"
-msgstr "Nepieciešama divu faktoru autentifikācija"
-
-msgid "Reset"
-msgstr "Atiestatīt"
-
-msgid "Reset SMTP configuration"
-msgstr "Atiestatīt SMTP konfigurāciju"
-
-msgid "Reset notification templates to default"
-msgstr "Atiestatīt paziņojumu veidnes uz noklusējuma iestatījumiem"
-
-msgid "Reset reports"
-msgstr "Atiestatīt pārskatus"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Saturam var piekļūt tikai Tor tīklā"
-
-msgid "Resource not found"
-msgstr "Avots nav atrasts"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Ierobežojiet piekļuvi noteiktām IP adresēm"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Atsaukt piekļuvi"
-
-msgid "Role"
-msgstr "Loma"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Lomas, kas ļauj izmantot platformu bez Tor"
-
-msgid "Root domain used for secondary sites"
-msgstr "Saknes domēns tiek izmantots sekundārajām vietnēm"
-
-msgid "Row"
-msgstr "Rinda"
-
-msgid "SMTP email address"
-msgstr "SMTP e-pasta adrese"
-
-msgid "SMTP server address"
-msgstr "SMTP servera adrese"
-
-msgid "SMTP server port"
-msgstr "SMTP servera ports"
-
-msgid "Save"
-msgstr "Saglabāt"
-
-msgid "Save all"
-msgstr "Saglabāt visu"
-
-msgid "Scan the QR code with the app"
-msgstr "Skenējiet QR kodu, izmantojot lietotni"
-
-msgid "Scheduled jobs"
-msgstr "Plānotie darbi"
-
-msgid "Score"
-msgstr "Rezultāts"
-
-msgid "Scoring system options"
-msgstr "Vērtēšanas sistēmas iespējas"
-
-msgid "Search"
-msgstr "Meklēt"
-
-msgid "Security"
-msgstr "Drošība"
-
-msgid "Select"
-msgstr "Izvēlēties"
-
-msgid "Select a file or drag it here."
-msgstr "Atlasiet failu vai ievelciet to šeit."
-
-msgid "Select all"
-msgstr "Atlasīt visu"
-
-msgid "Select all recipients by default"
-msgstr "Pēc noklusējuma atlasīt visus saņēmējus"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr "Izvēlieties savu valoda"
-
-msgid "Selection box"
-msgstr "Atlases lodziņš"
-
-msgid "Send"
-msgstr "Nosūtīt"
-
-msgid "Send a test email to your email address."
-msgstr "Nosūtīt testa e-pastu uz jūsu e-pasta adresi."
-
-msgid "Send activation link"
-msgstr "Nosūtīt aktivizācijas saiti"
-
-msgid "Send reset link"
-msgstr "Nosūtīt atiestatīšanas saiti"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Iestatīt paroli"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Iestatiet vērtību uz 0, lai atspējotu šo funkciju."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Iestatiet šifrēšanu, nodrošinot PGP publisko atslēgu"
-
-msgid "Settings"
-msgstr "Iestatījumi"
-
-msgid "Severity"
-msgstr "Smaguma pakāpe"
-
-msgid "Show"
-msgstr "Parādīt"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Rādīt saņēmējus alfabētiskā secībā"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Parādīt anketas navigācijas saskarni"
-
-msgid "Sign up"
-msgstr "Pierakstīties"
-
-msgid "Silence email notifications"
-msgstr "Noklusināt e-pasta paziņojumus"
-
-msgid "Single-line text input"
-msgstr "Vienas rindiņas teksta ievade"
-
-msgid "Site"
-msgstr "Vietne"
-
-msgid "Sites"
-msgstr "Vietnes"
-
-msgid "Size limit for file attachments"
-msgstr "Pielikumu lieluma ierobežojums"
-
-msgid "Size:"
-msgstr "Izmērs:"
-
-msgid "Skip the recipient account creation."
-msgstr "Izlaist adresāta konta izveidi."
-
-msgid "Software version:"
-msgstr "Programmatūras versija:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Statistika"
-
-msgid "Status"
-msgstr "Statuss"
-
-msgid "Status:"
-msgstr "Statuss:"
-
-msgid "Step"
-msgstr "Solis"
-
-msgid "Steps"
-msgstr "Soļi"
-
-msgid "Strong"
-msgstr "Spēcīga"
-
-msgid "Subdomain"
-msgstr "Apakšdomēns"
-
-msgid "Submissions disabled"
-msgstr "Iesniegumi ir atspējoti"
-
-msgid "Submit"
-msgstr "Iesniegt"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Apakšstatusi"
-
-msgid "Success!"
-msgstr "Gatavs!"
-
-msgid "Sufficient"
-msgstr "Pietiekams"
-
-msgid "Surname"
-msgstr "Uzvārds"
-
-msgid "Tax code"
-msgstr "Nodokļu maksātāja kods"
-
-msgid "Template"
-msgstr "Veidne"
-
-msgid "Template override"
-msgstr "Veidnes ignorēšana"
-
-msgid "Templates"
-msgstr "Formas"
-
-msgid "Terms of service"
-msgstr "Pakalpojuma noteikumi"
-
-msgid "Test the configuration"
-msgstr "Pārbaudīt konfigurāciju"
-
-msgid "Text"
-msgstr "Teksts"
-
-msgid "Text customization"
-msgstr "Teksta pielāgošana"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Teksts tiek parādīts pēc tam, kad lietotājs ir izvēlējies iespēju."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr "Kanālu atlases izvēlnes augšpusē redzamais teksts"
-
-msgid "Text shown upon negative answer"
-msgstr "Teksts, kas tiek parādīts pēc negatīvas atbildes"
-
-msgid "Thank you."
-msgstr "Paldies."
-
-msgid "The answer is too short"
-msgstr "Atbilde ir pārāk īsa"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Izvēlētā parole ir pārāk vāja. Derīgai parolei ir jābūt vismaz 12 rakstzīmes garai, un tajā jāiekļauj dažādas rakstzīmes, tostarp vismaz mazais burts, lielais burts, cipars un speciālā rakstzīme."
-
-msgid "The code is either invalid or expired."
-msgstr "Kods ir nederīgs vai tam ir beidzies derīguma termiņš."
-
-msgid "The connection is not secure."
-msgstr "Savienojums nav drošs."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Tālāk norādītie adresāti saņems jūsu ziņojumu, un atlasi nevarēs noņemt:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Tālāk sniegtā procedūra palīdzēs jums izveidot jūsu trauksmes celšanas platformu."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Manuālās konfigurācijas vednis palīdzēs jums iestatīt HTTPS no alternatīvas sertifikācijas iestādes."
-
-msgid "The new password must be different from the current one."
-msgstr "Jaunajai parolei ir jāatšķiras no pašreizējās."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma joprojām nav konfigurēta HTTPS savienojumiem, un tāpēc to vajadzētu izmantot tikai testēšanas nolūkos."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Platformai ir jābūt sasniedzamai, izmantojot publisku IP adresi, un atlasītajam saimniekdatora nosaukumam ir jāiekļauj DNS ierakstu, kas atsaucas uz šo adresi."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma atbalsta HTTPS konfigurāciju, izmantojot šo saskarni."
-
-msgid "The provided recovery key is invalid."
-msgstr "Norādītā atkopšanas atslēga nav derīga."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Norādītais atiestatīšanas žetons nav derīgs, vai tam ir beidzies derīguma termiņš."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Ziņojuma numurs ir nederīgs, vai arī ziņojumam ir beidzies derīguma termiņš."
-
-msgid "The specified input is not valid."
-msgstr "Norādītā ievade nav derīga."
-
-msgid "The specified input is not valid:"
-msgstr "Norādītā ievade nav derīga:"
-
-msgid "The specified old password is not valid"
-msgstr "Norādītā vecā parole nav derīga"
-
-msgid "The two passwords do not match"
-msgstr "Abas paroles nesakrīt"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Augšupielādes pieprasījums pārsniedz maksimālo pieļaujamo izmēru"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Nākamajā pieteikšanās reizē lietotājs būs spiests mainīt savu paroli."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Validācijas saite ir nepareiza vai tai ir beidzies derīguma termiņš."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Trauksmes cēlējs ir izlasījis pēdējos jaunumus"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Trauksmes cēlējs nav izlasījis pēdējos jaunumus"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Pēc tam nokopējiet un ielīmējiet šo adresi Tor Browser lietotnē:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Šis pielāgotais teksts platformā vairs netiek rādīts. Sākotnējais teksts ir mainīts vai noņemts."
-
-msgid "This domain name is not available."
-msgstr "Šis domēna nosaukums nav pieejams."
-
-msgid "This field is mandatory"
-msgstr "Šis lauks ir obligāts"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Šī ir demo platforma, lūdzu, neizmantojiet to reāliem iesniegumiem."
-
-msgid "This user has not performed the first login yet."
-msgstr "Šis lietotājs vēl nav veicis pirmo pieslēgšanos."
-
-msgid "Threshold"
-msgstr "Slieksnis"
-
-msgid "Title"
-msgstr "Virsraksts"
-
-msgid "To"
-msgstr "Kam"
-
-msgid "To:"
-msgstr "Kam:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Tor Onion Serviss"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Aktivizējoši nosacījumi"
-
-msgid "Trigger question"
-msgstr "Aktivizējošais jautājums"
-
-msgid "Triggered by score:"
-msgstr "Aktivizēts pēc rezultāta:"
-
-msgid "Turn on email notifications"
-msgstr "Ieslēgt e-pasta paziņojumus"
-
-msgid "Type"
-msgstr "Veids"
-
-msgid "Type your new password again"
-msgstr "Ievadiet savu jauno paroli vēlreiz"
-
-msgid "URL redirects"
-msgstr "URL novirzīšana"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Augšupielādēt"
-
-msgid "Upload a file:"
-msgstr "Augšupielādēt failu:"
-
-msgid "Upload date"
-msgstr "Augšupielādes datums"
-
-msgid "Use as default"
-msgstr "Izmantot kā noklusējumu"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Izmantojiet 16 ciparu ziņojuma identifikācijas numuru, lai ienāktu \"TI Latvia – ALAC\" sistēmā. Tas ļaus jums skatīt ziņojumu, kuru nosūtījāt, mūsu sniegto informāciju, kā arī pievienot papildu informāciju."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Izmantojiet pirmo vietni tikai administratīviem nolūkiem"
-
-msgid "User"
-msgstr "Lietotājs"
-
-msgid "Username"
-msgstr "Lietotājvārds"
-
-msgid "Users"
-msgstr "Lietotāji"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "Izmantojot automātisko HTTPS konfigurāciju, tiks veikts viss sertifikātu pieprasīšanas, iespējošanas un atjaunošanas process no sertifikācijas iestādes Let's Encrypt."
-
-msgid "Valid until:"
-msgstr "Derīgs līdz:"
-
-msgid "Validation of email address change in progress."
-msgstr "Notiek e-pasta adreses maiņas apstiprināšana."
-
-msgid "Value"
-msgstr "Vērtība"
-
-msgid "Video"
-msgstr "Video"
-
-msgid "View"
-msgstr "Skatīt"
-
-msgid "View your report"
-msgstr "Apskatīt savu ziņojumu"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Gaida apstiprinājumu"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Gaida līdz fails(-i) tiks augšupielādēts(-i)."
-
-msgid "Warning"
-msgstr "Brīdinājums"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Mēs iesakām izvēlēties šo opciju, ja vēlaties aizsargāt datus no pazušanas situācijā, kad saņēmēji pazaudē savas paroles. No otras puses, mēs neiesakām izmantot šo funkciju, ja vēlaties iestatīt sistēmu, kurā tikai saņēmēji var piekļūt iesniegumiem."
+msgid "An update is available:"
+msgstr "Ir pieejams atjauninājums:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1541,78 +1463,85 @@ msgid ""
 "your password."
 msgstr "Mēs iesakām piekļūt sadaļai “Iestatījumi”, lai iegūtu savu “Konta atkopšanas atslēgu” un to droši uzglabātu. Šī atslēga būs nepieciešama, lai atgūtu piekļuvi platformai un datiem, ja aizmirstat paroli."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Mēs centīsimies ar jums sazināties iespējami drīz."
+msgid "Select a file or drag it here."
+msgstr "Atlasiet failu vai ievelciet to šeit."
 
-msgid "Weak"
-msgstr "Vāja"
+msgid "The provided recovery key is invalid."
+msgstr "Norādītā atkopšanas atslēga nav derīga."
 
-msgid "Welcome!"
-msgstr "Sveicināti!"
-
-msgid "Whistleblower"
-msgstr "Trauksmes cēlējs"
-
-msgid "Whistleblower's last access"
-msgstr "Trauksmes cēlēja pēdēja piekļuve"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Trauksmes celšanas poga"
-
-msgid "Width"
-msgstr "Platums"
-
-msgid "Yes"
-msgstr "Jā"
+msgid "The provided reset token is invalid or expired."
+msgstr "Norādītais atiestatīšanas žetons nav derīgs, vai tam ir beidzies derīguma termiņš."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Jūs pieslēdzaties mezglam bez anonimitātes un šis mezgls atbalsta tikai anonīmus ziņojumus"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Ievadiet sava konta lietotājvārdu vai e-pasta adresi, lai pieprasītu paroles atiestatīšanu."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Ievadiet savu e-pasta adresi, lai pieprasītu paroles atiestatīšanu."
+
+msgid "Password reset requested."
+msgstr "Paroles atiestatīšana pieprasīta."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Šo vietni iesakām apmeklēt, izmantojot lietotni Tor Browser, jo tā aizsargā jūsu identitāti."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Ievadiet sava konta atkopšanas atslēgu, lai pabeigtu paroles atiestatīšanas procedūru"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Piekļuve trauksmes cēlēja identitātei lūgta glabātājam."
+
+msgid "Date of the request"
+msgstr "Pieprasījuma datums"
+
+msgid "Show"
+msgstr "Parādīt"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Apsveicam!"
 
 msgid "You have completed the platform activation."
 msgstr "Jūs esat pabeidzis platformas aktivizēšanu."
 
-msgid "You have completed the platform wizard."
-msgstr "Jūs esat pabeidzis platformas vedni."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Jūs esat sasniedzis maksimālo atlasāmo saņēmēju skaitu."
-
-msgid "You must select at least one recipient."
-msgstr "Jums jāizvēlas vismaz viens saņēmējs."
-
-msgid "Your new email address has been validated."
-msgstr "Jūsu jaunā e-pasta adrese ir apstiprināta."
-
-msgid "Your report was successful."
-msgstr "Jūsu ziņojums veiksmīgi saņemts."
+msgid "Success!"
+msgstr "Gatavs!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Jūsu trauksmes celšanas platforma ir gandrīz gatava!"
 
-msgid "days"
-msgstr "dienas"
+msgid "Check your inbox to activate it."
+msgstr "Pārbaudiet savu iesūtni, lai to aktivizētu."
 
-msgid "file unavailable"
-msgstr "fails nav pieejams"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Ja platforma netiks aktivizēta 24 stundu laikā, tā tiks automātiski dzēsta."
 
-msgid "megabytes"
-msgstr "megabaiti"
+msgid "Sign up"
+msgstr "Pierakstīties"
 
-msgid "percentage"
-msgstr "procenti"
+msgid "Invalid confirmation"
+msgstr "Nederīgs apstiprinājums"
+
+msgid "Invalid phone number"
+msgstr "Nederīgs tālruņa numurs"
+
+msgid "Site"
+msgstr "Vietne"
+
+msgid "Confirmation"
+msgstr "Apstiprinājums"
+
+msgid "The answer is too short"
+msgstr "Atbilde ir pārāk īsa"
+
+msgid "The specified input is not valid."
+msgstr "Norādītā ievade nav derīga."
+
+msgid "The specified input is not valid:"
+msgstr "Norādītā ievade nav derīga:"
 
 msgid "please enter a valid email address."
 msgstr "lūdzu, ievadiet derīgu e-pasta adresi."
@@ -1620,14 +1549,82 @@ msgstr "lūdzu, ievadiet derīgu e-pasta adresi."
 msgid "please enter numbers only."
 msgstr "lūdzu, ievadiet tikai skaitļus."
 
-msgid "seconds"
-msgstr "sekundes"
+msgid "Submissions disabled"
+msgstr "Iesniegumi ir atspējoti"
 
-msgid "File a report"
-msgstr "Iesniegt ziņojumu"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Jūs pieslēdzaties mezglam bez anonimitātes un šis mezgls atbalsta tikai anonīmus ziņojumus"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Jūsu ziņojums veiksmīgi saņemts."
+
+msgid "Remember your receipt for this report."
+msgstr "Atcerieties šī ziņojuma numuru."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Izmantojiet 16 ciparu ziņojuma identifikācijas numuru, lai ienāktu \"TI Latvia – ALAC\" sistēmā. Tas ļaus jums skatīt ziņojumu, kuru nosūtījāt, mūsu sniegto informāciju, kā arī pievienot papildu informāciju."
+
+msgid "View your report"
+msgstr "Apskatīt savu ziņojumu"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Izvēlētie saņēmēji:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Jūs esat sasniedzis maksimālo atlasāmo saņēmēju skaitu."
+
+msgid "You must select at least one recipient."
+msgstr "Jums jāizvēlas vismaz viens saņēmējs."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Tālāk norādītie adresāti saņems jūsu ziņojumu, un atlasi nevarēs noņemt:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Šajā darbībā trūkst atbilžu uz tālāk norādītajiem jautājumiem, vai tās ir nederīgas:"
+
+msgid "Recipient selection"
+msgstr "Saņēmēju izvēle"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Gaida līdz fails(-i) tiks augšupielādēts(-i)."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Tālāk sniegtā procedūra palīdzēs jums izveidot jūsu trauksmes celšanas platformu."
+
+msgid "Please choose a configuration profile:"
+msgstr "Lūdzu, izvēlieties konfigurācijas profilu:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Dodiet šim administratoram iespēju atiestatīt lietotāju paroles."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Mēs iesakām izvēlēties šo opciju, ja vēlaties aizsargāt datus no pazušanas situācijā, kad saņēmēji pazaudē savas paroles. No otras puses, mēs neiesakām izmantot šo funkciju, ja vēlaties iestatīt sistēmu, kurā tikai saņēmēji var piekļūt iesniegumiem."
+
+msgid "Please choose a different username."
+msgstr "Lūdzu, izvēlieties citu lietotājvārdu."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Esmu izlasījis licences noteikumus un piekrītu tiem."
+
+msgid "You have completed the platform wizard."
+msgstr "Jūs esat pabeidzis platformas vedni."
 
 msgid "Please summarize your report in a few words."
 msgstr "Lūdzu, dažos vārdos apkopojiet savu ziņojumu."

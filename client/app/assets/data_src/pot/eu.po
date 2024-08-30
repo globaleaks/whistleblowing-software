@@ -32,129 +32,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = auto"
+msgid "Log in"
+msgstr "Hasi saioa"
 
-msgid "Accept multiple answers"
-msgstr "Erantzun anizkoitzak onartu"
+msgid "Languages"
+msgstr "Hizkuntzak"
 
-msgid "Accept multiple file uploads"
-msgstr "Hainbat fitxategi igotzea onartu"
-
-msgid "Acceptable"
-msgstr "Onargarria"
-
-msgid "Access control"
-msgstr "Sarbide kontrola"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Sarbidea eskatu da"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Salatzailearen identitatera sarbidea eskatu zaio jagoleari."
-
-msgid "Account recovery key"
-msgstr "Kontua berreskuratzeko kodea:"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Jarduerak"
-
-msgid "Add"
-msgstr "Gehitu"
-
-msgid "Add custom text"
-msgstr "Gehitu testu pertsonalizatua"
-
-msgid "Add multimedia content"
-msgstr "Gehitu eduki multimedia"
-
-msgid "Add new question"
-msgstr "Galdera berria gehitu"
-
-msgid "Add new questionnaire"
-msgstr "Galdekizun berria gehitu"
-
-msgid "Add question from template"
-msgstr "Gehitu galdera txantiloira"
-
-msgid "Addition"
-msgstr "Gehikuntza"
-
-msgid "Additional questionnaire"
-msgstr "Galdekizun gehigarria"
-
-msgid "Address"
-msgstr "Helbidea"
-
-msgid "Admin"
-msgstr "Administratzailea"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Erabiltzailearen pasahitzak aldatzeko baimendutako administratzaileak:"
+msgid "Text customization"
+msgstr "Testuaren pertsonalizazioa"
 
 msgid "Advanced"
 msgstr "Aurreratua"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Hartzaileei salaketak ezabatzen utzi"
+msgid "Question templates"
+msgstr "Galderen txantiloia"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Hartzaileari salaketaren iraungitze data jartzen utzi"
+msgid "Questionnaires"
+msgstr "Galdekizunak"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
+msgid "Add new questionnaire"
+msgstr "Galdekizun berria gehitu"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Salatzaileei iruzkinak idaztea ahalbidetu"
+msgid "Home"
+msgstr "Nagusia"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Aldaketen erregistroa"
 
-msgid "Allow users to sign up"
-msgstr "Utzi erabiltzaileei erregistratzen"
+msgid "License"
+msgstr "Lizentzia"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Ahalbidetu salatzaileek haien hartzaileak hautatzea"
+msgid "Templates"
+msgstr "Txantiloiak"
 
-msgid "Allowed IP addresses"
-msgstr "Baimendutako IP helbideak"
-
-msgid "An update is available:"
-msgstr "Eguneraketa bat dago eskuragarri:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Ezabatu"
 
 msgid "Anomalies"
 msgstr "Anomaliak"
 
-msgid "Anomaly detection thresholds"
-msgstr "Anomaliak detektatzeko atalase-balioak"
+msgid "Preferences"
+msgstr "Lehentasunak"
 
-msgid "Anonymity"
-msgstr ""
+msgid "Notifications"
+msgstr "Jakinarazpenak"
 
-msgid "Anonymize outgoing connections"
-msgstr "Kanporako konexioak anonimizatzea"
+msgid "file unavailable"
+msgstr "Fitxategia ez dago erabilgarri"
 
-msgid "Anonymous"
-msgstr "Izengabe"
+msgid "Date"
+msgstr "Aurkezteko epea"
 
-msgid "Are you sure?"
-msgstr "Ziur zaude?"
+msgid "Expiration date"
+msgstr "Iraungitze data"
 
-msgid "Assign score points"
-msgstr "Esleitu puntuak"
+msgid "Last Access"
+msgstr "Azken sarrera"
 
-msgid "Assigned to"
-msgstr "Honi esleitua"
+msgid "Files"
+msgstr "Fitxategiak"
+
+msgid "Comments"
+msgstr "Iruzkinak"
+
+msgid "Details"
+msgstr "Xehetasunak"
+
+msgid "Platform wizard"
+msgstr "Plataformaren laguntzailea"
+
+msgid "Label the report"
+msgstr "Etiketatu salaketa"
+
+msgid "Edit the expiration date"
+msgstr "Iraungitze data atzeratu"
+
+msgid "Select all"
+msgstr "Hautatu dena"
+
+msgid "Deselect all"
+msgstr "Deshautatu dena"
+
+msgid "Refresh"
+msgstr "Eguneratu"
+
+msgid "Channel"
+msgstr "Kanala"
+
+msgid "Preview"
+msgstr "Aurrebista"
+
+msgid "The whistleblower has already read the last update"
+msgstr "Salatzaileak irakurri du azken eguneratzea. "
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Salatzaileak ez du irakurri azken eguneratzea. "
+
+msgid "Move up"
+msgstr "Gorantz eraman"
+
+msgid "Move down"
+msgstr "Beherantz eraman"
+
+msgid "Move left"
+msgstr "Ezkerrerantz eraman"
+
+msgid "Move right"
+msgstr "Eskuinerantz eraman"
+
+msgid "Import"
+msgstr "Inportatu"
+
+msgid "Export"
+msgstr "Esportatu"
+
+msgid "Save all"
+msgstr "Gorde dena"
+
+msgid "Access control"
+msgstr "Sarbide kontrola"
+
+msgid "Number"
+msgstr "Zenbakia"
+
+msgid "Email"
+msgstr "Posta elektronikoa"
+
+msgid "Regular expression validator"
+msgstr "Esamolde erregularren balioztatzailea"
+
+msgid "Minimum number of input characters"
+msgstr "Sarrerako karaktereen kopuru minimoa"
+
+msgid "Maximum number of input characters"
+msgstr "Sarrerako karaktereen kopuru maximoa"
+
+msgid "Earliest selectable date"
+msgstr "Ahalik eta data erabilgarri gertukoena"
+
+msgid "Latest selectable date"
+msgstr "Ahalik eta data erabilgarri berantiarrena"
+
+msgid "0 = auto"
+msgstr "0 = auto"
+
+msgid "Yes"
+msgstr "Bai"
+
+msgid "No"
+msgstr "Ez"
 
 msgid "Attachment"
 msgstr "Erantsia"
@@ -162,186 +188,56 @@ msgstr "Erantsia"
 msgid "Attachments"
 msgstr "Erantsiak"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Audioa"
-
-msgid "Audit log"
-msgstr "Ikuskaritzaren erregistroa"
-
-msgid "Authentication failed"
-msgstr "Aurtentifikazioak huts egin du"
-
-msgid "Authorization"
-msgstr "Baimena"
-
-msgid "Authorize"
-msgstr "Baimendu"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Salatzailearen identitatera sarbidea baimendu "
-
-msgid "Authorized"
-msgstr "Baimendua"
-
-msgid "Auto-renewal"
-msgstr "Berritze automatikoa"
-
-msgid "Automatic configuration"
-msgstr "Konfigurazio automatikoa"
-
-msgid "Available disk space"
-msgstr "Biltegiratzeko espazio librea"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Jarraitu aurretik, arren, irakurri arretaz hemengo informazioa:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Jarraitu aurretik, aktibatu autentifikazio faktore bikoitza, arren."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Jarraitu aurretik, ezarri pasahitz berria."
-
-msgid "Block the submission"
-msgstr "Bidalketa blokeatu "
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Berrestean, iraungitze-data egun honetara atzeratuko duzu:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr "Berretsi ondoren, egun honetarako zehaztuko duzu gogorarazpena:"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ezaugarri hori gaitzean, plataforma garatzen eta haren segurtasunean lagunduko duzu."
-
-msgid "Cancel"
-msgstr "Utzi"
-
-msgid "Case management"
-msgstr "Salaketa baten egoerak"
-
-msgid "Certificate"
-msgstr "Ziurtagiria"
-
-msgid "Certificate Signing Request"
-msgstr "Ziurtagiriaren sinadura eskaera"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Aldatu pasahitza"
 
-msgid "Changelog"
-msgstr "Aldaketen erregistroa"
+msgid "User"
+msgstr "Erabiltzailea"
 
-msgid "Channel"
-msgstr "Kanala"
+msgid "Motivation"
+msgstr "Arrazoia"
 
-msgid "Channels"
-msgstr "Kanalak"
+msgid "Status"
+msgstr "Egoera"
 
-msgid "Check your inbox to activate it."
-msgstr "Egiaztatu sarrera ontzia hura aktibatzeko."
+msgid "Request motivation"
+msgstr "Eskakizunaren arrazoia"
 
-msgid "Checkbox"
-msgstr "Egiaztatze-laukia"
+msgid "Reply motivation"
+msgstr "Erantzunaren arrazoia"
 
-msgid "Checkbox label"
-msgstr "Checkbox etiketa"
-
-msgid "City"
-msgstr "Hiria"
-
-msgid "Close"
-msgstr "Itxi"
-
-msgid "Closed"
-msgstr "Itxita"
-
-msgid "Collapse"
-msgstr "Txikitu"
-
-msgid "Column"
-msgstr "Zutabea"
-
-msgid "Comments"
-msgstr "Iruzkinak"
-
-msgid "Computer"
-msgstr "Ordenagailua"
-
-msgid "Configure"
-msgstr "Konfiguratu"
-
-msgid "Confirm"
-msgstr "Berretsi"
-
-msgid "Confirmation"
-msgstr "Berrespena"
-
-msgid "Congratulations!"
-msgstr "Zorionak!"
-
-msgid "Copy to clipboard"
-msgstr "Kopiatu arbelean"
-
-msgid "Country"
-msgstr "Herrialdea"
-
-msgid "Country code"
-msgstr "Herrialdearen kodea"
-
-msgid "Creation date"
-msgstr "Sortze-data"
-
-msgid "Creation date:"
-msgstr "Sortze-data:"
-
-msgid "Current password"
-msgstr "Egungo pasahitza"
+msgid "Request status"
+msgstr "Eskakizunaren egoera"
 
 msgid "Custodian"
 msgstr "Jagolea"
 
-msgid "Custom"
-msgstr "Pertsonalizatu"
+msgid "Identity"
+msgstr "Identitatea"
 
-msgid "Custom privacy panel"
-msgstr "Pribatutasun pertsonalizatuko panela"
+msgid "Access requested"
+msgstr "Sarbidea eskatu da"
 
-msgid "Custom support URL"
-msgstr "Laguntza pertsonalizaturako URL"
+msgid "Request access to the whistleblower's identity"
+msgstr "Salatzailearen identitatera sarbidea eskatu "
 
-msgid "Custom text"
-msgstr "Testu pertsonalizatua"
+msgid "Reply to the request"
+msgstr "Erantzun eskakizunari"
 
-msgid "Custom translation"
-msgstr "Itzulpen pertsonalizatua"
-
-msgid "Date"
-msgstr "Aurkezteko epea"
-
-msgid "Date of the request"
-msgstr "Eskakizunaren data"
-
-msgid "Date range"
-msgstr "Daten tartea"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr "Posta elektronikoko zerbitzari lehenetsia erabiltzen. Arren, pentsa posta elektroniko pribatuko zerbitzaria erabiltzea."
-
-msgid "Delete"
-msgstr "Ezabatu"
+msgid "Authorized"
+msgstr "Baimendua"
 
 msgid "Denied"
 msgstr "Ukatua"
+
+msgid "Waiting for authorization"
+msgstr "Baimenaren zain"
+
+msgid "New request"
+msgstr "Eskakizun berria"
+
+msgid "Authorize"
+msgstr "Baimendu"
 
 msgid "Deny"
 msgstr "Ukatu"
@@ -349,26 +245,20 @@ msgstr "Ukatu"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Salatzailearen identitatera sarbidea ukatu "
 
-msgid "Description"
-msgstr "Deskribapena"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Salatzailearen identitatera sarbidea baimendu "
 
-msgid "Deselect"
-msgstr "Deshautatu"
+msgid "URL redirects"
+msgstr "URL birbideratzea"
 
-msgid "Deselect all"
-msgstr "Deshautatu dena"
+msgid "Anomaly detection thresholds"
+msgstr "Anomaliak detektatzeko atalase-balioak"
 
-msgid "Details"
-msgstr "Xehetasunak"
+msgid "Available disk space"
+msgstr "Biltegiratzeko espazio librea"
 
-msgid "Details of the PGP key:"
-msgstr "PGP gakoaren xehetasunak:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Desgaitu"
+msgid "Last update"
+msgstr "Azken eguneraketa"
 
 msgid "Disable notifications to administrators"
 msgstr "Desgaitu administratzaileei jakinarazpenak"
@@ -379,197 +269,221 @@ msgstr "Desgaitu jagoleei jakinarazpenak"
 msgid "Disable notifications to recipients"
 msgstr "Desgaitu hartzaileei jakinarazpenak"
 
-msgid "Disable submissions"
-msgstr "Salaketak jasotzea desgaitu"
+msgid "Score"
+msgstr "Puntuazioa"
 
-msgid "Disable the privacy panel"
-msgstr "Pribatutasun panela desgaitu"
+msgid "Trigger question"
+msgstr "Egin galdera"
 
-msgid "Disable two factor authentication"
-msgstr "Faktore bikoitzeko autentifikazioa desaktibatu"
+msgid "Triggered by score:"
+msgstr "Aktibatuta puntuazioaren arabera:"
 
-msgid "Disabled"
-msgstr "Desgaitua"
+msgid "Weak"
+msgstr "Ahula"
 
-msgid "Disclaimer"
-msgstr "Erantzukizunaren deskargua"
+msgid "Acceptable"
+msgstr "Onargarria"
 
-msgid "Display options alphabetically"
-msgstr "Aukerak alfabetikoki erakutsi"
+msgid "Strong"
+msgstr "Sendoa"
 
-msgid "Download"
-msgstr "Deskargatu"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Kanalak hautatzeko interfazearen goiko partean erakutsitako testua "
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgid "Silence email notifications"
+msgstr "Posta elektronikoko jakinarazpenak mututu"
 
-msgid "Download the Tor Browser"
-msgstr "Tor nabigatzaile deskargatu"
+msgid "Turn on email notifications"
+msgstr "Posta elektronikoko jakinarazpenak aktibatu"
 
-msgid "Duplicate"
-msgstr "Bikoiztu"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Sarrerak bereizteko, beraien artean koma bat jarriko da."
-
-msgid "Earliest selectable date"
-msgstr "Ahalik eta data erabilgarri gertukoena"
-
-msgid "Edit"
-msgstr "Editatu"
-
-msgid "Email"
-msgstr "Posta elektronikoa"
+msgid "Input validation"
+msgstr "Sarreraren balioztatzea"
 
 msgid "Email address"
 msgstr "Posta elektroniko helbidea"
 
-msgid "Enable"
-msgstr "Gaitu"
+msgid "Custom"
+msgstr "Pertsonalizatu"
 
-msgid "Enable PGP"
-msgstr "Aktibatu PGP"
+msgid "None"
+msgstr "Bat ere ez"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Administratzaileei erabiltzailearen pasahitzak aldatzea ahalbidetzea"
+msgid "Regular expression"
+msgstr "Adierazpen erregularra"
 
-msgid "Enable custom privacy panel"
-msgstr "Gaitu pribatutasun pertsonalizatuko panela"
-
-msgid "Enable email notifications"
-msgstr "Aktibatu posta elektronikoko jakinarazpenak"
-
-msgid "Enable email notifications for:"
-msgstr "Posta bidezko jakinarazpenak gaitu honentzat:"
-
-msgid "Enable encryption"
-msgstr "Aktibatu zifratua"
-
-msgid "Enable scoring system"
-msgstr "Gaitu puntuatzeko sistema"
-
-msgid "Enable search engines indexing"
-msgstr "Gaitu bilaketa motorren indexazioa "
-
-msgid "Enable simplified login"
-msgstr "Aktibatu saio hasiera sinplifikatua"
-
-msgid "Enable terms of service"
-msgstr "Aktibatu zerbitzuen terminoak"
-
-msgid "Enable two factor authentication"
-msgstr "Faktore bikoitzeko autentifikazioa gaitu"
-
-msgid "Enabled"
-msgstr "Gaitua"
-
-msgid "Enter a name for the copy"
-msgstr "Idatzi izena kopiarentzat"
-
-msgid "Enter the two factor authentication code"
-msgstr "Sartu autentifikazio kodea bi urratsetan"
+msgid "Search"
+msgstr "Bilatu"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Sartu kontua berreskuratzeko gakoa pasahitza berrezartzeko prozesua osatzeko."
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Testu pertsonalizatu hau ez da gehiago azalduko plataforman. Jatorrizko testua aldatu egin da edo ezabatu egin da."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Sartu erabiltzailearen izena edo posta elektronikoa pasahitza berrezartzea eskatzeko."
+msgid "Audit log"
+msgstr "Ikuskaritzaren erregistroa"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Sartu helbide elektronikoa pasahitza berrezartzea eskatzeko."
+msgid "Stats"
+msgstr "Estatistikak"
 
-msgid "Error on input validation"
-msgstr "Sarrera balioztatzean errorea"
+msgid "Activities"
+msgstr "Jarduerak"
 
-msgid "Error!"
-msgstr "Errorea!"
+msgid "Reports"
+msgstr "Salaketak"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Salaketa"
 
-msgid "Example:"
-msgstr "Adibidea:"
-
-msgid "Expand"
-msgstr "Handitu"
-
-msgid "Expiration date"
-msgstr "Iraungitze data"
-
-msgid "Export"
-msgstr "Esportatu"
-
-msgid "File size"
-msgstr "Fitxategiaren tamaina"
-
-msgid "File size not accepted."
-msgstr "Onartu ez den fitxategiaren tamaina."
-
-msgid "Filename"
-msgstr "Fitxategiaren izena"
-
-msgid "Files"
-msgstr "Fitxategiak"
-
-msgid "Files attached by recipients"
-msgstr "Hartzaileek erantsitako fitxategiak"
-
-msgid "Fill the additional questionnaire"
-msgstr "Bete galdekizun gehigarria"
-
-msgid "Fingerprint"
-msgstr "Gakoa balioztatzeko arrastoa"
-
-msgid "First"
-msgstr "Lehena"
-
-msgid "Fiscal code"
-msgstr "Kode fiskala"
-
-msgid "Footer"
-msgstr "Orriaren oina"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Segurtasun arrazoiak direla eta, tarteka aldatu behar da pasahitza. "
-
-msgid "For the user documentation, visit:"
-msgstr "Erabiltzailearen dokumentaziorako, hona joan:"
-
-msgid "Forbidden operation"
-msgstr "Debekatutako eragiketa"
-
-msgid "Force password change"
-msgstr "Behartu pasahitza aldatzea"
-
-msgid "Forcefully selected"
-msgstr "Automatikoki hautatua"
-
-msgid "Forgot password?"
-msgstr "Pasahitza ahaztu duzu?"
+msgid "Users"
+msgstr "Erabiltzaileak"
 
 msgid "From"
 msgstr "Honenak"
 
-msgid "From:"
-msgstr "Nondik"
+msgid "Number of downloads"
+msgstr "Deskarga kopurua"
 
-msgid "Generate"
-msgstr "Sortu"
+msgid "File size not accepted."
+msgstr "Onartu ez den fitxategiaren tamaina."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Eman erabiltzaileari hurrengo ezaugarrietara sarbide administratiboa."
+msgid "Maximum file size is:"
+msgstr "Fitxategi bakoitzarentzat gehienezko tamaina:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Administratzaile honi erabiltzailearen pasahitzak aldatzeko baimena ematea"
+msgid "Scheduled jobs"
+msgstr "Programatutako atazak"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Birsortu"
+
+msgid "Display options alphabetically"
+msgstr "Aukerak alfabetikoki erakutsi"
+
+msgid "Enable email notifications for:"
+msgstr "Posta bidezko jakinarazpenak gaitu honentzat:"
+
+msgid "Disable"
+msgstr "Desgaitu"
+
+msgid "Remove"
+msgstr "Ezabatu"
+
+msgid "Use as default"
+msgstr "Lehenetsi gisa erabili"
+
+msgid "Collapse"
+msgstr "Txikitu"
+
+msgid "Expand"
+msgstr "Handitu"
+
+msgid "Select"
+msgstr "Hautatu"
+
+msgid "Deselect"
+msgstr "Deshautatu"
+
+msgid "Surname"
+msgstr "Abizenak"
+
+msgid "New"
+msgstr "Berria"
+
+msgid "Opened"
+msgstr "Irekita"
+
+msgid "Closed"
+msgstr "Itxita"
+
+msgid "Placeholder"
+msgstr "Markadorea"
+
+msgid "Print"
+msgstr "Inprimatu"
+
+msgid "Previous"
+msgstr "Aurrekoa"
+
+msgid "Next"
+msgstr "Hurrengoa"
+
+msgid "First"
+msgstr "Lehena"
+
+msgid "Last"
+msgstr "Azkena"
+
+msgid "Send a test email to your email address."
+msgstr "Bidali probako posta bat zure helbide elektronikora"
+
+msgid "Block the submission"
+msgstr "Bidalketa blokeatu "
+
+msgid "Skip the recipient account creation."
+msgstr "Hartzailearen kontua sortzea saltatu."
+
+msgid "Send activation link"
+msgstr "Bidali aktibatzeko esteka"
+
+msgid "Password reset"
+msgstr "Pasahitza berrezarri"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Hartzaile batek edo gehiagok ez du egin lehenengo saio-hasiera. Horrek esan nahi du ezingo dutela salaketarik kudeatu."
+
+msgid "This user has not performed the first login yet."
+msgstr "Erabiltzaile honek ez du egin lehenengo saio-hasiera."
+
+msgid "seconds"
+msgstr "segundo"
+
+msgid "This domain name is not available."
+msgstr "Domeinuaren izen hau ez dago erabilgarri."
+
+msgid "Mark as important"
+msgstr "Markatu garrantzitsu gisa"
+
+msgid "Copy to clipboard"
+msgstr "Kopiatu arbelean"
+
+msgid "Logout"
+msgstr "Itxi saioa"
+
+msgid "Grant access"
+msgstr "Eman sarbidea"
+
+msgid "Revoke access"
+msgstr "Kendu sarbidea"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr "Honi esleitua"
+
+msgid "Not provided."
+msgstr "Ez da eman."
+
+msgid "Set a reminder"
+msgstr "Ezarri oroigarria"
+
+msgid "Privileges"
+msgstr "Baimen"
+
+msgid "Hide"
+msgstr "Ezkutatu"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr "Idatzi"
+
+msgid "Select an option"
+msgstr "Hautatu aukera bat"
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -578,54 +492,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Eman sarbidea"
-
-msgid "Group of questions"
-msgstr "Galdera-sorta"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Aurkeztu duzu salaketa? Sartu jarraipenerako kodea."
-
-msgid "Hidden"
-msgstr "Ezkutuan"
-
-msgid "Hide"
-msgstr "Ezkutatu"
-
-msgid "High"
-msgstr "Altua"
-
-msgid "Hint"
-msgstr "Iradokizuna"
-
-msgid "Home"
-msgstr "Nagusia"
-
-msgid "Homepage title"
-msgstr "Orri nagusiaren izenburua"
-
-msgid "Hostname"
-msgstr "Zerbitzariaren izena "
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Irakurri dut eta ados nago lizentziaren terminoekin."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Pribatutasun Politika"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Izengabe"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Ordenagailua"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Aurkeztu salaketa."
+
+msgid "Select a reporting channel:"
+msgstr "Hautatu salaketen kanala:"
+
+msgid "Before proceeding, please set a new password."
+msgstr "Jarraitu aurretik, ezarri pasahitz berria."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Jarraitu aurretik, aktibatu autentifikazio faktore bikoitza, arren."
+
+msgid "Enable"
+msgstr "Gaitu"
+
+msgid "Type"
+msgstr "Mota"
+
+msgid "Severity"
+msgstr "Larritasuna"
+
+msgid "Object"
+msgstr "Xedea"
 
 msgid "ID"
 msgstr "Identifikazioa"
 
-msgid "Identity"
-msgstr "Identitatea"
+msgid "Username"
+msgstr "Erabiltzailearen izena"
+
+msgid "Role"
+msgstr "Betekizuna"
+
+msgid "Name"
+msgstr "Izena"
+
+msgid "Creation date"
+msgstr "Sortze-data"
+
+msgid "Last access"
+msgstr "Azken sarrera"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Salatzailearen azken sarrera"
+
+msgid "Substatuses"
+msgstr "Azpiestatusak"
+
+msgid "Add"
+msgstr "Gehitu"
+
+msgid "Label"
+msgstr "Etiketa"
+
+msgid "This field is mandatory"
+msgstr "Eremu hau nahitaezkoa da"
+
+msgid "Edit"
+msgstr "Editatu"
+
+msgid "Save"
+msgstr "Gorde"
+
+msgid "Cancel"
+msgstr "Utzi"
+
+msgid "days"
+msgstr "egunak"
+
+msgid "Disabled"
+msgstr "Desgaitua"
+
+msgid "Report statuses"
+msgstr "Salaketa baten egoerak"
+
+msgid "Channels"
+msgstr "Kanalak"
+
+msgid "Hidden"
+msgstr "Ezkutuan"
+
+msgid "Description"
+msgstr "Deskribapena"
+
+msgid "Questionnaire"
+msgstr "Galdekizuna"
+
+msgid "Recipients"
+msgstr "Hartzaileak"
+
+msgid "Reminder date"
+msgstr "Oroitzeko data"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Ezarri 0 balioa funtzionaltasun hau desgaitzeko."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Erakutsi galdekizunean arakatzeko interfazea"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Ahalbidetu salatzaileek haien hartzaileak hautatzea"
+
+msgid "Select all recipients by default"
+msgstr "Hartzaile guztiak hautatzea lehenestea"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Hauta daitezkeen hartzaileen kopuru maximoa:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Hartzaileak ordena alfabetikoan erakutsi"
+
+msgid "Additional questionnaire"
+msgstr "Galdekizun gehigarria"
+
+msgid "Scoring system options"
+msgstr "Puntuazio sistemaren aukerak"
+
+msgid "Threshold"
+msgstr "Atalasea"
+
+msgid "Value"
+msgstr "Balioa"
+
+msgid "Medium"
+msgstr "Ertaina"
+
+msgid "High"
+msgstr "Altua"
+
+msgid "Software version:"
+msgstr "Softwarearen bertsioa:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Sarbidea IP helbide zehatzei murriztu"
+
+msgid "Enabled"
+msgstr "Gaitua"
+
+msgid "Allowed IP addresses"
+msgstr "Baimendutako IP helbideak"
+
+msgid "Admin"
+msgstr "Administratzailea"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Hartzailea"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Sarrerak bereizteko, beraien artean koma bat jarriko da."
+
+msgid "Example:"
+msgstr "Adibidea:"
+
+msgid "Hostname"
+msgstr "Zerbitzariaren izena "
+
+msgid "Organization"
+msgstr "Antolaketa"
+
+msgid "Invalid email address"
+msgstr "Posta elektroniko helbidea ez da baliozkoa"
+
+msgid "City"
+msgstr "Hiria"
+
+msgid "Country"
+msgstr "Herrialdea"
+
+msgid "Country code"
+msgstr "Herrialdearen kodea"
+
+msgid "Generate"
+msgstr "Sortu"
+
+msgid "Private Key"
+msgstr "Gako pribatua"
+
+msgid "Certificate Signing Request"
+msgstr "Ziurtagiriaren sinadura eskaera"
+
+msgid "Certificate"
+msgstr "Ziurtagiria"
+
+msgid "Valid until:"
+msgstr "Noiz arte balio du:"
+
+msgid "Issuer:"
+msgstr "Igorlea:"
+
+msgid "Intermediate Certificates"
+msgstr "Bitarteko ziurtagiriak"
+
+msgid "Reset"
+msgstr "Berrezarri"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Hurrengo 24 orduetan aktibatzen ez bada, plataforma automatikoki ezabatuko da."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Plataformak HTTPS-aren konfigurazioa erabil dezake interfaze honen bitartez."
+
+msgid "Automatic configuration"
+msgstr "Konfigurazio automatikoa"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "HTTPSren konfigurazio automatikoa erabiltzeak ziurtagiriak Let’s Encrypt-en ziurtagirien Agintariei eskatzeko, gaitzeko eta berritzeko prozesu osoa kudeatuko du."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Plataforma IP publiko baten bitartez egongo da eskuragarri, eta hautatutako taldearen izenak hari dagokion DNS erregistro bat izan behar du, helbide hori aipatzeko"
+
+msgid "Proceed"
+msgstr "Hasi"
+
+msgid "Manual configuration"
+msgstr "Eskuzko konfigurazioa"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Eskuzko konfigurazioaren laguntzaileak zuzenduko dizu HTTPSren ezarpenetik zehar, beste Ziurtatze Agintari batetik."
+
+msgid "Auto-renewal"
+msgstr "Berritze automatikoa"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion zerbitzua"
+
+msgid "Anonymize outgoing connections"
+msgstr "Kanporako konexioak anonimizatzea"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Plataforma Tor gabe irisgarria izateari uztea"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Tor gabe plataforma erabiltzeko gaitutako betekizunak"
+
+msgid "Whistleblower"
+msgstr "Salatzailea"
+
+msgid "To"
+msgstr "Honentzat"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Posta elektronikoko zerbitzari lehenetsia erabiltzen. Arren, pentsa posta elektroniko pribatuko zerbitzaria erabiltzea."
+
+msgid "SMTP email address"
+msgstr "Posta elektroniko SMTP helbidea"
+
+msgid "SMTP server address"
+msgstr "SMTP zerbitzariaren helbidea"
+
+msgid "SMTP server port"
+msgstr "SMTP zerbitzariaren ataka"
+
+msgid "Security"
+msgstr "Segurtasuna"
+
+msgid "Require authentication"
+msgstr "Autentifikazioa behar du"
+
+msgid "Password"
+msgstr "Pasahitza"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Salaketa baten iraungitze-alerta bat bidali aurretiko orduak."
+
+msgid "Test the configuration"
+msgstr "Probatu konfigurazioa"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP konfigurazioa berrezarri "
+
+msgid "Reset notification templates to default"
+msgstr "Jakinarazpen txantiloia lehenetsiak berrezarri"
+
+msgid "Template"
+msgstr "Txantiloia"
+
+msgid "Question"
+msgstr "Galdera"
+
+msgid "Single-line text input"
+msgstr "Lerro bakarreko testu-sarrera"
+
+msgid "Multi-line text input"
+msgstr "Hainbat lerroko testu-sarrera"
+
+msgid "Selection box"
+msgstr "Hautatze-koadroa"
+
+msgid "Multiple choice input"
+msgstr "Hautatze anitzeko sarrera"
+
+msgid "Checkbox"
+msgstr "Egiaztatze-laukia"
+
+msgid "Terms of service"
+msgstr "Zerbitzuaren baldintzak"
+
+msgid "Date range"
+msgstr "Daten tartea"
+
+msgid "Group of questions"
+msgstr "Galdera-sorta"
+
+msgid "Row"
+msgstr "Lerroa"
+
+msgid "Column"
+msgstr "Zutabea"
+
+msgid "Width"
+msgstr "Zabalera"
+
+msgid "Question group"
+msgstr "Galdera-sorta"
+
+msgid "Hint"
+msgstr "Iradokizuna"
+
+msgid "Mandatory"
+msgstr "Nahitaezkoa"
+
+msgid "Accept multiple file uploads"
+msgstr "Hainbat fitxategi igotzea onartu"
+
+msgid "Accept multiple answers"
+msgstr "Erantzun anizkoitzak onartu"
+
+msgid "Template override"
+msgstr "Txantiloia gainidatzi"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Telefono zenbakia"
+
+msgid "Text"
+msgstr "Testua"
+
+msgid "Checkbox label"
+msgstr "Checkbox etiketa"
+
+msgid "Add multimedia content"
+msgstr "Gehitu eduki multimedia"
+
+msgid "Image"
+msgstr "Irudia"
+
+msgid "Audio"
+msgstr "Audioa"
+
+msgid "Video"
+msgstr "Bideoa"
+
+msgid "Text shown upon negative answer"
+msgstr "Erantzuna negatiboa bada erakutsiko den testua"
+
+msgid "Low"
+msgstr "Behea"
+
+msgid "Trigger conditions"
+msgstr "Aktibazio baldintzak"
+
+msgid "Sufficient"
+msgstr "Nahikoa"
+
+msgid "Options"
+msgstr "Aukerak"
+
+msgid "Addition"
+msgstr "Gehikuntza"
+
+msgid "Multiplier"
+msgstr "Biderkatzailea"
+
+msgid "Questions"
+msgstr "Galderak"
+
+msgid "Add new question"
+msgstr "Galdera berria gehitu"
+
+msgid "Add question from template"
+msgstr "Gehitu galdera txantiloira"
+
+msgid "Duplicate"
+msgstr "Bikoiztu"
+
+msgid "Steps"
+msgstr "Urrats"
+
+msgid "Logo"
+msgstr "Logotipoa"
+
+msgid "Project name"
+msgstr "Proiektuaren izena"
+
+msgid "Homepage title"
+msgstr "Orri nagusiaren izenburua"
+
+msgid "Presentation"
+msgstr "Aurkezpena"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Salatzaile potentzialei egiteko galdera"
+
+msgid "Whistleblowing button"
+msgstr "Salaketa aurkezteko botoia"
+
+msgid "Disclaimer"
+msgstr "Erantzukizunaren deskargua"
+
+msgid "Footer"
+msgstr "Orriaren oina"
+
+msgid "Upload"
+msgstr "Igo"
+
+msgid "Download"
+msgstr "Deskargatu"
+
+msgid "Language:"
+msgstr "Hizkuntza:"
+
+msgid "Add custom text"
+msgstr "Gehitu testu pertsonalizatua"
+
+msgid "Custom text"
+msgstr "Testu pertsonalizatua"
+
+msgid "Original text"
+msgstr "Jatorrizko testua"
+
+msgid "Original translation"
+msgstr "Jatorrizko itzulpena"
+
+msgid "Custom translation"
+msgstr "Itzulpen pertsonalizatua"
+
+msgid "Disable submissions"
+msgstr "Salaketak jasotzea desgaitu"
+
+msgid "Enable encryption"
+msgstr "Aktibatu zifratua"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Administratzaileei erabiltzailearen pasahitzak aldatzea ahalbidetzea"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Erabiltzailearen pasahitzak aldatzeko baimendutako administratzaileak:"
+
+msgid "Enable PGP"
+msgstr "Aktibatu PGP"
+
+msgid "Enable simplified login"
+msgstr "Aktibatu saio hasiera sinplifikatua"
+
+msgid "Enable search engines indexing"
+msgstr "Gaitu bilaketa motorren indexazioa "
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Erantsitako fitxategientzako gehienezko tamaina"
+
+msgid "megabytes"
+msgstr "megabyte"
+
+msgid "Require two factor authentication"
+msgstr "Faktore bikoitzeko autentifikazioa eskatu"
+
+msgid "Password change interval"
+msgstr "Pasahitz aldaketa tartea"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Segurtasun arrazoiak direla eta, tarteka aldatu behar da pasahitza. "
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Irakurri gabeko salaketen inguruan erabiltzaileei jakinarazteko epea."
+
+msgid "Custom support URL"
+msgstr "Laguntza pertsonalizaturako URL"
+
+msgid "Disable the privacy panel"
+msgstr "Pribatutasun panela desgaitu"
+
+msgid "Enable custom privacy panel"
+msgstr "Gaitu pribatutasun pertsonalizatuko panela"
+
+msgid "Custom privacy panel"
+msgstr "Pribatutasun pertsonalizatuko panela"
+
+msgid "Enable scoring system"
+msgstr "Gaitu puntuatzeko sistema"
+
+msgid "Logging level"
+msgstr "Erregistro maila "
+
+msgid "percentage"
+msgstr "ehunekoa"
+
+msgid "Log accesses of internal users"
+msgstr "Erregistratu barne-erabiltzaileen sarbideak"
+
+msgid "Notify administrators of software problems"
+msgstr "Administratzaileei jakinarazi softwarearen arazoak"
+
+msgid "Notify developers of software problems"
+msgstr "Garatzaileei jakinarazi softwarearen arazoak"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ezaugarri hori gaitzean, plataforma garatzen eta haren segurtasunean lagunduko duzu."
+
+msgid "Reset reports"
+msgstr "Ezabatu salaketa guztiak"
+
+msgid "Settings"
+msgstr "Konfigurazioa"
+
+msgid "Case management"
+msgstr "Salaketa baten egoerak"
+
+msgid "Network"
+msgstr "Sarea"
+
+msgid "Sites"
+msgstr "Lekuak"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Configure"
+msgstr "Konfiguratu"
+
+msgid "Subdomain"
+msgstr "Azpidomeinua"
+
+msgid "Mode:"
+msgstr "Modua:"
+
+msgid "Creation date:"
+msgstr "Sortze-data:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Lehenengo lekua administrazio xedeekin bakarrik erabili"
+
+msgid "Root domain used for secondary sites"
+msgstr "Leku sekundarioentzat erabilitako erro domeinua"
+
+msgid "Allow users to sign up"
+msgstr "Utzi erabiltzaileei erregistratzen"
+
+msgid "Enable terms of service"
+msgstr "Aktibatu zerbitzuen terminoak"
+
+msgid "Title"
+msgstr "Izenburua"
+
+msgid "Public name"
+msgstr "Izen publikoa"
+
+msgid "Send reset link"
+msgstr "Bidali berrezartzeko esteka"
+
+msgid "Set password"
+msgstr "Berrezarri pasahitza"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Aukeratutako pasahitza oso ahula da. Balizko pasahitza izateko gutxienez 12 karaktere eta minuskulak, eta askotariko karaktereak, minuskulak, maiuskulak, zenbaki bat eta ikur bat gutxienez barne."
+
+msgid "Force password change"
+msgstr "Behartu pasahitza aldatzea"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Erabiltzaileak nahitaez aldatu beharko du pasahitza hurrengoan saioa hastean."
+
+msgid "Disable two factor authentication"
+msgstr "Faktore bikoitzeko autentifikazioa desaktibatu"
+
+msgid "Language"
+msgstr "Hizkuntza"
+
+msgid "Enable email notifications"
+msgstr "Aktibatu posta elektronikoko jakinarazpenak"
+
+msgid "Details of the PGP key:"
+msgstr "PGP gakoaren xehetasunak:"
+
+msgid "Fingerprint"
+msgstr "Gakoa balioztatzeko arrastoa"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Ezarri zifratua PGP gako publiko bat emanaz"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Administratzaile honi erabiltzailearen pasahitzak aldatzeko baimena ematea"
+
+msgid "Forcefully selected"
+msgstr "Automatikoki hautatua"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Hartzaileei salaketak ezabatzen utzi"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Hartzaileari salaketaren iraungitze data jartzen utzi"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Eman erabiltzaileari hurrengo ezaugarrietara sarbide administratiboa."
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Eskatu data"
+
+msgid "Report date"
+msgstr "Aurkezteko epea"
+
+msgid "Authorization"
+msgstr "Baimena"
+
+msgid "Requests"
+msgstr "Eskakizunak"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Balioztatzeko esteka okerra da edo iraungi du."
+
+msgid "Your new email address has been validated."
+msgstr "Zure helbide elektroniko berria balioztatu dugu."
+
+msgid "Forgot password?"
+msgstr "Pasahitza ahaztu duzu?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Sartu autentifikazio kodea bi urratsetan"
+
+msgid "Authentication failed"
+msgstr "Aurtentifikazioak huts egin du"
+
+msgid "The code is either invalid or expired."
+msgstr "Kode baliogabetua edo iraungi du."
+
+msgid "Please select your account:"
+msgstr "Arren, hautatu zure kontua:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Orain idatzi zure pasahitza, eta gero sakatu ‘Hasi saioa’:"
+
+msgid "Confirm"
+msgstr "Berretsi"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Erabiltzaileak aukera hautatu ondoren erakutsitako testua."
+
+msgid "Assign score points"
+msgstr "Esleitu puntuak"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Egoera:"
+
+msgid "Are you sure?"
+msgstr "Ziur zaude?"
+
+msgid "Close"
+msgstr "Itxi"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Arren, ulertu lotutako datu guztiak behin behineko ezabatuko direla."
+
+msgid "Enable two factor authentication"
+msgstr "Faktore bikoitzeko autentifikazioa gaitu"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Jarraitu aurretik, arren, irakurri arretaz hemengo informazioa:"
+
+msgid "Account recovery key"
+msgstr "Kontua berreskuratzeko kodea:"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Egin kopia bat eta gorde ezazu toki seguruan. Pasahitza galduz gero beharko duzu datuak galdu gabe berriz sartu ahal izateko."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Idatzi izena kopiarentzat"
+
+msgid "Mask"
+msgstr "Maskaratu"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Eskatu laguntza"
+
+msgid "Thank you."
+msgstr "Eskerrik asko."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ahal bezain laster erantzuten saiatuko gara."
+
+msgid "Submit"
+msgstr "Entregatu"
+
+msgid "The connection is not secure."
+msgstr "Konexioa ez da segurua."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Plataforma ez dago oraindik konfiguratuta HTTPS konexioentzat, eta probatzeko bakarrik erabili behar da."
+
+msgid "Send"
+msgstr "Bidali"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Berrestean, iraungitze-data egun honetara atzeratuko duzu:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr "Berretsi ondoren, egun honetarako zehaztuko duzu gogorarazpena:"
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Demo postontzi bat da hau, arren, ez ezazu erabili benetako salaketentzat. "
+
+msgid "Install an authenticator app on your phone"
+msgstr "Instala ezazu autentifikazio aplikazio bat zure telefonoan"
+
+msgid "Scan the QR code with the app"
+msgstr "Eskaneatu QR kodea zure aplikazioarekin "
+
+msgid "Error!"
+msgstr "Errorea!"
+
+msgid "Internal server error"
+msgstr "Zerbitzariaren barne errorea"
+
+msgid "Error on input validation"
+msgstr "Sarrera balioztatzean errorea"
+
+msgid "Resource not found"
+msgstr "Baliabidea ez da aurkitu"
+
+msgid "Forbidden operation"
+msgstr "Debekatutako eragiketa"
+
+msgid "The specified old password is not valid"
+msgstr "Zehaztu duzun aurreko pasahitza ez da baliozkoa "
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Baliabide honetan Tor saretik bakarrik sar daiteke"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Igo nahi duzun fitxategiak zilegi den tamaina maximoa gainditzen du."
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Egungo pasahitza"
+
+msgid "New password"
+msgstr "Pasahitz berria"
+
+msgid "The new password must be different from the current one."
+msgstr "Pasahitz berria egungoaren desberdina izan behar da."
+
+msgid "Type your new password again"
+msgstr "Idatzi berriz zure pasahitz berria"
+
+msgid "The two passwords do not match"
+msgstr "Sartutako bi pasahitzak ez datoz bat"
+
+msgid "Validation of email address change in progress."
+msgstr "Helbide elektronikoa balioztatzeko prozesua abian da."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Arren, egiaztatu zure posta elektronikoa jarraibide gehiago irakurtzeko."
+
+msgid "Warning"
+msgstr "Oharra"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Zure identitatea hobeto babesteko, webgunea Tor nabigatzailearekin bisitatzea gomendatzen dizugu."
+
+msgid "Download the Tor Browser"
+msgstr "Tor nabigatzaile deskargatu"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Gero, kopiatu eta itsatsi hurrengo helbidea Tor Nabigatzailean:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Aurkeztu duzu salaketa? Sartu jarraipenerako kodea."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Kodea baliogabetu da edo salaketak iraungi du"
+
+msgid "Filename"
+msgstr "Fitxategiaren izena"
+
+msgid "Size:"
+msgstr "Tamaina:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Helbidea"
+
+msgid "Fiscal code"
+msgstr "Kode fiskala"
+
+msgid "Tax code"
+msgstr "Zergen kodea"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Hartzaileek beste galdekizun gehigarri bat betetzea eskatzen dizute."
+
+msgid "Fill the additional questionnaire"
+msgstr "Bete galdekizun gehigarria"
+
+msgid "From:"
+msgstr "Nondik"
+
+msgid "To:"
+msgstr "Norentzat:"
+
+msgid "View"
+msgstr "Ikusi"
+
+msgid "Upload date"
+msgstr "Igoera-data"
+
+msgid "File size"
+msgstr "Fitxategiaren tamaina"
+
+msgid "Questionnaire answers"
+msgstr "Galdekizuna erantzutea"
+
+msgid "Step"
+msgstr "Urratsa"
+
+msgid "Files attached by recipients"
+msgstr "Hartzaileek erantsitako fitxategiak"
+
+msgid "Upload a file:"
+msgstr "Igo fitxategia:"
+
+msgid "Welcome!"
+msgstr "Ongi etorri!"
+
+msgid "For the user documentation, visit:"
+msgstr "Erabiltzailearen dokumentaziorako, hona joan:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -637,915 +1463,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Softwarea garatzen lagundu nahi baduzu edo akats baten berri eman nahi baduzu, arren, ireki gaia gure ticketen sisteman:"
 
-msgid "Image"
-msgstr "Irudia"
-
-msgid "Import"
-msgstr "Inportatu"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Urrats honetan, hurrengo galderen erantzunak ez daude edo ez dira baliozkoak:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Sarreraren balioztatzea"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Instala ezazu autentifikazio aplikazio bat zure telefonoan"
-
-msgid "Intermediate Certificates"
-msgstr "Bitarteko ziurtagiriak"
-
-msgid "Internal server error"
-msgstr "Zerbitzariaren barne errorea"
-
-msgid "Invalid confirmation"
-msgstr "Berrespenak ez du balio"
-
-msgid "Invalid email address"
-msgstr "Posta elektroniko helbidea ez da baliozkoa"
-
-msgid "Invalid phone number"
-msgstr "Telefono zenbakiak ez du balio."
-
-msgid "Issuer:"
-msgstr "Igorlea:"
-
 msgid "Join our chat:"
 msgstr "Sartu gure txatean:"
 
-msgid "Label"
-msgstr "Etiketa"
-
-msgid "Label the report"
-msgstr "Etiketatu salaketa"
-
-msgid "Language"
-msgstr "Hizkuntza"
-
-msgid "Language:"
-msgstr "Hizkuntza:"
-
-msgid "Languages"
-msgstr "Hizkuntzak"
-
-msgid "Last"
-msgstr "Azkena"
-
-msgid "Last Access"
-msgstr "Azken sarrera"
-
-msgid "Last access"
-msgstr "Azken sarrera"
-
-msgid "Last update"
-msgstr "Azken eguneraketa"
-
-msgid "Latest selectable date"
-msgstr "Ahalik eta data erabilgarri berantiarrena"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Plataforma Tor gabe irisgarria izateari uztea"
-
-msgid "License"
-msgstr "Lizentzia"
-
-msgid "Log accesses of internal users"
-msgstr "Erregistratu barne-erabiltzaileen sarbideak"
-
-msgid "Log in"
-msgstr "Hasi saioa"
-
-msgid "Logging level"
-msgstr "Erregistro maila "
-
-msgid "Logo"
-msgstr "Logotipoa"
-
-msgid "Logout"
-msgstr "Itxi saioa"
-
-msgid "Low"
-msgstr "Behea"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Egin kopia bat eta gorde ezazu toki seguruan. Pasahitza galduz gero beharko duzu datuak galdu gabe berriz sartu ahal izateko."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Administratzaile honi erabiltzailearen pasahitzak berrezartzea ahalbidetzea."
-
-msgid "Mandatory"
-msgstr "Nahitaezkoa"
-
-msgid "Manual configuration"
-msgstr "Eskuzko konfigurazioa"
-
-msgid "Mark as important"
-msgstr "Markatu garrantzitsu gisa"
-
-msgid "Mask"
-msgstr "Maskaratu"
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Fitxategi bakoitzarentzat gehienezko tamaina:"
-
-msgid "Maximum number of input characters"
-msgstr "Sarrerako karaktereen kopuru maximoa"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Hauta daitezkeen hartzaileen kopuru maximoa:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Ertaina"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Sarrerako karaktereen kopuru minimoa"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "Modua:"
-
-msgid "Motivation"
-msgstr "Arrazoia"
-
-msgid "Move down"
-msgstr "Beherantz eraman"
-
-msgid "Move left"
-msgstr "Ezkerrerantz eraman"
-
-msgid "Move right"
-msgstr "Eskuinerantz eraman"
-
-msgid "Move up"
-msgstr "Gorantz eraman"
-
-msgid "Multi-line text input"
-msgstr "Hainbat lerroko testu-sarrera"
-
-msgid "Multiple choice input"
-msgstr "Hautatze anitzeko sarrera"
-
-msgid "Multiplier"
-msgstr "Biderkatzailea"
-
-msgid "Name"
-msgstr "Izena"
-
-msgid "Network"
-msgstr "Sarea"
-
-msgid "New"
-msgstr "Berria"
-
-msgid "New password"
-msgstr "Pasahitz berria"
-
-msgid "New request"
-msgstr "Eskakizun berria"
-
-msgid "Next"
-msgstr "Hurrengoa"
-
-msgid "No"
-msgstr "Ez"
-
-msgid "None"
-msgstr "Bat ere ez"
-
-msgid "Not provided."
-msgstr "Ez da eman."
-
-msgid "Notifications"
-msgstr "Jakinarazpenak"
-
-msgid "Notify administrators of software problems"
-msgstr "Administratzaileei jakinarazi softwarearen arazoak"
-
-msgid "Notify developers of software problems"
-msgstr "Garatzaileei jakinarazi softwarearen arazoak"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Orain idatzi zure pasahitza, eta gero sakatu ‘Hasi saioa’:"
-
-msgid "Number"
-msgstr "Zenbakia"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Irakurri gabeko salaketen inguruan erabiltzaileei jakinarazteko epea."
-
-msgid "Number of downloads"
-msgstr "Deskarga kopurua"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Salaketa baten iraungitze-alerta bat bidali aurretiko orduak."
-
-msgid "Object"
-msgstr "Xedea"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Hartzaile batek edo gehiagok ez du egin lehenengo saio-hasiera. Horrek esan nahi du ezingo dutela salaketarik kudeatu."
-
-msgid "Opened"
-msgstr "Irekita"
-
-msgid "Options"
-msgstr "Aukerak"
-
-msgid "Organization"
-msgstr "Antolaketa"
-
-msgid "Original text"
-msgstr "Jatorrizko testua"
-
-msgid "Original translation"
-msgstr "Jatorrizko itzulpena"
-
-msgid "Password"
-msgstr "Pasahitza"
-
-msgid "Password change interval"
-msgstr "Pasahitz aldaketa tartea"
-
-msgid "Password reset"
-msgstr "Pasahitza berrezarri"
-
-msgid "Password reset requested."
-msgstr "Pasahitza berrezartzea eskatu da."
-
-msgid "Phone number"
-msgstr "Telefono zenbakia"
-
-msgid "Placeholder"
-msgstr "Markadorea"
-
-msgid "Platform wizard"
-msgstr "Plataformaren laguntzailea"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Arren, egiaztatu zure posta elektronikoa jarraibide gehiago irakurtzeko."
-
-msgid "Please choose a configuration profile:"
-msgstr "Arren, aukeratu konfigurazio profil bat:"
-
-msgid "Please choose a different username."
-msgstr "Arren aukeratu beste erabiltzaile izen bat."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Arren, ulertu lotutako datu guztiak behin behineko ezabatuko direla."
-
-msgid "Please select your account:"
-msgstr "Arren, hautatu zure kontua:"
-
-msgid "Postpone the expiration date"
-msgstr "Iraungitze data atzeratu"
-
-msgid "Preferences"
-msgstr "Lehentasunak"
-
-msgid "Presentation"
-msgstr "Aurkezpena"
-
-msgid "Preview"
-msgstr "Aurrebista"
-
-msgid "Previous"
-msgstr "Aurrekoa"
-
-msgid "Print"
-msgstr "Inprimatu"
-
-msgid "Privacy Policy"
-msgstr "Pribatutasun Politika"
-
-msgid "Private Key"
-msgstr "Gako pribatua"
-
-msgid "Privileges"
-msgstr "Baimen"
-
-msgid "Proceed"
-msgstr "Hasi"
-
-msgid "Profile"
-msgstr "Profil"
-
-msgid "Project name"
-msgstr "Proiektuaren izena"
-
-msgid "Public name"
-msgstr "Izen publikoa"
-
-msgid "Question"
-msgstr "Galdera"
-
-msgid "Question group"
-msgstr "Galdera-sorta"
-
-msgid "Question templates"
-msgstr "Galderen txantiloia"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Salatzaile potentzialei egiteko galdera"
-
-msgid "Questionnaire"
-msgstr "Galdekizuna"
-
-msgid "Questionnaire answers"
-msgstr "Galdekizuna erantzutea"
-
-msgid "Questionnaires"
-msgstr "Galdekizunak"
-
-msgid "Questions"
-msgstr "Galderak"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "Hartzailea"
-
-msgid "Recipient selection"
-msgstr "Hartzailearen hautespena"
-
-msgid "Recipients"
-msgstr "Hartzaileak"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Hartzaileek beste galdekizun gehigarri bat betetzea eskatzen dizute."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Hautatutako hartzaileak:"
-
-msgid "Redact"
-msgstr "Idatzi"
-
-msgid "Refresh"
-msgstr "Eguneratu"
-
-msgid "Regenerate"
-msgstr "Birsortu"
-
-msgid "Regular expression"
-msgstr "Adierazpen erregularra"
-
-msgid "Regular expression validator"
-msgstr "Esamolde erregularren balioztatzailea"
-
-msgid "Remember your receipt for this report."
-msgstr "Arren, gorde kode hau, aurrerago zure salaketaren egoeran sartzeko beharko duzu."
-
-msgid "Reminder date"
-msgstr "Oroitzeko data"
-
-msgid "Remove"
-msgstr "Ezabatu"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Erantzunaren arrazoia"
-
-msgid "Reply to the request"
-msgstr "Erantzun eskakizunari"
-
-msgid "Report"
-msgstr "Salaketa"
-
-msgid "Report date"
-msgstr "Aurkezteko epea"
-
-msgid "Report statuses"
-msgstr "Salaketa baten egoerak"
-
-msgid "Reports"
-msgstr "Salaketak"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Salatzailearen identitatera sarbidea eskatu "
-
-msgid "Request date"
-msgstr "Eskatu data"
-
-msgid "Request motivation"
-msgstr "Eskakizunaren arrazoia"
-
-msgid "Request status"
-msgstr "Eskakizunaren egoera"
-
-msgid "Request support"
-msgstr "Eskatu laguntza"
-
-msgid "Requests"
-msgstr "Eskakizunak"
-
-msgid "Require authentication"
-msgstr "Autentifikazioa behar du"
-
-msgid "Require two factor authentication"
-msgstr "Faktore bikoitzeko autentifikazioa eskatu"
-
-msgid "Reset"
-msgstr "Berrezarri"
-
-msgid "Reset SMTP configuration"
-msgstr "SMTP konfigurazioa berrezarri "
-
-msgid "Reset notification templates to default"
-msgstr "Jakinarazpen txantiloia lehenetsiak berrezarri"
-
-msgid "Reset reports"
-msgstr "Ezabatu salaketa guztiak"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Baliabide honetan Tor saretik bakarrik sar daiteke"
-
-msgid "Resource not found"
-msgstr "Baliabidea ez da aurkitu"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Sarbidea IP helbide zehatzei murriztu"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Kendu sarbidea"
-
-msgid "Role"
-msgstr "Betekizuna"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Tor gabe plataforma erabiltzeko gaitutako betekizunak"
-
-msgid "Root domain used for secondary sites"
-msgstr "Leku sekundarioentzat erabilitako erro domeinua"
-
-msgid "Row"
-msgstr "Lerroa"
-
-msgid "SMTP email address"
-msgstr "Posta elektroniko SMTP helbidea"
-
-msgid "SMTP server address"
-msgstr "SMTP zerbitzariaren helbidea"
-
-msgid "SMTP server port"
-msgstr "SMTP zerbitzariaren ataka"
-
-msgid "Save"
-msgstr "Gorde"
-
-msgid "Save all"
-msgstr "Gorde dena"
-
-msgid "Scan the QR code with the app"
-msgstr "Eskaneatu QR kodea zure aplikazioarekin "
-
-msgid "Scheduled jobs"
-msgstr "Programatutako atazak"
-
-msgid "Score"
-msgstr "Puntuazioa"
-
-msgid "Scoring system options"
-msgstr "Puntuazio sistemaren aukerak"
-
-msgid "Search"
-msgstr "Bilatu"
-
-msgid "Security"
-msgstr "Segurtasuna"
-
-msgid "Select"
-msgstr "Hautatu"
-
-msgid "Select a file or drag it here."
-msgstr "Hautatu fitxategi bat edo hona arrastatu."
-
-msgid "Select all"
-msgstr "Hautatu dena"
-
-msgid "Select all recipients by default"
-msgstr "Hartzaile guztiak hautatzea lehenestea"
-
-msgid "Select an option"
-msgstr "Hautatu aukera bat"
-
-msgid "Select the recipients of your report"
-msgstr "Hautatu zure salaketaren hartzaileak:"
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Hautatze-koadroa"
-
-msgid "Send"
-msgstr "Bidali"
-
-msgid "Send a test email to your email address."
-msgstr "Bidali probako posta bat zure helbide elektronikora"
-
-msgid "Send activation link"
-msgstr "Bidali aktibatzeko esteka"
-
-msgid "Send reset link"
-msgstr "Bidali berrezartzeko esteka"
-
-msgid "Set a reminder"
-msgstr "Ezarri oroigarria"
-
-msgid "Set password"
-msgstr "Berrezarri pasahitza"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Ezarri 0 balioa funtzionaltasun hau desgaitzeko."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Ezarri zifratua PGP gako publiko bat emanaz"
-
-msgid "Settings"
-msgstr "Konfigurazioa"
-
-msgid "Severity"
-msgstr "Larritasuna"
-
-msgid "Show"
-msgstr "Erakutsi"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Hartzaileak ordena alfabetikoan erakutsi"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Erakutsi galdekizunean arakatzeko interfazea"
-
-msgid "Sign up"
-msgstr "Erregistratu"
-
-msgid "Silence email notifications"
-msgstr "Posta elektronikoko jakinarazpenak mututu"
-
-msgid "Single-line text input"
-msgstr "Lerro bakarreko testu-sarrera"
-
-msgid "Site"
-msgstr "Lekua"
-
-msgid "Sites"
-msgstr "Lekuak"
-
-msgid "Size limit for file attachments"
-msgstr "Erantsitako fitxategientzako gehienezko tamaina"
-
-msgid "Size:"
-msgstr "Tamaina:"
-
-msgid "Skip the recipient account creation."
-msgstr "Hartzailearen kontua sortzea saltatu."
-
-msgid "Software version:"
-msgstr "Softwarearen bertsioa:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Estatistikak"
-
-msgid "Status"
-msgstr "Egoera"
-
-msgid "Status:"
-msgstr "Egoera:"
-
-msgid "Step"
-msgstr "Urratsa"
-
-msgid "Steps"
-msgstr "Urrats"
-
-msgid "Strong"
-msgstr "Sendoa"
-
-msgid "Subdomain"
-msgstr "Azpidomeinua"
-
-msgid "Submissions disabled"
-msgstr "Salaketak jasotzea desgaituta"
-
-msgid "Submit"
-msgstr "Entregatu"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Azpiestatusak"
-
-msgid "Success!"
-msgstr "Osatuta!"
-
-msgid "Sufficient"
-msgstr "Nahikoa"
-
-msgid "Surname"
-msgstr "Abizenak"
-
-msgid "Tax code"
-msgstr "Zergen kodea"
-
-msgid "Template"
-msgstr "Txantiloia"
-
-msgid "Template override"
-msgstr "Txantiloia gainidatzi"
-
-msgid "Templates"
-msgstr "Txantiloiak"
-
-msgid "Terms of service"
-msgstr "Zerbitzuaren baldintzak"
-
-msgid "Test the configuration"
-msgstr "Probatu konfigurazioa"
-
-msgid "Text"
-msgstr "Testua"
-
-msgid "Text customization"
-msgstr "Testuaren pertsonalizazioa"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Erabiltzaileak aukera hautatu ondoren erakutsitako testua."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr "Kanalak hautatzeko interfazearen goiko partean erakutsitako testua "
-
-msgid "Text shown upon negative answer"
-msgstr "Erantzuna negatiboa bada erakutsiko den testua"
-
-msgid "Thank you."
-msgstr "Eskerrik asko."
-
-msgid "The answer is too short"
-msgstr "Erantzuna laburregia da"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Aukeratutako pasahitza oso ahula da. Balizko pasahitza izateko gutxienez 12 karaktere eta minuskulak, eta askotariko karaktereak, minuskulak, maiuskulak, zenbaki bat eta ikur bat gutxienez barne."
-
-msgid "The code is either invalid or expired."
-msgstr "Kode baliogabetua edo iraungi du."
-
-msgid "The connection is not secure."
-msgstr "Konexioa ez da segurua."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Hurrengo hartzaileek zure txostena jasoko dute eta ezingo dira deshautatuak izan:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Hurrengo prozedurak urratsez urrats eramango zaitu salaketak jasotzeko plataforma sortzeko."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Eskuzko konfigurazioaren laguntzaileak zuzenduko dizu HTTPSren ezarpenetik zehar, beste Ziurtatze Agintari batetik."
-
-msgid "The new password must be different from the current one."
-msgstr "Pasahitz berria egungoaren desberdina izan behar da."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Plataforma ez dago oraindik konfiguratuta HTTPS konexioentzat, eta probatzeko bakarrik erabili behar da."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Plataforma IP publiko baten bitartez egongo da eskuragarri, eta hautatutako taldearen izenak hari dagokion DNS erregistro bat izan behar du, helbide hori aipatzeko"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Plataformak HTTPS-aren konfigurazioa erabil dezake interfaze honen bitartez."
-
-msgid "The provided recovery key is invalid."
-msgstr "Sartutako berreskuratzeko kodea ez da balizkoa."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Emandako token baliogabetua edo iraungi du."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Kodea baliogabetu da edo salaketak iraungi du"
-
-msgid "The specified input is not valid."
-msgstr "Zehaztutako sarrera ez da baliozkoa."
-
-msgid "The specified input is not valid:"
-msgstr "Zehaztutako sarrera ez da baliozkoa:"
-
-msgid "The specified old password is not valid"
-msgstr "Zehaztu duzun aurreko pasahitza ez da baliozkoa "
-
-msgid "The two passwords do not match"
-msgstr "Sartutako bi pasahitzak ez datoz bat"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Igo nahi duzun fitxategiak zilegi den tamaina maximoa gainditzen du."
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Erabiltzaileak nahitaez aldatu beharko du pasahitza hurrengoan saioa hastean."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Balioztatzeko esteka okerra da edo iraungi du."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Salatzaileak irakurri du azken eguneratzea. "
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Salatzaileak ez du irakurri azken eguneratzea. "
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Gero, kopiatu eta itsatsi hurrengo helbidea Tor Nabigatzailean:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Testu pertsonalizatu hau ez da gehiago azalduko plataforman. Jatorrizko testua aldatu egin da edo ezabatu egin da."
-
-msgid "This domain name is not available."
-msgstr "Domeinuaren izen hau ez dago erabilgarri."
-
-msgid "This field is mandatory"
-msgstr "Eremu hau nahitaezkoa da"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Demo postontzi bat da hau, arren, ez ezazu erabili benetako salaketentzat. "
-
-msgid "This user has not performed the first login yet."
-msgstr "Erabiltzaile honek ez du egin lehenengo saio-hasiera."
-
-msgid "Threshold"
-msgstr "Atalasea"
-
-msgid "Title"
-msgstr "Izenburua"
-
-msgid "To"
-msgstr "Honentzat"
-
-msgid "To:"
-msgstr "Norentzat:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Tor Onion zerbitzua"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Aktibazio baldintzak"
-
-msgid "Trigger question"
-msgstr "Egin galdera"
-
-msgid "Triggered by score:"
-msgstr "Aktibatuta puntuazioaren arabera:"
-
-msgid "Turn on email notifications"
-msgstr "Posta elektronikoko jakinarazpenak aktibatu"
-
-msgid "Type"
-msgstr "Mota"
-
-msgid "Type your new password again"
-msgstr "Idatzi berriz zure pasahitz berria"
-
-msgid "URL redirects"
-msgstr "URL birbideratzea"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Igo"
-
-msgid "Upload a file:"
-msgstr "Igo fitxategia:"
-
-msgid "Upload date"
-msgstr "Igoera-data"
-
-msgid "Use as default"
-msgstr "Lehenetsi gisa erabili"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Erabili 16 digituko kodea saioa hasteko. Bidaliko dizkizugun mezu guztiak ikusi eta informazio osagarria gehitzea ahalbidetuko dizu."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Lehenengo lekua administrazio xedeekin bakarrik erabili"
-
-msgid "User"
-msgstr "Erabiltzailea"
-
-msgid "Username"
-msgstr "Erabiltzailearen izena"
-
-msgid "Users"
-msgstr "Erabiltzaileak"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "HTTPSren konfigurazio automatikoa erabiltzeak ziurtagiriak Let’s Encrypt-en ziurtagirien Agintariei eskatzeko, gaitzeko eta berritzeko prozesu osoa kudeatuko du."
-
-msgid "Valid until:"
-msgstr "Noiz arte balio du:"
-
-msgid "Validation of email address change in progress."
-msgstr "Helbide elektronikoa balioztatzeko prozesua abian da."
-
-msgid "Value"
-msgstr "Balioa"
-
-msgid "Video"
-msgstr "Bideoa"
-
-msgid "View"
-msgstr "Ikusi"
-
-msgid "View your report"
-msgstr "Ikus zure salaketa"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Baimenaren zain"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Fitxategiak igotzen bukatzearen zain."
-
-msgid "Warning"
-msgstr "Oharra"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Aukera hau hautatzea gomendatzen dugu hartzaileek haien pasahitzak galduz gero datuak galtzea saihestu nahi bada. Bestetik, hobe da ez erabiltzea hartzaileei salaketetan sartzea bakarrik utziko zaien sistema bat ezarri nahi bada."
+msgid "An update is available:"
+msgstr "Eguneraketa bat dago eskuragarri:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1554,78 +1476,85 @@ msgid ""
 "your password."
 msgstr "“Gogokoenak” atalean sartzea gomendatzen dizugu “Kontua berreskuratzeko gakoa” deskargatu eta modu seguruan gorde dezazun. Plataformarako eta datuetarako sarbidea berreskuratzeko beharko dituzu, pasahitza ahazten baduzu."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ahal bezain laster erantzuten saiatuko gara."
+msgid "Select a file or drag it here."
+msgstr "Hautatu fitxategi bat edo hona arrastatu."
 
-msgid "Weak"
-msgstr "Ahula"
+msgid "The provided recovery key is invalid."
+msgstr "Sartutako berreskuratzeko kodea ez da balizkoa."
 
-msgid "Welcome!"
-msgstr "Ongi etorri!"
-
-msgid "Whistleblower"
-msgstr "Salatzailea"
-
-msgid "Whistleblower's last access"
-msgstr "Salatzailearen azken sarrera"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Salaketa aurkezteko botoia"
-
-msgid "Width"
-msgstr "Zabalera"
-
-msgid "Yes"
-msgstr "Bai"
+msgid "The provided reset token is invalid or expired."
+msgstr "Emandako token baliogabetua edo iraungi du."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Zerbitzarira modu ez anonimoan ari zara konektatzen, eta zerbitzari honek entrega anonimoak bakarrik erabil ditzake"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Sartu erabiltzailearen izena edo posta elektronikoa pasahitza berrezartzea eskatzeko."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Sartu helbide elektronikoa pasahitza berrezartzea eskatzeko."
+
+msgid "Password reset requested."
+msgstr "Pasahitza berrezartzea eskatu da."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Zure identitatea hobeto babesteko, webgunea Tor nabigatzailearekin bisitatzea gomendatzen dizugu."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Sartu kontua berreskuratzeko gakoa pasahitza berrezartzeko prozesua osatzeko."
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Salatzailearen identitatera sarbidea eskatu zaio jagoleari."
+
+msgid "Date of the request"
+msgstr "Eskakizunaren data"
+
+msgid "Show"
+msgstr "Erakutsi"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Zorionak!"
 
 msgid "You have completed the platform activation."
 msgstr "Plataformaren aktibazioa burutu da."
 
-msgid "You have completed the platform wizard."
-msgstr "Ongi bete duzu plataformaren laguntzailea."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Hauta daitezkeen hartzaileen kopuru maximora iritsi zara"
-
-msgid "You must select at least one recipient."
-msgstr "Gutxienez hartzaile bat hautatu behar duzu."
-
-msgid "Your new email address has been validated."
-msgstr "Zure helbide elektroniko berria balioztatu dugu."
-
-msgid "Your report was successful."
-msgstr "Zure salaketa behar bezala aurkeztu da."
+msgid "Success!"
+msgstr "Osatuta!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Salaketak jasotzeko plataforma ia prest dago!"
 
-msgid "days"
-msgstr "egunak"
+msgid "Check your inbox to activate it."
+msgstr "Egiaztatu sarrera ontzia hura aktibatzeko."
 
-msgid "file unavailable"
-msgstr "Fitxategia ez dago erabilgarri"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Hurrengo 24 orduetan aktibatzen ez bada, plataforma automatikoki ezabatuko da."
 
-msgid "megabytes"
-msgstr "megabyte"
+msgid "Sign up"
+msgstr "Erregistratu"
 
-msgid "percentage"
-msgstr "ehunekoa"
+msgid "Invalid confirmation"
+msgstr "Berrespenak ez du balio"
+
+msgid "Invalid phone number"
+msgstr "Telefono zenbakiak ez du balio."
+
+msgid "Site"
+msgstr "Lekua"
+
+msgid "Confirmation"
+msgstr "Berrespena"
+
+msgid "The answer is too short"
+msgstr "Erantzuna laburregia da"
+
+msgid "The specified input is not valid."
+msgstr "Zehaztutako sarrera ez da baliozkoa."
+
+msgid "The specified input is not valid:"
+msgstr "Zehaztutako sarrera ez da baliozkoa:"
 
 msgid "please enter a valid email address."
 msgstr "Arren, sartu baliozko helbide elektroniko bat. "
@@ -1633,14 +1562,82 @@ msgstr "Arren, sartu baliozko helbide elektroniko bat. "
 msgid "please enter numbers only."
 msgstr "Arren, zenbakiak bakarrik sartu."
 
-msgid "seconds"
-msgstr "segundo"
+msgid "Submissions disabled"
+msgstr "Salaketak jasotzea desgaituta"
 
-msgid "File a report"
-msgstr "Aurkeztu salaketa."
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Zerbitzarira modu ez anonimoan ari zara konektatzen, eta zerbitzari honek entrega anonimoak bakarrik erabil ditzake"
 
-msgid "Select a reporting channel:"
-msgstr "Hautatu salaketen kanala:"
+msgid "Your report was successful."
+msgstr "Zure salaketa behar bezala aurkeztu da."
+
+msgid "Remember your receipt for this report."
+msgstr "Arren, gorde kode hau, aurrerago zure salaketaren egoeran sartzeko beharko duzu."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Erabili 16 digituko kodea saioa hasteko. Bidaliko dizkizugun mezu guztiak ikusi eta informazio osagarria gehitzea ahalbidetuko dizu."
+
+msgid "View your report"
+msgstr "Ikus zure salaketa"
+
+msgid "Select the recipients of your report"
+msgstr "Hautatu zure salaketaren hartzaileak:"
+
+msgid "Recipients selected:"
+msgstr "Hautatutako hartzaileak:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Hauta daitezkeen hartzaileen kopuru maximora iritsi zara"
+
+msgid "You must select at least one recipient."
+msgstr "Gutxienez hartzaile bat hautatu behar duzu."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Hurrengo hartzaileek zure txostena jasoko dute eta ezingo dira deshautatuak izan:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Urrats honetan, hurrengo galderen erantzunak ez daude edo ez dira baliozkoak:"
+
+msgid "Recipient selection"
+msgstr "Hartzailearen hautespena"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Fitxategiak igotzen bukatzearen zain."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Hurrengo prozedurak urratsez urrats eramango zaitu salaketak jasotzeko plataforma sortzeko."
+
+msgid "Please choose a configuration profile:"
+msgstr "Arren, aukeratu konfigurazio profil bat:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Administratzaile honi erabiltzailearen pasahitzak berrezartzea ahalbidetzea."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Aukera hau hautatzea gomendatzen dugu hartzaileek haien pasahitzak galduz gero datuak galtzea saihestu nahi bada. Bestetik, hobe da ez erabiltzea hartzaileei salaketetan sartzea bakarrik utziko zaien sistema bat ezarri nahi bada."
+
+msgid "Please choose a different username."
+msgstr "Arren aukeratu beste erabiltzaile izen bat."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Irakurri dut eta ados nago lizentziaren terminoekin."
+
+msgid "You have completed the platform wizard."
+msgstr "Ongi bete duzu plataformaren laguntzailea."
 
 msgid "Please summarize your report in a few words."
 msgstr "Deskribatu hitz gutxitan zure salaketa."

@@ -28,132 +28,158 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = אוטומטי"
+msgid "Log in"
+msgstr "התחבר"
 
-msgid "Accept multiple answers"
-msgstr "קבל תשובות רבות"
+msgid "Languages"
+msgstr "שפות"
 
-msgid "Accept multiple file uploads"
-msgstr "קבל העלאות של קבצים רבים"
-
-msgid "Acceptable"
-msgstr "מקובל"
-
-msgid "Access control"
-msgstr "ניהול גישה"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "דרושה גישה"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "גישה אל הזהות של המתריע התבקש האפוטרופוס."
-
-msgid "Account recovery key"
-msgstr ""
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "פעילויות"
-
-msgid "Add"
-msgstr "הוסף"
-
-msgid "Add custom text"
-msgstr "הוסף טקסט מותאם אישית"
-
-msgid "Add multimedia content"
-msgstr "הוסף תוכן מולטימדיה"
-
-msgid "Add new question"
-msgstr "הוסף שאלה חדשה"
-
-msgid "Add new questionnaire"
-msgstr "הוסף שאלון חדש"
-
-msgid "Add question from template"
-msgstr "הוסף שאלה מתבנית"
-
-msgid "Addition"
-msgstr "חיבור"
-
-msgid "Additional questionnaire"
-msgstr ""
-
-msgid "Address"
-msgstr "כתובת"
-
-msgid "Admin"
-msgstr "מינהלן"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgid "Text customization"
+msgstr "התאמה אישית של טקסט"
 
 msgid "Advanced"
 msgstr "מתקדם"
 
-msgid "Allow the recipient to delete reports"
-msgstr ""
+msgid "Question templates"
+msgstr "תבניות שאלה"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgid "Questionnaires"
+msgstr "שאלונים"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
+msgid "Add new questionnaire"
+msgstr "הוסף שאלון חדש"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "התר לחושף השחיתות לכתוב תגובות"
+msgid "Home"
+msgstr "בית"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "יומן שינויים"
 
-msgid "Allow users to sign up"
-msgstr "התר למשתמשים להירשם"
+msgid "License"
+msgstr "רישיון"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "אפשר שחושפים את עוולות כדי לבחור נמענים שלהם"
+msgid "Templates"
+msgstr "תבניות"
 
-msgid "Allowed IP addresses"
-msgstr ""
-
-msgid "An update is available:"
-msgstr "עדכון זמין:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "מחק"
 
 msgid "Anomalies"
 msgstr "אנומליות"
 
-msgid "Anomaly detection thresholds"
-msgstr "ספי גילוי אנומליות"
+msgid "Preferences"
+msgstr "העדפות"
 
-msgid "Anonymity"
+msgid "Notifications"
+msgstr "התראות"
+
+msgid "file unavailable"
+msgstr "קובץ לא זמין"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Expiration date"
+msgstr "תאריך תפוגה"
+
+msgid "Last Access"
+msgstr "גישה אחרונה"
+
+msgid "Files"
+msgstr "קבצים"
+
+msgid "Comments"
+msgstr "הערות"
+
+msgid "Details"
+msgstr "פרטים"
+
+msgid "Platform wizard"
+msgstr "אשף פלטפורמה"
+
+msgid "Label the report"
+msgstr "סווג את הדוח"
+
+msgid "Edit the expiration date"
+msgstr "דחה את תאריך התפוגה"
+
+msgid "Select all"
+msgstr "בחר הכל"
+
+msgid "Deselect all"
+msgstr "בטל בחירת הכל"
+
+msgid "Refresh"
+msgstr "רענן"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr ""
+msgid "Preview"
+msgstr "הצג מראש"
 
-msgid "Anonymous"
-msgstr "אלמוני"
+msgid "The whistleblower has already read the last update"
+msgstr "חושף השחיתויות קרא כבר את העדכון האחרון"
 
-msgid "Are you sure?"
-msgstr "האם אתה בטוח?"
+msgid "The whistleblower has not read the last update yet"
+msgstr "חושף השחיתויות עדין לא קרא את העדכון האחרון"
 
-msgid "Assign score points"
-msgstr "הקצאת נקודות ציון"
+msgid "Move up"
+msgstr "הזז למעלה"
 
-msgid "Assigned to"
-msgstr ""
+msgid "Move down"
+msgstr "הזז למטה"
+
+msgid "Move left"
+msgstr "הזז שמאלה"
+
+msgid "Move right"
+msgstr "הזז ימינה"
+
+msgid "Import"
+msgstr "ייבא"
+
+msgid "Export"
+msgstr "ייצא"
+
+msgid "Save all"
+msgstr "שמור הכל"
+
+msgid "Access control"
+msgstr "ניהול גישה"
+
+msgid "Number"
+msgstr "מספר"
+
+msgid "Email"
+msgstr "דוא״ל"
+
+msgid "Regular expression validator"
+msgstr "מאמת ביטוי רגולרי"
+
+msgid "Minimum number of input characters"
+msgstr "מספר תווים מינימלי קלט"
+
+msgid "Maximum number of input characters"
+msgstr "מספר התווים המרבי קלט"
+
+msgid "Earliest selectable date"
+msgstr "תאריך בר‏־בחירה המוקדם ביותר"
+
+msgid "Latest selectable date"
+msgstr "תאריך בר־בחירה המאוחר ביותר"
+
+msgid "0 = auto"
+msgstr "0 = אוטומטי"
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
 
 msgid "Attachment"
 msgstr "צרופה"
@@ -161,186 +187,56 @@ msgstr "צרופה"
 msgid "Attachments"
 msgstr "צרופות"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "שמע"
-
-msgid "Audit log"
-msgstr ""
-
-msgid "Authentication failed"
-msgstr "אימות נכשל"
-
-msgid "Authorization"
-msgstr "הרשאה"
-
-msgid "Authorize"
-msgstr "הרשה"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "תן הרשאת גישת הזהות של המתריע"
-
-msgid "Authorized"
-msgstr "מורשה"
-
-msgid "Auto-renewal"
-msgstr "חידוש אוטומטי"
-
-msgid "Automatic configuration"
-msgstr "תצורה אוטומטית"
-
-msgid "Available disk space"
-msgstr "שטח דיסק זמין"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי"
-
-msgid "Before proceeding, please set a new password."
-msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
-
-msgid "Block the submission"
-msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr ""
-
-msgid "Cancel"
-msgstr "בטל"
-
-msgid "Case management"
-msgstr "ניהול תיקים"
-
-msgid "Certificate"
-msgstr "תעודה"
-
-msgid "Certificate Signing Request"
-msgstr "בקשת החתמת תעודה"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "שנה את סיסמתך"
 
-msgid "Changelog"
-msgstr "יומן שינויים"
+msgid "User"
+msgstr "משתמש"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "הנעה"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "מעמד"
 
-msgid "Check your inbox to activate it."
-msgstr ""
+msgid "Request motivation"
+msgstr "בקש הנעה"
 
-msgid "Checkbox"
-msgstr "תיבת סימון"
+msgid "Reply motivation"
+msgstr "השב אל הנעה"
 
-msgid "Checkbox label"
-msgstr "תווית של תיבת סימון"
-
-msgid "City"
-msgstr "עיר"
-
-msgid "Close"
-msgstr "סגור"
-
-msgid "Closed"
-msgstr "סגור"
-
-msgid "Collapse"
-msgstr "צמצם"
-
-msgid "Column"
-msgstr "עמודה"
-
-msgid "Comments"
-msgstr "הערות"
-
-msgid "Computer"
-msgstr "מחשב"
-
-msgid "Configure"
-msgstr "תצר"
-
-msgid "Confirm"
-msgstr "אשר"
-
-msgid "Confirmation"
-msgstr "אישור"
-
-msgid "Congratulations!"
-msgstr "מזל טוב!"
-
-msgid "Copy to clipboard"
-msgstr "העתק ללוח גזירה"
-
-msgid "Country"
-msgstr "מדינה"
-
-msgid "Country code"
-msgstr "קוד מדינה"
-
-msgid "Creation date"
-msgstr "תאריך יצירה"
-
-msgid "Creation date:"
-msgstr "תאריך יצירה:"
-
-msgid "Current password"
-msgstr "סיסמה נוכחית"
+msgid "Request status"
+msgstr "מעמד בקשה"
 
 msgid "Custodian"
 msgstr "אַפּוֹטרוֹפּוֹס"
 
-msgid "Custom"
-msgstr "מותאם אישית"
+msgid "Identity"
+msgstr "זהות"
 
-msgid "Custom privacy panel"
-msgstr "לוח פרטיות מותאם אישית"
+msgid "Access requested"
+msgstr "דרושה גישה"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "בקש גישה אל זהות של חושף שחיתות"
 
-msgid "Custom text"
-msgstr "טקסט מותאם אישית"
+msgid "Reply to the request"
+msgstr "השב אל הבקשה"
 
-msgid "Custom translation"
-msgstr "תרגום מותאם אישית"
-
-msgid "Date"
-msgstr "תאריך"
-
-msgid "Date of the request"
-msgstr "תאריך הבקשה"
-
-msgid "Date range"
-msgstr "טווח תאריכים"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "מחק"
+msgid "Authorized"
+msgstr "מורשה"
 
 msgid "Denied"
 msgstr "נדחה"
+
+msgid "Waiting for authorization"
+msgstr "ממתין לאימות"
+
+msgid "New request"
+msgstr "בקשה חדשה"
+
+msgid "Authorize"
+msgstr "הרשה"
 
 msgid "Deny"
 msgstr "לְהַכּחִישׁ"
@@ -348,26 +244,20 @@ msgstr "לְהַכּחִישׁ"
 msgid "Deny access to the whistleblower's identity"
 msgstr "מנע גישה אל הזהות של המתריע"
 
-msgid "Description"
-msgstr "תיאור"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "תן הרשאת גישת הזהות של המתריע"
 
-msgid "Deselect"
+msgid "URL redirects"
 msgstr ""
 
-msgid "Deselect all"
-msgstr "בטל בחירת הכל"
+msgid "Anomaly detection thresholds"
+msgstr "ספי גילוי אנומליות"
 
-msgid "Details"
-msgstr "פרטים"
+msgid "Available disk space"
+msgstr "שטח דיסק זמין"
 
-msgid "Details of the PGP key:"
-msgstr "פרטים של מפתח PGP:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "השבת"
+msgid "Last update"
+msgstr "עדכון אחרון"
 
 msgid "Disable notifications to administrators"
 msgstr "השבת הודעות למנהלים"
@@ -378,198 +268,222 @@ msgstr "השבת הודעות כדי אפוטרופסים"
 msgid "Disable notifications to recipients"
 msgstr "השבת הודעות לנמענים"
 
-msgid "Disable submissions"
-msgstr "השבת הגשות"
+msgid "Score"
+msgstr "ניקוד"
 
-msgid "Disable the privacy panel"
-msgstr "בטל תג הפרטיות"
+msgid "Trigger question"
+msgstr "שאלת מעורר"
 
-msgid "Disable two factor authentication"
-msgstr "השבת אימות דו־שלבי"
-
-msgid "Disabled"
-msgstr "מושבת"
-
-msgid "Disclaimer"
+msgid "Triggered by score:"
 msgstr ""
 
-msgid "Display options alphabetically"
-msgstr "הצג אפשרויות באופן אלפאביתי"
+msgid "Weak"
+msgstr "חלש"
 
-msgid "Download"
-msgstr "הורד"
+msgid "Acceptable"
+msgstr "מקובל"
 
-msgid "Download copy of the Privacy Policy"
+msgid "Strong"
+msgstr "חזק"
+
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "הורד את דפדפן Tor"
+msgid "Silence email notifications"
+msgstr "השקט התראות דוא״ל"
 
-msgid "Duplicate"
-msgstr "שכפל"
+msgid "Turn on email notifications"
+msgstr "הפעל התראות דוא״ל"
 
-msgid "Each entry must be separated with a comma."
+msgid "Input validation"
 msgstr ""
-
-msgid "Earliest selectable date"
-msgstr "תאריך בר‏־בחירה המוקדם ביותר"
-
-msgid "Edit"
-msgstr "ערוך"
-
-msgid "Email"
-msgstr "דוא״ל"
 
 msgid "Email address"
 msgstr "כתובת דוא״ל"
 
-msgid "Enable"
-msgstr "אפשר"
+msgid "Custom"
+msgstr "מותאם אישית"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "כלום"
 
-msgid "Enable administrators to change user passwords"
-msgstr ""
+msgid "Regular expression"
+msgstr "ביטוי רגולרי"
 
-msgid "Enable custom privacy panel"
-msgstr "אפשר תג פרטיות מותאם אישית"
-
-msgid "Enable email notifications"
-msgstr "אפשר התראות דוא״ל"
-
-msgid "Enable email notifications for:"
-msgstr "הצג התראות באימייל עבור:"
-
-msgid "Enable encryption"
-msgstr "אפשר הצפנה"
-
-msgid "Enable scoring system"
-msgstr "אפשר מערכת ניקוד"
-
-msgid "Enable search engines indexing"
-msgstr "אפשר אינדקס מנועי חיפוש"
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr "אפשר תנאיי שירות"
-
-msgid "Enable two factor authentication"
-msgstr "אפשר אימות דו־שלבי"
-
-msgid "Enabled"
-msgstr "מאופשר"
-
-msgid "Enter a name for the copy"
-msgstr ""
-
-msgid "Enter the two factor authentication code"
-msgstr ""
+msgid "Search"
+msgstr "חפש"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
 msgstr ""
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
+msgid "Audit log"
 msgstr ""
 
-msgid "Enter your email address to request a password reset."
-msgstr ""
+msgid "Stats"
+msgstr "סטטיסטיקה"
 
-msgid "Error on input validation"
-msgstr ""
+msgid "Activities"
+msgstr "פעילויות"
 
-msgid "Error!"
-msgstr "שגיאה!"
+msgid "Reports"
+msgstr "דוחות"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "דוח"
 
-msgid "Example:"
-msgstr "דוגמה:"
-
-msgid "Expand"
-msgstr "הרחב"
-
-msgid "Expiration date"
-msgstr "תאריך תפוגה"
-
-msgid "Export"
-msgstr "ייצא"
-
-msgid "File size"
-msgstr "גודל קובץ"
-
-msgid "File size not accepted."
-msgstr "גודל הקובץ לא מתקבל"
-
-msgid "Filename"
-msgstr "שם הקובץ"
-
-msgid "Files"
-msgstr "קבצים"
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "Fill the additional questionnaire"
-msgstr ""
-
-msgid "Fingerprint"
-msgstr "טביעת אצבע"
-
-msgid "First"
-msgstr "ראשון"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "כותרת תחתונה"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחים תדירים."
-
-msgid "For the user documentation, visit:"
-msgstr ""
-
-msgid "Forbidden operation"
-msgstr "פעולה אסורה"
-
-msgid "Force password change"
-msgstr "כפה שינוי סיסמה"
-
-msgid "Forcefully selected"
-msgstr "נבחר בכוח"
-
-msgid "Forgot password?"
-msgstr "שכחת סיסמה?"
+msgid "Users"
+msgstr "משתמשים"
 
 msgid "From"
 msgstr "מאת"
 
-msgid "From:"
-msgstr "מ:"
+msgid "Number of downloads"
+msgstr "מספר הורדות"
 
-msgid "Generate"
-msgstr "חולל"
+msgid "File size not accepted."
+msgstr "גודל הקובץ לא מתקבל"
 
-msgid "Give the user administrative access to the following features:"
+msgid "Maximum file size is:"
+msgstr "גודל מרבי של קובץ:"
+
+msgid "Scheduled jobs"
+msgstr "עבודות מתוזמנות"
+
+msgid "Regenerate"
+msgstr "חולל מחדש"
+
+msgid "Display options alphabetically"
+msgstr "הצג אפשרויות באופן אלפאביתי"
+
+msgid "Enable email notifications for:"
+msgstr "הצג התראות באימייל עבור:"
+
+msgid "Disable"
+msgstr "השבת"
+
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Use as default"
+msgstr "השתמש כברירת מחדל"
+
+msgid "Collapse"
+msgstr "צמצם"
+
+msgid "Expand"
+msgstr "הרחב"
+
+msgid "Select"
+msgstr "בחר"
+
+msgid "Deselect"
 msgstr ""
 
-msgid "Give this admin ability to change user passwords"
+msgid "Surname"
+msgstr "שם משפחה"
+
+msgid "New"
+msgstr "חדש"
+
+msgid "Opened"
+msgstr "נפתח"
+
+msgid "Closed"
+msgstr "סגור"
+
+msgid "Placeholder"
 msgstr ""
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Print"
+msgstr "הדפס"
+
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "First"
+msgstr "ראשון"
+
+msgid "Last"
+msgstr "אחרון"
+
+msgid "Send a test email to your email address."
+msgstr "שלח/י מייל ניסיון לכתובת האימייל שלך"
+
+msgid "Block the submission"
 msgstr ""
+
+msgid "Skip the recipient account creation."
+msgstr ""
+
+msgid "Send activation link"
+msgstr "שלח קישור שיפעול"
+
+msgid "Password reset"
+msgstr "איפוס סיסמה"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "נמען אחד או יותר לא ביצעו חיבור ראשוני. לכן, הם לא יקבלו דוחות"
+
+msgid "This user has not performed the first login yet."
+msgstr "המשתמש/ת עוד לא נרשמו "
+
+msgid "seconds"
+msgstr "שניות"
+
+msgid "This domain name is not available."
+msgstr "שם הכתובת לא זמין"
+
+msgid "Mark as important"
+msgstr "סמן כחשוב"
+
+msgid "Copy to clipboard"
+msgstr "העתק ללוח גזירה"
+
+msgid "Logout"
+msgstr "התנתק"
+
+msgid "Grant access"
+msgstr "תן גישה"
+
+msgid "Revoke access"
+msgstr ""
+
+msgid "Transfer"
+msgstr "העבר"
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "הרשאות"
+
+msgid "Hide"
+msgstr "הסתר"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "בחר את שפתך"
 
 msgid "Give this user ability to mask information"
 msgstr ""
@@ -577,53 +491,965 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "תן גישה"
-
-msgid "Group of questions"
-msgstr "קבוצת שאלות"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
-
-msgid "Hidden"
-msgstr "מוסתר"
-
-msgid "Hide"
-msgstr "הסתר"
-
-msgid "High"
-msgstr "גבוהה"
-
-msgid "Hint"
-msgstr "רמז"
-
-msgid "Home"
-msgstr "בית"
-
-msgid "Homepage title"
-msgstr "כותרת עמוד הבית"
-
-msgid "Hostname"
-msgstr "שם מארח"
-
-msgid "I have read and agree to the terms of the license."
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "מדיניות פרטיות"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "אלמוני"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "מחשב"
+
+msgid "Mobile"
+msgstr "נייד"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr ""
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי"
+
+msgid "Enable"
+msgstr "אפשר"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Severity"
+msgstr ""
+
+msgid "Object"
 msgstr ""
 
 msgid "ID"
 msgstr "מזהה"
 
-msgid "Identity"
-msgstr "זהות"
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Role"
+msgstr "תפקיד"
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Creation date"
+msgstr "תאריך יצירה"
+
+msgid "Last access"
+msgstr "גישה אחרונה"
+
+msgid "Receivers"
+msgstr "נמענים"
+
+msgid "Whistleblower's last access"
+msgstr ""
+
+msgid "Substatuses"
+msgstr "תת־מעמדים"
+
+msgid "Add"
+msgstr "הוסף"
+
+msgid "Label"
+msgstr "תווית"
+
+msgid "This field is mandatory"
+msgstr "שדה זה הוא חובה"
+
+msgid "Edit"
+msgstr "ערוך"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Cancel"
+msgstr "בטל"
+
+msgid "days"
+msgstr "ימים"
+
+msgid "Disabled"
+msgstr "מושבת"
+
+msgid "Report statuses"
+msgstr "מעמדי דוח"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "מוסתר"
+
+msgid "Description"
+msgstr "תיאור"
+
+msgid "Questionnaire"
+msgstr "שְׁאֵלוֹן"
+
+msgid "Recipients"
+msgstr "מקבלים"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
+
+msgid "Show the questionnaire navigation interface"
+msgstr ""
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "אפשר שחושפים את עוולות כדי לבחור נמענים שלהם"
+
+msgid "Select all recipients by default"
+msgstr "בחר את כל המקבלים כברירת מחדל"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "מספר מקסימאלי של מקבלים לבחירה:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "מקבלי הצג לפי סדר אלפביתי"
+
+msgid "Additional questionnaire"
+msgstr ""
+
+msgid "Scoring system options"
+msgstr "אפשרויות מערכת ניקוד"
+
+msgid "Threshold"
+msgstr "סף"
+
+msgid "Value"
+msgstr "ערך"
+
+msgid "Medium"
+msgstr "בינוני"
+
+msgid "High"
+msgstr "גבוהה"
+
+msgid "Software version:"
+msgstr "גרסת תוכנה:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr ""
+
+msgid "Enabled"
+msgstr "מאופשר"
+
+msgid "Allowed IP addresses"
+msgstr ""
+
+msgid "Admin"
+msgstr "מינהלן"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "מקבל"
+
+msgid "Each entry must be separated with a comma."
+msgstr ""
+
+msgid "Example:"
+msgstr "דוגמה:"
+
+msgid "Hostname"
+msgstr "שם מארח"
+
+msgid "Organization"
+msgstr "ארגון"
+
+msgid "Invalid email address"
+msgstr "כתובת דוא״ל בלתי תקפה"
+
+msgid "City"
+msgstr "עיר"
+
+msgid "Country"
+msgstr "מדינה"
+
+msgid "Country code"
+msgstr "קוד מדינה"
+
+msgid "Generate"
+msgstr "חולל"
+
+msgid "Private Key"
+msgstr "מפתח פרטי"
+
+msgid "Certificate Signing Request"
+msgstr "בקשת החתמת תעודה"
+
+msgid "Certificate"
+msgstr "תעודה"
+
+msgid "Valid until:"
+msgstr "תקף עד:"
+
+msgid "Issuer:"
+msgstr "מנפיק:"
+
+msgid "Intermediate Certificates"
+msgstr "תעודות ביניים"
+
+msgid "Reset"
+msgstr "אַפֵּס"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr ""
+
+msgid "Automatic configuration"
+msgstr "תצורה אוטומטית"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr ""
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr ""
+
+msgid "Proceed"
+msgstr "המשך"
+
+msgid "Manual configuration"
+msgstr "תצורה ידנית"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr ""
+
+msgid "Auto-renewal"
+msgstr "חידוש אוטומטי"
+
+msgid "Tor Onion Service"
+msgstr "שירות בצל של Tor"
+
+msgid "Anonymize outgoing connections"
+msgstr ""
+
+msgid "Let the platform be reachable without Tor"
+msgstr ""
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr ""
+
+msgid "Whistleblower"
+msgstr "חושף שחיתות"
+
+msgid "To"
+msgstr "אל"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "כתובת דוא״ל SMTP"
+
+msgid "SMTP server address"
+msgstr "כתובת שרת SMTP"
+
+msgid "SMTP server port"
+msgstr "יציאה שרת SMTP"
+
+msgid "Security"
+msgstr "אבטחה"
+
+msgid "Require authentication"
+msgstr "דרוש אימות"
+
+msgid "Password"
+msgstr "סיסמה"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr ""
+
+msgid "Test the configuration"
+msgstr "בחן את התצורה"
+
+msgid "Reset SMTP configuration"
+msgstr "אפס תצורת SMTP"
+
+msgid "Reset notification templates to default"
+msgstr "איפוס תבניות להודעות לברירת מחדל"
+
+msgid "Template"
+msgstr "תבנית"
+
+msgid "Question"
+msgstr "שאלה"
+
+msgid "Single-line text input"
+msgstr "קלט טקסט של שורה אחת"
+
+msgid "Multi-line text input"
+msgstr "קלט טקסט רב-קוי"
+
+msgid "Selection box"
+msgstr "תיבת בחירה"
+
+msgid "Multiple choice input"
+msgstr "קלט אמריקאיות"
+
+msgid "Checkbox"
+msgstr "תיבת סימון"
+
+msgid "Terms of service"
+msgstr "תנאי שירות"
+
+msgid "Date range"
+msgstr "טווח תאריכים"
+
+msgid "Group of questions"
+msgstr "קבוצת שאלות"
+
+msgid "Row"
+msgstr "שורה"
+
+msgid "Column"
+msgstr "עמודה"
+
+msgid "Width"
+msgstr "רוחב"
+
+msgid "Question group"
+msgstr "קבוצת שאלה"
+
+msgid "Hint"
+msgstr "רמז"
+
+msgid "Mandatory"
+msgstr "דרוש"
+
+msgid "Accept multiple file uploads"
+msgstr "קבל העלאות של קבצים רבים"
+
+msgid "Accept multiple answers"
+msgstr "קבל תשובות רבות"
+
+msgid "Template override"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+msgid "Text"
+msgstr "טקסט"
+
+msgid "Checkbox label"
+msgstr "תווית של תיבת סימון"
+
+msgid "Add multimedia content"
+msgstr "הוסף תוכן מולטימדיה"
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "Audio"
+msgstr "שמע"
+
+msgid "Video"
+msgstr "סרטון"
+
+msgid "Text shown upon negative answer"
+msgstr ""
+
+msgid "Low"
+msgstr "נמוכה"
+
+msgid "Trigger conditions"
+msgstr "תנאיי מעורר"
+
+msgid "Sufficient"
+msgstr "מספיק"
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Addition"
+msgstr "חיבור"
+
+msgid "Multiplier"
+msgstr "כפל"
+
+msgid "Questions"
+msgstr "שאלות"
+
+msgid "Add new question"
+msgstr "הוסף שאלה חדשה"
+
+msgid "Add question from template"
+msgstr "הוסף שאלה מתבנית"
+
+msgid "Duplicate"
+msgstr "שכפל"
+
+msgid "Steps"
+msgstr "צעדים"
+
+msgid "Logo"
+msgstr "סמליל"
+
+msgid "Project name"
+msgstr "שם מיזם"
+
+msgid "Homepage title"
+msgstr "כותרת עמוד הבית"
+
+msgid "Presentation"
+msgstr "מצגת"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "שאלות על הלשנה"
+
+msgid "Whistleblowing button"
+msgstr "כפתור חשיפת שחיתות"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "כותרת תחתונה"
+
+msgid "Upload"
+msgstr "העלה"
+
+msgid "Download"
+msgstr "הורד"
+
+msgid "Language:"
+msgstr "שפה:"
+
+msgid "Add custom text"
+msgstr "הוסף טקסט מותאם אישית"
+
+msgid "Custom text"
+msgstr "טקסט מותאם אישית"
+
+msgid "Original text"
+msgstr "טקסט מקורי"
+
+msgid "Original translation"
+msgstr "תרגום מקורי"
+
+msgid "Custom translation"
+msgstr "תרגום מותאם אישית"
+
+msgid "Disable submissions"
+msgstr "השבת הגשות"
+
+msgid "Enable encryption"
+msgstr "אפשר הצפנה"
+
+msgid "Enable administrators to change user passwords"
+msgstr ""
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Enable search engines indexing"
+msgstr "אפשר אינדקס מנועי חיפוש"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "גודל גבול עבור קבצים מצורפים"
+
+msgid "megabytes"
+msgstr ""
+
+msgid "Require two factor authentication"
+msgstr "דרוש אימות דו־שלבי"
+
+msgid "Password change interval"
+msgstr "מרווח שינוי סיסמה"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחים תדירים."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "בטל תג הפרטיות"
+
+msgid "Enable custom privacy panel"
+msgstr "אפשר תג פרטיות מותאם אישית"
+
+msgid "Custom privacy panel"
+msgstr "לוח פרטיות מותאם אישית"
+
+msgid "Enable scoring system"
+msgstr "אפשר מערכת ניקוד"
+
+msgid "Logging level"
+msgstr ""
+
+msgid "percentage"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Reset reports"
+msgstr "אפס דוחות"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Case management"
+msgstr "ניהול תיקים"
+
+msgid "Network"
+msgstr "רשת"
+
+msgid "Sites"
+msgstr "אתרים"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "תצר"
+
+msgid "Subdomain"
+msgstr "תת‏־תחום"
+
+msgid "Mode:"
+msgstr "מצב:"
+
+msgid "Creation date:"
+msgstr "תאריך יצירה:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr ""
+
+msgid "Allow users to sign up"
+msgstr "התר למשתמשים להירשם"
+
+msgid "Enable terms of service"
+msgstr "אפשר תנאיי שירות"
+
+msgid "Title"
+msgstr "כותרת"
+
+msgid "Public name"
+msgstr "שם ציבורי"
+
+msgid "Send reset link"
+msgstr "שלח קישור איפוס"
+
+msgid "Set password"
+msgstr "קבע סיסמה"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr ""
+
+msgid "Force password change"
+msgstr "כפה שינוי סיסמה"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "המשתמש ייאלץ לשנות את הסיסמה שלו בכניסה הבאה."
+
+msgid "Disable two factor authentication"
+msgstr "השבת אימות דו־שלבי"
+
+msgid "Language"
+msgstr "שפה"
+
+msgid "Enable email notifications"
+msgstr "אפשר התראות דוא״ל"
+
+msgid "Details of the PGP key:"
+msgstr "פרטים של מפתח PGP:"
+
+msgid "Fingerprint"
+msgstr "טביעת אצבע"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
+
+msgid "Give this admin ability to change user passwords"
+msgstr ""
+
+msgid "Forcefully selected"
+msgstr "נבחר בכוח"
+
+msgid "Allow the recipient to delete reports"
+msgstr ""
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr ""
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr ""
+
+msgid "Statistics"
+msgstr "סטטיסטיקה"
+
+msgid "Request date"
+msgstr "תאריך בקשה"
+
+msgid "Report date"
+msgstr "תאריך דוח"
+
+msgid "Authorization"
+msgstr "הרשאה"
+
+msgid "Requests"
+msgstr ""
+
+msgid "The validation link is either incorrect or has expired."
+msgstr ""
+
+msgid "Your new email address has been validated."
+msgstr ""
+
+msgid "Forgot password?"
+msgstr "שכחת סיסמה?"
+
+msgid "Enter the two factor authentication code"
+msgstr ""
+
+msgid "Authentication failed"
+msgstr "אימות נכשל"
+
+msgid "The code is either invalid or expired."
+msgstr ""
+
+msgid "Please select your account:"
+msgstr "אנא בחר את חשבונך"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "הקלד כעת את סיסמתך, לאחר מכן לחץ על 'התחבר':"
+
+msgid "Confirm"
+msgstr "אשר"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
+
+msgid "Assign score points"
+msgstr "הקצאת נקודות ציון"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "מצב"
+
+msgid "Are you sure?"
+msgstr "האם אתה בטוח?"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
+
+msgid "Enable two factor authentication"
+msgstr "אפשר אימות דו־שלבי"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Account recovery key"
+msgstr ""
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "הגש"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr "התקן יישום אימות בטלפון שלך"
+
+msgid "Scan the QR code with the app"
+msgstr "סרוק את קוד ה־QR עם היישום"
+
+msgid "Error!"
+msgstr "שגיאה!"
+
+msgid "Internal server error"
+msgstr "שגיאת שרת פנימית"
+
+msgid "Error on input validation"
+msgstr ""
+
+msgid "Resource not found"
+msgstr "משאב לא נמצא"
+
+msgid "Forbidden operation"
+msgstr "פעולה אסורה"
+
+msgid "The specified old password is not valid"
+msgstr "הסיסמה הישנה שצוינה אינה חוקית"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "סיסמה נוכחית"
+
+msgid "New password"
+msgstr "סיסמה חדשה"
+
+msgid "The new password must be different from the current one."
+msgstr "הסיסמה החדשה צריכה להיות שונה מהנוכחית"
+
+msgid "Type your new password again"
+msgstr "הקלד את הסיסמה החדשה שוב"
+
+msgid "The two passwords do not match"
+msgstr "שתי הסיסמאות אינן תואמות"
+
+msgid "Validation of email address change in progress."
+msgstr ""
+
+msgid "Please check your inbox for further instructions."
+msgstr ""
+
+msgid "Warning"
+msgstr "אזהרה"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr ""
+
+msgid "Download the Tor Browser"
+msgstr "הורד את דפדפן Tor"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr ""
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr ""
+
+msgid "Filename"
+msgstr "שם הקובץ"
+
+msgid "Size:"
+msgstr "גודל:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr ""
+
+msgid "Fill the additional questionnaire"
+msgstr ""
+
+msgid "From:"
+msgstr "מ:"
+
+msgid "To:"
+msgstr "אל:"
+
+msgid "View"
+msgstr "הצג"
+
+msgid "Upload date"
+msgstr "תאריך העלאה"
+
+msgid "File size"
+msgstr "גודל קובץ"
+
+msgid "Questionnaire answers"
+msgstr "תשובות לשאלון"
+
+msgid "Step"
+msgstr "צעד"
+
+msgid "Files attached by recipients"
+msgstr ""
+
+msgid "Upload a file:"
+msgstr "העלה קובץ:"
+
+msgid "Welcome!"
+msgstr "ברוך הבא!"
+
+msgid "For the user documentation, visit:"
 msgstr ""
 
 msgid ""
@@ -636,915 +1462,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr ""
 
-msgid "Image"
-msgstr "תמונה"
-
-msgid "Import"
-msgstr "ייבא"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr ""
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr ""
-
-msgid "Install an authenticator app on your phone"
-msgstr "התקן יישום אימות בטלפון שלך"
-
-msgid "Intermediate Certificates"
-msgstr "תעודות ביניים"
-
-msgid "Internal server error"
-msgstr "שגיאת שרת פנימית"
-
-msgid "Invalid confirmation"
-msgstr "אישור בלתי תקף"
-
-msgid "Invalid email address"
-msgstr "כתובת דוא״ל בלתי תקפה"
-
-msgid "Invalid phone number"
-msgstr "מספר טלפון בלתי תקף"
-
-msgid "Issuer:"
-msgstr "מנפיק:"
-
 msgid "Join our chat:"
 msgstr "הצטרף אל ההתכתבות שלנו:"
 
-msgid "Label"
-msgstr "תווית"
-
-msgid "Label the report"
-msgstr "סווג את הדוח"
-
-msgid "Language"
-msgstr "שפה"
-
-msgid "Language:"
-msgstr "שפה:"
-
-msgid "Languages"
-msgstr "שפות"
-
-msgid "Last"
-msgstr "אחרון"
-
-msgid "Last Access"
-msgstr "גישה אחרונה"
-
-msgid "Last access"
-msgstr "גישה אחרונה"
-
-msgid "Last update"
-msgstr "עדכון אחרון"
-
-msgid "Latest selectable date"
-msgstr "תאריך בר־בחירה המאוחר ביותר"
-
-msgid "Let the platform be reachable without Tor"
-msgstr ""
-
-msgid "License"
-msgstr "רישיון"
-
-msgid "Log accesses of internal users"
-msgstr ""
-
-msgid "Log in"
-msgstr "התחבר"
-
-msgid "Logging level"
-msgstr ""
-
-msgid "Logo"
-msgstr "סמליל"
-
-msgid "Logout"
-msgstr "התנתק"
-
-msgid "Low"
-msgstr "נמוכה"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr ""
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
-
-msgid "Mandatory"
-msgstr "דרוש"
-
-msgid "Manual configuration"
-msgstr "תצורה ידנית"
-
-msgid "Mark as important"
-msgstr "סמן כחשוב"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "גודל מרבי של קובץ:"
-
-msgid "Maximum number of input characters"
-msgstr "מספר התווים המרבי קלט"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "מספר מקסימאלי של מקבלים לבחירה:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "בינוני"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "מספר תווים מינימלי קלט"
-
-msgid "Mobile"
-msgstr "נייד"
-
-msgid "Mode:"
-msgstr "מצב:"
-
-msgid "Motivation"
-msgstr "הנעה"
-
-msgid "Move down"
-msgstr "הזז למטה"
-
-msgid "Move left"
-msgstr "הזז שמאלה"
-
-msgid "Move right"
-msgstr "הזז ימינה"
-
-msgid "Move up"
-msgstr "הזז למעלה"
-
-msgid "Multi-line text input"
-msgstr "קלט טקסט רב-קוי"
-
-msgid "Multiple choice input"
-msgstr "קלט אמריקאיות"
-
-msgid "Multiplier"
-msgstr "כפל"
-
-msgid "Name"
-msgstr "שם"
-
-msgid "Network"
-msgstr "רשת"
-
-msgid "New"
-msgstr "חדש"
-
-msgid "New password"
-msgstr "סיסמה חדשה"
-
-msgid "New request"
-msgstr "בקשה חדשה"
-
-msgid "Next"
-msgstr "הבא"
-
-msgid "No"
-msgstr "לא"
-
-msgid "None"
-msgstr "כלום"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr "התראות"
-
-msgid "Notify administrators of software problems"
-msgstr ""
-
-msgid "Notify developers of software problems"
-msgstr ""
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "הקלד כעת את סיסמתך, לאחר מכן לחץ על 'התחבר':"
-
-msgid "Number"
-msgstr "מספר"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Number of downloads"
-msgstr "מספר הורדות"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr ""
-
-msgid "Object"
-msgstr ""
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "נמען אחד או יותר לא ביצעו חיבור ראשוני. לכן, הם לא יקבלו דוחות"
-
-msgid "Opened"
-msgstr "נפתח"
-
-msgid "Options"
-msgstr "אפשרויות"
-
-msgid "Organization"
-msgstr "ארגון"
-
-msgid "Original text"
-msgstr "טקסט מקורי"
-
-msgid "Original translation"
-msgstr "תרגום מקורי"
-
-msgid "Password"
-msgstr "סיסמה"
-
-msgid "Password change interval"
-msgstr "מרווח שינוי סיסמה"
-
-msgid "Password reset"
-msgstr "איפוס סיסמה"
-
-msgid "Password reset requested."
-msgstr "איפוס סיסמה בוקש."
-
-msgid "Phone number"
-msgstr "מספר טלפון"
-
-msgid "Placeholder"
-msgstr ""
-
-msgid "Platform wizard"
-msgstr "אשף פלטפורמה"
-
-msgid "Please check your inbox for further instructions."
-msgstr ""
-
-msgid "Please choose a configuration profile:"
-msgstr ""
-
-msgid "Please choose a different username."
-msgstr ""
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
-
-msgid "Please select your account:"
-msgstr "אנא בחר את חשבונך"
-
-msgid "Postpone the expiration date"
-msgstr "דחה את תאריך התפוגה"
-
-msgid "Preferences"
-msgstr "העדפות"
-
-msgid "Presentation"
-msgstr "מצגת"
-
-msgid "Preview"
-msgstr "הצג מראש"
-
-msgid "Previous"
-msgstr "הקודם"
-
-msgid "Print"
-msgstr "הדפס"
-
-msgid "Privacy Policy"
-msgstr "מדיניות פרטיות"
-
-msgid "Private Key"
-msgstr "מפתח פרטי"
-
-msgid "Privileges"
-msgstr "הרשאות"
-
-msgid "Proceed"
-msgstr "המשך"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "שם מיזם"
-
-msgid "Public name"
-msgstr "שם ציבורי"
-
-msgid "Question"
-msgstr "שאלה"
-
-msgid "Question group"
-msgstr "קבוצת שאלה"
-
-msgid "Question templates"
-msgstr "תבניות שאלה"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "שאלות על הלשנה"
-
-msgid "Questionnaire"
-msgstr "שְׁאֵלוֹן"
-
-msgid "Questionnaire answers"
-msgstr "תשובות לשאלון"
-
-msgid "Questionnaires"
-msgstr "שאלונים"
-
-msgid "Questions"
-msgstr "שאלות"
-
-msgid "Receivers"
-msgstr "נמענים"
-
-msgid "Recipient"
-msgstr "מקבל"
-
-msgid "Recipient selection"
-msgstr "בחירת מקבלים"
-
-msgid "Recipients"
-msgstr "מקבלים"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "מקבלים שנבחרו:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "רענן"
-
-msgid "Regenerate"
-msgstr "חולל מחדש"
-
-msgid "Regular expression"
-msgstr "ביטוי רגולרי"
-
-msgid "Regular expression validator"
-msgstr "מאמת ביטוי רגולרי"
-
-msgid "Remember your receipt for this report."
-msgstr ""
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "הסר"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "השב אל הנעה"
-
-msgid "Reply to the request"
-msgstr "השב אל הבקשה"
-
-msgid "Report"
-msgstr "דוח"
-
-msgid "Report date"
-msgstr "תאריך דוח"
-
-msgid "Report statuses"
-msgstr "מעמדי דוח"
-
-msgid "Reports"
-msgstr "דוחות"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "בקש גישה אל זהות של חושף שחיתות"
-
-msgid "Request date"
-msgstr "תאריך בקשה"
-
-msgid "Request motivation"
-msgstr "בקש הנעה"
-
-msgid "Request status"
-msgstr "מעמד בקשה"
-
-msgid "Request support"
-msgstr ""
-
-msgid "Requests"
-msgstr ""
-
-msgid "Require authentication"
-msgstr "דרוש אימות"
-
-msgid "Require two factor authentication"
-msgstr "דרוש אימות דו־שלבי"
-
-msgid "Reset"
-msgstr "אַפֵּס"
-
-msgid "Reset SMTP configuration"
-msgstr "אפס תצורת SMTP"
-
-msgid "Reset notification templates to default"
-msgstr "איפוס תבניות להודעות לברירת מחדל"
-
-msgid "Reset reports"
-msgstr "אפס דוחות"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
-
-msgid "Resource not found"
-msgstr "משאב לא נמצא"
-
-msgid "Restrict access to specific IP addresses"
-msgstr ""
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr ""
-
-msgid "Role"
-msgstr "תפקיד"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Row"
-msgstr "שורה"
-
-msgid "SMTP email address"
-msgstr "כתובת דוא״ל SMTP"
-
-msgid "SMTP server address"
-msgstr "כתובת שרת SMTP"
-
-msgid "SMTP server port"
-msgstr "יציאה שרת SMTP"
-
-msgid "Save"
-msgstr "שמור"
-
-msgid "Save all"
-msgstr "שמור הכל"
-
-msgid "Scan the QR code with the app"
-msgstr "סרוק את קוד ה־QR עם היישום"
-
-msgid "Scheduled jobs"
-msgstr "עבודות מתוזמנות"
-
-msgid "Score"
-msgstr "ניקוד"
-
-msgid "Scoring system options"
-msgstr "אפשרויות מערכת ניקוד"
-
-msgid "Search"
-msgstr "חפש"
-
-msgid "Security"
-msgstr "אבטחה"
-
-msgid "Select"
-msgstr "בחר"
-
-msgid "Select a file or drag it here."
-msgstr ""
-
-msgid "Select all"
-msgstr "בחר הכל"
-
-msgid "Select all recipients by default"
-msgstr "בחר את כל המקבלים כברירת מחדל"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr "בחר את שפתך"
-
-msgid "Selection box"
-msgstr "תיבת בחירה"
-
-msgid "Send"
-msgstr "שלח"
-
-msgid "Send a test email to your email address."
-msgstr "שלח/י מייל ניסיון לכתובת האימייל שלך"
-
-msgid "Send activation link"
-msgstr "שלח קישור שיפעול"
-
-msgid "Send reset link"
-msgstr "שלח קישור איפוס"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "קבע סיסמה"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "הגדרת הצפנה על ידי מתן מפתח ציבורי PGP"
-
-msgid "Settings"
-msgstr "הגדרות"
-
-msgid "Severity"
-msgstr ""
-
-msgid "Show"
-msgstr "הצג"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "מקבלי הצג לפי סדר אלפביתי"
-
-msgid "Show the questionnaire navigation interface"
-msgstr ""
-
-msgid "Sign up"
-msgstr "הירשם"
-
-msgid "Silence email notifications"
-msgstr "השקט התראות דוא״ל"
-
-msgid "Single-line text input"
-msgstr "קלט טקסט של שורה אחת"
-
-msgid "Site"
-msgstr "אתר"
-
-msgid "Sites"
-msgstr "אתרים"
-
-msgid "Size limit for file attachments"
-msgstr "גודל גבול עבור קבצים מצורפים"
-
-msgid "Size:"
-msgstr "גודל:"
-
-msgid "Skip the recipient account creation."
-msgstr ""
-
-msgid "Software version:"
-msgstr "גרסת תוכנה:"
-
-msgid "Statistics"
-msgstr "סטטיסטיקה"
-
-msgid "Stats"
-msgstr "סטטיסטיקה"
-
-msgid "Status"
-msgstr "מעמד"
-
-msgid "Status:"
-msgstr "מצב"
-
-msgid "Step"
-msgstr "צעד"
-
-msgid "Steps"
-msgstr "צעדים"
-
-msgid "Strong"
-msgstr "חזק"
-
-msgid "Subdomain"
-msgstr "תת‏־תחום"
-
-msgid "Submissions disabled"
-msgstr ""
-
-msgid "Submit"
-msgstr "הגש"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "תת־מעמדים"
-
-msgid "Success!"
-msgstr "הצליח!"
-
-msgid "Sufficient"
-msgstr "מספיק"
-
-msgid "Surname"
-msgstr "שם משפחה"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "תבנית"
-
-msgid "Template override"
-msgstr ""
-
-msgid "Templates"
-msgstr "תבניות"
-
-msgid "Terms of service"
-msgstr "תנאי שירות"
-
-msgid "Test the configuration"
-msgstr "בחן את התצורה"
-
-msgid "Text"
-msgstr "טקסט"
-
-msgid "Text customization"
-msgstr "התאמה אישית של טקסט"
-
-msgid "Text shown after the user has selected the option."
-msgstr ""
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "The answer is too short"
-msgstr ""
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The code is either invalid or expired."
-msgstr ""
-
-msgid "The connection is not secure."
-msgstr ""
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr ""
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr ""
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr ""
-
-msgid "The new password must be different from the current one."
-msgstr "הסיסמה החדשה צריכה להיות שונה מהנוכחית"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr ""
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr ""
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr ""
-
-msgid "The provided recovery key is invalid."
-msgstr ""
-
-msgid "The provided reset token is invalid or expired."
-msgstr ""
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr ""
-
-msgid "The specified input is not valid."
-msgstr "הקלט המצוין אינו תקף."
-
-msgid "The specified input is not valid:"
-msgstr ""
-
-msgid "The specified old password is not valid"
-msgstr "הסיסמה הישנה שצוינה אינה חוקית"
-
-msgid "The two passwords do not match"
-msgstr "שתי הסיסמאות אינן תואמות"
-
-msgid "The upload request exceeds the size limit"
-msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "המשתמש ייאלץ לשנות את הסיסמה שלו בכניסה הבאה."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr ""
-
-msgid "The whistleblower has already read the last update"
-msgstr "חושף השחיתויות קרא כבר את העדכון האחרון"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "חושף השחיתויות עדין לא קרא את העדכון האחרון"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr ""
-
-msgid "This domain name is not available."
-msgstr "שם הכתובת לא זמין"
-
-msgid "This field is mandatory"
-msgstr "שדה זה הוא חובה"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
-
-msgid "This user has not performed the first login yet."
-msgstr "המשתמש/ת עוד לא נרשמו "
-
-msgid "Threshold"
-msgstr "סף"
-
-msgid "Title"
-msgstr "כותרת"
-
-msgid "To"
-msgstr "אל"
-
-msgid "To:"
-msgstr "אל:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "שירות בצל של Tor"
-
-msgid "Transfer"
-msgstr "העבר"
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "תנאיי מעורר"
-
-msgid "Trigger question"
-msgstr "שאלת מעורר"
-
-msgid "Triggered by score:"
-msgstr ""
-
-msgid "Turn on email notifications"
-msgstr "הפעל התראות דוא״ל"
-
-msgid "Type"
-msgstr "סוג"
-
-msgid "Type your new password again"
-msgstr "הקלד את הסיסמה החדשה שוב"
-
-msgid "URL redirects"
-msgstr ""
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "העלה"
-
-msgid "Upload a file:"
-msgstr "העלה קובץ:"
-
-msgid "Upload date"
-msgstr "תאריך העלאה"
-
-msgid "Use as default"
-msgstr "השתמש כברירת מחדל"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "User"
-msgstr "משתמש"
-
-msgid "Username"
-msgstr "שם משתמש"
-
-msgid "Users"
-msgstr "משתמשים"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr ""
-
-msgid "Valid until:"
-msgstr "תקף עד:"
-
-msgid "Validation of email address change in progress."
-msgstr ""
-
-msgid "Value"
-msgstr "ערך"
-
-msgid "Video"
-msgstr "סרטון"
-
-msgid "View"
-msgstr "הצג"
-
-msgid "View your report"
-msgstr "הצג את הדוח שלך"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "ממתין לאימות"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
-
-msgid "Warning"
-msgstr "אזהרה"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr ""
+msgid "An update is available:"
+msgstr "עדכון זמין:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1553,77 +1475,84 @@ msgid ""
 "your password."
 msgstr ""
 
-msgid "We will try to get back to you as soon as possible."
+msgid "Select a file or drag it here."
 msgstr ""
 
-msgid "Weak"
-msgstr "חלש"
-
-msgid "Welcome!"
-msgstr "ברוך הבא!"
-
-msgid "Whistleblower"
-msgstr "חושף שחיתות"
-
-msgid "Whistleblower's last access"
+msgid "The provided recovery key is invalid."
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "כפתור חשיפת שחיתות"
-
-msgid "Width"
-msgstr "רוחב"
-
-msgid "Yes"
-msgstr "כן"
-
-msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "התחברת לצומת ללא אנונימיות והצומת הזה תומכת רק בהגשות אנונימים"
-
-msgid "You are operating on behalf of a whistleblower."
+msgid "The provided reset token is invalid or expired."
 msgstr ""
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
+"Enter your account's username or your email address to request a password "
+"reset."
 msgstr ""
+
+msgid "Enter your email address to request a password reset."
+msgstr ""
+
+msgid "Password reset requested."
+msgstr "איפוס סיסמה בוקש."
+
+msgid ""
+"Enter your account recovery key to complete the password reset procedure"
+msgstr ""
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "גישה אל הזהות של המתריע התבקש האפוטרופוס."
+
+msgid "Date of the request"
+msgstr "תאריך הבקשה"
+
+msgid "Show"
+msgstr "הצג"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "מזל טוב!"
 
 msgid "You have completed the platform activation."
 msgstr ""
 
-msgid "You have completed the platform wizard."
-msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
-
-msgid "You must select at least one recipient."
-msgstr ""
-
-msgid "Your new email address has been validated."
-msgstr ""
-
-msgid "Your report was successful."
-msgstr "הדוח שלך היה מוצלח."
+msgid "Success!"
+msgstr "הצליח!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
 
-msgid "days"
-msgstr "ימים"
-
-msgid "file unavailable"
-msgstr "קובץ לא זמין"
-
-msgid "megabytes"
+msgid "Check your inbox to activate it."
 msgstr ""
 
-msgid "percentage"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr ""
+
+msgid "Sign up"
+msgstr "הירשם"
+
+msgid "Invalid confirmation"
+msgstr "אישור בלתי תקף"
+
+msgid "Invalid phone number"
+msgstr "מספר טלפון בלתי תקף"
+
+msgid "Site"
+msgstr "אתר"
+
+msgid "Confirmation"
+msgstr "אישור"
+
+msgid "The answer is too short"
+msgstr ""
+
+msgid "The specified input is not valid."
+msgstr "הקלט המצוין אינו תקף."
+
+msgid "The specified input is not valid:"
 msgstr ""
 
 msgid "please enter a valid email address."
@@ -1632,14 +1561,82 @@ msgstr ""
 msgid "please enter numbers only."
 msgstr ""
 
-msgid "seconds"
-msgstr "שניות"
-
-msgid "File a report"
+msgid "Submissions disabled"
 msgstr ""
 
-msgid "Select a reporting channel:"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "התחברת לצומת ללא אנונימיות והצומת הזה תומכת רק בהגשות אנונימים"
+
+msgid "Your report was successful."
+msgstr "הדוח שלך היה מוצלח."
+
+msgid "Remember your receipt for this report."
 msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your report"
+msgstr "הצג את הדוח שלך"
+
+msgid "Select the recipients of your report"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr "מקבלים שנבחרו:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "Recipient selection"
+msgstr "בחירת מקבלים"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
+msgstr ""
+
+msgid "I have read and agree to the terms of the license."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
 
 msgid "Please summarize your report in a few words."
 msgstr ""

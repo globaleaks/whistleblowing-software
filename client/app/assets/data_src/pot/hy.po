@@ -16,129 +16,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = ավտոմատ"
+msgid "Log in"
+msgstr "Մուտք գործել"
 
-msgid "Accept multiple answers"
-msgstr "Ընդունել բազմակի պատասխաններ"
+msgid "Languages"
+msgstr "Լեզուներ"
 
-msgid "Accept multiple file uploads"
-msgstr "Ընդունել բազմակի ֆայլերի վերբեռնումը"
-
-msgid "Acceptable"
-msgstr "Միջին"
-
-msgid "Access control"
-msgstr "Մուտքի վերահսկում"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Մուտքի հայցն ուղարկվել է"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Ազդարարի ինքնությունը հասանելի դարձնելու հայտը ներկայացվել է պահառուին։"
-
-msgid "Account recovery key"
-msgstr "Հաշվի վերականգնման բանալի"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Գործունեություն"
-
-msgid "Add"
-msgstr "Ավելացնել"
-
-msgid "Add custom text"
-msgstr "Ավելացրեք ձեր տեքստը"
-
-msgid "Add multimedia content"
-msgstr "Ավելացնել մուլտիմեդիա բովանդակություն"
-
-msgid "Add new question"
-msgstr "Ավելացնել հարց"
-
-msgid "Add new questionnaire"
-msgstr "Ավելացնել նոր հարցաշար"
-
-msgid "Add question from template"
-msgstr "Ավելացնել հարց ձևանմուշից"
-
-msgid "Addition"
-msgstr "Հավելում"
-
-msgid "Additional questionnaire"
-msgstr "Հավելյալ հարցաշար"
-
-msgid "Address"
-msgstr "Հասցե"
-
-msgid "Admin"
-msgstr "Ադմինիստրատոր"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Ադմինիստրատորները լիազորված են փոխել օգտատերերի գաղտնաբառերը."
+msgid "Text customization"
+msgstr "Տեքստի կարգավորումներ"
 
 msgid "Advanced"
 msgstr "Ընդլայնված"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Թույլ տալ տվյալ հասցեատիրոջը ջնջել հաշվետվությունները"
+msgid "Question templates"
+msgstr "Հարցերի ձևանմուշներ"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Թույլ տալ հասցեատիրոջը հետաձգել հաշվետվության վերջնաժամկետը"
+msgid "Questionnaires"
+msgstr "Հարցաշարեր"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
+msgid "Add new questionnaire"
+msgstr "Ավելացնել նոր հարցաշար"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
+msgid "Home"
+msgstr "Գլխավոր էջ"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Փոփոխությունների մատյան"
 
-msgid "Allow users to sign up"
-msgstr "Թույլատրել օգտատերերին գրանցվել"
+msgid "License"
+msgstr "Լիցենզիա"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Թույլ տալ ազդարարներին ընտրել իրենց հասցեատերերին"
+msgid "Templates"
+msgstr "Ձևանմուշներ"
 
-msgid "Allowed IP addresses"
-msgstr "Թույլատրված IP հասցեներ"
-
-msgid "An update is available:"
-msgstr "Հասանելի է թարմացում."
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Ջնջել"
 
 msgid "Anomalies"
 msgstr "Անոմալիաներ"
 
-msgid "Anomaly detection thresholds"
-msgstr "Անոմալիաների հայտնաբերման շեմ"
+msgid "Preferences"
+msgstr "Նախասիրություններ"
 
-msgid "Anonymity"
+msgid "Notifications"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr "Անանուն դարձնել ելքային կապերը"
+msgid "file unavailable"
+msgstr "ֆայլը հասանելի չէ"
 
-msgid "Anonymous"
+msgid "Date"
+msgstr "Ամսաթիվ"
+
+msgid "Expiration date"
+msgstr "Վերջնաժամկետ"
+
+msgid "Last Access"
+msgstr "Վերջին մուտք"
+
+msgid "Files"
+msgstr "Ֆայլեր"
+
+msgid "Comments"
+msgstr "Մեկնաբանություններ"
+
+msgid "Details"
+msgstr "Մանրամասներ"
+
+msgid "Platform wizard"
+msgstr "Հարթակի հրաշագործ"
+
+msgid "Label the report"
+msgstr "Պիտակել զեկույցը"
+
+msgid "Edit the expiration date"
+msgstr "Հետաձգել վերջնաժամկետը"
+
+msgid "Select all"
+msgstr "Ընտրել ամբողջությամբ"
+
+msgid "Deselect all"
+msgstr "Չեղարկել ընտրությունը"
+
+msgid "Refresh"
+msgstr "Թարմացնել"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Are you sure?"
-msgstr "Համոզվա՞ծ եք։"
+msgid "Preview"
+msgstr "Նախադիտում"
 
-msgid "Assign score points"
-msgstr "Գնահատել"
+msgid "The whistleblower has already read the last update"
+msgstr "Իրազեկիչն արդեն ծանոթ է վերջին թարմացմանը"
 
-msgid "Assigned to"
-msgstr ""
+msgid "The whistleblower has not read the last update yet"
+msgstr "Իրազեկիչը դեռ չի տեսել վերջին թարմացումը"
+
+msgid "Move up"
+msgstr "Գնալ վերև"
+
+msgid "Move down"
+msgstr "Գնալ ներքև"
+
+msgid "Move left"
+msgstr "Գնալ ձախ"
+
+msgid "Move right"
+msgstr "Գնալ աջ"
+
+msgid "Import"
+msgstr "Ներմուծել"
+
+msgid "Export"
+msgstr "Արտածել"
+
+msgid "Save all"
+msgstr "Պահպանել ամբողջությամբ"
+
+msgid "Access control"
+msgstr "Մուտքի վերահսկում"
+
+msgid "Number"
+msgstr "Թիվ"
+
+msgid "Email"
+msgstr "Էլ.փոստ"
+
+msgid "Regular expression validator"
+msgstr "Կանոնավոր արտահայտության վավերացուցիչ"
+
+msgid "Minimum number of input characters"
+msgstr "Մուտքագրված նիշերի նվազագույն թիվը"
+
+msgid "Maximum number of input characters"
+msgstr "Մուտքագրված նիշերի առավեկագույն թիվը"
+
+msgid "Earliest selectable date"
+msgstr "Ամենավաղ ընտրելի ամսաթիվը"
+
+msgid "Latest selectable date"
+msgstr "Վերջին ընտրելի ամսաթիվը"
+
+msgid "0 = auto"
+msgstr "0 = ավտոմատ"
+
+msgid "Yes"
+msgstr "Այո"
+
+msgid "No"
+msgstr "Ոչ"
 
 msgid "Attachment"
 msgstr "Հավելված"
@@ -146,186 +172,56 @@ msgstr "Հավելված"
 msgid "Attachments"
 msgstr "Կից փաստաթղթեր"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Աուդիո"
-
-msgid "Audit log"
-msgstr "Աուդիտի գրանցամատյան"
-
-msgid "Authentication failed"
-msgstr "Նույնականացումը չհաջողվեց"
-
-msgid "Authorization"
-msgstr "Լիազորում"
-
-msgid "Authorize"
-msgstr "Հաստատել"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Հաստատել ազդարարի ինքնության մատչելիության հայտը"
-
-msgid "Authorized"
-msgstr "Հաստատված"
-
-msgid "Auto-renewal"
-msgstr "Ավտոմատ թարմացում"
-
-msgid "Automatic configuration"
-msgstr "Ավտոմատ կոնֆիգուրացիա"
-
-msgid "Available disk space"
-msgstr "Դիսկի վրա հասանելի տարածք"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Շարունակելուց առաջ ուշադիր ծանոթացեք տվյալ էջի փաստաթղթերին. "
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Շարունակելուց առաջ խնդրում ենք ակտիվացնել երկու գործոնով նույնականացումը:"
-
-msgid "Before proceeding, please set a new password."
-msgstr "Նախքան շարունակելը նոր գաղտնաբառ ստեղծեք։"
-
-msgid "Block the submission"
-msgstr "Արգելել տվյալ հրապարակումը"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ակտիվացնելով այս գործառույթը, դուք կնպաստեք հարթակի զարգացմանն ու անվտանգությանը:"
-
-msgid "Cancel"
-msgstr "Չեղարկել"
-
-msgid "Case management"
-msgstr "Գործի կառավարում"
-
-msgid "Certificate"
-msgstr "Վկայագիր"
-
-msgid "Certificate Signing Request"
-msgstr "Վկայագրի ստորագրման հայտ"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Փոխել գաղտնաբառը"
 
-msgid "Changelog"
-msgstr "Փոփոխությունների մատյան"
+msgid "User"
+msgstr "Օգտատեր"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "Մոտիվացիա"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "Կարգավիճակ"
 
-msgid "Check your inbox to activate it."
-msgstr "Ստուգեք ձեր էլ.փոստի մուտքային հաշիվը՝ հարթակի ակտիվացման համար:"
+msgid "Request motivation"
+msgstr "Հայցի մոտիվացիա"
 
-msgid "Checkbox"
-msgstr "Նշատուփ"
+msgid "Reply motivation"
+msgstr "Արձագանքի մոտիվացիա"
 
-msgid "Checkbox label"
-msgstr "Նշատուփի պիտակ"
-
-msgid "City"
-msgstr "Քաղաք"
-
-msgid "Close"
-msgstr "Փակել"
-
-msgid "Closed"
-msgstr "Փակված"
-
-msgid "Collapse"
-msgstr "Փակել"
-
-msgid "Column"
-msgstr "Սյունակ"
-
-msgid "Comments"
-msgstr "Մեկնաբանություններ"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "Կարգավորել"
-
-msgid "Confirm"
-msgstr "Հաստատել"
-
-msgid "Confirmation"
-msgstr "Վավերացում"
-
-msgid "Congratulations!"
-msgstr "Շնորհավորո՜ւմ ենք։"
-
-msgid "Copy to clipboard"
-msgstr "Պատճենել սեղմատախտակին"
-
-msgid "Country"
-msgstr "Երկիր"
-
-msgid "Country code"
-msgstr "Երկրի կոդ"
-
-msgid "Creation date"
-msgstr "Ստեղծման ամսաթիվ"
-
-msgid "Creation date:"
-msgstr "Ստեղծման ամսաթիվ՝"
-
-msgid "Current password"
-msgstr "Ընթացիկ գաղտնաբառ"
+msgid "Request status"
+msgstr "Հայցի կարգավիճակ"
 
 msgid "Custodian"
 msgstr "Վերահսկիչ"
 
-msgid "Custom"
-msgstr "Հարմարեցրած"
+msgid "Identity"
+msgstr "Ինքնություն"
 
-msgid "Custom privacy panel"
-msgstr "Անհատական գաղտնիության կարգավորումների վահանակը"
+msgid "Access requested"
+msgstr "Մուտքի հայցն ուղարկվել է"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Հայցել իրազեկչի ինքնությանը մատչելիությունը"
 
-msgid "Custom text"
-msgstr "Ձեր տեքստը"
+msgid "Reply to the request"
+msgstr "Արձագանքել հայցին"
 
-msgid "Custom translation"
-msgstr "Ձեր թարգմանությունը"
-
-msgid "Date"
-msgstr "Ամսաթիվ"
-
-msgid "Date of the request"
-msgstr "Հայցի ամսաթիվը"
-
-msgid "Date range"
-msgstr "Ամսաթվերի միջակայք"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Ջնջել"
+msgid "Authorized"
+msgstr "Հաստատված"
 
 msgid "Denied"
 msgstr "Մերժված"
+
+msgid "Waiting for authorization"
+msgstr "Սպասում է հաստատման"
+
+msgid "New request"
+msgstr "Նոր հայց"
+
+msgid "Authorize"
+msgstr "Հաստատել"
 
 msgid "Deny"
 msgstr "Մերժել"
@@ -333,26 +229,20 @@ msgstr "Մերժել"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Մերժել ազդարարի ինքնության մատչելիության հայտը"
 
-msgid "Description"
-msgstr "Նկարագրություն"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Հաստատել ազդարարի ինքնության մատչելիության հայտը"
 
-msgid "Deselect"
-msgstr "Չեղարկել ընտրությունը"
+msgid "URL redirects"
+msgstr "URL վերահղումներ"
 
-msgid "Deselect all"
-msgstr "Չեղարկել ընտրությունը"
+msgid "Anomaly detection thresholds"
+msgstr "Անոմալիաների հայտնաբերման շեմ"
 
-msgid "Details"
-msgstr "Մանրամասներ"
+msgid "Available disk space"
+msgstr "Դիսկի վրա հասանելի տարածք"
 
-msgid "Details of the PGP key:"
-msgstr "Տեղեկություններ PGP բանալու մասին՝"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Արգելափակել"
+msgid "Last update"
+msgstr "Վերջին թարմացում"
 
 msgid "Disable notifications to administrators"
 msgstr "Անջատել ծանուցումները՝ ադմինիստրատորներին"
@@ -363,197 +253,221 @@ msgstr "Անջատել ծանուցումները՝ վերահսկիչներին
 msgid "Disable notifications to recipients"
 msgstr "Անջատել ծանուցումները՝ հասցեատերերին"
 
-msgid "Disable submissions"
-msgstr "Անջատել հրապարակումները"
+msgid "Score"
+msgstr "Գնահատում"
 
-msgid "Disable the privacy panel"
-msgstr "Արգելափակել գաղտնիության կարգավորումների վահանակը"
+msgid "Trigger question"
+msgstr "Առաջադրել հարց"
 
-msgid "Disable two factor authentication"
-msgstr "Արգելափակել երկու գործոնով նույնականացումը"
+msgid "Triggered by score:"
+msgstr "Մեկնարկել, երբ միավորը հավասար է․"
 
-msgid "Disabled"
-msgstr "Արգելափակված"
+msgid "Weak"
+msgstr "Թույլ"
 
-msgid "Disclaimer"
-msgstr "Զգուշացում"
+msgid "Acceptable"
+msgstr "Միջին"
 
-msgid "Display options alphabetically"
-msgstr "Ցուցադրել ընտրանքներն այբբենական կարգով"
+msgid "Strong"
+msgstr "Ուժեղ"
 
-msgid "Download"
-msgstr "Ներբեռնել"
-
-msgid "Download copy of the Privacy Policy"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "Ներբեռնել Tor բրաուզերը"
+msgid "Silence email notifications"
+msgstr "Անջատել էլ.փոստով ծանուցումները"
 
-msgid "Duplicate"
-msgstr "Կրկնօրինակել"
+msgid "Turn on email notifications"
+msgstr "Միացնել էլ.փոստով ծանուցումները "
 
-msgid "Each entry must be separated with a comma."
-msgstr "Յուրաքանչյուր մուտք պետք է առանձնացվի ստորակետով:"
-
-msgid "Earliest selectable date"
-msgstr "Ամենավաղ ընտրելի ամսաթիվը"
-
-msgid "Edit"
-msgstr "Խմբագրել"
-
-msgid "Email"
-msgstr "Էլ.փոստ"
+msgid "Input validation"
+msgstr "Մուտքագրածի վավերացում"
 
 msgid "Email address"
 msgstr "Էլեկտրոնային հասցե"
 
-msgid "Enable"
-msgstr "Ակտիվացնել"
+msgid "Custom"
+msgstr "Հարմարեցրած"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Չկա"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Լիազորել ադմինիստրատորներին փոխել օգտատերերի գաղտնաբառերը"
+msgid "Regular expression"
+msgstr "Կանոնավոր արտահայտություն"
 
-msgid "Enable custom privacy panel"
-msgstr "Ակտիվացնել անհատական գաղտնիության կարգավորումների վահանակը"
-
-msgid "Enable email notifications"
-msgstr "Ակտիվացնել ծանուցումներն էլ.փոստին"
-
-msgid "Enable email notifications for:"
-msgstr "Ակտիվացնել էլ.փոստի ծանուցումները հետևյալի համար."
-
-msgid "Enable encryption"
-msgstr "Ակտիվացնել ծածկագրումը"
-
-msgid "Enable scoring system"
-msgstr "Ակտիվացնել գնահատման համակարգը"
-
-msgid "Enable search engines indexing"
-msgstr "Ակտիվացնել որոնման ինդեքսավորումը"
-
-msgid "Enable simplified login"
-msgstr "Ակտիվացնել պարզեցված մուտքը"
-
-msgid "Enable terms of service"
-msgstr "Ակտիվացնել օգտագործման պայմանները"
-
-msgid "Enable two factor authentication"
-msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
-
-msgid "Enabled"
-msgstr "Ակտիվացված"
-
-msgid "Enter a name for the copy"
-msgstr "Մուտքագրեք պատճենի անունը"
-
-msgid "Enter the two factor authentication code"
-msgstr "Մուտքագրեք երկու գործոնով նույնականացման կոդը"
+msgid "Search"
+msgstr "Որոնել"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Մուտքագրեք ձեր ծածկագրման վերականգնման բանալին՝ գաղտնաբառի վերականգնման ընթացակարգն ավարտելու համար"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Այս տեքստն այլևս չի ցուցադրվում հարթակում: Բնօրինակ տեքստը փոխվել կամ հեռացվել է:"
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Գրե՜ք ձեր հաշվի մուտքանունը կամ էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
+msgid "Audit log"
+msgstr "Աուդիտի գրանցամատյան"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Գրեք ձեր էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
+msgid "Stats"
+msgstr "Վիճակագրություն"
 
-msgid "Error on input validation"
-msgstr "Սխալ մուտքագրածը վավերացնելիս"
+msgid "Activities"
+msgstr "Գործունեություն"
 
-msgid "Error!"
-msgstr "Սխալ"
+msgid "Reports"
+msgstr "Զզեկույցը"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Զեկույցներ"
 
-msgid "Example:"
-msgstr "Օրինակ՝"
-
-msgid "Expand"
-msgstr "Բացել"
-
-msgid "Expiration date"
-msgstr "Վերջնաժամկետ"
-
-msgid "Export"
-msgstr "Արտածել"
-
-msgid "File size"
-msgstr "Ֆայլի չափը"
-
-msgid "File size not accepted."
-msgstr "Ֆայլը չի համապատասխանում սահմանված չափին։"
-
-msgid "Filename"
-msgstr "Ֆայլի անունը"
-
-msgid "Files"
-msgstr "Ֆայլեր"
-
-msgid "Files attached by recipients"
-msgstr "Հասցեատերերի կողմից կցված ֆայլեր"
-
-msgid "Fill the additional questionnaire"
-msgstr "Լրացնել հավելյալ հարցաշարը"
-
-msgid "Fingerprint"
-msgstr "Մատնահետք"
-
-msgid "First"
-msgstr "Առաջին"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Էջի ստորին հատված"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Անվտանգության նկատառումներից ելնելով ՝ պարբերաբար պահանջվում է գաղտնաբառերի փոփոխություն:"
-
-msgid "For the user documentation, visit:"
-msgstr "Օգտատերերին առնչվող դոկումենտացիայի համար այցելեք՝"
-
-msgid "Forbidden operation"
-msgstr "Արգելված գործողություն"
-
-msgid "Force password change"
-msgstr "Պարտադրել գաղտնաբառի փոփոխություն"
-
-msgid "Forcefully selected"
-msgstr "Սահմանված է ադմինիստրատորի կողմից"
-
-msgid "Forgot password?"
-msgstr "Մոռացե՞լ եք գաղտնաբառը:"
+msgid "Users"
+msgstr "Օգտատերեր"
 
 msgid "From"
 msgstr "Ձևաթերթ"
 
-msgid "From:"
-msgstr "Ումից՝"
+msgid "Number of downloads"
+msgstr "Ներբեռնումների քանակ"
 
-msgid "Generate"
-msgstr "Գեներացնել"
+msgid "File size not accepted."
+msgstr "Ֆայլը չի համապատասխանում սահմանված չափին։"
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Օգտատերերի համար հասանելի դարձնել հետևյալ գործառույթները."
+msgid "Maximum file size is:"
+msgstr "Ֆայլի առավելագույն չափը՝"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Լիազորել այս ադմինիստրատորին փոխել օգտատերերի գաղտնաբառերը"
+msgid "Scheduled jobs"
+msgstr "Պլանավորված աշխատանքներ"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Վերականգնել"
+
+msgid "Display options alphabetically"
+msgstr "Ցուցադրել ընտրանքներն այբբենական կարգով"
+
+msgid "Enable email notifications for:"
+msgstr "Ակտիվացնել էլ.փոստի ծանուցումները հետևյալի համար."
+
+msgid "Disable"
+msgstr "Արգելափակել"
+
+msgid "Remove"
+msgstr "Հեռացնել"
+
+msgid "Use as default"
+msgstr "Օգտագործել որպես լռելյայն"
+
+msgid "Collapse"
+msgstr "Փակել"
+
+msgid "Expand"
+msgstr "Բացել"
+
+msgid "Select"
+msgstr "Ընտրել"
+
+msgid "Deselect"
+msgstr "Չեղարկել ընտրությունը"
+
+msgid "Surname"
+msgstr "Ազգանուն"
+
+msgid "New"
+msgstr "Նոր"
+
+msgid "Opened"
+msgstr "Բացված"
+
+msgid "Closed"
+msgstr "Փակված"
+
+msgid "Placeholder"
+msgstr "Տեղապահ"
+
+msgid "Print"
+msgstr "Տպել"
+
+msgid "Previous"
+msgstr "Նախորդ"
+
+msgid "Next"
+msgstr "Հաջորդը"
+
+msgid "First"
+msgstr "Առաջին"
+
+msgid "Last"
+msgstr "Վերջին"
+
+msgid "Send a test email to your email address."
+msgstr "Ձեր էլեկտրոնային հասցեին ուղարկել փորձնական նամակ ։"
+
+msgid "Block the submission"
+msgstr "Արգելել տվյալ հրապարակումը"
+
+msgid "Skip the recipient account creation."
+msgstr "Բաց թողնել հասցեատիրոջ էջ ստեղծելու քայլը։"
+
+msgid "Send activation link"
+msgstr "Ուղարկել ակտիվացման հղում"
+
+msgid "Password reset"
+msgstr "Գաղտնաբառի վերականգնում"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Մեկ կամ ավելի հասցեատերեր դեռ իրենց առաջին մուտքը չեն կատարել: Սա նշանակում է, որ նրանք չեն ստանա զեկույցներ:"
+
+msgid "This user has not performed the first login yet."
+msgstr "Օգտատերը դեռ չի կատարել առաջին մուտքը"
+
+msgid "seconds"
+msgstr "վայրկյան"
+
+msgid "This domain name is not available."
+msgstr "Դոմենի այն անունը հասանելի չէ։"
+
+msgid "Mark as important"
+msgstr "Նշել որպես կարևոր"
+
+msgid "Copy to clipboard"
+msgstr "Պատճենել սեղմատախտակին"
+
+msgid "Logout"
+msgstr "Դուրս գալ"
+
+msgid "Grant access"
+msgstr "Մուտքի իրավունք տրամադրել"
+
+msgid "Revoke access"
+msgstr "Չեղարկել մուտքի իրավունքը"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "Թաքցնել"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -562,54 +476,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Մուտքի իրավունք տրամադրել"
-
-msgid "Group of questions"
-msgstr "Հարցերի խումբ"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Դուք արդեն զեկույց ներկայացրե՞լ եք: Մուտքագրեք ձեր անդորրագիրը:"
-
-msgid "Hidden"
-msgstr "Թաքնված"
-
-msgid "Hide"
-msgstr "Թաքցնել"
-
-msgid "High"
-msgstr "Բարձր"
-
-msgid "Hint"
-msgstr "Հուշում"
-
-msgid "Home"
-msgstr "Գլխավոր էջ"
-
-msgid "Homepage title"
-msgstr "Գլխավոր էջի անվանումը"
-
-msgid "Hostname"
-msgstr "Սերվերի հասցեն"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Ես կարդացել եմ և համաձայն եմ լիցենզիայի պայմաններին:"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Հաշվետվություն ներկայացնել"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Նախքան շարունակելը նոր գաղտնաբառ ստեղծեք։"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Շարունակելուց առաջ խնդրում ենք ակտիվացնել երկու գործոնով նույնականացումը:"
+
+msgid "Enable"
+msgstr "Ակտիվացնել"
+
+msgid "Type"
+msgstr "Տեսակ"
+
+msgid "Severity"
+msgstr "Կարևորություն"
+
+msgid "Object"
+msgstr "Օբյեկտ"
 
 msgid "ID"
 msgstr "ID"
 
-msgid "Identity"
-msgstr "Ինքնություն"
+msgid "Username"
+msgstr "Մուտքանուն"
+
+msgid "Role"
+msgstr "Դեր"
+
+msgid "Name"
+msgstr "Անուն"
+
+msgid "Creation date"
+msgstr "Ստեղծման ամսաթիվ"
+
+msgid "Last access"
+msgstr "Վերջին մուտք"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Ազդարարի վերջին մուտքը"
+
+msgid "Substatuses"
+msgstr "Ենթակարգավիճակ"
+
+msgid "Add"
+msgstr "Ավելացնել"
+
+msgid "Label"
+msgstr "Պիտակ"
+
+msgid "This field is mandatory"
+msgstr "Այս դաշտը պարտադիր է"
+
+msgid "Edit"
+msgstr "Խմբագրել"
+
+msgid "Save"
+msgstr "Պահպանել"
+
+msgid "Cancel"
+msgstr "Չեղարկել"
+
+msgid "days"
+msgstr "օրեր"
+
+msgid "Disabled"
+msgstr "Արգելափակված"
+
+msgid "Report statuses"
+msgstr "Հաղորդել կարգավիճակների մասին"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "Թաքնված"
+
+msgid "Description"
+msgstr "Նկարագրություն"
+
+msgid "Questionnaire"
+msgstr "Հարցաշար"
+
+msgid "Recipients"
+msgstr "Հասցեատերեր"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Այս գործառույթն արգելափակելու համար սահմանեք արժեքը 0:"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Ցույց տալ հարցաշարի կառավարման ինտերֆեյսը"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Թույլ տալ ազդարարներին ընտրել իրենց հասցեատերերին"
+
+msgid "Select all recipients by default"
+msgstr "Լռելյայն ընտրել բոլոր հասցեատերերին"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Ընտրվող հասցեատերերի առավելագույն թիվը՝"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Դասակարգել հասցեատերերին այբբենական կարգով"
+
+msgid "Additional questionnaire"
+msgstr "Հավելյալ հարցաշար"
+
+msgid "Scoring system options"
+msgstr "Համակարգի գնահատման ընտրանքներ"
+
+msgid "Threshold"
+msgstr "Շեմ"
+
+msgid "Value"
+msgstr "Արժեք"
+
+msgid "Medium"
+msgstr "Միջին"
+
+msgid "High"
+msgstr "Բարձր"
+
+msgid "Software version:"
+msgstr "Ծրագրաշարի տարբերակ՝"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Սահմանափակել որոշակի IP հասցեների մուտքը"
+
+msgid "Enabled"
+msgstr "Ակտիվացված"
+
+msgid "Allowed IP addresses"
+msgstr "Թույլատրված IP հասցեներ"
+
+msgid "Admin"
+msgstr "Ադմինիստրատոր"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Հասցեատեր"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Յուրաքանչյուր մուտք պետք է առանձնացվի ստորակետով:"
+
+msgid "Example:"
+msgstr "Օրինակ՝"
+
+msgid "Hostname"
+msgstr "Սերվերի հասցեն"
+
+msgid "Organization"
+msgstr "Կազմակերպություն"
+
+msgid "Invalid email address"
+msgstr "Անվավեր Էլեկտրոնային հասցե"
+
+msgid "City"
+msgstr "Քաղաք"
+
+msgid "Country"
+msgstr "Երկիր"
+
+msgid "Country code"
+msgstr "Երկրի կոդ"
+
+msgid "Generate"
+msgstr "Գեներացնել"
+
+msgid "Private Key"
+msgstr "Մասնավոր բանալի"
+
+msgid "Certificate Signing Request"
+msgstr "Վկայագրի ստորագրման հայտ"
+
+msgid "Certificate"
+msgstr "Վկայագիր"
+
+msgid "Valid until:"
+msgstr "Ուժի մեջ է մինչև՝"
+
+msgid "Issuer:"
+msgstr "Թողարկող՝"
+
+msgid "Intermediate Certificates"
+msgstr "Միջանկյալ վկայագրեր"
+
+msgid "Reset"
+msgstr "Վերակայել"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Եթե այն 24 ժամվա ընթացքում ակտիվացված չլինի, հարթակն ինքնաբերաբար կջնջվի:"
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Հարթակն ապահովում է HTTPS-ի կոնֆիգուրացիան այս ինտերֆեյսի միջոցով։"
+
+msgid "Automatic configuration"
+msgstr "Ավտոմատ կոնֆիգուրացիա"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "HTTPS-ի ավտոմատ կոնֆիգուրացիայի գործընթացի հայցումը, մեկնարկն ու նորացումն ամբողջապես կկառավարվի Let's Encrypt Certificate Authority-ի կողմից:"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Հարթակը պետք է հասանելի լինի հանրային IP հասցեի միջոցով, և ընտրված սերվերի հասցեն պետք է ունենա այդ հասցեին հղող DNS գրառում:"
+
+msgid "Proceed"
+msgstr "Շարունակել"
+
+msgid "Manual configuration"
+msgstr "Մանուալ կարգավորում"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Մանուալ կարգավորման հրաշագործը Ձեզ ուղղություն ցույց կտա այլընտրանքային Սերտիֆիկացման Մարմնի միջոցով HTTPS-ի կարգավորման հարցում։"
+
+msgid "Auto-renewal"
+msgstr "Ավտոմատ թարմացում"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion ծառայություն"
+
+msgid "Anonymize outgoing connections"
+msgstr "Անանուն դարձնել ելքային կապերը"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Թույլ տալ, որ հարթակը հասանելի լինի առանց Tor-ի"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Օգտվել հարթակից առանց Tor-ի թուլատրվում է հետևյալներին՝"
+
+msgid "Whistleblower"
+msgstr "Ազդարար"
+
+msgid "To"
+msgstr "Ում"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "SMTP էլեկտրոնային հասցե"
+
+msgid "SMTP server address"
+msgstr "SMTP սերվերի հասցե"
+
+msgid "SMTP server port"
+msgstr "SMTP սերվերի պորտ"
+
+msgid "Security"
+msgstr "Անվտանգություն"
+
+msgid "Require authentication"
+msgstr "Պահանջել նույնականացում"
+
+msgid "Password"
+msgstr "Գաղտնագիր"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Ժամերի քանակը մինչև զեկույցի վերջնաժամկետի ավարտի մասին ահազանգի ուղարկումը"
+
+msgid "Test the configuration"
+msgstr "Փորձարկել կոնֆիգուրացիան"
+
+msgid "Reset SMTP configuration"
+msgstr "Վերակայել SMTP կոնֆիգուրացիան"
+
+msgid "Reset notification templates to default"
+msgstr "Վերակայել ծանուցման ձևանմուշները"
+
+msgid "Template"
+msgstr "Ձևանմուշ"
+
+msgid "Question"
+msgstr "Հարց"
+
+msgid "Single-line text input"
+msgstr "Մեկտողանի տեքստի մուտքագրում"
+
+msgid "Multi-line text input"
+msgstr "Բազմակի տողերի մուտքագրում"
+
+msgid "Selection box"
+msgstr "Հնարավոր տարբերակներ"
+
+msgid "Multiple choice input"
+msgstr "Բազմակի ընտրության մուտքագրում"
+
+msgid "Checkbox"
+msgstr "Նշատուփ"
+
+msgid "Terms of service"
+msgstr "Ծառայությունների մատուցման պայմաններ"
+
+msgid "Date range"
+msgstr "Ամսաթվերի միջակայք"
+
+msgid "Group of questions"
+msgstr "Հարցերի խումբ"
+
+msgid "Row"
+msgstr "Տող"
+
+msgid "Column"
+msgstr "Սյունակ"
+
+msgid "Width"
+msgstr "Լայնություն"
+
+msgid "Question group"
+msgstr "Հարցերի խումբ"
+
+msgid "Hint"
+msgstr "Հուշում"
+
+msgid "Mandatory"
+msgstr "Պարտադիր"
+
+msgid "Accept multiple file uploads"
+msgstr "Ընդունել բազմակի ֆայլերի վերբեռնումը"
+
+msgid "Accept multiple answers"
+msgstr "Ընդունել բազմակի պատասխաններ"
+
+msgid "Template override"
+msgstr "Վերացնել ձևանմուշը"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Phone number"
+msgstr "Հեռախոսահամար"
+
+msgid "Text"
+msgstr "Տեքստ"
+
+msgid "Checkbox label"
+msgstr "Նշատուփի պիտակ"
+
+msgid "Add multimedia content"
+msgstr "Ավելացնել մուլտիմեդիա բովանդակություն"
+
+msgid "Image"
+msgstr "Պատկեր"
+
+msgid "Audio"
+msgstr "Աուդիո"
+
+msgid "Video"
+msgstr "Վիդեո"
+
+msgid "Text shown upon negative answer"
+msgstr "Տեքստ, որ ցույց է տրվում բացասական պատասխանի դեպքում"
+
+msgid "Low"
+msgstr "Ցածր"
+
+msgid "Trigger conditions"
+msgstr "Առաջադրման պայմաններ"
+
+msgid "Sufficient"
+msgstr "Բավարար"
+
+msgid "Options"
+msgstr "Այլընտրանքներ"
+
+msgid "Addition"
+msgstr "Հավելում"
+
+msgid "Multiplier"
+msgstr "Բազմապատկիչ"
+
+msgid "Questions"
+msgstr "Հարցեր"
+
+msgid "Add new question"
+msgstr "Ավելացնել հարց"
+
+msgid "Add question from template"
+msgstr "Ավելացնել հարց ձևանմուշից"
+
+msgid "Duplicate"
+msgstr "Կրկնօրինակել"
+
+msgid "Steps"
+msgstr "Քայլեր"
+
+msgid "Logo"
+msgstr "Լոգո"
+
+msgid "Project name"
+msgstr "Նախագծի անունը"
+
+msgid "Homepage title"
+msgstr "Գլխավոր էջի անվանումը"
+
+msgid "Presentation"
+msgstr "Ներկայացում"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Հարց պոտենցիալ ազդարարների համար"
+
+msgid "Whistleblowing button"
+msgstr "Ազդարարման կոճակ"
+
+msgid "Disclaimer"
+msgstr "Զգուշացում"
+
+msgid "Footer"
+msgstr "Էջի ստորին հատված"
+
+msgid "Upload"
+msgstr "Վերբեռնել"
+
+msgid "Download"
+msgstr "Ներբեռնել"
+
+msgid "Language:"
+msgstr "Լեզու՝"
+
+msgid "Add custom text"
+msgstr "Ավելացրեք ձեր տեքստը"
+
+msgid "Custom text"
+msgstr "Ձեր տեքստը"
+
+msgid "Original text"
+msgstr "Բնօրինակ տեքստ"
+
+msgid "Original translation"
+msgstr "Բնօրինակ թարգմանություն"
+
+msgid "Custom translation"
+msgstr "Ձեր թարգմանությունը"
+
+msgid "Disable submissions"
+msgstr "Անջատել հրապարակումները"
+
+msgid "Enable encryption"
+msgstr "Ակտիվացնել ծածկագրումը"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Լիազորել ադմինիստրատորներին փոխել օգտատերերի գաղտնաբառերը"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Ադմինիստրատորները լիազորված են փոխել օգտատերերի գաղտնաբառերը."
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Ակտիվացնել պարզեցված մուտքը"
+
+msgid "Enable search engines indexing"
+msgstr "Ակտիվացնել որոնման ինդեքսավորումը"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Ֆայլի կցորդների թույլատրելի չափ"
+
+msgid "megabytes"
+msgstr "մեգաբայթեր"
+
+msgid "Require two factor authentication"
+msgstr "Պահանջել երկու գործոնով նույնականացում"
+
+msgid "Password change interval"
+msgstr "Գաղտնաբառի փոփոխման միջակայք"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Անվտանգության նկատառումներից ելնելով ՝ պարբերաբար պահանջվում է գաղտնաբառերի փոփոխություն:"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Օրերի քանակը մինչև օգտատերերին չկարդացված հաշվետվությունների մասին ծանուցելը"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Արգելափակել գաղտնիության կարգավորումների վահանակը"
+
+msgid "Enable custom privacy panel"
+msgstr "Ակտիվացնել անհատական գաղտնիության կարգավորումների վահանակը"
+
+msgid "Custom privacy panel"
+msgstr "Անհատական գաղտնիության կարգավորումների վահանակը"
+
+msgid "Enable scoring system"
+msgstr "Ակտիվացնել գնահատման համակարգը"
+
+msgid "Logging level"
+msgstr "Գրառումների պահպանման մակարդակ"
+
+msgid "percentage"
+msgstr "տոկոս"
+
+msgid "Log accesses of internal users"
+msgstr "Ներքին օգտվողների մուտքի գրանցում"
+
+msgid "Notify administrators of software problems"
+msgstr "Տեղեկացնել ադմինիստրատորներին ծրագրում առկա խնդիրների մասին"
+
+msgid "Notify developers of software problems"
+msgstr "Տեղեկացնել ծրագրավորողներին ծրագրում առկա խնդիրների մասին"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ակտիվացնելով այս գործառույթը, դուք կնպաստեք հարթակի զարգացմանն ու անվտանգությանը:"
+
+msgid "Reset reports"
+msgstr "Զեկույցների վերակայում"
+
+msgid "Settings"
+msgstr "Կարգավորումներ"
+
+msgid "Case management"
+msgstr "Գործի կառավարում"
+
+msgid "Network"
+msgstr "Ցանց"
+
+msgid "Sites"
+msgstr "Կայքեր"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "Կարգավորել"
+
+msgid "Subdomain"
+msgstr "Ենթադոմեն"
+
+msgid "Mode:"
+msgstr "Ռեժիմ՝"
+
+msgid "Creation date:"
+msgstr "Ստեղծման ամսաթիվ՝"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Օգտագործել առաջին կայքը միայն վարչական նպատակներով"
+
+msgid "Root domain used for secondary sites"
+msgstr "Արմատային դոմեն, որն օգտագործվում է երկրորդական կայքերի համար"
+
+msgid "Allow users to sign up"
+msgstr "Թույլատրել օգտատերերին գրանցվել"
+
+msgid "Enable terms of service"
+msgstr "Ակտիվացնել օգտագործման պայմանները"
+
+msgid "Title"
+msgstr "Վերնագիր"
+
+msgid "Public name"
+msgstr "Հանրային անուն"
+
+msgid "Send reset link"
+msgstr "Ուղարկել վերականգնման հղում"
+
+msgid "Set password"
+msgstr "Սահմանել գաղտնաբառ"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Ձեր ընտրած գաղտնաբառը չափազանց թույլ է։ Գաղտնաբառը պետք է  կազմված լինի առնվազն 12 նիշից և պարունակի տարբեր նշաններ՝ ներառելյալ առնվազն մեկ փոքրատառ, մեկ մեծատառ, թվանշան և հատուկ նշան։"
+
+msgid "Force password change"
+msgstr "Պարտադրել գաղտնաբառի փոփոխություն"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Օգտվողը պետք է փոխի իր գաղտնաբառը հաջորդ անգամ մուտք գործելիս։"
+
+msgid "Disable two factor authentication"
+msgstr "Արգելափակել երկու գործոնով նույնականացումը"
+
+msgid "Language"
+msgstr "Լեզու"
+
+msgid "Enable email notifications"
+msgstr "Ակտիվացնել ծանուցումներն էլ.փոստին"
+
+msgid "Details of the PGP key:"
+msgstr "Տեղեկություններ PGP բանալու մասին՝"
+
+msgid "Fingerprint"
+msgstr "Մատնահետք"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Կարգավորել ծածկագրումը՝ տրամադրելով PGP հանրային բանալին"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Լիազորել այս ադմինիստրատորին փոխել օգտատերերի գաղտնաբառերը"
+
+msgid "Forcefully selected"
+msgstr "Սահմանված է ադմինիստրատորի կողմից"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Թույլ տալ տվյալ հասցեատիրոջը ջնջել հաշվետվությունները"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Թույլ տալ հասցեատիրոջը հետաձգել հաշվետվության վերջնաժամկետը"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Օգտատերերի համար հասանելի դարձնել հետևյալ գործառույթները."
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Պահանջել ամսաթիվ"
+
+msgid "Report date"
+msgstr "Զեկույցի ամսաթիվը"
+
+msgid "Authorization"
+msgstr "Լիազորում"
+
+msgid "Requests"
+msgstr "Հարցումներ"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Հաստատման հղումը անվավեր է կամ ժամկետանց:"
+
+msgid "Your new email address has been validated."
+msgstr "Ձեր նոր էլեկտրոնային հասցեն հաստատված է։"
+
+msgid "Forgot password?"
+msgstr "Մոռացե՞լ եք գաղտնաբառը:"
+
+msgid "Enter the two factor authentication code"
+msgstr "Մուտքագրեք երկու գործոնով նույնականացման կոդը"
+
+msgid "Authentication failed"
+msgstr "Նույնականացումը չհաջողվեց"
+
+msgid "The code is either invalid or expired."
+msgstr "Կոդն անվավեր է, կամ ժամկետանց:"
+
+msgid "Please select your account:"
+msgstr "Խնդրում ենք ընտրել ձեր հաշիվը."
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Այժմ մուտքագրեք ձեր գաղտնաբառը, այնուհետև սեղմեք «Մուտք գործել»."
+
+msgid "Confirm"
+msgstr "Հաստատել"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբերակն ընտրելուց հետո:"
+
+msgid "Assign score points"
+msgstr "Գնահատել"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Կարգավիճակ՝"
+
+msgid "Are you sure?"
+msgstr "Համոզվա՞ծ եք։"
+
+msgid "Close"
+msgstr "Փակել"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
+
+msgid "Enable two factor authentication"
+msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Շարունակելուց առաջ ուշադիր ծանոթացեք տվյալ էջի փաստաթղթերին. "
+
+msgid "Account recovery key"
+msgstr "Հաշվի վերականգնման բանալի"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Պատճենեք և պահեք այն ապահով վայրում: Այն անհրաժեշտ կլինի օգտահաշվի տվյալները վերականգնելու համար, եթե դուք կորցնեք Ձեր գաղտնաբառը։"
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Մուտքագրեք պատճենի անունը"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Հայցել աջակցություն"
+
+msgid "Thank you."
+msgstr "Շնորհակալություն։"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Մենք կփորձենք հնարավորինս արագ պատասխանել ձեզ:"
+
+msgid "Submit"
+msgstr "Ուղարկել"
+
+msgid "The connection is not secure."
+msgstr "Կապն ապահով չէ:"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Հարթակը դեռ կազմաձևված չէ HTTPS միացումների համար, հետևաբար պետք է օգտագործվի բացառապես փորձարկումների համար։"
+
+msgid "Send"
+msgstr "Ուղարկել"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Սա ցուցադրական հարթակ է, մի օգտագործեք այն իրական փաստաթղթեր ներկայացնելու համար:"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Ներբեռնեք նույնականացման ծրագիր ձեր հեռախոսի վրա"
+
+msgid "Scan the QR code with the app"
+msgstr "Ծրագրով սքանավորեք QR կոդը"
+
+msgid "Error!"
+msgstr "Սխալ"
+
+msgid "Internal server error"
+msgstr "Սերվերի ներքին սխալ"
+
+msgid "Error on input validation"
+msgstr "Սխալ մուտքագրածը վավերացնելիս"
+
+msgid "Resource not found"
+msgstr "Ռեսուրսը հնարավոր չէ գտնել"
+
+msgid "Forbidden operation"
+msgstr "Արգելված գործողություն"
+
+msgid "The specified old password is not valid"
+msgstr "Տվյալ հին գաղտնաբառն անվավեր է"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջոցով"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Ընթացիկ գաղտնաբառ"
+
+msgid "New password"
+msgstr "Նոր գաղտնաբառ"
+
+msgid "The new password must be different from the current one."
+msgstr "Նոր գաղտնաբառը պետք է տարբերվի ներկայինից։"
+
+msgid "Type your new password again"
+msgstr "Կրկին մուտքագրեք ձեր նոր գաղտնաբառը"
+
+msgid "The two passwords do not match"
+msgstr "Մուտքագրված գաղտնաբառերը չեն համընկնում"
+
+msgid "Validation of email address change in progress."
+msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
+
+msgid "Please check your inbox for further instructions."
+msgstr "Խնդրում ենք ստուգել ձեր էլ.փոստի մուտքային հասցեն հետագա գործողությունների համար:"
+
+msgid "Warning"
+msgstr "Նախազգուշացում"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Խորհուրդ ենք տալիս այցելել այս կայքն օգտագործելով Tor բրաուզերը, որը պաշտպանում է ձեր գաղտնիությունը:"
+
+msgid "Download the Tor Browser"
+msgstr "Ներբեռնել Tor բրաուզերը"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Այնուհետև, պատճենեք և տեղադրեք հետևյալ հասցեն Tor բրաուզերում."
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Դուք արդեն զեկույց ներկայացրե՞լ եք: Մուտքագրեք ձեր անդորրագիրը:"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Անդորրագիրն անվավեր է, կամ ժամկետանց:"
+
+msgid "Filename"
+msgstr "Ֆայլի անունը"
+
+msgid "Size:"
+msgstr "Չափ՝"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Հասցե"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
+
+msgid "Fill the additional questionnaire"
+msgstr "Լրացնել հավելյալ հարցաշարը"
+
+msgid "From:"
+msgstr "Ումից՝"
+
+msgid "To:"
+msgstr "Ում՝"
+
+msgid "View"
+msgstr "Դիտել"
+
+msgid "Upload date"
+msgstr "Վերբեռնման ամսաթիվը"
+
+msgid "File size"
+msgstr "Ֆայլի չափը"
+
+msgid "Questionnaire answers"
+msgstr "Հարցաշարի պատասխաններ"
+
+msgid "Step"
+msgstr "Քայլ"
+
+msgid "Files attached by recipients"
+msgstr "Հասցեատերերի կողմից կցված ֆայլեր"
+
+msgid "Upload a file:"
+msgstr "Վերբեռնել ֆայլ"
+
+msgid "Welcome!"
+msgstr "Բարի գալուստ"
+
+msgid "For the user documentation, visit:"
+msgstr "Օգտատերերին առնչվող դոկումենտացիայի համար այցելեք՝"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -621,915 +1447,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Եթե ​​ցանկանում եք մասնակցել ծրագրաշարի մշակմանը կամ հաղորդել սխալի մասին, խնդրում ենք բացել զեկույց մեր տոմսային համակարգում."
 
-msgid "Image"
-msgstr "Պատկեր"
-
-msgid "Import"
-msgstr "Ներմուծել"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Այս քայլում հետևյալ հարցերի պատասխանները կա՛մ բացակայում են, կա՛մ անվավեր են."
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Մուտքագրածի վավերացում"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Ներբեռնեք նույնականացման ծրագիր ձեր հեռախոսի վրա"
-
-msgid "Intermediate Certificates"
-msgstr "Միջանկյալ վկայագրեր"
-
-msgid "Internal server error"
-msgstr "Սերվերի ներքին սխալ"
-
-msgid "Invalid confirmation"
-msgstr "Վավերացումն անհաջող էր"
-
-msgid "Invalid email address"
-msgstr "Անվավեր Էլեկտրոնային հասցե"
-
-msgid "Invalid phone number"
-msgstr "Հեռախոսահամարն անվավեր է"
-
-msgid "Issuer:"
-msgstr "Թողարկող՝"
-
 msgid "Join our chat:"
 msgstr "Միանալ մեր չաթին."
 
-msgid "Label"
-msgstr "Պիտակ"
-
-msgid "Label the report"
-msgstr "Պիտակել զեկույցը"
-
-msgid "Language"
-msgstr "Լեզու"
-
-msgid "Language:"
-msgstr "Լեզու՝"
-
-msgid "Languages"
-msgstr "Լեզուներ"
-
-msgid "Last"
-msgstr "Վերջին"
-
-msgid "Last Access"
-msgstr "Վերջին մուտք"
-
-msgid "Last access"
-msgstr "Վերջին մուտք"
-
-msgid "Last update"
-msgstr "Վերջին թարմացում"
-
-msgid "Latest selectable date"
-msgstr "Վերջին ընտրելի ամսաթիվը"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Թույլ տալ, որ հարթակը հասանելի լինի առանց Tor-ի"
-
-msgid "License"
-msgstr "Լիցենզիա"
-
-msgid "Log accesses of internal users"
-msgstr "Ներքին օգտվողների մուտքի գրանցում"
-
-msgid "Log in"
-msgstr "Մուտք գործել"
-
-msgid "Logging level"
-msgstr "Գրառումների պահպանման մակարդակ"
-
-msgid "Logo"
-msgstr "Լոգո"
-
-msgid "Logout"
-msgstr "Դուրս գալ"
-
-msgid "Low"
-msgstr "Ցածր"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Պատճենեք և պահեք այն ապահով վայրում: Այն անհրաժեշտ կլինի օգտահաշվի տվյալները վերականգնելու համար, եթե դուք կորցնեք Ձեր գաղտնաբառը։"
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Հնարավորություն տալ այս ադմինիստրատորին վերականգնել օգտատերերի գաղտնաբառերը:"
-
-msgid "Mandatory"
-msgstr "Պարտադիր"
-
-msgid "Manual configuration"
-msgstr "Մանուալ կարգավորում"
-
-msgid "Mark as important"
-msgstr "Նշել որպես կարևոր"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr "Max"
-
-msgid "Maximum file size is:"
-msgstr "Ֆայլի առավելագույն չափը՝"
-
-msgid "Maximum number of input characters"
-msgstr "Մուտքագրված նիշերի առավեկագույն թիվը"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Ընտրվող հասցեատերերի առավելագույն թիվը՝"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Միջին"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Մուտքագրված նիշերի նվազագույն թիվը"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "Ռեժիմ՝"
-
-msgid "Motivation"
-msgstr "Մոտիվացիա"
-
-msgid "Move down"
-msgstr "Գնալ ներքև"
-
-msgid "Move left"
-msgstr "Գնալ ձախ"
-
-msgid "Move right"
-msgstr "Գնալ աջ"
-
-msgid "Move up"
-msgstr "Գնալ վերև"
-
-msgid "Multi-line text input"
-msgstr "Բազմակի տողերի մուտքագրում"
-
-msgid "Multiple choice input"
-msgstr "Բազմակի ընտրության մուտքագրում"
-
-msgid "Multiplier"
-msgstr "Բազմապատկիչ"
-
-msgid "Name"
-msgstr "Անուն"
-
-msgid "Network"
-msgstr "Ցանց"
-
-msgid "New"
-msgstr "Նոր"
-
-msgid "New password"
-msgstr "Նոր գաղտնաբառ"
-
-msgid "New request"
-msgstr "Նոր հայց"
-
-msgid "Next"
-msgstr "Հաջորդը"
-
-msgid "No"
-msgstr "Ոչ"
-
-msgid "None"
-msgstr "Չկա"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr ""
-
-msgid "Notify administrators of software problems"
-msgstr "Տեղեկացնել ադմինիստրատորներին ծրագրում առկա խնդիրների մասին"
-
-msgid "Notify developers of software problems"
-msgstr "Տեղեկացնել ծրագրավորողներին ծրագրում առկա խնդիրների մասին"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Այժմ մուտքագրեք ձեր գաղտնաբառը, այնուհետև սեղմեք «Մուտք գործել»."
-
-msgid "Number"
-msgstr "Թիվ"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Օրերի քանակը մինչև օգտատերերին չկարդացված հաշվետվությունների մասին ծանուցելը"
-
-msgid "Number of downloads"
-msgstr "Ներբեռնումների քանակ"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Ժամերի քանակը մինչև զեկույցի վերջնաժամկետի ավարտի մասին ահազանգի ուղարկումը"
-
-msgid "Object"
-msgstr "Օբյեկտ"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Մեկ կամ ավելի հասցեատերեր դեռ իրենց առաջին մուտքը չեն կատարել: Սա նշանակում է, որ նրանք չեն ստանա զեկույցներ:"
-
-msgid "Opened"
-msgstr "Բացված"
-
-msgid "Options"
-msgstr "Այլընտրանքներ"
-
-msgid "Organization"
-msgstr "Կազմակերպություն"
-
-msgid "Original text"
-msgstr "Բնօրինակ տեքստ"
-
-msgid "Original translation"
-msgstr "Բնօրինակ թարգմանություն"
-
-msgid "Password"
-msgstr "Գաղտնագիր"
-
-msgid "Password change interval"
-msgstr "Գաղտնաբառի փոփոխման միջակայք"
-
-msgid "Password reset"
-msgstr "Գաղտնաբառի վերականգնում"
-
-msgid "Password reset requested."
-msgstr "Հայցվել է գաղտնաբառի վերակայում։"
-
-msgid "Phone number"
-msgstr "Հեռախոսահամար"
-
-msgid "Placeholder"
-msgstr "Տեղապահ"
-
-msgid "Platform wizard"
-msgstr "Հարթակի հրաշագործ"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Խնդրում ենք ստուգել ձեր էլ.փոստի մուտքային հասցեն հետագա գործողությունների համար:"
-
-msgid "Please choose a configuration profile:"
-msgstr "Խնդրում ենք ընտրել կազմաձևման պրոֆիլ."
-
-msgid "Please choose a different username."
-msgstr "Խնդրում ենք ընտրել այլ մուտքանուն։"
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
-
-msgid "Please select your account:"
-msgstr "Խնդրում ենք ընտրել ձեր հաշիվը."
-
-msgid "Postpone the expiration date"
-msgstr "Հետաձգել վերջնաժամկետը"
-
-msgid "Preferences"
-msgstr "Նախասիրություններ"
-
-msgid "Presentation"
-msgstr "Ներկայացում"
-
-msgid "Preview"
-msgstr "Նախադիտում"
-
-msgid "Previous"
-msgstr "Նախորդ"
-
-msgid "Print"
-msgstr "Տպել"
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "Private Key"
-msgstr "Մասնավոր բանալի"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "Շարունակել"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "Նախագծի անունը"
-
-msgid "Public name"
-msgstr "Հանրային անուն"
-
-msgid "Question"
-msgstr "Հարց"
-
-msgid "Question group"
-msgstr "Հարցերի խումբ"
-
-msgid "Question templates"
-msgstr "Հարցերի ձևանմուշներ"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Հարց պոտենցիալ ազդարարների համար"
-
-msgid "Questionnaire"
-msgstr "Հարցաշար"
-
-msgid "Questionnaire answers"
-msgstr "Հարցաշարի պատասխաններ"
-
-msgid "Questionnaires"
-msgstr "Հարցաշարեր"
-
-msgid "Questions"
-msgstr "Հարցեր"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "Հասցեատեր"
-
-msgid "Recipient selection"
-msgstr "Ընտրել հասցեատիրոջը"
-
-msgid "Recipients"
-msgstr "Հասցեատերեր"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Հասցեատերն ընտրված է."
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Թարմացնել"
-
-msgid "Regenerate"
-msgstr "Վերականգնել"
-
-msgid "Regular expression"
-msgstr "Կանոնավոր արտահայտություն"
-
-msgid "Regular expression validator"
-msgstr "Կանոնավոր արտահայտության վավերացուցիչ"
-
-msgid "Remember your receipt for this report."
-msgstr "Հիշեք ձեր անդորրագրի կոդը այս զեկույցի համար:"
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Հեռացնել"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Արձագանքի մոտիվացիա"
-
-msgid "Reply to the request"
-msgstr "Արձագանքել հայցին"
-
-msgid "Report"
-msgstr "Զեկույցներ"
-
-msgid "Report date"
-msgstr "Զեկույցի ամսաթիվը"
-
-msgid "Report statuses"
-msgstr "Հաղորդել կարգավիճակների մասին"
-
-msgid "Reports"
-msgstr "Զզեկույցը"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Հայցել իրազեկչի ինքնությանը մատչելիությունը"
-
-msgid "Request date"
-msgstr "Պահանջել ամսաթիվ"
-
-msgid "Request motivation"
-msgstr "Հայցի մոտիվացիա"
-
-msgid "Request status"
-msgstr "Հայցի կարգավիճակ"
-
-msgid "Request support"
-msgstr "Հայցել աջակցություն"
-
-msgid "Requests"
-msgstr "Հարցումներ"
-
-msgid "Require authentication"
-msgstr "Պահանջել նույնականացում"
-
-msgid "Require two factor authentication"
-msgstr "Պահանջել երկու գործոնով նույնականացում"
-
-msgid "Reset"
-msgstr "Վերակայել"
-
-msgid "Reset SMTP configuration"
-msgstr "Վերակայել SMTP կոնֆիգուրացիան"
-
-msgid "Reset notification templates to default"
-msgstr "Վերակայել ծանուցման ձևանմուշները"
-
-msgid "Reset reports"
-msgstr "Զեկույցների վերակայում"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջոցով"
-
-msgid "Resource not found"
-msgstr "Ռեսուրսը հնարավոր չէ գտնել"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Սահմանափակել որոշակի IP հասցեների մուտքը"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Չեղարկել մուտքի իրավունքը"
-
-msgid "Role"
-msgstr "Դեր"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Օգտվել հարթակից առանց Tor-ի թուլատրվում է հետևյալներին՝"
-
-msgid "Root domain used for secondary sites"
-msgstr "Արմատային դոմեն, որն օգտագործվում է երկրորդական կայքերի համար"
-
-msgid "Row"
-msgstr "Տող"
-
-msgid "SMTP email address"
-msgstr "SMTP էլեկտրոնային հասցե"
-
-msgid "SMTP server address"
-msgstr "SMTP սերվերի հասցե"
-
-msgid "SMTP server port"
-msgstr "SMTP սերվերի պորտ"
-
-msgid "Save"
-msgstr "Պահպանել"
-
-msgid "Save all"
-msgstr "Պահպանել ամբողջությամբ"
-
-msgid "Scan the QR code with the app"
-msgstr "Ծրագրով սքանավորեք QR կոդը"
-
-msgid "Scheduled jobs"
-msgstr "Պլանավորված աշխատանքներ"
-
-msgid "Score"
-msgstr "Գնահատում"
-
-msgid "Scoring system options"
-msgstr "Համակարգի գնահատման ընտրանքներ"
-
-msgid "Search"
-msgstr "Որոնել"
-
-msgid "Security"
-msgstr "Անվտանգություն"
-
-msgid "Select"
-msgstr "Ընտրել"
-
-msgid "Select a file or drag it here."
-msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստեղ:"
-
-msgid "Select all"
-msgstr "Ընտրել ամբողջությամբ"
-
-msgid "Select all recipients by default"
-msgstr "Լռելյայն ընտրել բոլոր հասցեատերերին"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Հնարավոր տարբերակներ"
-
-msgid "Send"
-msgstr "Ուղարկել"
-
-msgid "Send a test email to your email address."
-msgstr "Ձեր էլեկտրոնային հասցեին ուղարկել փորձնական նամակ ։"
-
-msgid "Send activation link"
-msgstr "Ուղարկել ակտիվացման հղում"
-
-msgid "Send reset link"
-msgstr "Ուղարկել վերականգնման հղում"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Սահմանել գաղտնաբառ"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Այս գործառույթն արգելափակելու համար սահմանեք արժեքը 0:"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Կարգավորել ծածկագրումը՝ տրամադրելով PGP հանրային բանալին"
-
-msgid "Settings"
-msgstr "Կարգավորումներ"
-
-msgid "Severity"
-msgstr "Կարևորություն"
-
-msgid "Show"
-msgstr "Ցույց տալ"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Դասակարգել հասցեատերերին այբբենական կարգով"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Ցույց տալ հարցաշարի կառավարման ինտերֆեյսը"
-
-msgid "Sign up"
-msgstr "Գրանցվել"
-
-msgid "Silence email notifications"
-msgstr "Անջատել էլ.փոստով ծանուցումները"
-
-msgid "Single-line text input"
-msgstr "Մեկտողանի տեքստի մուտքագրում"
-
-msgid "Site"
-msgstr "Կայք"
-
-msgid "Sites"
-msgstr "Կայքեր"
-
-msgid "Size limit for file attachments"
-msgstr "Ֆայլի կցորդների թույլատրելի չափ"
-
-msgid "Size:"
-msgstr "Չափ՝"
-
-msgid "Skip the recipient account creation."
-msgstr "Բաց թողնել հասցեատիրոջ էջ ստեղծելու քայլը։"
-
-msgid "Software version:"
-msgstr "Ծրագրաշարի տարբերակ՝"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Վիճակագրություն"
-
-msgid "Status"
-msgstr "Կարգավիճակ"
-
-msgid "Status:"
-msgstr "Կարգավիճակ՝"
-
-msgid "Step"
-msgstr "Քայլ"
-
-msgid "Steps"
-msgstr "Քայլեր"
-
-msgid "Strong"
-msgstr "Ուժեղ"
-
-msgid "Subdomain"
-msgstr "Ենթադոմեն"
-
-msgid "Submissions disabled"
-msgstr "Հրապարակումներն արգելափակված են"
-
-msgid "Submit"
-msgstr "Ուղարկել"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Ենթակարգավիճակ"
-
-msgid "Success!"
-msgstr "Շնորհավորո՜ւմ ենք։"
-
-msgid "Sufficient"
-msgstr "Բավարար"
-
-msgid "Surname"
-msgstr "Ազգանուն"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "Ձևանմուշ"
-
-msgid "Template override"
-msgstr "Վերացնել ձևանմուշը"
-
-msgid "Templates"
-msgstr "Ձևանմուշներ"
-
-msgid "Terms of service"
-msgstr "Ծառայությունների մատուցման պայմաններ"
-
-msgid "Test the configuration"
-msgstr "Փորձարկել կոնֆիգուրացիան"
-
-msgid "Text"
-msgstr "Տեքստ"
-
-msgid "Text customization"
-msgstr "Տեքստի կարգավորումներ"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբերակն ընտրելուց հետո:"
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "Տեքստ, որ ցույց է տրվում բացասական պատասխանի դեպքում"
-
-msgid "Thank you."
-msgstr "Շնորհակալություն։"
-
-msgid "The answer is too short"
-msgstr "Պատասխանը չափազանց կարճ է"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Ձեր ընտրած գաղտնաբառը չափազանց թույլ է։ Գաղտնաբառը պետք է  կազմված լինի առնվազն 12 նիշից և պարունակի տարբեր նշաններ՝ ներառելյալ առնվազն մեկ փոքրատառ, մեկ մեծատառ, թվանշան և հատուկ նշան։"
-
-msgid "The code is either invalid or expired."
-msgstr "Կոդն անվավեր է, կամ ժամկետանց:"
-
-msgid "The connection is not secure."
-msgstr "Կապն ապահով չէ:"
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Հետևյալ հասցեատերերը կստանան ձեր զեկույցը և չեն կարող ապընտրվել."
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Հետևյալ քայլ առ քայլ ընթացակարգը կառաջնորդի ձեզ ձեր իրազեկչի հարթակը ստեղծելիս:"
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Մանուալ կարգավորման հրաշագործը Ձեզ ուղղություն ցույց կտա այլընտրանքային Սերտիֆիկացման Մարմնի միջոցով HTTPS-ի կարգավորման հարցում։"
-
-msgid "The new password must be different from the current one."
-msgstr "Նոր գաղտնաբառը պետք է տարբերվի ներկայինից։"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Հարթակը դեռ կազմաձևված չէ HTTPS միացումների համար, հետևաբար պետք է օգտագործվի բացառապես փորձարկումների համար։"
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Հարթակը պետք է հասանելի լինի հանրային IP հասցեի միջոցով, և ընտրված սերվերի հասցեն պետք է ունենա այդ հասցեին հղող DNS գրառում:"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Հարթակն ապահովում է HTTPS-ի կոնֆիգուրացիան այս ինտերֆեյսի միջոցով։"
-
-msgid "The provided recovery key is invalid."
-msgstr "Ձեր մուտքագրած վերականգնման բանալին անվավեր է:"
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Վերակայման կոդն անվավեր է, կամ ժամկետանց:"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Անդորրագիրն անվավեր է, կամ ժամկետանց:"
-
-msgid "The specified input is not valid."
-msgstr "Տվյալ մուտքագրումն անվավեր է։"
-
-msgid "The specified input is not valid:"
-msgstr "Տվյալ մուտքագրումն անվավեր է."
-
-msgid "The specified old password is not valid"
-msgstr "Տվյալ հին գաղտնաբառն անվավեր է"
-
-msgid "The two passwords do not match"
-msgstr "Մուտքագրված գաղտնաբառերը չեն համընկնում"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Օգտվողը պետք է փոխի իր գաղտնաբառը հաջորդ անգամ մուտք գործելիս։"
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Հաստատման հղումը անվավեր է կամ ժամկետանց:"
-
-msgid "The whistleblower has already read the last update"
-msgstr "Իրազեկիչն արդեն ծանոթ է վերջին թարմացմանը"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Իրազեկիչը դեռ չի տեսել վերջին թարմացումը"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Այնուհետև, պատճենեք և տեղադրեք հետևյալ հասցեն Tor բրաուզերում."
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Այս տեքստն այլևս չի ցուցադրվում հարթակում: Բնօրինակ տեքստը փոխվել կամ հեռացվել է:"
-
-msgid "This domain name is not available."
-msgstr "Դոմենի այն անունը հասանելի չէ։"
-
-msgid "This field is mandatory"
-msgstr "Այս դաշտը պարտադիր է"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Սա ցուցադրական հարթակ է, մի օգտագործեք այն իրական փաստաթղթեր ներկայացնելու համար:"
-
-msgid "This user has not performed the first login yet."
-msgstr "Օգտատերը դեռ չի կատարել առաջին մուտքը"
-
-msgid "Threshold"
-msgstr "Շեմ"
-
-msgid "Title"
-msgstr "Վերնագիր"
-
-msgid "To"
-msgstr "Ում"
-
-msgid "To:"
-msgstr "Ում՝"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Tor Onion ծառայություն"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Առաջադրման պայմաններ"
-
-msgid "Trigger question"
-msgstr "Առաջադրել հարց"
-
-msgid "Triggered by score:"
-msgstr "Մեկնարկել, երբ միավորը հավասար է․"
-
-msgid "Turn on email notifications"
-msgstr "Միացնել էլ.փոստով ծանուցումները "
-
-msgid "Type"
-msgstr "Տեսակ"
-
-msgid "Type your new password again"
-msgstr "Կրկին մուտքագրեք ձեր նոր գաղտնաբառը"
-
-msgid "URL redirects"
-msgstr "URL վերահղումներ"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Վերբեռնել"
-
-msgid "Upload a file:"
-msgstr "Վերբեռնել ֆայլ"
-
-msgid "Upload date"
-msgstr "Վերբեռնման ամսաթիվը"
-
-msgid "Use as default"
-msgstr "Օգտագործել որպես լռելյայն"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Մուտք գործելու համար օգտագործեք անդորրագրի 16 նիշանոց կոդը: Այն ձեզ թույլ կտա տեսնել մեր ուղարկած հաղորդագրությունները, ինչպես նաև ավելացնել լրացուցիչ տեղեկություններ:"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Օգտագործել առաջին կայքը միայն վարչական նպատակներով"
-
-msgid "User"
-msgstr "Օգտատեր"
-
-msgid "Username"
-msgstr "Մուտքանուն"
-
-msgid "Users"
-msgstr "Օգտատերեր"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "HTTPS-ի ավտոմատ կոնֆիգուրացիայի գործընթացի հայցումը, մեկնարկն ու նորացումն ամբողջապես կկառավարվի Let's Encrypt Certificate Authority-ի կողմից:"
-
-msgid "Valid until:"
-msgstr "Ուժի մեջ է մինչև՝"
-
-msgid "Validation of email address change in progress."
-msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
-
-msgid "Value"
-msgstr "Արժեք"
-
-msgid "Video"
-msgstr "Վիդեո"
-
-msgid "View"
-msgstr "Դիտել"
-
-msgid "View your report"
-msgstr "Տեսնել ձեր զեկույցը"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Սպասում է հաստատման"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Սպասեք ֆայլ(ներ)ի վերբեռնման ավարտին։"
-
-msgid "Warning"
-msgstr "Նախազգուշացում"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Առաջարկում ենք ընտրել այս տարբերակը, եթե ցանկանում եք պաշտպանել տվյալները կորստից անգամ այն իրավիճակում, երբ ստացողները կորցնում են իրենց գաղտնաբառերը: Սակայն եթե ցանկանում եք ստեղծել այնպիսի համակարգ, որտեղ հրապարակումները հասանելի կլինեն միայն ստացողներին, խորհուրդ  չենք տա օգտագործել տվյալ գործառույթը։"
+msgid "An update is available:"
+msgstr "Հասանելի է թարմացում."
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1538,78 +1460,85 @@ msgid ""
 "your password."
 msgstr "Առաջարկում ենք մուտք գործել «Նախապատվություններ» բաժինը ձեր «Հաշվի վերականգնման բանալին» առբերելու և այն անվտանգ պահելու համար: Այս բանալին անհրաժեշտ կլինի ձեր մուտքը հարթակ և տվյալները վերականգնելու համար, եթե մոռանաք ձեր գաղտնաբառը:"
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Մենք կփորձենք հնարավորինս արագ պատասխանել ձեզ:"
+msgid "Select a file or drag it here."
+msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստեղ:"
 
-msgid "Weak"
-msgstr "Թույլ"
+msgid "The provided recovery key is invalid."
+msgstr "Ձեր մուտքագրած վերականգնման բանալին անվավեր է:"
 
-msgid "Welcome!"
-msgstr "Բարի գալուստ"
-
-msgid "Whistleblower"
-msgstr "Ազդարար"
-
-msgid "Whistleblower's last access"
-msgstr "Ազդարարի վերջին մուտքը"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Ազդարարման կոճակ"
-
-msgid "Width"
-msgstr "Լայնություն"
-
-msgid "Yes"
-msgstr "Այո"
+msgid "The provided reset token is invalid or expired."
+msgstr "Վերակայման կոդն անվավեր է, կամ ժամկետանց:"
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Դուք անանունություն չեք պահում սերվերին միանալիս, մինչդեռ այս սերվերը հասանելի է միայն անանունության պայմանով։"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Գրե՜ք ձեր հաշվի մուտքանունը կամ էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Գրեք ձեր էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
+
+msgid "Password reset requested."
+msgstr "Հայցվել է գաղտնաբառի վերակայում։"
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Խորհուրդ ենք տալիս այցելել այս կայքն օգտագործելով Tor բրաուզերը, որը պաշտպանում է ձեր գաղտնիությունը:"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Մուտքագրեք ձեր ծածկագրման վերականգնման բանալին՝ գաղտնաբառի վերականգնման ընթացակարգն ավարտելու համար"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Ազդարարի ինքնությունը հասանելի դարձնելու հայտը ներկայացվել է պահառուին։"
+
+msgid "Date of the request"
+msgstr "Հայցի ամսաթիվը"
+
+msgid "Show"
+msgstr "Ցույց տալ"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Շնորհավորո՜ւմ ենք։"
 
 msgid "You have completed the platform activation."
 msgstr "Դուք ավարտել եք հարթակի ակտիվացումը:"
 
-msgid "You have completed the platform wizard."
-msgstr "Դուք ավարտեցիք հարթակի նախապատրաստումը հրաշագործի հետ:"
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Դուք ընտրել եք առավելագույն հնարավոր քանակի հասցեատերեր:"
-
-msgid "You must select at least one recipient."
-msgstr "Դուք պետք է ընտրեք առնվազն մեկ հասցեատիրոջ:"
-
-msgid "Your new email address has been validated."
-msgstr "Ձեր նոր էլեկտրոնային հասցեն հաստատված է։"
-
-msgid "Your report was successful."
-msgstr "Ձեր զեկույցը հաջողությամբ հաստատվեց։"
+msgid "Success!"
+msgstr "Շնորհավորո՜ւմ ենք։"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Ձեր ազդարարի հարթակը գրեթե պատրաստ է:"
 
-msgid "days"
-msgstr "օրեր"
+msgid "Check your inbox to activate it."
+msgstr "Ստուգեք ձեր էլ.փոստի մուտքային հաշիվը՝ հարթակի ակտիվացման համար:"
 
-msgid "file unavailable"
-msgstr "ֆայլը հասանելի չէ"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Եթե այն 24 ժամվա ընթացքում ակտիվացված չլինի, հարթակն ինքնաբերաբար կջնջվի:"
 
-msgid "megabytes"
-msgstr "մեգաբայթեր"
+msgid "Sign up"
+msgstr "Գրանցվել"
 
-msgid "percentage"
-msgstr "տոկոս"
+msgid "Invalid confirmation"
+msgstr "Վավերացումն անհաջող էր"
+
+msgid "Invalid phone number"
+msgstr "Հեռախոսահամարն անվավեր է"
+
+msgid "Site"
+msgstr "Կայք"
+
+msgid "Confirmation"
+msgstr "Վավերացում"
+
+msgid "The answer is too short"
+msgstr "Պատասխանը չափազանց կարճ է"
+
+msgid "The specified input is not valid."
+msgstr "Տվյալ մուտքագրումն անվավեր է։"
+
+msgid "The specified input is not valid:"
+msgstr "Տվյալ մուտքագրումն անվավեր է."
 
 msgid "please enter a valid email address."
 msgstr "խնդրում ենք մուտքագրել գործող էլեկտրոնային հասցե։"
@@ -1617,14 +1546,82 @@ msgstr "խնդրում ենք մուտքագրել գործող էլեկտրոն
 msgid "please enter numbers only."
 msgstr "խնդրում ենք մուտքագրել միայն թվեր։"
 
-msgid "seconds"
-msgstr "վայրկյան"
+msgid "Submissions disabled"
+msgstr "Հրապարակումներն արգելափակված են"
 
-msgid "File a report"
-msgstr "Հաշվետվություն ներկայացնել"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Դուք անանունություն չեք պահում սերվերին միանալիս, մինչդեռ այս սերվերը հասանելի է միայն անանունության պայմանով։"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Ձեր զեկույցը հաջողությամբ հաստատվեց։"
+
+msgid "Remember your receipt for this report."
+msgstr "Հիշեք ձեր անդորրագրի կոդը այս զեկույցի համար:"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Մուտք գործելու համար օգտագործեք անդորրագրի 16 նիշանոց կոդը: Այն ձեզ թույլ կտա տեսնել մեր ուղարկած հաղորդագրությունները, ինչպես նաև ավելացնել լրացուցիչ տեղեկություններ:"
+
+msgid "View your report"
+msgstr "Տեսնել ձեր զեկույցը"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Հասցեատերն ընտրված է."
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Դուք ընտրել եք առավելագույն հնարավոր քանակի հասցեատերեր:"
+
+msgid "You must select at least one recipient."
+msgstr "Դուք պետք է ընտրեք առնվազն մեկ հասցեատիրոջ:"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Հետևյալ հասցեատերերը կստանան ձեր զեկույցը և չեն կարող ապընտրվել."
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Այս քայլում հետևյալ հարցերի պատասխանները կա՛մ բացակայում են, կա՛մ անվավեր են."
+
+msgid "Recipient selection"
+msgstr "Ընտրել հասցեատիրոջը"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Սպասեք ֆայլ(ներ)ի վերբեռնման ավարտին։"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Հետևյալ քայլ առ քայլ ընթացակարգը կառաջնորդի ձեզ ձեր իրազեկչի հարթակը ստեղծելիս:"
+
+msgid "Please choose a configuration profile:"
+msgstr "Խնդրում ենք ընտրել կազմաձևման պրոֆիլ."
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Հնարավորություն տալ այս ադմինիստրատորին վերականգնել օգտատերերի գաղտնաբառերը:"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Առաջարկում ենք ընտրել այս տարբերակը, եթե ցանկանում եք պաշտպանել տվյալները կորստից անգամ այն իրավիճակում, երբ ստացողները կորցնում են իրենց գաղտնաբառերը: Սակայն եթե ցանկանում եք ստեղծել այնպիսի համակարգ, որտեղ հրապարակումները հասանելի կլինեն միայն ստացողներին, խորհուրդ  չենք տա օգտագործել տվյալ գործառույթը։"
+
+msgid "Please choose a different username."
+msgstr "Խնդրում ենք ընտրել այլ մուտքանուն։"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Ես կարդացել եմ և համաձայն եմ լիցենզիայի պայմաններին:"
+
+msgid "You have completed the platform wizard."
+msgstr "Դուք ավարտեցիք հարթակի նախապատրաստումը հրաշագործի հետ:"
 
 msgid "Please summarize your report in a few words."
 msgstr "Մի քանի բառով նկարագրեք ձեր զեկույցը։"

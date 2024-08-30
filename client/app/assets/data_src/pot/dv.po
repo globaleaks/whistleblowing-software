@@ -19,129 +19,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "ް0 = އޮޓޯ"
+msgid "Log in"
+msgstr "ލޮގް އިން"
 
-msgid "Accept multiple answers"
-msgstr "އެއް ޖަވާބަށްވުރެ ގިނަ ޖަވާބު ގަބޫލުކުރެވިދާނެ"
+msgid "Languages"
+msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
 
-msgid "Accept multiple file uploads"
-msgstr "ގިނަ ފައިލްތަކެއް އަޕްލޯޑު ކުރަން ފުރުސަތު ދެވޭ"
-
-msgid "Acceptable"
-msgstr "ރަނގަޅު"
-
-msgid "Access control"
-msgstr "އެކްސެސް ކޮންޓްރޯލް"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "އެކްސެސް ހޯދުމަށް އެދެވިއްޖެ"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހާމަކުރުމަށް ކަސްޓޯޑިއަން ކައިރިން އެދެވިއްޖެ"
-
-msgid "Account recovery key"
-msgstr "އެކައުންޓް އަލުންހޯއްދަވަން ބޭނުންވާނެ ކީ"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "އެކްޓިވިޓީސް"
-
-msgid "Add"
-msgstr "ގިނަކުރަން"
-
-msgid "Add custom text"
-msgstr "އަމިއްލަ ލަފުޒެއްޖެހުމަށް"
-
-msgid "Add multimedia content"
-msgstr "މީޑިޔާގެ އެކިބާވަތްތައް އެކުލެވޭ ލިޔުމެއް އިތުރުކުރުމަށް"
-
-msgid "Add new question"
-msgstr "ސުވާލެއް އިތުރު ކުރެއްވުމަށް"
-
-msgid "Add new questionnaire"
-msgstr "އާ ސުވާލުކަރުދާހެއް ހެދުމަށް"
-
-msgid "Add question from template"
-msgstr "ނަމޫނާއަކުން ސުވާލެއް އިރުތުކުރެއްވުމަށް"
-
-msgid "Addition"
-msgstr "އެއްކުރުން"
-
-msgid "Additional questionnaire"
-msgstr "އިތުރު ސުވާލުކަރުދާސް"
-
-msgid "Address"
-msgstr "ްއެޑްރެސް"
-
-msgid "Admin"
-msgstr "އެޑްމިން"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
+msgid "Text customization"
+msgstr "އަކުރު ބޭނުންފުޅުވާގޮތަށް ބަދަލުކުރަން"
 
 msgid "Advanced"
 msgstr ""
 
-msgid "Allow the recipient to delete reports"
-msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓު ފުހެލުމުގެ ހުއްދަ ދިނުމަށް"
+msgid "Question templates"
+msgstr "ސުވާލު ޓެންޕްލޭޓްސް"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަ ދިނުން"
+msgid "Questionnaires"
+msgstr "ސުވާލުކަރުދާސް"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "ރިޕޯޓުގައި އާ ފައިލްތައް ހިމެނުމުގެ ހުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް "
+msgid "Add new questionnaire"
+msgstr "އާ ސުވާލުކަރުދާހެއް ހެދުމަށް"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "ކޮމެންޓްސް ލިޔުމުގެ ހުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް"
+msgid "Home"
+msgstr "ފުރަތަމަ ޞަފްހާ"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "ގެނެވިފައިވާ ހުރިހާ ބަދަލެއް"
 
-msgid "Allow users to sign up"
-msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
+msgid "License"
+msgstr "ލައިސަންސް"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "ރިޕޯޓުފޮނުވާނެ ފަރާތްތައް އިޙްތިޔާރުކުރުމުގެ ހުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް"
+msgid "Templates"
+msgstr "ޓެމްޕްލޭޓްތައް"
 
-msgid "Allowed IP addresses"
-msgstr "ހުއްދަ ލިބިފައިވާ އައިޕީ އެޑްރެސްތައް"
-
-msgid "An update is available:"
-msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "ޑިލީޓް"
 
 msgid "Anomalies"
 msgstr "އެނޮމަލީސް"
 
-msgid "Anomaly detection thresholds"
-msgstr "އެނޯމަލީ ޑިޓެކްޝަން ތްރެޝްހޯލްޑް"
+msgid "Preferences"
+msgstr "ޕްރިފަރެންސަސް"
 
-msgid "Anonymity"
+msgid "Notifications"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr "އައުޓް ގޮއިންގ ކަނެކްޝަންސް ސިއްރުކުރުން"
+msgid "file unavailable"
+msgstr "ތިޔަ ހޯދާ ފައިލެއް ނެތް"
 
-msgid "Anonymous"
+msgid "Date"
+msgstr "ތާރީޙް"
+
+msgid "Expiration date"
+msgstr "މުައްދަތު ހަމަވާ ތާރީޙް"
+
+msgid "Last Access"
+msgstr " އެންމެ ފަހު އެކްސެސް"
+
+msgid "Files"
+msgstr "ފައިލްތައް"
+
+msgid "Comments"
+msgstr "ކޮމެންޓްސް"
+
+msgid "Details"
+msgstr "އިތުރު މައުލޫމާތު"
+
+msgid "Platform wizard"
+msgstr "ޕްލެޓްފޯރމް ވިޒާރޑް"
+
+msgid "Label the report"
+msgstr "ރިޕޯޓް ލޭބަލްކުރުމަށް"
+
+msgid "Edit the expiration date"
+msgstr "މުއްދަތު ހަމަވާ ތާރީޙް ލަސްކުރުމަށް"
+
+msgid "Select all"
+msgstr "ސެލެކްޓް އޯލް"
+
+msgid "Deselect all"
+msgstr "ޑީސެލެކްޓް އޯލް"
+
+msgid "Refresh"
+msgstr "ރިފްރެޝް ކުރުމަށް"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Are you sure?"
-msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
+msgid "Preview"
+msgstr "ޕްރީވިއު"
 
-msgid "Assign score points"
-msgstr "ސްކޯ ޕޮއިންޓް އެސައިން ކުރެއްވުމަށް"
+msgid "The whistleblower has already read the last update"
+msgstr "ތިޔަ ވިސިލްބްލޯވާ ވަނީ އެންމެ ފަހުގެ އަޕްޑޭޓްސް ކިޔާފައި"
 
-msgid "Assigned to"
-msgstr ""
+msgid "The whistleblower has not read the last update yet"
+msgstr " ތިޔަ ވިސިލްބްލޯވާ  އެންމެ ފަހުގެ އަޕްޑޭޓްސް އަދި ނުކިޔާ"
+
+msgid "Move up"
+msgstr "މައްޗަށް ދިޔުމަށް"
+
+msgid "Move down"
+msgstr "ތިރިއަށް ދިޔުމަށް"
+
+msgid "Move left"
+msgstr "ވާއަތައް ދިޔުމަށް"
+
+msgid "Move right"
+msgstr "ކަނާއަތަށް ދިޔުމަށް"
+
+msgid "Import"
+msgstr "އިމްޕޯޓް ކުރުމަށް"
+
+msgid "Export"
+msgstr "އެކްސްޕޯޓް ކުރުމަށް"
+
+msgid "Save all"
+msgstr "ސޭވް އޯލް"
+
+msgid "Access control"
+msgstr "އެކްސެސް ކޮންޓްރޯލް"
+
+msgid "Number"
+msgstr "ނަންބަރު"
+
+msgid "Email"
+msgstr "އީމެއިލް"
+
+msgid "Regular expression validator"
+msgstr "ރެގިއުލާ އެކްސްޕްރެޝަން ވެލިޑޭޓަރ"
+
+msgid "Minimum number of input characters"
+msgstr "އެންމެ މަދުވެގެން ލިޔެވޭނެ އަކުރުގެ އަދަދު"
+
+msgid "Maximum number of input characters"
+msgstr "އެންމެ ގިނަވެގެން ލިޔެވޭނެ އަކުރުގެ އަދަދު"
+
+msgid "Earliest selectable date"
+msgstr "ހިޔާރުކުރެވޭނެ އެންމެ ކުރީގެ ތާރީޙް"
+
+msgid "Latest selectable date"
+msgstr "ހިޔާރުކުރެވޭނެ އެންމެ ފަހުގެ ތާރީޙް"
+
+msgid "0 = auto"
+msgstr "ް0 = އޮޓޯ"
+
+msgid "Yes"
+msgstr "އާނއެކޭ"
+
+msgid "No"
+msgstr "ނޫނެކޭ"
 
 msgid "Attachment"
 msgstr "އެޓޭޗްމަންޓް"
@@ -149,186 +175,56 @@ msgstr "އެޓޭޗްމަންޓް"
 msgid "Attachments"
 msgstr "އެޓޭޗްމަންޓްސް"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "އޯޑިއޯ"
-
-msgid "Audit log"
-msgstr "އޮޑިޓް ލޮގް"
-
-msgid "Authentication failed"
-msgstr "އޮތެންޓިކޭޝަން ފެއިލްވެއްޖެ"
-
-msgid "Authorization"
-msgstr "އޮތޮރައިޒޭޝަން"
-
-msgid "Authorize"
-msgstr "އޮތަރައިޒް ކުރަން"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހިއްސާކުރުމަށް އޮތޮރައިޒްކުރުމަށް"
-
-msgid "Authorized"
-msgstr "އޮތަރައިޒް ވެއްޖެ"
-
-msgid "Auto-renewal"
-msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"
-
-msgid "Automatic configuration"
-msgstr "އޮޓޮމެޓިކް ކޮންފިގަރޭޝަން"
-
-msgid "Available disk space"
-msgstr "ބޭނުންކުރެވެން ހުރި ޑިސްކް ސްޕޭސް"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން: ގައިވާ  ޑޮކިއުމެންޓޭޝަން ރަނގަޅަށް ކިޔުން ވަރަށް މުހިންމު"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރައްވާ"
-
-msgid "Before proceeding, please set a new password."
-msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން އާ ޕާސްވޯޑެއް ހިޔާރުކުރައްވާ"
-
-msgid "Block the submission"
-msgstr "ސަބްމިޝަން ބްލޮކްކުރުމަށް"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "މުއްދަތު ހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "މި ފީޗަރ އެނޭބަލްކުރުމުން ޕްލެޓްފޯމް އިތުރަށް ތަރައްގީކުރުމަށާއި  ސެކިއުރިޓީ ވަރުގަދަކުރުމަށް އެހީވެދޭ"
-
-msgid "Cancel"
-msgstr "ކެންސަލްކުރަން"
-
-msgid "Case management"
-msgstr "މައްސަލަ ބެލެހެއްޓުން"
-
-msgid "Certificate"
-msgstr "ސަނަދު"
-
-msgid "Certificate Signing Request"
-msgstr "ސަނަދު ސޮއިކުރުމަށް ފޮނުވުން"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "ޕާސްވޯޑް ބަދަލުކުރަން"
 
-msgid "Changelog"
-msgstr "ގެނެވިފައިވާ ހުރިހާ ބަދަލެއް"
+msgid "User"
+msgstr "ބޭނުންކުރާ ފަރާތް"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "މޯޓިވޭޝަން"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "ސްޓޭޓަސް"
 
-msgid "Check your inbox to activate it."
-msgstr "ހިދުމަތް ފެއްޓެވުމަށް އިންބޮކްސް ބައްލަވާ"
+msgid "Request motivation"
+msgstr "ރިކުއެސްޓް މޯޓިވޭޝަން"
 
-msgid "Checkbox"
-msgstr "ފާހަގަޖަހާ ގޮޅި"
+msgid "Reply motivation"
+msgstr "ރިޕްލައި މޯޓިވޭޝަން"
 
-msgid "Checkbox label"
-msgstr "ފާހަގަޖަހާގޮޅީގެ ލޭބަލް"
-
-msgid "City"
-msgstr "ރަށް"
-
-msgid "Close"
-msgstr "ލައްޕާ"
-
-msgid "Closed"
-msgstr "ބަންދު"
-
-msgid "Collapse"
-msgstr "ކޮލެޕްސް"
-
-msgid "Column"
-msgstr "ކޮލަމް"
-
-msgid "Comments"
-msgstr "ކޮމެންޓްސް"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "ކޮންފިގަރ ކުރެއްވުމަށް"
-
-msgid "Confirm"
-msgstr "ކޮންފަރމް ކުރެއްވުމަށް"
-
-msgid "Confirmation"
-msgstr "ކަށަވަރުކުރައްވާ"
-
-msgid "Congratulations!"
-msgstr "މަރުޙަބާ!"
-
-msgid "Copy to clipboard"
-msgstr "ކްލިޕްބޯޑަށް ކޮޕީ ކުރާށެވެ"
-
-msgid "Country"
-msgstr "ޤައުމް"
-
-msgid "Country code"
-msgstr "ކަންޓްރީ ކޯޑް ނަމްބަރު"
-
-msgid "Creation date"
-msgstr "އުފެއްދި ތާރީޚް"
-
-msgid "Creation date:"
-msgstr "އުފެއްދި ތާރީޚް:"
-
-msgid "Current password"
-msgstr "މިހާރު ބޭނުންކުރާ ޕާސްވޯޑް"
+msgid "Request status"
+msgstr "ރިކުއެސްޓް ސްޓޭޓަސް"
 
 msgid "Custodian"
 msgstr "ކަސްޓޯޑިއަން"
 
-msgid "Custom"
-msgstr "ކަސްޓަމް"
+msgid "Identity"
+msgstr "އައިޑެންޓިޓީ"
 
-msgid "Custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
+msgid "Access requested"
+msgstr "އެކްސެސް ހޯދުމަށް އެދެވިއްޖެ"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "ވިސިލްބްލޯވަރގެ މައުލޫމާތު ހޯދަން އެދުމަށް"
 
-msgid "Custom text"
-msgstr "އަމިއްލަ ލަފުޒު"
+msgid "Reply to the request"
+msgstr "ރިކުއެސްޓްއަށް ޖަވާބުދެއްވާ"
 
-msgid "Custom translation"
-msgstr "ކަސްޓަމް ތަރުޖަމާ"
-
-msgid "Date"
-msgstr "ތާރީޙް"
-
-msgid "Date of the request"
-msgstr "ހިދުމަތަށް އެދިލެއްވި ތާރީޚް"
-
-msgid "Date range"
-msgstr "ތާރީޚުގެ މުއްދަތު"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "ޑިލީޓް"
+msgid "Authorized"
+msgstr "އޮތަރައިޒް ވެއްޖެ"
 
 msgid "Denied"
 msgstr "އޮތަރައިޒްއެއް ނުވޭ"
+
+msgid "Waiting for authorization"
+msgstr "އޮތަރައިޒޭޝަންއަށް މަޑުކުރަނީ"
+
+msgid "New request"
+msgstr "އާ ރިކުއެސްޓެއް ކުރަން"
+
+msgid "Authorize"
+msgstr "އޮތަރައިޒް ކުރަން"
 
 msgid "Deny"
 msgstr "އޮތަރައިޒް ނުކުރަން"
@@ -336,26 +232,20 @@ msgstr "އޮތަރައިޒް ނުކުރަން"
 msgid "Deny access to the whistleblower's identity"
 msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހިއްސާނުކުރެވޭނެ"
 
-msgid "Description"
-msgstr "ތަފްސީލު"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހިއްސާކުރުމަށް އޮތޮރައިޒްކުރުމަށް"
 
-msgid "Deselect"
-msgstr "ހިޔާރުނުކޮށް ދޫކޮށްލަން"
+msgid "URL redirects"
+msgstr " ޔޫ.އާރ.ޢެލް  ރީޑައިރެކްޓްސް"
 
-msgid "Deselect all"
-msgstr "ޑީސެލެކްޓް އޯލް"
+msgid "Anomaly detection thresholds"
+msgstr "އެނޯމަލީ ޑިޓެކްޝަން ތްރެޝްހޯލްޑް"
 
-msgid "Details"
-msgstr "އިތުރު މައުލޫމާތު"
+msgid "Available disk space"
+msgstr "ބޭނުންކުރެވެން ހުރި ޑިސްކް ސްޕޭސް"
 
-msgid "Details of the PGP key:"
-msgstr "ޕީ.ޖީ.ޕީ ކީގެ ތަފްސީލް:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "ޑިސްއޭބަލް"
+msgid "Last update"
+msgstr "އެންމެފަހުގެ އަޕްޑޭޓް"
 
 msgid "Disable notifications to administrators"
 msgstr "އެޑްމިނިސްޓްރޭޓަރސްއަށް ނޮޓިފިކޭޝަން އައުން ހުއްޓުވުމަށް"
@@ -366,197 +256,221 @@ msgstr "ކަސްޓޯޑިއަންސްއަށް ނޮޓިފިކޭޝަން އައުނ
 msgid "Disable notifications to recipients"
 msgstr "ރިސިޕިއަންޓަސްއަށް ނޮޓިފިކޭޝަން އައުން ހުއްޓުވުމަށް"
 
-msgid "Disable submissions"
-msgstr "ސަބްމިޝަންސް ޑިސްއޭބަލްކުރަން"
+msgid "Score"
+msgstr "ސްކޯ"
 
-msgid "Disable the privacy panel"
-msgstr "ޕްރައިވަސީ ޗެނަލް ޑިސްއޭބަލްކުރުަމަށް"
+msgid "Trigger question"
+msgstr " ޓްރިގަރ ކުއެސްޝަން"
 
-msgid "Disable two factor authentication"
-msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން ޑިސްއޭބަލް ކުރެއްވުމަށް"
+msgid "Triggered by score:"
+msgstr "ސްކޯއިން ޓްރިގަރވާ: "
 
-msgid "Disabled"
-msgstr "ޑިސްއޭބަލްޑް"
+msgid "Weak"
+msgstr "ބަލިކަށި"
 
-msgid "Disclaimer"
-msgstr "ސަމާލުކަމަށް / ޑިސްކްލެއިމަރ"
+msgid "Acceptable"
+msgstr "ރަނގަޅު"
 
-msgid "Display options alphabetically"
-msgstr "ޑިސްޕްލޭ އޮޕްޝަންސް އަލްފަބެޓިކަލީ"
+msgid "Strong"
+msgstr "ވަރަށް ރަނގަޅު"
 
-msgid "Download"
-msgstr "ޑައުންލޯޑް"
-
-msgid "Download copy of the Privacy Policy"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Download the Tor Browser"
-msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
+msgid "Silence email notifications"
+msgstr "އީމެއިލް ނޯޓިފިކޭޝަން ސައިލެންސް ކުރުމަށް"
 
-msgid "Duplicate"
-msgstr "ނަކަލު"
+msgid "Turn on email notifications"
+msgstr "އީމެއިލް ނޯޓިފިކޭޝަން އޮންކުރުމަށް"
 
-msgid "Each entry must be separated with a comma."
-msgstr "ކޮންމެ ދެ އެންޓްރީއެއް ދެމެދުގައި ކޮމާއެއް އިންނަން ޖެހޭ"
-
-msgid "Earliest selectable date"
-msgstr "ހިޔާރުކުރެވޭނެ އެންމެ ކުރީގެ ތާރީޙް"
-
-msgid "Edit"
-msgstr "އެޑިޓްކުރަން"
-
-msgid "Email"
-msgstr "އީމެއިލް"
+msgid "Input validation"
+msgstr "އިންޕުޓް ވެލިޑޭޝަން"
 
 msgid "Email address"
 msgstr "އީމެއިލް އެޑްރެސް"
 
-msgid "Enable"
-msgstr "ެއެނޭބަލް"
+msgid "Custom"
+msgstr "ކަސްޓަމް"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "ނެތް"
 
-msgid "Enable administrators to change user passwords"
-msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ"
+msgid "Regular expression"
+msgstr "ރެގިއުލަރ އެކްސްޕްރެޝަން"
 
-msgid "Enable custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޕެނަލް އެނޭބަލް ކުރުމަށް"
-
-msgid "Enable email notifications"
-msgstr "އީމެއިލް ނޮޓިފިކޭޝަންސް އެނޭބަލް ކުރެއްވުމަށް"
-
-msgid "Enable email notifications for:"
-msgstr "އީމެއިލްގެ ޒަރިއްޔާއިން އެންގުމެއް ލިބިލައްވަން ބޭނުންފުޅުވާނަމަ"
-
-msgid "Enable encryption"
-msgstr "އެންކްރިޕްޝަން އެނޭބަލް ކުރަން"
-
-msgid "Enable scoring system"
-msgstr "ސްކޯރިން ސިސްޓަމް އެނޭބަލްކުރަން"
-
-msgid "Enable search engines indexing"
-msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށް"
-
-msgid "Enable simplified login"
-msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަން"
-
-msgid "Enable terms of service"
-msgstr "ޚިދުމަތުގެ އިޤްރާރު އެނޭބަލްކުރުމަށް"
-
-msgid "Enable two factor authentication"
-msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން އެނޭބަލް ކުރެއްވުމަށް"
-
-msgid "Enabled"
-msgstr "އެނޭބަލްޑް"
-
-msgid "Enter a name for the copy"
-msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
-
-msgid "Enter the two factor authentication code"
-msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިފިކޭޝަން ކޯޑު ޖައްސަވާ"
+msgid "Search"
+msgstr "ހޯދާ"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "ޕާސްވޯޑް ރީސެޓްކޮށް ނިންމުމަށް ލިބިފައިވާ 'އެންކްރިޕްޝަން ރިކަވަރީ ކީ' ޖައްސަވާ"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "މިލިޔުންކޮޅު މިހާރު ޕްލެޓްފޯމުން ފެންނާކަށް ނެތް. މި ލިޔުމުގެ އަސްލު  މިހާރު ވަނީ ބަދަލުކުރެވިފައި ނުވަތަ ޕްލެޓްފޯމުން ނެގިފައި"
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "ޕާސްވޯޑް ރީސެޓްކުރައްވަން އެކައުންޓްގެ ނަން ނުވަތަ ބޭނުންކުރެއްވި އީމެއިލް އެޑްރެސް ޖައްސަވާ"
+msgid "Audit log"
+msgstr "އޮޑިޓް ލޮގް"
 
-msgid "Enter your email address to request a password reset."
-msgstr "ޕާސްވޯޑް ރީސެޓްކުރައްވަން އެކައުންޓްގައި ބޭނުންކުރެއްވި އީމެއިލް އެޑްރެސް ޖައްސަވާ"
+msgid "Stats"
+msgstr "ތަފާސް ހިސާބު"
 
-msgid "Error on input validation"
-msgstr "އިންޕުޓް ވެލިޑޭޝަންގައި މައްސަލައެއް އެބައުޅޭ"
+msgid "Activities"
+msgstr "އެކްޓިވިޓީސް"
 
-msgid "Error!"
-msgstr "މައްސަލައެއް އެބައުޅޭ! "
+msgid "Reports"
+msgstr "ރިޕޯޓްތަށް"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "ރިޕޯޓު"
 
-msgid "Example:"
-msgstr "މިސާލު:"
-
-msgid "Expand"
-msgstr "އިތުރަށް ބައްލަވަން"
-
-msgid "Expiration date"
-msgstr "މުައްދަތު ހަމަވާ ތާރީޙް"
-
-msgid "Export"
-msgstr "އެކްސްޕޯޓް ކުރުމަށް"
-
-msgid "File size"
-msgstr "ފައިލްގެ ސައިޒު"
-
-msgid "File size not accepted."
-msgstr "ފައިލްގެ ސައިޒު ރަނގަޅެއް ނޫން"
-
-msgid "Filename"
-msgstr "ފައިލްގެ ނަން"
-
-msgid "Files"
-msgstr "ފައިލްތައް"
-
-msgid "Files attached by recipients"
-msgstr "ރިސިޕިއަންޓުން ހިމަނާފައިވާ ފައިލްތައް"
-
-msgid "Fill the additional questionnaire"
-msgstr "އިތުރު ސުވާލުކަރުދާހަށް ޖަވާބު ދޭން"
-
-msgid "Fingerprint"
-msgstr "އިނގިލީގެ ނިޝާން"
-
-msgid "First"
-msgstr "ފުރަތަމަ"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "ތިރީ ހަވާސާ"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "އެކައުންޓްގެ ރައްކާތެރިކަމަށްޓަކާއި ގަވާއިދުން ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
-
-msgid "For the user documentation, visit:"
-msgstr "ޔޫސަރ ޑޮކިއުމެންޓޭޝަން ވިދާޅުވާން ފިއްތަވާ : "
-
-msgid "Forbidden operation"
-msgstr "މަނާކުރެވިފައިވާ އޮޕަރޭޝަނެއް"
-
-msgid "Force password change"
-msgstr "ޕާސްވޯޑް ބަދަލު ކުރުވަން"
-
-msgid "Forcefully selected"
-msgstr "ބާރާއެކު ސިލެކްޝަން ހެދުން"
-
-msgid "Forgot password?"
-msgstr "ޕާސްވޯޑް ހަނދާން ނެތިގެން"
+msgid "Users"
+msgstr "ބޭނުންކުރާ ފަރާތްތަށް"
 
 msgid "From"
 msgstr "ފަރާތުން"
 
-msgid "From:"
-msgstr "ފޮނުވި ފަރާތް:"
+msgid "Number of downloads"
+msgstr "ޑައުންލޯޑު ކޮށްފައިވާ އަދަދު"
 
-msgid "Generate"
-msgstr "އުފެއްދުން"
+msgid "File size not accepted."
+msgstr "ފައިލްގެ ސައިޒު ރަނގަޅެއް ނޫން"
 
-msgid "Give the user administrative access to the following features:"
-msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
+msgid "Maximum file size is:"
+msgstr "ފައިލް ސައިޒްގެ އެންމެ ބޮޑު މިނަކީ:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "ޔޫސަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ބާރު މި އެޑްމިންއަށް ދިނުމަށް  "
+msgid "Scheduled jobs"
+msgstr "ތާވަލްކޮށްފައިވާ މަސައްކަތްތައް"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "ރީޖެނެރޭޓް"
+
+msgid "Display options alphabetically"
+msgstr "ޑިސްޕްލޭ އޮޕްޝަންސް އަލްފަބެޓިކަލީ"
+
+msgid "Enable email notifications for:"
+msgstr "އީމެއިލްގެ ޒަރިއްޔާއިން އެންގުމެއް ލިބިލައްވަން ބޭނުންފުޅުވާނަމަ"
+
+msgid "Disable"
+msgstr "ޑިސްއޭބަލް"
+
+msgid "Remove"
+msgstr "ފޮހެލަން"
+
+msgid "Use as default"
+msgstr "ޑިފައުލްޓް ގޮތުގެ ބޭނުންހިފުމަށް"
+
+msgid "Collapse"
+msgstr "ކޮލެޕްސް"
+
+msgid "Expand"
+msgstr "އިތުރަށް ބައްލަވަން"
+
+msgid "Select"
+msgstr "ހިޔާރުކުރަން"
+
+msgid "Deselect"
+msgstr "ހިޔާރުނުކޮށް ދޫކޮށްލަން"
+
+msgid "Surname"
+msgstr "ފަހު ނަން"
+
+msgid "New"
+msgstr "އައު"
+
+msgid "Opened"
+msgstr "ހުޅުވާފައި"
+
+msgid "Closed"
+msgstr "ބަންދު"
+
+msgid "Placeholder"
+msgstr "ޕްލޭސްހޯލްޑަރ"
+
+msgid "Print"
+msgstr "ޕްރިންޓް"
+
+msgid "Previous"
+msgstr "ފަހަތަށް"
+
+msgid "Next"
+msgstr "ކުރިޔަށް"
+
+msgid "First"
+msgstr "ފުރަތަމަ"
+
+msgid "Last"
+msgstr "ފަހު"
+
+msgid "Send a test email to your email address."
+msgstr "ތިޔަފަރާތުގެ އީމެއިލް އެޑްރެސްއަށް ޓެސްޓް އީމެއިލްއެއް ފޮނުވުމަށް"
+
+msgid "Block the submission"
+msgstr "ސަބްމިޝަން ބްލޮކްކުރުމަށް"
+
+msgid "Skip the recipient account creation."
+msgstr "ރިސިޕިއަންޓް އެކައުންޓް ނަހަދާ ކުރިއަށްދިޔުމަށް"
+
+msgid "Send activation link"
+msgstr "އެކްޓިވޭޝަން ލިންކް ފޮނުވުމަށް"
+
+msgid "Password reset"
+msgstr "ޕާސްވޯޑް ރީސެޓްކުރަން"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "އެއް ފަރާތައް ނުވަތަ އެއަށް ވުރެ ގިނަ ފަރާތުން ފުރަތަމަ ލޮގްއިން އަދި ފުރިހަމަ ނުކުރޭ.  އެހެންވީމާ އެފަރާތް ނުވަތަ ފަރާތްތަކަށް އެއްވެސް ރިޕޯޓެއް ނުލިބޭނެ"
+
+msgid "This user has not performed the first login yet."
+msgstr "ތިޔަފަރާތުން އަދި އަލަށްވެސް ލޮގް އިން ކޮށްފައެއް ނުވޭ"
+
+msgid "seconds"
+msgstr "ސިކުންތު "
+
+msgid "This domain name is not available."
+msgstr "މި ޑޮމެއިން ނަމެއް ލިބޭކަށް ނެތް"
+
+msgid "Mark as important"
+msgstr "މުހިއްމު އެއްޗެއްކަމުގައި ފާހަގަކުރުން"
+
+msgid "Copy to clipboard"
+msgstr "ކްލިޕްބޯޑަށް ކޮޕީ ކުރާށެވެ"
+
+msgid "Logout"
+msgstr "ލޮގް އައުޓް"
+
+msgid "Grant access"
+msgstr "އެކްސެސް ދިނުން"
+
+msgid "Revoke access"
+msgstr "އެކްސެސް ބާތިލްކުރުން"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "ފޮރުވާ"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -565,54 +479,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "އެކްސެސް ދިނުން"
-
-msgid "Group of questions"
-msgstr "ސުވާލުތަކެއް"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "ރިޕޯޓް ފައިލް ކޮށްފައިވާނަމަ ރަސީދު ނަންބަރ ޖައްސަވާ"
-
-msgid "Hidden"
-msgstr "ފޮރުވިފައި"
-
-msgid "Hide"
-msgstr "ފޮރުވާ"
-
-msgid "High"
-msgstr "މަތި"
-
-msgid "Hint"
-msgstr "އިތުރު އެހީ"
-
-msgid "Home"
-msgstr "ފުރަތަމަ ޞަފްހާ"
-
-msgid "Homepage title"
-msgstr "ފުރަތަމަ ސަފްޙާގެ ނަން"
-
-msgid "Hostname"
-msgstr "ނެޓްވޯކަށް ވަންނަން ބޭނުންކުރާ ވަޞީލަތުގެ ނަން"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "އަޅުގަނޑު ލައިސަންސްގެ ޝަރުތުތައް  ކިޔައިފިން، އަދި އެއާއި މެދު އަޅުގަނޑުގެ އެެއްވެސް އިއުތިރާޒެއް ނެތް"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "ރިޕޯޓެއް ފައިލް ކުރުން"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން އާ ޕާސްވޯޑެއް ހިޔާރުކުރައްވާ"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރައްވާ"
+
+msgid "Enable"
+msgstr "ެއެނޭބަލް"
+
+msgid "Type"
+msgstr "ބާވަތް"
+
+msgid "Severity"
+msgstr "މުހިއްމުކަން"
+
+msgid "Object"
+msgstr "އޮބްޖެކްޓް"
 
 msgid "ID"
 msgstr "އައިޑީ"
 
-msgid "Identity"
-msgstr "އައިޑެންޓިޓީ"
+msgid "Username"
+msgstr "ޔޫސަރ ނޭމް"
+
+msgid "Role"
+msgstr "ރޯލް"
+
+msgid "Name"
+msgstr "ނަން"
+
+msgid "Creation date"
+msgstr "އުފެއްދި ތާރީޚް"
+
+msgid "Last access"
+msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "ވިސްލްބްލޯވަރގެ އެންމެ ފަހުގެ އެކްސެސް"
+
+msgid "Substatuses"
+msgstr "ސަބްސްޓޭޓަސަސް"
+
+msgid "Add"
+msgstr "ގިނަކުރަން"
+
+msgid "Label"
+msgstr "ލޭބަލް"
+
+msgid "This field is mandatory"
+msgstr "މިއީ ފުރިހަމަކުރުން މަޖުބޫރު ބައެއް"
+
+msgid "Edit"
+msgstr "އެޑިޓްކުރަން"
+
+msgid "Save"
+msgstr "ސޭވް"
+
+msgid "Cancel"
+msgstr "ކެންސަލްކުރަން"
+
+msgid "days"
+msgstr "ދުވަސް"
+
+msgid "Disabled"
+msgstr "ޑިސްއޭބަލްޑް"
+
+msgid "Report statuses"
+msgstr "ރިޕޯޓް ސްޓޭޓަސެސް"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "ފޮރުވިފައި"
+
+msgid "Description"
+msgstr "ތަފްސީލު"
+
+msgid "Questionnaire"
+msgstr "ސުވާލުކަރުދާސް"
+
+msgid "Recipients"
+msgstr "ރިސިޕިއަންޓްސް"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "ނެވިގޭޝަން އިންޓަރފޭސްގެ ތެރެއިން ސާވޭ ކަރަުދާސް ދެއްކުމަށް"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "ރިޕޯޓުފޮނުވާނެ ފަރާތްތައް އިޙްތިޔާރުކުރުމުގެ ހުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް"
+
+msgid "Select all recipients by default"
+msgstr "ހުރިހާ ރިސިޕިއަންޓުން ޑީފޯލްޓިންއިން ހިޔާރުކުރަން"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ރިސިޕިއަންޓުންގެ ޢަދަދު :"
+
+msgid "Show recipients in alphabetical order"
+msgstr "ރިސިޕިއަންޓުން އެލްފަބެޓިކަލް  އޯޑަރަށް ދައްކާ"
+
+msgid "Additional questionnaire"
+msgstr "އިތުރު ސުވާލުކަރުދާސް"
+
+msgid "Scoring system options"
+msgstr "ސްކޯރިން ސިސްޓަމްގެ އޮޕްޝަންތައް"
+
+msgid "Threshold"
+msgstr "ތްރެޝްހޯލްޑް"
+
+msgid "Value"
+msgstr "އަދަދު"
+
+msgid "Medium"
+msgstr "މެދު މިންވަރު"
+
+msgid "High"
+msgstr "މަތި"
+
+msgid "Software version:"
+msgstr "ސޮޕްޓްވެއަރގެ ވާރޝަން"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "ވަކި އައިޕީ އެޑްރެސްތަަަކަކަށް އެކަނި ވަނުމަށް ހުއްދަ ދިނުން"
+
+msgid "Enabled"
+msgstr "އެނޭބަލްޑް"
+
+msgid "Allowed IP addresses"
+msgstr "ހުއްދަ ލިބިފައިވާ އައިޕީ އެޑްރެސްތައް"
+
+msgid "Admin"
+msgstr "އެޑްމިން"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "ރިސިޕިއަންޓް"
+
+msgid "Each entry must be separated with a comma."
+msgstr "ކޮންމެ ދެ އެންޓްރީއެއް ދެމެދުގައި ކޮމާއެއް އިންނަން ޖެހޭ"
+
+msgid "Example:"
+msgstr "މިސާލު:"
+
+msgid "Hostname"
+msgstr "ނެޓްވޯކަށް ވަންނަން ބޭނުންކުރާ ވަޞީލަތުގެ ނަން"
+
+msgid "Organization"
+msgstr "މުއައްސަސާ"
+
+msgid "Invalid email address"
+msgstr "އީމެއިލް އެޑްރެސް ރަނގަޅެއްނޫން"
+
+msgid "City"
+msgstr "ރަށް"
+
+msgid "Country"
+msgstr "ޤައުމް"
+
+msgid "Country code"
+msgstr "ކަންޓްރީ ކޯޑް ނަމްބަރު"
+
+msgid "Generate"
+msgstr "އުފެއްދުން"
+
+msgid "Private Key"
+msgstr "ޕްރައިވެޓް ކީ"
+
+msgid "Certificate Signing Request"
+msgstr "ސަނަދު ސޮއިކުރުމަށް ފޮނުވުން"
+
+msgid "Certificate"
+msgstr "ސަނަދު"
+
+msgid "Valid until:"
+msgstr "މުއްދަތު ހަަމަވާނީ"
+
+msgid "Issuer:"
+msgstr "ދޫކުރިފަރާތް:"
+
+msgid "Intermediate Certificates"
+msgstr "މެދުމިންގަނޑުގެ ސަނަދު"
+
+msgid "Reset"
+msgstr "އަލުންފެށުން"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "24 ގަޑިއިރުގެ ތެރޭގައި އެކްޓިވޭޓް ނުކުރާނަމަ  ޕްލެޓްފޯމު އަމިއްލަ ޒާތުގައި ފުހެވިގެންދާނެ"
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "މި އިންޓަފޭސް މެދުވެރިކޮށް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރކުރުމަށް މި ޕްލެޓްފޯމް ސަޕޯޓްކުރޭ"
+
+msgid "Automatic configuration"
+msgstr "އޮޓޮމެޓިކް ކޮންފިގަރޭޝަން"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "އޮޓަމެޓިކް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރޭޝަން ބޭނުންކުރެއްވުމުން ހުރިހާ ރިކުއެސްޓިންގް، އެނޭބަލިންގް އަދި 'ލެޓްސް އެންކްރިޕްޓް ސަރޓިފިކޭޓް އޮތޯރިޓީ'އިން ސެޓިފިކެޓް ރިނިއުކުރުން އޮޓަމެޓިކުން ކުރިއަށްދާނެ"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "އެ ޕްލެޓްފޯމަށް ޕަބްލިކް އައިޕީ އެޑްރެހެއް މެދުވެރިކޮށް ވަދެވޭނެ ގޮތް ހެދުމާއި، ހޮވާފައިވާ ހޯސްޓް ނަމުގައި އެ އެޑްރެހަށް ރިފަރެންސް ކުރާ ޑީއެންއެސް ރެކޯޑެއް އޮންނަން ޖެހެއެވެ"
+
+msgid "Proceed"
+msgstr "ކުރިޔަށް"
+
+msgid "Manual configuration"
+msgstr "މެނުއަލް ކޮންފިގަރޭޝަން"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "މެނުއަލް ކޮންފިގަރޭޝަން ވިޒަރޑް ބޭނުންކޮއށްގެން އެހެން ސެޓްފިކެޓް އޮތޯރިޓީއަކުން އެޗް.ޓީ.ޓީ.ޕީ.އެސް ސެޓްއަޕް ކުރެވޭނެ"
+
+msgid "Auto-renewal"
+msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"
+
+msgid "Tor Onion Service"
+msgstr "ޓީ.އޯ.އާރް އަނިއަންގެ ހިދުމަތް"
+
+msgid "Anonymize outgoing connections"
+msgstr "އައުޓް ގޮއިންގ ކަނެކްޝަންސް ސިއްރުކުރުން"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމަށް ވަދެވޭ ގޮތައް އޮތުން"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމްގެ ބޭނުންކުރުމަށް އެނެބަލްކުރެވޭ ރޯލު"
+
+msgid "Whistleblower"
+msgstr "ވިސިލްބްލޯވަރ"
+
+msgid "To"
+msgstr "ފޮނުވަންޖެހޭ ފަރާތް"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "އެސް.އެމް.ޓީ.ޕީ އީމެއިލް އެޑްރެސް"
+
+msgid "SMTP server address"
+msgstr "އެސް.އެމް.ޓީ.ޕީ ސަރވަރ އެޑްރެސް"
+
+msgid "SMTP server port"
+msgstr "އެސްއެމްޓީޕީ ސަރވަރ ޕޯޓް"
+
+msgid "Security"
+msgstr "ސެކިއުރިޓީ"
+
+msgid "Require authentication"
+msgstr "ހުއްދަ އޮތްތޯ ބެލުމަށްޓަކައި"
+
+msgid "Password"
+msgstr "ޕާސްވޯޑް"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "ރިޕޯޓުގެ މުއްދަތު ހަމަވާ ތާރީޙްގެ އެލާރޓް ފޮނުވާނީ ކިތައް ގަޑިއިރު ކުރިންތޯ ހިޔާރުކުރުމަށް"
+
+msgid "Test the configuration"
+msgstr "ކޮންފިގަރޭޝަން ޓެސްޓު ކުރެއްވުމަށް"
+
+msgid "Reset SMTP configuration"
+msgstr "އެސް.އެމް.ޓީ.ޕީ ކޮންފިގަރޭޝަން ރިސެޓް ކުރެއްވުމަށް"
+
+msgid "Reset notification templates to default"
+msgstr "ނޮޓިފިކޭޝަންގެ ނަމޫނާތައް ޑިޕޯލްޓް ނަމޫނާއަށް ބަދަލުކުރެއްވުމަށް"
+
+msgid "Template"
+msgstr "ނަމޫނާ"
+
+msgid "Question"
+msgstr "ސުވާލު"
+
+msgid "Single-line text input"
+msgstr "އެއްފޮޅުވަތުން މެސެޖެއް ދިނުން"
+
+msgid "Multi-line text input"
+msgstr "ގިނަ ފޮޅުވަތްތަކުން މެސެޖެއް ދިނުން"
+
+msgid "Selection box"
+msgstr "އިޚްތިޔާރުކުރާ ގޮޅި"
+
+msgid "Multiple choice input"
+msgstr "އެކަކައް ވުރެ ގިނަ އިޚްތިޔާރުތަކެއް ޖެއްސެވުމަށް"
+
+msgid "Checkbox"
+msgstr "ފާހަގަޖަހާ ގޮޅި"
+
+msgid "Terms of service"
+msgstr "ޚިދުމަތުގެ އިޤްރާރު"
+
+msgid "Date range"
+msgstr "ތާރީޚުގެ މުއްދަތު"
+
+msgid "Group of questions"
+msgstr "ސުވާލުތަކެއް"
+
+msgid "Row"
+msgstr "ބަރި"
+
+msgid "Column"
+msgstr "ކޮލަމް"
+
+msgid "Width"
+msgstr "ފުޅާމިން"
+
+msgid "Question group"
+msgstr "ސުވާލުގެ ގިންތި"
+
+msgid "Hint"
+msgstr "އިތުރު އެހީ"
+
+msgid "Mandatory"
+msgstr "ކޮންމެހެން މަޖުބޫރު ބައެއް"
+
+msgid "Accept multiple file uploads"
+msgstr "ގިނަ ފައިލްތަކެއް އަޕްލޯޑު ކުރަން ފުރުސަތު ދެވޭ"
+
+msgid "Accept multiple answers"
+msgstr "އެއް ޖަވާބަށްވުރެ ގިނަ ޖަވާބު ގަބޫލުކުރެވިދާނެ"
+
+msgid "Template override"
+msgstr "ނަމޫނާއިން ބޭރަށްދިއުމަށް"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "ފޯނު ނަމްބަރު"
+
+msgid "Text"
+msgstr "ލިޔުން"
+
+msgid "Checkbox label"
+msgstr "ފާހަގަޖަހާގޮޅީގެ ލޭބަލް"
+
+msgid "Add multimedia content"
+msgstr "މީޑިޔާގެ އެކިބާވަތްތައް އެކުލެވޭ ލިޔުމެއް އިތުރުކުރުމަށް"
+
+msgid "Image"
+msgstr "ތަސްވީރު"
+
+msgid "Audio"
+msgstr "އޯޑިއޯ"
+
+msgid "Video"
+msgstr "ވީޑިއޯ"
+
+msgid "Text shown upon negative answer"
+msgstr "ނުރަނގަޅު ޖަވާބެއް ދެއްވުމުން ލިބިވަޑައިގަންނަވާ މެސެޖު"
+
+msgid "Low"
+msgstr "ތިރި"
+
+msgid "Trigger conditions"
+msgstr "ޓްރިގަރ ވާނެ ހާލަތްތައް"
+
+msgid "Sufficient"
+msgstr "ފުދޭ މިންވަރު"
+
+msgid "Options"
+msgstr "އިޚްތިޔާރުތައް"
+
+msgid "Addition"
+msgstr "އެއްކުރުން"
+
+msgid "Multiplier"
+msgstr "ގުނަކުރުން"
+
+msgid "Questions"
+msgstr "ސުވާލުތައް"
+
+msgid "Add new question"
+msgstr "ސުވާލެއް އިތުރު ކުރެއްވުމަށް"
+
+msgid "Add question from template"
+msgstr "ނަމޫނާއަކުން ސުވާލެއް އިރުތުކުރެއްވުމަށް"
+
+msgid "Duplicate"
+msgstr "ނަކަލު"
+
+msgid "Steps"
+msgstr "ހަރުފަތްތައް"
+
+msgid "Logo"
+msgstr "ލޯގޯ"
+
+msgid "Project name"
+msgstr "މަޝްރޫއުގެ ނަން"
+
+msgid "Homepage title"
+msgstr "ފުރަތަމަ ސަފްޙާގެ ނަން"
+
+msgid "Presentation"
+msgstr "ހުށަހެޅުން"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން އަހާނެ ސުވާލު"
+
+msgid "Whistleblowing button"
+msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
+
+msgid "Disclaimer"
+msgstr "ސަމާލުކަމަށް / ޑިސްކްލެއިމަރ"
+
+msgid "Footer"
+msgstr "ތިރީ ހަވާސާ"
+
+msgid "Upload"
+msgstr "އަޕްލޯޑް"
+
+msgid "Download"
+msgstr "ޑައުންލޯޑް"
+
+msgid "Language:"
+msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
+
+msgid "Add custom text"
+msgstr "އަމިއްލަ ލަފުޒެއްޖެހުމަށް"
+
+msgid "Custom text"
+msgstr "އަމިއްލަ ލަފުޒު"
+
+msgid "Original text"
+msgstr "އަސްލު ލިޔުން"
+
+msgid "Original translation"
+msgstr "އަސްލު ތަރުޖަމާ"
+
+msgid "Custom translation"
+msgstr "ކަސްޓަމް ތަރުޖަމާ"
+
+msgid "Disable submissions"
+msgstr "ސަބްމިޝަންސް ޑިސްއޭބަލްކުރަން"
+
+msgid "Enable encryption"
+msgstr "އެންކްރިޕްޝަން އެނޭބަލް ކުރަން"
+
+msgid "Enable administrators to change user passwords"
+msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަން"
+
+msgid "Enable search engines indexing"
+msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށް"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒު ލިމިޓް"
+
+msgid "megabytes"
+msgstr "މެގަބައިޓް"
+
+msgid "Require two factor authentication"
+msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރަންޖެހޭނެ"
+
+msgid "Password change interval"
+msgstr "ޕާސްވޯޑް ބޭނުން ކުރެވޭނެ މުއްދަތު"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "އެކައުންޓްގެ ރައްކާތެރިކަމަށްޓަކާއި ގަވާއިދުން ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "ނުކިޔާ ރިޕޯޓްތައް ހުރިކަން ޔޫޒަރުންނަށް އެންގަން ބާކީ ހުރި ދުވަސްތަކުގެ އަދަދު"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "ޕްރައިވަސީ ޗެނަލް ޑިސްއޭބަލްކުރުަމަށް"
+
+msgid "Enable custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޕެނަލް އެނޭބަލް ކުރުމަށް"
+
+msgid "Custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
+
+msgid "Enable scoring system"
+msgstr "ސްކޯރިން ސިސްޓަމް އެނޭބަލްކުރަން"
+
+msgid "Logging level"
+msgstr "ލޮގިންގ ލެވަލް"
+
+msgid "percentage"
+msgstr "ޕަސެންޓޭޖް"
+
+msgid "Log accesses of internal users"
+msgstr "އިންޓާނަލް ޔޫސާރސްގެ ލޮގް އެކްސެސްތައް"
+
+msgid "Notify administrators of software problems"
+msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން އެޑްމިިނިސްޓްރޭޓަރުންނަށް އެންގުމަށް"
+
+msgid "Notify developers of software problems"
+msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ޑިވެލޮޕަރުންނަށް އެންގުމަށް"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "މި ފީޗަރ އެނޭބަލްކުރުމުން ޕްލެޓްފޯމް އިތުރަށް ތަރައްގީކުރުމަށާއި  ސެކިއުރިޓީ ވަރުގަދަކުރުމަށް އެހީވެދޭ"
+
+msgid "Reset reports"
+msgstr "ރިޕޯޓްތައް ރީސެޓް ކުރަން"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Case management"
+msgstr "މައްސަލަ ބެލެހެއްޓުން"
+
+msgid "Network"
+msgstr ""
+
+msgid "Sites"
+msgstr "ސައިޓުތައް"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "ކޮންފިގަރ ކުރެއްވުމަށް"
+
+msgid "Subdomain"
+msgstr "ސަބްޑޮމެއިން"
+
+msgid "Mode:"
+msgstr "ބާވަތް:"
+
+msgid "Creation date:"
+msgstr "އުފެއްދި ތާރީޚް:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
+
+msgid "Root domain used for secondary sites"
+msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
+
+msgid "Allow users to sign up"
+msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
+
+msgid "Enable terms of service"
+msgstr "ޚިދުމަތުގެ އިޤްރާރު އެނޭބަލްކުރުމަށް"
+
+msgid "Title"
+msgstr "ލަގަބު"
+
+msgid "Public name"
+msgstr " އާންމު ނަން"
+
+msgid "Send reset link"
+msgstr "ރީސެޓް ކުރަން ލިންކް ފޮނުވާ"
+
+msgid "Set password"
+msgstr "ޕާސްވާޑްއެއް ހިޔާރުކުރައްވާ"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "ހިޔާރުކުރި ޕާސްވަރޑް ވަރަށް ބަލިކަށި.  ޕާސްވަރޑްގެ ވަރުގަދަކުރުމަށް ޕާސްވަރޑްގެ ދިގުމުނުގައި 12 ކެރެކްޓަރ ހަމަކުރައްވާ އަދި ކެޕިޓަލް އަކުރާއި ސިމްޕަލް އަކުރު ހިޔާރުކުރައްވާ. އަދި  ހިސާބު އަކުރަކާއި ހާއްސަ ކެރެކްޓަރއެއް ބޭނުންކުރައްވާ."
+
+msgid "Force password change"
+msgstr "ޕާސްވޯޑް ބަދަލު ކުރުވަން"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "ދެން  ލޮގް އިންވާ ފަހަރު މި އެކައުންޓްގެ ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
+
+msgid "Disable two factor authentication"
+msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން ޑިސްއޭބަލް ކުރެއްވުމަށް"
+
+msgid "Language"
+msgstr "ބަސް"
+
+msgid "Enable email notifications"
+msgstr "އީމެއިލް ނޮޓިފިކޭޝަންސް އެނޭބަލް ކުރެއްވުމަށް"
+
+msgid "Details of the PGP key:"
+msgstr "ޕީ.ޖީ.ޕީ ކީގެ ތަފްސީލް:"
+
+msgid "Fingerprint"
+msgstr "އިނގިލީގެ ނިޝާން"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ ބޭނުންކޮށްގެން އެންކްރިޕްޓްކުރަން"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "ޔޫސަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ބާރު މި އެޑްމިންއަށް ދިނުމަށް  "
+
+msgid "Forcefully selected"
+msgstr "ބާރާއެކު ސިލެކްޝަން ހެދުން"
+
+msgid "Allow the recipient to delete reports"
+msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓު ފުހެލުމުގެ ހުއްދަ ދިނުމަށް"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަ ދިނުން"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
+
+msgid "Report date"
+msgstr "ރިޕޯޓުގެ ތާރީޚް"
+
+msgid "Authorization"
+msgstr "އޮތޮރައިޒޭޝަން"
+
+msgid "Requests"
+msgstr "ރިކުއެސްޓްތައް"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "ތިޔަ ބޭނުންފުޅު ކުރެއްވި ވެލިޑޭޝަން ލިންކް ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ އެކްސްޕަޔަރ ވެފައި"
+
+msgid "Your new email address has been validated."
+msgstr "އައު އީމެއިލް އެޑްރެސް ވެލިޑޭޓްވެއްޖެ"
+
+msgid "Forgot password?"
+msgstr "ޕާސްވޯޑް ހަނދާން ނެތިގެން"
+
+msgid "Enter the two factor authentication code"
+msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިފިކޭޝަން ކޯޑު ޖައްސަވާ"
+
+msgid "Authentication failed"
+msgstr "އޮތެންޓިކޭޝަން ފެއިލްވެއްޖެ"
+
+msgid "The code is either invalid or expired."
+msgstr "ޖެއްސެވި ކޯޑް ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ އެކްސްޕަޔަރ ވެފައި"
+
+msgid "Please select your account:"
+msgstr "ތިޔަ ފަރާތުގެ އެކައުންޓް އިޚްތިޔާރުކުރައްވާ"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "ޕާސްވޯޑް ޖެހުމަށްފަހު 'ލޮގް އިން' އަށް ފިއްތާލާ: "
+
+msgid "Confirm"
+msgstr "ކޮންފަރމް ކުރެއްވުމަށް"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ޔޫސަރ ވަކި ކަމެއް އިޚްތިޔާރު ކުރެއްވުމުން ފެނިވަޑައިގަންނަވާ މެސެޖު"
+
+msgid "Assign score points"
+msgstr "ސްކޯ ޕޮއިންޓް އެސައިން ކުރެއްވުމަށް"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "ސްޓޭޓަސް:"
+
+msgid "Are you sure?"
+msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
+
+msgid "Close"
+msgstr "ލައްޕާ"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "މިކަމާޢި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް ޑިލީޓް ކުރެވޭނެކަން ދަންނަވަން"
+
+msgid "Enable two factor authentication"
+msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން އެނޭބަލް ކުރެއްވުމަށް"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން: ގައިވާ  ޑޮކިއުމެންޓޭޝަން ރަނގަޅަށް ކިޔުން ވަރަށް މުހިންމު"
+
+msgid "Account recovery key"
+msgstr "އެކައުންޓް އަލުންހޯއްދަވަން ބޭނުންވާނެ ކީ"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "ކޮޕީއެއް ހައްދާފައި ރައްކާތެރިކޮށް ބަހައްޓަން އިލްތިމާސްކުރަން. ޕާސްވާޑް ހަނދާންނެތިއްޖެނަމަ ނުވަތަ އެކައުންޓަށް ލިބިފައިވާ އެކްސެސް ގެއްލިއްޖެނަމަ، ހުރިހާ މައުލޫމާތާއެކު އަލުން އެކައުންޓް ހޯދަން މި މައުލޫއްމާތު ބޭނުންވާނެ"
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "ސަޕޯޓަށް އެދިވަޑައިގަތުމަށް"
+
+msgid "Thank you."
+msgstr "ޝުކުރިއްޔާ"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ވީހާވެސް އަވަހަށް ޖަވާބު އަރުވާނަން"
+
+msgid "Submit"
+msgstr "ސަބްމިޓް ކުރައްވާ"
+
+msgid "The connection is not secure."
+msgstr "ކަނެކްޝަން ރައްކާތެރިއެއް ނޫން"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "މި ޕްލެޓްފޯމް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކަނެކްޝަންސްއަށް ކޮންފިގަރ ކޮށްފައެއްނުވޭ. އެހެންކަމުން މި ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓެސްޓްކުރުމަށް"
+
+msgid "Send"
+msgstr "ފޮނުވަން"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "މުއްދަތު ހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "މީ ޑެމޯ ޕްލެޓްފޯމްއެއް، އަސްލު ރިޕޯޓު ހުށައެޅުމަށް މި ޕްލެޓްފޯމް ބޭނުންނުކުރައްވާތި"
+
+msgid "Install an authenticator app on your phone"
+msgstr "އޮތެންޓިކޭޓަރ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"
+
+msgid "Scan the QR code with the app"
+msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
+
+msgid "Error!"
+msgstr "މައްސަލައެއް އެބައުޅޭ! "
+
+msgid "Internal server error"
+msgstr "އިންޓަރނަލް ސަރވަރ މައްސަލައެއް"
+
+msgid "Error on input validation"
+msgstr "އިންޕުޓް ވެލިޑޭޝަންގައި މައްސަލައެއް އެބައުޅޭ"
+
+msgid "Resource not found"
+msgstr "ތިޔަ ހޯއްދަވާ ވަޞީލަތެއް ނުފެނުނު"
+
+msgid "Forbidden operation"
+msgstr "މަނާކުރެވިފައިވާ އޮޕަރޭޝަނެއް"
+
+msgid "The specified old password is not valid"
+msgstr "ޖައްސަވާފައިވާ ކުރީގެ ޕާސްވޯޑް ރަނގަޅެއް ނޫން"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓޯރ ނެޓްވަރކް މެދުވެރިކޮށް"
+
+msgid "The upload request exceeds the size limit"
+msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ލިމިޓަވުރެ ބޮޑު"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "މިހާރު ބޭނުންކުރާ ޕާސްވޯޑް"
+
+msgid "New password"
+msgstr "ަައާ ޕާސްވޯޑް"
+
+msgid "The new password must be different from the current one."
+msgstr "ކުރީގައި ބޭނުންކުރެއްވި ޕާސްވާޑްއެއް އާ ޕާސްވާޑްއަކަށް ހިޔާރެއްނުކުރެވޭނެ. ތަފާތު ޕާސްވާޑްއެއް ހިޔާރުކުރައްވާ."
+
+msgid "Type your new password again"
+msgstr "ައާ ޕާސްވޯޑް އަލުން ޖައްސަވާ"
+
+msgid "The two passwords do not match"
+msgstr "ދެ ޕާސްވާޑް ތަފާތު. އަލުން ޖައްސަވާ "
+
+msgid "Validation of email address change in progress."
+msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ"
+
+msgid "Please check your inbox for further instructions."
+msgstr "ކުރިޔަށް ދާންވީގޮތުގެ އިރުޝާދު ހޯދުމަށް އިންބޮކްސް ބައްލަވާ"
+
+msgid "Warning"
+msgstr "އިންޒާރު"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "ތިޔަފަރާތުގެ އައިޑެންޓިޓީ ރައްކާތެރިކުރުމަށް \"ޓޯރ ބްރައުޒާ\" ގެ އެޕްލިކޭޝަން ބޭނުންކޮށްގެން މި ސައިޓަށް ޒިޔާރަތް ކުރުމަށް ވަރަށް ބޮޑަށް އިލްތިމާސް ކުރަމެވެ"
+
+msgid "Download the Tor Browser"
+msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "ޓޯރ ބްރައުޒަރ އަށް މި އެޑްރެސް ކޮޕީ ކުރައްވާ: "
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "ރިޕޯޓް ފައިލް ކޮށްފައިވާނަމަ ރަސީދު ނަންބަރ ޖައްސަވާ"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "ޖެއްސެވި ރަސީދު  ރަނގަޅެއް ނޫން ނުވަތަ ރިޕޯޓުވަނީ އެކްސްޕަޔަރ ވެފައި"
+
+msgid "Filename"
+msgstr "ފައިލްގެ ނަން"
+
+msgid "Size:"
+msgstr "ސައިޒު:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "ްއެޑްރެސް"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr " އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް ރިސިޕިއަންޓުން އެދިއްޖެ. "
+
+msgid "Fill the additional questionnaire"
+msgstr "އިތުރު ސުވާލުކަރުދާހަށް ޖަވާބު ދޭން"
+
+msgid "From:"
+msgstr "ފޮނުވި ފަރާތް:"
+
+msgid "To:"
+msgstr "ލިބިލައްވާ ފަރާތް: "
+
+msgid "View"
+msgstr ""
+
+msgid "Upload date"
+msgstr "ފައިލް އަޕްލޯޑް ކުރި ތާރީޙް."
+
+msgid "File size"
+msgstr "ފައިލްގެ ސައިޒު"
+
+msgid "Questionnaire answers"
+msgstr "ސާރވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
+
+msgid "Step"
+msgstr "ފިޔަވަޅު"
+
+msgid "Files attached by recipients"
+msgstr "ރިސިޕިއަންޓުން ހިމަނާފައިވާ ފައިލްތައް"
+
+msgid "Upload a file:"
+msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
+
+msgid "Welcome!"
+msgstr "މަރުހަބާ!"
+
+msgid "For the user documentation, visit:"
+msgstr "ޔޫސަރ ޑޮކިއުމެންޓޭޝަން ވިދާޅުވާން ފިއްތަވާ : "
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -624,915 +1450,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ފާހަގަވެއްޖެ ނަމަ، އަދިސޮފްޓްވެއަރގެ މައްސަލައެއް ރިޕޯޓު ކުރެއްވުމަށްއަޅުގަނޑުމެންގެ ޓިކެޓިންގް ސިސްޓަމްގައި އެކަން ފާހަގަކޮށް ޓިކެޓެއް ހުޅުވުމަށް: "
 
-msgid "Image"
-msgstr "ތަސްވީރު"
-
-msgid "Import"
-msgstr "އިމްޕޯޓް ކުރުމަށް"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "މި ސުވާލުތަކުގެ ޖަވާބުތައް ނުހިމެނޭ ނުވަތަ ހިމެނިފައިވާގޮތް ރަނގަޅެއްނޫން"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "އިންޕުޓް ވެލިޑޭޝަން"
-
-msgid "Install an authenticator app on your phone"
-msgstr "އޮތެންޓިކޭޓަރ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"
-
-msgid "Intermediate Certificates"
-msgstr "މެދުމިންގަނޑުގެ ސަނަދު"
-
-msgid "Internal server error"
-msgstr "އިންޓަރނަލް ސަރވަރ މައްސަލައެއް"
-
-msgid "Invalid confirmation"
-msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
-
-msgid "Invalid email address"
-msgstr "އީމެއިލް އެޑްރެސް ރަނގަޅެއްނޫން"
-
-msgid "Invalid phone number"
-msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
-
-msgid "Issuer:"
-msgstr "ދޫކުރިފަރާތް:"
-
 msgid "Join our chat:"
 msgstr "ޗެޓް ކުރެއްވުމަށް:"
 
-msgid "Label"
-msgstr "ލޭބަލް"
-
-msgid "Label the report"
-msgstr "ރިޕޯޓް ލޭބަލްކުރުމަށް"
-
-msgid "Language"
-msgstr "ބަސް"
-
-msgid "Language:"
-msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
-
-msgid "Languages"
-msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
-
-msgid "Last"
-msgstr "ފަހު"
-
-msgid "Last Access"
-msgstr " އެންމެ ފަހު އެކްސެސް"
-
-msgid "Last access"
-msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
-
-msgid "Last update"
-msgstr "އެންމެފަހުގެ އަޕްޑޭޓް"
-
-msgid "Latest selectable date"
-msgstr "ހިޔާރުކުރެވޭނެ އެންމެ ފަހުގެ ތާރީޙް"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމަށް ވަދެވޭ ގޮތައް އޮތުން"
-
-msgid "License"
-msgstr "ލައިސަންސް"
-
-msgid "Log accesses of internal users"
-msgstr "އިންޓާނަލް ޔޫސާރސްގެ ލޮގް އެކްސެސްތައް"
-
-msgid "Log in"
-msgstr "ލޮގް އިން"
-
-msgid "Logging level"
-msgstr "ލޮގިންގ ލެވަލް"
-
-msgid "Logo"
-msgstr "ލޯގޯ"
-
-msgid "Logout"
-msgstr "ލޮގް އައުޓް"
-
-msgid "Low"
-msgstr "ތިރި"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "ކޮޕީއެއް ހައްދާފައި ރައްކާތެރިކޮށް ބަހައްޓަން އިލްތިމާސްކުރަން. ޕާސްވާޑް ހަނދާންނެތިއްޖެނަމަ ނުވަތަ އެކައުންޓަށް ލިބިފައިވާ އެކްސެސް ގެއްލިއްޖެނަމަ، ހުރިހާ މައުލޫމާތާއެކު އަލުން އެކައުންޓް ހޯދަން މި މައުލޫއްމާތު ބޭނުންވާނެ"
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "މި އެޑްމިންއަށް ޔޫސަރ ޕާސްވޯޑު ބަދަލު ކުރެވޭނެ ގޮތް ހެދުމަަށް "
-
-msgid "Mandatory"
-msgstr "ކޮންމެހެން މަޖުބޫރު ބައެއް"
-
-msgid "Manual configuration"
-msgstr "މެނުއަލް ކޮންފިގަރޭޝަން"
-
-msgid "Mark as important"
-msgstr "މުހިއްމު އެއްޗެއްކަމުގައި ފާހަގަކުރުން"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "ފައިލް ސައިޒްގެ އެންމެ ބޮޑު މިނަކީ:"
-
-msgid "Maximum number of input characters"
-msgstr "އެންމެ ގިނަވެގެން ލިޔެވޭނެ އަކުރުގެ އަދަދު"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ރިސިޕިއަންޓުންގެ ޢަދަދު :"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "މެދު މިންވަރު"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "އެންމެ މަދުވެގެން ލިޔެވޭނެ އަކުރުގެ އަދަދު"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "ބާވަތް:"
-
-msgid "Motivation"
-msgstr "މޯޓިވޭޝަން"
-
-msgid "Move down"
-msgstr "ތިރިއަށް ދިޔުމަށް"
-
-msgid "Move left"
-msgstr "ވާއަތައް ދިޔުމަށް"
-
-msgid "Move right"
-msgstr "ކަނާއަތަށް ދިޔުމަށް"
-
-msgid "Move up"
-msgstr "މައްޗަށް ދިޔުމަށް"
-
-msgid "Multi-line text input"
-msgstr "ގިނަ ފޮޅުވަތްތަކުން މެސެޖެއް ދިނުން"
-
-msgid "Multiple choice input"
-msgstr "އެކަކައް ވުރެ ގިނަ އިޚްތިޔާރުތަކެއް ޖެއްސެވުމަށް"
-
-msgid "Multiplier"
-msgstr "ގުނަކުރުން"
-
-msgid "Name"
-msgstr "ނަން"
-
-msgid "Network"
-msgstr ""
-
-msgid "New"
-msgstr "އައު"
-
-msgid "New password"
-msgstr "ަައާ ޕާސްވޯޑް"
-
-msgid "New request"
-msgstr "އާ ރިކުއެސްޓެއް ކުރަން"
-
-msgid "Next"
-msgstr "ކުރިޔަށް"
-
-msgid "No"
-msgstr "ނޫނެކޭ"
-
-msgid "None"
-msgstr "ނެތް"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr ""
-
-msgid "Notify administrators of software problems"
-msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން އެޑްމިިނިސްޓްރޭޓަރުންނަށް އެންގުމަށް"
-
-msgid "Notify developers of software problems"
-msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ޑިވެލޮޕަރުންނަށް އެންގުމަށް"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "ޕާސްވޯޑް ޖެހުމަށްފަހު 'ލޮގް އިން' އަށް ފިއްތާލާ: "
-
-msgid "Number"
-msgstr "ނަންބަރު"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "ނުކިޔާ ރިޕޯޓްތައް ހުރިކަން ޔޫޒަރުންނަށް އެންގަން ބާކީ ހުރި ދުވަސްތަކުގެ އަދަދު"
-
-msgid "Number of downloads"
-msgstr "ޑައުންލޯޑު ކޮށްފައިވާ އަދަދު"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "ރިޕޯޓުގެ މުއްދަތު ހަމަވާ ތާރީޙްގެ އެލާރޓް ފޮނުވާނީ ކިތައް ގަޑިއިރު ކުރިންތޯ ހިޔާރުކުރުމަށް"
-
-msgid "Object"
-msgstr "އޮބްޖެކްޓް"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "އެއް ފަރާތައް ނުވަތަ އެއަށް ވުރެ ގިނަ ފަރާތުން ފުރަތަމަ ލޮގްއިން އަދި ފުރިހަމަ ނުކުރޭ.  އެހެންވީމާ އެފަރާތް ނުވަތަ ފަރާތްތަކަށް އެއްވެސް ރިޕޯޓެއް ނުލިބޭނެ"
-
-msgid "Opened"
-msgstr "ހުޅުވާފައި"
-
-msgid "Options"
-msgstr "އިޚްތިޔާރުތައް"
-
-msgid "Organization"
-msgstr "މުއައްސަސާ"
-
-msgid "Original text"
-msgstr "އަސްލު ލިޔުން"
-
-msgid "Original translation"
-msgstr "އަސްލު ތަރުޖަމާ"
-
-msgid "Password"
-msgstr "ޕާސްވޯޑް"
-
-msgid "Password change interval"
-msgstr "ޕާސްވޯޑް ބޭނުން ކުރެވޭނެ މުއްދަތު"
-
-msgid "Password reset"
-msgstr "ޕާސްވޯޑް ރީސެޓްކުރަން"
-
-msgid "Password reset requested."
-msgstr "ޕާސްވޯޑް ރީސެޓްކުރަން އެދެވިއްޖެ"
-
-msgid "Phone number"
-msgstr "ފޯނު ނަމްބަރު"
-
-msgid "Placeholder"
-msgstr "ޕްލޭސްހޯލްޑަރ"
-
-msgid "Platform wizard"
-msgstr "ޕްލެޓްފޯރމް ވިޒާރޑް"
-
-msgid "Please check your inbox for further instructions."
-msgstr "ކުރިޔަށް ދާންވީގޮތުގެ އިރުޝާދު ހޯދުމަށް އިންބޮކްސް ބައްލަވާ"
-
-msgid "Please choose a configuration profile:"
-msgstr "ކޮންފިގަރޭޝަން ޕްރޮފައިލްއެއް ހިޔާރުކުރައްވާ: "
-
-msgid "Please choose a different username."
-msgstr "އެހެން ޔޫސަރ ނަމެއް ބޭނުން ކުރައްވާ"
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "މިކަމާޢި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް ޑިލީޓް ކުރެވޭނެކަން ދަންނަވަން"
-
-msgid "Please select your account:"
-msgstr "ތިޔަ ފަރާތުގެ އެކައުންޓް އިޚްތިޔާރުކުރައްވާ"
-
-msgid "Postpone the expiration date"
-msgstr "މުއްދަތު ހަމަވާ ތާރީޙް ލަސްކުރުމަށް"
-
-msgid "Preferences"
-msgstr "ޕްރިފަރެންސަސް"
-
-msgid "Presentation"
-msgstr "ހުށަހެޅުން"
-
-msgid "Preview"
-msgstr "ޕްރީވިއު"
-
-msgid "Previous"
-msgstr "ފަހަތަށް"
-
-msgid "Print"
-msgstr "ޕްރިންޓް"
-
-msgid "Privacy Policy"
-msgstr ""
-
-msgid "Private Key"
-msgstr "ޕްރައިވެޓް ކީ"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "ކުރިޔަށް"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "މަޝްރޫއުގެ ނަން"
-
-msgid "Public name"
-msgstr " އާންމު ނަން"
-
-msgid "Question"
-msgstr "ސުވާލު"
-
-msgid "Question group"
-msgstr "ސުވާލުގެ ގިންތި"
-
-msgid "Question templates"
-msgstr "ސުވާލު ޓެންޕްލޭޓްސް"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން އަހާނެ ސުވާލު"
-
-msgid "Questionnaire"
-msgstr "ސުވާލުކަރުދާސް"
-
-msgid "Questionnaire answers"
-msgstr "ސާރވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
-
-msgid "Questionnaires"
-msgstr "ސުވާލުކަރުދާސް"
-
-msgid "Questions"
-msgstr "ސުވާލުތައް"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "ރިސިޕިއަންޓް"
-
-msgid "Recipient selection"
-msgstr "ރިސިޕިއަންޓް ޚިޔާރުކުރައްވާ"
-
-msgid "Recipients"
-msgstr "ރިސިޕިއަންޓްސް"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr " އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް ރިސިޕިއަންޓުން އެދިއްޖެ. "
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "ރިސިޕިއަންޓުން ޚިޔާރުކުރެވިއްޖެ"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "ރިފްރެޝް ކުރުމަށް"
-
-msgid "Regenerate"
-msgstr "ރީޖެނެރޭޓް"
-
-msgid "Regular expression"
-msgstr "ރެގިއުލަރ އެކްސްޕްރެޝަން"
-
-msgid "Regular expression validator"
-msgstr "ރެގިއުލާ އެކްސްޕްރެޝަން ވެލިޑޭޓަރ"
-
-msgid "Remember your receipt for this report."
-msgstr "މި ރިޕޯޓާއޮި ގުޅޭ ރަސީދު ހަނދާން ބަހައްޓަވާ"
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "ފޮހެލަން"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "ރިޕްލައި މޯޓިވޭޝަން"
-
-msgid "Reply to the request"
-msgstr "ރިކުއެސްޓްއަށް ޖަވާބުދެއްވާ"
-
-msgid "Report"
-msgstr "ރިޕޯޓު"
-
-msgid "Report date"
-msgstr "ރިޕޯޓުގެ ތާރީޚް"
-
-msgid "Report statuses"
-msgstr "ރިޕޯޓް ސްޓޭޓަސެސް"
-
-msgid "Reports"
-msgstr "ރިޕޯޓްތަށް"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "ވިސިލްބްލޯވަރގެ މައުލޫމާތު ހޯދަން އެދުމަށް"
-
-msgid "Request date"
-msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
-
-msgid "Request motivation"
-msgstr "ރިކުއެސްޓް މޯޓިވޭޝަން"
-
-msgid "Request status"
-msgstr "ރިކުއެސްޓް ސްޓޭޓަސް"
-
-msgid "Request support"
-msgstr "ސަޕޯޓަށް އެދިވަޑައިގަތުމަށް"
-
-msgid "Requests"
-msgstr "ރިކުއެސްޓްތައް"
-
-msgid "Require authentication"
-msgstr "ހުއްދަ އޮތްތޯ ބެލުމަށްޓަކައި"
-
-msgid "Require two factor authentication"
-msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރަންޖެހޭނެ"
-
-msgid "Reset"
-msgstr "އަލުންފެށުން"
-
-msgid "Reset SMTP configuration"
-msgstr "އެސް.އެމް.ޓީ.ޕީ ކޮންފިގަރޭޝަން ރިސެޓް ކުރެއްވުމަށް"
-
-msgid "Reset notification templates to default"
-msgstr "ނޮޓިފިކޭޝަންގެ ނަމޫނާތައް ޑިޕޯލްޓް ނަމޫނާއަށް ބަދަލުކުރެއްވުމަށް"
-
-msgid "Reset reports"
-msgstr "ރިޕޯޓްތައް ރީސެޓް ކުރަން"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓޯރ ނެޓްވަރކް މެދުވެރިކޮށް"
-
-msgid "Resource not found"
-msgstr "ތިޔަ ހޯއްދަވާ ވަޞީލަތެއް ނުފެނުނު"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "ވަކި އައިޕީ އެޑްރެސްތަަަކަކަށް އެކަނި ވަނުމަށް ހުއްދަ ދިނުން"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "އެކްސެސް ބާތިލްކުރުން"
-
-msgid "Role"
-msgstr "ރޯލް"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "ޓީ.އޯ.އާރް އާއިނުލާ ޕްލެޓްފޯމްގެ ބޭނުންކުރުމަށް އެނެބަލްކުރެވޭ ރޯލު"
-
-msgid "Root domain used for secondary sites"
-msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
-
-msgid "Row"
-msgstr "ބަރި"
-
-msgid "SMTP email address"
-msgstr "އެސް.އެމް.ޓީ.ޕީ އީމެއިލް އެޑްރެސް"
-
-msgid "SMTP server address"
-msgstr "އެސް.އެމް.ޓީ.ޕީ ސަރވަރ އެޑްރެސް"
-
-msgid "SMTP server port"
-msgstr "އެސްއެމްޓީޕީ ސަރވަރ ޕޯޓް"
-
-msgid "Save"
-msgstr "ސޭވް"
-
-msgid "Save all"
-msgstr "ސޭވް އޯލް"
-
-msgid "Scan the QR code with the app"
-msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
-
-msgid "Scheduled jobs"
-msgstr "ތާވަލްކޮށްފައިވާ މަސައްކަތްތައް"
-
-msgid "Score"
-msgstr "ސްކޯ"
-
-msgid "Scoring system options"
-msgstr "ސްކޯރިން ސިސްޓަމްގެ އޮޕްޝަންތައް"
-
-msgid "Search"
-msgstr "ހޯދާ"
-
-msgid "Security"
-msgstr "ސެކިއުރިޓީ"
-
-msgid "Select"
-msgstr "ހިޔާރުކުރަން"
-
-msgid "Select a file or drag it here."
-msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ ނުވަތަ މިތަނަށް ޑްރޭގްކުރޭ"
-
-msgid "Select all"
-msgstr "ސެލެކްޓް އޯލް"
-
-msgid "Select all recipients by default"
-msgstr "ހުރިހާ ރިސިޕިއަންޓުން ޑީފޯލްޓިންއިން ހިޔާރުކުރަން"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "އިޚްތިޔާރުކުރާ ގޮޅި"
-
-msgid "Send"
-msgstr "ފޮނުވަން"
-
-msgid "Send a test email to your email address."
-msgstr "ތިޔަފަރާތުގެ އީމެއިލް އެޑްރެސްއަށް ޓެސްޓް އީމެއިލްއެއް ފޮނުވުމަށް"
-
-msgid "Send activation link"
-msgstr "އެކްޓިވޭޝަން ލިންކް ފޮނުވުމަށް"
-
-msgid "Send reset link"
-msgstr "ރީސެޓް ކުރަން ލިންކް ފޮނުވާ"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "ޕާސްވާޑްއެއް ހިޔާރުކުރައްވާ"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "ޕީ.ޖީ.ޕީ ޕަބްލިކް ކީ ބޭނުންކޮށްގެން އެންކްރިޕްޓްކުރަން"
-
-msgid "Settings"
-msgstr ""
-
-msgid "Severity"
-msgstr "މުހިއްމުކަން"
-
-msgid "Show"
-msgstr "ދައްކާ"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "ރިސިޕިއަންޓުން އެލްފަބެޓިކަލް  އޯޑަރަށް ދައްކާ"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "ނެވިގޭޝަން އިންޓަރފޭސްގެ ތެރެއިން ސާވޭ ކަރަުދާސް ދެއްކުމަށް"
-
-msgid "Sign up"
-msgstr "ހިދުމަތަށް އެދިލެއްވުން"
-
-msgid "Silence email notifications"
-msgstr "އީމެއިލް ނޯޓިފިކޭޝަން ސައިލެންސް ކުރުމަށް"
-
-msgid "Single-line text input"
-msgstr "އެއްފޮޅުވަތުން މެސެޖެއް ދިނުން"
-
-msgid "Site"
-msgstr ""
-
-msgid "Sites"
-msgstr "ސައިޓުތައް"
-
-msgid "Size limit for file attachments"
-msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒު ލިމިޓް"
-
-msgid "Size:"
-msgstr "ސައިޒު:"
-
-msgid "Skip the recipient account creation."
-msgstr "ރިސިޕިއަންޓް އެކައުންޓް ނަހަދާ ކުރިއަށްދިޔުމަށް"
-
-msgid "Software version:"
-msgstr "ސޮޕްޓްވެއަރގެ ވާރޝަން"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "ތަފާސް ހިސާބު"
-
-msgid "Status"
-msgstr "ސްޓޭޓަސް"
-
-msgid "Status:"
-msgstr "ސްޓޭޓަސް:"
-
-msgid "Step"
-msgstr "ފިޔަވަޅު"
-
-msgid "Steps"
-msgstr "ހަރުފަތްތައް"
-
-msgid "Strong"
-msgstr "ވަރަށް ރަނގަޅު"
-
-msgid "Subdomain"
-msgstr "ސަބްޑޮމެއިން"
-
-msgid "Submissions disabled"
-msgstr "ސަބްމިޝަން ޑީސްއޭބަލްޑް "
-
-msgid "Submit"
-msgstr "ސަބްމިޓް ކުރައްވާ"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "ސަބްސްޓޭޓަސަސް"
-
-msgid "Success!"
-msgstr "ކާމިޔާބު!"
-
-msgid "Sufficient"
-msgstr "ފުދޭ މިންވަރު"
-
-msgid "Surname"
-msgstr "ފަހު ނަން"
-
-msgid "Tax code"
-msgstr ""
-
-msgid "Template"
-msgstr "ނަމޫނާ"
-
-msgid "Template override"
-msgstr "ނަމޫނާއިން ބޭރަށްދިއުމަށް"
-
-msgid "Templates"
-msgstr "ޓެމްޕްލޭޓްތައް"
-
-msgid "Terms of service"
-msgstr "ޚިދުމަތުގެ އިޤްރާރު"
-
-msgid "Test the configuration"
-msgstr "ކޮންފިގަރޭޝަން ޓެސްޓު ކުރެއްވުމަށް"
-
-msgid "Text"
-msgstr "ލިޔުން"
-
-msgid "Text customization"
-msgstr "އަކުރު ބޭނުންފުޅުވާގޮތަށް ބަދަލުކުރަން"
-
-msgid "Text shown after the user has selected the option."
-msgstr "ޔޫސަރ ވަކި ކަމެއް އިޚްތިޔާރު ކުރެއްވުމުން ފެނިވަޑައިގަންނަވާ މެސެޖު"
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "ނުރަނގަޅު ޖަވާބެއް ދެއްވުމުން ލިބިވަޑައިގަންނަވާ މެސެޖު"
-
-msgid "Thank you."
-msgstr "ޝުކުރިއްޔާ"
-
-msgid "The answer is too short"
-msgstr "ޖަވާބު މާ ކުރު"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "ހިޔާރުކުރި ޕާސްވަރޑް ވަރަށް ބަލިކަށި.  ޕާސްވަރޑްގެ ވަރުގަދަކުރުމަށް ޕާސްވަރޑްގެ ދިގުމުނުގައި 12 ކެރެކްޓަރ ހަމަކުރައްވާ އަދި ކެޕިޓަލް އަކުރާއި ސިމްޕަލް އަކުރު ހިޔާރުކުރައްވާ. އަދި  ހިސާބު އަކުރަކާއި ހާއްސަ ކެރެކްޓަރއެއް ބޭނުންކުރައްވާ."
-
-msgid "The code is either invalid or expired."
-msgstr "ޖެއްސެވި ކޯޑް ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ އެކްސްޕަޔަރ ވެފައި"
-
-msgid "The connection is not secure."
-msgstr "ކަނެކްޝަން ރައްކާތެރިއެއް ނޫން"
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "ތިރީގައިވާ ރިސިޕިއަންޓުންނަށް ތިޔަ ފަރާތުގެ  ރިޕޯޓް ލިބިވަޑައިގަންނަވާނެ އަދި އެފަރާތްތައް ބާތިލެއް ނުކުރެއްވޭނެ"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "ވިސްލްބްލޯ ކުރުމަށް ތިޔަ ފަރާތަށް ޚާއްޞަ ޕްލެޓްފޯމް ހެދުމަށް މިވާ އިރުޝާދުތަކާއި އެއް ގޮތަށް އަމަލުކުރައްވާ"
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "މެނުއަލް ކޮންފިގަރޭޝަން ވިޒަރޑް ބޭނުންކޮއށްގެން އެހެން ސެޓްފިކެޓް އޮތޯރިޓީއަކުން އެޗް.ޓީ.ޓީ.ޕީ.އެސް ސެޓްއަޕް ކުރެވޭނެ"
-
-msgid "The new password must be different from the current one."
-msgstr "ކުރީގައި ބޭނުންކުރެއްވި ޕާސްވާޑްއެއް އާ ޕާސްވާޑްއަކަށް ހިޔާރެއްނުކުރެވޭނެ. ތަފާތު ޕާސްވާޑްއެއް ހިޔާރުކުރައްވާ."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "މި ޕްލެޓްފޯމް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކަނެކްޝަންސްއަށް ކޮންފިގަރ ކޮށްފައެއްނުވޭ. އެހެންކަމުން މި ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓެސްޓްކުރުމަށް"
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "އެ ޕްލެޓްފޯމަށް ޕަބްލިކް އައިޕީ އެޑްރެހެއް މެދުވެރިކޮށް ވަދެވޭނެ ގޮތް ހެދުމާއި، ހޮވާފައިވާ ހޯސްޓް ނަމުގައި އެ އެޑްރެހަށް ރިފަރެންސް ކުރާ ޑީއެންއެސް ރެކޯޑެއް އޮންނަން ޖެހެއެވެ"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "މި އިންޓަފޭސް މެދުވެރިކޮށް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރކުރުމަށް މި ޕްލެޓްފޯމް ސަޕޯޓްކުރޭ"
-
-msgid "The provided recovery key is invalid."
-msgstr "ދީފައިވާ ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"
-
-msgid "The provided reset token is invalid or expired."
-msgstr "ދީފައިވާ ރީސެޓް ޓޯކަން ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ މުއްދަތު ހަމަވެފައި"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "ޖެއްސެވި ރަސީދު  ރަނގަޅެއް ނޫން ނުވަތަ ރިޕޯޓުވަނީ އެކްސްޕަޔަރ ވެފައި"
-
-msgid "The specified input is not valid."
-msgstr "މި އިންޕުޓް ރަނގަޅެއް ނޫން"
-
-msgid "The specified input is not valid:"
-msgstr "ކަނޑައެޅިފައިވާ އިންޕުޓް ސައްހައެއް ނޫން:"
-
-msgid "The specified old password is not valid"
-msgstr "ޖައްސަވާފައިވާ ކުރީގެ ޕާސްވޯޑް ރަނގަޅެއް ނޫން"
-
-msgid "The two passwords do not match"
-msgstr "ދެ ޕާސްވާޑް ތަފާތު. އަލުން ޖައްސަވާ "
-
-msgid "The upload request exceeds the size limit"
-msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ލިމިޓަވުރެ ބޮޑު"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "ދެން  ލޮގް އިންވާ ފަހަރު މި އެކައުންޓްގެ ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "ތިޔަ ބޭނުންފުޅު ކުރެއްވި ވެލިޑޭޝަން ލިންކް ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ އެކްސްޕަޔަރ ވެފައި"
-
-msgid "The whistleblower has already read the last update"
-msgstr "ތިޔަ ވިސިލްބްލޯވާ ވަނީ އެންމެ ފަހުގެ އަޕްޑޭޓްސް ކިޔާފައި"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr " ތިޔަ ވިސިލްބްލޯވާ  އެންމެ ފަހުގެ އަޕްޑޭޓްސް އަދި ނުކިޔާ"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "ޓޯރ ބްރައުޒަރ އަށް މި އެޑްރެސް ކޮޕީ ކުރައްވާ: "
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "މިލިޔުންކޮޅު މިހާރު ޕްލެޓްފޯމުން ފެންނާކަށް ނެތް. މި ލިޔުމުގެ އަސްލު  މިހާރު ވަނީ ބަދަލުކުރެވިފައި ނުވަތަ ޕްލެޓްފޯމުން ނެގިފައި"
-
-msgid "This domain name is not available."
-msgstr "މި ޑޮމެއިން ނަމެއް ލިބޭކަށް ނެތް"
-
-msgid "This field is mandatory"
-msgstr "މިއީ ފުރިހަމަކުރުން މަޖުބޫރު ބައެއް"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "މީ ޑެމޯ ޕްލެޓްފޯމްއެއް، އަސްލު ރިޕޯޓު ހުށައެޅުމަށް މި ޕްލެޓްފޯމް ބޭނުންނުކުރައްވާތި"
-
-msgid "This user has not performed the first login yet."
-msgstr "ތިޔަފަރާތުން އަދި އަލަށްވެސް ލޮގް އިން ކޮށްފައެއް ނުވޭ"
-
-msgid "Threshold"
-msgstr "ތްރެޝްހޯލްޑް"
-
-msgid "Title"
-msgstr "ލަގަބު"
-
-msgid "To"
-msgstr "ފޮނުވަންޖެހޭ ފަރާތް"
-
-msgid "To:"
-msgstr "ލިބިލައްވާ ފަރާތް: "
-
-msgid "Tor"
-msgstr ""
-
-msgid "Tor Onion Service"
-msgstr "ޓީ.އޯ.އާރް އަނިއަންގެ ހިދުމަތް"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "ޓްރިގަރ ވާނެ ހާލަތްތައް"
-
-msgid "Trigger question"
-msgstr " ޓްރިގަރ ކުއެސްޝަން"
-
-msgid "Triggered by score:"
-msgstr "ސްކޯއިން ޓްރިގަރވާ: "
-
-msgid "Turn on email notifications"
-msgstr "އީމެއިލް ނޯޓިފިކޭޝަން އޮންކުރުމަށް"
-
-msgid "Type"
-msgstr "ބާވަތް"
-
-msgid "Type your new password again"
-msgstr "ައާ ޕާސްވޯޑް އަލުން ޖައްސަވާ"
-
-msgid "URL redirects"
-msgstr " ޔޫ.އާރ.ޢެލް  ރީޑައިރެކްޓްސް"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "އަޕްލޯޑް"
-
-msgid "Upload a file:"
-msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
-
-msgid "Upload date"
-msgstr "ފައިލް އަޕްލޯޑް ކުރި ތާރީޙް."
-
-msgid "Use as default"
-msgstr "ޑިފައުލްޓް ގޮތުގެ ބޭނުންހިފުމަށް"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "ލޮގްއިން ވުމަށް ލިބިފައިވާ 16 އަކުރުގެ ރަސީދު ބޭނުންކުރައްވާ. މި ރަސީދު ބޭނުން ކޮށްގެން ތިޔަ ފަރާތަށް ލިބިފައިވާ މެސެޖުތަކާއި އިތުރު މައްލޫއްމާތު ފެންނާނެ"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
-
-msgid "User"
-msgstr "ބޭނުންކުރާ ފަރާތް"
-
-msgid "Username"
-msgstr "ޔޫސަރ ނޭމް"
-
-msgid "Users"
-msgstr "ބޭނުންކުރާ ފަރާތްތަށް"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "އޮޓަމެޓިކް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރޭޝަން ބޭނުންކުރެއްވުމުން ހުރިހާ ރިކުއެސްޓިންގް، އެނޭބަލިންގް އަދި 'ލެޓްސް އެންކްރިޕްޓް ސަރޓިފިކޭޓް އޮތޯރިޓީ'އިން ސެޓިފިކެޓް ރިނިއުކުރުން އޮޓަމެޓިކުން ކުރިއަށްދާނެ"
-
-msgid "Valid until:"
-msgstr "މުއްދަތު ހަަމަވާނީ"
-
-msgid "Validation of email address change in progress."
-msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ"
-
-msgid "Value"
-msgstr "އަދަދު"
-
-msgid "Video"
-msgstr "ވީޑިއޯ"
-
-msgid "View"
-msgstr ""
-
-msgid "View your report"
-msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓް ހުޅުވުމަށް"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "އޮތަރައިޒޭޝަންއަށް މަޑުކުރަނީ"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "ފައިލް(ތައް) އަޕްލޯޑް ވަންދެން މަޑުކޮއްލައްވާ"
-
-msgid "Warning"
-msgstr "އިންޒާރު"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "ރިސިޕިއަންޓްގެ ޕާސްވޯޑް ގެއްލިއްޖެ ހާލަތެއްގައި ހުރިހާ ޑޭޓާ އެއް ނުގެއްލޭ ގޮތައް ރައްކާ ކުރެވިފައި ހުރުމަށް އެދޭނަމަ، މި އޮޕްޝަން އިހްތިޔާރުކުރުމަށް އެދެމެވެ. އެެހެންނަމަވެސް،  ސިސްޓަމް ސެޓްއަޕް ކުރަނީ ހަމައެކަނި ރިސިޕިއަންޓުންނަށް ސަބްމިޝަންސް ބެލޭ ގޮތައް ނަމަ، މި އޮޕްޝަން ހިޔާރުނުކުރެއްވުމަށް އެދެމެވެ. "
+msgid "An update is available:"
+msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1541,78 +1463,85 @@ msgid ""
 "your password."
 msgstr "\"އެކައުންޓް ރިކަވަރީ ކީ\" ހޯދައި ރައްކާތެރިކަމާއެކު ރައްކާކުރުމަށްޓަކައި \"ޕްރިފަރެންސް\" ބަޔަށް ވަނުމަށް އަޅުގަނޑުމެން ލަފާދެމެވެ.  ޕާސްވޯޑް ހަނދާން ނެތިއްޖެ ހާލަތެއްގައި ޕްލެޓްފޯމަށް ވަދެވޭނެ ގޮތާއި ޑޭޓާއަށް ވަދެވޭނެ ގޮތް އަނބުރާ ހޯދުމަށް މި ކީ ބޭނުންވާނެއެވެ"
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "ވީހާވެސް އަވަހަށް ޖަވާބު އަރުވާނަން"
+msgid "Select a file or drag it here."
+msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ ނުވަތަ މިތަނަށް ޑްރޭގްކުރޭ"
 
-msgid "Weak"
-msgstr "ބަލިކަށި"
+msgid "The provided recovery key is invalid."
+msgstr "ދީފައިވާ ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"
 
-msgid "Welcome!"
-msgstr "މަރުހަބާ!"
-
-msgid "Whistleblower"
-msgstr "ވިސިލްބްލޯވަރ"
-
-msgid "Whistleblower's last access"
-msgstr "ވިސްލްބްލޯވަރގެ އެންމެ ފަހުގެ އެކްސެސް"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
-
-msgid "Width"
-msgstr "ފުޅާމިން"
-
-msgid "Yes"
-msgstr "އާނއެކޭ"
+msgid "The provided reset token is invalid or expired."
+msgstr "ދީފައިވާ ރީސެޓް ޓޯކަން ރަނގަޅެއް ނޫން ނުވަތަ ވަނީ މުއްދަތު ހަމަވެފައި"
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr " ތިޔަ ފަރާތުން ސާރވާއަށް ކަނެކްޓްވަނީ ޒާތީ މައުލޫމާތު ސިއްރުވާގޮތަކަށް ނޫން. މި ސާރވާ ސަޕޯޓުކުރަނީ ހަމައެކަނި ކާކުކަން ނޭނގޭ ގޮތައް ހުށައަޅާ ސަބްމިޝަންސް "
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "ޕާސްވޯޑް ރީސެޓްކުރައްވަން އެކައުންޓްގެ ނަން ނުވަތަ ބޭނުންކުރެއްވި އީމެއިލް އެޑްރެސް ޖައްސަވާ"
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "ޕާސްވޯޑް ރީސެޓްކުރައްވަން އެކައުންޓްގައި ބޭނުންކުރެއްވި އީމެއިލް އެޑްރެސް ޖައްސަވާ"
+
+msgid "Password reset requested."
+msgstr "ޕާސްވޯޑް ރީސެޓްކުރަން އެދެވިއްޖެ"
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "ތިޔަފަރާތުގެ އައިޑެންޓިޓީ ރައްކާތެރިކުރުމަށް \"ޓޯރ ބްރައުޒާ\" ގެ އެޕްލިކޭޝަން ބޭނުންކޮށްގެން މި ސައިޓަށް ޒިޔާރަތް ކުރުމަށް ވަރަށް ބޮޑަށް އިލްތިމާސް ކުރަމެވެ"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "ޕާސްވޯޑް ރީސެޓްކޮށް ނިންމުމަށް ލިބިފައިވާ 'އެންކްރިޕްޝަން ރިކަވަރީ ކީ' ޖައްސަވާ"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހާމަކުރުމަށް ކަސްޓޯޑިއަން ކައިރިން އެދެވިއްޖެ"
+
+msgid "Date of the request"
+msgstr "ހިދުމަތަށް އެދިލެއްވި ތާރީޚް"
+
+msgid "Show"
+msgstr "ދައްކާ"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "މަރުޙަބާ!"
 
 msgid "You have completed the platform activation."
 msgstr "ޕްލެޓްފޯމު އެކްޓިވޭޝަން  ފުރިހަމަވެއްޖެ"
 
-msgid "You have completed the platform wizard."
-msgstr "ޕްލެޓްފޯމް ވިޒާޑް ތިޔަ ފަރާތުން ތިވަނީ ފުރިހަމަ ކުރައްވާފަ"
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr " ރިސިޕިއަންޓުންގެ ގޮތުގައި އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ޢަދަދު ހަމަވެއްޖެ"
-
-msgid "You must select at least one recipient."
-msgstr " މަދުވެގެން އެކަކު ރިސިޕިއަންޓެއްގެ ގޮތުގައި އިޚްތިޔާރުކުރަންޖެހޭނެ"
-
-msgid "Your new email address has been validated."
-msgstr "އައު އީމެއިލް އެޑްރެސް ވެލިޑޭޓްވެއްޖެ"
-
-msgid "Your report was successful."
-msgstr "ރިޕޯޓު ކުރެވިއްޖެ"
+msgid "Success!"
+msgstr "ކާމިޔާބު!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "ތިފަރާތުގެ ވިސިލްބްލޯވިންގ ޕްލެޓްފޯމު ގާތްގަޑަކަށް ވަނީ ތައްުޔާރުވެފައި"
 
-msgid "days"
-msgstr "ދުވަސް"
+msgid "Check your inbox to activate it."
+msgstr "ހިދުމަތް ފެއްޓެވުމަށް އިންބޮކްސް ބައްލަވާ"
 
-msgid "file unavailable"
-msgstr "ތިޔަ ހޯދާ ފައިލެއް ނެތް"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "24 ގަޑިއިރުގެ ތެރޭގައި އެކްޓިވޭޓް ނުކުރާނަމަ  ޕްލެޓްފޯމު އަމިއްލަ ޒާތުގައި ފުހެވިގެންދާނެ"
 
-msgid "megabytes"
-msgstr "މެގަބައިޓް"
+msgid "Sign up"
+msgstr "ހިދުމަތަށް އެދިލެއްވުން"
 
-msgid "percentage"
-msgstr "ޕަސެންޓޭޖް"
+msgid "Invalid confirmation"
+msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
+
+msgid "Invalid phone number"
+msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "ކަށަވަރުކުރައްވާ"
+
+msgid "The answer is too short"
+msgstr "ޖަވާބު މާ ކުރު"
+
+msgid "The specified input is not valid."
+msgstr "މި އިންޕުޓް ރަނގަޅެއް ނޫން"
+
+msgid "The specified input is not valid:"
+msgstr "ކަނޑައެޅިފައިވާ އިންޕުޓް ސައްހައެއް ނޫން:"
 
 msgid "please enter a valid email address."
 msgstr "ސައްހަ އީމެއިލް އެޑްރެހެއް ޖައްސަވާށެވެ"
@@ -1620,14 +1549,82 @@ msgstr "ސައްހަ އީމެއިލް އެޑްރެހެއް ޖައްސަވާށެ�
 msgid "please enter numbers only."
 msgstr "ހަމައެކަނި ނަންބަރު ޖައްސަވާށެވެ"
 
-msgid "seconds"
-msgstr "ސިކުންތު "
+msgid "Submissions disabled"
+msgstr "ސަބްމިޝަން ޑީސްއޭބަލްޑް "
 
-msgid "File a report"
-msgstr "ރިޕޯޓެއް ފައިލް ކުރުން"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr " ތިޔަ ފަރާތުން ސާރވާއަށް ކަނެކްޓްވަނީ ޒާތީ މައުލޫމާތު ސިއްރުވާގޮތަކަށް ނޫން. މި ސާރވާ ސަޕޯޓުކުރަނީ ހަމައެކަނި ކާކުކަން ނޭނގޭ ގޮތައް ހުށައަޅާ ސަބްމިޝަންސް "
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "ރިޕޯޓު ކުރެވިއްޖެ"
+
+msgid "Remember your receipt for this report."
+msgstr "މި ރިޕޯޓާއޮި ގުޅޭ ރަސީދު ހަނދާން ބަހައްޓަވާ"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "ލޮގްއިން ވުމަށް ލިބިފައިވާ 16 އަކުރުގެ ރަސީދު ބޭނުންކުރައްވާ. މި ރަސީދު ބޭނުން ކޮށްގެން ތިޔަ ފަރާތަށް ލިބިފައިވާ މެސެޖުތަކާއި އިތުރު މައްލޫއްމާތު ފެންނާނެ"
+
+msgid "View your report"
+msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓް ހުޅުވުމަށް"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "ރިސިޕިއަންޓުން ޚިޔާރުކުރެވިއްޖެ"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr " ރިސިޕިއަންޓުންގެ ގޮތުގައި އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ޢަދަދު ހަމަވެއްޖެ"
+
+msgid "You must select at least one recipient."
+msgstr " މަދުވެގެން އެކަކު ރިސިޕިއަންޓެއްގެ ގޮތުގައި އިޚްތިޔާރުކުރަންޖެހޭނެ"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "ތިރީގައިވާ ރިސިޕިއަންޓުންނަށް ތިޔަ ފަރާތުގެ  ރިޕޯޓް ލިބިވަޑައިގަންނަވާނެ އަދި އެފަރާތްތައް ބާތިލެއް ނުކުރެއްވޭނެ"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "މި ސުވާލުތަކުގެ ޖަވާބުތައް ނުހިމެނޭ ނުވަތަ ހިމެނިފައިވާގޮތް ރަނގަޅެއްނޫން"
+
+msgid "Recipient selection"
+msgstr "ރިސިޕިއަންޓް ޚިޔާރުކުރައްވާ"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "ފައިލް(ތައް) އަޕްލޯޑް ވަންދެން މަޑުކޮއްލައްވާ"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "ވިސްލްބްލޯ ކުރުމަށް ތިޔަ ފަރާތަށް ޚާއްޞަ ޕްލެޓްފޯމް ހެދުމަށް މިވާ އިރުޝާދުތަކާއި އެއް ގޮތަށް އަމަލުކުރައްވާ"
+
+msgid "Please choose a configuration profile:"
+msgstr "ކޮންފިގަރޭޝަން ޕްރޮފައިލްއެއް ހިޔާރުކުރައްވާ: "
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "މި އެޑްމިންއަށް ޔޫސަރ ޕާސްވޯޑު ބަދަލު ކުރެވޭނެ ގޮތް ހެދުމަަށް "
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "ރިސިޕިއަންޓްގެ ޕާސްވޯޑް ގެއްލިއްޖެ ހާލަތެއްގައި ހުރިހާ ޑޭޓާ އެއް ނުގެއްލޭ ގޮތައް ރައްކާ ކުރެވިފައި ހުރުމަށް އެދޭނަމަ، މި އޮޕްޝަން އިހްތިޔާރުކުރުމަށް އެދެމެވެ. އެެހެންނަމަވެސް،  ސިސްޓަމް ސެޓްއަޕް ކުރަނީ ހަމައެކަނި ރިސިޕިއަންޓުންނަށް ސަބްމިޝަންސް ބެލޭ ގޮތައް ނަމަ، މި އޮޕްޝަން ހިޔާރުނުކުރެއްވުމަށް އެދެމެވެ. "
+
+msgid "Please choose a different username."
+msgstr "އެހެން ޔޫސަރ ނަމެއް ބޭނުން ކުރައްވާ"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "އަޅުގަނޑު ލައިސަންސްގެ ޝަރުތުތައް  ކިޔައިފިން، އަދި އެއާއި މެދު އަޅުގަނޑުގެ އެެއްވެސް އިއުތިރާޒެއް ނެތް"
+
+msgid "You have completed the platform wizard."
+msgstr "ޕްލެޓްފޯމް ވިޒާޑް ތިޔަ ފަރާތުން ތިވަނީ ފުރިހަމަ ކުރައްވާފަ"
 
 msgid "Please summarize your report in a few words."
 msgstr "ރިޕޯޓުގެ ކުރު ހުލާސާއެއް ލިޔޭ"

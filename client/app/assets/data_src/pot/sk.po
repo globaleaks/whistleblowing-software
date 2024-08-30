@@ -24,129 +24,155 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = automaticky"
+msgid "Log in"
+msgstr "Prihlásiť sa"
 
-msgid "Accept multiple answers"
-msgstr "Povoliť viacero odpovedí"
+msgid "Languages"
+msgstr "Jazyky"
 
-msgid "Accept multiple file uploads"
-msgstr "Akceptovať príjem viacero nahrávok súborov "
-
-msgid "Acceptable"
-msgstr "Akceptovateľné"
-
-msgid "Access control"
-msgstr "Riadenie prístupu"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Vyžiadaný prístup"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Správca bol požiadaný o prístup k identite oznamovateľa."
-
-msgid "Account recovery key"
-msgstr "Kľúč na obnovenie účtu"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Aktivity"
-
-msgid "Add"
-msgstr "Pridať"
-
-msgid "Add custom text"
-msgstr "Pridať vlastný text"
-
-msgid "Add multimedia content"
-msgstr "Pridajte multimediálny obsah"
-
-msgid "Add new question"
-msgstr "Pridať novú otázku"
-
-msgid "Add new questionnaire"
-msgstr "Pridať nový dotazník"
-
-msgid "Add question from template"
-msgstr "Pridať otázku podľa šablóny"
-
-msgid "Addition"
-msgstr "Pridanie"
-
-msgid "Additional questionnaire"
-msgstr "Dodatočný dotazník"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Admin"
-msgstr "Administrátor"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
+msgid "Text customization"
+msgstr "Prispôsobenie textu"
 
 msgid "Advanced"
 msgstr "Rozšírené"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Povoliť príjemcom zmazať podania"
+msgid "Question templates"
+msgstr "Šablóny otázok"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
+msgid "Questionnaires"
+msgstr "Dotazníky"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
+msgid "Add new questionnaire"
+msgstr "Pridať nový dotazník"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Povoliť oznamovateľovi písať komentáre"
+msgid "Home"
+msgstr "Domov"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Posledné zmeny"
 
-msgid "Allow users to sign up"
-msgstr "Povoliť používateľom registráciu"
+msgid "License"
+msgstr "Licencia"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Povoliť oznamovateľom zvoliť si ich príjemcov"
+msgid "Templates"
+msgstr "Šablóny"
 
-msgid "Allowed IP addresses"
-msgstr "Povolené IP adresy."
-
-msgid "An update is available:"
-msgstr "Je dostupná aktualizácia:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Odstrániť"
 
 msgid "Anomalies"
 msgstr "Anomálie"
 
-msgid "Anomaly detection thresholds"
-msgstr "Prahové hodnoty detekcie anomálií"
+msgid "Preferences"
+msgstr "Predvoľby"
 
-msgid "Anonymity"
+msgid "Notifications"
+msgstr "Oznámenia"
+
+msgid "file unavailable"
+msgstr "súbor nie je k dispozícii"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "Expiration date"
+msgstr "Dátum vypršania platnosti"
+
+msgid "Last Access"
+msgstr "Posledný prístup"
+
+msgid "Files"
+msgstr "Súbory"
+
+msgid "Comments"
+msgstr "Komentáre"
+
+msgid "Details"
+msgstr "Detaily"
+
+msgid "Platform wizard"
+msgstr "Sprievodca platformou"
+
+msgid "Label the report"
+msgstr "Označte oznámenie štítkom"
+
+msgid "Edit the expiration date"
+msgstr "Odložiť vypršanie platnosti"
+
+msgid "Select all"
+msgstr "Označiť všetko"
+
+msgid "Deselect all"
+msgstr "Neoznačiť nič"
+
+msgid "Refresh"
+msgstr "Obnoviť"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr "Anonymizácia odchádzajúcich pripojení"
+msgid "Preview"
+msgstr "Náhľad"
 
-msgid "Anonymous"
-msgstr "Anonymný"
+msgid "The whistleblower has already read the last update"
+msgstr "Oznamovateľ čítal poslednú aktualizáciu."
 
-msgid "Are you sure?"
-msgstr "Ste si istý?"
+msgid "The whistleblower has not read the last update yet"
+msgstr "Oznamovateľ ešte nečítal poslednú aktualizáciu."
 
-msgid "Assign score points"
-msgstr "Prideliť bodové skóre"
+msgid "Move up"
+msgstr "Posunúť hore"
 
-msgid "Assigned to"
-msgstr ""
+msgid "Move down"
+msgstr "Posunúť dole"
+
+msgid "Move left"
+msgstr "Posunúť doľava"
+
+msgid "Move right"
+msgstr "Posunúť doprava"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Save all"
+msgstr "Uložiť všetko"
+
+msgid "Access control"
+msgstr "Riadenie prístupu"
+
+msgid "Number"
+msgstr "Číslo"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Regular expression validator"
+msgstr "Validátor regulárnych výrazov"
+
+msgid "Minimum number of input characters"
+msgstr "Minimálny počet vstupných znakov"
+
+msgid "Maximum number of input characters"
+msgstr "Maximálny počet vstupných znakov"
+
+msgid "Earliest selectable date"
+msgstr "Najskorší možný dátum"
+
+msgid "Latest selectable date"
+msgstr "Najneskorší možný dátum"
+
+msgid "0 = auto"
+msgstr "0 = automaticky"
+
+msgid "Yes"
+msgstr "Áno"
+
+msgid "No"
+msgstr "Nie"
 
 msgid "Attachment"
 msgstr "Príloha"
@@ -154,186 +180,56 @@ msgstr "Príloha"
 msgid "Attachments"
 msgstr "Prílohy"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Zvuk"
-
-msgid "Audit log"
-msgstr "audit log"
-
-msgid "Authentication failed"
-msgstr "Overenie zlyhalo"
-
-msgid "Authorization"
-msgstr "Autorizácia"
-
-msgid "Authorize"
-msgstr "Autorizovať"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Povoliť prístup k identite oznamovateľa"
-
-msgid "Authorized"
-msgstr "Autorizovaný"
-
-msgid "Auto-renewal"
-msgstr "Automatické obnovenie"
-
-msgid "Automatic configuration"
-msgstr "Automatická konfigurácia"
-
-msgid "Available disk space"
-msgstr "Voľné miesto na disku"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Než budete pokračovať, prečítajte si pozorne dokumentáciu na adrese:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Než budete pokračovať, nastavte prosím nové heslo."
-
-msgid "Block the submission"
-msgstr "Blokovať podanie"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrdením odložíte dátum exspirácie do:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Povolením tejto voľby budete prispievať k vývoji a zabezpečeniu tejto platformy."
-
-msgid "Cancel"
-msgstr "Zrušiť"
-
-msgid "Case management"
-msgstr "Správa podaní"
-
-msgid "Certificate"
-msgstr "Certifikát"
-
-msgid "Certificate Signing Request"
-msgstr "Žiadosť o podpis certifikátu"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Zmeniť heslo"
 
-msgid "Changelog"
-msgstr "Posledné zmeny"
+msgid "User"
+msgstr "Používateľ"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "Motivácia"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "Stav"
 
-msgid "Check your inbox to activate it."
-msgstr "Skontrolujte svoju doručenú poštu pre aktiváciu."
+msgid "Request motivation"
+msgstr "Motivácia žiadosti"
 
-msgid "Checkbox"
-msgstr "Zaškrtávacie políčka"
+msgid "Reply motivation"
+msgstr "Zodpovedať motiváciu"
 
-msgid "Checkbox label"
-msgstr "Zaškrtávacie políčko"
-
-msgid "City"
-msgstr "Mesto"
-
-msgid "Close"
-msgstr "Zatvoriť"
-
-msgid "Closed"
-msgstr "Zatvorené"
-
-msgid "Collapse"
-msgstr "Zbaliť"
-
-msgid "Column"
-msgstr "Stĺpec"
-
-msgid "Comments"
-msgstr "Komentáre"
-
-msgid "Computer"
-msgstr "Počítač"
-
-msgid "Configure"
-msgstr "Nastavenie"
-
-msgid "Confirm"
-msgstr "Potvrdiť"
-
-msgid "Confirmation"
-msgstr "Potvrdenie"
-
-msgid "Congratulations!"
-msgstr "Gratulujeme!"
-
-msgid "Copy to clipboard"
-msgstr "Kopírovať do schránky"
-
-msgid "Country"
-msgstr "Štát"
-
-msgid "Country code"
-msgstr "Kód krajiny"
-
-msgid "Creation date"
-msgstr "Dátum vytvorenia"
-
-msgid "Creation date:"
-msgstr "Dátum vytvorenia:"
-
-msgid "Current password"
-msgstr "Aktuálne heslo"
+msgid "Request status"
+msgstr "Stav požiadavky"
 
 msgid "Custodian"
 msgstr "Správca"
 
-msgid "Custom"
-msgstr "Vlastné"
+msgid "Identity"
+msgstr "Identita"
 
-msgid "Custom privacy panel"
-msgstr "Vlastný používateľský panel "
+msgid "Access requested"
+msgstr "Vyžiadaný prístup"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "Vyžiadaný prístup k identite oznamovateľa"
 
-msgid "Custom text"
-msgstr "Vlastný text"
+msgid "Reply to the request"
+msgstr "Odpovedať na požiadavku"
 
-msgid "Custom translation"
-msgstr "Vlastný preklad"
-
-msgid "Date"
-msgstr "Dátum"
-
-msgid "Date of the request"
-msgstr "Dátum žiadosti"
-
-msgid "Date range"
-msgstr "Časové obdobie"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "Odstrániť"
+msgid "Authorized"
+msgstr "Autorizovaný"
 
 msgid "Denied"
 msgstr "Odmietnutý"
+
+msgid "Waiting for authorization"
+msgstr "Čaká sa na autorizáciu"
+
+msgid "New request"
+msgstr "Nová požiadavka"
+
+msgid "Authorize"
+msgstr "Autorizovať"
 
 msgid "Deny"
 msgstr "Zamietnuť"
@@ -341,26 +237,20 @@ msgstr "Zamietnuť"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Zamietnuť prístup k identite oznamovateľa"
 
-msgid "Description"
-msgstr "Popis"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Povoliť prístup k identite oznamovateľa"
 
-msgid "Deselect"
-msgstr ""
+msgid "URL redirects"
+msgstr "Presmerovanie URL"
 
-msgid "Deselect all"
-msgstr "Neoznačiť nič"
+msgid "Anomaly detection thresholds"
+msgstr "Prahové hodnoty detekcie anomálií"
 
-msgid "Details"
-msgstr "Detaily"
+msgid "Available disk space"
+msgstr "Voľné miesto na disku"
 
-msgid "Details of the PGP key:"
-msgstr "Detaily PGP kľúča:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Zakázať"
+msgid "Last update"
+msgstr "Posledná aktualizácia"
 
 msgid "Disable notifications to administrators"
 msgstr "Vypnúť notifikácie administrátorom"
@@ -371,197 +261,221 @@ msgstr "Vypnúť notifikácie správcom"
 msgid "Disable notifications to recipients"
 msgstr "Vypnúť notifikácie prijemcom"
 
-msgid "Disable submissions"
-msgstr "Zakázať podanie"
+msgid "Score"
+msgstr "Skóre"
 
-msgid "Disable the privacy panel"
-msgstr "Zakázať osobitý panel"
+msgid "Trigger question"
+msgstr "Spúštacia otázka"
 
-msgid "Disable two factor authentication"
-msgstr "Zakázať dvojfaktorové overovanie"
+msgid "Triggered by score:"
+msgstr "Spustené na základe skóre:"
 
-msgid "Disabled"
-msgstr "Vypnuté"
+msgid "Weak"
+msgstr "Slabé"
 
-msgid "Disclaimer"
+msgid "Acceptable"
+msgstr "Akceptovateľné"
+
+msgid "Strong"
+msgstr "Silné"
+
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Display options alphabetically"
-msgstr "Zobraziť v abecednom poradí"
+msgid "Silence email notifications"
+msgstr "Tiché emailové notifikácie"
 
-msgid "Download"
-msgstr "Stiahnuť"
+msgid "Turn on email notifications"
+msgstr "Zapnúť emailové notifikácie"
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
-
-msgid "Download the Tor Browser"
-msgstr "Stiahnúť prehliadač Tor Browser"
-
-msgid "Duplicate"
-msgstr "Duplikovať"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Každá položka musí byť oddelená čiarkou."
-
-msgid "Earliest selectable date"
-msgstr "Najskorší možný dátum"
-
-msgid "Edit"
-msgstr "Upraviť"
-
-msgid "Email"
-msgstr "Email"
+msgid "Input validation"
+msgstr "Kontrola vstupu"
 
 msgid "Email address"
 msgstr "Emailová adresa"
 
-msgid "Enable"
-msgstr "Povoliť"
+msgid "Custom"
+msgstr "Vlastné"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "Žiaden"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Umožnite správcom meniť heslá užívateľov"
+msgid "Regular expression"
+msgstr "Regulárny výraz"
 
-msgid "Enable custom privacy panel"
-msgstr "Povoliť používateľský panel"
-
-msgid "Enable email notifications"
-msgstr "Povoliť emailové upozornenia"
-
-msgid "Enable email notifications for:"
-msgstr "Povoliť emailové notifikácie pre:"
-
-msgid "Enable encryption"
-msgstr "Povoliť šifrovanie"
-
-msgid "Enable scoring system"
-msgstr "Aktivovať systém hodnotenia"
-
-msgid "Enable search engines indexing"
-msgstr "Povoliť vyhľadávačom indexovanie"
-
-msgid "Enable simplified login"
-msgstr "Povoliť zjednodušené prihlásenie"
-
-msgid "Enable terms of service"
-msgstr "Povoliť zmluvné podmienky"
-
-msgid "Enable two factor authentication"
-msgstr "Povoliť dvojfaktorovú autorizáciu"
-
-msgid "Enabled"
-msgstr "Zapnuté"
-
-msgid "Enter a name for the copy"
-msgstr "Zadajte názov kópie"
-
-msgid "Enter the two factor authentication code"
-msgstr "Zadajte dvojfaktorový overovací kód"
+msgid "Search"
+msgstr "Hľadať"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Zadajte kľúč pre obnovenie účtu a dokončite postup pre resetovania hesla"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Tento upravený text sa naďalej v rozhraní nezobrazuje. Pôvodný text bol zmenený alebo presunutý."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla."
+msgid "Audit log"
+msgstr "audit log"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
+msgid "Stats"
+msgstr "Štatistiky"
 
-msgid "Error on input validation"
-msgstr "Chyba pri kontrole vstupu"
+msgid "Activities"
+msgstr "Aktivity"
 
-msgid "Error!"
-msgstr "Chyba!"
+msgid "Reports"
+msgstr "Podania"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Nahlásiť"
 
-msgid "Example:"
-msgstr "Príklad:"
-
-msgid "Expand"
-msgstr "Rozbaliť"
-
-msgid "Expiration date"
-msgstr "Dátum vypršania platnosti"
-
-msgid "Export"
-msgstr "Export"
-
-msgid "File size"
-msgstr "Veľkosť súboru"
-
-msgid "File size not accepted."
-msgstr "Veľkosť súboru nie je akceptovaná."
-
-msgid "Filename"
-msgstr "Názov súboru"
-
-msgid "Files"
-msgstr "Súbory"
-
-msgid "Files attached by recipients"
-msgstr "Prílohy od príjemcov"
-
-msgid "Fill the additional questionnaire"
-msgstr "Vyplňte dodatočný dotazník"
-
-msgid "Fingerprint"
-msgstr "Odtlačok prsta"
-
-msgid "First"
-msgstr "Prvé"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "Pätička"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Z bezpečnostných dôvodov sú v pravidelných intervaloch vyžadované zmeny hesla."
-
-msgid "For the user documentation, visit:"
-msgstr "Pre používateľskú dokumentáciu navštívte:"
-
-msgid "Forbidden operation"
-msgstr "Nepovolená operácia"
-
-msgid "Force password change"
-msgstr "Vynútiť zmenu hesla"
-
-msgid "Forcefully selected"
-msgstr "Nastavené administrátorom"
-
-msgid "Forgot password?"
-msgstr "Zabudli ste heslo?"
+msgid "Users"
+msgstr "Používatelia"
 
 msgid "From"
 msgstr "Od"
 
-msgid "From:"
-msgstr "Od:"
+msgid "Number of downloads"
+msgstr "Počet stiahnutí"
 
-msgid "Generate"
-msgstr "Generovať"
+msgid "File size not accepted."
+msgstr "Veľkosť súboru nie je akceptovaná."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Poskytnite používateľovi administratívny prístup k nasledujúcim funkciám:"
+msgid "Maximum file size is:"
+msgstr "Maximálna veľkosť súboru je:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Umožnite administrátorovi meniť používateľské heslá."
+msgid "Scheduled jobs"
+msgstr "Plánované úlohy"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Obnoviť"
+
+msgid "Display options alphabetically"
+msgstr "Zobraziť v abecednom poradí"
+
+msgid "Enable email notifications for:"
+msgstr "Povoliť emailové notifikácie pre:"
+
+msgid "Disable"
+msgstr "Zakázať"
+
+msgid "Remove"
+msgstr "Odstrániť"
+
+msgid "Use as default"
+msgstr "Použiť ako prednastavené"
+
+msgid "Collapse"
+msgstr "Zbaliť"
+
+msgid "Expand"
+msgstr "Rozbaliť"
+
+msgid "Select"
+msgstr "Vyberte"
+
+msgid "Deselect"
+msgstr ""
+
+msgid "Surname"
+msgstr "Priezvisko"
+
+msgid "New"
+msgstr "Nové"
+
+msgid "Opened"
+msgstr "Otvorené"
+
+msgid "Closed"
+msgstr "Zatvorené"
+
+msgid "Placeholder"
+msgstr "Zástupný"
+
+msgid "Print"
+msgstr "Vytlačiť"
+
+msgid "Previous"
+msgstr "Predchádzajúce"
+
+msgid "Next"
+msgstr "Ďalej"
+
+msgid "First"
+msgstr "Prvé"
+
+msgid "Last"
+msgstr "Posledné"
+
+msgid "Send a test email to your email address."
+msgstr "Poslať testovací email na Vašu emailovú adresu."
+
+msgid "Block the submission"
+msgstr "Blokovať podanie"
+
+msgid "Skip the recipient account creation."
+msgstr "Preskočiť vytvorenie účtu príjemcu."
+
+msgid "Send activation link"
+msgstr "Odoslať odkaz k aktivácii."
+
+msgid "Password reset"
+msgstr "Resetovať heslo"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Jeden alebo viacero príjemcov doteraz nevykonalo prvé prihlásenie. To znamená, že nebudú dostávať správy."
+
+msgid "This user has not performed the first login yet."
+msgstr "Tento používateľ zatiaľ nevykonal prvé prihlásenie."
+
+msgid "seconds"
+msgstr "sekúnd"
+
+msgid "This domain name is not available."
+msgstr "Tento názov domény nie je k dispozícii."
+
+msgid "Mark as important"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr "Kopírovať do schránky"
+
+msgid "Logout"
+msgstr "Odhlásiť sa"
+
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Oprávnenia"
+
+msgid "Hide"
+msgstr "Skryť"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -570,54 +484,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr ""
-
-msgid "Group of questions"
-msgstr "Skupina otázok"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
-
-msgid "Hidden"
-msgstr "Skrytý"
-
-msgid "Hide"
-msgstr "Skryť"
-
-msgid "High"
-msgstr "Vysoká"
-
-msgid "Hint"
-msgstr "Nápoveda"
-
-msgid "Home"
-msgstr "Domov"
-
-msgid "Homepage title"
-msgstr "Názov domovskej stránky"
-
-msgid "Hostname"
-msgstr "Hostiteľské meno"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Prečítal/-a som si podmienky licencie a súhlasím s nimi."
-
 msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany súkromia"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonymný"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Počítač"
+
+msgid "Mobile"
+msgstr "Mobilný"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "podať oznámenie"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "Než budete pokračovať, nastavte prosím nové heslo."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
+
+msgid "Enable"
+msgstr "Povoliť"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Severity"
+msgstr ""
+
+msgid "Object"
 msgstr ""
 
 msgid "ID"
 msgstr "ID"
 
-msgid "Identity"
-msgstr "Identita"
+msgid "Username"
+msgstr "Používateľské meno"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Name"
+msgstr "Meno"
+
+msgid "Creation date"
+msgstr "Dátum vytvorenia"
+
+msgid "Last access"
+msgstr "Posledný prístup"
+
+msgid "Receivers"
+msgstr "Príjemcovia"
+
+msgid "Whistleblower's last access"
+msgstr "Posledný prístup oznamovateľa"
+
+msgid "Substatuses"
+msgstr "Podstavy"
+
+msgid "Add"
+msgstr "Pridať"
+
+msgid "Label"
+msgstr "Štítok"
+
+msgid "This field is mandatory"
+msgstr "Toto pole je povinné"
+
+msgid "Edit"
+msgstr "Upraviť"
+
+msgid "Save"
+msgstr "Uložiť"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "days"
+msgstr "dní"
+
+msgid "Disabled"
+msgstr "Vypnuté"
+
+msgid "Report statuses"
+msgstr "Stav podania"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "Skrytý"
+
+msgid "Description"
+msgstr "Popis"
+
+msgid "Questionnaire"
+msgstr "Dotazník"
+
+msgid "Recipients"
+msgstr "Príjemcovia"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Zobraziť navigačné rozhranie dotazníku"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Povoliť oznamovateľom zvoliť si ich príjemcov"
+
+msgid "Select all recipients by default"
+msgstr "Vyberte štandardne všetkých príjemcov"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Maximálny počet voliteľných príjemcov"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Zobraziť príjemcov v abecednom poradí"
+
+msgid "Additional questionnaire"
+msgstr "Dodatočný dotazník"
+
+msgid "Scoring system options"
+msgstr "Možnosti bodovania systému"
+
+msgid "Threshold"
+msgstr "Prah"
+
+msgid "Value"
+msgstr "Hodnota"
+
+msgid "Medium"
+msgstr "Stredná"
+
+msgid "High"
+msgstr "Vysoká"
+
+msgid "Software version:"
+msgstr "Verzia softvéru:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Obmedziť prístup k určitým IP adresám"
+
+msgid "Enabled"
+msgstr "Zapnuté"
+
+msgid "Allowed IP addresses"
+msgstr "Povolené IP adresy."
+
+msgid "Admin"
+msgstr "Administrátor"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Príjemca"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Každá položka musí byť oddelená čiarkou."
+
+msgid "Example:"
+msgstr "Príklad:"
+
+msgid "Hostname"
+msgstr "Hostiteľské meno"
+
+msgid "Organization"
+msgstr "Organizácia"
+
+msgid "Invalid email address"
+msgstr "Neplatná emailová adresa"
+
+msgid "City"
+msgstr "Mesto"
+
+msgid "Country"
+msgstr "Štát"
+
+msgid "Country code"
+msgstr "Kód krajiny"
+
+msgid "Generate"
+msgstr "Generovať"
+
+msgid "Private Key"
+msgstr "Súkromný kľúč"
+
+msgid "Certificate Signing Request"
+msgstr "Žiadosť o podpis certifikátu"
+
+msgid "Certificate"
+msgstr "Certifikát"
+
+msgid "Valid until:"
+msgstr "Platný do:"
+
+msgid "Issuer:"
+msgstr "Vydavateľ:"
+
+msgid "Intermediate Certificates"
+msgstr "Dočasný certifikát."
+
+msgid "Reset"
+msgstr "Resetovať"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky odstránená."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platforma podporuje konfiguráciu HTTPS prostredníctvom tohto rozhrania."
+
+msgid "Automatic configuration"
+msgstr "Automatická konfigurácia"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "Použitie automatickej konfigurácie HTTPS zaistí celý proces vyžiadania, povolenia a obnovenia certifikátov od certifikačnej autority Let's Encrypt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Platforma musí byť dostupná prostredníctvom verejnej IP adresy a zvolený názov hostiteľa musí mať zodpovedajúci záznam DNS, ktorý odkazuje na túto adresu."
+
+msgid "Proceed"
+msgstr "Pokračovať"
+
+msgid "Manual configuration"
+msgstr "Manuálna konfigurácia"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Sprievodca manuálnou konfiguráciou vás prevedie nastavením protokolu HTTPS od alternatívnej certifikačnej autority."
+
+msgid "Auto-renewal"
+msgstr "Automatické obnovenie"
+
+msgid "Tor Onion Service"
+msgstr "Služba Tor Onion"
+
+msgid "Anonymize outgoing connections"
+msgstr "Anonymizácia odchádzajúcich pripojení"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Povoliť dostupnosť bez Tor"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Úlohy umožňujúce používanie platformy bez Tor"
+
+msgid "Whistleblower"
+msgstr "Oznamovateľ"
+
+msgid "To"
+msgstr "Komu"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "Emailová adresa pre SMTP server"
+
+msgid "SMTP server address"
+msgstr "Adresa SMTP servera"
+
+msgid "SMTP server port"
+msgstr "Port SMTP servera"
+
+msgid "Security"
+msgstr "Bezpečnosť"
+
+msgid "Require authentication"
+msgstr "Vyžadovať overenie"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Počet hodín pred odoslaním upozornenia na exspiráciu"
+
+msgid "Test the configuration"
+msgstr "Testovať konfiguráciu"
+
+msgid "Reset SMTP configuration"
+msgstr "Resetujte SMTP konfiguráciu"
+
+msgid "Reset notification templates to default"
+msgstr "Obnoviť šablóny notifikácií na prednastavené hodnoty"
+
+msgid "Template"
+msgstr "Šablóna"
+
+msgid "Question"
+msgstr "Otázka"
+
+msgid "Single-line text input"
+msgstr "Jednoriadkový vstup"
+
+msgid "Multi-line text input"
+msgstr "Viacriadkový vstup"
+
+msgid "Selection box"
+msgstr "Výber možností"
+
+msgid "Multiple choice input"
+msgstr "Vstup z výberu možností"
+
+msgid "Checkbox"
+msgstr "Zaškrtávacie políčka"
+
+msgid "Terms of service"
+msgstr "Podmienky používania služby"
+
+msgid "Date range"
+msgstr "Časové obdobie"
+
+msgid "Group of questions"
+msgstr "Skupina otázok"
+
+msgid "Row"
+msgstr "Riadok"
+
+msgid "Column"
+msgstr "Stĺpec"
+
+msgid "Width"
+msgstr "Šírka"
+
+msgid "Question group"
+msgstr "Skupina otázok"
+
+msgid "Hint"
+msgstr "Nápoveda"
+
+msgid "Mandatory"
+msgstr "Povinné"
+
+msgid "Accept multiple file uploads"
+msgstr "Akceptovať príjem viacero nahrávok súborov "
+
+msgid "Accept multiple answers"
+msgstr "Povoliť viacero odpovedí"
+
+msgid "Template override"
+msgstr "Prepísanie šablóny"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Telefónne číslo"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Checkbox label"
+msgstr "Zaškrtávacie políčko"
+
+msgid "Add multimedia content"
+msgstr "Pridajte multimediálny obsah"
+
+msgid "Image"
+msgstr "Obrázok"
+
+msgid "Audio"
+msgstr "Zvuk"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Text zobrazený pri zápornej odpovedi"
+
+msgid "Low"
+msgstr "Nízke"
+
+msgid "Trigger conditions"
+msgstr "Prvotné podmienky"
+
+msgid "Sufficient"
+msgstr "Dostatočný"
+
+msgid "Options"
+msgstr "Predvoľby"
+
+msgid "Addition"
+msgstr "Pridanie"
+
+msgid "Multiplier"
+msgstr "Multiplikátor"
+
+msgid "Questions"
+msgstr "Otázky"
+
+msgid "Add new question"
+msgstr "Pridať novú otázku"
+
+msgid "Add question from template"
+msgstr "Pridať otázku podľa šablóny"
+
+msgid "Duplicate"
+msgstr "Duplikovať"
+
+msgid "Steps"
+msgstr "Kroky"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Názov projektu"
+
+msgid "Homepage title"
+msgstr "Názov domovskej stránky"
+
+msgid "Presentation"
+msgstr "Prezentácia"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Otázky pre získavanie možných oznamovateľov"
+
+msgid "Whistleblowing button"
+msgstr "Tlačidlo oznamovateľa"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "Pätička"
+
+msgid "Upload"
+msgstr "Načítať"
+
+msgid "Download"
+msgstr "Stiahnuť"
+
+msgid "Language:"
+msgstr "Jazyk:"
+
+msgid "Add custom text"
+msgstr "Pridať vlastný text"
+
+msgid "Custom text"
+msgstr "Vlastný text"
+
+msgid "Original text"
+msgstr "Originálny text"
+
+msgid "Original translation"
+msgstr "Originálny preklad"
+
+msgid "Custom translation"
+msgstr "Vlastný preklad"
+
+msgid "Disable submissions"
+msgstr "Zakázať podanie"
+
+msgid "Enable encryption"
+msgstr "Povoliť šifrovanie"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Umožnite správcom meniť heslá užívateľov"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "Povoliť zjednodušené prihlásenie"
+
+msgid "Enable search engines indexing"
+msgstr "Povoliť vyhľadávačom indexovanie"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Limit veľkosti pre prílohy"
+
+msgid "megabytes"
+msgstr "MB"
+
+msgid "Require two factor authentication"
+msgstr "Vyžaduje dvojfaktorové overenie"
+
+msgid "Password change interval"
+msgstr "Interval zmeny hesla"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Z bezpečnostných dôvodov sú v pravidelných intervaloch vyžadované zmeny hesla."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Počet dní do oznámenia neprečítaných správ používateľom"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Zakázať osobitý panel"
+
+msgid "Enable custom privacy panel"
+msgstr "Povoliť používateľský panel"
+
+msgid "Custom privacy panel"
+msgstr "Vlastný používateľský panel "
+
+msgid "Enable scoring system"
+msgstr "Aktivovať systém hodnotenia"
+
+msgid "Logging level"
+msgstr "Prihlasovacia úroveň"
+
+msgid "percentage"
+msgstr "percenta"
+
+msgid "Log accesses of internal users"
+msgstr "Prístupy interných používateľov"
+
+msgid "Notify administrators of software problems"
+msgstr "Notifikovať administrátorov o problémoch so softvérom"
+
+msgid "Notify developers of software problems"
+msgstr "Notifikovať vývojárov ohľadom problémov so softvérom"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Povolením tejto voľby budete prispievať k vývoji a zabezpečeniu tejto platformy."
+
+msgid "Reset reports"
+msgstr "Resetujte podanie"
+
+msgid "Settings"
+msgstr "Nastavenia"
+
+msgid "Case management"
+msgstr "Správa podaní"
+
+msgid "Network"
+msgstr "Sieť"
+
+msgid "Sites"
+msgstr "Stránky"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Configure"
+msgstr "Nastavenie"
+
+msgid "Subdomain"
+msgstr "Podstránky"
+
+msgid "Mode:"
+msgstr "Režim:"
+
+msgid "Creation date:"
+msgstr "Dátum vytvorenia:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Prvú stranu použite len pre účely administrácie."
+
+msgid "Root domain used for secondary sites"
+msgstr "Koreňová doména pre sekundárne stránky"
+
+msgid "Allow users to sign up"
+msgstr "Povoliť používateľom registráciu"
+
+msgid "Enable terms of service"
+msgstr "Povoliť zmluvné podmienky"
+
+msgid "Title"
+msgstr "Názov"
+
+msgid "Public name"
+msgstr "Verejné meno"
+
+msgid "Send reset link"
+msgstr "Odoslať odkaz k resetovaniu"
+
+msgid "Set password"
+msgstr "Nastaviť heslo"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Zvolené heslo je príliš slabé. Heslo by malo mať aspoň 12 znakov a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
+
+msgid "Force password change"
+msgstr "Vynútiť zmenu hesla"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Používateľ bude nútený zmeniť svoje heslo pri ďalšom prihlásení."
+
+msgid "Disable two factor authentication"
+msgstr "Zakázať dvojfaktorové overovanie"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Enable email notifications"
+msgstr "Povoliť emailové upozornenia"
+
+msgid "Details of the PGP key:"
+msgstr "Detaily PGP kľúča:"
+
+msgid "Fingerprint"
+msgstr "Odtlačok prsta"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Umožnite administrátorovi meniť používateľské heslá."
+
+msgid "Forcefully selected"
+msgstr "Nastavené administrátorom"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Povoliť príjemcom zmazať podania"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Poskytnite používateľovi administratívny prístup k nasledujúcim funkciám:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Dátum žiadosti"
+
+msgid "Report date"
+msgstr "Dátum podania"
+
+msgid "Authorization"
+msgstr "Autorizácia"
+
+msgid "Requests"
+msgstr "Požiadavky"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Odkaz na overenie je buď nesprávny, alebo vypršal."
+
+msgid "Your new email address has been validated."
+msgstr "Vaša nová emailová adresa bola overená."
+
+msgid "Forgot password?"
+msgstr "Zabudli ste heslo?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Zadajte dvojfaktorový overovací kód"
+
+msgid "Authentication failed"
+msgstr "Overenie zlyhalo"
+
+msgid "The code is either invalid or expired."
+msgstr "Kód je neplatný alebo vypršal."
+
+msgid "Please select your account:"
+msgstr "Vyberte, prosím, svoj účet:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
+
+msgid "Confirm"
+msgstr "Potvrdiť"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
+
+msgid "Assign score points"
+msgstr "Prideliť bodové skóre"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Stav"
+
+msgid "Are you sure?"
+msgstr "Ste si istý?"
+
+msgid "Close"
+msgstr "Zatvoriť"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
+
+msgid "Enable two factor authentication"
+msgstr "Povoliť dvojfaktorovú autorizáciu"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Než budete pokračovať, prečítajte si pozorne dokumentáciu na adrese:"
+
+msgid "Account recovery key"
+msgstr "Kľúč na obnovenie účtu"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Vytvorte kópiu a uložte ju na bezpečnom mieste. Ak stratíte heslo, budete môcť obnoviť prístup k svojmu účtu bez straty dát."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Zadajte názov kópie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Ďakujeme Vám."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ozveme sa Vám hneď, ako to bude možné."
+
+msgid "Submit"
+msgstr "Odoslať"
+
+msgid "The connection is not secure."
+msgstr "Spojenie nie je bezpečné."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma stále nie je nakonfigurovaná pre pripojenia HTTPS, a preto by sa mala používať iba na účely testovania."
+
+msgid "Send"
+msgstr "Odoslať"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Potvrdením odložíte dátum exspirácie do:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"
+
+msgid "Scan the QR code with the app"
+msgstr "Naskenujte QR kód pomocou aplikácie"
+
+msgid "Error!"
+msgstr "Chyba!"
+
+msgid "Internal server error"
+msgstr "Interná chyba servera"
+
+msgid "Error on input validation"
+msgstr "Chyba pri kontrole vstupu"
+
+msgid "Resource not found"
+msgstr "Zdroj nebol nájdený"
+
+msgid "Forbidden operation"
+msgstr "Nepovolená operácia"
+
+msgid "The specified old password is not valid"
+msgstr "Zadané staré heslo je neplatné"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Zdroj je prístupný iba v rámci siete Tor"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Žiadosť na upload prekročila veľkostné limity"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Aktuálne heslo"
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid "The new password must be different from the current one."
+msgstr "Nové heslo sa musí líšiť od aktuálneho."
+
+msgid "Type your new password again"
+msgstr "Zadajte ešte raz Vaše nové heslo"
+
+msgid "The two passwords do not match"
+msgstr "Heslá sa nezhodujú"
+
+msgid "Validation of email address change in progress."
+msgstr "Prebieha overovanie zmeny emailovej adresy."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Pre ďalší postup skontrolujte, prosím, doručenú poštu."
+
+msgid "Warning"
+msgstr "Varovanie"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Dôrazne odporúčame k návšteve týchto stránok použiť aplikáciu s názvom Tor Browser, ktorá chráni vašu identitu."
+
+msgid "Download the Tor Browser"
+msgstr "Stiahnúť prehliadač Tor Browser"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Potom skopírujte a vložte nasledujúcu adresu do prehliadača Tor:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
+
+msgid "Filename"
+msgstr "Názov súboru"
+
+msgid "Size:"
+msgstr "Veľkosť:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "DIČ"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
+
+msgid "Fill the additional questionnaire"
+msgstr "Vyplňte dodatočný dotazník"
+
+msgid "From:"
+msgstr "Od:"
+
+msgid "To:"
+msgstr "Komu:"
+
+msgid "View"
+msgstr "Prehľad"
+
+msgid "Upload date"
+msgstr "Dátum nahrania"
+
+msgid "File size"
+msgstr "Veľkosť súboru"
+
+msgid "Questionnaire answers"
+msgstr "Odpovede z dotazníkov"
+
+msgid "Step"
+msgstr "Krok"
+
+msgid "Files attached by recipients"
+msgstr "Prílohy od príjemcov"
+
+msgid "Upload a file:"
+msgstr "Nahrať súbor:"
+
+msgid "Welcome!"
+msgstr "Vitajte!"
+
+msgid "For the user documentation, visit:"
+msgstr "Pre používateľskú dokumentáciu navštívte:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -629,915 +1455,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Ak chcete prispieť k vývoju softvéru alebo nahlásiť chybu, založte, prosím, hlásenie v našom ticket systému:"
 
-msgid "Image"
-msgstr "Obrázok"
-
-msgid "Import"
-msgstr "Import"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "V tomto kroku sú odpovede na nasledujúce otázky buď chýbajúce, alebo neplatné:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Kontrola vstupu"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"
-
-msgid "Intermediate Certificates"
-msgstr "Dočasný certifikát."
-
-msgid "Internal server error"
-msgstr "Interná chyba servera"
-
-msgid "Invalid confirmation"
-msgstr "Neplatné potvrdenie"
-
-msgid "Invalid email address"
-msgstr "Neplatná emailová adresa"
-
-msgid "Invalid phone number"
-msgstr "Neplatné telefónne číslo"
-
-msgid "Issuer:"
-msgstr "Vydavateľ:"
-
 msgid "Join our chat:"
 msgstr "Pripojte sa k nášmu chatu:"
 
-msgid "Label"
-msgstr "Štítok"
-
-msgid "Label the report"
-msgstr "Označte oznámenie štítkom"
-
-msgid "Language"
-msgstr "Jazyk"
-
-msgid "Language:"
-msgstr "Jazyk:"
-
-msgid "Languages"
-msgstr "Jazyky"
-
-msgid "Last"
-msgstr "Posledné"
-
-msgid "Last Access"
-msgstr "Posledný prístup"
-
-msgid "Last access"
-msgstr "Posledný prístup"
-
-msgid "Last update"
-msgstr "Posledná aktualizácia"
-
-msgid "Latest selectable date"
-msgstr "Najneskorší možný dátum"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Povoliť dostupnosť bez Tor"
-
-msgid "License"
-msgstr "Licencia"
-
-msgid "Log accesses of internal users"
-msgstr "Prístupy interných používateľov"
-
-msgid "Log in"
-msgstr "Prihlásiť sa"
-
-msgid "Logging level"
-msgstr "Prihlasovacia úroveň"
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Logout"
-msgstr "Odhlásiť sa"
-
-msgid "Low"
-msgstr "Nízke"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Vytvorte kópiu a uložte ju na bezpečnom mieste. Ak stratíte heslo, budete môcť obnoviť prístup k svojmu účtu bez straty dát."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Umožněte tomuto administrátorovi resetovat uživatelská hesla."
-
-msgid "Mandatory"
-msgstr "Povinné"
-
-msgid "Manual configuration"
-msgstr "Manuálna konfigurácia"
-
-msgid "Mark as important"
-msgstr ""
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Maximálna veľkosť súboru je:"
-
-msgid "Maximum number of input characters"
-msgstr "Maximálny počet vstupných znakov"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Maximálny počet voliteľných príjemcov"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Stredná"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Minimálny počet vstupných znakov"
-
-msgid "Mobile"
-msgstr "Mobilný"
-
-msgid "Mode:"
-msgstr "Režim:"
-
-msgid "Motivation"
-msgstr "Motivácia"
-
-msgid "Move down"
-msgstr "Posunúť dole"
-
-msgid "Move left"
-msgstr "Posunúť doľava"
-
-msgid "Move right"
-msgstr "Posunúť doprava"
-
-msgid "Move up"
-msgstr "Posunúť hore"
-
-msgid "Multi-line text input"
-msgstr "Viacriadkový vstup"
-
-msgid "Multiple choice input"
-msgstr "Vstup z výberu možností"
-
-msgid "Multiplier"
-msgstr "Multiplikátor"
-
-msgid "Name"
-msgstr "Meno"
-
-msgid "Network"
-msgstr "Sieť"
-
-msgid "New"
-msgstr "Nové"
-
-msgid "New password"
-msgstr "Nové heslo"
-
-msgid "New request"
-msgstr "Nová požiadavka"
-
-msgid "Next"
-msgstr "Ďalej"
-
-msgid "No"
-msgstr "Nie"
-
-msgid "None"
-msgstr "Žiaden"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr "Oznámenia"
-
-msgid "Notify administrators of software problems"
-msgstr "Notifikovať administrátorov o problémoch so softvérom"
-
-msgid "Notify developers of software problems"
-msgstr "Notifikovať vývojárov ohľadom problémov so softvérom"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
-
-msgid "Number"
-msgstr "Číslo"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Počet dní do oznámenia neprečítaných správ používateľom"
-
-msgid "Number of downloads"
-msgstr "Počet stiahnutí"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Počet hodín pred odoslaním upozornenia na exspiráciu"
-
-msgid "Object"
-msgstr ""
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Jeden alebo viacero príjemcov doteraz nevykonalo prvé prihlásenie. To znamená, že nebudú dostávať správy."
-
-msgid "Opened"
-msgstr "Otvorené"
-
-msgid "Options"
-msgstr "Predvoľby"
-
-msgid "Organization"
-msgstr "Organizácia"
-
-msgid "Original text"
-msgstr "Originálny text"
-
-msgid "Original translation"
-msgstr "Originálny preklad"
-
-msgid "Password"
-msgstr "Heslo"
-
-msgid "Password change interval"
-msgstr "Interval zmeny hesla"
-
-msgid "Password reset"
-msgstr "Resetovať heslo"
-
-msgid "Password reset requested."
-msgstr "Vyžaduje sa obnovenie hesla."
-
-msgid "Phone number"
-msgstr "Telefónne číslo"
-
-msgid "Placeholder"
-msgstr "Zástupný"
-
-msgid "Platform wizard"
-msgstr "Sprievodca platformou"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Pre ďalší postup skontrolujte, prosím, doručenú poštu."
-
-msgid "Please choose a configuration profile:"
-msgstr "Prosím, vyberte profil konfigurácie:"
-
-msgid "Please choose a different username."
-msgstr "Zvoľte prosím iné užívateľské meno."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
-
-msgid "Please select your account:"
-msgstr "Vyberte, prosím, svoj účet:"
-
-msgid "Postpone the expiration date"
-msgstr "Odložiť vypršanie platnosti"
-
-msgid "Preferences"
-msgstr "Predvoľby"
-
-msgid "Presentation"
-msgstr "Prezentácia"
-
-msgid "Preview"
-msgstr "Náhľad"
-
-msgid "Previous"
-msgstr "Predchádzajúce"
-
-msgid "Print"
-msgstr "Vytlačiť"
-
-msgid "Privacy Policy"
-msgstr "Zásady ochrany súkromia"
-
-msgid "Private Key"
-msgstr "Súkromný kľúč"
-
-msgid "Privileges"
-msgstr "Oprávnenia"
-
-msgid "Proceed"
-msgstr "Pokračovať"
-
-msgid "Profile"
-msgstr "Profil"
-
-msgid "Project name"
-msgstr "Názov projektu"
-
-msgid "Public name"
-msgstr "Verejné meno"
-
-msgid "Question"
-msgstr "Otázka"
-
-msgid "Question group"
-msgstr "Skupina otázok"
-
-msgid "Question templates"
-msgstr "Šablóny otázok"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Otázky pre získavanie možných oznamovateľov"
-
-msgid "Questionnaire"
-msgstr "Dotazník"
-
-msgid "Questionnaire answers"
-msgstr "Odpovede z dotazníkov"
-
-msgid "Questionnaires"
-msgstr "Dotazníky"
-
-msgid "Questions"
-msgstr "Otázky"
-
-msgid "Receivers"
-msgstr "Príjemcovia"
-
-msgid "Recipient"
-msgstr "Príjemca"
-
-msgid "Recipient selection"
-msgstr "Výber príjemcu"
-
-msgid "Recipients"
-msgstr "Príjemcovia"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Vybraní príjemcovia:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Obnoviť"
-
-msgid "Regenerate"
-msgstr "Obnoviť"
-
-msgid "Regular expression"
-msgstr "Regulárny výraz"
-
-msgid "Regular expression validator"
-msgstr "Validátor regulárnych výrazov"
-
-msgid "Remember your receipt for this report."
-msgstr "Zapamätajte si potvrdenie o tomto podaní."
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "Odstrániť"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Zodpovedať motiváciu"
-
-msgid "Reply to the request"
-msgstr "Odpovedať na požiadavku"
-
-msgid "Report"
-msgstr "Nahlásiť"
-
-msgid "Report date"
-msgstr "Dátum podania"
-
-msgid "Report statuses"
-msgstr "Stav podania"
-
-msgid "Reports"
-msgstr "Podania"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Vyžiadaný prístup k identite oznamovateľa"
-
-msgid "Request date"
-msgstr "Dátum žiadosti"
-
-msgid "Request motivation"
-msgstr "Motivácia žiadosti"
-
-msgid "Request status"
-msgstr "Stav požiadavky"
-
-msgid "Request support"
-msgstr ""
-
-msgid "Requests"
-msgstr "Požiadavky"
-
-msgid "Require authentication"
-msgstr "Vyžadovať overenie"
-
-msgid "Require two factor authentication"
-msgstr "Vyžaduje dvojfaktorové overenie"
-
-msgid "Reset"
-msgstr "Resetovať"
-
-msgid "Reset SMTP configuration"
-msgstr "Resetujte SMTP konfiguráciu"
-
-msgid "Reset notification templates to default"
-msgstr "Obnoviť šablóny notifikácií na prednastavené hodnoty"
-
-msgid "Reset reports"
-msgstr "Resetujte podanie"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Zdroj je prístupný iba v rámci siete Tor"
-
-msgid "Resource not found"
-msgstr "Zdroj nebol nájdený"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Obmedziť prístup k určitým IP adresám"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr ""
-
-msgid "Role"
-msgstr "Role"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Úlohy umožňujúce používanie platformy bez Tor"
-
-msgid "Root domain used for secondary sites"
-msgstr "Koreňová doména pre sekundárne stránky"
-
-msgid "Row"
-msgstr "Riadok"
-
-msgid "SMTP email address"
-msgstr "Emailová adresa pre SMTP server"
-
-msgid "SMTP server address"
-msgstr "Adresa SMTP servera"
-
-msgid "SMTP server port"
-msgstr "Port SMTP servera"
-
-msgid "Save"
-msgstr "Uložiť"
-
-msgid "Save all"
-msgstr "Uložiť všetko"
-
-msgid "Scan the QR code with the app"
-msgstr "Naskenujte QR kód pomocou aplikácie"
-
-msgid "Scheduled jobs"
-msgstr "Plánované úlohy"
-
-msgid "Score"
-msgstr "Skóre"
-
-msgid "Scoring system options"
-msgstr "Možnosti bodovania systému"
-
-msgid "Search"
-msgstr "Hľadať"
-
-msgid "Security"
-msgstr "Bezpečnosť"
-
-msgid "Select"
-msgstr "Vyberte"
-
-msgid "Select a file or drag it here."
-msgstr "Vyberte súbor alebo ho sem pretiahnite."
-
-msgid "Select all"
-msgstr "Označiť všetko"
-
-msgid "Select all recipients by default"
-msgstr "Vyberte štandardne všetkých príjemcov"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Výber možností"
-
-msgid "Send"
-msgstr "Odoslať"
-
-msgid "Send a test email to your email address."
-msgstr "Poslať testovací email na Vašu emailovú adresu."
-
-msgid "Send activation link"
-msgstr "Odoslať odkaz k aktivácii."
-
-msgid "Send reset link"
-msgstr "Odoslať odkaz k resetovaniu"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "Nastaviť heslo"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
-
-msgid "Settings"
-msgstr "Nastavenia"
-
-msgid "Severity"
-msgstr ""
-
-msgid "Show"
-msgstr "Zobraziť"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Zobraziť príjemcov v abecednom poradí"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Zobraziť navigačné rozhranie dotazníku"
-
-msgid "Sign up"
-msgstr "Zaregistrovať sa"
-
-msgid "Silence email notifications"
-msgstr "Tiché emailové notifikácie"
-
-msgid "Single-line text input"
-msgstr "Jednoriadkový vstup"
-
-msgid "Site"
-msgstr "Stránka"
-
-msgid "Sites"
-msgstr "Stránky"
-
-msgid "Size limit for file attachments"
-msgstr "Limit veľkosti pre prílohy"
-
-msgid "Size:"
-msgstr "Veľkosť:"
-
-msgid "Skip the recipient account creation."
-msgstr "Preskočiť vytvorenie účtu príjemcu."
-
-msgid "Software version:"
-msgstr "Verzia softvéru:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Štatistiky"
-
-msgid "Status"
-msgstr "Stav"
-
-msgid "Status:"
-msgstr "Stav"
-
-msgid "Step"
-msgstr "Krok"
-
-msgid "Steps"
-msgstr "Kroky"
-
-msgid "Strong"
-msgstr "Silné"
-
-msgid "Subdomain"
-msgstr "Podstránky"
-
-msgid "Submissions disabled"
-msgstr "Podania zakázané"
-
-msgid "Submit"
-msgstr "Odoslať"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Podstavy"
-
-msgid "Success!"
-msgstr "Výborne!"
-
-msgid "Sufficient"
-msgstr "Dostatočný"
-
-msgid "Surname"
-msgstr "Priezvisko"
-
-msgid "Tax code"
-msgstr "DIČ"
-
-msgid "Template"
-msgstr "Šablóna"
-
-msgid "Template override"
-msgstr "Prepísanie šablóny"
-
-msgid "Templates"
-msgstr "Šablóny"
-
-msgid "Terms of service"
-msgstr "Podmienky používania služby"
-
-msgid "Test the configuration"
-msgstr "Testovať konfiguráciu"
-
-msgid "Text"
-msgstr "Text"
-
-msgid "Text customization"
-msgstr "Prispôsobenie textu"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "Text zobrazený pri zápornej odpovedi"
-
-msgid "Thank you."
-msgstr "Ďakujeme Vám."
-
-msgid "The answer is too short"
-msgstr "Odpoveď je príliš krátka."
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Zvolené heslo je príliš slabé. Heslo by malo mať aspoň 12 znakov a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
-
-msgid "The code is either invalid or expired."
-msgstr "Kód je neplatný alebo vypršal."
-
-msgid "The connection is not secure."
-msgstr "Spojenie nie je bezpečné."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Nasledujúci príjemcovia dostanú vaše oznámenie a ich výber nemohol byť zrušený:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Nasledujúci popis jednotlivých krokov vás prevedie vytvorením vašej whistleblowingovej platformy."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Sprievodca manuálnou konfiguráciou vás prevedie nastavením protokolu HTTPS od alternatívnej certifikačnej autority."
-
-msgid "The new password must be different from the current one."
-msgstr "Nové heslo sa musí líšiť od aktuálneho."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma stále nie je nakonfigurovaná pre pripojenia HTTPS, a preto by sa mala používať iba na účely testovania."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Platforma musí byť dostupná prostredníctvom verejnej IP adresy a zvolený názov hostiteľa musí mať zodpovedajúci záznam DNS, ktorý odkazuje na túto adresu."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma podporuje konfiguráciu HTTPS prostredníctvom tohto rozhrania."
-
-msgid "The provided recovery key is invalid."
-msgstr "Zadaný obnovovací kľúč je neplatný."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Dodaný reset token je neplatný alebo vypršal."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
-
-msgid "The specified input is not valid."
-msgstr "Zadaný vstup nie je platný."
-
-msgid "The specified input is not valid:"
-msgstr "Zadaný vstup nie je platný:"
-
-msgid "The specified old password is not valid"
-msgstr "Zadané staré heslo je neplatné"
-
-msgid "The two passwords do not match"
-msgstr "Heslá sa nezhodujú"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Žiadosť na upload prekročila veľkostné limity"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Používateľ bude nútený zmeniť svoje heslo pri ďalšom prihlásení."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Odkaz na overenie je buď nesprávny, alebo vypršal."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Oznamovateľ čítal poslednú aktualizáciu."
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Oznamovateľ ešte nečítal poslednú aktualizáciu."
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Potom skopírujte a vložte nasledujúcu adresu do prehliadača Tor:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Tento upravený text sa naďalej v rozhraní nezobrazuje. Pôvodný text bol zmenený alebo presunutý."
-
-msgid "This domain name is not available."
-msgstr "Tento názov domény nie je k dispozícii."
-
-msgid "This field is mandatory"
-msgstr "Toto pole je povinné"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
-
-msgid "This user has not performed the first login yet."
-msgstr "Tento používateľ zatiaľ nevykonal prvé prihlásenie."
-
-msgid "Threshold"
-msgstr "Prah"
-
-msgid "Title"
-msgstr "Názov"
-
-msgid "To"
-msgstr "Komu"
-
-msgid "To:"
-msgstr "Komu:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Služba Tor Onion"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Prvotné podmienky"
-
-msgid "Trigger question"
-msgstr "Spúštacia otázka"
-
-msgid "Triggered by score:"
-msgstr "Spustené na základe skóre:"
-
-msgid "Turn on email notifications"
-msgstr "Zapnúť emailové notifikácie"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Type your new password again"
-msgstr "Zadajte ešte raz Vaše nové heslo"
-
-msgid "URL redirects"
-msgstr "Presmerovanie URL"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Načítať"
-
-msgid "Upload a file:"
-msgstr "Nahrať súbor:"
-
-msgid "Upload date"
-msgstr "Dátum nahrania"
-
-msgid "Use as default"
-msgstr "Použiť ako prednastavené"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Na prihlásenie použite 16-miestny kód. Umožní vám zobraziť všetky správy, ktoré sme vám poslali, a pridať ďalšie informácie."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Prvú stranu použite len pre účely administrácie."
-
-msgid "User"
-msgstr "Používateľ"
-
-msgid "Username"
-msgstr "Používateľské meno"
-
-msgid "Users"
-msgstr "Používatelia"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "Použitie automatickej konfigurácie HTTPS zaistí celý proces vyžiadania, povolenia a obnovenia certifikátov od certifikačnej autority Let's Encrypt."
-
-msgid "Valid until:"
-msgstr "Platný do:"
-
-msgid "Validation of email address change in progress."
-msgstr "Prebieha overovanie zmeny emailovej adresy."
-
-msgid "Value"
-msgstr "Hodnota"
-
-msgid "Video"
-msgstr "Video"
-
-msgid "View"
-msgstr "Prehľad"
-
-msgid "View your report"
-msgstr "Zobraziť podanie"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Čaká sa na autorizáciu"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Čaká sa na dokončenie nahrávania súborov."
-
-msgid "Warning"
-msgstr "Varovanie"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Odporúčame vybrať túto možnosť, ak chcete chrániť dáta pred stratou v situácii, keď príjemcovia stratí svoje heslá. Ale neodporúčame použiť túto funkciu, ak chcete nastaviť systém, kde majú prístup k podaním iba príjemcovi."
+msgid "An update is available:"
+msgstr "Je dostupná aktualizácia:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1546,78 +1468,85 @@ msgid ""
 "your password."
 msgstr "Odporúčame ísť do sekcie \"Preferencie\", aby ste získali \"Kľúč na obnovenie účtu\" a bezpečne ho uložili. Tento kľúč bude nevyhnutný pre obnovenie prístupu k platforme a k vašim údajom v prípade, že svoje heslo zabudnete."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ozveme sa Vám hneď, ako to bude možné."
+msgid "Select a file or drag it here."
+msgstr "Vyberte súbor alebo ho sem pretiahnite."
 
-msgid "Weak"
-msgstr "Slabé"
+msgid "The provided recovery key is invalid."
+msgstr "Zadaný obnovovací kľúč je neplatný."
 
-msgid "Welcome!"
-msgstr "Vitajte!"
-
-msgid "Whistleblower"
-msgstr "Oznamovateľ"
-
-msgid "Whistleblower's last access"
-msgstr "Posledný prístup oznamovateľa"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Tlačidlo oznamovateľa"
-
-msgid "Width"
-msgstr "Šírka"
-
-msgid "Yes"
-msgstr "Áno"
+msgid "The provided reset token is invalid or expired."
+msgstr "Dodaný reset token je neplatný alebo vypršal."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "K serveru sa pripájate neanonymne, pričom tento konkrétny server podporuje iba anonymné podania"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
+
+msgid "Password reset requested."
+msgstr "Vyžaduje sa obnovenie hesla."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Dôrazne odporúčame k návšteve týchto stránok použiť aplikáciu s názvom Tor Browser, ktorá chráni vašu identitu."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Zadajte kľúč pre obnovenie účtu a dokončite postup pre resetovania hesla"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Správca bol požiadaný o prístup k identite oznamovateľa."
+
+msgid "Date of the request"
+msgstr "Dátum žiadosti"
+
+msgid "Show"
+msgstr "Zobraziť"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Gratulujeme!"
 
 msgid "You have completed the platform activation."
 msgstr "Práve ste dokončili aktiváciu platformy."
 
-msgid "You have completed the platform wizard."
-msgstr "Práve ste dokončili sprievodcu základným nastavením."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Dosiahli ste maximálneho počtu voliteľných príjemcov."
-
-msgid "You must select at least one recipient."
-msgstr "Musíte vybrať aspoň jedného príjemcu."
-
-msgid "Your new email address has been validated."
-msgstr "Vaša nová emailová adresa bola overená."
-
-msgid "Your report was successful."
-msgstr "Vaše podanie prebehlo úspešne."
+msgid "Success!"
+msgstr "Výborne!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaša whistleblowingová platforma je takmer hotová!"
 
-msgid "days"
-msgstr "dní"
+msgid "Check your inbox to activate it."
+msgstr "Skontrolujte svoju doručenú poštu pre aktiváciu."
 
-msgid "file unavailable"
-msgstr "súbor nie je k dispozícii"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky odstránená."
 
-msgid "megabytes"
-msgstr "MB"
+msgid "Sign up"
+msgstr "Zaregistrovať sa"
 
-msgid "percentage"
-msgstr "percenta"
+msgid "Invalid confirmation"
+msgstr "Neplatné potvrdenie"
+
+msgid "Invalid phone number"
+msgstr "Neplatné telefónne číslo"
+
+msgid "Site"
+msgstr "Stránka"
+
+msgid "Confirmation"
+msgstr "Potvrdenie"
+
+msgid "The answer is too short"
+msgstr "Odpoveď je príliš krátka."
+
+msgid "The specified input is not valid."
+msgstr "Zadaný vstup nie je platný."
+
+msgid "The specified input is not valid:"
+msgstr "Zadaný vstup nie je platný:"
 
 msgid "please enter a valid email address."
 msgstr "Prosím zadajte platnú emailovú adresu."
@@ -1625,14 +1554,82 @@ msgstr "Prosím zadajte platnú emailovú adresu."
 msgid "please enter numbers only."
 msgstr "Zadajte, prosím, iba čísla."
 
-msgid "seconds"
-msgstr "sekúnd"
+msgid "Submissions disabled"
+msgstr "Podania zakázané"
 
-msgid "File a report"
-msgstr "podať oznámenie"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "K serveru sa pripájate neanonymne, pričom tento konkrétny server podporuje iba anonymné podania"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "Vaše podanie prebehlo úspešne."
+
+msgid "Remember your receipt for this report."
+msgstr "Zapamätajte si potvrdenie o tomto podaní."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Na prihlásenie použite 16-miestny kód. Umožní vám zobraziť všetky správy, ktoré sme vám poslali, a pridať ďalšie informácie."
+
+msgid "View your report"
+msgstr "Zobraziť podanie"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Vybraní príjemcovia:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Dosiahli ste maximálneho počtu voliteľných príjemcov."
+
+msgid "You must select at least one recipient."
+msgstr "Musíte vybrať aspoň jedného príjemcu."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Nasledujúci príjemcovia dostanú vaše oznámenie a ich výber nemohol byť zrušený:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "V tomto kroku sú odpovede na nasledujúce otázky buď chýbajúce, alebo neplatné:"
+
+msgid "Recipient selection"
+msgstr "Výber príjemcu"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Čaká sa na dokončenie nahrávania súborov."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Nasledujúci popis jednotlivých krokov vás prevedie vytvorením vašej whistleblowingovej platformy."
+
+msgid "Please choose a configuration profile:"
+msgstr "Prosím, vyberte profil konfigurácie:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Umožněte tomuto administrátorovi resetovat uživatelská hesla."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Odporúčame vybrať túto možnosť, ak chcete chrániť dáta pred stratou v situácii, keď príjemcovia stratí svoje heslá. Ale neodporúčame použiť túto funkciu, ak chcete nastaviť systém, kde majú prístup k podaním iba príjemcovi."
+
+msgid "Please choose a different username."
+msgstr "Zvoľte prosím iné užívateľské meno."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Prečítal/-a som si podmienky licencie a súhlasím s nimi."
+
+msgid "You have completed the platform wizard."
+msgstr "Práve ste dokončili sprievodcu základným nastavením."
 
 msgid "Please summarize your report in a few words."
 msgstr "Opíšte svoje podanie niekoľkými slovami."

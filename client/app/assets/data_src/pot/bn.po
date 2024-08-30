@@ -21,129 +21,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = অটো"
+msgid "Log in"
+msgstr "লগইন"
 
-msgid "Accept multiple answers"
-msgstr "একাধিক জবাব গ্রহণ করুন"
+msgid "Languages"
+msgstr "ভাষাসমূহ"
 
-msgid "Accept multiple file uploads"
-msgstr "একাধিক ফাইল আপলোড গ্রহণ করুন"
-
-msgid "Acceptable"
-msgstr "গ্রহণযোগ্য"
-
-msgid "Access control"
-msgstr "প্রবেশাধিকার নিয়ন্ত্রণ"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "প্রবেশের অনুরোধ করা হয়েছে"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "হুইসেল ব্লোয়ারের পরিচয় অ্যাক্সেস করতে তত্ত্বাবধায়ক থেকে অনুরোধ করা হয়েছে।"
-
-msgid "Account recovery key"
-msgstr "অ্যাকাউন্ট পুনরুদ্ধারের চাবি"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "কার্যকলাপ"
-
-msgid "Add"
-msgstr "যোগ করুন"
-
-msgid "Add custom text"
-msgstr "কাস্টম লেখা যোগ করুন"
-
-msgid "Add multimedia content"
-msgstr "মাল্টিমিডিয়া সামগ্রী যুক্ত করুন"
-
-msgid "Add new question"
-msgstr "নতুন প্রশ্ন যুক্ত করুন"
-
-msgid "Add new questionnaire"
-msgstr "নতুন প্রশ্নমালা যুক্ত করুন"
-
-msgid "Add question from template"
-msgstr "টেমপ্লেট থেকে প্রশ্ন যুক্ত করুন"
-
-msgid "Addition"
-msgstr "অতিরিক্ত"
-
-msgid "Additional questionnaire"
-msgstr "অতিরিক্ত প্রশ্নাবলী"
-
-msgid "Address"
-msgstr "ঠিকানা:"
-
-msgid "Admin"
-msgstr "প্রশাসক"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:"
+msgid "Text customization"
+msgstr "লেখা কাস্টমাইজেশন"
 
 msgid "Advanced"
 msgstr "অগ্রবর্তী"
 
-msgid "Allow the recipient to delete reports"
-msgstr "প্রাপককে প্রতিবেদনগুলি মুছে ফেলার অনুমতি দিন"
+msgid "Question templates"
+msgstr "প্রশ্নের টেমপ্লেট"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "প্রাপককে রিপোর্টের মেয়াদ শেষ হওয়ার তারিখ স্থগিত করার অনুমতি দিন"
+msgid "Questionnaires"
+msgstr "প্রশ্নাবলী"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "হুইসেল ব্লোয়ারকে প্রতিবেদনে সংযুক্তি যুক্ত করতে দিন"
+msgid "Add new questionnaire"
+msgstr "নতুন প্রশ্নমালা যুক্ত করুন"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "হুইসেল ব্লোয়ারকে মন্তব্য লেখার অনুমতি দিন"
+msgid "Home"
+msgstr "হোম"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "পরিবর্তনসূচী"
 
-msgid "Allow users to sign up"
-msgstr "ব্যবহারকারীদের সাইন আপ করার অনুমতি দিন"
+msgid "License"
+msgstr "লাইসেন্স"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "হুইসেল ব্লোয়ারদের তাদের প্রাপকগুলি নির্বাচন করতে অনুমতি দিন"
+msgid "Templates"
+msgstr "টেম্পলেট"
 
-msgid "Allowed IP addresses"
-msgstr "অনুমোদিত আইপি ঠিকানা"
-
-msgid "An update is available:"
-msgstr "একটি আপডেট রয়েছে:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "মুছুন"
 
 msgid "Anomalies"
 msgstr "অসঙ্গতিসমূহ"
 
-msgid "Anomaly detection thresholds"
-msgstr "অসঙ্গতি সনাক্তকরণ থ্রেশহোল্ডগুলি"
+msgid "Preferences"
+msgstr "পছন্দসমূহ"
 
-msgid "Anonymity"
+msgid "Notifications"
+msgstr "নোটিফিকেশন্স"
+
+msgid "file unavailable"
+msgstr "ফাইল উপলব্ধ নেই"
+
+msgid "Date"
+msgstr "তারিখ"
+
+msgid "Expiration date"
+msgstr "মেয়াদ উত্তীর্ণের তারিখ"
+
+msgid "Last Access"
+msgstr "সর্বশেষ ব্যবহার"
+
+msgid "Files"
+msgstr "ফাইলসমূহ"
+
+msgid "Comments"
+msgstr "মন্তব্যসমূহ"
+
+msgid "Details"
+msgstr "বিস্তারিত"
+
+msgid "Platform wizard"
+msgstr "প্লাটফর্ম উইজার্ড"
+
+msgid "Label the report"
+msgstr "রিপোর্টটিকে চিহ্নিত করুন"
+
+msgid "Edit the expiration date"
+msgstr "মেয়াদ উত্তীর্ণের তারিখ স্থগিত করুন"
+
+msgid "Select all"
+msgstr "সবগুলো নির্বাচন করুন"
+
+msgid "Deselect all"
+msgstr "সবগুলো অনির্বাচিত করুন"
+
+msgid "Refresh"
+msgstr "রিফ্রেশ করুন"
+
+msgid "Channel"
 msgstr ""
 
-msgid "Anonymize outgoing connections"
-msgstr "বহির্গামী সংযোগগুলি অজ্ঞাত রাখুন"
+msgid "Preview"
+msgstr "পূর্বরূপ"
 
-msgid "Anonymous"
-msgstr "অজ্ঞাতপরিচয়"
+msgid "The whistleblower has already read the last update"
+msgstr "হুইসেল ব্লোয়ার ইতিমধ্যে শেষ আপডেটটি পড়েছেন"
 
-msgid "Are you sure?"
-msgstr "আপনি কি নিশ্চিত?"
+msgid "The whistleblower has not read the last update yet"
+msgstr "হুইসেল ব্লোয়ার এখনও শেষ আপডেটটি পড়েননি"
 
-msgid "Assign score points"
-msgstr "স্কোর পয়েন্ট বরাদ্দ করুন"
+msgid "Move up"
+msgstr "উপরে উঠান"
 
-msgid "Assigned to"
-msgstr ""
+msgid "Move down"
+msgstr "নিচে নামান"
+
+msgid "Move left"
+msgstr "বাম দিকে সরান"
+
+msgid "Move right"
+msgstr "ডান দিকে সরান"
+
+msgid "Import"
+msgstr "আমদানি"
+
+msgid "Export"
+msgstr "রপ্তানি"
+
+msgid "Save all"
+msgstr "সব সংরক্ষণ করুন"
+
+msgid "Access control"
+msgstr "প্রবেশাধিকার নিয়ন্ত্রণ"
+
+msgid "Number"
+msgstr "নাম্বার"
+
+msgid "Email"
+msgstr "ইমেইল"
+
+msgid "Regular expression validator"
+msgstr "নিয়মিত অভিব্যক্তি যাচাইকারক"
+
+msgid "Minimum number of input characters"
+msgstr "অক্ষর ইনপুটের ন্যূনতম সংখ্যা"
+
+msgid "Maximum number of input characters"
+msgstr "অক্ষর ইনপুটের সর্বাধিক সংখ্যা"
+
+msgid "Earliest selectable date"
+msgstr "নিকটতম নির্বাচনযোগ্য তারিখ"
+
+msgid "Latest selectable date"
+msgstr "সর্বশেষ নির্বাচনযোগ্য তারিখ"
+
+msgid "0 = auto"
+msgstr "0 = অটো"
+
+msgid "Yes"
+msgstr "হাঁ"
+
+msgid "No"
+msgstr "না"
 
 msgid "Attachment"
 msgstr "সংযুক্তি"
@@ -151,186 +177,56 @@ msgstr "সংযুক্তি"
 msgid "Attachments"
 msgstr "সংযুক্তিসমুহ"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "অডিও"
-
-msgid "Audit log"
-msgstr "অডিট লগ"
-
-msgid "Authentication failed"
-msgstr "যাচাই করতে ব্যার্থ হয়েছে"
-
-msgid "Authorization"
-msgstr "অনুমোদন"
-
-msgid "Authorize"
-msgstr "অনুমোদন"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুমোদন দিন"
-
-msgid "Authorized"
-msgstr "অনুমোদিত"
-
-msgid "Auto-renewal"
-msgstr "স্বয়ংক্রিয় নবায়ন"
-
-msgid "Automatic configuration"
-msgstr "স্বয়ংক্রিয় কনফিগারেশন"
-
-msgid "Available disk space"
-msgstr "ডিস্কে খালি স্থানের পরিমাণ"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "এগিয়ে যাওয়ার আগে দয়া করে এখানে ডকুমেন্টেশনটি সাবধানতার সাথে পড়ুন:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "এগিয়ে যাওয়ার আগে, দয়া করে টু-ফ্যাক্টর অথেনটিকেশন সক্ষম করুন।"
-
-msgid "Before proceeding, please set a new password."
-msgstr "এগিয়ে যাওয়ার আগে, দয়া করে একটি নতুন পাসওয়ার্ড সেট করুন।"
-
-msgid "Block the submission"
-msgstr "জমা দেওয়া অক্ষম করুন"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "নিশ্চিত করলে, আপনি মেয়াদ শেষ হওয়ার তারিখটি এখানে স্থগিত করবেন:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "এই বৈশিষ্ট্যটি সক্ষম করে আপনি প্ল্যাটফর্মটির বিকাশ এবং সুরক্ষায় অবদান রাখবেন।"
-
-msgid "Cancel"
-msgstr "বাতিল"
-
-msgid "Case management"
-msgstr "কেস ম্যানেজমেন্ট"
-
-msgid "Certificate"
-msgstr "সার্টিফিকেট"
-
-msgid "Certificate Signing Request"
-msgstr "সার্টিফিকেট স্বাক্ষর করার অনুরোধ"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "আপনার পাসওয়ার্ড পরিবর্তন করুন"
 
-msgid "Changelog"
-msgstr "পরিবর্তনসূচী"
+msgid "User"
+msgstr "ব্যবহারকারী"
 
-msgid "Channel"
-msgstr ""
+msgid "Motivation"
+msgstr "প্রেরণা"
 
-msgid "Channels"
-msgstr ""
+msgid "Status"
+msgstr "অবস্থা"
 
-msgid "Check your inbox to activate it."
-msgstr "এটি সক্রিয় করতে আপনার ইনবক্সটি পরীক্ষা করুন।"
+msgid "Request motivation"
+msgstr "প্রেরণার অনুরোধ"
 
-msgid "Checkbox"
-msgstr "চেকবক্স"
+msgid "Reply motivation"
+msgstr "প্রেরণার প্রতিউত্তর"
 
-msgid "Checkbox label"
-msgstr "চেকবক্স লেবেল"
-
-msgid "City"
-msgstr "শহর"
-
-msgid "Close"
-msgstr "বন্ধ"
-
-msgid "Closed"
-msgstr "বন্ধ"
-
-msgid "Collapse"
-msgstr "সঙ্কুচিত"
-
-msgid "Column"
-msgstr "কলাম"
-
-msgid "Comments"
-msgstr "মন্তব্যসমূহ"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "কনফিগার করুন"
-
-msgid "Confirm"
-msgstr "নিশ্চিত করা"
-
-msgid "Confirmation"
-msgstr "নিশ্চিতকরণ"
-
-msgid "Congratulations!"
-msgstr "অভিনন্দন!"
-
-msgid "Copy to clipboard"
-msgstr "ক্লিপবোর্ডে অনুলিপি করুন"
-
-msgid "Country"
-msgstr "দেশ"
-
-msgid "Country code"
-msgstr "কান্ট্রি কোড"
-
-msgid "Creation date"
-msgstr "তৈরির তারিখ"
-
-msgid "Creation date:"
-msgstr "তৈরির তারিখ:"
-
-msgid "Current password"
-msgstr "বর্তমান পাসওয়ার্ড"
+msgid "Request status"
+msgstr "অবস্থার অনুরোধ"
 
 msgid "Custodian"
 msgstr "তত্ত্বাবধায়ক"
 
-msgid "Custom"
-msgstr "কাস্টম"
+msgid "Identity"
+msgstr "পরিচয়"
 
-msgid "Custom privacy panel"
-msgstr "কাস্টম গোপনীয়তা প্যানেল"
+msgid "Access requested"
+msgstr "প্রবেশের অনুরোধ করা হয়েছে"
 
-msgid "Custom support URL"
-msgstr ""
+msgid "Request access to the whistleblower's identity"
+msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুরোধ করুন"
 
-msgid "Custom text"
-msgstr "কাস্টম লেখা"
+msgid "Reply to the request"
+msgstr "অনুরোধের জবাব দিন"
 
-msgid "Custom translation"
-msgstr "কাস্টম অনুবাদ"
-
-msgid "Date"
-msgstr "তারিখ"
-
-msgid "Date of the request"
-msgstr "অনুরোধের তারিখ"
-
-msgid "Date range"
-msgstr "তারিখের পরিসীমা"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr ""
-
-msgid "Delete"
-msgstr "মুছুন"
+msgid "Authorized"
+msgstr "অনুমোদিত"
 
 msgid "Denied"
 msgstr "অস্বীকৃত"
+
+msgid "Waiting for authorization"
+msgstr "অনুমোদনের অপেক্ষায়"
+
+msgid "New request"
+msgstr "নতুন অনুরোধ"
+
+msgid "Authorize"
+msgstr "অনুমোদন"
 
 msgid "Deny"
 msgstr "বাতিল"
@@ -338,26 +234,20 @@ msgstr "বাতিল"
 msgid "Deny access to the whistleblower's identity"
 msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশ বাতিল করুন"
 
-msgid "Description"
-msgstr "বিবরণ"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুমোদন দিন"
 
-msgid "Deselect"
-msgstr ""
+msgid "URL redirects"
+msgstr "ইউআরএল পুনর্নির্দেশ"
 
-msgid "Deselect all"
-msgstr "সবগুলো অনির্বাচিত করুন"
+msgid "Anomaly detection thresholds"
+msgstr "অসঙ্গতি সনাক্তকরণ থ্রেশহোল্ডগুলি"
 
-msgid "Details"
-msgstr "বিস্তারিত"
+msgid "Available disk space"
+msgstr "ডিস্কে খালি স্থানের পরিমাণ"
 
-msgid "Details of the PGP key:"
-msgstr "PGP কী এর বিস্তারিত:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "অক্ষম"
+msgid "Last update"
+msgstr "সর্বশেষ আপডেট"
 
 msgid "Disable notifications to administrators"
 msgstr "প্রশাসকদের কাছে বিজ্ঞপ্তিগুলি নিষ্ক্রিয় করুন"
@@ -368,197 +258,221 @@ msgstr "তত্ত্বাবধায়কদের কাছে বিজ্�
 msgid "Disable notifications to recipients"
 msgstr "প্রাপকদের বিজ্ঞপ্তি নিষ্ক্রিয় করুন"
 
-msgid "Disable submissions"
-msgstr "জমাদান অক্ষম করুন"
+msgid "Score"
+msgstr "স্কোর"
 
-msgid "Disable the privacy panel"
-msgstr "গোপনীয়তা প্যানেলটি অক্ষম করুন"
+msgid "Trigger question"
+msgstr "ট্রিগার প্রশ্ন"
 
-msgid "Disable two factor authentication"
-msgstr "টু ফ্যাক্টর অথেনটিকেশন অক্ষম করুন"
+msgid "Triggered by score:"
+msgstr "স্কোর দ্বারা ট্রিগারড:"
 
-msgid "Disabled"
-msgstr "নিষ্ক্রিয়"
+msgid "Weak"
+msgstr "দুর্বল"
 
-msgid "Disclaimer"
+msgid "Acceptable"
+msgstr "গ্রহণযোগ্য"
+
+msgid "Strong"
+msgstr "শক্ত"
+
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
-msgid "Display options alphabetically"
-msgstr "বর্ণানুক্রমিকভাবে বিকল্পগুলি প্রদর্শন করুন"
+msgid "Silence email notifications"
+msgstr "ইমেল বিজ্ঞপ্তি নিঃশব্দ করুন"
 
-msgid "Download"
-msgstr "ডাউনলোড"
+msgid "Turn on email notifications"
+msgstr "ইমেল বিজ্ঞপ্তি চালু করুন"
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
-
-msgid "Download the Tor Browser"
-msgstr "Tor Browser ডাউনলোড করুন"
-
-msgid "Duplicate"
-msgstr "প্রতিলিপি"
-
-msgid "Each entry must be separated with a comma."
-msgstr "প্রতিটি এন্ট্রি একটি কমা দিয়ে পৃথক করা আবশ্যক।"
-
-msgid "Earliest selectable date"
-msgstr "নিকটতম নির্বাচনযোগ্য তারিখ"
-
-msgid "Edit"
-msgstr "এডিট "
-
-msgid "Email"
-msgstr "ইমেইল"
+msgid "Input validation"
+msgstr "ইনপুট যাচাইকরন"
 
 msgid "Email address"
 msgstr "ইমেইল ঠিকানা"
 
-msgid "Enable"
-msgstr "সচল"
+msgid "Custom"
+msgstr "কাস্টম"
 
-msgid "Enable PGP"
-msgstr ""
+msgid "None"
+msgstr "কোনটি না"
 
-msgid "Enable administrators to change user passwords"
-msgstr "প্রশাসকগণকে ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার অনুমতি দিন"
+msgid "Regular expression"
+msgstr "নিয়মিত অভিব্যাক্তি"
 
-msgid "Enable custom privacy panel"
-msgstr "কাস্টম গোপনীয়তা প্যানেল সক্ষম করুন"
-
-msgid "Enable email notifications"
-msgstr "ইমেইল বিজ্ঞপ্তি সক্ষম করুন"
-
-msgid "Enable email notifications for:"
-msgstr "এর জন্য ইমেইল বিজ্ঞপ্তিগুলি সক্ষম করুন:"
-
-msgid "Enable encryption"
-msgstr "এনক্রিপশন সক্ষম করুন"
-
-msgid "Enable scoring system"
-msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
-
-msgid "Enable search engines indexing"
-msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
-
-msgid "Enable simplified login"
-msgstr "সিম্পল লগইন সক্ষম করুন"
-
-msgid "Enable terms of service"
-msgstr "পরিষেবার শর্তাদি সক্ষম করুন"
-
-msgid "Enable two factor authentication"
-msgstr "টু ফ্যাক্টর অথেনটিকেশন সক্ষম করুন"
-
-msgid "Enabled"
-msgstr "সক্রিয় করা"
-
-msgid "Enter a name for the copy"
-msgstr "অনুলিপিটির জন্য একটি নাম লিখুন"
-
-msgid "Enter the two factor authentication code"
-msgstr "টু-ফ্যাক্টর অথেনটিকেশন কোডটি লিখুন"
+msgid "Search"
+msgstr "অনুসন্ধান করুন"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "এই কাস্টম লেখাটি আর প্ল্যাটফর্মে প্রদর্শিত হবে না। মূল লেখাটি পরিবর্তন বা সরানো হয়েছে।"
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করতে আপনার অ্যাকাউন্টের ব্যবহারকারীর নাম বা আপনার ইমেইল ঠিকানা লিখুন।"
+msgid "Audit log"
+msgstr "অডিট লগ"
 
-msgid "Enter your email address to request a password reset."
-msgstr "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।"
+msgid "Stats"
+msgstr "পরিসংখ্যান"
 
-msgid "Error on input validation"
-msgstr "ইনপুট যাচাইকরণে ত্রুটি"
+msgid "Activities"
+msgstr "কার্যকলাপ"
 
-msgid "Error!"
-msgstr "ত্রুটি!"
+msgid "Reports"
+msgstr "রিপোর্টগুলি"
 
-msgid "Everyone"
+msgid "Report"
 msgstr ""
 
-msgid "Example:"
-msgstr "উদাহরণ:"
-
-msgid "Expand"
-msgstr "প্রসারিত"
-
-msgid "Expiration date"
-msgstr "মেয়াদ উত্তীর্ণের তারিখ"
-
-msgid "Export"
-msgstr "রপ্তানি"
-
-msgid "File size"
-msgstr "ফাইলের আকার"
-
-msgid "File size not accepted."
-msgstr "ফাইলের আকার গৃহীত হয়নি।"
-
-msgid "Filename"
-msgstr "ফাইলের নাম"
-
-msgid "Files"
-msgstr "ফাইলসমূহ"
-
-msgid "Files attached by recipients"
-msgstr "প্রাপকদের দ্বারা সংযুক্ত ফাইল"
-
-msgid "Fill the additional questionnaire"
-msgstr "অতিরিক্ত প্রশ্নাবলী পূরণ করুন"
-
-msgid "Fingerprint"
-msgstr "আঙ্গুলের ছাপ"
-
-msgid "First"
-msgstr "প্রথম"
-
-msgid "Fiscal code"
-msgstr ""
-
-msgid "Footer"
-msgstr "ফুটার"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "নিরাপত্তার কারণে, নিয়মিত বিরতিতে পাসওয়ার্ড পরিবর্তনগুলি প্রয়োজন।"
-
-msgid "For the user documentation, visit:"
-msgstr "ব্যবহারকারীর ডকুমেন্টেশনের জন্য, এখানে যান:"
-
-msgid "Forbidden operation"
-msgstr "নিষিদ্ধ ক্রিয়াকলাপ"
-
-msgid "Force password change"
-msgstr "বাধ্যতামূলক পাসওয়ার্ড পরিবর্তন"
-
-msgid "Forcefully selected"
-msgstr "জোরপূর্বক নির্বাচিত"
-
-msgid "Forgot password?"
-msgstr "পাসওয়ার্ড ভুলে গেছেন?"
+msgid "Users"
+msgstr "ব্যবহারকারীগণ"
 
 msgid "From"
 msgstr "থেকে"
 
-msgid "From:"
-msgstr "থেকে:"
+msgid "Number of downloads"
+msgstr "ডাউনলোডের সংখ্যা"
 
-msgid "Generate"
-msgstr "তৈরি করুন"
+msgid "File size not accepted."
+msgstr "ফাইলের আকার গৃহীত হয়নি।"
 
-msgid "Give the user administrative access to the following features:"
-msgstr "ব্যবহারকারীকে নিম্নলিখিত বৈশিষ্ট্যগুলিতে প্রশাসনিক অ্যাক্সেস দিন:"
+msgid "Maximum file size is:"
+msgstr "সর্বাধিক ফাইলের আকার:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "এই প্রশাসকের ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার ক্ষমতা দিন"
+msgid "Scheduled jobs"
+msgstr "তালিকাভুক্ত কার্যাদি"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "নতুন করে তৈরি করুন"
+
+msgid "Display options alphabetically"
+msgstr "বর্ণানুক্রমিকভাবে বিকল্পগুলি প্রদর্শন করুন"
+
+msgid "Enable email notifications for:"
+msgstr "এর জন্য ইমেইল বিজ্ঞপ্তিগুলি সক্ষম করুন:"
+
+msgid "Disable"
+msgstr "অক্ষম"
+
+msgid "Remove"
+msgstr "অপসারণ"
+
+msgid "Use as default"
+msgstr "ডিফল্ট হিসাবে ব্যবহার করুন"
+
+msgid "Collapse"
+msgstr "সঙ্কুচিত"
+
+msgid "Expand"
+msgstr "প্রসারিত"
+
+msgid "Select"
+msgstr "নির্বাচন"
+
+msgid "Deselect"
+msgstr ""
+
+msgid "Surname"
+msgstr "পদবি"
+
+msgid "New"
+msgstr "নতুন"
+
+msgid "Opened"
+msgstr "খোলা হয়েছে"
+
+msgid "Closed"
+msgstr "বন্ধ"
+
+msgid "Placeholder"
+msgstr "ধারক"
+
+msgid "Print"
+msgstr "প্রিন্ট করুন"
+
+msgid "Previous"
+msgstr "পূর্ববর্তী"
+
+msgid "Next"
+msgstr "পরবর্তী"
+
+msgid "First"
+msgstr "প্রথম"
+
+msgid "Last"
+msgstr "শেষ"
+
+msgid "Send a test email to your email address."
+msgstr "আপনার ইমেইল ঠিকানায় একটি পরীক্ষামূলক ইমেইল প্রেরণ করুন।"
+
+msgid "Block the submission"
+msgstr "জমা দেওয়া অক্ষম করুন"
+
+msgid "Skip the recipient account creation."
+msgstr "প্রাপকের অ্যাকাউন্ট তৈরি করা এড়িয়ে যান।"
+
+msgid "Send activation link"
+msgstr "অ্যাক্টিভেশন লিঙ্ক প্রেরণ করুন"
+
+msgid "Password reset"
+msgstr "পাসওয়ার্ড রিসেট করুন"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "এক বা একাধিক প্রাপক এখনও প্রথমবার লগইন করেননি। এর অর্থ তারা রিপোর্ট পাবেন না।"
+
+msgid "This user has not performed the first login yet."
+msgstr "এই ব্যবহারকারী এখনও প্রথমবার লগইন সম্পাদন করেন নি।"
+
+msgid "seconds"
+msgstr "সেকেন্ড"
+
+msgid "This domain name is not available."
+msgstr "এই ডোমেইন নাম উপলব্ধ নয়।"
+
+msgid "Mark as important"
+msgstr ""
+
+msgid "Copy to clipboard"
+msgstr "ক্লিপবোর্ডে অনুলিপি করুন"
+
+msgid "Logout"
+msgstr "প্রস্থান"
+
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
+msgid "Transfer"
+msgstr "হস্তান্তর "
+
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "লুকাও"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -567,54 +481,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr ""
-
-msgid "Group of questions"
-msgstr "দলবদ্ধ প্রশ্ন"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "আপনি কি ইতিমধ্যে একটি রিপোর্ট জমা করেছেন? আপনার রসিদ নাম্বার লিখুন"
-
-msgid "Hidden"
-msgstr "গোপন"
-
-msgid "Hide"
-msgstr "লুকাও"
-
-msgid "High"
-msgstr "উচ্চ"
-
-msgid "Hint"
-msgstr "ইঙ্গিত"
-
-msgid "Home"
-msgstr "হোম"
-
-msgid "Homepage title"
-msgstr "হোমপেজ-এর শিরোনাম"
-
-msgid "Hostname"
-msgstr "হোস্টনেম"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "আমি লাইসেন্সের শর্তাদি পড়েছি এবং তাতে সম্মত হয়েছি।"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "গোপনীয়তা নীতি"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "অজ্ঞাতপরিচয়"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "একটি রিপোর্ট জমা দিন"
+
+msgid "Select a reporting channel:"
+msgstr ""
+
+msgid "Before proceeding, please set a new password."
+msgstr "এগিয়ে যাওয়ার আগে, দয়া করে একটি নতুন পাসওয়ার্ড সেট করুন।"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "এগিয়ে যাওয়ার আগে, দয়া করে টু-ফ্যাক্টর অথেনটিকেশন সক্ষম করুন।"
+
+msgid "Enable"
+msgstr "সচল"
+
+msgid "Type"
+msgstr "ধরণ"
+
+msgid "Severity"
+msgstr "প্রখরতা"
+
+msgid "Object"
+msgstr "অবজেক্ট"
 
 msgid "ID"
 msgstr "আইডি"
 
-msgid "Identity"
-msgstr "পরিচয়"
+msgid "Username"
+msgstr "ব্যবহারকারীর নাম"
+
+msgid "Role"
+msgstr "ভূমিকা"
+
+msgid "Name"
+msgstr "নাম"
+
+msgid "Creation date"
+msgstr "তৈরির তারিখ"
+
+msgid "Last access"
+msgstr "শেষবার প্রবেশ"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
+
+msgid "Substatuses"
+msgstr "উপ-অবস্থা"
+
+msgid "Add"
+msgstr "যোগ করুন"
+
+msgid "Label"
+msgstr "লেবেল"
+
+msgid "This field is mandatory"
+msgstr "এই ক্ষেত্রটি বাধ্যতামূলক"
+
+msgid "Edit"
+msgstr "এডিট "
+
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
+msgid "Cancel"
+msgstr "বাতিল"
+
+msgid "days"
+msgstr "দিন"
+
+msgid "Disabled"
+msgstr "নিষ্ক্রিয়"
+
+msgid "Report statuses"
+msgstr "স্ট্যাটাস রিপোর্ট করুন"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Hidden"
+msgstr "গোপন"
+
+msgid "Description"
+msgstr "বিবরণ"
+
+msgid "Questionnaire"
+msgstr "প্রশ্নাবলী"
+
+msgid "Recipients"
+msgstr "প্রাপক"
+
+msgid "Reminder date"
+msgstr ""
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "এই বৈশিষ্ট্যটি অক্ষম করতে মানটি 0 তে সেট করুন।"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "প্রশ্নাবলীর নেভিগেশন ইন্টারফেসটি দেখান"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "হুইসেল ব্লোয়ারদের তাদের প্রাপকগুলি নির্বাচন করতে অনুমতি দিন"
+
+msgid "Select all recipients by default"
+msgstr "ডিফল্টভাবে সমস্ত প্রাপক নির্বাচন করুন"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "নির্বাচনযোগ্য প্রাপকদের সর্বাধিক সংখ্যা:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "প্রাপকদের বর্ণানুক্রমিক ক্রমে দেখান"
+
+msgid "Additional questionnaire"
+msgstr "অতিরিক্ত প্রশ্নাবলী"
+
+msgid "Scoring system options"
+msgstr "স্কোরিং সিস্টেমের বিকল্পগুলি"
+
+msgid "Threshold"
+msgstr "সীমা"
+
+msgid "Value"
+msgstr "মান"
+
+msgid "Medium"
+msgstr "মধ্যম"
+
+msgid "High"
+msgstr "উচ্চ"
+
+msgid "Software version:"
+msgstr "সফ্টওয়্যার সংস্করণ:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "নির্দিষ্ট আইপি ঠিকানাগুলিতে প্রবেশ সীমাবদ্ধ করুন"
+
+msgid "Enabled"
+msgstr "সক্রিয় করা"
+
+msgid "Allowed IP addresses"
+msgstr "অনুমোদিত আইপি ঠিকানা"
+
+msgid "Admin"
+msgstr "প্রশাসক"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "প্রাপক"
+
+msgid "Each entry must be separated with a comma."
+msgstr "প্রতিটি এন্ট্রি একটি কমা দিয়ে পৃথক করা আবশ্যক।"
+
+msgid "Example:"
+msgstr "উদাহরণ:"
+
+msgid "Hostname"
+msgstr "হোস্টনেম"
+
+msgid "Organization"
+msgstr "সংগঠন"
+
+msgid "Invalid email address"
+msgstr "অকার্যকর ইমেইল ঠিকানা"
+
+msgid "City"
+msgstr "শহর"
+
+msgid "Country"
+msgstr "দেশ"
+
+msgid "Country code"
+msgstr "কান্ট্রি কোড"
+
+msgid "Generate"
+msgstr "তৈরি করুন"
+
+msgid "Private Key"
+msgstr "ব্যক্তিগত কী"
+
+msgid "Certificate Signing Request"
+msgstr "সার্টিফিকেট স্বাক্ষর করার অনুরোধ"
+
+msgid "Certificate"
+msgstr "সার্টিফিকেট"
+
+msgid "Valid until:"
+msgstr "বৈধতার সীমা:"
+
+msgid "Issuer:"
+msgstr "ইস্যুকারী:"
+
+msgid "Intermediate Certificates"
+msgstr "অন্তর্বর্তী সার্টিফিকেট"
+
+msgid "Reset"
+msgstr "রিসেট"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "২৪ ঘন্টার মধ্যে সক্রিয় না করা হলে প্ল্যাটফর্মটি স্বয়ংক্রিয়ভাবে মুছে যাবে।"
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "প্ল্যাটফর্মটি এই ইন্টারফেসের মাধ্যমে HTTPS কনফিগারেশন সমর্থন করে।"
+
+msgid "Automatic configuration"
+msgstr "স্বয়ংক্রিয় কনফিগারেশন"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "স্বয়ংক্রিয় HTTPS কনফিগারেশন ব্যবহার করলে Let's Encrypt কর্তৃপক্ষ থেকে সার্টিফিকেট অনুরোধ, সক্ষম এবং সার্টিফিকেট নবায়নের সম্পূর্ণ প্রক্রিয়া পরিচালনা করবে।"
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "প্ল্যাটফর্মটি অবশ্যই পাবলিক আইপি ঠিকানার মাধ্যমে পৌঁছাতে হবে এবং নির্বাচিত হোস্টনামের অবশ্যই সেই ঠিকানাটি উল্লেখ করে কোনও ডিএনএস রেকর্ড থাকতে হবে।"
+
+msgid "Proceed"
+msgstr "এগিয়ে যান"
+
+msgid "Manual configuration"
+msgstr "ম্যানুয়াল কনফিগারেশন"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "ম্যানুয়াল কনফিগারেশন উইজার্ড আপনাকে বিকল্প সার্টিফিকেট কর্তৃপক্ষের HTTPS সেটআপ করার জন্য নির্দেশনা প্রদান করবে।"
+
+msgid "Auto-renewal"
+msgstr "স্বয়ংক্রিয় নবায়ন"
+
+msgid "Tor Onion Service"
+msgstr "টর অনিয়ন পরিষেবা"
+
+msgid "Anonymize outgoing connections"
+msgstr "বহির্গামী সংযোগগুলি অজ্ঞাত রাখুন"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "টর ছাড়া প্ল্যাটফর্মটিতে পৌঁছানোর সুযোগ দিন"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "টর ছাড়া প্ল্যাটফর্মটি ব্যবহারে সক্ষম ভূমিকাসমূহ"
+
+msgid "Whistleblower"
+msgstr "হুইসেল ব্লোয়ার"
+
+msgid "To"
+msgstr "প্রতি"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
+
+msgid "SMTP email address"
+msgstr "SMTP ইমেল ঠিকানা"
+
+msgid "SMTP server address"
+msgstr "SMTP সার্ভার ঠিকানা"
+
+msgid "SMTP server port"
+msgstr "SMTP সার্ভার পোর্ট"
+
+msgid "Security"
+msgstr "সুরক্ষা"
+
+msgid "Require authentication"
+msgstr "প্রমাণীকরণ প্রয়োজন"
+
+msgid "Password"
+msgstr "পাসওয়ার্ড"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "কত ঘণ্টা পূর্বে প্রতিবেদনের মেয়াদ উত্তীর্ণের সতর্কতা প্রেরণ করা হবে"
+
+msgid "Test the configuration"
+msgstr "কনফিগারেশন পরীক্ষা করুন"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP কনফিগারেশন পুনরায় সেট করুন"
+
+msgid "Reset notification templates to default"
+msgstr "বিজ্ঞপ্তি টেমপ্লেটগুলি পুনরায় ডিফল্টে সেট করুন"
+
+msgid "Template"
+msgstr "টেম্পলেট"
+
+msgid "Question"
+msgstr "প্রশ্ন"
+
+msgid "Single-line text input"
+msgstr "এক লাইন লেখার স্থান"
+
+msgid "Multi-line text input"
+msgstr "একাধিক-লাইন লেখার স্থান"
+
+msgid "Selection box"
+msgstr "নির্বাচন বক্স"
+
+msgid "Multiple choice input"
+msgstr "একাধিক পছন্দ ইনপুট"
+
+msgid "Checkbox"
+msgstr "চেকবক্স"
+
+msgid "Terms of service"
+msgstr "সেবা পাবার শর্ত"
+
+msgid "Date range"
+msgstr "তারিখের পরিসীমা"
+
+msgid "Group of questions"
+msgstr "দলবদ্ধ প্রশ্ন"
+
+msgid "Row"
+msgstr "সারি"
+
+msgid "Column"
+msgstr "কলাম"
+
+msgid "Width"
+msgstr "প্রস্থ"
+
+msgid "Question group"
+msgstr "প্রশ্নের গ্রুপ"
+
+msgid "Hint"
+msgstr "ইঙ্গিত"
+
+msgid "Mandatory"
+msgstr "আবশ্যক"
+
+msgid "Accept multiple file uploads"
+msgstr "একাধিক ফাইল আপলোড গ্রহণ করুন"
+
+msgid "Accept multiple answers"
+msgstr "একাধিক জবাব গ্রহণ করুন"
+
+msgid "Template override"
+msgstr "টেমপ্লেট অগ্রাহ্য করা"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "ফোন নাম্বার"
+
+msgid "Text"
+msgstr "পাঠ্য"
+
+msgid "Checkbox label"
+msgstr "চেকবক্স লেবেল"
+
+msgid "Add multimedia content"
+msgstr "মাল্টিমিডিয়া সামগ্রী যুক্ত করুন"
+
+msgid "Image"
+msgstr "ছবি"
+
+msgid "Audio"
+msgstr "অডিও"
+
+msgid "Video"
+msgstr "ভিডিও"
+
+msgid "Text shown upon negative answer"
+msgstr "নেতিবাচক উত্তরের উপরে যে লেখা প্রদর্শিত হবে"
+
+msgid "Low"
+msgstr "নিম্ন"
+
+msgid "Trigger conditions"
+msgstr "ট্রিগারের শর্তাবলি"
+
+msgid "Sufficient"
+msgstr "যথেষ্ট"
+
+msgid "Options"
+msgstr "বিকল্প"
+
+msgid "Addition"
+msgstr "অতিরিক্ত"
+
+msgid "Multiplier"
+msgstr "গুণিতক"
+
+msgid "Questions"
+msgstr "প্রশ্নাবলী"
+
+msgid "Add new question"
+msgstr "নতুন প্রশ্ন যুক্ত করুন"
+
+msgid "Add question from template"
+msgstr "টেমপ্লেট থেকে প্রশ্ন যুক্ত করুন"
+
+msgid "Duplicate"
+msgstr "প্রতিলিপি"
+
+msgid "Steps"
+msgstr "পদক্ষেপ"
+
+msgid "Logo"
+msgstr "লোগো"
+
+msgid "Project name"
+msgstr "প্রজেক্টের নাম"
+
+msgid "Homepage title"
+msgstr "হোমপেজ-এর শিরোনাম"
+
+msgid "Presentation"
+msgstr "উপস্থাপনা"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "সম্ভাব্য হুইসেল ব্লোয়ারদের কাছে জিজ্ঞাস্য প্রশ্ন"
+
+msgid "Whistleblowing button"
+msgstr "হুইসেলব্লোইং বাটন"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "ফুটার"
+
+msgid "Upload"
+msgstr "আপলোড"
+
+msgid "Download"
+msgstr "ডাউনলোড"
+
+msgid "Language:"
+msgstr "ভাষাঃ"
+
+msgid "Add custom text"
+msgstr "কাস্টম লেখা যোগ করুন"
+
+msgid "Custom text"
+msgstr "কাস্টম লেখা"
+
+msgid "Original text"
+msgstr "মূল লেখা"
+
+msgid "Original translation"
+msgstr "মূল অনুবাদ"
+
+msgid "Custom translation"
+msgstr "কাস্টম অনুবাদ"
+
+msgid "Disable submissions"
+msgstr "জমাদান অক্ষম করুন"
+
+msgid "Enable encryption"
+msgstr "এনক্রিপশন সক্ষম করুন"
+
+msgid "Enable administrators to change user passwords"
+msgstr "প্রশাসকগণকে ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার অনুমতি দিন"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:"
+
+msgid "Enable PGP"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr "সিম্পল লগইন সক্ষম করুন"
+
+msgid "Enable search engines indexing"
+msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
+
+msgid "megabytes"
+msgstr "মেগাবাইট"
+
+msgid "Require two factor authentication"
+msgstr "টু-ফ্যাক্টর অথেনটিকেশন প্রয়োজন"
+
+msgid "Password change interval"
+msgstr "পাসওয়ার্ড পরিবর্তনের মাঝে ব্যবধান"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "নিরাপত্তার কারণে, নিয়মিত বিরতিতে পাসওয়ার্ড পরিবর্তনগুলি প্রয়োজন।"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "কতদিন পরে ব্যবহারকারীদের অপঠিত প্রতিবেদন সম্পর্কে অবহিত করা হবে"
+
+msgid "Custom support URL"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "গোপনীয়তা প্যানেলটি অক্ষম করুন"
+
+msgid "Enable custom privacy panel"
+msgstr "কাস্টম গোপনীয়তা প্যানেল সক্ষম করুন"
+
+msgid "Custom privacy panel"
+msgstr "কাস্টম গোপনীয়তা প্যানেল"
+
+msgid "Enable scoring system"
+msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
+
+msgid "Logging level"
+msgstr "লগিংয়ের স্তর"
+
+msgid "percentage"
+msgstr "শতাংশ"
+
+msgid "Log accesses of internal users"
+msgstr "অভ্যন্তরীণ ব্যবহারকারীদের লগ অ্যাক্সেসগুলি"
+
+msgid "Notify administrators of software problems"
+msgstr "সফ্টওয়্যার সমস্যাগুলি প্রশাসকদের অবহিত করুন"
+
+msgid "Notify developers of software problems"
+msgstr "সফটওয়্যার সমস্যাগুলি ডেভেলপারদের অবহিত করুন"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "এই বৈশিষ্ট্যটি সক্ষম করে আপনি প্ল্যাটফর্মটির বিকাশ এবং সুরক্ষায় অবদান রাখবেন।"
+
+msgid "Reset reports"
+msgstr "রিপোর্টগুলি রিসেট করুন"
+
+msgid "Settings"
+msgstr "সেটিংস"
+
+msgid "Case management"
+msgstr "কেস ম্যানেজমেন্ট"
+
+msgid "Network"
+msgstr "নেটওয়ার্ক"
+
+msgid "Sites"
+msgstr "সাইটসমূহ"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "কনফিগার করুন"
+
+msgid "Subdomain"
+msgstr "সাব-ডোমেইন"
+
+msgid "Mode:"
+msgstr "ধরন:"
+
+msgid "Creation date:"
+msgstr "তৈরির তারিখ:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "প্রশাসনিক উদ্দেশ্যে শুধুমাত্র প্রথম সাইটটি ব্যবহার করুন"
+
+msgid "Root domain used for secondary sites"
+msgstr "আনুষঙ্গিক সাইটগুলির জন্য ব্যবহৃত রুট ডোমেইন"
+
+msgid "Allow users to sign up"
+msgstr "ব্যবহারকারীদের সাইন আপ করার অনুমতি দিন"
+
+msgid "Enable terms of service"
+msgstr "পরিষেবার শর্তাদি সক্ষম করুন"
+
+msgid "Title"
+msgstr "শিরোনাম"
+
+msgid "Public name"
+msgstr "প্রকাশ্য নাম"
+
+msgid "Send reset link"
+msgstr "রিসেট লিঙ্ক প্রেরণ করুন"
+
+msgid "Set password"
+msgstr "পাসওয়ার্ড সেট করুন"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr ""
+
+msgid "Force password change"
+msgstr "বাধ্যতামূলক পাসওয়ার্ড পরিবর্তন"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "ব্যবহারকারীকে পরবর্তী লগইনে তার পাসওয়ার্ড পরিবর্তন করতে বাধ্য করা হবে।"
+
+msgid "Disable two factor authentication"
+msgstr "টু ফ্যাক্টর অথেনটিকেশন অক্ষম করুন"
+
+msgid "Language"
+msgstr "ভাষা"
+
+msgid "Enable email notifications"
+msgstr "ইমেইল বিজ্ঞপ্তি সক্ষম করুন"
+
+msgid "Details of the PGP key:"
+msgstr "PGP কী এর বিস্তারিত:"
+
+msgid "Fingerprint"
+msgstr "আঙ্গুলের ছাপ"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "PGP পাবলিক কী সরবরাহ করে এনক্রিপশন সেট আপ করুন"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "এই প্রশাসকের ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার ক্ষমতা দিন"
+
+msgid "Forcefully selected"
+msgstr "জোরপূর্বক নির্বাচিত"
+
+msgid "Allow the recipient to delete reports"
+msgstr "প্রাপককে প্রতিবেদনগুলি মুছে ফেলার অনুমতি দিন"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "প্রাপককে রিপোর্টের মেয়াদ শেষ হওয়ার তারিখ স্থগিত করার অনুমতি দিন"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "ব্যবহারকারীকে নিম্নলিখিত বৈশিষ্ট্যগুলিতে প্রশাসনিক অ্যাক্সেস দিন:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "অনুরোধের তারিখ"
+
+msgid "Report date"
+msgstr "প্রতিবেদনের তারিখ"
+
+msgid "Authorization"
+msgstr "অনুমোদন"
+
+msgid "Requests"
+msgstr "অনুরোধ"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "যাচাইয়ের লিঙ্কটি সঠিক নয় বা মেয়াদ শেষ হয়ে গেছে।"
+
+msgid "Your new email address has been validated."
+msgstr "আপনার নতুন ইমেল ঠিকানা বৈধ হয়েছে।"
+
+msgid "Forgot password?"
+msgstr "পাসওয়ার্ড ভুলে গেছেন?"
+
+msgid "Enter the two factor authentication code"
+msgstr "টু-ফ্যাক্টর অথেনটিকেশন কোডটি লিখুন"
+
+msgid "Authentication failed"
+msgstr "যাচাই করতে ব্যার্থ হয়েছে"
+
+msgid "The code is either invalid or expired."
+msgstr "কোডটি অবৈধ বা মেয়াদোত্তীর্ণ।"
+
+msgid "Please select your account:"
+msgstr "আপনার অ্যাকাউন্টটি নির্বাচন করুন:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "এখন আপনার পাসওয়ার্ড টাইপ করুন, তারপরে 'লগ ইন' ক্লিক করুন:"
+
+msgid "Confirm"
+msgstr "নিশ্চিত করা"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ব্যবহারকারী বিকল্প নির্বাচন করার পরে যে লেখা দেখানো হবে। "
+
+msgid "Assign score points"
+msgstr "স্কোর পয়েন্ট বরাদ্দ করুন"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "অবস্থা:"
+
+msgid "Are you sure?"
+msgstr "আপনি কি নিশ্চিত?"
+
+msgid "Close"
+msgstr "বন্ধ"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "দয়া করে মনে রাখবেন যে সম্পর্কিত সমস্ত তথ্য স্থায়ীভাবে মুছে ফেলা হবে।"
+
+msgid "Enable two factor authentication"
+msgstr "টু ফ্যাক্টর অথেনটিকেশন সক্ষম করুন"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "এগিয়ে যাওয়ার আগে দয়া করে এখানে ডকুমেন্টেশনটি সাবধানতার সাথে পড়ুন:"
+
+msgid "Account recovery key"
+msgstr "অ্যাকাউন্ট পুনরুদ্ধারের চাবি"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "একটি অনুলিপি তৈরি করুন এবং এটি একটি নিরাপদ স্থানে সংরক্ষণ করুন। আপনি যদি পাসওয়ার্ড হারিয়ে ফেলেন তবে তথ্যের ক্ষতি ছাড়াই আপনার অ্যাকাউন্টে অ্যাক্সেস পুনরুদ্ধার করতে এটি প্রয়োজনীয় হবে।"
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "অনুলিপিটির জন্য একটি নাম লিখুন"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "আমরা যত তাড়াতাড়ি সম্ভব আপনার সাথে যোগাযোগ করার চেষ্টা করব।"
+
+msgid "Submit"
+msgstr "দাখিল করা"
+
+msgid "The connection is not secure."
+msgstr "সংযোগটি নিরাপদ নয়।"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "প্ল্যাটফর্মটি এখনও এইচটিটিপিএস সংযোগের জন্য কনফিগার করা হয়নি এবং তাই কেবল এটি পরীক্ষার উদ্দেশ্যে ব্যবহার করা উচিত।"
+
+msgid "Send"
+msgstr "পাঠান"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "নিশ্চিত করলে, আপনি মেয়াদ শেষ হওয়ার তারিখটি এখানে স্থগিত করবেন:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "এটি একটি পরীক্ষামূলক প্ল্যাটফর্ম, দয়া করে এটি বাস্তব রিপোর্ট জমা দেওয়ার জন্য ব্যবহার করবেন না।"
+
+msgid "Install an authenticator app on your phone"
+msgstr "আপনার ফোনে একটি অথেনটিকেশন অ্যাপ্লিকেশন ইনস্টল করুন"
+
+msgid "Scan the QR code with the app"
+msgstr "অ্যাপ্লিকেশনটির মাধ্যমে কিউআর কোডটি স্ক্যান করুন"
+
+msgid "Error!"
+msgstr "ত্রুটি!"
+
+msgid "Internal server error"
+msgstr "অভ্যন্তরীণ সার্ভার ত্রুটি"
+
+msgid "Error on input validation"
+msgstr "ইনপুট যাচাইকরণে ত্রুটি"
+
+msgid "Resource not found"
+msgstr "রিসোর্স পাওয়া যায় নি"
+
+msgid "Forbidden operation"
+msgstr "নিষিদ্ধ ক্রিয়াকলাপ"
+
+msgid "The specified old password is not valid"
+msgstr "নির্দিষ্ট পুরানো পাসওয়ার্ডটি বৈধ নয়"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "কেবলমাত্র টর নেটওয়ার্কের মাধ্যমে রিসোর্স অ্যাক্সেস করা যেতে পারে"
+
+msgid "The upload request exceeds the size limit"
+msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "বর্তমান পাসওয়ার্ড"
+
+msgid "New password"
+msgstr "নতুন পাসওয়ার্ড"
+
+msgid "The new password must be different from the current one."
+msgstr "নতুন পাসওয়ার্ডটি অবশ্যই বর্তমান পাসওয়ার্ডের থেকে আলাদা হওয়া উচিত।"
+
+msgid "Type your new password again"
+msgstr "আপনার নতুন পাসওয়ার্ড আবার টাইপ করুন"
+
+msgid "The two passwords do not match"
+msgstr "দুটি পাসওয়ার্ড মিলছে না"
+
+msgid "Validation of email address change in progress."
+msgstr "ইমেল ঠিকানা যাচাইকরণের প্রক্রিয়া চলছে।"
+
+msgid "Please check your inbox for further instructions."
+msgstr "আরও নির্দেশাবলীর জন্য আপনার ইনবক্স চেক করুন।"
+
+msgid "Warning"
+msgstr "সতর্কতা"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "আপনাকে Tor Browser নামক অ্যাপটি ব্যবহার করে এই সাইটটি দেখার জন্য দৃঢ় পরামর্শ দেওয়া হচ্ছে যা আপনার পরিচয়ের সুরক্ষা প্রদান করে।"
+
+msgid "Download the Tor Browser"
+msgstr "Tor Browser ডাউনলোড করুন"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "তারপরে, Tor Browser-এ নীচের ঠিকানাটি অনুলিপি করুন এবং পেস্ট করুনঃ"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "আপনি কি ইতিমধ্যে একটি রিপোর্ট জমা করেছেন? আপনার রসিদ নাম্বার লিখুন"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "রসিদটি অবৈধ বা রিপোর্টের মেয়াদ শেষ হয়ে গেছে।"
+
+msgid "Filename"
+msgstr "ফাইলের নাম"
+
+msgid "Size:"
+msgstr "আকার:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "ঠিকানা:"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "টিন নাম্বার"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
+
+msgid "Fill the additional questionnaire"
+msgstr "অতিরিক্ত প্রশ্নাবলী পূরণ করুন"
+
+msgid "From:"
+msgstr "থেকে:"
+
+msgid "To:"
+msgstr "প্রতি:"
+
+msgid "View"
+msgstr "দৃশ্য"
+
+msgid "Upload date"
+msgstr "আপলোডের তারিখ"
+
+msgid "File size"
+msgstr "ফাইলের আকার"
+
+msgid "Questionnaire answers"
+msgstr "প্রশ্নের উত্তরসমূহ"
+
+msgid "Step"
+msgstr "পদক্ষেপ"
+
+msgid "Files attached by recipients"
+msgstr "প্রাপকদের দ্বারা সংযুক্ত ফাইল"
+
+msgid "Upload a file:"
+msgstr "একটি ফাইল আপলোড করুনঃ"
+
+msgid "Welcome!"
+msgstr "স্বাগতম!"
+
+msgid "For the user documentation, visit:"
+msgstr "ব্যবহারকারীর ডকুমেন্টেশনের জন্য, এখানে যান:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -626,915 +1452,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "আপনি যদি সফ্টওয়্যার বিকাশে অবদান রাখতে চান বা কোনও বাগ রিপোর্ট করতে চান, দয়া করে আমাদের টিকিটিং সিস্টেমের মাধ্যমে জানানঃ"
 
-msgid "Image"
-msgstr "ছবি"
-
-msgid "Import"
-msgstr "আমদানি"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "এই পদক্ষেপে নিম্নলিখিত প্রশ্নের উত্তরগুলি পাওয়া যায়নি বা অবৈধ:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "ইনপুট যাচাইকরন"
-
-msgid "Install an authenticator app on your phone"
-msgstr "আপনার ফোনে একটি অথেনটিকেশন অ্যাপ্লিকেশন ইনস্টল করুন"
-
-msgid "Intermediate Certificates"
-msgstr "অন্তর্বর্তী সার্টিফিকেট"
-
-msgid "Internal server error"
-msgstr "অভ্যন্তরীণ সার্ভার ত্রুটি"
-
-msgid "Invalid confirmation"
-msgstr "অবৈধ নিশ্চিতকরণ"
-
-msgid "Invalid email address"
-msgstr "অকার্যকর ইমেইল ঠিকানা"
-
-msgid "Invalid phone number"
-msgstr "ফোন নাম্বার সঠিক নয়"
-
-msgid "Issuer:"
-msgstr "ইস্যুকারী:"
-
 msgid "Join our chat:"
 msgstr "আমাদের আড্ডায় যোগ দিন:"
 
-msgid "Label"
-msgstr "লেবেল"
-
-msgid "Label the report"
-msgstr "রিপোর্টটিকে চিহ্নিত করুন"
-
-msgid "Language"
-msgstr "ভাষা"
-
-msgid "Language:"
-msgstr "ভাষাঃ"
-
-msgid "Languages"
-msgstr "ভাষাসমূহ"
-
-msgid "Last"
-msgstr "শেষ"
-
-msgid "Last Access"
-msgstr "সর্বশেষ ব্যবহার"
-
-msgid "Last access"
-msgstr "শেষবার প্রবেশ"
-
-msgid "Last update"
-msgstr "সর্বশেষ আপডেট"
-
-msgid "Latest selectable date"
-msgstr "সর্বশেষ নির্বাচনযোগ্য তারিখ"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "টর ছাড়া প্ল্যাটফর্মটিতে পৌঁছানোর সুযোগ দিন"
-
-msgid "License"
-msgstr "লাইসেন্স"
-
-msgid "Log accesses of internal users"
-msgstr "অভ্যন্তরীণ ব্যবহারকারীদের লগ অ্যাক্সেসগুলি"
-
-msgid "Log in"
-msgstr "লগইন"
-
-msgid "Logging level"
-msgstr "লগিংয়ের স্তর"
-
-msgid "Logo"
-msgstr "লোগো"
-
-msgid "Logout"
-msgstr "প্রস্থান"
-
-msgid "Low"
-msgstr "নিম্ন"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "একটি অনুলিপি তৈরি করুন এবং এটি একটি নিরাপদ স্থানে সংরক্ষণ করুন। আপনি যদি পাসওয়ার্ড হারিয়ে ফেলেন তবে তথ্যের ক্ষতি ছাড়াই আপনার অ্যাকাউন্টে অ্যাক্সেস পুনরুদ্ধার করতে এটি প্রয়োজনীয় হবে।"
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "এই প্রশাসকের পক্ষে ব্যবহারকারীর পাসওয়ার্ডগুলি পুনরায় সেট করা সম্ভব করুন।"
-
-msgid "Mandatory"
-msgstr "আবশ্যক"
-
-msgid "Manual configuration"
-msgstr "ম্যানুয়াল কনফিগারেশন"
-
-msgid "Mark as important"
-msgstr ""
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "সর্বাধিক ফাইলের আকার:"
-
-msgid "Maximum number of input characters"
-msgstr "অক্ষর ইনপুটের সর্বাধিক সংখ্যা"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "নির্বাচনযোগ্য প্রাপকদের সর্বাধিক সংখ্যা:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "মধ্যম"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "অক্ষর ইনপুটের ন্যূনতম সংখ্যা"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "ধরন:"
-
-msgid "Motivation"
-msgstr "প্রেরণা"
-
-msgid "Move down"
-msgstr "নিচে নামান"
-
-msgid "Move left"
-msgstr "বাম দিকে সরান"
-
-msgid "Move right"
-msgstr "ডান দিকে সরান"
-
-msgid "Move up"
-msgstr "উপরে উঠান"
-
-msgid "Multi-line text input"
-msgstr "একাধিক-লাইন লেখার স্থান"
-
-msgid "Multiple choice input"
-msgstr "একাধিক পছন্দ ইনপুট"
-
-msgid "Multiplier"
-msgstr "গুণিতক"
-
-msgid "Name"
-msgstr "নাম"
-
-msgid "Network"
-msgstr "নেটওয়ার্ক"
-
-msgid "New"
-msgstr "নতুন"
-
-msgid "New password"
-msgstr "নতুন পাসওয়ার্ড"
-
-msgid "New request"
-msgstr "নতুন অনুরোধ"
-
-msgid "Next"
-msgstr "পরবর্তী"
-
-msgid "No"
-msgstr "না"
-
-msgid "None"
-msgstr "কোনটি না"
-
-msgid "Not provided."
-msgstr ""
-
-msgid "Notifications"
-msgstr "নোটিফিকেশন্স"
-
-msgid "Notify administrators of software problems"
-msgstr "সফ্টওয়্যার সমস্যাগুলি প্রশাসকদের অবহিত করুন"
-
-msgid "Notify developers of software problems"
-msgstr "সফটওয়্যার সমস্যাগুলি ডেভেলপারদের অবহিত করুন"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "এখন আপনার পাসওয়ার্ড টাইপ করুন, তারপরে 'লগ ইন' ক্লিক করুন:"
-
-msgid "Number"
-msgstr "নাম্বার"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "কতদিন পরে ব্যবহারকারীদের অপঠিত প্রতিবেদন সম্পর্কে অবহিত করা হবে"
-
-msgid "Number of downloads"
-msgstr "ডাউনলোডের সংখ্যা"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "কত ঘণ্টা পূর্বে প্রতিবেদনের মেয়াদ উত্তীর্ণের সতর্কতা প্রেরণ করা হবে"
-
-msgid "Object"
-msgstr "অবজেক্ট"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "এক বা একাধিক প্রাপক এখনও প্রথমবার লগইন করেননি। এর অর্থ তারা রিপোর্ট পাবেন না।"
-
-msgid "Opened"
-msgstr "খোলা হয়েছে"
-
-msgid "Options"
-msgstr "বিকল্প"
-
-msgid "Organization"
-msgstr "সংগঠন"
-
-msgid "Original text"
-msgstr "মূল লেখা"
-
-msgid "Original translation"
-msgstr "মূল অনুবাদ"
-
-msgid "Password"
-msgstr "পাসওয়ার্ড"
-
-msgid "Password change interval"
-msgstr "পাসওয়ার্ড পরিবর্তনের মাঝে ব্যবধান"
-
-msgid "Password reset"
-msgstr "পাসওয়ার্ড রিসেট করুন"
-
-msgid "Password reset requested."
-msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করা হয়েছে।"
-
-msgid "Phone number"
-msgstr "ফোন নাম্বার"
-
-msgid "Placeholder"
-msgstr "ধারক"
-
-msgid "Platform wizard"
-msgstr "প্লাটফর্ম উইজার্ড"
-
-msgid "Please check your inbox for further instructions."
-msgstr "আরও নির্দেশাবলীর জন্য আপনার ইনবক্স চেক করুন।"
-
-msgid "Please choose a configuration profile:"
-msgstr "দয়া করে একটি কনফিগারেশন প্রোফাইল চয়ন করুনঃ"
-
-msgid "Please choose a different username."
-msgstr "একটি ভিন্ন ব্যবহারকারীর নাম বেছে নিন।"
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "দয়া করে মনে রাখবেন যে সম্পর্কিত সমস্ত তথ্য স্থায়ীভাবে মুছে ফেলা হবে।"
-
-msgid "Please select your account:"
-msgstr "আপনার অ্যাকাউন্টটি নির্বাচন করুন:"
-
-msgid "Postpone the expiration date"
-msgstr "মেয়াদ উত্তীর্ণের তারিখ স্থগিত করুন"
-
-msgid "Preferences"
-msgstr "পছন্দসমূহ"
-
-msgid "Presentation"
-msgstr "উপস্থাপনা"
-
-msgid "Preview"
-msgstr "পূর্বরূপ"
-
-msgid "Previous"
-msgstr "পূর্ববর্তী"
-
-msgid "Print"
-msgstr "প্রিন্ট করুন"
-
-msgid "Privacy Policy"
-msgstr "গোপনীয়তা নীতি"
-
-msgid "Private Key"
-msgstr "ব্যক্তিগত কী"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "এগিয়ে যান"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "প্রজেক্টের নাম"
-
-msgid "Public name"
-msgstr "প্রকাশ্য নাম"
-
-msgid "Question"
-msgstr "প্রশ্ন"
-
-msgid "Question group"
-msgstr "প্রশ্নের গ্রুপ"
-
-msgid "Question templates"
-msgstr "প্রশ্নের টেমপ্লেট"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "সম্ভাব্য হুইসেল ব্লোয়ারদের কাছে জিজ্ঞাস্য প্রশ্ন"
-
-msgid "Questionnaire"
-msgstr "প্রশ্নাবলী"
-
-msgid "Questionnaire answers"
-msgstr "প্রশ্নের উত্তরসমূহ"
-
-msgid "Questionnaires"
-msgstr "প্রশ্নাবলী"
-
-msgid "Questions"
-msgstr "প্রশ্নাবলী"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "প্রাপক"
-
-msgid "Recipient selection"
-msgstr "প্রাপক নির্বাচন"
-
-msgid "Recipients"
-msgstr "প্রাপক"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "নির্বাচিত প্রাপক:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "রিফ্রেশ করুন"
-
-msgid "Regenerate"
-msgstr "নতুন করে তৈরি করুন"
-
-msgid "Regular expression"
-msgstr "নিয়মিত অভিব্যাক্তি"
-
-msgid "Regular expression validator"
-msgstr "নিয়মিত অভিব্যক্তি যাচাইকারক"
-
-msgid "Remember your receipt for this report."
-msgstr "এই রিপোর্টের  জন্য আপনার রসিদ মনে রাখবেন।"
-
-msgid "Reminder date"
-msgstr ""
-
-msgid "Remove"
-msgstr "অপসারণ"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "প্রেরণার প্রতিউত্তর"
-
-msgid "Reply to the request"
-msgstr "অনুরোধের জবাব দিন"
-
-msgid "Report"
-msgstr ""
-
-msgid "Report date"
-msgstr "প্রতিবেদনের তারিখ"
-
-msgid "Report statuses"
-msgstr "স্ট্যাটাস রিপোর্ট করুন"
-
-msgid "Reports"
-msgstr "রিপোর্টগুলি"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুরোধ করুন"
-
-msgid "Request date"
-msgstr "অনুরোধের তারিখ"
-
-msgid "Request motivation"
-msgstr "প্রেরণার অনুরোধ"
-
-msgid "Request status"
-msgstr "অবস্থার অনুরোধ"
-
-msgid "Request support"
-msgstr ""
-
-msgid "Requests"
-msgstr "অনুরোধ"
-
-msgid "Require authentication"
-msgstr "প্রমাণীকরণ প্রয়োজন"
-
-msgid "Require two factor authentication"
-msgstr "টু-ফ্যাক্টর অথেনটিকেশন প্রয়োজন"
-
-msgid "Reset"
-msgstr "রিসেট"
-
-msgid "Reset SMTP configuration"
-msgstr "SMTP কনফিগারেশন পুনরায় সেট করুন"
-
-msgid "Reset notification templates to default"
-msgstr "বিজ্ঞপ্তি টেমপ্লেটগুলি পুনরায় ডিফল্টে সেট করুন"
-
-msgid "Reset reports"
-msgstr "রিপোর্টগুলি রিসেট করুন"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "কেবলমাত্র টর নেটওয়ার্কের মাধ্যমে রিসোর্স অ্যাক্সেস করা যেতে পারে"
-
-msgid "Resource not found"
-msgstr "রিসোর্স পাওয়া যায় নি"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "নির্দিষ্ট আইপি ঠিকানাগুলিতে প্রবেশ সীমাবদ্ধ করুন"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr ""
-
-msgid "Role"
-msgstr "ভূমিকা"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "টর ছাড়া প্ল্যাটফর্মটি ব্যবহারে সক্ষম ভূমিকাসমূহ"
-
-msgid "Root domain used for secondary sites"
-msgstr "আনুষঙ্গিক সাইটগুলির জন্য ব্যবহৃত রুট ডোমেইন"
-
-msgid "Row"
-msgstr "সারি"
-
-msgid "SMTP email address"
-msgstr "SMTP ইমেল ঠিকানা"
-
-msgid "SMTP server address"
-msgstr "SMTP সার্ভার ঠিকানা"
-
-msgid "SMTP server port"
-msgstr "SMTP সার্ভার পোর্ট"
-
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
-
-msgid "Save all"
-msgstr "সব সংরক্ষণ করুন"
-
-msgid "Scan the QR code with the app"
-msgstr "অ্যাপ্লিকেশনটির মাধ্যমে কিউআর কোডটি স্ক্যান করুন"
-
-msgid "Scheduled jobs"
-msgstr "তালিকাভুক্ত কার্যাদি"
-
-msgid "Score"
-msgstr "স্কোর"
-
-msgid "Scoring system options"
-msgstr "স্কোরিং সিস্টেমের বিকল্পগুলি"
-
-msgid "Search"
-msgstr "অনুসন্ধান করুন"
-
-msgid "Security"
-msgstr "সুরক্ষা"
-
-msgid "Select"
-msgstr "নির্বাচন"
-
-msgid "Select a file or drag it here."
-msgstr "একটি ফাইল নির্বাচন করুন বা এটিকে এখানে টেনে আনুন।"
-
-msgid "Select all"
-msgstr "সবগুলো নির্বাচন করুন"
-
-msgid "Select all recipients by default"
-msgstr "ডিফল্টভাবে সমস্ত প্রাপক নির্বাচন করুন"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "নির্বাচন বক্স"
-
-msgid "Send"
-msgstr "পাঠান"
-
-msgid "Send a test email to your email address."
-msgstr "আপনার ইমেইল ঠিকানায় একটি পরীক্ষামূলক ইমেইল প্রেরণ করুন।"
-
-msgid "Send activation link"
-msgstr "অ্যাক্টিভেশন লিঙ্ক প্রেরণ করুন"
-
-msgid "Send reset link"
-msgstr "রিসেট লিঙ্ক প্রেরণ করুন"
-
-msgid "Set a reminder"
-msgstr ""
-
-msgid "Set password"
-msgstr "পাসওয়ার্ড সেট করুন"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "এই বৈশিষ্ট্যটি অক্ষম করতে মানটি 0 তে সেট করুন।"
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "PGP পাবলিক কী সরবরাহ করে এনক্রিপশন সেট আপ করুন"
-
-msgid "Settings"
-msgstr "সেটিংস"
-
-msgid "Severity"
-msgstr "প্রখরতা"
-
-msgid "Show"
-msgstr "দেখাও"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "প্রাপকদের বর্ণানুক্রমিক ক্রমে দেখান"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "প্রশ্নাবলীর নেভিগেশন ইন্টারফেসটি দেখান"
-
-msgid "Sign up"
-msgstr "সাইন আপ"
-
-msgid "Silence email notifications"
-msgstr "ইমেল বিজ্ঞপ্তি নিঃশব্দ করুন"
-
-msgid "Single-line text input"
-msgstr "এক লাইন লেখার স্থান"
-
-msgid "Site"
-msgstr "ওয়েবসাইট"
-
-msgid "Sites"
-msgstr "সাইটসমূহ"
-
-msgid "Size limit for file attachments"
-msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
-
-msgid "Size:"
-msgstr "আকার:"
-
-msgid "Skip the recipient account creation."
-msgstr "প্রাপকের অ্যাকাউন্ট তৈরি করা এড়িয়ে যান।"
-
-msgid "Software version:"
-msgstr "সফ্টওয়্যার সংস্করণ:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "পরিসংখ্যান"
-
-msgid "Status"
-msgstr "অবস্থা"
-
-msgid "Status:"
-msgstr "অবস্থা:"
-
-msgid "Step"
-msgstr "পদক্ষেপ"
-
-msgid "Steps"
-msgstr "পদক্ষেপ"
-
-msgid "Strong"
-msgstr "শক্ত"
-
-msgid "Subdomain"
-msgstr "সাব-ডোমেইন"
-
-msgid "Submissions disabled"
-msgstr "জমা অক্ষম করা হয়েছে"
-
-msgid "Submit"
-msgstr "দাখিল করা"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "উপ-অবস্থা"
-
-msgid "Success!"
-msgstr "সাফল্য!"
-
-msgid "Sufficient"
-msgstr "যথেষ্ট"
-
-msgid "Surname"
-msgstr "পদবি"
-
-msgid "Tax code"
-msgstr "টিন নাম্বার"
-
-msgid "Template"
-msgstr "টেম্পলেট"
-
-msgid "Template override"
-msgstr "টেমপ্লেট অগ্রাহ্য করা"
-
-msgid "Templates"
-msgstr "টেম্পলেট"
-
-msgid "Terms of service"
-msgstr "সেবা পাবার শর্ত"
-
-msgid "Test the configuration"
-msgstr "কনফিগারেশন পরীক্ষা করুন"
-
-msgid "Text"
-msgstr "পাঠ্য"
-
-msgid "Text customization"
-msgstr "লেখা কাস্টমাইজেশন"
-
-msgid "Text shown after the user has selected the option."
-msgstr "ব্যবহারকারী বিকল্প নির্বাচন করার পরে যে লেখা দেখানো হবে। "
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "নেতিবাচক উত্তরের উপরে যে লেখা প্রদর্শিত হবে"
-
-msgid "Thank you."
-msgstr ""
-
-msgid "The answer is too short"
-msgstr "উত্তরটি খুবই সংক্ষিপ্ত"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The code is either invalid or expired."
-msgstr "কোডটি অবৈধ বা মেয়াদোত্তীর্ণ।"
-
-msgid "The connection is not secure."
-msgstr "সংযোগটি নিরাপদ নয়।"
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "নিম্নলিখিত প্রাপকরা আপনার প্রতিবেদনটি পাবেন এবং তা বাদ দেওয়া যাবেনা:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "নিম্নলিখিত ধাপে ধাপে পদ্ধতি আপনার হুইসেল ব্লোইং প্ল্যাটফর্ম তৈরির জন্য আপনাকে গাইড করবে।"
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "ম্যানুয়াল কনফিগারেশন উইজার্ড আপনাকে বিকল্প সার্টিফিকেট কর্তৃপক্ষের HTTPS সেটআপ করার জন্য নির্দেশনা প্রদান করবে।"
-
-msgid "The new password must be different from the current one."
-msgstr "নতুন পাসওয়ার্ডটি অবশ্যই বর্তমান পাসওয়ার্ডের থেকে আলাদা হওয়া উচিত।"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "প্ল্যাটফর্মটি এখনও এইচটিটিপিএস সংযোগের জন্য কনফিগার করা হয়নি এবং তাই কেবল এটি পরীক্ষার উদ্দেশ্যে ব্যবহার করা উচিত।"
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "প্ল্যাটফর্মটি অবশ্যই পাবলিক আইপি ঠিকানার মাধ্যমে পৌঁছাতে হবে এবং নির্বাচিত হোস্টনামের অবশ্যই সেই ঠিকানাটি উল্লেখ করে কোনও ডিএনএস রেকর্ড থাকতে হবে।"
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "প্ল্যাটফর্মটি এই ইন্টারফেসের মাধ্যমে HTTPS কনফিগারেশন সমর্থন করে।"
-
-msgid "The provided recovery key is invalid."
-msgstr "প্রদত্ত পুনরুদ্ধার কী টি অবৈধ।"
-
-msgid "The provided reset token is invalid or expired."
-msgstr "সরবরাহকৃত রিসেট টোকেনটি অবৈধ বা মেয়াদোত্তীর্ণ।"
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "রসিদটি অবৈধ বা রিপোর্টের মেয়াদ শেষ হয়ে গেছে।"
-
-msgid "The specified input is not valid."
-msgstr "নির্দিষ্ট ইনপুটটি বৈধ নয়।"
-
-msgid "The specified input is not valid:"
-msgstr "নির্দিষ্ট ইনপুটটি বৈধ নয়ঃ"
-
-msgid "The specified old password is not valid"
-msgstr "নির্দিষ্ট পুরানো পাসওয়ার্ডটি বৈধ নয়"
-
-msgid "The two passwords do not match"
-msgstr "দুটি পাসওয়ার্ড মিলছে না"
-
-msgid "The upload request exceeds the size limit"
-msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "ব্যবহারকারীকে পরবর্তী লগইনে তার পাসওয়ার্ড পরিবর্তন করতে বাধ্য করা হবে।"
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "যাচাইয়ের লিঙ্কটি সঠিক নয় বা মেয়াদ শেষ হয়ে গেছে।"
-
-msgid "The whistleblower has already read the last update"
-msgstr "হুইসেল ব্লোয়ার ইতিমধ্যে শেষ আপডেটটি পড়েছেন"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "হুইসেল ব্লোয়ার এখনও শেষ আপডেটটি পড়েননি"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "তারপরে, Tor Browser-এ নীচের ঠিকানাটি অনুলিপি করুন এবং পেস্ট করুনঃ"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "এই কাস্টম লেখাটি আর প্ল্যাটফর্মে প্রদর্শিত হবে না। মূল লেখাটি পরিবর্তন বা সরানো হয়েছে।"
-
-msgid "This domain name is not available."
-msgstr "এই ডোমেইন নাম উপলব্ধ নয়।"
-
-msgid "This field is mandatory"
-msgstr "এই ক্ষেত্রটি বাধ্যতামূলক"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "এটি একটি পরীক্ষামূলক প্ল্যাটফর্ম, দয়া করে এটি বাস্তব রিপোর্ট জমা দেওয়ার জন্য ব্যবহার করবেন না।"
-
-msgid "This user has not performed the first login yet."
-msgstr "এই ব্যবহারকারী এখনও প্রথমবার লগইন সম্পাদন করেন নি।"
-
-msgid "Threshold"
-msgstr "সীমা"
-
-msgid "Title"
-msgstr "শিরোনাম"
-
-msgid "To"
-msgstr "প্রতি"
-
-msgid "To:"
-msgstr "প্রতি:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "টর অনিয়ন পরিষেবা"
-
-msgid "Transfer"
-msgstr "হস্তান্তর "
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "ট্রিগারের শর্তাবলি"
-
-msgid "Trigger question"
-msgstr "ট্রিগার প্রশ্ন"
-
-msgid "Triggered by score:"
-msgstr "স্কোর দ্বারা ট্রিগারড:"
-
-msgid "Turn on email notifications"
-msgstr "ইমেল বিজ্ঞপ্তি চালু করুন"
-
-msgid "Type"
-msgstr "ধরণ"
-
-msgid "Type your new password again"
-msgstr "আপনার নতুন পাসওয়ার্ড আবার টাইপ করুন"
-
-msgid "URL redirects"
-msgstr "ইউআরএল পুনর্নির্দেশ"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "আপলোড"
-
-msgid "Upload a file:"
-msgstr "একটি ফাইল আপলোড করুনঃ"
-
-msgid "Upload date"
-msgstr "আপলোডের তারিখ"
-
-msgid "Use as default"
-msgstr "ডিফল্ট হিসাবে ব্যবহার করুন"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "লগ ইন করতে ১৬ অক্ষরের রশিদটি ব্যবহার করুন এটি আপনাকে পাঠানো কোনও বার্তা দেখতে এবং অতিরিক্ত তথ্য যুক্ত করার অনুমতি দেয়।"
-
-msgid "Use the first site for administrative purposes only"
-msgstr "প্রশাসনিক উদ্দেশ্যে শুধুমাত্র প্রথম সাইটটি ব্যবহার করুন"
-
-msgid "User"
-msgstr "ব্যবহারকারী"
-
-msgid "Username"
-msgstr "ব্যবহারকারীর নাম"
-
-msgid "Users"
-msgstr "ব্যবহারকারীগণ"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "স্বয়ংক্রিয় HTTPS কনফিগারেশন ব্যবহার করলে Let's Encrypt কর্তৃপক্ষ থেকে সার্টিফিকেট অনুরোধ, সক্ষম এবং সার্টিফিকেট নবায়নের সম্পূর্ণ প্রক্রিয়া পরিচালনা করবে।"
-
-msgid "Valid until:"
-msgstr "বৈধতার সীমা:"
-
-msgid "Validation of email address change in progress."
-msgstr "ইমেল ঠিকানা যাচাইকরণের প্রক্রিয়া চলছে।"
-
-msgid "Value"
-msgstr "মান"
-
-msgid "Video"
-msgstr "ভিডিও"
-
-msgid "View"
-msgstr "দৃশ্য"
-
-msgid "View your report"
-msgstr "আপনার রিপোর্ট দেখুন"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "অনুমোদনের অপেক্ষায়"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "ফাইল (গুলি) আপলোড শেষ হবার অপেক্ষায়।"
-
-msgid "Warning"
-msgstr "সতর্কতা"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "প্রাপকরা তাদের পাসওয়ার্ড হারিয়ে গেলে এমন পরিস্থিতিতে তথ্য হারিয়ে যাওয়ার হাত থেকে রক্ষা করতে চাইলে আমরা এই বিকল্পটি নির্বাচন করার পরামর্শ দিচ্ছি। অন্যদিকে, আপনি যদি এমন কোনও সিস্টেম সেটআপ করতে চান যেখানে কেবল প্রাপকগণ সাবমিশনে অ্যাক্সেস করতে সক্ষম হন তবে আমরা এই বৈশিষ্ট্যটি ব্যবহার করার পরামর্শ দেব না।"
+msgid "An update is available:"
+msgstr "একটি আপডেট রয়েছে:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1543,78 +1465,85 @@ msgid ""
 "your password."
 msgstr "আপনার \"অ্যাকাউন্ট পুনরুদ্ধার কী\" খুঁজে পেতে এবং এটি নিরাপদে সংরক্ষণ করার জন্য আপনাকে \"পছন্দগুলি\" বিভাগটি অ্যাক্সেস করার পরামর্শ দিচ্ছি। আপনার পাসওয়ার্ড ভুলে গেলে এই প্ল্যাটফর্ম এবং আপনার তথ্যে আপনার অ্যাক্সেস পুনরুদ্ধার করার জন্য এই কী টি প্রয়োজনীয় হবে।"
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "আমরা যত তাড়াতাড়ি সম্ভব আপনার সাথে যোগাযোগ করার চেষ্টা করব।"
+msgid "Select a file or drag it here."
+msgstr "একটি ফাইল নির্বাচন করুন বা এটিকে এখানে টেনে আনুন।"
 
-msgid "Weak"
-msgstr "দুর্বল"
+msgid "The provided recovery key is invalid."
+msgstr "প্রদত্ত পুনরুদ্ধার কী টি অবৈধ।"
 
-msgid "Welcome!"
-msgstr "স্বাগতম!"
-
-msgid "Whistleblower"
-msgstr "হুইসেল ব্লোয়ার"
-
-msgid "Whistleblower's last access"
-msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "হুইসেলব্লোইং বাটন"
-
-msgid "Width"
-msgstr "প্রস্থ"
-
-msgid "Yes"
-msgstr "হাঁ"
+msgid "The provided reset token is invalid or expired."
+msgstr "সরবরাহকৃত রিসেট টোকেনটি অবৈধ বা মেয়াদোত্তীর্ণ।"
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "আপনি পরিচয় লুকানো ছাড়াই সার্ভারের সাথে সংযোগ করছেন এবং এই সার্ভারটি কেবল বেনামে জমা দেওয়া সমর্থন করে"
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করতে আপনার অ্যাকাউন্টের ব্যবহারকারীর নাম বা আপনার ইমেইল ঠিকানা লিখুন।"
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।"
+
+msgid "Password reset requested."
+msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করা হয়েছে।"
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "আপনাকে Tor Browser নামক অ্যাপটি ব্যবহার করে এই সাইটটি দেখার জন্য দৃঢ় পরামর্শ দেওয়া হচ্ছে যা আপনার পরিচয়ের সুরক্ষা প্রদান করে।"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "হুইসেল ব্লোয়ারের পরিচয় অ্যাক্সেস করতে তত্ত্বাবধায়ক থেকে অনুরোধ করা হয়েছে।"
+
+msgid "Date of the request"
+msgstr "অনুরোধের তারিখ"
+
+msgid "Show"
+msgstr "দেখাও"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "অভিনন্দন!"
 
 msgid "You have completed the platform activation."
 msgstr "আপনি প্ল্যাটফর্ম অ্যাক্টিভেশন সম্পন্ন করেছেন।"
 
-msgid "You have completed the platform wizard."
-msgstr "আপনি প্ল্যাটফর্ম উইজার্ডটি শেষ করেছেন।"
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "আপনি ইতিমধ্যে নির্বাচনযোগ্য প্রাপকদের সর্বাধিক সংখ্যা যোগ করেছেন।"
-
-msgid "You must select at least one recipient."
-msgstr "আপনাকে অবশ্যই কমপক্ষে একজন প্রাপক নির্বাচন করতে হবে।"
-
-msgid "Your new email address has been validated."
-msgstr "আপনার নতুন ইমেল ঠিকানা বৈধ হয়েছে।"
-
-msgid "Your report was successful."
-msgstr "আপনার রিপোর্টটি সফল হয়েছিল।"
+msgid "Success!"
+msgstr "সাফল্য!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "আপনার হুইসেল ব্লোইং প্ল্যাটফর্ম প্রায় প্রস্তুত!"
 
-msgid "days"
-msgstr "দিন"
+msgid "Check your inbox to activate it."
+msgstr "এটি সক্রিয় করতে আপনার ইনবক্সটি পরীক্ষা করুন।"
 
-msgid "file unavailable"
-msgstr "ফাইল উপলব্ধ নেই"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "২৪ ঘন্টার মধ্যে সক্রিয় না করা হলে প্ল্যাটফর্মটি স্বয়ংক্রিয়ভাবে মুছে যাবে।"
 
-msgid "megabytes"
-msgstr "মেগাবাইট"
+msgid "Sign up"
+msgstr "সাইন আপ"
 
-msgid "percentage"
-msgstr "শতাংশ"
+msgid "Invalid confirmation"
+msgstr "অবৈধ নিশ্চিতকরণ"
+
+msgid "Invalid phone number"
+msgstr "ফোন নাম্বার সঠিক নয়"
+
+msgid "Site"
+msgstr "ওয়েবসাইট"
+
+msgid "Confirmation"
+msgstr "নিশ্চিতকরণ"
+
+msgid "The answer is too short"
+msgstr "উত্তরটি খুবই সংক্ষিপ্ত"
+
+msgid "The specified input is not valid."
+msgstr "নির্দিষ্ট ইনপুটটি বৈধ নয়।"
+
+msgid "The specified input is not valid:"
+msgstr "নির্দিষ্ট ইনপুটটি বৈধ নয়ঃ"
 
 msgid "please enter a valid email address."
 msgstr "একটি বৈধ ইমেইল ঠিকানা লিখুন। "
@@ -1622,14 +1551,82 @@ msgstr "একটি বৈধ ইমেইল ঠিকানা লিখু�
 msgid "please enter numbers only."
 msgstr "অনুগ্রহ করে শুধু মাত্র নাম্বার প্রবেশ করান।"
 
-msgid "seconds"
-msgstr "সেকেন্ড"
+msgid "Submissions disabled"
+msgstr "জমা অক্ষম করা হয়েছে"
 
-msgid "File a report"
-msgstr "একটি রিপোর্ট জমা দিন"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "আপনি পরিচয় লুকানো ছাড়াই সার্ভারের সাথে সংযোগ করছেন এবং এই সার্ভারটি কেবল বেনামে জমা দেওয়া সমর্থন করে"
 
-msgid "Select a reporting channel:"
+msgid "Your report was successful."
+msgstr "আপনার রিপোর্টটি সফল হয়েছিল।"
+
+msgid "Remember your receipt for this report."
+msgstr "এই রিপোর্টের  জন্য আপনার রসিদ মনে রাখবেন।"
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "লগ ইন করতে ১৬ অক্ষরের রশিদটি ব্যবহার করুন এটি আপনাকে পাঠানো কোনও বার্তা দেখতে এবং অতিরিক্ত তথ্য যুক্ত করার অনুমতি দেয়।"
+
+msgid "View your report"
+msgstr "আপনার রিপোর্ট দেখুন"
+
+msgid "Select the recipients of your report"
 msgstr ""
+
+msgid "Recipients selected:"
+msgstr "নির্বাচিত প্রাপক:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "আপনি ইতিমধ্যে নির্বাচনযোগ্য প্রাপকদের সর্বাধিক সংখ্যা যোগ করেছেন।"
+
+msgid "You must select at least one recipient."
+msgstr "আপনাকে অবশ্যই কমপক্ষে একজন প্রাপক নির্বাচন করতে হবে।"
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "নিম্নলিখিত প্রাপকরা আপনার প্রতিবেদনটি পাবেন এবং তা বাদ দেওয়া যাবেনা:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "এই পদক্ষেপে নিম্নলিখিত প্রশ্নের উত্তরগুলি পাওয়া যায়নি বা অবৈধ:"
+
+msgid "Recipient selection"
+msgstr "প্রাপক নির্বাচন"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "ফাইল (গুলি) আপলোড শেষ হবার অপেক্ষায়।"
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "নিম্নলিখিত ধাপে ধাপে পদ্ধতি আপনার হুইসেল ব্লোইং প্ল্যাটফর্ম তৈরির জন্য আপনাকে গাইড করবে।"
+
+msgid "Please choose a configuration profile:"
+msgstr "দয়া করে একটি কনফিগারেশন প্রোফাইল চয়ন করুনঃ"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "এই প্রশাসকের পক্ষে ব্যবহারকারীর পাসওয়ার্ডগুলি পুনরায় সেট করা সম্ভব করুন।"
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "প্রাপকরা তাদের পাসওয়ার্ড হারিয়ে গেলে এমন পরিস্থিতিতে তথ্য হারিয়ে যাওয়ার হাত থেকে রক্ষা করতে চাইলে আমরা এই বিকল্পটি নির্বাচন করার পরামর্শ দিচ্ছি। অন্যদিকে, আপনি যদি এমন কোনও সিস্টেম সেটআপ করতে চান যেখানে কেবল প্রাপকগণ সাবমিশনে অ্যাক্সেস করতে সক্ষম হন তবে আমরা এই বৈশিষ্ট্যটি ব্যবহার করার পরামর্শ দেব না।"
+
+msgid "Please choose a different username."
+msgstr "একটি ভিন্ন ব্যবহারকারীর নাম বেছে নিন।"
+
+msgid "I have read and agree to the terms of the license."
+msgstr "আমি লাইসেন্সের শর্তাদি পড়েছি এবং তাতে সম্মত হয়েছি।"
+
+msgid "You have completed the platform wizard."
+msgstr "আপনি প্ল্যাটফর্ম উইজার্ডটি শেষ করেছেন।"
 
 msgid "Please summarize your report in a few words."
 msgstr "আপনার রিপোর্টটি সংক্ষেপে বর্ণনা করুন।"

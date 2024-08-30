@@ -15,129 +15,155 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "mime-version: 1.0\n"
 
-msgid "0 = auto"
-msgstr "0 = automaatne"
+msgid "Log in"
+msgstr "Logi sisse"
 
-msgid "Accept multiple answers"
-msgstr "Luba mitu vastust"
+msgid "Languages"
+msgstr "Keeled"
 
-msgid "Accept multiple file uploads"
-msgstr "Luba üles laadida mitu faili"
-
-msgid "Acceptable"
-msgstr "Rahuldav"
-
-msgid "Access control"
-msgstr "Pääsu reguleerimine"
-
-msgid "Access date"
-msgstr ""
-
-msgid "Access requested"
-msgstr "Taotleti juurdepääsu"
-
-msgid ""
-"Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Hoidja jaoks on taotletud juurdepääsu vihjeandja isikuandmetele."
-
-msgid "Account recovery key"
-msgstr "Konto taastamise võti"
-
-msgid "Act on behalf of a whistleblower"
-msgstr ""
-
-msgid "Activities"
-msgstr "Tegevused"
-
-msgid "Add"
-msgstr "Lisa"
-
-msgid "Add custom text"
-msgstr "Lisa kohandatud tekst"
-
-msgid "Add multimedia content"
-msgstr "Lisa multimeediasisu"
-
-msgid "Add new question"
-msgstr "Lisa uus küsimus"
-
-msgid "Add new questionnaire"
-msgstr "Lisa uus ankeet"
-
-msgid "Add question from template"
-msgstr "Lisa küsimus mallilt"
-
-msgid "Addition"
-msgstr "Lisamine"
-
-msgid "Additional questionnaire"
-msgstr "Täiendav ankeet"
-
-msgid "Address"
-msgstr "Aadress"
-
-msgid "Admin"
-msgstr "Administraator"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
+msgid "Text customization"
+msgstr "Teksti kohandamine"
 
 msgid "Advanced"
 msgstr "Peenhäälestus"
 
-msgid "Allow the recipient to delete reports"
-msgstr "Luba saajal teavitusi kustutada"
+msgid "Question templates"
+msgstr "Küsimuste mallid"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Luba saajal teavituse aegumiskuupäeva edasi lükata"
+msgid "Questionnaires"
+msgstr "Ankeedid"
 
-msgid "Allow the whistleblower to add attachments"
-msgstr "Luba vihjeandjal teatele manuseid lisada"
+msgid "Add new questionnaire"
+msgstr "Lisa uus ankeet"
 
-msgid "Allow the whistleblower to write comments"
-msgstr "Luba vihjeandjal kommentaare kirjutada"
+msgid "Home"
+msgstr "Avaleht"
 
-msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgid "Changelog"
+msgstr "Muutelugu"
 
-msgid "Allow users to sign up"
-msgstr "Luba kasutajate registreerumine"
+msgid "License"
+msgstr "Litsents"
 
-msgid "Allow whistleblowers to select their recipients"
-msgstr "Luba vihjeandjatel saajaid valida"
+msgid "Templates"
+msgstr "Mallid"
 
-msgid "Allowed IP addresses"
-msgstr "Lubatud IP-aadressid"
-
-msgid "An update is available:"
-msgstr "Värskendus on saadaval:"
-
-msgid "Analyst"
-msgstr ""
+msgid "Delete"
+msgstr "Kustuta"
 
 msgid "Anomalies"
 msgstr "Anomaaliad"
 
-msgid "Anomaly detection thresholds"
-msgstr "Anomaalia tuvastamise läved"
+msgid "Preferences"
+msgstr "Eelistused"
 
-msgid "Anonymity"
-msgstr ""
+msgid "Notifications"
+msgstr "Teavitused"
 
-msgid "Anonymize outgoing connections"
-msgstr "Väljuvate ühenduste anonüümimine"
+msgid "file unavailable"
+msgstr "fail kättesaamatu"
 
-msgid "Anonymous"
-msgstr "Anonüümne"
+msgid "Date"
+msgstr "Kuupäev"
 
-msgid "Are you sure?"
-msgstr "Kas olete kindel?"
+msgid "Expiration date"
+msgstr "Aegumiskuupäev"
 
-msgid "Assign score points"
-msgstr "Punktide andmine"
+msgid "Last Access"
+msgstr "Viimane sisselogimine"
 
-msgid "Assigned to"
-msgstr "Määratud"
+msgid "Files"
+msgstr "Failid"
+
+msgid "Comments"
+msgstr "Kommentaarid"
+
+msgid "Details"
+msgstr "Üksikasjad"
+
+msgid "Platform wizard"
+msgstr "Platvormi viisard"
+
+msgid "Label the report"
+msgstr "Teate silt"
+
+msgid "Edit the expiration date"
+msgstr "Lükka aegumiskuupäeva edasi"
+
+msgid "Select all"
+msgstr "Vali kõik"
+
+msgid "Deselect all"
+msgstr "Tühista kõik valikud"
+
+msgid "Refresh"
+msgstr "Värskenda"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Preview"
+msgstr "Eelvaade"
+
+msgid "The whistleblower has already read the last update"
+msgstr "Vihjeandja on viimast teavitust juba lugenud"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "Vihjeandja ei ole veel viimast teavitust lugenud"
+
+msgid "Move up"
+msgstr "Üles"
+
+msgid "Move down"
+msgstr "Alla"
+
+msgid "Move left"
+msgstr "Vasakule"
+
+msgid "Move right"
+msgstr "Paremale"
+
+msgid "Import"
+msgstr "Impordi"
+
+msgid "Export"
+msgstr "Ekspordi"
+
+msgid "Save all"
+msgstr "Salvesta kõik"
+
+msgid "Access control"
+msgstr "Pääsu reguleerimine"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Email"
+msgstr "E-post"
+
+msgid "Regular expression validator"
+msgstr "Regulaaravaldise validaator"
+
+msgid "Minimum number of input characters"
+msgstr "Sisestatavate märkide arvu alampiir"
+
+msgid "Maximum number of input characters"
+msgstr "Sisestatavate märkide arvu ülempiir"
+
+msgid "Earliest selectable date"
+msgstr "Varaseim valitav kuupäev"
+
+msgid "Latest selectable date"
+msgstr "Hiliseim valitav kuupäev"
+
+msgid "0 = auto"
+msgstr "0 = automaatne"
+
+msgid "Yes"
+msgstr "Jah"
+
+msgid "No"
+msgstr "Ei"
 
 msgid "Attachment"
 msgstr "Manus"
@@ -145,186 +171,56 @@ msgstr "Manus"
 msgid "Attachments"
 msgstr "Manused"
 
-msgid "Attention"
-msgstr ""
-
-msgid "Audio"
-msgstr "Heli"
-
-msgid "Audit log"
-msgstr "Revisjonilogi"
-
-msgid "Authentication failed"
-msgstr "Autentimine nurjus"
-
-msgid "Authorization"
-msgstr "Autoriseerimine"
-
-msgid "Authorize"
-msgstr "Luba"
-
-msgid "Authorize access to the whistleblower's identity"
-msgstr "Luba juurdepääs vihjeandja isikuandmetele"
-
-msgid "Authorized"
-msgstr "Lubatud"
-
-msgid "Auto-renewal"
-msgstr "Automaatne uuendamine"
-
-msgid "Automatic configuration"
-msgstr "Automaatne seadistamine"
-
-msgid "Available disk space"
-msgstr "Vaba kettaruum"
-
-msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
-
-msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Enne jätkamist lubage kaheastmeline autentimine."
-
-msgid "Before proceeding, please set a new password."
-msgstr "Enne jätkamist seadistage uus parool."
-
-msgid "Block the submission"
-msgstr "Blokeeri teabeesitus"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
-
-msgid "By confirming, you will set a reminder on date:"
-msgstr "Kinnitades määrate kuupäeva meeldetuletuse"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Selle funktsiooni lubamisega toetate platvormi arendamist ja turvalisust."
-
-msgid "Cancel"
-msgstr "Tühista"
-
-msgid "Case management"
-msgstr "Juhtumihaldus"
-
-msgid "Certificate"
-msgstr "Sertifikaat"
-
-msgid "Certificate Signing Request"
-msgstr "Sertifikaadi allkirjastamise taotlus"
-
-msgid "Change status"
-msgstr ""
-
 msgid "Change your password"
 msgstr "Vaheta parooli"
 
-msgid "Changelog"
-msgstr "Muutelugu"
+msgid "User"
+msgstr "Kasutaja"
 
-msgid "Channel"
-msgstr "Kanal"
+msgid "Motivation"
+msgstr "Motivatsioon"
 
-msgid "Channels"
-msgstr "Kanalid"
+msgid "Status"
+msgstr "Staatus"
 
-msgid "Check your inbox to activate it."
-msgstr "Selle aktiveerimiseks vaadake oma sisendkausta."
+msgid "Request motivation"
+msgstr "Küsi motivatsiooni"
 
-msgid "Checkbox"
-msgstr "Märkeruut"
+msgid "Reply motivation"
+msgstr "Esita motivatsioon"
 
-msgid "Checkbox label"
-msgstr "Märkeruudu silt"
-
-msgid "City"
-msgstr "Linn"
-
-msgid "Close"
-msgstr "Sulge"
-
-msgid "Closed"
-msgstr "Suletud"
-
-msgid "Collapse"
-msgstr "Ahenda"
-
-msgid "Column"
-msgstr "Veerg"
-
-msgid "Comments"
-msgstr "Kommentaarid"
-
-msgid "Computer"
-msgstr ""
-
-msgid "Configure"
-msgstr "Seadista"
-
-msgid "Confirm"
-msgstr "Kinnita"
-
-msgid "Confirmation"
-msgstr "Kinnitus"
-
-msgid "Congratulations!"
-msgstr "Õnnitleme!"
-
-msgid "Copy to clipboard"
-msgstr "Kopeeri lõikelauale"
-
-msgid "Country"
-msgstr "Riik"
-
-msgid "Country code"
-msgstr "Riigikood"
-
-msgid "Creation date"
-msgstr "Loomise kuupäev:"
-
-msgid "Creation date:"
-msgstr "Loomise kuupäev:"
-
-msgid "Current password"
-msgstr "Senine parool"
+msgid "Request status"
+msgstr "Küsi staatust"
 
 msgid "Custodian"
 msgstr "Hoidja"
 
-msgid "Custom"
-msgstr "Kohandatud"
+msgid "Identity"
+msgstr "Isikuandmed"
 
-msgid "Custom privacy panel"
-msgstr "Kohandatud andmekaitsepaneel"
+msgid "Access requested"
+msgstr "Taotleti juurdepääsu"
 
-msgid "Custom support URL"
-msgstr "Kohandatud toe URL"
+msgid "Request access to the whistleblower's identity"
+msgstr "Taotle juurdepääsu vihjeandja isikuandmetele"
 
-msgid "Custom text"
-msgstr "Kohandatud tekst"
+msgid "Reply to the request"
+msgstr "Vasta päringule"
 
-msgid "Custom translation"
-msgstr "Kohandatud tõlge"
-
-msgid "Date"
-msgstr "Kuupäev"
-
-msgid "Date of the request"
-msgstr "Taotluse kuupäev"
-
-msgid "Date range"
-msgstr "Kuupäevade vahemik"
-
-msgid ""
-"Default mail configuration in use. Please consider using a private mail "
-"server."
-msgstr "Kasutusel on meili vaikekonfiguratsioon. Palun kaaluge privaatse meiliserveri kasutamist."
-
-msgid "Delete"
-msgstr "Kustuta"
+msgid "Authorized"
+msgstr "Lubatud"
 
 msgid "Denied"
 msgstr "Keelatud"
+
+msgid "Waiting for authorization"
+msgstr "Loa ootamine"
+
+msgid "New request"
+msgstr "Uus taotlus"
+
+msgid "Authorize"
+msgstr "Luba"
 
 msgid "Deny"
 msgstr "Keela"
@@ -332,26 +228,20 @@ msgstr "Keela"
 msgid "Deny access to the whistleblower's identity"
 msgstr "Keela juurdepääs vihjeandja isikuandmetele"
 
-msgid "Description"
-msgstr "Kirjeldus"
+msgid "Authorize access to the whistleblower's identity"
+msgstr "Luba juurdepääs vihjeandja isikuandmetele"
 
-msgid "Deselect"
-msgstr "Tühista"
+msgid "URL redirects"
+msgstr "URL-i ümbersuunamised"
 
-msgid "Deselect all"
-msgstr "Tühista kõik valikud"
+msgid "Anomaly detection thresholds"
+msgstr "Anomaalia tuvastamise läved"
 
-msgid "Details"
-msgstr "Üksikasjad"
+msgid "Available disk space"
+msgstr "Vaba kettaruum"
 
-msgid "Details of the PGP key:"
-msgstr "PGP võtme üksikasjad:"
-
-msgid "Devices"
-msgstr ""
-
-msgid "Disable"
-msgstr "Keela"
+msgid "Last update"
+msgstr "Viimane värskendus"
 
 msgid "Disable notifications to administrators"
 msgstr "Keela teavitused administraatoritele"
@@ -362,197 +252,221 @@ msgstr "Keela teavitused hoidjatele"
 msgid "Disable notifications to recipients"
 msgstr "Keela teavitused saajatele"
 
-msgid "Disable submissions"
-msgstr "Keela teabeesitused"
+msgid "Score"
+msgstr "Skoor"
 
-msgid "Disable the privacy panel"
-msgstr "Keela andmekaitsepaneel"
+msgid "Trigger question"
+msgstr "Käivitusküsimus"
 
-msgid "Disable two factor authentication"
-msgstr "Keela kaheastmeline autentimine"
+msgid "Triggered by score:"
+msgstr "Käivitusskoor:"
 
-msgid "Disabled"
-msgstr "Keelatud"
+msgid "Weak"
+msgstr "Nõrk"
 
-msgid "Disclaimer"
-msgstr "Lahtiütlus"
+msgid "Acceptable"
+msgstr "Rahuldav"
 
-msgid "Display options alphabetically"
-msgstr "Kuva suvandid tähestiku järjekorras"
+msgid "Strong"
+msgstr "Tugev"
 
-msgid "Download"
-msgstr "Laadi alla"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Liidese ülaosas kuvatav tekst kanalite valimiseks"
 
-msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgid "Silence email notifications"
+msgstr "Vaigista meiliteavitused"
 
-msgid "Download the Tor Browser"
-msgstr "Laadige alla Tor Browser"
+msgid "Turn on email notifications"
+msgstr "Lülita meiliteavitused sisse"
 
-msgid "Duplicate"
-msgstr "Tee koopia"
-
-msgid "Each entry must be separated with a comma."
-msgstr "Kõik kirjed peavad olema komaga eraldatud"
-
-msgid "Earliest selectable date"
-msgstr "Varaseim valitav kuupäev"
-
-msgid "Edit"
-msgstr "Muuda"
-
-msgid "Email"
-msgstr "E-post"
+msgid "Input validation"
+msgstr "Sisestuse kontroll"
 
 msgid "Email address"
 msgstr "Meiliaadress"
 
-msgid "Enable"
-msgstr "Luba"
+msgid "Custom"
+msgstr "Kohandatud"
 
-msgid "Enable PGP"
-msgstr "Luba PGP"
+msgid "None"
+msgstr "Puudub"
 
-msgid "Enable administrators to change user passwords"
-msgstr "Luba administraatoritel kasutajate paroole muuta."
+msgid "Regular expression"
+msgstr "Regulaaravaldis"
 
-msgid "Enable custom privacy panel"
-msgstr "Luba kohandatud andmekaitsepaneel"
-
-msgid "Enable email notifications"
-msgstr "Luba meiliteavitused"
-
-msgid "Enable email notifications for:"
-msgstr "Meiliteavituste lubamine:"
-
-msgid "Enable encryption"
-msgstr "Luba krüptimine"
-
-msgid "Enable scoring system"
-msgstr "Luba punktisüsteem"
-
-msgid "Enable search engines indexing"
-msgstr "Luba indekseerimine otsimootorite jaoks"
-
-msgid "Enable simplified login"
-msgstr "Luba lihtsustatud sisselogimine"
-
-msgid "Enable terms of service"
-msgstr "Luba teenusetingimused"
-
-msgid "Enable two factor authentication"
-msgstr "Luba kaheastmeline autentimine"
-
-msgid "Enabled"
-msgstr "Lubatud"
-
-msgid "Enter a name for the copy"
-msgstr "Sisestage koopia nimi"
-
-msgid "Enter the two factor authentication code"
-msgstr "Sisestage kaheastmelise autentimise kood"
+msgid "Search"
+msgstr "Otsing"
 
 msgid ""
-"Enter your account recovery key to complete the password reset procedure"
-msgstr "Parooli lähtestamise lõpuleviimiseks sisestage oma konto taastamise võti"
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "Seda kohandatud teksti enam platvormis ei kuvata. Algne tekst on muudetud või eemaldatud."
 
-msgid ""
-"Enter your account's username or your email address to request a password "
-"reset."
-msgstr "Parooli lähtestamise taotlemiseks sisestage oma konto kasutajanimi või meiliaadress."
+msgid "Audit log"
+msgstr "Revisjonilogi"
 
-msgid "Enter your email address to request a password reset."
-msgstr "Parooli lähtestamise taotlemiseks sisestage oma meiliaadress."
+msgid "Stats"
+msgstr "Statistika"
 
-msgid "Error on input validation"
-msgstr "Tõrge sisestuse kontrollimisel"
+msgid "Activities"
+msgstr "Tegevused"
 
-msgid "Error!"
-msgstr "Tõrge!"
+msgid "Reports"
+msgstr "Teavitused"
 
-msgid "Everyone"
-msgstr ""
+msgid "Report"
+msgstr "Teavitus"
 
-msgid "Example:"
-msgstr "Näide:"
-
-msgid "Expand"
-msgstr "Laienda"
-
-msgid "Expiration date"
-msgstr "Aegumiskuupäev"
-
-msgid "Export"
-msgstr "Ekspordi"
-
-msgid "File size"
-msgstr "Failimaht"
-
-msgid "File size not accepted."
-msgstr "Faili mahtu ei aktsepteeritud."
-
-msgid "Filename"
-msgstr "Failinimi"
-
-msgid "Files"
-msgstr "Failid"
-
-msgid "Files attached by recipients"
-msgstr "Saajate lisatud failid"
-
-msgid "Fill the additional questionnaire"
-msgstr "Täiendavat ankeeti täitma"
-
-msgid "Fingerprint"
-msgstr "Sõrmejälg"
-
-msgid "First"
-msgstr "Esimene"
-
-msgid "Fiscal code"
-msgstr "Itaalia maksukood"
-
-msgid "Footer"
-msgstr "Jalus"
-
-msgid "For security reasons the code needs to be changed."
-msgstr ""
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
-
-msgid "For the user documentation, visit:"
-msgstr "Kasutaja dokumendid leiate aadressilt:"
-
-msgid "Forbidden operation"
-msgstr "Keelatud toiming"
-
-msgid "Force password change"
-msgstr "Kohustuslik paroolivahetus"
-
-msgid "Forcefully selected"
-msgstr "Valitud sundkorras"
-
-msgid "Forgot password?"
-msgstr "Parool ununes?"
+msgid "Users"
+msgstr "Kasutajad"
 
 msgid "From"
 msgstr "Alates"
 
-msgid "From:"
-msgstr "Saatja:"
+msgid "Number of downloads"
+msgstr "Allalaadimiste arv"
 
-msgid "Generate"
-msgstr "Genereeri"
+msgid "File size not accepted."
+msgstr "Faili mahtu ei aktsepteeritud."
 
-msgid "Give the user administrative access to the following features:"
-msgstr "Anna kasutajale administraatori õigused järgmiste funktsioonide suhtes:"
+msgid "Maximum file size is:"
+msgstr "Failimahu ülempiir on:"
 
-msgid "Give this admin ability to change user passwords"
-msgstr "Anna sellele administraatorile õigus muuta kasutajate paroole"
+msgid "Scheduled jobs"
+msgstr "Plaanilised tööd"
 
-msgid "Give this user ability to grant user access to reports"
+msgid "Regenerate"
+msgstr "Taasta"
+
+msgid "Display options alphabetically"
+msgstr "Kuva suvandid tähestiku järjekorras"
+
+msgid "Enable email notifications for:"
+msgstr "Meiliteavituste lubamine:"
+
+msgid "Disable"
+msgstr "Keela"
+
+msgid "Remove"
+msgstr "Eemalda"
+
+msgid "Use as default"
+msgstr "Kasuta vaikimisi"
+
+msgid "Collapse"
+msgstr "Ahenda"
+
+msgid "Expand"
+msgstr "Laienda"
+
+msgid "Select"
+msgstr "Vali"
+
+msgid "Deselect"
+msgstr "Tühista"
+
+msgid "Surname"
+msgstr "Perekonnanimi"
+
+msgid "New"
+msgstr "Uus"
+
+msgid "Opened"
+msgstr "Avatud"
+
+msgid "Closed"
+msgstr "Suletud"
+
+msgid "Placeholder"
+msgstr "Kohatäide"
+
+msgid "Print"
+msgstr "Prindi"
+
+msgid "Previous"
+msgstr "Eelmine"
+
+msgid "Next"
+msgstr "Edasi"
+
+msgid "First"
+msgstr "Esimene"
+
+msgid "Last"
+msgstr "Viimane"
+
+msgid "Send a test email to your email address."
+msgstr "Testmeili saatmine oma meiliaadressile."
+
+msgid "Block the submission"
+msgstr "Blokeeri teabeesitus"
+
+msgid "Skip the recipient account creation."
+msgstr "Jäta saaja konto loomine vahele."
+
+msgid "Send activation link"
+msgstr "Saada aktiveerimislink"
+
+msgid "Password reset"
+msgstr "Parooli lähtestamine"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "Üks või mitu saajat ei ole veel esimest sisselogimist teinud. See tähendab, et nad ei saa teavitusi."
+
+msgid "This user has not performed the first login yet."
+msgstr "See kasutaja ei ole veel esimest sisselogimist teinud."
+
+msgid "seconds"
+msgstr "sekundit"
+
+msgid "This domain name is not available."
+msgstr "See domeeninimi pole saadaval."
+
+msgid "Mark as important"
+msgstr "Märgi oluliseks"
+
+msgid "Copy to clipboard"
+msgstr "Kopeeri lõikelauale"
+
+msgid "Logout"
+msgstr "Logi välja"
+
+msgid "Grant access"
+msgstr "Luba juurdepääs"
+
+msgid "Revoke access"
+msgstr "Tühista juurdepääs"
+
+msgid "Transfer"
+msgstr ""
+
+msgid "Assigned to"
+msgstr "Määratud"
+
+msgid "Not provided."
+msgstr "Pole tagatud"
+
+msgid "Set a reminder"
+msgstr "Lisa meeldetuletus"
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Hide"
+msgstr "Peida"
+
+msgid "Unhide"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
 msgstr ""
 
 msgid "Give this user ability to mask information"
@@ -561,54 +475,966 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Give this user ability to transfer reports to other users"
-msgstr ""
-
-msgid "Grant access"
-msgstr "Luba juurdepääs"
-
-msgid "Group of questions"
-msgstr "Küsimuste rühm"
-
-msgid "Have you already filed a report? Enter your receipt."
-msgstr "Kas olete teavituse juba esitanud? Sisestage kättesaamiskood."
-
-msgid "Hidden"
-msgstr "Peidetud"
-
-msgid "Hide"
-msgstr "Peida"
-
-msgid "High"
-msgstr "Kõrge"
-
-msgid "Hint"
-msgstr "Vihje"
-
-msgid "Home"
-msgstr "Avaleht"
-
-msgid "Homepage title"
-msgstr "Kodulehe pealkiri"
-
-msgid "Hostname"
-msgstr "Hostinimi"
-
-msgid "I have read and agree to the terms of the license."
-msgstr "Olen lugenud litsentsitingimusi ja nõustun nendega."
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
+
+msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privaatsus"
+
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Me only"
+msgstr ""
+
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonüümne"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
+msgid "File a report"
+msgstr "Esita teavitus"
+
+msgid "Select a reporting channel:"
+msgstr "Vali teavituskanal"
+
+msgid "Before proceeding, please set a new password."
+msgstr "Enne jätkamist seadistage uus parool."
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "Enne jätkamist lubage kaheastmeline autentimine."
+
+msgid "Enable"
+msgstr "Luba"
+
+msgid "Type"
+msgstr "Tüüp"
+
+msgid "Severity"
+msgstr "Tõsidus"
+
+msgid "Object"
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
 
-msgid "Identity"
-msgstr "Isikuandmed"
+msgid "Username"
+msgstr "Kasutajanimi"
+
+msgid "Role"
+msgstr "Roll"
+
+msgid "Name"
+msgstr "Nimi"
+
+msgid "Creation date"
+msgstr "Loomise kuupäev:"
+
+msgid "Last access"
+msgstr "Viimane sisselogimine"
+
+msgid "Receivers"
+msgstr ""
+
+msgid "Whistleblower's last access"
+msgstr "Vihjeandja viimane sisselogimine"
+
+msgid "Substatuses"
+msgstr "Alamstaatused"
+
+msgid "Add"
+msgstr "Lisa"
+
+msgid "Label"
+msgstr "Silt"
+
+msgid "This field is mandatory"
+msgstr "See väli on kohustuslik"
+
+msgid "Edit"
+msgstr "Muuda"
+
+msgid "Save"
+msgstr "Salvesta"
+
+msgid "Cancel"
+msgstr "Tühista"
+
+msgid "days"
+msgstr "päeva"
+
+msgid "Disabled"
+msgstr "Keelatud"
+
+msgid "Report statuses"
+msgstr "Teavituste staatused"
+
+msgid "Channels"
+msgstr "Kanalid"
+
+msgid "Hidden"
+msgstr "Peidetud"
+
+msgid "Description"
+msgstr "Kirjeldus"
+
+msgid "Questionnaire"
+msgstr "Ankeet"
+
+msgid "Recipients"
+msgstr "Saajad"
+
+msgid "Reminder date"
+msgstr "Meeldetuletuse kuupäev"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
+
+msgid "Show the questionnaire navigation interface"
+msgstr "Näita ankeedi navigeerimisliidest"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "Luba vihjeandjatel saajaid valida"
+
+msgid "Select all recipients by default"
+msgstr "Vali vaikimisi kõik saajad"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "Valitavate saajate arvu ülempiir:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "Näita saajaid tähestiku järjekorras"
+
+msgid "Additional questionnaire"
+msgstr "Täiendav ankeet"
+
+msgid "Scoring system options"
+msgstr "Punktisüsteemi suvandid"
+
+msgid "Threshold"
+msgstr "Lävi"
+
+msgid "Value"
+msgstr "Väärtus"
+
+msgid "Medium"
+msgstr "Vahend"
+
+msgid "High"
+msgstr "Kõrge"
+
+msgid "Software version:"
+msgstr "Tarkvara versioon:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "Anna juurdepääsuõigus ainult kindlatele IP-aadressidele"
+
+msgid "Enabled"
+msgstr "Lubatud"
+
+msgid "Allowed IP addresses"
+msgstr "Lubatud IP-aadressid"
+
+msgid "Admin"
+msgstr "Administraator"
+
+msgid "Analyst"
+msgstr ""
+
+msgid "Recipient"
+msgstr "Saaja"
+
+msgid "Each entry must be separated with a comma."
+msgstr "Kõik kirjed peavad olema komaga eraldatud"
+
+msgid "Example:"
+msgstr "Näide:"
+
+msgid "Hostname"
+msgstr "Hostinimi"
+
+msgid "Organization"
+msgstr "Organisatsioon"
+
+msgid "Invalid email address"
+msgstr "Vigane meiliaadress"
+
+msgid "City"
+msgstr "Linn"
+
+msgid "Country"
+msgstr "Riik"
+
+msgid "Country code"
+msgstr "Riigikood"
+
+msgid "Generate"
+msgstr "Genereeri"
+
+msgid "Private Key"
+msgstr "Privaatvõti"
+
+msgid "Certificate Signing Request"
+msgstr "Sertifikaadi allkirjastamise taotlus"
+
+msgid "Certificate"
+msgstr "Sertifikaat"
+
+msgid "Valid until:"
+msgstr "Kehtiv kuni:"
+
+msgid "Issuer:"
+msgstr "Väljaandja:"
+
+msgid "Intermediate Certificates"
+msgstr "Vahesertifikaat:"
+
+msgid "Reset"
+msgstr "Lähtesta"
 
 msgid ""
-"If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaatselt."
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "Platvorm toetab HTTPS-i seadistamist selle liidese kaudu."
+
+msgid "Automatic configuration"
+msgstr "Automaatne seadistamine"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "HTTPS-i automaatse seadistamise korral toimub sertimisasutuse Let’s Encrypt sertifikaatide taotlemine, aktiveerimine ja uuendamine automaatselt."
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a DNS record referencing that address."
+msgstr "Platvorm peab olema avaliku IP-aadressi kaudu kättesaadav ning valitud hostinimel peab olema sellele aadressile viitav vastav DNS-i kirje."
+
+msgid "Proceed"
+msgstr "Jätka"
+
+msgid "Manual configuration"
+msgstr "Manuaalne seadistamine"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "Manuaalse seadistamise viisard juhatab teid läbi alternatiivse sertimisasutuse HTTPS-i seadistamise protsessi"
+
+msgid "Auto-renewal"
+msgstr "Automaatne uuendamine"
+
+msgid "Tor Onion Service"
+msgstr "Teenus Tor Onion"
+
+msgid "Anonymize outgoing connections"
+msgstr "Väljuvate ühenduste anonüümimine"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "Luba juurdepääsu platvormile ilma Tor-ita"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Ilma Tor-ita platvormi kasutamiseks aktiveeritud rollid"
+
+msgid "Whistleblower"
+msgstr "Vihjeandja"
+
+msgid "To"
+msgstr "Saaja"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Kasutusel on meili vaikekonfiguratsioon. Palun kaaluge privaatse meiliserveri kasutamist."
+
+msgid "SMTP email address"
+msgstr "SMTP meiliaadress"
+
+msgid "SMTP server address"
+msgstr "SMTP serveri aadress"
+
+msgid "SMTP server port"
+msgstr "SMTP serveri port"
+
+msgid "Security"
+msgstr "Turvalisus"
+
+msgid "Require authentication"
+msgstr "Autentimine nõutav"
+
+msgid "Password"
+msgstr "Parool"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "Tundide arv teavituse aegumisteatise saatmiseni"
+
+msgid "Test the configuration"
+msgstr "Seadete test"
+
+msgid "Reset SMTP configuration"
+msgstr "Lähtesta SMTP seaded"
+
+msgid "Reset notification templates to default"
+msgstr "Lähtesta teavituste mallid vaikeseadistusele"
+
+msgid "Template"
+msgstr "Mall"
+
+msgid "Question"
+msgstr "Küsimus"
+
+msgid "Single-line text input"
+msgstr "Teksti sisestus ühel real"
+
+msgid "Multi-line text input"
+msgstr "Teksti sisestus mitmel real"
+
+msgid "Selection box"
+msgstr "Valikukast"
+
+msgid "Multiple choice input"
+msgstr "Valikvastused"
+
+msgid "Checkbox"
+msgstr "Märkeruut"
+
+msgid "Terms of service"
+msgstr "Teenusetingimused"
+
+msgid "Date range"
+msgstr "Kuupäevade vahemik"
+
+msgid "Group of questions"
+msgstr "Küsimuste rühm"
+
+msgid "Row"
+msgstr "Rida"
+
+msgid "Column"
+msgstr "Veerg"
+
+msgid "Width"
+msgstr "Laius"
+
+msgid "Question group"
+msgstr "Küsimuste rühm"
+
+msgid "Hint"
+msgstr "Vihje"
+
+msgid "Mandatory"
+msgstr "Nõutav"
+
+msgid "Accept multiple file uploads"
+msgstr "Luba üles laadida mitu faili"
+
+msgid "Accept multiple answers"
+msgstr "Luba mitu vastust"
+
+msgid "Template override"
+msgstr "Malli ülekirjutamine"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Phone number"
+msgstr "Telefoninumber"
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Checkbox label"
+msgstr "Märkeruudu silt"
+
+msgid "Add multimedia content"
+msgstr "Lisa multimeediasisu"
+
+msgid "Image"
+msgstr "Pilt"
+
+msgid "Audio"
+msgstr "Heli"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Eitava vastuse korral näidatav tekst"
+
+msgid "Low"
+msgstr "Madal"
+
+msgid "Trigger conditions"
+msgstr "Käivitustingimused"
+
+msgid "Sufficient"
+msgstr "Piisav"
+
+msgid "Options"
+msgstr "Suvandid"
+
+msgid "Addition"
+msgstr "Lisamine"
+
+msgid "Multiplier"
+msgstr "Kordisti"
+
+msgid "Questions"
+msgstr "Küsimused"
+
+msgid "Add new question"
+msgstr "Lisa uus küsimus"
+
+msgid "Add question from template"
+msgstr "Lisa küsimus mallilt"
+
+msgid "Duplicate"
+msgstr "Tee koopia"
+
+msgid "Steps"
+msgstr "Etapid"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Projekti nimi"
+
+msgid "Homepage title"
+msgstr "Kodulehe pealkiri"
+
+msgid "Presentation"
+msgstr "Esitlus"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Küsimus võimalike vihjeandjate leidmiseks"
+
+msgid "Whistleblowing button"
+msgstr "Vihjeandmise nupp"
+
+msgid "Disclaimer"
+msgstr "Lahtiütlus"
+
+msgid "Footer"
+msgstr "Jalus"
+
+msgid "Upload"
+msgstr "Laadi üles"
+
+msgid "Download"
+msgstr "Laadi alla"
+
+msgid "Language:"
+msgstr "Keel:"
+
+msgid "Add custom text"
+msgstr "Lisa kohandatud tekst"
+
+msgid "Custom text"
+msgstr "Kohandatud tekst"
+
+msgid "Original text"
+msgstr "Algne tekst"
+
+msgid "Original translation"
+msgstr "Algne tõlge"
+
+msgid "Custom translation"
+msgstr "Kohandatud tõlge"
+
+msgid "Disable submissions"
+msgstr "Keela teabeesitused"
+
+msgid "Enable encryption"
+msgstr "Luba krüptimine"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Luba administraatoritel kasutajate paroole muuta."
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
+
+msgid "Enable PGP"
+msgstr "Luba PGP"
+
+msgid "Enable simplified login"
+msgstr "Luba lihtsustatud sisselogimine"
+
+msgid "Enable search engines indexing"
+msgstr "Luba indekseerimine otsimootorite jaoks"
+
+msgid "Show channels in alphabetical order"
+msgstr ""
+
+msgid "Size limit for file attachments"
+msgstr "Manusfailide mahupiirang"
+
+msgid "megabytes"
+msgstr "megabaiti"
+
+msgid "Require two factor authentication"
+msgstr "Küsi kaheastmelist autentimist"
+
+msgid "Password change interval"
+msgstr "Paroolivahetuse ajavahemik"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Päevade arv kasutajate lugemata teadetest teavitamiseni"
+
+msgid "Custom support URL"
+msgstr "Kohandatud toe URL"
+
+msgid "Disable the privacy panel"
+msgstr "Keela andmekaitsepaneel"
+
+msgid "Enable custom privacy panel"
+msgstr "Luba kohandatud andmekaitsepaneel"
+
+msgid "Custom privacy panel"
+msgstr "Kohandatud andmekaitsepaneel"
+
+msgid "Enable scoring system"
+msgstr "Luba punktisüsteem"
+
+msgid "Logging level"
+msgstr "Registreerimistase"
+
+msgid "percentage"
+msgstr "protsenti"
+
+msgid "Log accesses of internal users"
+msgstr "Registreeri sisemiste kasutajate kasutuskorrad"
+
+msgid "Notify administrators of software problems"
+msgstr "Teavita administraatoreid tarkvaraprobleemidest"
+
+msgid "Notify developers of software problems"
+msgstr "Teavita arendajaid tarkvaraprobleemidest"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Selle funktsiooni lubamisega toetate platvormi arendamist ja turvalisust."
+
+msgid "Reset reports"
+msgstr "Lähtesta teavitused"
+
+msgid "Settings"
+msgstr "Seaded"
+
+msgid "Case management"
+msgstr "Juhtumihaldus"
+
+msgid "Network"
+msgstr "Võrk"
+
+msgid "Sites"
+msgstr "Saidid"
+
+msgid "Profile"
+msgstr ""
+
+msgid "Configure"
+msgstr "Seadista"
+
+msgid "Subdomain"
+msgstr "Alamdomeen"
+
+msgid "Mode:"
+msgstr "Režiim:"
+
+msgid "Creation date:"
+msgstr "Loomise kuupäev:"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "Kasuta esimest saiti ainult administreerimiseks"
+
+msgid "Root domain used for secondary sites"
+msgstr "Varusaitide puhul kasutatav juurdomeen"
+
+msgid "Allow users to sign up"
+msgstr "Luba kasutajate registreerumine"
+
+msgid "Enable terms of service"
+msgstr "Luba teenusetingimused"
+
+msgid "Title"
+msgstr "Pealkiri"
+
+msgid "Public name"
+msgstr "Avalik nimi"
+
+msgid "Send reset link"
+msgstr "Saada lähtestamislink"
+
+msgid "Set password"
+msgstr "Määra parool"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 12 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 12 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
+
+msgid "Force password change"
+msgstr "Kohustuslik paroolivahetus"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "Kasutaja peab järgmisel sisselogimisel parooli vahetama."
+
+msgid "Disable two factor authentication"
+msgstr "Keela kaheastmeline autentimine"
+
+msgid "Language"
+msgstr "Keel"
+
+msgid "Enable email notifications"
+msgstr "Luba meiliteavitused"
+
+msgid "Details of the PGP key:"
+msgstr "PGP võtme üksikasjad:"
+
+msgid "Fingerprint"
+msgstr "Sõrmejälg"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "Krüptimise seadistamine PGP avaliku võtmega"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "Anna sellele administraatorile õigus muuta kasutajate paroole"
+
+msgid "Forcefully selected"
+msgstr "Valitud sundkorras"
+
+msgid "Allow the recipient to delete reports"
+msgstr "Luba saajal teavitusi kustutada"
+
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Luba saajal teavituse aegumiskuupäeva edasi lükata"
+
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
+
+msgid "Allow this user to reopen management of a report"
+msgstr ""
+
+msgid "Give the user administrative access to the following features:"
+msgstr "Anna kasutajale administraatori õigused järgmiste funktsioonide suhtes:"
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Request date"
+msgstr "Taotluse kuupäev"
+
+msgid "Report date"
+msgstr "Teavituse kuupäev"
+
+msgid "Authorization"
+msgstr "Autoriseerimine"
+
+msgid "Requests"
+msgstr "Taotlused"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "Valideerimislink on vale või aegunud."
+
+msgid "Your new email address has been validated."
+msgstr "Teie uus meiliaadress on valideeritud."
+
+msgid "Forgot password?"
+msgstr "Parool ununes?"
+
+msgid "Enter the two factor authentication code"
+msgstr "Sisestage kaheastmelise autentimise kood"
+
+msgid "Authentication failed"
+msgstr "Autentimine nurjus"
+
+msgid "The code is either invalid or expired."
+msgstr "Kood on vale või aegunud."
+
+msgid "Please select your account:"
+msgstr "Valige oma konto:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "Sisestage parool ja seejärel vajutage sisselogimisnuppu:"
+
+msgid "Confirm"
+msgstr "Kinnita"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
+
+msgid "Assign score points"
+msgstr "Punktide andmine"
+
+msgid "Change status"
+msgstr ""
+
+msgid "Status:"
+msgstr "Staatus:"
+
+msgid "Are you sure?"
+msgstr "Kas olete kindel?"
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
+
+msgid "Enable two factor authentication"
+msgstr "Luba kaheastmeline autentimine"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
+
+msgid "Account recovery key"
+msgstr "Konto taastamise võti"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "Tehke sellest koopia ja hoidke seda kindlas kohas. Seda läheb vaja parooli kaotamise korral, et saaksite juurdepääsu kontole taastada ilma andmeid kaotamata."
+
+msgid "Attention"
+msgstr ""
+
+msgid "For security reasons the code needs to be changed."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "Sisestage koopia nimi"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Request support"
+msgstr "Küsi tuge"
+
+msgid "Thank you."
+msgstr "Täname."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
+
+msgid "Submit"
+msgstr "Esita"
+
+msgid "The connection is not secure."
+msgstr "Ühendus ei ole turvaline."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
+
+msgid "Send"
+msgstr "Saada"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
+
+msgid "By confirming, you will set a reminder on date:"
+msgstr "Kinnitades määrate kuupäeva meeldetuletuse"
+
+msgid "Transfer access"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installige oma telefoni autentimisrakendus"
+
+msgid "Scan the QR code with the app"
+msgstr "Skannige rakendusega QR-kood"
+
+msgid "Error!"
+msgstr "Tõrge!"
+
+msgid "Internal server error"
+msgstr "Sisemine serveritõrge"
+
+msgid "Error on input validation"
+msgstr "Tõrge sisestuse kontrollimisel"
+
+msgid "Resource not found"
+msgstr "Ressurssi ei leitud"
+
+msgid "Forbidden operation"
+msgstr "Keelatud toiming"
+
+msgid "The specified old password is not valid"
+msgstr "Sisestatud vana parool ei kehti"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
+
+msgid "The upload request exceeds the size limit"
+msgstr "Üleslaadimistaotlus ületab mahupiirangut"
+
+msgid "A user with this username already exists"
+msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr ""
+
+msgid "Current password"
+msgstr "Senine parool"
+
+msgid "New password"
+msgstr "Uus parool"
+
+msgid "The new password must be different from the current one."
+msgstr "Uus parool peab senisest paroolist erinema."
+
+msgid "Type your new password again"
+msgstr "Korrake uut parooli"
+
+msgid "The two passwords do not match"
+msgstr "Paroolid ei ühti"
+
+msgid "Validation of email address change in progress."
+msgstr "Meiliaadressi vahetust valideeritakse."
+
+msgid "Please check your inbox for further instructions."
+msgstr "Täpsemate juhiste saamiseks vaadake oma sisendkausta."
+
+msgid "Warning"
+msgstr "Hoiatus"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "Soovitame tungivalt kasutada selle saidi külastamiseks ainult rakendust Tor Browser, mis kaitseb teie isikuandmeid."
+
+msgid "Download the Tor Browser"
+msgstr "Laadige alla Tor Browser"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "Seejärel kopeerige ja kleepige Tor Browserisse järgmine aadress:"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "Kas olete teavituse juba esitanud? Sisestage kättesaamiskood."
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "Kättesaamiskood on kehtetu või teavitus on aegunud."
+
+msgid "Filename"
+msgstr "Failinimi"
+
+msgid "Size:"
+msgstr "Maht:"
+
+msgid "Access date"
+msgstr ""
+
+msgid "Address"
+msgstr "Aadress"
+
+msgid "Fiscal code"
+msgstr "Itaalia maksukood"
+
+msgid "Tax code"
+msgstr "Maksukood"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
+
+msgid "Fill the additional questionnaire"
+msgstr "Täiendavat ankeeti täitma"
+
+msgid "From:"
+msgstr "Saatja:"
+
+msgid "To:"
+msgstr "Saaja:"
+
+msgid "View"
+msgstr "Vaata"
+
+msgid "Upload date"
+msgstr "Üleslaadimise kuupäev"
+
+msgid "File size"
+msgstr "Failimaht"
+
+msgid "Questionnaire answers"
+msgstr "Ankeetide vastused"
+
+msgid "Step"
+msgstr "Etapp"
+
+msgid "Files attached by recipients"
+msgstr "Saajate lisatud failid"
+
+msgid "Upload a file:"
+msgstr "Faili üleslaadimine:"
+
+msgid "Welcome!"
+msgstr "Tere tulemast!"
+
+msgid "For the user documentation, visit:"
+msgstr "Kasutaja dokumendid leiate aadressilt:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -620,915 +1446,11 @@ msgid ""
 "open an issue in our ticketing system:"
 msgstr "Kui soovite kaasa aidata tarkvara arendamisele või teatada programmiveast, avage meie piletisüsteemis probleemikirje:"
 
-msgid "Image"
-msgstr "Pilt"
-
-msgid "Import"
-msgstr "Impordi"
-
-msgid ""
-"In this step the answers to the following questions are either missing or "
-"invalid:"
-msgstr "Sellel etapil vastused järgmistele küsimustele puuduvad või on vigased:"
-
-msgid "Initially anonymous"
-msgstr ""
-
-msgid "Input validation"
-msgstr "Sisestuse kontroll"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Installige oma telefoni autentimisrakendus"
-
-msgid "Intermediate Certificates"
-msgstr "Vahesertifikaat:"
-
-msgid "Internal server error"
-msgstr "Sisemine serveritõrge"
-
-msgid "Invalid confirmation"
-msgstr "Kehtetu kinnitus"
-
-msgid "Invalid email address"
-msgstr "Vigane meiliaadress"
-
-msgid "Invalid phone number"
-msgstr "Vigane telefoninumber"
-
-msgid "Issuer:"
-msgstr "Väljaandja:"
-
 msgid "Join our chat:"
 msgstr "Liituge meie vestlusega:"
 
-msgid "Label"
-msgstr "Silt"
-
-msgid "Label the report"
-msgstr "Teate silt"
-
-msgid "Language"
-msgstr "Keel"
-
-msgid "Language:"
-msgstr "Keel:"
-
-msgid "Languages"
-msgstr "Keeled"
-
-msgid "Last"
-msgstr "Viimane"
-
-msgid "Last Access"
-msgstr "Viimane sisselogimine"
-
-msgid "Last access"
-msgstr "Viimane sisselogimine"
-
-msgid "Last update"
-msgstr "Viimane värskendus"
-
-msgid "Latest selectable date"
-msgstr "Hiliseim valitav kuupäev"
-
-msgid "Let the platform be reachable without Tor"
-msgstr "Luba juurdepääsu platvormile ilma Tor-ita"
-
-msgid "License"
-msgstr "Litsents"
-
-msgid "Log accesses of internal users"
-msgstr "Registreeri sisemiste kasutajate kasutuskorrad"
-
-msgid "Log in"
-msgstr "Logi sisse"
-
-msgid "Logging level"
-msgstr "Registreerimistase"
-
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Logout"
-msgstr "Logi välja"
-
-msgid "Low"
-msgstr "Madal"
-
-msgid ""
-"Make a copy and store it in a safe place. It will be necessary if you lose "
-"your password to recover the access to your account without data loss."
-msgstr "Tehke sellest koopia ja hoidke seda kindlas kohas. Seda läheb vaja parooli kaotamise korral, et saaksite juurdepääsu kontole taastada ilma andmeid kaotamata."
-
-msgid "Make it possible for this admin to reset user passwords."
-msgstr "Võimalda sellel administraatoril kasutajate paroole lähtestada."
-
-msgid "Mandatory"
-msgstr "Nõutav"
-
-msgid "Manual configuration"
-msgstr "Manuaalne seadistamine"
-
-msgid "Mark as important"
-msgstr "Märgi oluliseks"
-
-msgid "Mask"
-msgstr ""
-
-msgid "Max"
-msgstr ""
-
-msgid "Maximum file size is:"
-msgstr "Failimahu ülempiir on:"
-
-msgid "Maximum number of input characters"
-msgstr "Sisestatavate märkide arvu ülempiir"
-
-msgid "Maximum number of selectable recipients:"
-msgstr "Valitavate saajate arvu ülempiir:"
-
-msgid "Me only"
-msgstr ""
-
-msgid "Medium"
-msgstr "Vahend"
-
-msgid "Min"
-msgstr ""
-
-msgid "Minimum number of input characters"
-msgstr "Sisestatavate märkide arvu alampiir"
-
-msgid "Mobile"
-msgstr ""
-
-msgid "Mode:"
-msgstr "Režiim:"
-
-msgid "Motivation"
-msgstr "Motivatsioon"
-
-msgid "Move down"
-msgstr "Alla"
-
-msgid "Move left"
-msgstr "Vasakule"
-
-msgid "Move right"
-msgstr "Paremale"
-
-msgid "Move up"
-msgstr "Üles"
-
-msgid "Multi-line text input"
-msgstr "Teksti sisestus mitmel real"
-
-msgid "Multiple choice input"
-msgstr "Valikvastused"
-
-msgid "Multiplier"
-msgstr "Kordisti"
-
-msgid "Name"
-msgstr "Nimi"
-
-msgid "Network"
-msgstr "Võrk"
-
-msgid "New"
-msgstr "Uus"
-
-msgid "New password"
-msgstr "Uus parool"
-
-msgid "New request"
-msgstr "Uus taotlus"
-
-msgid "Next"
-msgstr "Edasi"
-
-msgid "No"
-msgstr "Ei"
-
-msgid "None"
-msgstr "Puudub"
-
-msgid "Not provided."
-msgstr "Pole tagatud"
-
-msgid "Notifications"
-msgstr "Teavitused"
-
-msgid "Notify administrators of software problems"
-msgstr "Teavita administraatoreid tarkvaraprobleemidest"
-
-msgid "Notify developers of software problems"
-msgstr "Teavita arendajaid tarkvaraprobleemidest"
-
-msgid "Now type your password, then click 'Log in':"
-msgstr "Sisestage parool ja seejärel vajutage sisselogimisnuppu:"
-
-msgid "Number"
-msgstr "Number"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Päevade arv kasutajate lugemata teadetest teavitamiseni"
-
-msgid "Number of downloads"
-msgstr "Allalaadimiste arv"
-
-msgid "Number of hours before sending a report expiration alert"
-msgstr "Tundide arv teavituse aegumisteatise saatmiseni"
-
-msgid "Object"
-msgstr "Objekt"
-
-msgid ""
-"One or more recipients have not performed the first login yet. This means "
-"they won't be receiving reports."
-msgstr "Üks või mitu saajat ei ole veel esimest sisselogimist teinud. See tähendab, et nad ei saa teavitusi."
-
-msgid "Opened"
-msgstr "Avatud"
-
-msgid "Options"
-msgstr "Suvandid"
-
-msgid "Organization"
-msgstr "Organisatsioon"
-
-msgid "Original text"
-msgstr "Algne tekst"
-
-msgid "Original translation"
-msgstr "Algne tõlge"
-
-msgid "Password"
-msgstr "Parool"
-
-msgid "Password change interval"
-msgstr "Paroolivahetuse ajavahemik"
-
-msgid "Password reset"
-msgstr "Parooli lähtestamine"
-
-msgid "Password reset requested."
-msgstr "Parooli lähtestamise taotlus esitatud."
-
-msgid "Phone number"
-msgstr "Telefoninumber"
-
-msgid "Placeholder"
-msgstr "Kohatäide"
-
-msgid "Platform wizard"
-msgstr "Platvormi viisard"
-
-msgid "Please check your inbox for further instructions."
-msgstr "Täpsemate juhiste saamiseks vaadake oma sisendkausta."
-
-msgid "Please choose a configuration profile:"
-msgstr "Valige seadistusprofiil:"
-
-msgid "Please choose a different username."
-msgstr "Valige teine kasutajanimi."
-
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
-
-msgid "Please select your account:"
-msgstr "Valige oma konto:"
-
-msgid "Postpone the expiration date"
-msgstr "Lükka aegumiskuupäeva edasi"
-
-msgid "Preferences"
-msgstr "Eelistused"
-
-msgid "Presentation"
-msgstr "Esitlus"
-
-msgid "Preview"
-msgstr "Eelvaade"
-
-msgid "Previous"
-msgstr "Eelmine"
-
-msgid "Print"
-msgstr "Prindi"
-
-msgid "Privacy Policy"
-msgstr "Privaatsus"
-
-msgid "Private Key"
-msgstr "Privaatvõti"
-
-msgid "Privileges"
-msgstr ""
-
-msgid "Proceed"
-msgstr "Jätka"
-
-msgid "Profile"
-msgstr ""
-
-msgid "Project name"
-msgstr "Projekti nimi"
-
-msgid "Public name"
-msgstr "Avalik nimi"
-
-msgid "Question"
-msgstr "Küsimus"
-
-msgid "Question group"
-msgstr "Küsimuste rühm"
-
-msgid "Question templates"
-msgstr "Küsimuste mallid"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Küsimus võimalike vihjeandjate leidmiseks"
-
-msgid "Questionnaire"
-msgstr "Ankeet"
-
-msgid "Questionnaire answers"
-msgstr "Ankeetide vastused"
-
-msgid "Questionnaires"
-msgstr "Ankeedid"
-
-msgid "Questions"
-msgstr "Küsimused"
-
-msgid "Receivers"
-msgstr ""
-
-msgid "Recipient"
-msgstr "Saaja"
-
-msgid "Recipient selection"
-msgstr "Saaja valimine"
-
-msgid "Recipients"
-msgstr "Saajad"
-
-msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
-
-msgid "Recipients only"
-msgstr ""
-
-msgid "Recipients selected:"
-msgstr "Valitud saajad:"
-
-msgid "Redact"
-msgstr ""
-
-msgid "Refresh"
-msgstr "Värskenda"
-
-msgid "Regenerate"
-msgstr "Taasta"
-
-msgid "Regular expression"
-msgstr "Regulaaravaldis"
-
-msgid "Regular expression validator"
-msgstr "Regulaaravaldise validaator"
-
-msgid "Remember your receipt for this report."
-msgstr "Pidage meeles selle teavituse kättesaamiskood."
-
-msgid "Reminder date"
-msgstr "Meeldetuletuse kuupäev"
-
-msgid "Remove"
-msgstr "Eemalda"
-
-msgid "Reopen"
-msgstr ""
-
-msgid "Reply motivation"
-msgstr "Esita motivatsioon"
-
-msgid "Reply to the request"
-msgstr "Vasta päringule"
-
-msgid "Report"
-msgstr "Teavitus"
-
-msgid "Report date"
-msgstr "Teavituse kuupäev"
-
-msgid "Report statuses"
-msgstr "Teavituste staatused"
-
-msgid "Reports"
-msgstr "Teavitused"
-
-msgid "Request access to the whistleblower's identity"
-msgstr "Taotle juurdepääsu vihjeandja isikuandmetele"
-
-msgid "Request date"
-msgstr "Taotluse kuupäev"
-
-msgid "Request motivation"
-msgstr "Küsi motivatsiooni"
-
-msgid "Request status"
-msgstr "Küsi staatust"
-
-msgid "Request support"
-msgstr "Küsi tuge"
-
-msgid "Requests"
-msgstr "Taotlused"
-
-msgid "Require authentication"
-msgstr "Autentimine nõutav"
-
-msgid "Require two factor authentication"
-msgstr "Küsi kaheastmelist autentimist"
-
-msgid "Reset"
-msgstr "Lähtesta"
-
-msgid "Reset SMTP configuration"
-msgstr "Lähtesta SMTP seaded"
-
-msgid "Reset notification templates to default"
-msgstr "Lähtesta teavituste mallid vaikeseadistusele"
-
-msgid "Reset reports"
-msgstr "Lähtesta teavitused"
-
-msgid "Resource can only be accessed via the Tor network"
-msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
-
-msgid "Resource not found"
-msgstr "Ressurssi ei leitud"
-
-msgid "Restrict access to specific IP addresses"
-msgstr "Anna juurdepääsuõigus ainult kindlatele IP-aadressidele"
-
-msgid "Returning whistleblowers"
-msgstr ""
-
-msgid "Revoke access"
-msgstr "Tühista juurdepääs"
-
-msgid "Role"
-msgstr "Roll"
-
-msgid "Roles enabled to use the platform without Tor"
-msgstr "Ilma Tor-ita platvormi kasutamiseks aktiveeritud rollid"
-
-msgid "Root domain used for secondary sites"
-msgstr "Varusaitide puhul kasutatav juurdomeen"
-
-msgid "Row"
-msgstr "Rida"
-
-msgid "SMTP email address"
-msgstr "SMTP meiliaadress"
-
-msgid "SMTP server address"
-msgstr "SMTP serveri aadress"
-
-msgid "SMTP server port"
-msgstr "SMTP serveri port"
-
-msgid "Save"
-msgstr "Salvesta"
-
-msgid "Save all"
-msgstr "Salvesta kõik"
-
-msgid "Scan the QR code with the app"
-msgstr "Skannige rakendusega QR-kood"
-
-msgid "Scheduled jobs"
-msgstr "Plaanilised tööd"
-
-msgid "Score"
-msgstr "Skoor"
-
-msgid "Scoring system options"
-msgstr "Punktisüsteemi suvandid"
-
-msgid "Search"
-msgstr "Otsing"
-
-msgid "Security"
-msgstr "Turvalisus"
-
-msgid "Select"
-msgstr "Vali"
-
-msgid "Select a file or drag it here."
-msgstr "Valige fail või lohistage see siia."
-
-msgid "Select all"
-msgstr "Vali kõik"
-
-msgid "Select all recipients by default"
-msgstr "Vali vaikimisi kõik saajad"
-
-msgid "Select an option"
-msgstr ""
-
-msgid "Select the recipients of your report"
-msgstr ""
-
-msgid "Select your language"
-msgstr ""
-
-msgid "Selection box"
-msgstr "Valikukast"
-
-msgid "Send"
-msgstr "Saada"
-
-msgid "Send a test email to your email address."
-msgstr "Testmeili saatmine oma meiliaadressile."
-
-msgid "Send activation link"
-msgstr "Saada aktiveerimislink"
-
-msgid "Send reset link"
-msgstr "Saada lähtestamislink"
-
-msgid "Set a reminder"
-msgstr "Lisa meeldetuletus"
-
-msgid "Set password"
-msgstr "Määra parool"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
-
-msgid "Set up encryption by providing a PGP public key"
-msgstr "Krüptimise seadistamine PGP avaliku võtmega"
-
-msgid "Settings"
-msgstr "Seaded"
-
-msgid "Severity"
-msgstr "Tõsidus"
-
-msgid "Show"
-msgstr "Näita"
-
-msgid "Show channels in alphabetical order"
-msgstr ""
-
-msgid "Show recipients in alphabetical order"
-msgstr "Näita saajaid tähestiku järjekorras"
-
-msgid "Show the questionnaire navigation interface"
-msgstr "Näita ankeedi navigeerimisliidest"
-
-msgid "Sign up"
-msgstr "Registreeru"
-
-msgid "Silence email notifications"
-msgstr "Vaigista meiliteavitused"
-
-msgid "Single-line text input"
-msgstr "Teksti sisestus ühel real"
-
-msgid "Site"
-msgstr "Sait"
-
-msgid "Sites"
-msgstr "Saidid"
-
-msgid "Size limit for file attachments"
-msgstr "Manusfailide mahupiirang"
-
-msgid "Size:"
-msgstr "Maht:"
-
-msgid "Skip the recipient account creation."
-msgstr "Jäta saaja konto loomine vahele."
-
-msgid "Software version:"
-msgstr "Tarkvara versioon:"
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Stats"
-msgstr "Statistika"
-
-msgid "Status"
-msgstr "Staatus"
-
-msgid "Status:"
-msgstr "Staatus:"
-
-msgid "Step"
-msgstr "Etapp"
-
-msgid "Steps"
-msgstr "Etapid"
-
-msgid "Strong"
-msgstr "Tugev"
-
-msgid "Subdomain"
-msgstr "Alamdomeen"
-
-msgid "Submissions disabled"
-msgstr "Teabeesitused keelatud"
-
-msgid "Submit"
-msgstr "Esita"
-
-msgid "Subscribed"
-msgstr ""
-
-msgid "Subscription date"
-msgstr ""
-
-msgid "Substatuses"
-msgstr "Alamstaatused"
-
-msgid "Success!"
-msgstr "Õnnestus!"
-
-msgid "Sufficient"
-msgstr "Piisav"
-
-msgid "Surname"
-msgstr "Perekonnanimi"
-
-msgid "Tax code"
-msgstr "Maksukood"
-
-msgid "Template"
-msgstr "Mall"
-
-msgid "Template override"
-msgstr "Malli ülekirjutamine"
-
-msgid "Templates"
-msgstr "Mallid"
-
-msgid "Terms of service"
-msgstr "Teenusetingimused"
-
-msgid "Test the configuration"
-msgstr "Seadete test"
-
-msgid "Text"
-msgstr "Tekst"
-
-msgid "Text customization"
-msgstr "Teksti kohandamine"
-
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
-
-msgid "Text shown on top of the interface for selecting channels"
-msgstr "Liidese ülaosas kuvatav tekst kanalite valimiseks"
-
-msgid "Text shown upon negative answer"
-msgstr "Eitava vastuse korral näidatav tekst"
-
-msgid "Thank you."
-msgstr "Täname."
-
-msgid "The answer is too short"
-msgstr "Vastus on liiga lühike"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 12 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 12 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
-
-msgid "The code is either invalid or expired."
-msgstr "Kood on vale või aegunud."
-
-msgid "The connection is not secure."
-msgstr "Ühendus ei ole turvaline."
-
-msgid ""
-"The following recipients will receive your report and could not be "
-"deselected:"
-msgstr "Järgmised saajad saavad teie teavituse ning nende valikut ei saanud tühistada:"
-
-msgid ""
-"The following step-by-step procedure will guide you through creating your "
-"whistleblowing platform."
-msgstr "Järgnev sammsammuline juhend aitab teil luua oma vihjeandmise platvormi."
-
-msgid "The link will expire in 7 days."
-msgstr ""
-
-msgid ""
-"The manual configuration wizard will guide you through the setup of HTTPS "
-"from an alternative Certificate Authority."
-msgstr "Manuaalse seadistamise viisard juhatab teid läbi alternatiivse sertimisasutuse HTTPS-i seadistamise protsessi"
-
-msgid "The new password must be different from the current one."
-msgstr "Uus parool peab senisest paroolist erinema."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
-
-msgid ""
-"The platform must be reachable through a public IP address and the selected "
-"hostname must have a DNS record referencing that address."
-msgstr "Platvorm peab olema avaliku IP-aadressi kaudu kättesaadav ning valitud hostinimel peab olema sellele aadressile viitav vastav DNS-i kirje."
-
-msgid ""
-"The platform supports the configuration of HTTPS through this interface."
-msgstr "Platvorm toetab HTTPS-i seadistamist selle liidese kaudu."
-
-msgid "The provided recovery key is invalid."
-msgstr "Sisestatud taastevõti ei kehti."
-
-msgid "The provided reset token is invalid or expired."
-msgstr "Sisestatud lähtestamistõend on kehtetu või aegunud."
-
-msgid "The receipt is either invalid or the report has expired."
-msgstr "Kättesaamiskood on kehtetu või teavitus on aegunud."
-
-msgid "The specified input is not valid."
-msgstr "See sisestus on vigane."
-
-msgid "The specified input is not valid:"
-msgstr "See sisestus on vigane:"
-
-msgid "The specified old password is not valid"
-msgstr "Sisestatud vana parool ei kehti"
-
-msgid "The two passwords do not match"
-msgstr "Paroolid ei ühti"
-
-msgid "The upload request exceeds the size limit"
-msgstr "Üleslaadimistaotlus ületab mahupiirangut"
-
-msgid "The user will be forced to change its password on next login."
-msgstr "Kasutaja peab järgmisel sisselogimisel parooli vahetama."
-
-msgid "The validation link is either incorrect or has expired."
-msgstr "Valideerimislink on vale või aegunud."
-
-msgid "The whistleblower has already read the last update"
-msgstr "Vihjeandja on viimast teavitust juba lugenud"
-
-msgid "The whistleblower has not read the last update yet"
-msgstr "Vihjeandja ei ole veel viimast teavitust lugenud"
-
-msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Seejärel kopeerige ja kleepige Tor Browserisse järgmine aadress:"
-
-msgid ""
-"This custom text is no longer displayed on the platform. The original text "
-"has either changed or been removed."
-msgstr "Seda kohandatud teksti enam platvormis ei kuvata. Algne tekst on muudetud või eemaldatud."
-
-msgid "This domain name is not available."
-msgstr "See domeeninimi pole saadaval."
-
-msgid "This field is mandatory"
-msgstr "See väli on kohustuslik"
-
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
-
-msgid "This user has not performed the first login yet."
-msgstr "See kasutaja ei ole veel esimest sisselogimist teinud."
-
-msgid "Threshold"
-msgstr "Lävi"
-
-msgid "Title"
-msgstr "Pealkiri"
-
-msgid "To"
-msgstr "Saaja"
-
-msgid "To:"
-msgstr "Saaja:"
-
-msgid "Tor"
-msgstr "Tor"
-
-msgid "Tor Onion Service"
-msgstr "Teenus Tor Onion"
-
-msgid "Transfer"
-msgstr ""
-
-msgid "Transfer access"
-msgstr ""
-
-msgid "Trigger conditions"
-msgstr "Käivitustingimused"
-
-msgid "Trigger question"
-msgstr "Käivitusküsimus"
-
-msgid "Triggered by score:"
-msgstr "Käivitusskoor:"
-
-msgid "Turn on email notifications"
-msgstr "Lülita meiliteavitused sisse"
-
-msgid "Type"
-msgstr "Tüüp"
-
-msgid "Type your new password again"
-msgstr "Korrake uut parooli"
-
-msgid "URL redirects"
-msgstr "URL-i ümbersuunamised"
-
-msgid "Unhide"
-msgstr ""
-
-msgid "Unselect"
-msgstr ""
-
-msgid "Upload"
-msgstr "Laadi üles"
-
-msgid "Upload a file:"
-msgstr "Faili üleslaadimine:"
-
-msgid "Upload date"
-msgstr "Üleslaadimise kuupäev"
-
-msgid "Use as default"
-msgstr "Kasuta vaikimisi"
-
-msgid ""
-"Use the 16 digit receipt to log in. It will allow you to view any messages "
-"we sent you, and also to add extra info."
-msgstr "Kasutage 16-kohalist kättesaamiskoodi sisselogimiseks. See võimaldab vaadata teateid, mille oleme teile saatnud, ja lisada täiendavat teavet."
-
-msgid "Use the first site for administrative purposes only"
-msgstr "Kasuta esimest saiti ainult administreerimiseks"
-
-msgid "User"
-msgstr "Kasutaja"
-
-msgid "Username"
-msgstr "Kasutajanimi"
-
-msgid "Users"
-msgstr "Kasutajad"
-
-msgid ""
-"Using automatic HTTPS configuration will handle the entire process of "
-"requesting, enabling and renewing certificates from the Let's Encrypt "
-"Certificate Authority."
-msgstr "HTTPS-i automaatse seadistamise korral toimub sertimisasutuse Let’s Encrypt sertifikaatide taotlemine, aktiveerimine ja uuendamine automaatselt."
-
-msgid "Valid until:"
-msgstr "Kehtiv kuni:"
-
-msgid "Validation of email address change in progress."
-msgstr "Meiliaadressi vahetust valideeritakse."
-
-msgid "Value"
-msgstr "Väärtus"
-
-msgid "Video"
-msgstr "Video"
-
-msgid "View"
-msgstr "Vaata"
-
-msgid "View your report"
-msgstr "Vaadake oma teavitust"
-
-msgid "Voice"
-msgstr ""
-
-msgid "Waiting for authorization"
-msgstr "Loa ootamine"
-
-msgid "Waiting for the file(s) to finish uploading."
-msgstr "Oodake, kuni fail(id) on üles laaditud."
-
-msgid "Warning"
-msgstr "Hoiatus"
-
-msgid ""
-"We advise selecting this option if you would like to protect data from being"
-" lost in the situation where recipients lose their passwords. On the other "
-"hand, we would not advise using this feature if you want to setup a system "
-"where only recipients are able to access submissions."
-msgstr "Soovitame valida selle suvandi, kui soovite kaitsta andmeid kaotsimineku eest olukorras, kus saajad kaotavad oma paroolid. Teisest küljest ei soovita me seda funktsiooni kasutada, kui soovite seadistada süsteemi, kus ainult saajad pääsevad teabeesitustele ligi."
+msgid "An update is available:"
+msgstr "Värskendus on saadaval:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
@@ -1537,78 +1459,85 @@ msgid ""
 "your password."
 msgstr "Soovitame hankida jaotisest „Eelistused“ konto taastamise võtme ja säilitada seda turvalises kohas. Seda võtit vajate parooli unustamise korral, et taastada juurdepääsu platvormile ja oma andmetele."
 
-msgid "We will try to get back to you as soon as possible."
-msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
+msgid "Select a file or drag it here."
+msgstr "Valige fail või lohistage see siia."
 
-msgid "Weak"
-msgstr "Nõrk"
+msgid "The provided recovery key is invalid."
+msgstr "Sisestatud taastevõti ei kehti."
 
-msgid "Welcome!"
-msgstr "Tere tulemast!"
-
-msgid "Whistleblower"
-msgstr "Vihjeandja"
-
-msgid "Whistleblower's last access"
-msgstr "Vihjeandja viimane sisselogimine"
-
-msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Whistleblowing button"
-msgstr "Vihjeandmise nupp"
-
-msgid "Width"
-msgstr "Laius"
-
-msgid "Yes"
-msgstr "Jah"
+msgid "The provided reset token is invalid or expired."
+msgstr "Sisestatud lähtestamistõend on kehtetu või aegunud."
 
 msgid ""
-"You are connecting to the server without anonymity and this server supports "
-"only anonymous submissions"
-msgstr "Teie ühendus serveriga ei ole anonüümne ja see server toetab ainult anonüümseid teabeesitusi."
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "Parooli lähtestamise taotlemiseks sisestage oma konto kasutajanimi või meiliaadress."
 
-msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgid "Enter your email address to request a password reset."
+msgstr "Parooli lähtestamise taotlemiseks sisestage oma meiliaadress."
+
+msgid "Password reset requested."
+msgstr "Parooli lähtestamise taotlus esitatud."
 
 msgid ""
-"You are strongly advised to visit this site using the app called Tor "
-"Browser, that protects your identity."
-msgstr "Soovitame tungivalt kasutada selle saidi külastamiseks ainult rakendust Tor Browser, mis kaitseb teie isikuandmeid."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Parooli lähtestamise lõpuleviimiseks sisestage oma konto taastamise võti"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "Hoidja jaoks on taotletud juurdepääsu vihjeandja isikuandmetele."
+
+msgid "Date of the request"
+msgstr "Taotluse kuupäev"
+
+msgid "Show"
+msgstr "Näita"
+
+msgid "Subscription date"
+msgstr ""
+
+msgid "Congratulations!"
+msgstr "Õnnitleme!"
 
 msgid "You have completed the platform activation."
 msgstr "Platvormi aktiveerimine on lõpule viidud."
 
-msgid "You have completed the platform wizard."
-msgstr "Olete platvormi viisardi läbinud."
-
-msgid "You have reached the maximum number of selectable recipients."
-msgstr "Valitavate saajate arvu ülempiir on täis."
-
-msgid "You must select at least one recipient."
-msgstr "Peate valima vähemalt ühe saaja."
-
-msgid "Your new email address has been validated."
-msgstr "Teie uus meiliaadress on valideeritud."
-
-msgid "Your report was successful."
-msgstr "Teie teavitus on esitatud."
+msgid "Success!"
+msgstr "Õnnestus!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Teie vihjeandmise platvorm on peaaegu valmis."
 
-msgid "days"
-msgstr "päeva"
+msgid "Check your inbox to activate it."
+msgstr "Selle aktiveerimiseks vaadake oma sisendkausta."
 
-msgid "file unavailable"
-msgstr "fail kättesaamatu"
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaatselt."
 
-msgid "megabytes"
-msgstr "megabaiti"
+msgid "Sign up"
+msgstr "Registreeru"
 
-msgid "percentage"
-msgstr "protsenti"
+msgid "Invalid confirmation"
+msgstr "Kehtetu kinnitus"
+
+msgid "Invalid phone number"
+msgstr "Vigane telefoninumber"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Confirmation"
+msgstr "Kinnitus"
+
+msgid "The answer is too short"
+msgstr "Vastus on liiga lühike"
+
+msgid "The specified input is not valid."
+msgstr "See sisestus on vigane."
+
+msgid "The specified input is not valid:"
+msgstr "See sisestus on vigane:"
 
 msgid "please enter a valid email address."
 msgstr "sisestage kehtiv meiliaadress."
@@ -1616,14 +1545,82 @@ msgstr "sisestage kehtiv meiliaadress."
 msgid "please enter numbers only."
 msgstr "sisestage ainult numbreid."
 
-msgid "seconds"
-msgstr "sekundit"
+msgid "Submissions disabled"
+msgstr "Teabeesitused keelatud"
 
-msgid "File a report"
-msgstr "Esita teavitus"
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "Teie ühendus serveriga ei ole anonüümne ja see server toetab ainult anonüümseid teabeesitusi."
 
-msgid "Select a reporting channel:"
-msgstr "Vali teavituskanal"
+msgid "Your report was successful."
+msgstr "Teie teavitus on esitatud."
+
+msgid "Remember your receipt for this report."
+msgstr "Pidage meeles selle teavituse kättesaamiskood."
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr "Kasutage 16-kohalist kättesaamiskoodi sisselogimiseks. See võimaldab vaadata teateid, mille oleme teile saatnud, ja lisada täiendavat teavet."
+
+msgid "View your report"
+msgstr "Vaadake oma teavitust"
+
+msgid "Select the recipients of your report"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr "Valitud saajad:"
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr "Valitavate saajate arvu ülempiir on täis."
+
+msgid "You must select at least one recipient."
+msgstr "Peate valima vähemalt ühe saaja."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "Järgmised saajad saavad teie teavituse ning nende valikut ei saanud tühistada:"
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr "Sellel etapil vastused järgmistele küsimustele puuduvad või on vigased:"
+
+msgid "Recipient selection"
+msgstr "Saaja valimine"
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr "Oodake, kuni fail(id) on üles laaditud."
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr "Järgnev sammsammuline juhend aitab teil luua oma vihjeandmise platvormi."
+
+msgid "Please choose a configuration profile:"
+msgstr "Valige seadistusprofiil:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "Võimalda sellel administraatoril kasutajate paroole lähtestada."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "Soovitame valida selle suvandi, kui soovite kaitsta andmeid kaotsimineku eest olukorras, kus saajad kaotavad oma paroolid. Teisest küljest ei soovita me seda funktsiooni kasutada, kui soovite seadistada süsteemi, kus ainult saajad pääsevad teabeesitustele ligi."
+
+msgid "Please choose a different username."
+msgstr "Valige teine kasutajanimi."
+
+msgid "I have read and agree to the terms of the license."
+msgstr "Olen lugenud litsentsitingimusi ja nõustun nendega."
+
+msgid "You have completed the platform wizard."
+msgstr "Olete platvormi viisardi läbinud."
 
 msgid "Please summarize your report in a few words."
 msgstr "Kirjeldage oma teavitust mõne sõnaga."
