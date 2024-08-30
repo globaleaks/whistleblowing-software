@@ -78,6 +78,9 @@ msgstr "Administrators authorized to change user passwords:"
 msgid "Advanced"
 msgstr "Advanced"
 
+msgid "Allow the recipient to edit the reports' expiration date"
+msgstr "Allow the recipient to edit the reports' expiration date"
+
 msgid "Allow the recipient to delete reports"
 msgstr "Allow the recipient to delete reports"
 
@@ -182,6 +185,9 @@ msgstr "Before proceeding, please set a new password."
 
 msgid "Block the submission"
 msgstr "Block the submission"
+
+msgid "By confirming, you will edit the expiration date to:"
+msgstr "By confirming, you will edit the expiration date to:"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "By confirming, you will postpone the expiration date to:"
@@ -394,6 +400,9 @@ msgstr "Earliest selectable date"
 
 msgid "Edit"
 msgstr "Edit"
+
+msgid "Edit the expiration date"
+msgstr "Edit the expiration date"
 
 msgid "Email"
 msgstr "Email"
