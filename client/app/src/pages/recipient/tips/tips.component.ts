@@ -115,6 +115,7 @@ export class TipsComponent implements OnInit {
       }
     });
   }
+
   openRevokeAccessModal() {
     this.utils.runUserOperation("get_users_names", {}, false).subscribe(
       {
@@ -147,11 +148,7 @@ export class TipsComponent implements OnInit {
     );
   }
 
-  tipsExport() {
-    this.exportFiles().subscribe();
-  }
-
-  exportFiles(): Observable<void> {
+  exportTips() {
     const selectedTips = this.selectedTips.slice();
 
     return from(this.tokenResourceService.getWithProofOfWork()).pipe(
@@ -179,7 +176,7 @@ export class TipsComponent implements OnInit {
           this.appDataService.updateShowLoadingPanel(false);
         });
       })
-    );
+    ).subscribe();
   }
 
   reload() {
@@ -201,11 +198,6 @@ export class TipsComponent implements OnInit {
 
   isSelected(id: string): boolean {
     return this.selectedTips.indexOf(id) !== -1;
-  }
-
-  exportTip(tipId: string) {
-    this.utils.download("api/recipient/rtips/" + tipId + "/export").subscribe();
-    this.appDataService.updateShowLoadingPanel(false);
   }
 
   actAsWhistleblower() {
@@ -394,6 +386,7 @@ export class TipsComponent implements OnInit {
     this.lastUpdatePicker = false;
     this.expirationDatePicker = false;
   }
+
   exportToCsv(): void {
     this.utils.generateCSV(JSON.stringify(this.getDataCsv()), 'reports',this.getDataCsvHeaders());
   }
