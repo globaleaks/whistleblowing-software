@@ -17,6 +17,8 @@ if [[ "$1" != "" ]]; then
 
 	sed -i "s/^releaseDate:.*/releaseDate: '$(date +'%Y-%m-%d')'/g" "$ROOTDIR"/publiccode.yml
 
+	sed -i "s/softwareVersion:.*/softwareVersion: $1/g" "$ROOTDIR"/publiccode.yml
+
 	echo -e "globaleaks ($1) stable; urgency=medium
 
   * New stable release
