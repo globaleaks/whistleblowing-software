@@ -315,7 +315,7 @@ export class UtilsService {
 
   isNever(time: string) {
     const date = new Date(time);
-    return date.getTime() === 32503680000000;
+    return date.getTime() >= 32503680000000;
   }
 
   deleteFromList(list:  { [key: string]: Field}[], elem: { [key: string]: Field}) {
