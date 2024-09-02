@@ -1,5 +1,5 @@
 <div align="center">
- <a href="https://www.globaleaks.org"><img src="/brand/assets/globaleaks-logo-color.png" width="400"></a>
+ <a href="https://www.globaleaks.org"><img src="https://raw.githubusercontent.com/globaleaks/GlobaLeaks/main/brand/assets/globaleaks-logo-color.png" width="400"></a>
 </div>
 
 <div align="center">
