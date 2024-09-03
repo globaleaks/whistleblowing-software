@@ -71,7 +71,7 @@ def db_wizard(session, tid, hostname, request):
         admin_desc['role'] = 'admin'
         admin_desc['pgp_key_remove'] = False
         admin_user = db_create_user(session, tid, None, admin_desc, language)
-        db_set_user_password(session, tid, admin_user, request['admin_password'])
+        db_set_user_password(session, tid, admin_user, request['admin_password'],request['admin_hash'])
         admin_user.password_change_needed = (tid != 1)
 
         if encryption and escrow:
@@ -87,7 +87,7 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
         receiver_user = db_create_user(session, tid, None, receiver_desc, language)
-        db_set_user_password(session, tid, receiver_user, request['receiver_password'])
+        db_set_user_password(session, tid, receiver_user, request['receiver_password'],request['receiver_hash'])
         receiver_user.password_change_needed = (tid != 1)
 
     context_desc = models.Context().dict(language)

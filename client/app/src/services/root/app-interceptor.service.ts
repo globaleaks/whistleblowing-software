@@ -20,7 +20,7 @@ import {timer} from 'rxjs';
 const protectedUrls = [
   "api/wizard",
   "api/auth/tokenauth",
-  "api/auth/authentication",
+  "api/auth/salt",
   "api/user/reset/password",
   "api/recipient/rtip",
   "api/support"

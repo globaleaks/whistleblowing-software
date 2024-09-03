@@ -89,7 +89,7 @@
                         <span class="input-group">
                             <input name="password" class="form-control" [(ngModel)]="setPasswordArgs.password" #password="ngModel" type="password" (passwordStrengthChange)="onPasswordStrengthChange($event)" [ngClass]="{'is-invalid': setPasswordArgs.password && (!password?.errors?.['passwordStrengthValidator'] && !password?.valid)}" autocomplete="off" passwordStrengthValidator />
                             <span class="input-group-append">
-                                <button id="setPasswordButton" class="btn btn-primary rounded-start-0 m-0" (click)="setPassword(setPasswordArgs)">
+                                <button id="setPasswordButton" class="btn btn-primary rounded-start-0 m-0" (click)="setPassword(setPasswordArgs,user.username)">
                                     <i class="fa-solid fa-tag"></i>
                                     <span id="set_password">{{ 'Set password' | translate }}</span>
                                 </button>

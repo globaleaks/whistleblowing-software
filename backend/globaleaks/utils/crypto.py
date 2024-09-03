@@ -8,7 +8,7 @@ import secrets
 import string
 import struct
 import threading
-
+import hashlib
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
 
@@ -52,7 +52,7 @@ def generateRandomKey() -> str:
     """
     Return a random secret of 256bits
     """
-    return nacl_random(32).hex()
+    return sha256(nacl_random(32)).decode()
 
 
 def generateRandomPassword(N: int) -> str:
@@ -204,12 +204,18 @@ class _GCE(object):
         return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16))
 
     @staticmethod
-    def generate_salt() -> str:
+    def generate_salt(seed: str = '') -> str:
         """
-        Return a salt with 128 bit of entropy
+        Return a salt with 128 bits of entropy.
         """
-        return base64.b64encode(os.urandom(16)).decode()
-
+        random_bytes = os.urandom(16)
+        seed_hash = hashlib.sha256(seed.encode()).digest()
+        deterministic_bytes = seed_hash[:16]
+        
+        combined_bytes = bytes(random_bytes[i] if not seed else deterministic_bytes[i] for i in range(16))
+    
+        return base64.b64encode(combined_bytes).decode()
+    
     @staticmethod
     def hash_password(password: str, salt: str) -> str:
         """
@@ -231,7 +237,17 @@ class _GCE(object):
         x = _convert_to_bytes(_hash_argon2(password, salt))
 
         return constant_time.bytes_eq(x, hash)
+    
+    @staticmethod
+    def check_hash(user_hash, hash) -> bool:
+        """
+        Perform hash check for match with a provided hash
+        """
+        user_hash = _convert_to_bytes(user_hash)
+        x = _convert_to_bytes(hash)
 
+        return constant_time.bytes_eq(x, user_hash)
+    
     @staticmethod
     def generate_key() -> bytes:
         """

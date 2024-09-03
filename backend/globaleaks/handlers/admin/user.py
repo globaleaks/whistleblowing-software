@@ -14,10 +14,14 @@ from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 
 
-def db_set_user_password(session, tid, user, password):
+def db_set_user_password(session, tid, user, password ,hash=None):
     config = models.config.ConfigFactory(session, tid)
 
-    user.hash = GCE.hash_password(password, user.salt)
+    if hash is not None:
+        user.hash = hash
+    else:
+        user.hash = GCE.hash_password(password, user.salt)
+
     user.password_change_date = datetime_now()
 
     if config.get_val('encryption'):
@@ -66,8 +70,7 @@ def db_create_user(session, tid, user_session, request, language):
     if existing_user:
         raise errors.DuplicateUserError
 
-    user.salt = GCE.generate_salt()
-
+    user.salt = GCE.generate_salt(user.username)
     user.language = request['language']
 
     # The various options related in manage PGP keys are used here.

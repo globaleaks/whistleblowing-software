@@ -24,26 +24,24 @@ def check_password_strength(password):
 
 
 @transact
-def change_password(session, tid, user_session, password, old_password):
+def change_password(session, tid, user_session, password, old_password, hash, old_hash):
     user = db_get_user(session, tid, user_session.user_id)
 
     if not user.password_change_needed:
-        if not GCE.check_password(old_password,
-                                  user.salt,
-                                  user.hash):
+        if not GCE.check_hash(user.hash, old_hash):
            raise errors.InvalidOldPassword
 
     config = models.config.ConfigFactory(session, tid)
 
     # Regenerate the password hash only if different from the best choice on the platform
     if len(user.hash) != 44:
-        user.salt = GCE.generate_salt()
+        user.salt = GCE.generate_salt(user.username)
 
     if not check_password_strength(password):
         raise errors.InputValidationError("The password is too weak")
 
     # Check that the new password is different form the current password
-    password_hash = GCE.hash_password(password, user.salt)
+    password_hash = hash
     if user.hash == password_hash:
         raise errors.PasswordReuseError
 
@@ -179,7 +177,9 @@ class UserOperationHandler(OperationHandler):
         return change_password(self.session.user_tid,
                                self.session,
                                req_args['password'],
-                               req_args['current'])
+                               req_args['current'],
+                               req_args['hash'],
+                               req_args['old_hash'])
 
     def get_users_names(self, req_args, *args, **kwargs):
         return get_users_names(self.session.user_tid)

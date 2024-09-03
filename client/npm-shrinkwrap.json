@@ -54,6 +54,7 @@
         "angularx-qrcode": "18.0.1",
         "bootstrap": "5.3.3",
         "chart.js": "4.4.4",
+        "libsodium-wrappers-sumo": "^0.7.15",
         "lodash": "4.17.21",
         "ng-multiselect-dropdown": "1.0.0",
         "ng2-charts": "6.0.1",
@@ -77,6 +78,7 @@
         "@istanbuljs/nyc-config-typescript": "1.0.2",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
         "@popperjs/core": "2.11.8",
+        "@types/libsodium-wrappers-sumo": "^0.7.8",
         "angular-eslint": "18.3.0",
         "cypress": "13.14.1",
         "eslint": "9.9.1",
@@ -5461,6 +5463,21 @@
       "resolved": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz",
       "integrity": "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==",
       "dev": true
+    },
+    "node_modules/@types/libsodium-wrappers": {
+      "version": "0.7.14",
+      "resolved": "https://registry.npmjs.org/@types/libsodium-wrappers/-/libsodium-wrappers-0.7.14.tgz",
+      "integrity": "sha512-5Kv68fXuXK0iDuUir1WPGw2R9fOZUlYlSAa0ztMcL0s0BfIDTqg9GXz8K30VJpPP3sxWhbolnQma2x+/TfkzDQ==",
+      "dev": true
+    },
+    "node_modules/@types/libsodium-wrappers-sumo": {
+      "version": "0.7.8",
+      "resolved": "https://registry.npmjs.org/@types/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.8.tgz",
+      "integrity": "sha512-N2+df4MB/A+W0RAcTw7A5oxKgzD+Vh6Ye7lfjWIi5SdTzVLfHPzxUjhwPqHLO5Ev9fv/+VHl+sUaUuTg4fUPqw==",
+      "dev": true,
+      "dependencies": {
+        "@types/libsodium-wrappers": "*"
+      }
     },
     "node_modules/@types/lodash": {
       "version": "4.17.7",
@@ -12757,6 +12774,19 @@
       },
       "engines": {
         "node": ">= 0.8.0"
+      }
+    },
+    "node_modules/libsodium-sumo": {
+      "version": "0.7.15",
+      "resolved": "https://registry.npmjs.org/libsodium-sumo/-/libsodium-sumo-0.7.15.tgz",
+      "integrity": "sha512-5tPmqPmq8T8Nikpm1Nqj0hBHvsLFCXvdhBFV7SGOitQPZAA6jso8XoL0r4L7vmfKXr486fiQInvErHtEvizFMw=="
+    },
+    "node_modules/libsodium-wrappers-sumo": {
+      "version": "0.7.15",
+      "resolved": "https://registry.npmjs.org/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.15.tgz",
+      "integrity": "sha512-aSWY8wKDZh5TC7rMvEdTHoyppVq/1dTSAeAR7H6pzd6QRT3vQWcT5pGwCotLcpPEOLXX6VvqihSPkpEhYAjANA==",
+      "dependencies": {
+        "libsodium-sumo": "^0.7.15"
       }
     },
     "node_modules/license-webpack-plugin": {

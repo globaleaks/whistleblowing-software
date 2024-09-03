@@ -192,7 +192,7 @@ def reset_templates(session, tid):
     ConfigL10NFactory(session, tid).reset('notification', load_appdata())
 
 
-def db_set_user_password(session, tid, user_session, user_id, password):
+def db_set_user_password(session, tid, user_session, user_id, password, hash):
     user = db_get_user(session, tid, user_id)
 
     if password and (not user.crypto_pub_key or user_session.ek):
@@ -208,9 +208,9 @@ def db_set_user_password(session, tid, user_session, user_id, password):
             user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
 
         if len(user.hash) != 44:
-            user.salt = GCE.generate_salt()
+            user.salt = GCE.generate_salt(user.name)
 
-        user.hash = GCE.hash_password(password, user.salt)
+        user.hash = hash
         user.password_change_date = datetime_now()
         user.password_change_needed = True
 
@@ -218,8 +218,8 @@ def db_set_user_password(session, tid, user_session, user_id, password):
 
 
 @transact
-def set_user_password(session, tid, user_session, user_id, password):
-  return db_set_user_password(session, tid, user_session, user_id, password)
+def set_user_password(session, tid, user_session, user_id, password, hash):
+  return db_set_user_password(session, tid, user_session, user_id, password, hash)
 
 
 def set_tmp_key(user_session, user, token):
@@ -287,7 +287,8 @@ class AdminOperationHandler(OperationHandler):
         return set_user_password(self.request.tid,
                                  self.session,
                                  req_args['user_id'],
-                                 req_args['password'])
+                                 req_args['password'],
+                                 req_args['hash'])
 
     def send_password_reset_email(self, req_args, *args, **kwargs):
         if self.session.user_id == req_args['value']:

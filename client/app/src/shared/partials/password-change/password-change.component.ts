@@ -6,6 +6,7 @@ import {AppDataService} from "@app/app-data.service";
 import {HttpService} from "@app/shared/services/http.service";
 import {Router} from "@angular/router";
 import {ErrorCodes} from "@app/models/app/error-code";
+import {CryptoService} from "@app/shared/services/crypto.service";
 
 @Component({
   selector: "src-password-change",
@@ -17,10 +18,14 @@ export class PasswordChangeComponent implements OnInit {
   changePasswordArgs = {
     current: "",
     password: "",
-    confirm: ""
+    confirm: "",
+    old_hash: "",
+    hash : ""
   };
 
-  changePassword() {
+  async changePassword() {
+    this.changePasswordArgs.hash = await this.cryptoService.hashArgon2(this.changePasswordArgs.password, this.preferencesService.dataModel.username)
+    this.changePasswordArgs.old_hash = this.preferencesService.dataModel.password_change_needed == false ? await this.cryptoService.hashArgon2(this.changePasswordArgs.current, this.preferencesService.dataModel.username) : "";
     const data = {
       "operation": "change_password",
       "args": this.changePasswordArgs
@@ -49,7 +54,7 @@ export class PasswordChangeComponent implements OnInit {
     this.passwordStrengthScore = score;
   }
 
-  public constructor(public rootDataService: AppDataService, private authenticationService: AuthenticationService, private router: Router, public httpService: HttpService, public appDataService: AppDataService, public authentication: AuthenticationService, public preferencesService: PreferenceResolver, public utilsService: UtilsService) {
+  public constructor(private cryptoService: CryptoService, public rootDataService: AppDataService, private authenticationService: AuthenticationService, private router: Router, public httpService: HttpService, public appDataService: AppDataService, public authentication: AuthenticationService, public preferencesService: PreferenceResolver, public utilsService: UtilsService) {
 
   }
 

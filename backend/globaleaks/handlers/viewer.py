@@ -23,7 +23,7 @@ class ViewerHandler(StaticFileHandler):
                                    b"frame-ancestors 'self';"
                                    b"img-src blob:;"
                                    b"media-src blob:;"
-                                   b"script-src 'self';"
+                                   b"script-src 'self' 'wasm-unsafe-eval';"
                                    b"style-src 'self';")
 
             self.request.setHeader(b"Cross-Origin-Resource-Policy", "cross-origin")
