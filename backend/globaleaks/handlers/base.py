@@ -119,6 +119,8 @@ class BaseHandler(object):
         if hasattr(self, 'session'):
             return self.session
 
+        session = None
+
         # Check session header
         session_id = self.request.headers.get(b'x-session')
 
@@ -132,23 +134,23 @@ class BaseHandler(object):
             try:
                 self.token = self.state.tokens.validate(token)
                 if self.token.session is not None:
-                    session_id = self.token.session.id.encode()
+                    session = self.token.session
             except:
                 return
+        else:
+            if session_id is None:
+                return
 
-        if session_id is None:
+            session = Sessions.get(session_id.decode())
+
+        if session is None or session.tid != self.request.tid:
             return
 
-        self.session = Sessions.get(session_id.decode())
-
-        if self.session is None or self.session.tid != self.request.tid:
-            return
-
-        if self.session.user_role != 'whistleblower' and \
+        if session.user_role != 'whistleblower' and \
            self.state.tenants[1].cache.get('log_accesses_of_internal_users', False):
              self.request.log_ip_and_ua = True
 
-        return self.session
+        return session
 
     @staticmethod
     def validate_python_type(value, python_type):
