@@ -24,7 +24,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {FormsModule} from "@angular/forms";
 import {ActionModule} from "@app/pages/action/action.module";
 import {WhistleblowerModule} from "@app/pages/whistleblower/whistleblower.module";
-import {MarkdownModule} from "ngx-markdown";
+import {MarkdownModule, MarkedOptions, MARKED_OPTIONS} from "ngx-markdown";
 import {ReceiptValidatorDirective} from "@app/shared/directive/receipt-validator.directive";
 import {NgxFlowModule, FlowInjectionToken} from "@flowjs/ngx-flow";
 import * as Flow from "@flowjs/flow.js";
@@ -88,7 +88,14 @@ const translationModule = TranslateModule.forRoot({
     AnalystModule,
     SharedModule,
     NgIdleKeepaliveModule.forRoot(),
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MARKED_OPTIONS,
+        useValue: {
+          breaks: true
+        }
+      }
+    }),
     NgxFlowModule,
     NgOptimizedImage
   ],
