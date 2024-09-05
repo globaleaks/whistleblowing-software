@@ -600,6 +600,7 @@ class _ContentForwarding(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_forwarding_id = Column(UnicodeText(36), nullable=False, index=True)
     content_id = Column(UnicodeText(36), nullable=False, index=True)
+    oe_content_id = Column(UnicodeText(36), nullable=False, index=True)
     content_origin = Column(Enum(EnumOriginFile), default='receiver_file', nullable=False)
 
     @declared_attr
@@ -998,6 +999,7 @@ class _InternalTipForwarding(Model):
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     data = Column(UnicodeText, nullable=False)
     questionnaire_id = Column(UnicodeText(36), nullable=False, index=True)
+    state = Column(Enum(EnumForwardingState), default='open', nullable=False)
 
     @declared_attr
     def __table_args__(self):
