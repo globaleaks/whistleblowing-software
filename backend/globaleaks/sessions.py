@@ -100,12 +100,11 @@ class SessionsFactory(TempDict):
         return session
 
     def regenerate(self, session):
-        return self.new(session.tid,
-                        session.user_id,
-                        session.user_tid,
-                        session.user_role,
-                        session.cc,
-                        session.ek)
+        del self[session.id]
+        session.id = nacl_random(32).hex()
+        encrypted_session = session.encrypt()
+        self[encrypted_session.id] = encrypted_session
+        return session
 
 
 Sessions = SessionsFactory(timeout=Settings.authentication_lifetime)
