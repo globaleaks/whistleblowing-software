@@ -1,3 +1,14 @@
+Changes in version 5.0.4
+    Apply accessibility fixes as for ticket #3998
+    Preserve newlines during markdown rendering (#4179)
+    Fix internationalization issue on report page
+    Disable caching of Tor descriptors
+    Preserve newlines during markdown rendering (#4179)
+    Fix internationalization issue on report page
+    Revise session implementation fixing file downloads bug introduced in 5.0.3
+    Update client dependencies to latest version
+    Update translations
+
 Changes in version 5.0.3
     Implement encrypted sessions minimizing exposure of users keys
     Revise implementation of questionnaires' step navigation
