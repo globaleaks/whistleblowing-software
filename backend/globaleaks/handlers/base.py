@@ -121,9 +121,6 @@ class BaseHandler(object):
 
         session = None
 
-        # Check session header
-        session_id = self.request.headers.get(b'x-session')
-
         # Check token header and arg
         token = self.request.headers.get(b'x-token')
         token_arg = self.request.args.get(b"token")
@@ -137,10 +134,10 @@ class BaseHandler(object):
                     session = self.token.session
             except:
                 return
-        else:
-            if session_id is None:
-                return
 
+        # Check session header
+        session_id = self.request.headers.get(b'x-session')
+        if session_id:
             session = Sessions.get(session_id.decode())
 
         if session is None or session.tid != self.request.tid:
