@@ -50,21 +50,7 @@ export class TipComponent implements OnInit {
   loading = true;
   redactMode:boolean = false;
   redactOperationTitle: string;
-
-  tabs: Tab[] = [
-    {
-      title: "Everyone",
-      component: this.tab1
-    },
-    {
-      title: "Recipients only",
-      component: this.tab2
-    },
-    {
-      title: "Me only",
-      component: this.tab3
-    },
-  ];
+  tabs: Tab[];
 
   constructor(private translateService: TranslateService,private tipService: TipService, private appConfigServices: AppConfigService, private router: Router, private cdr: ChangeDetectorRef, private cryptoService: CryptoService, protected utils: UtilsService, protected preferencesService: PreferenceResolver, protected modalService: NgbModal, private activatedRoute: ActivatedRoute, protected httpService: HttpService, protected http: HttpClient, protected appDataService: AppDataService, protected RTipService: ReceiverTipService, protected authenticationService: AuthenticationService) {
   }
@@ -97,11 +83,31 @@ export class TipComponent implements OnInit {
           this.preprocessTipAnswers(this.tip);
           this.tip.submissionStatusStr = this.utils.getSubmissionStatusText(this.tip.status, this.tip.substatus, this.appDataService.submissionStatuses);
           setTimeout(() => {
-            this.active = "Everyone";
+              this.initNavBar();
           });
         }
       }
     );
+  }
+
+  initNavBar() {
+    setTimeout(() => {
+      this.active = "Everyone";
+      this.tabs = [
+        {
+          title: "Everyone",
+          component: this.tab1
+        },
+        {
+          title: "Recipients only",
+          component: this.tab2
+        },
+        {
+          title: "Only me",
+          component: this.tab3
+        },
+      ];
+    });
   }
 
   openGrantTipAccessModal(): void {
