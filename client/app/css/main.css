@@ -1138,3 +1138,13 @@ i.fa-solid.fa-chevron-right {
 .underline {
   text-decoration: underline;
 }
+
+.gly-spin {
+  animation: gly-spin 2s infinite linear;
+  text-shadow: #428bca 1px 0 5px;
+}
+
+@keyframes gly-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}

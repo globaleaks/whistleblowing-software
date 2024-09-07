@@ -11,12 +11,11 @@ import {DisplayStepErrorsFunction, StepFormFunction} from "@app/shared/constants
   templateUrl: "./submission-error.component.html"
 })
 export class SubmissionErrorComponent {
-
   @Input() submissionForm: NgForm;
-  @Input() hasPreviousStep: boolean;
+  @Input() hasPreviousStepValue: boolean;
+  @Input() hasNextStepValue: boolean;
+  @Input() areReceiversSelectedValue: boolean;
   @Input() show_steps_navigation_interface: boolean;
-  @Input() hasNextStep: boolean;
-  @Input() areReceiverSelected: boolean;
   @Input() singleStepForm: boolean;
   @Input() context: Context;
   @Input() navigation: number;
@@ -24,13 +23,8 @@ export class SubmissionErrorComponent {
   @Input() submission: SubmissionService;
   @Input() stepForms: QueryList<NgForm>;
   @Input() field_id_map: { [key: string]: Field };
-
   @Input() displayStepErrors: DisplayStepErrorsFunction ;
   @Input() stepForm: StepFormFunction;
-
   @Output() goToStep: EventEmitter<any> = new EventEmitter();
-
-  constructor(protected utilsService: UtilsService) {
-  }
-
+  constructor(protected utilsService: UtilsService) {}
 }

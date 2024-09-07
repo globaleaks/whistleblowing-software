@@ -29,7 +29,7 @@
                 </ul>
                 <div id="SubmissionTabsContentBox" class="tab-content">
                     <div *ngIf="displayErrors()">
-                        <src-submission-error [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStep]=hasPreviousStep() [areReceiverSelected]=areReceiversSelected() [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
+                        <src-submission-error [navigation]="navigation" [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStepValue]="hasPreviousStepValue" [hasNextStepValue]="hasNextStepValue" [areReceiversSelectedValue]="areReceiversSelectedValue" [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
                     </div>
                     <div id="step-receiver-selection" *ngIf="submissionService.context.allow_recipients_selection && navigation === -1" role="tabpanel">
                         <src-receiver-selection (switchSelection)="switchSelection($event)" [receiversOrderPredicate]="receiversOrderPredicate" [submission]="submissionService" [show_steps_navigation_bar]="show_steps_navigation_bar"></src-receiver-selection>

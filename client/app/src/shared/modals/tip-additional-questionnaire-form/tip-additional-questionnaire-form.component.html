@@ -18,7 +18,7 @@
             </ul>
             <div id="SubmissionTabsContentBox" class="tab-content">
                 <div *ngIf="displayErrors()">
-                    <src-submission-error [field_id_map]="field_id_map" [stepForms]="stepForms" [uploads]="uploads" [stepForm]="stepForm" [hasPreviousStep]=hasPreviousStep() [areReceiverSelected]=areReceiversSelected() [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
+                    <src-submission-error [navigation]="navigation" [field_id_map]="field_id_map" [stepForms]="stepForms" [uploads]="uploads" [stepForm]="stepForm" [hasPreviousStepValue]="hasPreviousStepValue" [hasNextStepValue]="hasNextStepValue" [areReceiversSelectedValue]="true" [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
                 </div>
                 <div *ngFor="let step of this.questionnaire.steps | orderBy:'order'; let index = index">
                     <span *ngIf="step && step.enabled">
