@@ -19,7 +19,7 @@
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
 # Manuela Silva <mmsrs@sky.com>, 2020
 # Manuela Silva <mmsrs@sky.com>, 2014-2018
-# Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2023
+# Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2024
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Manuela Silva <mmsrs@sky.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: lecalam, 2024\n"
+"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,7 +69,7 @@ msgid "Account recovery key"
 msgstr "Chave de recuperação da conta"
 
 msgid "Act on behalf of a whistleblower"
-msgstr "Agir em nome de um denunciante"
+msgstr "Agir em nome de um informador"
 
 msgid "Activities"
 msgstr "Atividades"
@@ -111,7 +111,7 @@ msgid "Advanced"
 msgstr "Avançadas"
 
 msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
+msgstr "Permitir que o destinatário edite a data de expiração dos relatórios"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que o destinatário elimine denúncias"
@@ -120,10 +120,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir que o destinatário adie a data de expiração da denúncia"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr "Permitir que o informador adicione anexos à submissão"
+msgstr "Permitir que o informador adicione anexos"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Permitir que o denunciante escreva comentários"
+msgstr "Permitir que o informador escreva comentários"
 
 msgid "Allow this user to reopen management of a report"
 msgstr "Permitir que este utilizador reabra a gestão de um relatório"
@@ -219,7 +219,7 @@ msgid "Block the submission"
 msgstr "Bloquear a submissão"
 
 msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgstr "Ao confirmar, irá editar a data de expiração para:"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de validade da denúncia para:"
@@ -403,7 +403,7 @@ msgid "Disabled"
 msgstr "Desativada"
 
 msgid "Disclaimer"
-msgstr "Aviso"
+msgstr "Limitação de Responsabilidade"
 
 msgid "Display options alphabetically"
 msgstr "Exibir opções alfabeticamente "
@@ -415,7 +415,7 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Transferir cópia da «Política de Privacidade»"
 
 msgid "Download the Tor Browser"
-msgstr "Transfira o Navegador Tor"
+msgstr "Transfira o Tor Browser"
 
 msgid "Duplicate"
 msgstr "Duplicar"

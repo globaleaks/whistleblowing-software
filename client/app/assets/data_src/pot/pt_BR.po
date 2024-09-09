@@ -125,7 +125,7 @@ msgid "Advanced"
 msgstr "Avançado"
 
 msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
+msgstr "Permitir que o destinatário edite a data de expiração dos relatórios"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que os destinatários apaguem as denúncias"
@@ -233,7 +233,7 @@ msgid "Block the submission"
 msgstr "Bloquear a submissão"
 
 msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgstr "Ao confirmar, irá editar a data de expiração para:"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de expiração para:"
