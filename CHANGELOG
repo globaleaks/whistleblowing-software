@@ -1,3 +1,9 @@
+Changes in version 5.0.5
+    Fix regression #4181
+    Apply accessibility fixes as for ticket #3998
+    Update client dependencies to latest version
+    Update translations
+
 Changes in version 5.0.4
     Apply accessibility fixes as for ticket #3998
     Preserve newlines during markdown rendering (#4179)
