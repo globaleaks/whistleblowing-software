@@ -18,7 +18,7 @@
         "@angular/router": "18.2.3",
         "@flowjs/flow.js": "2.14.1",
         "@flowjs/ngx-flow": "0.8.1",
-        "@fontsource/inter": "5.0.20",
+        "@fontsource/inter": "5.0.21",
         "@fontsource/noto-sans": "5.0.22",
         "@fontsource/noto-sans-arabic": "5.0.13",
         "@fontsource/noto-sans-armenian": "5.0.14",
@@ -79,7 +79,7 @@
         "@popperjs/core": "2.11.8",
         "angular-eslint": "18.3.0",
         "cypress": "13.14.2",
-        "eslint": "9.9.1",
+        "eslint": "9.10.0",
         "gettext-parser": "7.0.1",
         "grunt": "1.6.1",
         "grunt-confirm": "1.0.8",
@@ -3775,9 +3775,9 @@
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.9.1",
-      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-9.9.1.tgz",
-      "integrity": "sha512-xIDQRsfg5hNBqHz04H1R3scSVwmI+KUbqjsQKHKQ1DAUSaUjYPReZZmS/5PNiKu1fUvzDd6H7DEDKACSEhu+TQ==",
+      "version": "9.10.0",
+      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-9.10.0.tgz",
+      "integrity": "sha512-fuXtbiP5GWIn8Fz+LWoOMVf/Jxm+aajZYkhi6CuEm4SxymFM+eUWzbO9qXT+L0iCkL5+KGYMCSGxo686H19S1g==",
       "dev": true,
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -3788,6 +3788,18 @@
       "resolved": "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.4.tgz",
       "integrity": "sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==",
       "dev": true,
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      }
+    },
+    "node_modules/@eslint/plugin-kit": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.1.0.tgz",
+      "integrity": "sha512-autAXT203ixhqei9xt+qkYOvY8l6LAFIdT2UXc/RPNeUVfqRF1BV94GTJyVPFKT8nFM6MyVJhjLj9E8JWvf5zQ==",
+      "dev": true,
+      "dependencies": {
+        "levn": "^0.4.1"
+      },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
       }
@@ -3811,9 +3823,9 @@
       }
     },
     "node_modules/@fontsource/inter": {
-      "version": "5.0.20",
-      "resolved": "https://registry.npmjs.org/@fontsource/inter/-/inter-5.0.20.tgz",
-      "integrity": "sha512-rtw2F7xfM7rJmmnncXnR4ADr5wXsp4GyN1O1jmQJ1PMjAK+bm620/ZkQkeOYOkGoa09OksGinOeMA+Mkt6K9PQ=="
+      "version": "5.0.21",
+      "resolved": "https://registry.npmjs.org/@fontsource/inter/-/inter-5.0.21.tgz",
+      "integrity": "sha512-Y4Ph0bYD5IfW8r9PSeiNjLvM6D/Bh5+YT9jOKiBqW3YS+AEBlmy8v74TpTNeZAvL3zHmikHCnzaKw7ob8LZiKQ=="
     },
     "node_modules/@fontsource/noto-sans": {
       "version": "5.0.22",
@@ -9673,16 +9685,17 @@
       }
     },
     "node_modules/eslint": {
-      "version": "9.9.1",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.9.1.tgz",
-      "integrity": "sha512-dHvhrbfr4xFQ9/dq+jcVneZMyRYLjggWjk6RVsIiHsP8Rz6yZ8LvZ//iU4TrZF+SXWG+JkNF2OyiZRvzgRDqMg==",
+      "version": "9.10.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.10.0.tgz",
+      "integrity": "sha512-Y4D0IgtBZfOcOUAIQTSXBKoNGfY0REGqHJG6+Q81vNippW5YlKjHFj4soMxamKK1NXHUWuBZTLdU3Km+L/pcHw==",
       "dev": true,
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.2.0",
         "@eslint-community/regexpp": "^4.11.0",
         "@eslint/config-array": "^0.18.0",
         "@eslint/eslintrc": "^3.1.0",
-        "@eslint/js": "9.9.1",
+        "@eslint/js": "9.10.0",
+        "@eslint/plugin-kit": "^0.1.0",
         "@humanwhocodes/module-importer": "^1.0.1",
         "@humanwhocodes/retry": "^0.3.0",
         "@nodelib/fs.walk": "^1.2.8",
@@ -9705,7 +9718,6 @@
         "is-glob": "^4.0.0",
         "is-path-inside": "^3.0.3",
         "json-stable-stringify-without-jsonify": "^1.0.1",
-        "levn": "^0.4.1",
         "lodash.merge": "^4.6.2",
         "minimatch": "^3.1.2",
         "natural-compare": "^1.4.0",
