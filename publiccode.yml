@@ -336,13 +336,14 @@ description:
       - documentation/images/recipient/report.png
 usedBy:
   - Agenzia per l'Italia Digitale (AgID)
-  - ANAC - Autorità Nazionale Anticorruzione
-  - Autorità Garante nelle Comunicazioni (AgCOM)
+  - Agenzia per la cybersicurezza nazionale (ACN)
+  - Autorità Nazionale Anticorruzione (ANAC)
   - Avvocatura dello Stato
   - Corte dei Conti
-  - Ministero della Difesa
-  - Ministero della Giustizia
-  - Presidenza del Consiglio dei Ministri
+  - Ministero dell'Interno (MI)
+  - Ministero della Difesa (MD)
+  - Ministero della Giustizia (MiG)
+  - Presidenza del Consiglio dei Ministri (PCM)
   - 5T SRL
   - Abbanoa SPA
   - ABC Latina
