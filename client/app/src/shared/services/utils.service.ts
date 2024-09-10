@@ -273,6 +273,7 @@ export class UtilsService {
       this.modalService.open(RequestSupportComponent,{backdrop: "static",keyboard: false});
     }
   }
+
   array_to_map(receivers: any) {
     const ret: any = {};
 
@@ -305,6 +306,23 @@ export class UtilsService {
       }
     }
     return text?text:"";
+  }
+
+  searchInObject(obj: any, searchTerm: string) {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+
+        if (typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return true;
+        } else if (typeof value === 'object') {
+          if (this.searchInObject(value, searchTerm)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
   isDatePassed(time: string) {

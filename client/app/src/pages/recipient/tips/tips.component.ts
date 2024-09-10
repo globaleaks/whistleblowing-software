@@ -298,20 +298,17 @@ export class TipsComponent implements OnInit {
     this.expirationDatePicker = false;
   }
 
-  onSearchChange(value: string | number | undefined) {
-    if (typeof value !== "undefined") {
+  onSearchChange(search: string | number | undefined) {
+    search = String(search);
+
+    if (typeof search !== "undefined") {
       this.currentPage = 1;
       this.filteredTips = this.RTips.dataModel;
       this.processTips();
 
-      this.filteredTips = orderBy(filter(this.filteredTips, (tip) =>
-        Object.values(tip).some((val) => {
-          if (typeof val === "string" || typeof val === "number") {
-            return String(val).toLowerCase().includes(String(value).toLowerCase());
-          }
-          return false;
-        })
-      ), "update_date");
+      this.filteredTips = orderBy(filter(this.filteredTips, (tip) => {
+        return this.utils.searchInObject(tip, search);
+      }), "update_date");
     }
   }
 
