@@ -111,9 +111,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "允许接收人删除报告"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "允许接收人推迟报告过期日期"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "允许揭发者向报告添加附件"
 
@@ -215,9 +212,6 @@ msgstr "阻止提交"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "确认之后，过期日期将推迟至："
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -924,9 +918,6 @@ msgstr "请注意，所有相关的数据将永久删除。"
 
 msgid "Please select your account:"
 msgstr "请选择您的帐户："
-
-msgid "Postpone the expiration date"
-msgstr "推迟过期日期"
 
 msgid "Preferences"
 msgstr "首选项"

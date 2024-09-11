@@ -105,9 +105,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa báo cáo"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Cho phép người tố giác thêm tập tin đính kèm"
 
@@ -209,9 +206,6 @@ msgstr "Chặn-không nhận báo cáo"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Khi xác nhận, bạn sẽ ấn định nhắc nhở vào ngày:"
@@ -918,9 +912,6 @@ msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa v�
 
 msgid "Please select your account:"
 msgstr "Xin chọn tài khoản của bạn:"
-
-msgid "Postpone the expiration date"
-msgstr "Hoãn ngày hết hạn"
 
 msgid "Preferences"
 msgstr "Chọn lựa"

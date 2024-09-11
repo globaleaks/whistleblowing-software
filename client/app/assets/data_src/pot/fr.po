@@ -128,9 +128,6 @@ msgstr "Permettre au destinataire de modifier la date d’expiration du signalem
 msgid "Allow the recipient to delete reports"
 msgstr "Permettre au destinataire de supprimer des signalements"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permettre au destinataire de reporter la date d’expiration du signalement"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints"
 
@@ -232,9 +229,6 @@ msgstr "Bloquer l’envoi"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "En confirmant, vous modifiez la date d’expiration au :"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "En confirmant, vous reportez la date d’expiration au :"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmant, vous définissez un rappel pour cette date :"
@@ -941,9 +935,6 @@ msgstr "Notez que toutes les données associées seront irrémédiablement suppr
 
 msgid "Please select your account:"
 msgstr "Sélectionnez votre compte :"
-
-msgid "Postpone the expiration date"
-msgstr "Reporter la date d’expiration"
 
 msgid "Preferences"
 msgstr "Préférences"

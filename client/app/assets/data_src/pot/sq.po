@@ -99,9 +99,6 @@ msgstr "Lejoje marrësin të përpunojë datën e skadimit të raportimit"
 msgid "Allow the recipient to delete reports"
 msgstr "Lejoje marrësin të fshijë raportime"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
 
@@ -203,9 +200,6 @@ msgstr "Bllokoje parashtrimin"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "Duke e ripohuar, do ta përpunoni datën e skadimit si:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Duke e ripohuar, do të caktoni një kujtues më datë:"
@@ -912,9 +906,6 @@ msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të f
 
 msgid "Please select your account:"
 msgstr "Ju lutemi, përzgjidhni llogarinë tuaj:"
-
-msgid "Postpone the expiration date"
-msgstr "Shtyjini datën e skadimit"
 
 msgid "Preferences"
 msgstr "Parapëlqime"

@@ -100,9 +100,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
 
@@ -204,9 +201,6 @@ msgstr "ปิดกั้นการส่ง"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "เมื่อยืนยัน คุณจะตั้งให้แจ้งเตือนในวันที่:"
@@ -913,9 +907,6 @@ msgstr "โปรดทราบว่าข้อมูลที่เชื่
 
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
-
-msgid "Postpone the expiration date"
-msgstr "เลื่อนวันหมดอายุ"
 
 msgid "Preferences"
 msgstr "การตั้งค่า"

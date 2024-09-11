@@ -103,9 +103,6 @@ msgstr "Umožnit příjemci upravit datum vypršení platnosti zpráv."
 msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat oznámení"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Povolit příjemci odložit datum expirace oznámení"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Povolit oznamovateli přidat přílohy k oznámení"
 
@@ -207,9 +204,6 @@ msgstr "Zablokujte oznámení"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "Potvrzením upravíte datum vypršení platnosti na:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrzením odložíte datum expirace do:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Potvrzením, nastavíte nastavíte datum připomenutí na:"
@@ -916,9 +910,6 @@ msgstr "Vezměte prosím na vědomí, že všechna související data budou nav�
 
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, váš účet"
-
-msgid "Postpone the expiration date"
-msgstr "Odložit datum vypršení"
 
 msgid "Preferences"
 msgstr "Nastavení"

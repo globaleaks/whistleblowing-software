@@ -130,9 +130,6 @@ msgstr "Permitir al destinatario editar la fecha de caducidad de las denuncias"
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir a los destinatarios borrar denuncias."
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permitir al destinatario posponer la fecha de caducidad de una denuncia."
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permitir al denunciante añadir nuevos adjuntos a su denuncia"
 
@@ -234,9 +231,6 @@ msgstr "Bloquear el envío "
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "Al confirmar, cambiará la fecha de caducidad a:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Al confirmar, pospondrá la fecha de caducidad a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Tras confirmar, quedará establecido un recordatorio para el día:"
@@ -943,9 +937,6 @@ msgstr "Por favor, comprenda que todos los datos asociados serán eliminados def
 
 msgid "Please select your account:"
 msgstr "Por favor, seleccione su cuenta:"
-
-msgid "Postpone the expiration date"
-msgstr "Posponer la fecha de vencimiento"
 
 msgid "Preferences"
 msgstr "Preferencias"

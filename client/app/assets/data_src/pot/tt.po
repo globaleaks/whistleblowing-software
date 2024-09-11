@@ -90,9 +90,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Алучыга хисапларны бетерергә рөхсәт итү"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Мәгълүмат җиткерүчегә хисапка кертелмәләр өстәргә рөхсәт итү"
 
@@ -194,9 +191,6 @@ msgstr "Документ җибәрүне блоклау"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Раслап, вакыты чыгу датасын бу көнгә кадәр кичектерәчәксез:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -903,9 +897,6 @@ msgstr "Зинһар, барлык бәйләнгән мәгълүматларн
 
 msgid "Please select your account:"
 msgstr "Зинһар, шәхси сәхифәгезне сайлагыз:"
-
-msgid "Postpone the expiration date"
-msgstr "Вакыты чыгу датасын кичектерү"
 
 msgid "Preferences"
 msgstr "Өстенлекле көйләүләр"

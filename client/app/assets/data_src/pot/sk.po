@@ -100,9 +100,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Povoliť príjemcom zmazať podania"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
@@ -204,9 +201,6 @@ msgstr "Blokovať podanie"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrdením odložíte dátum exspirácie do:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -913,9 +907,6 @@ msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené
 
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, svoj účet:"
-
-msgid "Postpone the expiration date"
-msgstr "Odložiť vypršanie platnosti"
 
 msgid "Preferences"
 msgstr "Predvoľby"

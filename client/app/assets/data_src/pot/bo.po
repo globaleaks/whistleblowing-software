@@ -91,9 +91,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོ་བསུབ་དུ་འཇུག"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོའི་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་དུ་འཇུག"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་ཟུར་སྣོན་སྣོན་དུ་འཇུག"
 
@@ -195,9 +192,6 @@ msgstr "ཞུ་འབུལ་བཀག་འགོག་བྱ།"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "གཏན་འཁེལ་བྱེད་པ་ཡིས། ཁྱེད་ཀྱིས་དུས་ཡུལ་ཚེས་གྲངས་དེ་འདིའི་སྟེང་ཕྱི་བཤོལ་བྱེད་པ་ཡིན།:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -904,9 +898,6 @@ msgstr "འབྲེལ་འཛུགས་ཟིན་པའི་གཞི་
 
 msgid "Please select your account:"
 msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་འདེམས་རོགས་གནང་།:"
-
-msgid "Postpone the expiration date"
-msgstr "དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱ།"
 
 msgid "Preferences"
 msgstr "གདམ་ག"

@@ -90,9 +90,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو رپوټونه پاک کړي"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو د رپوټ د انقضاء نېټه وځنډوي"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "افشاګر ته اجازه ورکړئ چې له دې رپوټ سره ضمیمې اضافه کړي"
 
@@ -194,9 +191,6 @@ msgstr "سپارل بند کړئ"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "په تصدیق کېدو سره به تاسې د انقضاء نېټه وځنډوئ تر: "
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -903,9 +897,6 @@ msgstr "د مهرباني له مخې دا درسره یادداشت کړئ چې
 
 msgid "Please select your account:"
 msgstr "د مهرباني له مخې خپل اکاونټ وټاکه:"
-
-msgid "Postpone the expiration date"
-msgstr "د انقضاء د نېټې ځنډول"
 
 msgid "Preferences"
 msgstr "ترجیحات"

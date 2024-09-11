@@ -91,9 +91,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Leisti gavėjui pranešimus ištrinti"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Leisti gavėjui atidėti pranešimo galiojimo pabaigos datą"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
 
@@ -195,9 +192,6 @@ msgstr "Blokuoti pateikimą"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Patvirtindami atidėsite galiojimo pabaigos datą iki:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Patvirtindami nustatysite priminimo datą:"
@@ -904,9 +898,6 @@ msgstr "Atkreipkite dėmesį, kad visi susiję duomenys bus ištrinti visam laik
 
 msgid "Please select your account:"
 msgstr "Pasirinkite savo paskyrą:"
-
-msgid "Postpone the expiration date"
-msgstr "Atidėti galiojimo pabaigos datą"
 
 msgid "Preferences"
 msgstr "Parinktys"

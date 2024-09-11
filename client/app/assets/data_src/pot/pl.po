@@ -110,9 +110,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Odbiorcy mogą usuwać zgłoszenia"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Odbiorcy mogą zmieniać datę wygaśnięcia zgłoszenia"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Sygnaliści mogą dodawać załączniki"
 
@@ -214,9 +211,6 @@ msgstr "Zablokuj zgłoszenie"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potwierdzasz przesunięcie daty wygaśnięcia na:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Potwierdzając, ustawisz przypomnienie na dzień:"
@@ -923,9 +917,6 @@ msgstr "Zwróć uwagę na to, żę wszystkie powiązane dane zostaną nieodwraca
 
 msgid "Please select your account:"
 msgstr "Wybierz swoje konto:"
-
-msgid "Postpone the expiration date"
-msgstr "Zmień datę wygaśnięcia"
 
 msgid "Preferences"
 msgstr "Preferencje"

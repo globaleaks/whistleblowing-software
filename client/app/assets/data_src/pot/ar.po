@@ -139,9 +139,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
 
@@ -243,9 +240,6 @@ msgstr "أوقف البلاغ"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "عند الموافقة، سيتم ضبط مُنبّهٍ على التاريخ:"
@@ -952,9 +946,6 @@ msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات ال�
 
 msgid "Please select your account:"
 msgstr "الرجاء اختيار حسابك"
-
-msgid "Postpone the expiration date"
-msgstr "تأجيل تاريخ نهاية الصلوحية"
 
 msgid "Preferences"
 msgstr "التفضيلات"

@@ -115,9 +115,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Izinkan penerima untuk menghapus laporan"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
 
@@ -219,9 +216,6 @@ msgstr "Blokir kiriman"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -928,9 +922,6 @@ msgstr "Harap dicatat bahwa semua data yang terkait akan dihapus secara permanen
 
 msgid "Please select your account:"
 msgstr "Tolong pilih akun Anda"
-
-msgid "Postpone the expiration date"
-msgstr "Menunda tanggal kedaluwarsa"
 
 msgid "Preferences"
 msgstr "Preferensi"

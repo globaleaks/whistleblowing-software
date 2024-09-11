@@ -91,9 +91,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "ተቀባዩ ሪፖርቶች እንዲያጠፋ ፍቀዱ"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "ተቀባዩ የሪፖርት መቃጠያ ቀን እንዲያስተላልፍ ፍቀድ"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
 
@@ -195,9 +192,6 @@ msgstr "ማስረከቡን አግዱ"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "በማረጋገጥ የሪፖርት መቃጠያ ቀኑን ያስተላልፋሉ፡-"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -904,9 +898,6 @@ msgstr "የተያያዙ ውሂቦች በሙሉ በቋሚነት እንደሚጠ�
 
 msgid "Please select your account:"
 msgstr "መለያዎትን ምረጡ"
-
-msgid "Postpone the expiration date"
-msgstr "መቃጠያ ቀን አስተላልፍ"
 
 msgid "Preferences"
 msgstr "ምርጫዎች"

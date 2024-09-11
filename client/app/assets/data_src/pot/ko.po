@@ -91,9 +91,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "수신자가 보고서를 삭제할 수 있도록 허용"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
 
@@ -195,9 +192,6 @@ msgstr "제출 차단"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "확인 시 연기되는 만료 날짜:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -904,9 +898,6 @@ msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의
 
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오."
-
-msgid "Postpone the expiration date"
-msgstr "만료 날짜 연기"
 
 msgid "Preferences"
 msgstr "환경 설정"

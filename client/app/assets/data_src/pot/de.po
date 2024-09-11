@@ -139,9 +139,6 @@ msgstr "Dem Empfänger das Ändern des Ablaufdatums der Berichte erlauben"
 msgid "Allow the recipient to delete reports"
 msgstr "Dem Empfänger das Löschen von Hinweisen erlauben"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zum Bericht erlauben"
 
@@ -243,9 +240,6 @@ msgstr "Die Einreichung blockieren"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "Mit der Bestätigung ändern Sie das Ablaufdatum auf:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Mit Ihrer Bestätigung legen Sie eine Erinnerung für den ... fest"
@@ -952,9 +946,6 @@ msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verlo
 
 msgid "Please select your account:"
 msgstr "Bitte wählen Sie Ihr Konto aus:"
-
-msgid "Postpone the expiration date"
-msgstr "Ablaufdatum hinausschieben"
 
 msgid "Preferences"
 msgstr "Einstellungen"

@@ -120,9 +120,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Разрешить получателю удалять отчеты"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Разрешить получателю откладывать истечение срока действия отчета"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
 
@@ -224,9 +221,6 @@ msgstr "Заблокировать подачу документов"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "В случае подтверждения вы увеличите срок истечения сведения до:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -933,9 +927,6 @@ msgstr "Обратите внимание, что все связанные да
 
 msgid "Please select your account:"
 msgstr "Укажите вашу учётную запись:"
-
-msgid "Postpone the expiration date"
-msgstr ""
 
 msgid "Preferences"
 msgstr "Настройки"

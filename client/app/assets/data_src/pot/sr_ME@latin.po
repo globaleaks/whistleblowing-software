@@ -89,9 +89,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Dozvoli primaocu da briše prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Dozvoli primaocu da odloži datum isteka prijave"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
 
@@ -193,9 +190,6 @@ msgstr "Blokiraj slanje"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrđivanjem ćete odložiti datum isteka na:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -902,9 +896,6 @@ msgstr "Imajte u vidu da će svi povezani podaci biti trajno izbrisani."
 
 msgid "Please select your account:"
 msgstr "Izaberite svoj nalog:"
-
-msgid "Postpone the expiration date"
-msgstr "Odloži datum isteka"
 
 msgid "Preferences"
 msgstr "Željena podešavanja"

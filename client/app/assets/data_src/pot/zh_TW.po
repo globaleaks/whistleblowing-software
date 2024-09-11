@@ -97,9 +97,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "收件者可以刪除報告"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "收件者可以延長報告期限"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "揭密者可對此報告附加資料檔案"
 
@@ -201,9 +198,6 @@ msgstr "封鎖提交"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "請確認你將把截止日期延後到："
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -910,9 +904,6 @@ msgstr "請注意所有相關的資料將會永久消失。"
 
 msgid "Please select your account:"
 msgstr "請選擇你的帳號"
-
-msgid "Postpone the expiration date"
-msgstr "延後到期日"
 
 msgid "Preferences"
 msgstr "偏好"

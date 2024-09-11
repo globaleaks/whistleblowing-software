@@ -102,9 +102,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز حذف کر سکیں"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
@@ -206,9 +203,6 @@ msgstr "جمع کرانے کومسدود کریں"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -915,9 +909,6 @@ msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طر�
 
 msgid "Please select your account:"
 msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
-
-msgid "Postpone the expiration date"
-msgstr "آخری اپ ڈیٹ کی تاریخ ملتوی"
 
 msgid "Preferences"
 msgstr "ترجیحات"

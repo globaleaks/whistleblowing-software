@@ -92,9 +92,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Qabul qiluvchiga anonim xabarlarni oʻchirish imkonini berish"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Qabul qiluvchi anonim xabar muddatini kechiktirishiga ruxsat berish"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr ""
 
@@ -196,9 +193,6 @@ msgstr "Joylanmani bloklash"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -905,9 +899,6 @@ msgstr "Tegishli axborot butunlay oʻchib ketishini unutmang."
 
 msgid "Please select your account:"
 msgstr "Hisobingizni tanlang:"
-
-msgid "Postpone the expiration date"
-msgstr "Muddatini uzaytirish"
 
 msgid "Preferences"
 msgstr "Sozlamalar"

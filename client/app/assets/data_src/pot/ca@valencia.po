@@ -104,9 +104,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari eliminar denúncies"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari pospondre la data d'expiració d'una denúncia"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
 
@@ -208,9 +205,6 @@ msgstr "Bloqueja l’enviament"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Si ho confirma, posposarà la data de caducitat fins a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
@@ -917,9 +911,6 @@ msgstr "Tingueu en compte que totes les dades associades es suprimiran definitiv
 
 msgid "Please select your account:"
 msgstr "Per favor, seleccione el seu compte:"
-
-msgid "Postpone the expiration date"
-msgstr "Pospose la data de caducitat"
 
 msgid "Preferences"
 msgstr "Preferències"

@@ -109,9 +109,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari esborrar informes"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet a les persones reveladores de informació enviar un arxiu adjunt. "
 
@@ -213,9 +210,6 @@ msgstr "Bloquejar l'enviament"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
@@ -922,9 +916,6 @@ msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades defi
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
-
-msgid "Postpone the expiration date"
-msgstr "Posposa la data de caducitat"
 
 msgid "Preferences"
 msgstr "Preferències"

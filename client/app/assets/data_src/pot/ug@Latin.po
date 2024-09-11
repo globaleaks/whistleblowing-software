@@ -90,9 +90,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
 
@@ -194,9 +191,6 @@ msgstr "Tapshurushni chekle"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -903,9 +897,6 @@ msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighan
 
 msgid "Please select your account:"
 msgstr "Hésabingizni tallang:"
-
-msgid "Postpone the expiration date"
-msgstr "Sürük chéslasini keynige sür"
 
 msgid "Preferences"
 msgstr "Mayilliqlar"

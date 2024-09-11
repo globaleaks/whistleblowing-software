@@ -117,9 +117,6 @@ msgstr "Alıcı ihbarın geçerlilik sonu tarihini düzenleyebilsin"
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcı ihbarları silebilsin"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Alıcı ihbarın geçerlilik sonu tarihini uzatabilsin"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Muhbir dosya ekleyebilsin"
 
@@ -221,9 +218,6 @@ msgstr "Gönderimi engelle"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "Onayladığınızda, geçerlilik sonu şu tarihe değiştirilecek:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Onayladığınızda, geçerlilik sonu şu tarihe uzatılacak:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Onayladığınızda, şu tarihe bir anımsatıcı ayarlanacak:"
@@ -930,9 +924,6 @@ msgstr "Lütfen ilişkili tüm verilerin kalıcı olarak silineceğini unutmayı
 
 msgid "Please select your account:"
 msgstr "Lütfen hesabınızı seçin:"
-
-msgid "Postpone the expiration date"
-msgstr "Geçerlilik sonu tarihini uzat"
 
 msgid "Preferences"
 msgstr "Ayarlar"

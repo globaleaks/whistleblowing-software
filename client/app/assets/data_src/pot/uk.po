@@ -111,9 +111,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволити отримувачу видаляти звіти"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Дозволити отримувачам відтерміновувати видалення звітів"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дозволити інформаторам додавати файли до звіту"
 
@@ -215,9 +212,6 @@ msgstr "Заблокувати подання"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Після підтвердження термін дії буде до:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -924,9 +918,6 @@ msgstr "Зверніть увагу, що всі пов'язані дані бу
 
 msgid "Please select your account:"
 msgstr "Будь ласка, оберіть ваш обліковий запис:"
-
-msgid "Postpone the expiration date"
-msgstr "Відтермінувати дату зачінчення терміну дії"
 
 msgid "Preferences"
 msgstr "Налаштування"

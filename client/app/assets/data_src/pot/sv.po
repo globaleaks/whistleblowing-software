@@ -113,9 +113,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
@@ -217,9 +214,6 @@ msgstr "Blockera tipset"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Genom att bekräfta ställs påminnelsedatum till:"
@@ -926,9 +920,6 @@ msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort per
 
 msgid "Please select your account:"
 msgstr "Vänligen välj ditt konto."
-
-msgid "Postpone the expiration date"
-msgstr "Skjut up utgångsdatumet"
 
 msgid "Preferences"
 msgstr "Inställningar"

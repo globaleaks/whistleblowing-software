@@ -92,9 +92,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Алушыға есептерді жоюға рұқсат беру"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Алушыға есептің жарамдылық мерзімін кейінге қалдыруға рұқсат беру"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Хабарлаушыға есепке тіркемелер қосуға рұқсат беру"
 
@@ -196,9 +193,6 @@ msgstr "Жіберуді бұғаттау"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Растау арқылы, жарамдылық мерзімін келесіге дейін қалдырасыз:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -905,9 +899,6 @@ msgstr "Осыған байланысты барлық деректер бірж
 
 msgid "Please select your account:"
 msgstr "Есептік жазбаңызды таңдаңыз:"
-
-msgid "Postpone the expiration date"
-msgstr "Жарамдылық мерзімін кейінге жылжыту"
 
 msgid "Preferences"
 msgstr "Бапталған параметрлер"

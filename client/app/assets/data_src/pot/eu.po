@@ -108,9 +108,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "Hartzaileei salaketak ezabatzen utzi"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Hartzaileari salaketaren iraungitze data jartzen utzi"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
 
@@ -212,9 +209,6 @@ msgstr "Bidalketa blokeatu "
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Berrestean, iraungitze-data egun honetara atzeratuko duzu:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Berretsi ondoren, egun honetarako zehaztuko duzu gogorarazpena:"
@@ -921,9 +915,6 @@ msgstr "Arren, ulertu lotutako datu guztiak behin behineko ezabatuko direla."
 
 msgid "Please select your account:"
 msgstr "Arren, hautatu zure kontua:"
-
-msgid "Postpone the expiration date"
-msgstr "Iraungitze data atzeratu"
 
 msgid "Preferences"
 msgstr "Lehentasunak"

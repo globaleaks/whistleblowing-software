@@ -96,9 +96,6 @@ msgstr "Prejemniku omogočite urejanje datuma izteka veljavnosti prijav."
 msgid "Allow the recipient to delete reports"
 msgstr "Dovoli prejemniku, da zbriše prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Prijavitelju dovoli dodajanje prilog"
 
@@ -200,9 +197,6 @@ msgstr "Blokiraj oddano"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr "S potrditvijo boste spremenili datum izteka veljavnosti na:"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "S potrditvijo boste spremenili rok veljavnosti do:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "S potrditvijo boste določili opomnik na izbrani datum:"
@@ -909,9 +903,6 @@ msgstr "Vsi povezani podatki bodo trajno izbrisani."
 
 msgid "Please select your account:"
 msgstr "Izberite svoj račun:"
-
-msgid "Postpone the expiration date"
-msgstr "Spremeni datum poteka veljavnosti"
 
 msgid "Preferences"
 msgstr "Uporabniške nastavitve"

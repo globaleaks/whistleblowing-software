@@ -107,9 +107,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
 
@@ -211,9 +208,6 @@ msgstr ""
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -920,9 +914,6 @@ msgstr ""
 
 msgid "Please select your account:"
 msgstr "אנא בחר את חשבונך"
-
-msgid "Postpone the expiration date"
-msgstr "דחה את תאריך התפוגה"
 
 msgid "Preferences"
 msgstr "העדפות"

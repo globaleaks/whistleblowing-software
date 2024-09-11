@@ -117,9 +117,6 @@ msgstr ""
 msgid "Allow the recipient to delete reports"
 msgstr "به گیرندگان اجازه دهید که گزارش‌ها را حذف کنند"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "به گیرنده اجازه دهید تا تاریخ انقضای گزارش را به تعویق بیاندازد"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
 
@@ -221,9 +218,6 @@ msgstr "مسدودن کردن ارسال"
 
 msgid "By confirming, you will edit the expiration date to:"
 msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "با تأیید کردن، شما تاریخ انقضا را عقب خواهید انداخت به:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -930,9 +924,6 @@ msgstr "لطفاً توجه داشته باشید که تمام داده‌ها�
 
 msgid "Please select your account:"
 msgstr "حساب کاربری خود را انتخاب کنید:"
-
-msgid "Postpone the expiration date"
-msgstr "تعویق زمان انقضا"
 
 msgid "Preferences"
 msgstr "ترجیحات"
