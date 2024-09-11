@@ -5,6 +5,7 @@ ORM Models definitions.
 import copy
 
 from datetime import datetime
+from email.policy import default
 
 from globaleaks.models import config_desc
 from globaleaks.models.enums import *
@@ -602,6 +603,7 @@ class _ContentForwarding(Model):
     content_id = Column(UnicodeText(36), nullable=False, index=True)
     oe_content_id = Column(UnicodeText(36), nullable=False, index=True)
     content_origin = Column(Enum(EnumOriginFile), default='receiver_file', nullable=False)
+    author_type = Column(Enum(EnumAuthorType), default='main', nullable=False)
 
     @declared_attr
     def __table_args__(self):

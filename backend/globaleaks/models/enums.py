@@ -70,3 +70,7 @@ class EnumOriginFile(_Enum):
 class EnumForwardingState(_Enum):
     open = 0
     closed = 1
+    
+class EnumAuthorType(_Enum):
+    main = 0
+    oe = 1
