@@ -49,8 +49,8 @@
     "@types/lodash": "4.17.7",
     "@types/marked": "6.0.0",
     "@types/qrcode": "1.5.5",
-    "@typescript-eslint/types": "8.4.0",
-    "@typescript-eslint/utils": "8.4.0",
+    "@typescript-eslint/types": "8.5.0",
+    "@typescript-eslint/utils": "8.5.0",
     "angularx-qrcode": "18.0.1",
     "bootstrap": "5.3.3",
     "chart.js": "4.4.4",
@@ -61,7 +61,7 @@
     "ngx-clipboard": "16.0.0",
     "ngx-markdown": "18.0.0",
     "rxjs": "7.8.1",
-    "typescript": "5.5.4",
+    "typescript": "5.6.2",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
@@ -72,7 +72,7 @@
     "@angular/cli": "18.2.3",
     "@angular/compiler": "18.2.3",
     "@angular/compiler-cli": "18.2.3",
-    "@cypress/code-coverage": "3.12.47",
+    "@cypress/code-coverage": "3.12.48",
     "@cypress/schematic": "2.5.2",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
@@ -97,7 +97,7 @@
     "superagent": "10.1.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
-    "typescript-eslint": "8.4.0",
+    "typescript-eslint": "8.5.0",
     "webpack-dev-server": "5.1.0"
   }
 }

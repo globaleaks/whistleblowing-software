@@ -49,8 +49,8 @@
         "@types/lodash": "4.17.7",
         "@types/marked": "6.0.0",
         "@types/qrcode": "1.5.5",
-        "@typescript-eslint/types": "8.4.0",
-        "@typescript-eslint/utils": "8.4.0",
+        "@typescript-eslint/types": "8.5.0",
+        "@typescript-eslint/utils": "8.5.0",
         "angularx-qrcode": "18.0.1",
         "bootstrap": "5.3.3",
         "chart.js": "4.4.4",
@@ -61,7 +61,7 @@
         "ngx-clipboard": "16.0.0",
         "ngx-markdown": "18.0.0",
         "rxjs": "7.8.1",
-        "typescript": "5.5.4",
+        "typescript": "5.6.2",
         "zone.js": "0.15.0"
       },
       "devDependencies": {
@@ -72,7 +72,7 @@
         "@angular/cli": "18.2.3",
         "@angular/compiler": "18.2.3",
         "@angular/compiler-cli": "18.2.3",
-        "@cypress/code-coverage": "3.12.47",
+        "@cypress/code-coverage": "3.12.48",
         "@cypress/schematic": "2.5.2",
         "@istanbuljs/nyc-config-typescript": "1.0.2",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
@@ -97,7 +97,7 @@
         "superagent": "10.1.0",
         "ts-node": "10.9.2",
         "typescript": "5.5.4",
-        "typescript-eslint": "8.4.0",
+        "typescript-eslint": "8.5.0",
         "webpack-dev-server": "5.1.0"
       }
     },
@@ -2799,15 +2799,15 @@
       }
     },
     "node_modules/@cypress/code-coverage": {
-      "version": "3.12.47",
-      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.47.tgz",
-      "integrity": "sha512-ianeOSqg2NyAIxrY8sxsGDPKe6XBk2EoCXTmrSIqr9cVJn2qWBvIPnyd6O/IG9MGdWhMGeyophpUb57ZZAfpBA==",
+      "version": "3.12.48",
+      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.48.tgz",
+      "integrity": "sha512-Vr9CzmcI+Cx+a1x2lZW9S/pQiHkVoCWwKj2l3sPB4EcEztBDIpXCEMdAiYqrmAfpGwot3scJwW2y1HYxUec0fg==",
       "dev": true,
       "dependencies": {
         "@cypress/webpack-preprocessor": "^6.0.0",
         "chalk": "4.1.2",
         "dayjs": "1.11.13",
-        "debug": "4.3.6",
+        "debug": "4.3.7",
         "execa": "4.1.0",
         "globby": "11.1.0",
         "istanbul-lib-coverage": "^3.0.0",
@@ -5832,16 +5832,16 @@
       }
     },
     "node_modules/@typescript-eslint/eslint-plugin": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.4.0.tgz",
-      "integrity": "sha512-rg8LGdv7ri3oAlenMACk9e+AR4wUV0yrrG+XKsGKOK0EVgeEDqurkXMPILG2836fW4ibokTB5v4b6Z9+GYQDEw==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.5.0.tgz",
+      "integrity": "sha512-lHS5hvz33iUFQKuPFGheAB84LwcJ60G8vKnEhnfcK1l8kGVLro2SFYW6K0/tj8FUhRJ0VHyg1oAfg50QGbPPHw==",
       "dev": true,
       "dependencies": {
         "@eslint-community/regexpp": "^4.10.0",
-        "@typescript-eslint/scope-manager": "8.4.0",
-        "@typescript-eslint/type-utils": "8.4.0",
-        "@typescript-eslint/utils": "8.4.0",
-        "@typescript-eslint/visitor-keys": "8.4.0",
+        "@typescript-eslint/scope-manager": "8.5.0",
+        "@typescript-eslint/type-utils": "8.5.0",
+        "@typescript-eslint/utils": "8.5.0",
+        "@typescript-eslint/visitor-keys": "8.5.0",
         "graphemer": "^1.4.0",
         "ignore": "^5.3.1",
         "natural-compare": "^1.4.0",
@@ -5865,15 +5865,15 @@
       }
     },
     "node_modules/@typescript-eslint/parser": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.4.0.tgz",
-      "integrity": "sha512-NHgWmKSgJk5K9N16GIhQ4jSobBoJwrmURaLErad0qlLjrpP5bECYg+wxVTGlGZmJbU03jj/dfnb6V9bw+5icsA==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.5.0.tgz",
+      "integrity": "sha512-gF77eNv0Xz2UJg/NbpWJ0kqAm35UMsvZf1GHj8D9MRFTj/V3tAciIWXfmPLsAAF/vUlpWPvUDyH1jjsr0cMVWw==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/scope-manager": "8.4.0",
-        "@typescript-eslint/types": "8.4.0",
-        "@typescript-eslint/typescript-estree": "8.4.0",
-        "@typescript-eslint/visitor-keys": "8.4.0",
+        "@typescript-eslint/scope-manager": "8.5.0",
+        "@typescript-eslint/types": "8.5.0",
+        "@typescript-eslint/typescript-estree": "8.5.0",
+        "@typescript-eslint/visitor-keys": "8.5.0",
         "debug": "^4.3.4"
       },
       "engines": {
@@ -5893,12 +5893,12 @@
       }
     },
     "node_modules/@typescript-eslint/scope-manager": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.4.0.tgz",
-      "integrity": "sha512-n2jFxLeY0JmKfUqy3P70rs6vdoPjHK8P/w+zJcV3fk0b0BwRXC/zxRTEnAsgYT7MwdQDt/ZEbtdzdVC+hcpF0A==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.5.0.tgz",
+      "integrity": "sha512-06JOQ9Qgj33yvBEx6tpC8ecP9o860rsR22hWMEd12WcTRrfaFgHr2RB/CA/B+7BMhHkXT4chg2MyboGdFGawYg==",
       "dependencies": {
-        "@typescript-eslint/types": "8.4.0",
-        "@typescript-eslint/visitor-keys": "8.4.0"
+        "@typescript-eslint/types": "8.5.0",
+        "@typescript-eslint/visitor-keys": "8.5.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -5909,13 +5909,13 @@
       }
     },
     "node_modules/@typescript-eslint/type-utils": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.4.0.tgz",
-      "integrity": "sha512-pu2PAmNrl9KX6TtirVOrbLPLwDmASpZhK/XU7WvoKoCUkdtq9zF7qQ7gna0GBZFN0hci0vHaSusiL2WpsQk37A==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.5.0.tgz",
+      "integrity": "sha512-N1K8Ix+lUM+cIDhL2uekVn/ZD7TZW+9/rwz8DclQpcQ9rk4sIL5CAlBC0CugWKREmDjBzI/kQqU4wkg46jWLYA==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/typescript-estree": "8.4.0",
-        "@typescript-eslint/utils": "8.4.0",
+        "@typescript-eslint/typescript-estree": "8.5.0",
+        "@typescript-eslint/utils": "8.5.0",
         "debug": "^4.3.4",
         "ts-api-utils": "^1.3.0"
       },
@@ -5933,9 +5933,9 @@
       }
     },
     "node_modules/@typescript-eslint/types": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/types/-/types-8.4.0.tgz",
-      "integrity": "sha512-T1RB3KQdskh9t3v/qv7niK6P8yvn7ja1mS7QK7XfRVL6wtZ8/mFs/FHf4fKvTA0rKnqnYxl/uHFNbnEt0phgbw==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/types/-/types-8.5.0.tgz",
+      "integrity": "sha512-qjkormnQS5wF9pjSi6q60bKUHH44j2APxfh9TQRXK8wbYVeDYYdYJGIROL87LGZZ2gz3Rbmjc736qyL8deVtdw==",
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
       },
@@ -5945,12 +5945,12 @@
       }
     },
     "node_modules/@typescript-eslint/typescript-estree": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.4.0.tgz",
-      "integrity": "sha512-kJ2OIP4dQw5gdI4uXsaxUZHRwWAGpREJ9Zq6D5L0BweyOrWsL6Sz0YcAZGWhvKnH7fm1J5YFE1JrQL0c9dd53A==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.5.0.tgz",
+      "integrity": "sha512-vEG2Sf9P8BPQ+d0pxdfndw3xIXaoSjliG0/Ejk7UggByZPKXmJmw3GW5jV2gHNQNawBUyfahoSiCFVov0Ruf7Q==",
       "dependencies": {
-        "@typescript-eslint/types": "8.4.0",
-        "@typescript-eslint/visitor-keys": "8.4.0",
+        "@typescript-eslint/types": "8.5.0",
+        "@typescript-eslint/visitor-keys": "8.5.0",
         "debug": "^4.3.4",
         "fast-glob": "^3.3.2",
         "is-glob": "^4.0.3",
@@ -5972,14 +5972,14 @@
       }
     },
     "node_modules/@typescript-eslint/utils": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.4.0.tgz",
-      "integrity": "sha512-swULW8n1IKLjRAgciCkTCafyTHHfwVQFt8DovmaF69sKbOxTSFMmIZaSHjqO9i/RV0wIblaawhzvtva8Nmm7lQ==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.5.0.tgz",
+      "integrity": "sha512-6yyGYVL0e+VzGYp60wvkBHiqDWOpT63pdMV2CVG4LVDd5uR6q1qQN/7LafBZtAtNIn/mqXjsSeS5ggv/P0iECw==",
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.4.0",
-        "@typescript-eslint/scope-manager": "8.4.0",
-        "@typescript-eslint/types": "8.4.0",
-        "@typescript-eslint/typescript-estree": "8.4.0"
+        "@typescript-eslint/scope-manager": "8.5.0",
+        "@typescript-eslint/types": "8.5.0",
+        "@typescript-eslint/typescript-estree": "8.5.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -5993,11 +5993,11 @@
       }
     },
     "node_modules/@typescript-eslint/visitor-keys": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.4.0.tgz",
-      "integrity": "sha512-zTQD6WLNTre1hj5wp09nBIDiOc2U5r/qmzo7wxPn4ZgAjHql09EofqhF9WF+fZHzL5aCyaIpPcT2hyxl73kr9A==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.5.0.tgz",
+      "integrity": "sha512-yTPqMnbAZJNy2Xq2XU8AdtOW9tJIr+UQb64aXB9f3B1498Zx9JorVgFJcZpEc9UBuCCrdzKID2RGAMkYcDtZOw==",
       "dependencies": {
-        "@typescript-eslint/types": "8.4.0",
+        "@typescript-eslint/types": "8.5.0",
         "eslint-visitor-keys": "^3.4.3"
       },
       "engines": {
@@ -9015,11 +9015,11 @@
       "devOptional": true
     },
     "node_modules/debug": {
-      "version": "4.3.6",
-      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz",
-      "integrity": "sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==",
+      "version": "4.3.7",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.7.tgz",
+      "integrity": "sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==",
       "dependencies": {
-        "ms": "2.1.2"
+        "ms": "^2.1.3"
       },
       "engines": {
         "node": ">=6.0"
@@ -14609,9 +14609,9 @@
       }
     },
     "node_modules/ms": {
-      "version": "2.1.2",
-      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
-      "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
     },
     "node_modules/msgpackr": {
       "version": "1.11.0",
@@ -17489,12 +17489,6 @@
       "integrity": "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==",
       "dev": true
     },
-    "node_modules/send/node_modules/ms": {
-      "version": "2.1.3",
-      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
-      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
-      "dev": true
-    },
     "node_modules/serialize-javascript": {
       "version": "6.0.2",
       "resolved": "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-6.0.2.tgz",
@@ -19153,14 +19147,14 @@
       }
     },
     "node_modules/typescript-eslint": {
-      "version": "8.4.0",
-      "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.4.0.tgz",
-      "integrity": "sha512-67qoc3zQZe3CAkO0ua17+7aCLI0dU+sSQd1eKPGq06QE4rfQjstVXR6woHO5qQvGUa550NfGckT4tzh3b3c8Pw==",
+      "version": "8.5.0",
+      "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.5.0.tgz",
+      "integrity": "sha512-uD+XxEoSIvqtm4KE97etm32Tn5MfaZWgWfMMREStLxR6JzvHkc2Tkj7zhTEK5XmtpTmKHNnG8Sot6qDfhHtR1Q==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/eslint-plugin": "8.4.0",
-        "@typescript-eslint/parser": "8.4.0",
-        "@typescript-eslint/utils": "8.4.0"
+        "@typescript-eslint/eslint-plugin": "8.5.0",
+        "@typescript-eslint/parser": "8.5.0",
+        "@typescript-eslint/utils": "8.5.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
