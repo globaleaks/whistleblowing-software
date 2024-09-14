@@ -16,7 +16,7 @@ import {WhistleblowerSubmissionService} from "@app/pages/whistleblower/whistlebl
 })
 export class TipAdditionalQuestionnaireFormComponent implements OnInit {
   @ViewChild("submissionForm") public submissionForm: NgForm;
-  @ViewChildren("stepform") stepForms: QueryList<NgForm>;
+  @ViewChildren("stepForm") stepForms: QueryList<NgForm>;
 
   _navigation: number = 0;
   validate: boolean[] = [];
@@ -128,7 +128,7 @@ export class TipAdditionalQuestionnaireFormComponent implements OnInit {
   runValidation() {
     this.validate[this.navigation] = true;
 
-    if (this.navigation > -1 && !this.whistleblowerSubmissionService.checkForInvalidFields(this)) {
+    if (!this.whistleblowerSubmissionService.checkForInvalidFields(this)) {
       this.utilsService.scrollToTop();
       return false;
     }

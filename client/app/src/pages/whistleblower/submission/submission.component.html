@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <form #submissionForm="ngForm" id="SubmissionForm" [ngClass]="{'was-validated': displayErrors()}" autocomplete="off" novalidate>
+        <form #submissionForm="ngForm" id="SubmissionForm" [ngClass]="{'was-validated': displaySubmissionErrors()}" autocomplete="off" novalidate>
             <div class="tabbable tabs-below mb-3">
                 <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" *ngIf="submissionService.context.show_steps_navigation_interface && submissionService.context.questionnaire.steps.length > 1" role="tablist">
                     <li *ngIf="submissionService.context.allow_recipients_selection" id="step-recipient-selection-tab" class="nav-item" role="presentation">
@@ -28,8 +28,10 @@
                     </li>
                 </ul>
                 <div id="SubmissionTabsContentBox" class="tab-content">
-                    <div *ngIf="displayErrors()">
-                        <src-submission-error [navigation]="navigation" [field_id_map]="field_id_map" [stepForms]="stepForms" [submission]="submissionService" [uploads]="submissionService.uploads" [stepForm]="stepForm" [hasPreviousStepValue]="hasPreviousStepValue" [hasNextStepValue]="hasNextStepValue" [areReceiversSelectedValue]="areReceiversSelectedValue" [displayStepErrors]="displayStepErrors" [submissionForm]="submissionForm"></src-submission-error>
+                    <div *ngIf="validate[navigation] && !hasPreviousStepValue && !areReceiversSelectedValue">
+                        <div id="SubmissionErrors" class="alert alert-secondary mb-2" role="alert">
+                            <p>{{'You must select at least one recipient.'|translate}}</p>
+                        </div>
                     </div>
                     <div id="step-receiver-selection" *ngIf="submissionService.context.allow_recipients_selection && navigation === -1" role="tabpanel">
                         <src-receiver-selection (switchSelection)="switchSelection($event)" [receiversOrderPredicate]="receiversOrderPredicate" [submission]="submissionService" [show_steps_navigation_bar]="show_steps_navigation_bar"></src-receiver-selection>
@@ -37,7 +39,10 @@
                     <div *ngIf="navigation !== -1">
                         <div *ngFor="let step of submissionService.context.questionnaire.steps | orderBy:'order'; let index = index">
                             <div *ngIf="step && step.enabled && submissionService" id="step-{{index}}"  [class.hidden]="navigation !== index" role="tabpanel">
-                                <div ngForm #stepform="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
+                                <div ngForm #stepForm="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
+                                    <div *ngIf="validate[navigation] && stepForm.invalid">
+                                        <src-step-error [navigation]="navigation" [field_id_map]="field_id_map" [stepForm]="stepForm"></src-step-error>
+                                    </div>
                                     <markdown *ngIf="step.description" class="description" [data]="step.description | stripHtml"></markdown>
                                     <src-form (notifyFileUpload)="notifyFileUpload($event)" [fileUploadUrl]="'api/whistleblower/submission/attachment'" [identity_provided]=identity_provided [uploads]="uploads" [displayErrors]="displayErrors()" [answers]="answers" [submission]="submissionService" [step]="step" [index]="index"></src-form>
                                 </div>

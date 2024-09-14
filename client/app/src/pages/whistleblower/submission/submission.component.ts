@@ -23,7 +23,7 @@ import {WhistleblowerSubmissionService} from "@app/pages/whistleblower/whistlebl
 })
 export class SubmissionComponent implements OnInit {
   @ViewChild("submissionForm") public submissionForm: NgForm;
-  @ViewChildren("stepform") stepForms: QueryList<NgForm>;
+  @ViewChildren("stepForm") stepForms: QueryList<NgForm>;
 
   _navigation = -1;
   answers: Answers = {};
@@ -169,23 +169,6 @@ export class SubmissionComponent implements OnInit {
     return this.navigation < this.lastStepIndex();
   }
 
-  stepForm(index: number): any {
-    if (this.stepForms && index !== -1) {
-      return this.stepForms.get(index);
-    }
-  };
-
-  displayStepErrors(index: number): any {
-    if (index !== -1) {
-      const response = this.stepForm(index);
-      if (response) {
-        return response?.invalid;
-      } else {
-        return false;
-      }
-    }
-  };
-
   lastStepIndex() {
     let last_enabled = 0;
     if (this.questionnaire) {
@@ -198,14 +181,6 @@ export class SubmissionComponent implements OnInit {
 
     }
     return last_enabled;
-  };
-
-  submissionHasErrors() {
-    if (this.submissionForm) {
-      return this.submissionForm.invalid || this.utilsService.isUploading(this.uploads);
-    }
-
-    return false;
   };
 
   uploading() {
@@ -252,23 +227,25 @@ export class SubmissionComponent implements OnInit {
     return progress;
   }
 
-  displayErrors() {
-    this.updateStatusVariables();
-
-    if (!(this.validate[this.navigation])) {
+  displaySubmissionErrors() {
+    if (!this.validate[this.navigation]) {
       return false;
     }
+
+    this.updateStatusVariables();
 
     if (!(this.hasPreviousStepValue || !this.hasNextStepValue) && !this.areReceiversSelectedValue) {
       return true;
     }
 
-    if (!this.hasNextStepValue && this.submissionHasErrors()) {
-      return true;
-    }
+    return false
+  }
 
-    return !!this.displayStepErrors(this.navigation);
-  };
+  displayErrors() {
+    this.updateStatusVariables();
+
+    return this.validate[this.navigation];
+  }
 
   completeSubmission() {
     this.receivedData = this.submissionService.getSharedData();
