@@ -39,6 +39,9 @@ import {AnalystModule} from "@app/pages/analyst/analyst.module";
 import {mockEngine} from './services/helper/mocks';
 import {HttpService} from "./shared/services/http.service";
 import {CryptoService} from "@app/shared/services/crypto.service";
+import {TranslationService} from "@app/services/helper/translation.service";
+import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import {CustomDatepickerI18n} from '@app/shared/services/custom-datepicker-i18n';
 import {registerLocales} from '@app/services/helper/locale-provider';
 
 // Register all the locales
@@ -114,7 +117,8 @@ const translationModule = TranslateModule.forRoot({
     {provide: HTTP_INTERCEPTORS, useClass: ErrorCatchingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: CompletedInterceptor, multi: true},
     {provide: FlowInjectionToken, useValue: Flow},
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
