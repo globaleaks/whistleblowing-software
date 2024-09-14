@@ -99,7 +99,7 @@
                         <i *ngIf="tipService.tip.tor" class="fa-solid fa-check"></i>
                         <i *ngIf="!tipService.tip.tor" class="fa-solid fa-times"></i>
                     </td>
-                    <td class="TipInfoSubmissionStatus">{{tipService.tip.submissionStatusStr | translate}}</td>
+                    <td class="TipInfoSubmissionStatus">{{tipService.tip.submissionStatusStr}}</td>
                     <td class="TipInfoScore" *ngIf="authenticationService.session?.role === 'receiver' && appDataService.public.node.enable_scoring_system" [ngSwitch]="tipService.tip.score">
                         <span *ngSwitchCase="0">-</span>
                         <span class="badge bg-primary" *ngSwitchCase="1">{{'Low'|translate}}</span>
