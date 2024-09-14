@@ -115,6 +115,7 @@ export class TipsComponent implements OnInit {
       }
     });
   }
+
   openRevokeAccessModal() {
     this.utils.runUserOperation("get_users_names", {}, false).subscribe(
       {
@@ -147,11 +148,7 @@ export class TipsComponent implements OnInit {
     );
   }
 
-  tipsExport() {
-    this.exportFiles().subscribe();
-  }
-
-  exportFiles(): Observable<void> {
+  exportTips() {
     const selectedTips = this.selectedTips.slice();
 
     return from(this.tokenResourceService.getWithProofOfWork()).pipe(
@@ -179,7 +176,7 @@ export class TipsComponent implements OnInit {
           this.appDataService.updateShowLoadingPanel(false);
         });
       })
-    );
+    ).subscribe();
   }
 
   reload() {
@@ -201,11 +198,6 @@ export class TipsComponent implements OnInit {
 
   isSelected(id: string): boolean {
     return this.selectedTips.indexOf(id) !== -1;
-  }
-
-  exportTip(tipId: string) {
-    this.utils.download("api/recipient/rtips/" + tipId + "/export").subscribe();
-    this.appDataService.updateShowLoadingPanel(false);
   }
 
   actAsWhistleblower() {
@@ -306,20 +298,17 @@ export class TipsComponent implements OnInit {
     this.expirationDatePicker = false;
   }
 
-  onSearchChange(value: string | number | undefined) {
-    if (typeof value !== "undefined") {
+  onSearchChange(search: string | number | undefined) {
+    search = String(search);
+
+    if (typeof search !== "undefined") {
       this.currentPage = 1;
       this.filteredTips = this.RTips.dataModel;
       this.processTips();
 
-      this.filteredTips = orderBy(filter(this.filteredTips, (tip) =>
-        Object.values(tip).some((val) => {
-          if (typeof val === "string" || typeof val === "number") {
-            return String(val).toLowerCase().includes(String(value).toLowerCase());
-          }
-          return false;
-        })
-      ), "update_date");
+      this.filteredTips = orderBy(filter(this.filteredTips, (tip) => {
+        return this.utils.searchInObject(tip, search);
+      }), "update_date");
     }
   }
 
@@ -394,6 +383,7 @@ export class TipsComponent implements OnInit {
     this.lastUpdatePicker = false;
     this.expirationDatePicker = false;
   }
+
   exportToCsv(): void {
     this.utils.generateCSV(JSON.stringify(this.getDataCsv()), 'reports',this.getDataCsvHeaders());
   }

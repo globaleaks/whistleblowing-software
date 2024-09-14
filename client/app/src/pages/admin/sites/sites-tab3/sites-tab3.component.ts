@@ -9,11 +9,11 @@ import {HttpService} from "@app/shared/services/http.service";
 })
 export class SitesTab3Component {
   search: string;
-  newTenant: { name: string, active: boolean, is_profile:boolean, profile: string, mode: string, subdomain: string } = {
+  newTenant: { name: string, active: boolean, is_profile:boolean, default_profile: string, mode: string, subdomain: string } = {
     name: "",
     active: true,
     mode: "default",
-    profile: "1000001",
+    default_profile: "default",
     subdomain: "",
     is_profile: true,
   };
@@ -26,7 +26,7 @@ export class SitesTab3Component {
   ngOnInit(): void {
     this.httpService.fetchTenant().subscribe(
       tenants => {
-        this.tenants = tenants.filter(tenant => tenant.id > 100001);
+        this.tenants = tenants.filter(tenant => tenant.id > 1000001);
       }
     );
   }

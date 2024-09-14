@@ -1,4 +1,5 @@
-import {Component, QueryList, ViewChild, ViewChildren} from "@angular/core";
+import {Component, OnInit, SimpleChanges, QueryList, ViewChild, ViewChildren} from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import {AppDataService} from "@app/app-data.service";
 import {WhistleblowerLoginResolver} from "@app/shared/resolvers/whistleblower-login.resolver";
 import {FieldUtilitiesService} from "@app/shared/services/field-utilities.service";
@@ -20,16 +21,16 @@ import {WhistleblowerSubmissionService} from "@app/pages/whistleblower/whistlebl
   templateUrl: "./submission.component.html",
   providers: [SubmissionService]
 })
-export class SubmissionComponent {
+export class SubmissionComponent implements OnInit {
   @ViewChild("submissionForm") public submissionForm: NgForm;
   @ViewChildren("stepform") stepForms: QueryList<NgForm>;
 
+  _navigation = -1;
   answers: Answers = {};
   identity_provided = false;
   context_id = "";
   context: Context | undefined = undefined;
   receiversOrderPredicate: string;
-  navigation = -1;
   validate: boolean[] = [];
   score = 0;
   done: boolean;
@@ -40,16 +41,24 @@ export class SubmissionComponent {
   selectable_contexts: Context[];
   show_steps_navigation_bar = false;
   receivedData: Flow[];
+  hasNextStepValue: boolean;
+  hasPreviousStepValue: boolean;
+  areReceiversSelectedValue: boolean;
 
-  constructor(protected whistleblowerSubmissionService:WhistleblowerSubmissionService,private titleService: TitleService, private router: Router, private appConfigService: AppConfigService, private whistleblowerLoginResolver: WhistleblowerLoginResolver, protected authenticationService: AuthenticationService, private appDataService: AppDataService, private utilsService: UtilsService, private fieldUtilitiesService: FieldUtilitiesService, public submissionService: SubmissionService) {
+  constructor(private route:ActivatedRoute, protected whistleblowerSubmissionService:WhistleblowerSubmissionService,private titleService: TitleService, private router: Router, private appConfigService: AppConfigService, private whistleblowerLoginResolver: WhistleblowerLoginResolver, protected authenticationService: AuthenticationService, private appDataService: AppDataService, private utilsService: UtilsService, private fieldUtilitiesService: FieldUtilitiesService, public submissionService: SubmissionService) {
     this.selectable_contexts = [];
     this.receivedData = this.submissionService.getSharedData();
 
     this.appConfigService.setPage("submissionpage");
     this.whistleblowerLoginResolver.resolve()
     this.resetForm();
-    this.initializeSubmission();
+  }
 
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      this.context_id = params.get('context') || "";
+      this.initializeSubmission();
+    });
   }
 
   firstStepIndex() {
@@ -108,12 +117,35 @@ export class SubmissionComponent {
     this.selectable_contexts = this.appDataService.public.contexts.filter(context => !context.hidden);
 
     if (this.context_id) {
-      context = this.appDataService.public.contexts.find(context => context.id === this.context?.id);
-      this.prepareSubmission(context);
+      context = this.appDataService.public.contexts.find(context => context.id === this.context_id);
     } else if (this.selectable_contexts.length === 1) {
       context = this.selectable_contexts[0];
+    }
+
+    if (context) {
       this.prepareSubmission(context);
     }
+  }
+
+  private updateStatusVariables(): void {
+    this.hasPreviousStepValue = this.hasPreviousStep();
+    this.hasNextStepValue = this.hasNextStep();
+    this.areReceiversSelectedValue = this.areReceiversSelected();
+  }
+
+  get navigation(): any {
+    return this._navigation;
+  }
+
+  set navigation(value: any) {
+    if (this._navigation !== value) {
+      this._navigation = value;
+      this.handleNavigationChange();
+    }
+  }
+
+  private handleNavigationChange(): void {
+    this.updateStatusVariables();
   }
 
   goToStep(step: number) {
@@ -221,19 +253,21 @@ export class SubmissionComponent {
   }
 
   displayErrors() {
+    this.updateStatusVariables();
+
     if (!(this.validate[this.navigation])) {
       return false;
     }
 
-    if (!(this.hasPreviousStep() || !this.hasNextStep()) && !this.areReceiversSelected()) {
+    if (!(this.hasPreviousStepValue || !this.hasNextStepValue) && !this.areReceiversSelectedValue) {
       return true;
     }
 
-    if (!this.hasNextStep() && this.submissionHasErrors()) {
+    if (!this.hasNextStepValue && this.submissionHasErrors()) {
       return true;
     }
+
     return !!this.displayStepErrors(this.navigation);
-
   };
 
   completeSubmission() {
@@ -243,6 +277,7 @@ export class SubmissionComponent {
         item.upload();
        });
     }
+
     this.fieldUtilitiesService.onAnswersUpdate(this);
 
     if (!this.runValidation()) {
@@ -280,25 +315,16 @@ export class SubmissionComponent {
     }, 1000);
   }
 
-  replaceReceivers(receivers: string[]): void {
-    Object.keys(this.submissionService.selected_receivers).forEach((key) => {
-      if (receivers.indexOf(key) === -1) {
-        delete this.submissionService.selected_receivers[key];
-      }
-    });
-
-    receivers.forEach((receiverId) => {
-      if (receiverId in this.appDataService.receivers_by_id) {
-        this.submissionService.selected_receivers[receiverId] = true;
-      }
-    });
-  }
-
   runValidation() {
     this.validate[this.navigation] = true;
-    return !((!this.areReceiversSelected() && this.firstStepIndex() && this.navigation === -1) || !this.whistleblowerSubmissionService.checkForInvalidFields(this));
-  };
+    this.areReceiversSelectedValue = this.areReceiversSelected();
 
+    if (this.submissionService.context.allow_recipients_selection && !this.areReceiversSelectedValue) {
+      this.navigation = -1;
+    }
+
+    return !(!this.areReceiversSelectedValue || !this.whistleblowerSubmissionService.checkForInvalidFields(this));
+  }
 
   resetForm() {
     if (this.submissionForm) {

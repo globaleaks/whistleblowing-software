@@ -10,7 +10,6 @@ import {DisplayStepErrorsFunction, StepFormFunction} from "@app/shared/constants
 })
 export class StepErrorComponent {
   @Input() navigation: number;
-
   @Input() displayStepErrors: DisplayStepErrorsFunction;
   @Input() stepForm: StepFormFunction;
   @Input() submission: SubmissionService;

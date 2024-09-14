@@ -6,7 +6,7 @@
                 <span>{{tenant.name}}</span>
             </div>
             <div class="tenant-badge"
-                *ngIf="tenant.active && tenant.id > 1000000 && (tenant.onionservice || tenant.hostname || (tenant.subdomain || nodeResolver.dataModel.rootdomain))">
+                *ngIf="tenant.active && tenant.id > 1000001 && (tenant.onionservice || tenant.hostname || (tenant.subdomain || nodeResolver.dataModel.rootdomain))">
                 <a class="badge bg-primary" *ngIf="tenant.onionservice" [href]="'https://' + tenant.onionservice"
                     rel="noreferrer" target="_blank">{{tenant.onionservice}}</a>
                 <span *ngIf="tenant.subdomain">
@@ -25,7 +25,7 @@
                     (click)="toggleActivation($event)">{{'Enabled'|translate}} </span>
                 <span *ngIf="!tenant.active" class="btn btn-sm btn-danger"
                     (click)="toggleActivation($event)">{{'Disabled'|translate}} </span>
-                <span *ngIf="tenant.active" class="btn btn-sm btn-primary"
+                <span *ngIf="tenant.active" class="btn btn-sm btn-primary" [attr.data-cy]="'configure'"
                     (click)="configureTenant($event, tenant.id)">{{'Configure'|translate}}
                 </span>
                 <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" (click)="toggleEditing($event)">

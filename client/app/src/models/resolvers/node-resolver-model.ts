@@ -58,7 +58,6 @@ export class nodeResolverModel {
   footer_privacy_policy: string;
   user_privacy_policy_text: string;
   footer: string;
-  footer_accessibility_declaration: string;
   header_title_homepage: string;
   presentation: string;
   signup_tos1_checkbox_label: string;
@@ -76,4 +75,6 @@ export class nodeResolverModel {
   onionservice: string;
   user_privacy_policy_url: string;
   can_postpone_expiration: boolean;
+  profile:boolean
+  is_profile:boolean
 }

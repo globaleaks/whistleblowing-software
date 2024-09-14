@@ -6,19 +6,6 @@ module.exports = function(grunt) {
       Gettext = require("node-gettext");
 
   grunt.initConfig({
-    eslint: {
-      options: {
-        configFile: "../.eslintrc.json"
-      },
-      src: [
-        "Gruntfile.js",
-        "app/js/**/*.js",
-        "!app/lib/js/*.js",
-        "!app/lib/js/locale/*.js",
-        "tests/*.js"
-      ]
-    },
-
     clean: {
       all: ["build", "tmp", "dist"],
       tmp: ["tmp", "dist", "instrument"],
@@ -303,20 +290,6 @@ module.exports = function(grunt) {
       }
     },
 
-    stylelint: {
-      options: {
-        configFile: ".stylelintrc.json",
-        formatter: "string",
-        ignoreDisables: false,
-        failOnError: true,
-        outputFile: "",
-        reportNeedlessDisables: false,
-        fix: false,
-        syntax: ""
-      },
-      all: ["app/css/**/*.css"]
-    },
-
     shell: {
       npx_build: {
         command: "npx ng build --configuration=production --aot --source-map"
@@ -334,9 +307,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-shell");
-  grunt.loadNpmTasks("grunt-stylelint");
   grunt.loadNpmTasks("grunt-string-replace");
-  grunt.loadNpmTasks("gruntify-eslint");
 
   let readNoTranslateStrings = function() {
     return JSON.parse(grunt.file.read("app/assets/data_src/notranslate_strings.json"));
@@ -372,7 +343,7 @@ module.exports = function(grunt) {
 
   let agent = superagent.agent(),
       baseurl = "https://rest.api.transifex.com",
-      sourceFile = "pot/en.po",
+      sourceFile = "app/assets/data_src/pot/en.po",
       transifexApiKey = readTransifexApiKey();
 
   function updateTxSource(cb){
