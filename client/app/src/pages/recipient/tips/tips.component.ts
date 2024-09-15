@@ -9,7 +9,7 @@ import {RTipsResolver} from "@app/shared/resolvers/r-tips-resolver.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {TranslateService} from "@ngx-translate/core";
 import {IDropdownSettings} from "ng-multiselect-dropdown";
-import {filter, orderBy} from "lodash";
+import {filter, orderBy} from "lodash-es";
 import {TokenResource} from "@app/shared/services/token-resource.service";
 import {Router} from "@angular/router";
 import {rtipResolverModel} from "@app/models/resolvers/rtips-resolver-model";
