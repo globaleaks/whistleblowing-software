@@ -9,7 +9,7 @@ If you encounter any issues and are unable to run GlobaLeaks:
 - Ensure you strictly follow the Installation Guide.
 - Verify that you meet the Technical Requirements for hardware and operating system version.
 - Search the support forum to see if a user has already encountered your issue: `GlobaLeaks Discussions <https://github.com/orgs/globaleaks/discussions>`_
-- Report the issue on the official software issue tracker: `GlobaLeaks Issues <https://github.com/globaleaks/GlobaLeaks/issues>`_
+- Report the issue on the official software issue tracker: `GlobaLeaks Issues <https://github.com/globaleaks/whistleblowing-software/issues>`_
 
 Useful Debugging Commands
 -------------------------

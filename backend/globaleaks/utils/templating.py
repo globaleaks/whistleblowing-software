@@ -475,7 +475,7 @@ class SoftwareUpdateKeyword(UserNodeKeyword):
         return '%s' % __version__
 
     def ChangeLogUrl(self):
-        return 'https://github.com/globaleaks/GlobaLeaks/blob/main/CHANGELOG'
+        return 'https://github.com/globaleaks/whistleblowing-software/blob/main/CHANGELOG'
 
     def UpdateGuideUrl(self):
         return 'https://docs.globaleaks.org/en/main/user/admin/UpgradeGuide.html'
