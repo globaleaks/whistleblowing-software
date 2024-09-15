@@ -95,7 +95,7 @@ msgid "Advanced"
 msgstr "Edistyneet ominaisuudet"
 
 msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
+msgstr "Salli vastaanottajan muokata vanhentumispäivää"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Salli vastaanottajan poistaa raportteja"
@@ -200,7 +200,7 @@ msgid "Block the submission"
 msgstr "Estä lähettäminen"
 
 msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgstr "Vahvistamalla siirrät vanhentumispäivän ajankohtaan:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Vahvistamalla asetat muistutuksen päivämäärään:"
