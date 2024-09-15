@@ -119,9 +119,9 @@ describe("globaleaks process", function () {
     cy.logout();
   });
 
-  it("should update default context", () => {
+  it("should update default channel", () => {
     cy.login_admin();
-    cy.visit("/#/admin/contexts");
+    cy.visit("/#/admin/channels");
     cy.get("#edit_context").first().click();
     cy.get('select[name="contextResolver.questionnaire_id"]').select('questionnaire 1');
     cy.get("#advance_context").click();
@@ -193,9 +193,9 @@ describe("globaleaks process", function () {
     cy.logout();
   });
 
-  it("should revert default context", () => {
+  it("should revert default channel", () => {
     cy.login_admin();
-    cy.visit("/#/admin/contexts");
+    cy.visit("/#/admin/channels");
     cy.get("#edit_context").first().click();
     cy.get('select[name="contextResolver.questionnaire_id"]').select('GLOBALEAKS');
     cy.get("#save_context").click();
