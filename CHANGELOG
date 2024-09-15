@@ -1,3 +1,11 @@
+Changes in version 5.0.7
+    Revise implementation of form validation
+    Implement language changes on ng-bootstrap datepicker
+    Revise internationalization issues
+    Revise admin sidebar menu fixing "Channels" link
+    Bump client dependencies to latest version
+    Update translations
+
 Changes in version 5.0.6
     Change text "Postpone the expiration date" to "Edit the expiration date" (#4175)
     Revise reports' statuses configuration (#4177)
