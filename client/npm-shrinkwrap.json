@@ -80,7 +80,7 @@
         "angular-eslint": "18.3.1",
         "cypress": "13.14.2",
         "eslint": "9.10.0",
-        "gettext-parser": "7.0.1",
+        "gettext-parser": "8.0.0",
         "grunt": "1.6.1",
         "grunt-confirm": "1.0.8",
         "grunt-contrib-clean": "2.0.1",
@@ -10815,15 +10815,18 @@
       }
     },
     "node_modules/gettext-parser": {
-      "version": "7.0.1",
-      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-7.0.1.tgz",
-      "integrity": "sha512-LU+ieGH3L9HmKEArTlX816/iiAlyA0fx/n/QSeQpkAaH/+jxMk/5UtDkAzcVvW+KlY25/U+IE6dnfkJ8ynt8pQ==",
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-8.0.0.tgz",
+      "integrity": "sha512-eFmhDi2xQ+2reMRY2AbJ2oa10uFOl1oyGbAKdCZiNOk94NJHi7aN0OBELSC9v35ZAPQdr+uRBi93/Gu4SlBdrA==",
       "dev": true,
       "dependencies": {
         "content-type": "^1.0.5",
         "encoding": "^0.1.13",
-        "readable-stream": "^4.3.0",
+        "readable-stream": "^4.5.2",
         "safe-buffer": "^5.2.1"
+      },
+      "engines": {
+        "node": ">=18"
       }
     },
     "node_modules/glob": {

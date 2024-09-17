@@ -80,7 +80,7 @@
     "angular-eslint": "18.3.1",
     "cypress": "13.14.2",
     "eslint": "9.10.0",
-    "gettext-parser": "7.0.1",
+    "gettext-parser": "8.0.0",
     "grunt": "1.6.1",
     "grunt-confirm": "1.0.8",
     "grunt-contrib-clean": "2.0.1",
