@@ -8,14 +8,14 @@
       "name": "globaleaks",
       "version": "5.0.7",
       "dependencies": {
-        "@angular/animations": "18.2.4",
-        "@angular/common": "18.2.4",
-        "@angular/core": "18.2.4",
-        "@angular/forms": "18.2.4",
-        "@angular/localize": "18.2.4",
-        "@angular/platform-browser": "18.2.4",
-        "@angular/platform-browser-dynamic": "18.2.4",
-        "@angular/router": "18.2.4",
+        "@angular/animations": "18.2.5",
+        "@angular/common": "18.2.5",
+        "@angular/core": "18.2.5",
+        "@angular/forms": "18.2.5",
+        "@angular/localize": "18.2.5",
+        "@angular/platform-browser": "18.2.5",
+        "@angular/platform-browser-dynamic": "18.2.5",
+        "@angular/router": "18.2.5",
         "@flowjs/flow.js": "2.14.1",
         "@flowjs/ngx-flow": "0.8.1",
         "@fontsource/inter": "5.1.0",
@@ -70,9 +70,9 @@
         "@angular-devkit/build-angular": "18.2.4",
         "@angular-devkit/core": "18.2.4",
         "@angular/cli": "18.2.4",
-        "@angular/compiler": "18.2.4",
-        "@angular/compiler-cli": "18.2.4",
-        "@cypress/code-coverage": "3.12.48",
+        "@angular/compiler": "18.2.5",
+        "@angular/compiler-cli": "18.2.5",
+        "@cypress/code-coverage": "3.13.1",
         "@cypress/schematic": "2.5.2",
         "@istanbuljs/nyc-config-typescript": "1.0.2",
         "@jsdevtools/coverage-istanbul-loader": "3.0.5",
@@ -90,7 +90,7 @@
         "less": "4.2.0",
         "load-grunt-tasks": "5.1.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "17.1.1",
+        "npm-check-updates": "17.1.2",
         "nyc": "17.0.0",
         "stylelint": "16.9.0",
         "stylelint-config-standard": "36.0.1",
@@ -644,9 +644,10 @@
       }
     },
     "node_modules/@angular/animations": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/animations/-/animations-18.2.4.tgz",
-      "integrity": "sha512-ajjXpLD+SyxbHnmhj2ZvYpXneviOjcBgU9L2UX4OVS0jVWxCNHLhJrcMqtqFHA6U5fPnhPNR9cmnt6tmqri0rA==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/animations/-/animations-18.2.5.tgz",
+      "integrity": "sha512-IlXtW/Nj48ZzjHUzH1TykZcSR64ScJx39T3IHnjV2z/bVATzZ36JGoadQHdqpJNKBodYJNgtJCGLCbgAvGWY2g==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -654,7 +655,7 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/core": "18.2.4"
+        "@angular/core": "18.2.5"
       }
     },
     "node_modules/@angular/build": {
@@ -759,9 +760,10 @@
       }
     },
     "node_modules/@angular/common": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/common/-/common-18.2.4.tgz",
-      "integrity": "sha512-flUaKhdr8KvtjH0cLC6Rrjirt8GsiFlrmZLZplr784O3Gkei2VBBNFoopgmlEzbVGPiIG5QlFZH9yvah6JPQZw==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/common/-/common-18.2.5.tgz",
+      "integrity": "sha512-m+KJrtbFXTE36jP/po6UAMeUR/enQxRHpVGLCRcIcE7VWVH1ZcOvoW1yqh2A6k+KxWXeajlq/Z04nnMhcoxMRw==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -769,15 +771,16 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/core": "18.2.4",
+        "@angular/core": "18.2.5",
         "rxjs": "^6.5.3 || ^7.4.0"
       }
     },
     "node_modules/@angular/compiler": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-18.2.4.tgz",
-      "integrity": "sha512-o3ngFr1Bjt7cKOu4DSZJGCUF9YPTxJee97wFon2eNFj6FFNTmnGwAvsnJjHBMmk90fmZLC2/HpPdhYz7WprMZQ==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-18.2.5.tgz",
+      "integrity": "sha512-vcqe9x4dGGAnMfPhEpcZyiSVgAiqJeK80LqP1vWoAmBR+HeOqAilSv6SflcLAtuTzwgzMMAvD2T+SMCgUvaqww==",
       "dev": true,
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -785,7 +788,7 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/core": "18.2.4"
+        "@angular/core": "18.2.5"
       },
       "peerDependenciesMeta": {
         "@angular/core": {
@@ -794,10 +797,11 @@
       }
     },
     "node_modules/@angular/compiler-cli": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-18.2.4.tgz",
-      "integrity": "sha512-BIp5zr+npqSs/4KWPxwKdn7+sjo008ieNOQDlXyQms9BKlxx/gDnj7W2TsxhrkDTYCIHF73fJZ7u2U8Qy4JWfw==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-18.2.5.tgz",
+      "integrity": "sha512-CCCtZobUTUfId/RTYtuDCw5R1oK0w65hdAUMRP1MdGmd8bb8DKJA86u1QCWwozL3rbXlIIX4ognQ6urQ43k/Gw==",
       "dev": true,
+      "license": "MIT",
       "dependencies": {
         "@babel/core": "7.25.2",
         "@jridgewell/sourcemap-codec": "^1.4.14",
@@ -817,14 +821,15 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/compiler": "18.2.4",
+        "@angular/compiler": "18.2.5",
         "typescript": ">=5.4 <5.6"
       }
     },
     "node_modules/@angular/core": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/core/-/core-18.2.4.tgz",
-      "integrity": "sha512-ulYmYpI/ZVQ5BL38rBy4DS/9wgGWmVD9Uo6tcrLqCzt1G1G2nKwseZv009536pHfk6dj2HdPSkpcerhWh57DWw==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/core/-/core-18.2.5.tgz",
+      "integrity": "sha512-5BLVc5gXxzanQkADNS9WPsor3vNF5nQcyIHBi5VScErwM5vVZ7ATH1iZwaOg1ykDEVTFVhKDwD0X1aaqGDbhmQ==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -837,9 +842,10 @@
       }
     },
     "node_modules/@angular/forms": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-18.2.4.tgz",
-      "integrity": "sha512-rlLhReauUz6jhLCEkGabLqqF6xLaTfvxafuj2ojzcqoKGSZcXDIM/UOSoWX756B8NtrpsuglpGBZjZlsrAZGsg==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/forms/-/forms-18.2.5.tgz",
+      "integrity": "sha512-ohKeH+EZCCIyGSiFYlraWLzssGAZc13P92cuYpXB62322PkcA5u0IT72mML9JWGKRqF2zteVsw4koWHVxXM5mA==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -847,16 +853,17 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/common": "18.2.4",
-        "@angular/core": "18.2.4",
-        "@angular/platform-browser": "18.2.4",
+        "@angular/common": "18.2.5",
+        "@angular/core": "18.2.5",
+        "@angular/platform-browser": "18.2.5",
         "rxjs": "^6.5.3 || ^7.4.0"
       }
     },
     "node_modules/@angular/localize": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/localize/-/localize-18.2.4.tgz",
-      "integrity": "sha512-3QgfYNwM4Dkd7sWu/JXZfOToporIrgdyi/G8T2zgTtArbvPNbZdSmihpSjKVmsDzB4ScXlOCH/sf0rLKIYkKwQ==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/localize/-/localize-18.2.5.tgz",
+      "integrity": "sha512-kteBBkSmmmpMrHAIlxFK/PB9HemJ8OBo/qAGOqCGbvPHLMHdR7cxaMGL+Lkya/QhwhqlhoxUcE5zFWXl7UslNg==",
+      "license": "MIT",
       "dependencies": {
         "@babel/core": "7.25.2",
         "@types/babel__core": "7.20.5",
@@ -872,14 +879,15 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/compiler": "18.2.4",
-        "@angular/compiler-cli": "18.2.4"
+        "@angular/compiler": "18.2.5",
+        "@angular/compiler-cli": "18.2.5"
       }
     },
     "node_modules/@angular/platform-browser": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-18.2.4.tgz",
-      "integrity": "sha512-ddzq5MyPvFyTv0kUe8U9fbhE1nZtLYBCFKDqICrzHXiVRAdqLv6qtE5PtbURrdspSy1u/YEGV4LdkNJK3UgnZQ==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-18.2.5.tgz",
+      "integrity": "sha512-PoX9idwnOpTJBlujzZ2nFGOsmCnZzOH7uNSWIR7trdoq0b1AFXfrxlCQ36qWamk7bbhJI4H28L8YTmKew/nXDA==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -887,9 +895,9 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/animations": "18.2.4",
-        "@angular/common": "18.2.4",
-        "@angular/core": "18.2.4"
+        "@angular/animations": "18.2.5",
+        "@angular/common": "18.2.5",
+        "@angular/core": "18.2.5"
       },
       "peerDependenciesMeta": {
         "@angular/animations": {
@@ -898,9 +906,10 @@
       }
     },
     "node_modules/@angular/platform-browser-dynamic": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-18.2.4.tgz",
-      "integrity": "sha512-0nA04zJueGzdnl37TJ7guDCrzxYS4fjqgvYKiOpFktpMHPuNrBlAQo5YA7u20HGFG3i47PQh7hEWhQaqcXXpQw==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-18.2.5.tgz",
+      "integrity": "sha512-5u0IuAt1r5e2u2vSKhp3phnaf6hH89B/q7GErfPse1sdDfNI6wHVppxai28PAfAj9gwooJun6MjFWhJFLzS44A==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -908,16 +917,17 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/common": "18.2.4",
-        "@angular/compiler": "18.2.4",
-        "@angular/core": "18.2.4",
-        "@angular/platform-browser": "18.2.4"
+        "@angular/common": "18.2.5",
+        "@angular/compiler": "18.2.5",
+        "@angular/core": "18.2.5",
+        "@angular/platform-browser": "18.2.5"
       }
     },
     "node_modules/@angular/router": {
-      "version": "18.2.4",
-      "resolved": "https://registry.npmjs.org/@angular/router/-/router-18.2.4.tgz",
-      "integrity": "sha512-kYNHD3K1Xou2PRMqbG2tVahtMobgDlhwHdMB7G5oFHg6K13gQ2TmopF1U5A2wYtIMdsC+AkVGIJEOxQN8fmgcA==",
+      "version": "18.2.5",
+      "resolved": "https://registry.npmjs.org/@angular/router/-/router-18.2.5.tgz",
+      "integrity": "sha512-OjZV1PTiSwT0ytmR0ykveLYzs4uQWf0EuIclZmWqM/bb8Q4P+gJl7/sya05nGnZsj6nHGOL0e/LhSZ3N+5p6qg==",
+      "license": "MIT",
       "dependencies": {
         "tslib": "^2.3.0"
       },
@@ -925,9 +935,9 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0"
       },
       "peerDependencies": {
-        "@angular/common": "18.2.4",
-        "@angular/core": "18.2.4",
-        "@angular/platform-browser": "18.2.4",
+        "@angular/common": "18.2.5",
+        "@angular/core": "18.2.5",
+        "@angular/platform-browser": "18.2.5",
         "rxjs": "^6.5.3 || ^7.4.0"
       }
     },
@@ -2799,10 +2809,11 @@
       }
     },
     "node_modules/@cypress/code-coverage": {
-      "version": "3.12.48",
-      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.48.tgz",
-      "integrity": "sha512-Vr9CzmcI+Cx+a1x2lZW9S/pQiHkVoCWwKj2l3sPB4EcEztBDIpXCEMdAiYqrmAfpGwot3scJwW2y1HYxUec0fg==",
+      "version": "3.13.1",
+      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.13.1.tgz",
+      "integrity": "sha512-8OxblrX44F4MnY0y9bDybYbhqoLM1DvSuKTHfw7yZlCc2U/C8WyDoRzBoKe/z3f72qjWwO8BBhDFmU3ZPI5yEA==",
       "dev": true,
+      "license": "MIT",
       "dependencies": {
         "@cypress/webpack-preprocessor": "^6.0.0",
         "chalk": "4.1.2",
@@ -15130,10 +15141,11 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "17.1.1",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-17.1.1.tgz",
-      "integrity": "sha512-2aqIzGAEWB7xPf0hKHTkNmUM5jHbn2S5r2/z/7dA5Ij2h/sVYAg9R/uVkaUC3VORPAfBm7pKkCWo6E9clEVQ9A==",
+      "version": "17.1.2",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-17.1.2.tgz",
+      "integrity": "sha512-k3osAbCNXIXqC7QAuF2uRHsKtTUS50KhOW1VAojRHlLdZRh/5EYfduvnVPGDWsbQXFakbSrSbWDdV8qIvDSUtA==",
       "dev": true,
+      "license": "Apache-2.0",
       "bin": {
         "ncu": "build/cli.js",
         "npm-check-updates": "build/cli.js"
