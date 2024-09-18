@@ -425,19 +425,6 @@ export class UtilsService {
     window.print();
   }
 
-  saveAs(authenticationService: AuthenticationService, filename: any, url: string): void {
-
-    const headers = new HttpHeaders({
-      "X-Session": authenticationService.session.id
-    });
-
-    this.http.get(url, {responseType: "blob", headers: headers}).subscribe(
-      response => {
-        this.saveBlobAs(filename, response);
-      }
-    );
-  }
-
   saveBlobAs(filename:string,response:Blob){
     const blob = new Blob([response], {type: "text/plain;charset=utf-8"});
     const blobUrl = URL.createObjectURL(blob);
@@ -450,6 +437,18 @@ export class UtilsService {
     setTimeout(() => {
       URL.revokeObjectURL(blobUrl);
     }, 1000);
+  }
+
+  saveAs(authenticationService: AuthenticationService, filename: any, url: string): void {
+    const headers = new HttpHeaders({
+      "X-Session": authenticationService.session.id
+    });
+
+    this.http.get(url, {responseType: "blob", headers: headers}).subscribe(
+      response => {
+        this.saveBlobAs(filename, response);
+      }
+    );
   }
 
   getPostponeDate(ttl: number): Date {
