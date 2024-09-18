@@ -1,3 +1,8 @@
+Changes in version 5.0.8
+    Fix multilang export of questionnaires (#4190)
+    Bump client dependencies to latest version
+    Update translations
+
 Changes in version 5.0.7
     Revise implementation of form validation
     Implement language changes on ng-bootstrap datepicker
