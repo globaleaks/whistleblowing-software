@@ -1,3 +1,9 @@
+Changes in version 5.0.9
+    Fix failure in the loading of translations at first load of the application introduced in 5.0.7 (#4194)
+    Reimplement override of localStorage with sessionStorage (#3277)
+    Replace usages of localStorage with sessionStorage
+    Bump client dependencies to latest versions
+
 Changes in version 5.0.8
     Fix multilang export of questionnaires (#4190)
     Bump client dependencies to latest version
