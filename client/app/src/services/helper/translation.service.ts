@@ -8,9 +8,9 @@ import {DOCUMENT} from "@angular/common";
   providedIn: "root",
 })
 export class TranslationService {
-  language = "en";
+  language = "";
 
-  private currentLocale = new BehaviorSubject<string>('en');
+  private currentLocale = new BehaviorSubject<string>("");
   currentLocale$ = this.currentLocale.asObservable();
 
   changeLocale(newLocale: string) {
