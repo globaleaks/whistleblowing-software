@@ -117,8 +117,4 @@ export class HttpsFilesComponent implements OnInit {
     };
     return modalRef.result;
   }
-
-  isCsrSet(): boolean {
-    return !!this.tlsConfig.files.csr?.set;
-  }
 }

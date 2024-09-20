@@ -5,6 +5,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 import {FieldUtilitiesService} from "@app/shared/services/field-utilities.service";
 import {HttpService} from "@app/shared/services/http.service";
+import {QuestionnaireService} from "@app/pages/admin/questionnaires/questionnaire.service";
 import {Observable} from "rxjs";
 import {Step, questionnaireResolverModel} from "@app/models/resolvers/questionnaire-model";
 import {ParsedFields} from "@app/models/component-model/parsedFields";
@@ -28,7 +29,7 @@ export class StepsListComponent implements OnInit {
     sufficient: true,
   };
 
-  constructor(private utilsService: UtilsService, private modalService: NgbModal, private fieldUtilities: FieldUtilitiesService, protected nodeResolver: NodeResolver, private httpService: HttpService) {
+  constructor(private utilsService: UtilsService, private questionnaireService: QuestionnaireService, private modalService: NgbModal, private fieldUtilities: FieldUtilitiesService, protected nodeResolver: NodeResolver, private httpService: HttpService) {
   }
 
   ngOnInit(): void {

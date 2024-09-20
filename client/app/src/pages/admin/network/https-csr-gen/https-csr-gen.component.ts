@@ -3,6 +3,7 @@ import {FileResources} from "@app/models/component-model/file-resources";
 import {Constants} from "@app/shared/constants/constants";
 import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
+import {AuthenticationService} from "@app/services/helper/authentication.service";
 
 @Component({
   selector: "src-https-csr-gen",
@@ -27,7 +28,7 @@ export class HttpsCsrGenComponent {
     email: ""
   };
 
-  constructor(private httpService: HttpService, private utilsService: UtilsService) {
+  constructor(private authenticationService: AuthenticationService, private httpService: HttpService, private utilsService: UtilsService) {
   }
 
   submitCSR() {

@@ -176,6 +176,7 @@ export class UtilsService {
     const fileNameParts = file.name.split(".");
     const fileExtension = fileNameParts.pop();
     const fileNameWithoutExtension = fileNameParts.join(".");
+    const timestamp = new Date().getTime();
     const fileNameWithTimestamp = `${fileNameWithoutExtension}.${fileExtension}`;
     const modifiedFile = new File([file], fileNameWithTimestamp, {type: file.type});
 

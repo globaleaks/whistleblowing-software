@@ -39,6 +39,7 @@ import {AnalystModule} from "@app/pages/analyst/analyst.module";
 import {mockEngine} from './services/helper/mocks';
 import {HttpService} from "./shared/services/http.service";
 import {CryptoService} from "@app/shared/services/crypto.service";
+import {TranslationService} from "@app/services/helper/translation.service";
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import {CustomDatepickerI18n} from '@app/shared/services/custom-datepicker-i18n';
 import {registerLocales} from '@app/services/helper/locale-provider';

@@ -1,27 +1,16 @@
-
-@switch (appDataService.page) {
-  @case ('blank') {
-    <div>
+<ng-container [ngSwitch]="appDataService.page">
+    <div *ngSwitchCase="'blank'">
     </div>
-  }
-  @case ('tippage') {
-    <div>
-      <src-tippage></src-tippage>
+    <div *ngSwitchCase="'tippage'">
+        <src-tippage></src-tippage>
     </div>
-  }
-  @case ('submissionpage') {
-    <div>
-      <src-submission></src-submission>
+    <div *ngSwitchCase="'submissionpage'">
+        <src-submission></src-submission>
     </div>
-  }
-  @case ('receiptpage') {
-    <div>
-      <src-receipt-whistleblower></src-receipt-whistleblower>
+    <div *ngSwitchCase="'receiptpage'">
+        <src-receipt-whistleblower></src-receipt-whistleblower>
     </div>
-  }
-  @default {
-    <div>
-      <src-homepage></src-homepage>
+    <div *ngSwitchDefault>
+        <src-homepage></src-homepage>
     </div>
-  }
-}
+</ng-container>

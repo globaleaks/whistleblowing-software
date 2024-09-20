@@ -8,6 +8,7 @@ import {AppDataService} from "@app/app-data.service";
 import {TranslationService} from "@app/services/helper/translation.service";
 import {AppConfigService} from "@app/services/root/app-config.service";
 import {TitleService} from "@app/shared/services/title.service";
+import {UtilsService} from "@app/shared/services/utils.service";
 
 @Component({
   selector: "src-wizard",
@@ -48,7 +49,7 @@ export class WizardComponent implements OnInit {
     "enable_developers_exception_notification": false
   };
 
-  constructor(private titleService: TitleService, private translationService: TranslationService, private router: Router, private http: HttpClient, private authenticationService: AuthenticationService, private httpService: HttpService, protected appDataService: AppDataService, protected appConfigService: AppConfigService) {
+  constructor(private titleService: TitleService, private translationService: TranslationService, private router: Router, private http: HttpClient, private authenticationService: AuthenticationService, private httpService: HttpService, protected appDataService: AppDataService, protected appConfigService: AppConfigService, private utilsService: UtilsService) {
   }
 
   ngOnInit() {
