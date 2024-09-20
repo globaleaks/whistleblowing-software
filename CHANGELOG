@@ -1,3 +1,6 @@
+Changes in version 5.0.10
+    Revert "Update codebase to new angular control flow-directive" causing instabilities on 5.0.9
+
 Changes in version 5.0.9
     Fix failure in the loading of translations at first load of the application introduced in 5.0.7 (#4194)
     Reimplement override of localStorage with sessionStorage (#3277)
