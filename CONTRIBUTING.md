@@ -1,13 +1,15 @@
-# Contributing to GlobaLeaks
+# GlobaLeaks Contributing Guide
 
-We would love for you to contribute to GlobaLeaks and help make it even better than it is today!
-As a contributor, here are the guidelines we would like you to follow:
+Hi! We are really excited that you are interested in contributing to GlobaLeaks.
+
+As a contributor, here are the guidelines we would like you to read:
 
  - [Code of Conduct](#coc)
  - [Got a Question or Problem?](#question)
  - [Found a Bug?](#issue)
  - [Do you have a Feature Idea?](#feature)
  - [Contributing Guidelines](#submit)
+ - [Donations](#donate)
 
 ## <a name="coc"></a> Code of Conduct
 
@@ -78,3 +80,10 @@ Before you submit your Pull Request consider the following guidelines:
 8. Commit your changes using a descriptive commit message.
 
 9. In GitHub, send a pull request to `GlobaLeaks:main`.
+
+## <a name="donate"></a> Donations <img src="https://raw.githubusercontent.com/globaleaks/whistleblowing-software/main/brand/assets/heart.svg" alt="heart icon" width="24" />
+As a pure community-driven project without major corporate backing, we also welcome [donations](https://github.com/sponsors/globaleaks).
+
+- [Help Us Protect Whistleblowers—Become a GlobaLeaks Donor](https://github.com/sponsors/globaleaks)
+
+A big thank you to everyone who has already [contributed](https://github.com/globaleaks/whistleblowing-software/graphs/contributors) or [donated](https://github.com/sponsors/globaleaks) to the development of GlobaLeaks!
