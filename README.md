@@ -31,7 +31,7 @@ Infrastructure status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
 ## Documentation
 GlobaLeaks's documentation is accessible at: [docs.globaleaks.org](https://docs.globaleaks.org)
 
-## Community support
+## Community Support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [Community Forum](https://forum.globaleaks.org/).
 
 Join our [Community Chat](https://community.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
@@ -49,7 +49,7 @@ As a pure community-driven project without major corporate backing, we also welc
 
 A big thank you to everyone who has already [contributed](https://github.com/globaleaks/whistleblowing-software/graphs/contributors) or [donated](https://github.com/sponsors/globaleaks) to the development of GlobaLeaks!
 
-## Brand guidelines and brand assets
+## Brand Guidelines and Brand Assets
 Within the GlobaLeaks project we researched a nice and smooth brand style, using accessible colors and trying to communicate our values.
 If you are planning some press releases, a conference, or promoting GlobaLeaks please keep at reference our official [Brand Guidelines](https://github.com/globaleaks/whistleblowing-software/blob/main/brand/globaleaks-brand-guidelines.pdf) and use our [Brand Assets](https://github.com/globaleaks/whistleblowing-software/blob/main/brand/assets/).
 
