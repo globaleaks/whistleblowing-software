@@ -55,13 +55,10 @@ describe("acquire screenshots necessary for user documentation - Admin Section",
     cy.takeScreenshot("admin/notification_templates");
 
     cy.get("#admin_network").first().click();
-    cy.takeScreenshot("admin/tor");
-
-    cy.get('[data-cy="https"]').first().click();
     cy.takeScreenshot("admin/https");
 
     cy.get('[data-cy="tor"]').first().click();
-    cy.takeScreenshot("admin/https");
+    cy.takeScreenshot("admin/tor");
 
     cy.get('[data-cy="access_control"]').first().click();
     cy.takeScreenshot("admin/access_control");
