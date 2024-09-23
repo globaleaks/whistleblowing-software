@@ -85,6 +85,31 @@ vertical li.current > a {
 }
 
 @media screen and (min-width: 767px) {
+  body {
+    padding-top: 50px;  /* To avoid content overlap */
+  }
+  
+  .donation-banner {
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .donation-banner a {
+    font-weight: bold;
+  }
+
+  .donation-icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
   .wy-nav-content {
     max-width: 100% !important;
   }
@@ -98,29 +123,4 @@ vertical li.current > a {
     overflow: visible !important;
     max-width: 100%;
   }
-}
-
-.donation-banner {
-  background-color: #fff;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-}
-
-.donation-banner a {
-  font-weight: bold;
-}
-
-.donation-icon {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-
-body {
-    padding-top: 50px;  /* To avoid content overlap */
 }
