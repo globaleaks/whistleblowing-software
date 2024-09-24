@@ -693,6 +693,7 @@ class _InternalTipAnswers(Model):
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     answers = Column(JSON, default=dict, nullable=False)
+    stat_answers = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -1002,6 +1003,7 @@ class _InternalTipForwarding(Model):
     data = Column(UnicodeText, nullable=False)
     questionnaire_id = Column(UnicodeText(36), nullable=False, index=True)
     state = Column(Enum(EnumForwardingState), default='open', nullable=False)
+    stat_data = Column(UnicodeText, nullable=False)
 
     @declared_attr
     def __table_args__(self):
