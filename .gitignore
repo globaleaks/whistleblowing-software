@@ -8,3 +8,6 @@ documentation/_build
 /**/client/package.json
 /**/client/proxy.conf.json
 /client/.angular
+.scannerwork/
+.vscode/
+backend/__pycache__/
