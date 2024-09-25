@@ -422,6 +422,7 @@ class _Field(Model):
     instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
     template_id = Column(UnicodeText(36), index=True)
     template_override_id = Column(UnicodeText(36), index=True)
+    statistical = Column(Boolean, default=False, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -1068,6 +1069,7 @@ class _User(Model):
     crypto_escrow_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_escrow_bkp1_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_escrow_bkp2_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_global_stat_prv_key = Column(UnicodeText(84), default='', nullable=True)
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
