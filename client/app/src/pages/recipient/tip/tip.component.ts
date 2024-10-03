@@ -103,7 +103,7 @@ export class TipComponent implements OnInit {
           component: this.tab2
         },
         {
-          title: "Only me",
+          title: "Me only",
           component: this.tab3
         },
       ];
