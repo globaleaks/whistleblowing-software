@@ -56,7 +56,7 @@ export class SubmissionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.context_id = params.get('context') || "";
+      this.appDataService.context_id = params.get('context') || this.appDataService.context_id;
       this.initializeSubmission();
     });
   }
@@ -116,8 +116,8 @@ export class SubmissionComponent implements OnInit {
 
     this.selectable_contexts = this.appDataService.public.contexts.filter(context => !context.hidden);
 
-    if (this.context_id) {
-      context = this.appDataService.public.contexts.find(context => context.id === this.context_id);
+    if (this.appDataService.context_id) {
+      context = this.appDataService.public.contexts.find(context => context.id === this.appDataService.context_id);
     } else if (this.selectable_contexts.length === 1) {
       context = this.selectable_contexts[0];
     }
