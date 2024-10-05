@@ -125,9 +125,6 @@ const translationModule = TranslateModule.forRoot({
 })
 export class AppModule implements OnDestroy {
 
-  timedOut = false;
-  title = "angular-idle-timeout";
-
   constructor(private cryptoService:CryptoService, private authenticationService: AuthenticationService, private idle: Idle, private keepalive: Keepalive, private httpService: HttpService) {
     this.initIdleState();
   }
@@ -171,7 +168,6 @@ export class AppModule implements OnDestroy {
 
   reset() {
     this.idle.watch();
-    this.timedOut = false;
     this.authenticationService.reset();
   }
 }
