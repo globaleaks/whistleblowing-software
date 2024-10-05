@@ -135,7 +135,7 @@ export class AppModule implements OnDestroy {
   }
 
   initIdleState() {
-    this.idle.setIdle(300);
+    this.idle.setIdle(1500);
     this.idle.setTimeout(300);
     this.keepalive.interval(30);
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);

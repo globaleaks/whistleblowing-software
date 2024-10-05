@@ -102,7 +102,7 @@ Session Management
 ------------------
 The session implementation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
 
-The system assigns a session to each authenticated user. The Session ID is a 256-bit long secret generated randomly by the backend. Each session expires according to a timeout of 60 minutes. Session IDs are exchanged between the client and the backend via a header (`X-Session`) and expire as soon as users close their browser or the tab running GlobaLeaks. Users can explicitly log out via a logout button or implicitly by closing the browser.
+The system assigns a session to each authenticated user. The Session ID is a 256-bit long secret generated randomly by the backend. Each session expires according to a timeout of 30 minutes. Session IDs are exchanged between the client and the backend via a header (`X-Session`) and expire as soon as users close their browser or the tab running GlobaLeaks. Users can explicitly log out via a logout button or implicitly by closing the browser.
 
 Session Encryption
 ------------------
