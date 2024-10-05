@@ -44,7 +44,7 @@
 </div>
 <div class="row">
     <div class="col-md-12" *ngIf="tenants">
-        <div *ngFor="let tenant of tenants | orderBy:'id' | filter:'name':search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index">
+        <div *ngFor="let tenant of tenants | orderBy:'id' | search:search | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage; let index = index">
           <form id="tenant-{{index}}"  #editTenant="ngForm" novalidate> 
               <src-siteslist  [editTenant]="editTenant" [index]="(currentPage - 1) * itemsPerPage + index" [tenant]="tenant" [tenants]="tenants"></src-siteslist>
           </form>

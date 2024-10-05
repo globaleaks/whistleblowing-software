@@ -32,6 +32,7 @@ import {LimitToPipe} from "@app/shared/pipes/limit-to.pipe";
 import {OrderByPipe} from "@app/shared/pipes/order-by.pipe";
 import {TipReceiverListComponent} from "@app/shared/partials/tip-receiver-list/tip-receiver-list.component";
 import {FilterPipe} from "@app/shared/pipes/filter.pipe";
+import {FilterSearchPipe} from "@app/shared/pipes/filter-search.pipe";
 import {RequestSupportComponent} from "@app/shared/modals/request-support/request-support.component";
 import {NgxFlowModule} from "@flowjs/ngx-flow";
 import {RFilesUploadStatusComponent} from "@app/shared/partials/rfiles-upload-status/r-files-upload-status.component";
@@ -141,6 +142,7 @@ import {RedactInformationComponent} from "@app/shared/modals/redact-information/
     OrderByPipe,
     TipReceiverListComponent,
     FilterPipe,
+    FilterSearchPipe,
     RequestSupportComponent,
     RFilesUploadStatusComponent,
     NgFormChangeDirective,
@@ -202,6 +204,7 @@ import {RedactInformationComponent} from "@app/shared/modals/redact-information/
     PasswordChangeComponent,
     StripHtmlPipe,
     FilterPipe,
+    FilterSearchPipe,
     OrderByPipe,
     TipInfoComponent,
     TipQuestionnaireAnswersComponent,
