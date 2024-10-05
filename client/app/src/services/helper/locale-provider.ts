@@ -19,6 +19,8 @@ import localeBs from '@angular/common/locales/bs';
 import localeBsExtra from '@angular/common/locales/extra/bs';
 import localeCa from '@angular/common/locales/ca';
 import localeCaExtra from '@angular/common/locales/extra/ca';
+import localeCaESValencia from '@angular/common/locales/ca-ES-valencia';
+import localeCaESValenciaExtra from '@angular/common/locales/extra/ca-ES-valencia';
 import localeCe from '@angular/common/locales/ce';
 import localeCeExtra from '@angular/common/locales/extra/ce';
 import localeCs from '@angular/common/locales/cs';
@@ -67,6 +69,8 @@ import localeKm from '@angular/common/locales/km';
 import localeKmExtra from '@angular/common/locales/extra/km';
 import localeKo from '@angular/common/locales/ko';
 import localeKoExtra from '@angular/common/locales/extra/ko';
+import localeKy from '@angular/common/locales/ky';
+import localeKyExtra from '@angular/common/locales/extra/ky';
 import localeLo from '@angular/common/locales/lo';
 import localeLoExtra from '@angular/common/locales/extra/lo';
 import localeLt from '@angular/common/locales/lt';
@@ -131,6 +135,8 @@ import localeUk from '@angular/common/locales/uk';
 import localeUkExtra from '@angular/common/locales/extra/uk';
 import localeUr from '@angular/common/locales/ur';
 import localeUrExtra from '@angular/common/locales/extra/ur';
+import localeUz from '@angular/common/locales/uz';
+import localeUzExtra from '@angular/common/locales/extra/uz';
 import localeVi from '@angular/common/locales/vi';
 import localeViExtra from '@angular/common/locales/extra/vi';
 import localeZhCn from '@angular/common/locales/zh';
@@ -151,6 +157,7 @@ export function registerLocales(): void {
   registerLocaleData(localeBo, 'bo', localeBoExtra);
   registerLocaleData(localeBs, 'bs', localeBsExtra);
   registerLocaleData(localeCa, 'ca', localeCaExtra);
+  registerLocaleData(localeCaESValencia, 'ca@valencia', localeCaESValenciaExtra); // Using 'ca@valencia'
   registerLocaleData(localeCe, 'ce', localeCeExtra);
   registerLocaleData(localeCs, 'cs', localeCsExtra);
   registerLocaleData(localeDa, 'da', localeDaExtra);
@@ -161,7 +168,7 @@ export function registerLocales(): void {
   registerLocaleData(localeEt, 'et', localeEtExtra);
   registerLocaleData(localeEu, 'eu', localeEuExtra);
   registerLocaleData(localeFa, 'fa', localeFaExtra);
-  registerLocaleData(localeFaAf, 'fa_AF', localeFaAfExtra); // Keeping 'fa_AF'
+  registerLocaleData(localeFaAf, 'fa_AF', localeFaAfExtra); // Using 'fa_AF'
   registerLocaleData(localeFi, 'fi', localeFiExtra);
   registerLocaleData(localeFr, 'fr', localeFrExtra);
   registerLocaleData(localeGl, 'gl', localeGlExtra);
@@ -175,6 +182,7 @@ export function registerLocales(): void {
   registerLocaleData(localeKk, 'kk', localeKkExtra);
   registerLocaleData(localeKm, 'km', localeKmExtra);
   registerLocaleData(localeKo, 'ko', localeKoExtra);
+  registerLocaleData(localeKy, 'ky', localeKyExtra);
   registerLocaleData(localeLo, 'lo', localeLoExtra);
   registerLocaleData(localeLt, 'lt', localeLtExtra);
   registerLocaleData(localeMg, 'mg', localeMgExtra);
@@ -194,8 +202,8 @@ export function registerLocales(): void {
   registerLocaleData(localeSq, 'sq', localeSqExtra);
   registerLocaleData(localeSrMe, 'sr-ME', localeSrMeExtra); // Using 'sr-ME'
   registerLocaleData(localeSrRs, 'sr-RS', localeSrRsExtra); // Using 'sr-RS'
-  registerLocaleData(localeSrLatnMe, 'sr-Latn-ME', localeSrLatnMeExtra); // Using 'sr-Latn-ME'
-  registerLocaleData(localeSrLatnRs, 'sr-Latn-RS', localeSrLatnRsExtra); // Using 'sr-Latn-RS'
+  registerLocaleData(localeSrLatnMe, 'sr-ME@latin', localeSrLatnMeExtra); // Using 'sr-ME@latin'
+  registerLocaleData(localeSrLatnRs, 'sr-RS@latin', localeSrLatnRsExtra); // Using 'sr-RS@latin'
   registerLocaleData(localeSv, 'sv', localeSvExtra);
   registerLocaleData(localeSw, 'sw', localeSwExtra);
   registerLocaleData(localeTa, 'ta', localeTaExtra);
@@ -207,6 +215,7 @@ export function registerLocales(): void {
   registerLocaleData(localeUg, 'ug', localeUgExtra);
   registerLocaleData(localeUk, 'uk', localeUkExtra);
   registerLocaleData(localeUr, 'ur', localeUrExtra);
+  registerLocaleData(localeUr, 'uz', localeUzExtra);
   registerLocaleData(localeVi, 'vi', localeViExtra);
   registerLocaleData(localeZhCn, 'zh_CN', localeZhCnExtra); // Using 'zh_CN'
   registerLocaleData(localeZhHk, 'zh_HK', localeZhHkExtra); // Using 'zh_HK'
