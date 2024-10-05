@@ -88,7 +88,7 @@ vertical li.current > a {
   body {
     padding-top: 50px;  /* To avoid content overlap */
   }
-  
+
   .donation-banner {
     position: fixed;
     top: 0;
