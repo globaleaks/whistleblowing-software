@@ -100,11 +100,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="user.enabled" type="checkbox" />
+                    <input class="form-check-input" [(ngModel)]="user.enabled" type="checkbox" />
                     <label>{{ 'Enabled' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="user.password_change_needed" [disabled]="user.password_change_needed" type="checkbox" />
+                    <input class="form-check-input" [(ngModel)]="user.password_change_needed" [disabled]="user.password_change_needed" type="checkbox" />
                     <label>{{ 'Force password change' | translate }}</label>
                     <div *ngIf="changePasswordArgs.password_change_needed">
                         <span class="badge bg-primary">{{ 'Enabled' | translate }}</span>
@@ -126,7 +126,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="user.notification" type="checkbox">
+                    <input class="form-check-input" [(ngModel)]="user.notification" type="checkbox">
                     <label>{{ 'Enable email notifications' | translate }}</label>
                 </div>
             </div>
@@ -145,7 +145,7 @@
                         </p>
                     </div>
                     <div class="form-group">
-                        <input [(ngModel)]="user.pgp_key_remove" type="checkbox" />
+                        <input class="form-check-input" [(ngModel)]="user.pgp_key_remove" type="checkbox" />
                         <label>{{ 'Remove' | translate }}</label>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
         <div class="row" *ngIf="user.role === 'admin'">
             <div class="col-md-12">
                 <div class="form-group" *ngIf="nodeData.escrow && user.encryption && preferenceData.escrow">
-                    <input [(ngModel)]="user.escrow" name="user.escrow" type="checkbox" (ngModelChange)="toggleUserEscrow(user)" [disabled]="getUserID() === user.id">
+                    <input class="form-check-input" [(ngModel)]="user.escrow" name="user.escrow" type="checkbox" (ngModelChange)="toggleUserEscrow(user)" [disabled]="getUserID() === user.id">
                     <label>{{ 'Give this admin ability to change user passwords' | translate }}</label>
                 </div>
             </div>
@@ -174,35 +174,35 @@
         <div class="row" *ngIf="user.role === 'receiver'">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input [(ngModel)]="user.forcefully_selected" type="checkbox">
+                    <input class="form-check-input" [(ngModel)]="user.forcefully_selected" type="checkbox">
                     <label>{{ 'Forcefully selected' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input name="can_mask_information" [(ngModel)]="user.can_mask_information" type="checkbox" />
+                    <input class="form-check-input" name="can_mask_information" [(ngModel)]="user.can_mask_information" type="checkbox" />
                     <span>{{ 'Give this user ability to mask information' | translate }}</span>
                 </div>
                 <div class="form-group">
-                    <input name="can_redact_information" [(ngModel)]="user.can_redact_information" type="checkbox" />
+                    <input class="form-check-input" name="can_redact_information" [(ngModel)]="user.can_redact_information" type="checkbox" />
                     <span>{{ 'Give this user ability to permanently redact masked information' | translate }}</span>
                 </div>
                 <div class="form-group">
-                    <input name="can_delete_submission" [(ngModel)]="user.can_delete_submission" type="checkbox" />
+                    <input class="form-check-input" name="can_delete_submission" [(ngModel)]="user.can_delete_submission" type="checkbox" />
                     <label>{{ 'Allow the recipient to delete reports' | translate }}</label>
                 </div>
                 <div  class="form-group" *ngIf="!nodeData.can_postpone_expiration">
-                    <input name="can_postpone_expiration" [(ngModel)]="user.can_postpone_expiration" type="checkbox" />
+                    <input class="form-check-input" name="can_postpone_expiration" [(ngModel)]="user.can_postpone_expiration" type="checkbox" />
                     <label>{{ 'Allow the recipient to edit the report expiration date' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input name="can_grant_access_to_reports" [(ngModel)]="user.can_grant_access_to_reports" type="checkbox" />
+                    <input class="form-check-input" name="can_grant_access_to_reports" [(ngModel)]="user.can_grant_access_to_reports" type="checkbox" />
                     <label>{{ 'Give this user ability to grant user access to reports' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input name="can_transfer_access_to_reports" [(ngModel)]="user.can_transfer_access_to_reports" type="checkbox" />
+                    <input class="form-check-input" name="can_transfer_access_to_reports" [(ngModel)]="user.can_transfer_access_to_reports" type="checkbox" />
                     <label>{{ 'Give this user ability to transfer reports to other users' | translate }}</label>
                 </div>
                 <div class="form-group">
-                    <input name="can_reopen_reports" [(ngModel)]="user.can_reopen_reports" type="checkbox" />
+                    <input class="form-check-input" name="can_reopen_reports" [(ngModel)]="user.can_reopen_reports" type="checkbox" />
                     <label>{{ 'Allow this user to reopen management of a report' | translate }}</label>
                   </div>
             </div>
@@ -211,7 +211,7 @@
             <div class="col-md-12">
                 <label>{{ 'Give the user administrative access to the following features:' | translate }}</label>
                 <div class="form-group">
-                    <input name="can_edit_general_settings" [(ngModel)]="user.can_edit_general_settings" type="checkbox" />
+                    <input class="form-check-input" name="can_edit_general_settings" [(ngModel)]="user.can_edit_general_settings" type="checkbox" />
                     <span>{{ 'Settings' | translate }}</span>
                 </div>
             </div>

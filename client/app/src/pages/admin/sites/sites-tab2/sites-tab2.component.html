@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>
-                <input [(ngModel)]="nodeResolver.dataModel.adminonly" name="nodeResolver.dataModel.adminonly" type="checkbox" />
+                <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.adminonly" name="nodeResolver.dataModel.adminonly" type="checkbox" />
                 <span>{{'Use the first site for administrative purposes only'|translate}}</span>
             </label>
         </div>
@@ -29,14 +29,14 @@
         <div *ngIf="!nodeResolver.dataModel.adminonly">
             <div class="form-group">
                 <label>
-                    <input name="nodeResolver.dataModel.enable_signup" [(ngModel)]="nodeResolver.dataModel.enable_signup" type="checkbox" />
+                    <input class="form-check-input" name="nodeResolver.dataModel.enable_signup" [(ngModel)]="nodeResolver.dataModel.enable_signup" type="checkbox" />
                     <span>{{'Allow users to sign up'|translate}}</span>
                 </label>
             </div>
             <div *ngIf="nodeResolver.dataModel.enable_signup">
                 <div class="form-group">
                     <label>
-                        <input [(ngModel)]="nodeResolver.dataModel.signup_tos1_enable" type="checkbox" />
+                        <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.signup_tos1_enable" type="checkbox" />
                         <span>{{'Enable terms of service'|translate}}</span>
                         <span>#1</span>
                     </label>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label>
-                        <input [(ngModel)]="nodeResolver.dataModel.signup_tos2_enable" type="checkbox" />
+                        <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.signup_tos2_enable" type="checkbox" />
                         <span>{{'Enable terms of service'|translate}}</span>
                         <span>#2</span>
                     </label>

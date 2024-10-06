@@ -30,7 +30,7 @@
             </select>
         </div>
         <div class="form-group">
-            <input name="notification.dataModel.smtp_authentication" [(ngModel)]="notificationResolver.dataModel.smtp_authentication" type="checkbox">
+            <input class="form-check-input" name="notification.dataModel.smtp_authentication" [(ngModel)]="notificationResolver.dataModel.smtp_authentication" type="checkbox">
             <label>{{ 'Require authentication' | translate }}</label>
         </div>
         <div *ngIf="notificationResolver.dataModel.smtp_authentication">
@@ -55,25 +55,25 @@
               <tr>
                 <td>{{ 'Admin' | translate }}</td>
                 <td>
-                  <input [(ngModel)]="notificationResolver.dataModel.enable_admin_notification_emails" type="checkbox">
+                  <input class="form-check-input" [(ngModel)]="notificationResolver.dataModel.enable_admin_notification_emails" type="checkbox">
                 </td>
               </tr>
               <tr>
                 <td>{{ 'Analyst' | translate }}</td>
                 <td>
-                  <input [(ngModel)]="notificationResolver.dataModel.enable_analyst_notification_emails" type="checkbox">
+                  <input class="form-check-input" [(ngModel)]="notificationResolver.dataModel.enable_analyst_notification_emails" type="checkbox">
                 </td>
               </tr>
               <tr>
                 <td>{{ 'Custodian' | translate }}</td>
                 <td>
-                  <input [(ngModel)]="notificationResolver.dataModel.enable_custodian_notification_emails" type="checkbox">
+                  <input class="form-check-input" [(ngModel)]="notificationResolver.dataModel.enable_custodian_notification_emails" type="checkbox">
                 </td>
               </tr>
               <tr>
                 <td>{{ 'Recipient' | translate }}</td>
                 <td>
-                  <input [(ngModel)]="notificationResolver.dataModel.enable_receiver_notification_emails" type="checkbox">
+                  <input class="form-check-input" [(ngModel)]="notificationResolver.dataModel.enable_receiver_notification_emails" type="checkbox">
                 </td>
               </tr>
             </tbody>

@@ -122,18 +122,18 @@
                         <input name="hint" class="form-control" [(ngModel)]="field.placeholder" type="text">
                     </div>
                     <div class="form-group" *ngIf="field.type !== 'fieldgroup'">
-                        <input name="field.required" [(ngModel)]="field.required" type="checkbox">
+                        <input class="form-check-input" name="field.required" [(ngModel)]="field.required" type="checkbox">
                         <label>{{ 'Mandatory' | translate }}</label>
                     </div>
                     <div class="form-group" *ngIf="(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
                         <div [ngSwitch]="typeSwitch(field.type)">
-                            <input [(ngModel)]="field.multi_entry" type="checkbox">
+                            <input class="form-check-input" [(ngModel)]="field.multi_entry" type="checkbox">
                             <label *ngSwitchCase="'fileupload'">{{ 'Accept multiple file uploads' | translate }}</label>
                             <label *ngSwitchDefault>{{ 'Accept multiple answers' | translate }}</label>
                         </div>
                     </div>
                     <div class="form-group" *ngIf="fieldIsMarkableSubjectToPreview">
-                        <input [(ngModel)]="field.preview" type="checkbox">
+                        <input class="form-check-input" [(ngModel)]="field.preview" type="checkbox">
                         <label>{{ 'Preview' | translate }}</label>
                     </div>
                     <div class="form-group">
@@ -187,7 +187,7 @@
                             <input [(ngModel)]="field.attrs.checkbox_label.value" type="text" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <input [(ngModel)]="field.attrs.attachment.value" type="checkbox" />
+                            <input class="form-check-input" [(ngModel)]="field.attrs.attachment.value" type="checkbox" />
                             <label>{{ 'Attachment' | translate }}</label>
                         </div>
                         <div *ngIf="field.attrs.attachment.value" class="nested">
@@ -203,7 +203,7 @@
                     </div>
                     <div *ngIf="field.type === 'fieldgroup'">
                         <div class="form-group">
-                            <input [(ngModel)]="field.attrs.multimedia.value" type="checkbox">
+                            <input class="form-check-input" [(ngModel)]="field.attrs.multimedia.value" type="checkbox">
                             <label>{{ 'Add multimedia content' | translate }}</label>
                             <div *ngIf="field.attrs.multimedia.value" class="nested">
                                 <div class="form-group">
@@ -224,7 +224,7 @@
                     <div>
                         <div *ngIf="field.type === 'checkbox' || field.type === 'selectbox' || field.type === 'multichoice'">
                             <div class="form-group">
-                                <input [(ngModel)]="field.attrs.display_alphabetically.value" type="checkbox" [disabled]="!field.editable">
+                                <input class="form-check-input" [(ngModel)]="field.attrs.display_alphabetically.value" type="checkbox" [disabled]="!field.editable">
                                 <label>{{ 'Display options alphabetically' | translate }}</label>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                 <div class="col-md-12" *ngIf="field.instance === 'reference'" [ngSwitch]="field.template_id">
                     <div *ngSwitchCase="'whistleblower_identity'">
                         <div class="form-group">
-                            <input [(ngModel)]="field.required" type="checkbox">
+                            <input class="form-check-input" [(ngModel)]="field.required" type="checkbox">
                             <label>{{ 'Mandatory' | translate }}</label>
                         </div>
                         <div *ngIf="!field.required">
@@ -308,7 +308,7 @@
                                 </select>
                             </div>
                             <div *ngIf="new_trigger.field" class="form-group">
-                                <input [(ngModel)]="new_trigger.sufficient" type="checkbox">
+                                <input class="form-check-input" [(ngModel)]="new_trigger.sufficient" type="checkbox">
                                 <label>{{ 'Sufficient' | translate }}</label>
                             </div>
                             <div class="form-group">

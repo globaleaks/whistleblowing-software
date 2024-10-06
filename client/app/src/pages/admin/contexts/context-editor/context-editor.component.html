@@ -107,7 +107,7 @@
                     <div>{{ 'Set the value to 0 to disable this feature.' | translate }}</div>
                 </div>
                 <div class="form-group">
-                    <input [(ngModel)]="contextResolver.hidden" name="contextResolver.hidden" type="checkbox" />
+                    <input class="form-check-input" [(ngModel)]="contextResolver.hidden" name="contextResolver.hidden" type="checkbox" />
                     <label>{{ 'Hidden' | translate }}</label>
                 </div>
             </div>
@@ -125,20 +125,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="inline-checkbox">
-                                    <input type="checkbox" name="contextResolver.show_steps_navigation_interface" [(ngModel)]="contextResolver.show_steps_navigation_interface" />
+                                    <input class="form-check-input" type="checkbox" name="contextResolver.show_steps_navigation_interface" [(ngModel)]="contextResolver.show_steps_navigation_interface" />
                                     <span>{{ 'Show the questionnaire navigation interface' | translate }}</span>
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label class="inline-checkbox">
-                                    <input type="checkbox" name="contextResolver.allow_recipients_selection" [(ngModel)]="contextResolver.allow_recipients_selection" />
+                                    <input class="form-check-input" type="checkbox" name="contextResolver.allow_recipients_selection" [(ngModel)]="contextResolver.allow_recipients_selection" />
                                     <span>{{ 'Allow whistleblowers to select their recipients' | translate }}</span>
                                 </label>
                             </div>
                             <div *ngIf="contextResolver.allow_recipients_selection" class="form-group well">
                                 <div class="form-group">
                                     <label class="inline-checkbox">
-                                        <input type="checkbox" name="contextResolver.select_all_receivers" [(ngModel)]="contextResolver.select_all_receivers" [disabled]="!contextResolver.allow_recipients_selection" (click)="contextResolver.maximum_selectable_receivers = 0" />
+                                        <input class="form-check-input" type="checkbox" name="contextResolver.select_all_receivers" [(ngModel)]="contextResolver.select_all_receivers" [disabled]="!contextResolver.allow_recipients_selection" (click)="contextResolver.maximum_selectable_receivers = 0" />
                                         <span>{{ 'Select all recipients by default' | translate }}</span>
                                     </label>
                                 </div>
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="inline-checkbox">
-                                        <input type="checkbox" [(ngModel)]="contextResolver.show_receivers_in_alphabetical_order" name="contextResolver.show_receivers_in_alphabetical_order" />
+                                        <input class="form-check-input" type="checkbox" [(ngModel)]="contextResolver.show_receivers_in_alphabetical_order" name="contextResolver.show_receivers_in_alphabetical_order" />
                                         <span>{{ 'Show recipients in alphabetical order' | translate }}</span>
                                     </label>
                                 </div>

@@ -1,7 +1,7 @@
 <div class="select-card" [ngClass]="{ 'selected':submission.selected_receivers[receiverModel.id] || receiverModel.forcefully_selected}">
     <div class="row mb-1">
         <div class="col-md-12">
-            <input type="checkbox" class="btn-checkbox" [id]="'recipient-' + receiverModel.id" [name]="'recipient-' + receiverModel.id" [(ngModel)]="submission.selected_receivers[receiverModel.id]" (change)="switchSelection(receiverModel)" *ngIf="!receiverModel.forcefully_selected">
+            <input type="checkbox" class="btn-checkbox form-check-input" [id]="'recipient-' + receiverModel.id" [name]="'recipient-' + receiverModel.id" [(ngModel)]="submission.selected_receivers[receiverModel.id]" (change)="switchSelection(receiverModel)" *ngIf="!receiverModel.forcefully_selected">
             <label [for]="'recipient-' + receiverModel.id" class="title">{{receiverModel.name}}</label>
         </div>
     </div>

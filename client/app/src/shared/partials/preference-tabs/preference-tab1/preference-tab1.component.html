@@ -69,12 +69,12 @@
         </select>
     </div>
     <div id="EnableNotifications" class="form-group" *ngIf="(authenticationService.session.role === 'admin' && !appDataService.public.node.disable_admin_notification) || (authenticationService.session.role === 'receiver' && !appDataService.public.node.disable_receiver_notification) || (authenticationService.session.role === 'custodian' && !appDataService.public.node.disable_custodian_notification)">
-        <input name="notification" [(ngModel)]="preferenceResolver.dataModel.notification" type="checkbox">
+        <input class="form-check-input" name="notification" [(ngModel)]="preferenceResolver.dataModel.notification" type="checkbox">
         <label>{{'Enable email notifications'|translate}}</label>
     </div>
     <div class="form-group">
         <label>
-            <input name="two_factor" type="checkbox" [checked]="preferenceResolver.dataModel.two_factor" (click)="toggle2FA($event)" />
+            <input class="form-check-input" name="two_factor" type="checkbox" [checked]="preferenceResolver.dataModel.two_factor" (click)="toggle2FA($event)" />
             <span>{{'Enable two factor authentication'|translate}}</span>
         </label>
     </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input name="pgp" [(ngModel)]="preferenceResolver.dataModel.pgp_key_remove" type="checkbox">
+                <input class="form-check-input" name="pgp" [(ngModel)]="preferenceResolver.dataModel.pgp_key_remove" type="checkbox">
                 <label>{{'Remove'|translate}}</label>
             </div>
         </div>

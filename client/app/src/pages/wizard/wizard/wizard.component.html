@@ -118,7 +118,7 @@
                 <div class="row form-group">
                     <div class="col-md-12">
                         <div class="form-check">
-                            <input id="admin_escrow_checkbox" class="admin-escrow inputelem" type="checkbox" name="wizard.admin_escrow" [(ngModel)]="wizard.admin_escrow">
+                            <input id="admin_escrow_checkbox" class="admin-escrow form-check-input" type="checkbox" name="wizard.admin_escrow" [(ngModel)]="wizard.admin_escrow">
                             <label class="form-check-label" for="admin_escrow_checkbox">{{'Make it possible for this admin to reset user passwords.'|translate}}</label>
                         </div>
                         <div>{{'We advise selecting this option if you would like to protect data from being lost in the situation where recipients lose their passwords. On the other hand, we would not advise using this feature if you want to setup a system where only recipients are able to access submissions.'|translate}}</div>
@@ -202,7 +202,7 @@
                 <div class="row form-group">
                     <div class="col-md-12">
                         <div class="form-check">
-                            <input id="skip_recipient_account_creation_checkbox" name="skip_recipient_account_creation_checkbox" class="inputelem" type="checkbox" [(ngModel)]="wizard.skip_recipient_account_creation">
+                            <input id="skip_recipient_account_creation_checkbox" name="skip_recipient_account_creation_checkbox" class="inputelem form-check-input" type="checkbox" [(ngModel)]="wizard.skip_recipient_account_creation">
                             <label class="form-check-label" for="skip_recipient_account_creation_checkbox">{{'Skip the recipient account creation.'|translate}}</label>
                         </div>
                     </div>
@@ -228,11 +228,11 @@
                     <div class="title">{{'License'|translate}}</div>
                     <div class="tos-text">{{license|translate}}</div>
                     <div class="form-check">
-                        <input id="tos_agreement_checkbox" name="tos_agreement_checkbox" class="tos-agreement-input inputelem" type="checkbox" [(ngModel)]="tosAccept" required>
+                        <input id="tos_agreement_checkbox" name="tos_agreement_checkbox" class="tos-agreement-input form-check-input" type="checkbox" [(ngModel)]="tosAccept" required>
                         <label class="tos-agreement-label form-check-label" [ngClass]="{'text-danger': validation.step6 && wizardFormStep6.invalid}" for="tos_agreement_checkbox">{{'I have read and agree to the terms of the license.'|translate}}</label>
                     </div>
                     <div class="form-check" *ngIf="appDataService.public.node.root_tenant">
-                        <input id="enable_developers_exception_notification_checkbox" class="inputelem" name="wizard.enable_developers_exception_notification_checkbox" [(ngModel)]="wizard.enable_developers_exception_notification" type="checkbox">
+                        <input id="enable_developers_exception_notification_checkbox" class="inputelem form-check-input" name="wizard.enable_developers_exception_notification_checkbox" [(ngModel)]="wizard.enable_developers_exception_notification" type="checkbox">
                         <label for="enable_developers_exception_notification_checkbox">{{'Notify developers of software problems'|translate}}</label>
                         <div>{{'By enabling this feature, you will contribute to the development and security of the platform.'|translate}}</div>
                     </div>

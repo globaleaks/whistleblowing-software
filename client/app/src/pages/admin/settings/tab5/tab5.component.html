@@ -2,20 +2,20 @@
     <div class="col-md-12">
         <div class="form-group">
             <label>
-                <input name="disable_submissions" [(ngModel)]="nodeResolver.dataModel.disable_submissions" type="checkbox" />
+                <input class="form-check-input" name="disable_submissions" [(ngModel)]="nodeResolver.dataModel.disable_submissions" type="checkbox" />
                 <span>{{'Disable submissions' | translate}}</span>
             </label>
         </div>
         <div class="form-group">
             <label>
-                <input name="node.dataModel.encryption" [(ngModel)]="nodeResolver.dataModel.encryption" type="checkbox" (ngModelChange)="enableEncryption()" [disabled]="nodeResolver.dataModel.encryption" />
+                <input class="form-check-input" name="node.dataModel.encryption" [(ngModel)]="nodeResolver.dataModel.encryption" type="checkbox" (ngModelChange)="enableEncryption()" [disabled]="nodeResolver.dataModel.encryption" />
                 <span>{{'Enable encryption' | translate}}</span>
             </label>
         </div>
         <div *ngIf="nodeResolver.dataModel.encryption">
             <div class="form-group">
                 <label>
-                    <input #escrow name="node.dataModel.escrow" [(ngModel)]="nodeResolver.dataModel.escrow" type="checkbox" (ngModelChange)="toggleEscrow(escrow)" [disabled]="nodeResolver.dataModel.escrow && !preferenceResolver.dataModel.escrow" />
+                    <input class="form-check-input" #escrow name="node.dataModel.escrow" [(ngModel)]="nodeResolver.dataModel.escrow" type="checkbox" (ngModelChange)="toggleEscrow(escrow)" [disabled]="nodeResolver.dataModel.escrow && !preferenceResolver.dataModel.escrow" />
                     <span>{{'Enable administrators to change user passwords' | translate}}</span>
                 </label>
             </div>
@@ -30,19 +30,19 @@
         </div>
         <div class="form-group">
             <label>
-                <input name="node.dataModel.pgp" [(ngModel)]="nodeResolver.dataModel.pgp" type="checkbox" />
+                <input class="form-check-input" name="node.dataModel.pgp" [(ngModel)]="nodeResolver.dataModel.pgp" type="checkbox" />
                 <span>{{ 'Enable PGP' | translate }}</span>
             </label>
         </div>
         <div class="form-group">
             <label>
-                <input name="node.dataModel.simplified_login" [(ngModel)]="nodeResolver.dataModel.simplified_login" type="checkbox"/>
+                <input class="form-check-input" name="node.dataModel.simplified_login" [(ngModel)]="nodeResolver.dataModel.simplified_login" type="checkbox"/>
                 <span>{{ 'Enable simplified login' | translate }}</span>
             </label>
         </div>
         <div class="form-group">
             <label>
-                <input name="node.dataModel.allow_indexing" [(ngModel)]="nodeResolver.dataModel.allow_indexing" type="checkbox" />
+                <input class="form-check-input" name="node.dataModel.allow_indexing" [(ngModel)]="nodeResolver.dataModel.allow_indexing" type="checkbox" />
                 <span>{{ 'Enable search engines indexing' | translate }}</span>
             </label>
         </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label>
-                <input [(ngModel)]="nodeResolver.dataModel.show_contexts_in_alphabetical_order" type="checkbox" />
+                <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.show_contexts_in_alphabetical_order" type="checkbox" />
                 <span>{{ 'Show channels in alphabetical order' | translate }}</span>
             </label>
         </div>
@@ -67,7 +67,7 @@
         </div>
         <div class="form-group">
             <label>
-                <input [(ngModel)]="nodeResolver.dataModel.two_factor" name="two_factor" (click)="enableRouteReload()" type="checkbox" />
+                <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.two_factor" name="two_factor" (click)="enableRouteReload()" type="checkbox" />
                 <span>{{ 'Require two factor authentication' | translate }}</span>
             </label>
         </div>
@@ -87,13 +87,13 @@
         </div>
         <div class="form-group">
             <label>
-                <input [(ngModel)]="nodeResolver.dataModel.disable_privacy_badge" type="checkbox" />
+                <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.disable_privacy_badge" type="checkbox" />
                 <span>{{ 'Disable the privacy panel' | translate }}</span>
             </label>
         </div>
         <div class="form-group" *ngIf="!nodeResolver.dataModel.disable_privacy_badge">
             <label>
-                <input name="enable_custom_privacy_badge" [(ngModel)]="nodeResolver.dataModel.enable_custom_privacy_badge" type="checkbox" />
+                <input class="form-check-input" name="enable_custom_privacy_badge" [(ngModel)]="nodeResolver.dataModel.enable_custom_privacy_badge" type="checkbox" />
                 <span>{{ 'Enable custom privacy panel' | translate }}</span>
             </label>
         </div>
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="form-group">
-            <input [(ngModel)]="nodeResolver.dataModel.enable_scoring_system" id="scoring_system" type="checkbox">
+            <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.enable_scoring_system" id="scoring_system" type="checkbox">
             <label>{{ 'Enable scoring system' | translate }}</label>
         </div>
         <div class="form-group" *ngIf="nodeResolver.dataModel.root_tenant">
@@ -158,15 +158,15 @@
             </table>
         </div>
         <div class="form-group">
-            <input [(ngModel)]="nodeResolver.dataModel.log_accesses_of_internal_users" type="checkbox" />
+            <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.log_accesses_of_internal_users" type="checkbox" />
             <label>{{ 'Log accesses of internal users' | translate }}</label>
         </div>
         <div class="form-group" *ngIf="nodeResolver.dataModel.root_tenant">
-            <input [(ngModel)]="nodeResolver.dataModel.enable_admin_exception_notification" type="checkbox">
+            <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.enable_admin_exception_notification" type="checkbox">
             <label>{{ 'Notify administrators of software problems' | translate }}</label>
         </div>
         <div class="form-group" *ngIf="nodeResolver.dataModel.root_tenant">
-            <input [(ngModel)]="nodeResolver.dataModel.enable_developers_exception_notification" type="checkbox">
+            <input class="form-check-input" [(ngModel)]="nodeResolver.dataModel.enable_developers_exception_notification" type="checkbox">
             <label>{{ 'Notify developers of software problems' | translate }}</label>
             <div>{{ 'By enabling this feature, you will contribute to the development and security of the platform.' |
               translate }}</div>
