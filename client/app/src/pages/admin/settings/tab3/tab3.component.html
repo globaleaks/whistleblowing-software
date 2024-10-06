@@ -12,7 +12,7 @@
                 <br />
                 <div id="LanguageAdder" class="row" *ngIf="showLangSelect">
                     <div class="col-md-12">
-                        <ng-select [(ngModel)]="selected.value" [items]="nodeResolver.dataModel.languages_supported | filter:langNotEnabledFilter : false | filter:'name':selected.value" bindLabel="name" [searchable]="true" [placeholder]="'Search' | translate" (ngModelChange)="enableLanguage($event)">
+                        <ng-select [(ngModel)]="selected.value" [items]="languagesNotEnabled | filter:'name':selected.value" bindLabel="name" [searchable]="true" [placeholder]="'Search' | translate" (ngModelChange)="enableLanguage($event)">
                             <ng-template ng-option-tmp let-item="item">
                                 <span [innerHTML]="item.name"></span>
                                 <span>[{{ item.code }}]</span>

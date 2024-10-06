@@ -18,6 +18,7 @@ export class Tab3Component implements OnInit {
   showLangSelect = false;
   selected = {value: []};
   languageUtils: LanguageUtils
+  languagesNotEnabled: LanguagesSupported[];
 
   constructor(private appDataService: AppDataService, private translationService: TranslationService, private appConfigService: AppConfigService, private utilsService: UtilsService, protected nodeResolver: NodeResolver) {
   }
@@ -29,21 +30,24 @@ export class Tab3Component implements OnInit {
   updateLanguages(): void {
     this.languageUtils = new LanguageUtils(this.nodeResolver);
     this.languageUtils.updateLanguages();
+    this.languagesNotEnabled = this.getNotEnabledLanguages();
   }
 
   toggleLangSelect() {
     this.showLangSelect = !this.showLangSelect;
   }
 
-  langNotEnabledFilter(language: LanguagesSupported) {
-    return this.nodeResolver.dataModel.languages_enabled.indexOf(language.code) === -1;
+  getNotEnabledLanguages() {
+    return this.nodeResolver.dataModel.languages_supported.filter(lang => !this.nodeResolver.dataModel.languages_enabled.includes(lang.code));
   }
 
   enableLanguage(language: LanguagesSupported) {
     if (language && (this.nodeResolver.dataModel.languages_enabled.indexOf(language.code) === -1)) {
-      this.nodeResolver.dataModel.languages_enabled.push(language.code);
+      this.nodeResolver.dataModel.languages_enabled.push(language.code)
+      this.nodeResolver.dataModel.languages_enabled.sort();
+      this.languagesNotEnabled = this.getNotEnabledLanguages();
     }
-    this.selected.value = []
+    this.selected.value = [];
   }
 
   removeLang(index: number, lang_code: string) {
@@ -51,6 +55,7 @@ export class Tab3Component implements OnInit {
       return;
     }
     this.nodeResolver.dataModel.languages_enabled.splice(index, 1);
+    this.languagesNotEnabled = this.getNotEnabledLanguages();
   }
 
   updateNode() {
