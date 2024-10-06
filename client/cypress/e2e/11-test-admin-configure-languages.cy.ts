@@ -5,20 +5,26 @@ describe("admin configure languages", () => {
     cy.get('[data-cy="languages"]').click();
     cy.get(".add-language-btn").click();
 
-    cy.get("body").click("top");
-    cy.get('ng-select').last().click();
-    cy.get('div.ng-option').contains('English [en]').click();
-    cy.get('ul.selection-list li').should('contain', 'English [en]');
+    if (Cypress.env('default_language')!=="en") {
+      cy.get("body").click("top");
+      cy.get('ng-select').last().click();
+      cy.get('div.ng-option').contains('English [en]').click();
+      cy.get('ul.selection-list li').should('contain', 'English [en]');
+    }
 
-    cy.get("body").click("top");
-    cy.get('ng-select').last().click();
-    cy.get('div.ng-option').contains('Italian [it]').click();
-    cy.get('ul.selection-list li').should('contain', 'Italian [it]');
+    if (Cypress.env('default_language')!=="it") {
+      cy.get("body").click("top");
+      cy.get('ng-select').last().click();
+      cy.get('div.ng-option').contains('Italian [it]').click();
+      cy.get('ul.selection-list li').should('contain', 'Italian [it]');
+    }
 
-    cy.get("body").click("top");
-    cy.get('ng-select').last().click();
-    cy.get('div.ng-option').contains('German [de]').click();
-    cy.get('ul.selection-list li').should('contain', 'German [de]');
+    if (Cypress.env('default_language')!=="de") {
+      cy.get("body").click("top");
+      cy.get('ng-select').last().click();
+      cy.get('div.ng-option').contains('German [de]').click();
+      cy.get('ul.selection-list li').should('contain', 'German [de]');
+    }
 
     cy.get("#save_language").click();
     cy.waitForUrl("/#/admin/settings");
@@ -31,11 +37,12 @@ describe("admin configure languages", () => {
     cy.get("#save_language").click();
     cy.get('[data-cy="languages"]').click();
 
-    if (Cypress.env('default_language')=="it") {
-      cy.get(".remove-lang-btn").eq(0).click();
-    } else {
+    if (Cypress.env('default_language')=="en") {
       cy.get(".remove-lang-btn").eq(1).click();
+    } else {
+      cy.get(".remove-lang-btn").eq(2).click();
     }
+
     cy.get("#save_language").should('exist').should('be.visible').click();
 
     cy.waitForUrl("/#/admin/settings");
