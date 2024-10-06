@@ -220,12 +220,13 @@ class StateClass(ObjectDict, metaclass=Singleton):
         if tenant_cache.onionservice:
             print("- [Tor]:  http://%s" % tenant_cache.onionservice)
 
+    def reset_minutely(self):
+        self.exceptions.clear()
+        self.exceptions_email_count = 0
+
     def reset_hourly(self):
         for tid in self.tenants:
             self.tenants[tid].reset_events()
-
-        self.exceptions.clear()
-        self.exceptions_email_count = 0
 
         self.stats_collection_start_time = datetime_now()
 
@@ -275,7 +276,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
-        if self.exceptions_email_count >= self.settings.exceptions_email_hourly_limit:
+        if self.exceptions_email_count >= self.settings.exceptions_email_minutely_limit:
             return
 
         exception_text = (exception_text % args) if args else exception_text

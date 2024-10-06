@@ -72,7 +72,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.log_file_size = 1000000  # 1MB
         self.num_log_files = self.log_size / self.log_file_size
 
-        self.exceptions_email_hourly_limit = 20
+        self.exceptions_email_minutely_limit = 1
 
         self.enable_input_length_checks = True
 
