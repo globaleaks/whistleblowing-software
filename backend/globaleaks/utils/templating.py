@@ -221,34 +221,38 @@ class TipKeyword(UserNodeKeyword):
     data_keys = UserNodeKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
-        field_type = field['type']
+        try:
+            field_type = field['type']
 
-        if field_type == 'checkbox':
-            for k, v in entry.items():
+            if field_type == 'checkbox':
+                for k, v in entry.items():
+                    for option in field['options']:
+                        if k == option.get('id', '') and v is True:
+                            output += indent(indent_n) + option['label'] + '\n'
+            elif field_type in ['multichoice', 'selectbox']:
                 for option in field['options']:
-                    if k == option.get('id', '') and v is True:
+                    if entry.get('value', '') == option['id']:
                         output += indent(indent_n) + option['label'] + '\n'
-        elif field_type in ['multichoice', 'selectbox']:
-            for option in field['options']:
-                if entry.get('value', '') == option['id']:
-                    output += indent(indent_n) + option['label'] + '\n'
-        elif field_type == 'date':
-            date = entry.get('value')
-            if date is not None:
-                output += indent(indent_n) + ISO8601_to_day_str(date) + '\n'
-        elif field_type == 'daterange':
-            daterange = entry.get('value')
-            if daterange is not None:
-                daterange = daterange.split(':')
-                output += indent(indent_n) + datetime_to_day_str(datetime.fromtimestamp(int(daterange[0])/1000)) + '\n'
-                output += indent(indent_n) + datetime_to_day_str(datetime.fromtimestamp(int(daterange[1])/1000)) + '\n'
-        elif field_type == 'tos':
-            answer = '☑' if entry.get('value', '') is True else '☐'
-            output += indent(indent_n) + answer + '\n'
-        elif field_type == 'fieldgroup':
-            output = self.dump_fields(output, field['children'], entry, indent_n)
-        else:
-            output += indent_text(entry.get('value', ''), indent_n) + '\n'
+            elif field_type == 'date':
+                date = entry.get('value')
+                if date is not None:
+                    output += indent(indent_n) + ISO8601_to_day_str(date) + '\n'
+            elif field_type == 'daterange':
+                daterange = entry.get('value')
+                if daterange is not None:
+                    daterange = "antani:antani"
+                    daterange = daterange.split(':')
+                    output += indent(indent_n) + datetime_to_day_str(datetime.fromtimestamp(int(daterange[0])/1000)) + '\n'
+                    output += indent(indent_n) + datetime_to_day_str(datetime.fromtimestamp(int(daterange[1])/1000)) + '\n'
+            elif field_type == 'tos':
+                answer = '☑' if entry.get('value', '') is True else '☐'
+                output += indent(indent_n) + answer + '\n'
+            elif field_type == 'fieldgroup':
+                output = self.dump_fields(output, field['children'], entry, indent_n)
+            else:
+                output += indent_text(entry.get('value', ''), indent_n) + '\n'
+        except:
+            pass
 
         return output + '\n'
 
