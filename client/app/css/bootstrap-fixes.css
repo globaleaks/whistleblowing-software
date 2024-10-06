@@ -119,6 +119,8 @@ body .dropdown-visible > div.multiselect-dropdown > div > span.dropdown-btn {
   border-color: #545b63;
 }
 
+.active>.page-link,
+.page-link.active,
 .form-check-input:checked {
   background-color: #2866a2;
   border-color: #205282;
@@ -126,4 +128,8 @@ body .dropdown-visible > div.multiselect-dropdown > div > span.dropdown-btn {
 
 .input-group > .btn-outline-secondary {
   border: 1px solid #c8d1e0;
+}
+
+.text-primary {
+  color: #205282 !important;
 }
