@@ -1,3 +1,23 @@
+Changes in version 5.0.12
+    Add ConnectionRefusedError to list of silenced exceptions
+    Revise implementation of periodic jobs and implement minutely exception notifications limits
+    Revise functionality and UI for date range questions
+    Ensure reports could be exported even if one single answer fails to be processed
+    Fix pdf export (available for the moment only on Ubuntu Noble)
+    Implement full case insensitive search on admin's sites interface
+    Order audit log entries with descending order
+    Extend client session idling time from 5 to 20 minutes
+    Fix issues #4209, #4218, #4217, #4207, #4211
+    Revise Language configuration UI improving usability
+    Apply CSS fixes to improve adherence to GlobaLeaks brand color
+    Uniform layout of checkboxes and radios using boostrap classes (#4216)
+    Include Ubuntu Noble in current recommended LTS distributions along with Debian Bookworm
+    Bump client dependencies to latest version
+    Update client dependencies shrinkwrap
+    Update translations
+    [ci] Update tests in relation to latest changes
+    [doc] Update documentation images
+
 Changes in version 5.0.11
     Correct decryption of change status motivations for whistleblowers
 
