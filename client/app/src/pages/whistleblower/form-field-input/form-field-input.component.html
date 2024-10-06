@@ -5,7 +5,7 @@
         </div>
         <div *ngSwitchDefault [ngSwitch]="field.type">
             <div *ngSwitchCase="'textarea'">
-                <textarea id="{{fieldEntry}}" [name]=fieldEntry class="form-control inputelem" [minlength]="field.attrs.min_len.value" [maxlength]="field.attrs.max_len.value" [(ngModel)]="entry['value']" [required]="entry.required_status" #textarea="ngModel" [attr.aria-label]="field.label" [placeholder]="field.placeholder" ></textarea>
+                <textarea id="{{fieldEntry}}" [name]=fieldEntry class="form-control" [minlength]="field.attrs.min_len.value" [maxlength]="field.attrs.max_len.value" [(ngModel)]="entry['value']" [required]="entry.required_status" #textarea="ngModel" [attr.aria-label]="field.label" [placeholder]="field.placeholder" ></textarea>
                 <div class="clearfix" *ngIf="entry['value']">
                     <div *ngIf="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-end">{{entry['value'].length}}/{{field.attrs.max_len.value}}
                     </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div *ngSwitchCase="'selectbox'">
-                <select id="{{fieldEntry}}" [name]="fieldEntry" class="form-control inputelem" [(ngModel)]="entry['value']" [required]="entry.required_status" *ngIf="field.options.length < 10">
+                <select id="{{fieldEntry}}" [name]="fieldEntry" class="form-control" [(ngModel)]="entry['value']" [required]="entry.required_status" *ngIf="field.options.length < 10">
                     <option class="d-none" value="">Select an option</option>
                     <option *ngFor="let option of field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'; let index = index" id="{{fieldEntry}}-option-{{index}}" [value]="option.id">{{option.label}}</option>
                 </select>
@@ -31,7 +31,7 @@
             </div>
             <div *ngSwitchCase="'multichoice'">
                 <div *ngFor="let option of field.options | orderBy:'order';let innerindex = index">
-                    <input [name]="fieldEntry" id="{{fieldEntry + '-option-' + innerindex}}" class="form-control-input inputelem form-check-input" type="radio" [(ngModel)]="entry['value']" value="{{option.id}}" [required]="field.required" />
+                    <input [name]="fieldEntry" id="{{fieldEntry + '-option-' + innerindex}}" class="form-control-inputform-check-input" type="radio" [(ngModel)]="entry['value']" value="{{option.id}}" [required]="field.required" />
                     <label for="{{fieldEntry + '-option-' + innerindex}}" data-toggle="tooltip" title="{{option.hint1}}" class="form-control-label" [ngClass]="{'text-underline': option.hint1}">{{option.label}}</label>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             </div>
             <div *ngSwitchCase="'date'">
                 <div class="input-group">
-                    <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry" [minDate]="dateOptions.min_date" [maxDate]="dateOptions.max_date" type="text" readonly="readonly" [attr.aria-label]="field.label" [(ngModel)]="input_date" [required]="entry.required_status" ngbDatepicker #datepicker="ngbDatepicker" (click)="datepicker.toggle()" (ngModelChange)="onDateSelection()" />
+                    <input id="{{fieldEntry}}" class="form-control" [name]="fieldEntry" [minDate]="dateOptions.min_date" [maxDate]="dateOptions.max_date" type="text" readonly="readonly" [attr.aria-label]="field.label" [(ngModel)]="input_date" [required]="entry.required_status" ngbDatepicker #datepicker="ngbDatepicker" (click)="datepicker.toggle()" (ngModelChange)="onDateSelection()" />
                     <span class="input-group-append btn btn-light border border-1" (click)="datepicker.toggle()">
                         <i class="fa-solid fa-calendar"></i>
                     </span>
@@ -55,7 +55,7 @@
                 </span>
                 <span class="form-group ms-1">
                     <div class="input-group ms-1">
-                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-startDate'" [minDate]="dateOptions1" [maxDate]="dateOptions2" type="text" [readOnly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_start_date" [required]="entry.required_status" ngbDatepicker #datepickerstart="ngbDatepicker" (click)="datepickerstart.toggle()" (ngModelChange)="onStartDateSelection(input_start_date)" />
+                        <input id="{{fieldEntry}}" class="form-control" [name]="fieldEntry+'-startDate'" [minDate]="dateOptions1" [maxDate]="dateOptions2" type="text" [readOnly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_start_date" [required]="entry.required_status" ngbDatepicker #datepickerstart="ngbDatepicker" (click)="datepickerstart.toggle()" (ngModelChange)="onStartDateSelection(input_start_date)" />
                         <span class="input-group-append btn btn-light border border-1" (click)="datepickerstart.toggle()">
                             <i class="fa-solid fa-calendar"></i>
                         </span>
@@ -66,7 +66,7 @@
                 </span>
                 <span class="form-group ms-2">
                     <div class="input-group ms-1">
-                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-endDate'" [minDate]="input_start_date" [maxDate]="dateOptions2" type="text" [readonly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_end_date" [required]="entry.required_status" ngbDatepicker #datepickerend="ngbDatepicker" (click)="datepickerend.toggle()" (ngModelChange)="onEndDateSelection(input_end_date)" [disabled]="!input_start_date" />
+                        <input id="{{fieldEntry}}" class="form-control" [name]="fieldEntry+'-endDate'" [minDate]="input_start_date" [maxDate]="dateOptions2" type="text" [readonly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_end_date" [required]="entry.required_status" ngbDatepicker #datepickerend="ngbDatepicker" (click)="datepickerend.toggle()" (ngModelChange)="onEndDateSelection(input_end_date)" [disabled]="!input_start_date" />
                         <span class="input-group-append btn btn-light border border-1" (click)="input_start_date && datepickerend.toggle()">
                             <i class="fa-solid fa-calendar"></i>
                         </span>
@@ -84,7 +84,7 @@
                     <a [href]="field.attrs.attachment_url.value" rel="noreferrer" target="_blank">{{field.attrs.attachment_text.value}}</a>
                 </div>
                 <div class="form-check">
-                        <input id="{{fieldEntry}}" [name]="fieldEntry" class="inputelem form-check-input" [(ngModel)]="entry['value']" [required]="entry.required_status" value="{{field.value}}" type="checkbox" />
+                        <input id="{{fieldEntry}}" [name]="fieldEntry" class="form-check-input" [(ngModel)]="entry['value']" [required]="entry.required_status" value="{{field.value}}" type="checkbox" />
                         <label for="{{fieldEntry}}" class="form-check-label"><markdown [data]="field.attrs.checkbox_label.value | stripHtml"></markdown></label>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                 <src-form (notifyFileUpload)="notifyFileUpload.emit()" [identity_provided]="identity_provided" [fileUploadUrl] = fileUploadUrl [fieldEntry]="fieldEntry" [displayErrors]="displayErrors" [entry]="entry" [answers]="answers" [step]="rows" [submission]="submission" [index]="index" [uploads]="uploads"></src-form>
             </div>
             <div *ngSwitchDefault>
-                <input id="{{fieldEntry}}" [name]="fieldEntry" class="form-control inputelem" [(ngModel)]="entry['value']" [minlength]="field.attrs.min_len.value" [maxlength]="field.attrs.max_len.value" [required]=entry.required_status #defaultinput="ngModel" [pattern]="validator" [placeholder]="field.placeholder" [attr.aria-label]="field.label" type="text" />
+                <input id="{{fieldEntry}}" [name]="fieldEntry" class="form-control" [(ngModel)]="entry['value']" [minlength]="field.attrs.min_len.value" [maxlength]="field.attrs.max_len.value" [required]=entry.required_status #defaultinput="ngModel" [pattern]="validator" [placeholder]="field.placeholder" [attr.aria-label]="field.label" type="text" />
                 <div class="clearfix">
                     <div *ngIf="entry['value'] && defaultinput?.errors?.['pattern'] && entry['value'].length && entry['value'].length>0 && field.attrs.input_validation.value === 'custom'" class="text-danger">{{'The specified input is not valid.'}}</div>
                     <div *ngIf="entry['value'] && defaultinput?.errors?.['pattern'] && entry['value'].length && entry['value'].length>0 && field.attrs.input_validation.value !== 'custom'">

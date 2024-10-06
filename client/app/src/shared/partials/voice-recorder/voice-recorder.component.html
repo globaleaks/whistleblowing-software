@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <input class="inputelem d-none" [attr.id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" [required]="field && field.required && !uploads[fileInput]?.files.length" [name]="'input-' + entryIndex" type="file" />
+            <input class="d-none" [attr.id]="'customFile-' + fileInput" [(ngModel)]="_fakeModel" [required]="field && field.required && !uploads[fileInput]?.files.length" [name]="'input-' + entryIndex" type="file" />
             <iframe #viewer *ngIf="audioPlayer" id="{{fieldEntry}}-audio" class="audio-player-iframe" sandbox="allow-downloads allow-scripts" [src]="iframeUrl" ></iframe>
         </div>
     </div>

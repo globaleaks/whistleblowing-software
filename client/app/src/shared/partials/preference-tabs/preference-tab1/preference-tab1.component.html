@@ -98,7 +98,7 @@
             <div class="position-relative">
                 <label>{{'Set up encryption by providing a PGP public key'|translate}}</label>
                 <div>
-                    <input #uploader id="customFile" type="file" [style.display]="'none'" class="custom-file-input inputelem" (change)="loadPublicKeyFile(uploader.files)" />
+                    <input #uploader id="customFile" type="file" [style.display]="'none'" class="custom-file-input" (change)="loadPublicKeyFile(uploader.files)" />
                     <label class="btn btn-sm btn-outline-secondary" for="customFile">
                         <i class="fa-solid fa-upload"></i>
                         <span>{{ 'Upload' | translate }}</span>

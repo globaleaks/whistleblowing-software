@@ -10,7 +10,7 @@
                 <div>{{ 'Files' | translate }}</div>
                 <div class="uploadfile file-custom">
                     <span class="custom-file">
-                        <input #uploader id="customFile" type="file" [style.display]="'none'" class="custom-file-input inputelem" (change)="onFileSelected(uploader.files)" />
+                        <input #uploader id="customFile" type="file" [style.display]="'none'" class="custom-file-input" (change)="onFileSelected(uploader.files)" />
                         <label class="btn btn-sm btn-primary" for="customFile">
                             <i class="fa-solid fa-upload"></i>
                             <span>{{ 'Upload' | translate }}</span>

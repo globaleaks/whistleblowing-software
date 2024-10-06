@@ -1,7 +1,7 @@
 <form action="">
     <div id="projectImageLoader" class="image-upload">
         <ng-container #flowAdvanced="flow" flowDrop [flowConfig]="flowConfig"></ng-container>
-        <input #uploader id="projectImageLoader" (change)="onFileSelected(uploader.files)" type="file" flowButton [style.display]="'none'" [flowAttributes]="{ accept: 'image/*' }" class="custom-file-input inputelem" />
+        <input #uploader id="projectImageLoader" (change)="onFileSelected(uploader.files)" type="file" flowButton [style.display]="'none'" [flowAttributes]="{ accept: 'image/*' }" class="custom-file-input" />
         <label for="projectImageLoader" class="change-picture-button text-primary" *ngIf="!imageUploadModel[imageUploadModelAttr]" data-toggle="tooltip" title="{{'Edit' | translate}}" (click)="triggerFileInputClick()">
             <i class="fa-solid fa-edit"></i>
         </label>
