@@ -37,8 +37,8 @@
             </div>
             <div *ngSwitchCase="'checkbox'">
                 <div *ngFor="let option of field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'; let index = index">
-                        <input id="{{fieldEntry + '-option-' + index}}" [name]="fieldEntry" class="form-control-input inputelinem" [(ngModel)]="entry[option.id]" value="{{option.id}}" [required]="entry.required_status" type="checkbox" />
-                        <label for="{{fieldEntry + '-option-' + index}}" data-toggle="tooltip" title="{{option.hint1}}" class="form-control-label" [ngClass]="{'text-underline': option.hint1}">{{option.label}}</label>
+                    <input id="{{fieldEntry + '-option-' + index}}" [name]="fieldEntry" class="form-control-input inputelinem" [(ngModel)]="entry[option.id]" value="{{option.id}}" [required]="entry.required_status" type="checkbox" />
+                    <label for="{{fieldEntry + '-option-' + index}}" data-toggle="tooltip" title="{{option.hint1}}" class="form-control-label" [ngClass]="{'text-underline': option.hint1}">{{option.label}}</label>
                 </div>
             </div>
             <div *ngSwitchCase="'date'">
@@ -51,24 +51,28 @@
             </div>
             <div *ngSwitchCase="'daterange'" class="form-inline d-inline-flex align-items-center">
                 <span class="form-group">
-                    <label>{{'From'|translate}}</label>
-                    <div class="input-group mx-1">
-                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-startDate'" [minDate]="dateOptions1" [maxDate]="dateOptions2" type="text" [readOnly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_start_date" [required]="entry.required_status" [placeholder]="field.placeholder" ngbDatepicker #datepickerstart="ngbDatepicker" (click)="datepickerstart.toggle()" (ngModelChange)="onStartDateSelection(input_start_date)" />
+                    <label [for]="fieldEntry+'-startDate'">{{'From' | translate}}</label>
+                </span>
+                <span class="form-group ms-1">
+                    <div class="input-group ms-1">
+                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-startDate'" [minDate]="dateOptions1" [maxDate]="dateOptions2" type="text" [readOnly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_start_date" [required]="entry.required_status" ngbDatepicker #datepickerstart="ngbDatepicker" (click)="datepickerstart.toggle()" (ngModelChange)="onStartDateSelection(input_start_date)" />
                         <span class="input-group-append btn btn-light border border-1" (click)="datepickerstart.toggle()">
                             <i class="fa-solid fa-calendar"></i>
                         </span>
                     </div>
                 </span>
-                <span class="form-group mx-1" *ngIf="input_start_date">
-                    <label>{{'To'|translate}}</label>
-                    <div class="input-group mx-1">
-                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-endDate'" [minDate]="dateOptions1" [maxDate]="dateOptions2" type="text" [readonly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_end_date" [required]="entry.required_status" [placeholder]="field.placeholder" ngbDatepicker #datepickerend="ngbDatepicker" (click)="datepickerend.toggle()" (ngModelChange)="onEndDateSelection(input_end_date)" />
-                        <span class="input-group-append btn btn-light border border-1" (click)="datepickerend.toggle()">
+                <span class="form-group ms-2">
+                    <label [for]="fieldEntry+'-endDate'">{{'To' | translate}}</label>
+                </span>
+                <span class="form-group ms-2">
+                    <div class="input-group ms-1">
+                        <input id="{{fieldEntry}}" class="form-control inputelem" [name]="fieldEntry+'-endDate'" [minDate]="input_start_date" [maxDate]="dateOptions2" type="text" [readonly]="true" [attr.aria-label]="field.label" [(ngModel)]="input_end_date" [required]="entry.required_status" ngbDatepicker #datepickerend="ngbDatepicker" (click)="datepickerend.toggle()" (ngModelChange)="onEndDateSelection(input_end_date)" [disabled]="!input_start_date" />
+                        <span class="input-group-append btn btn-light border border-1" (click)="input_start_date && datepickerend.toggle()">
                             <i class="fa-solid fa-calendar"></i>
                         </span>
                     </div>
                 </span>
-                <span class="ms-1 mt-2 d-inline-flex align-items-center" *ngIf="input_start_date">
+                <span class="form-group ms-2" *ngIf="input_start_date">
                     <button type="button" class="btn btn-outline-secondary" (click)="clearDateRange()">
                         <i class="fa-solid fa-times-circle"></i>
                     </button>
