@@ -106,9 +106,9 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 last_command "check_distro"
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^bookworm$" ; then
-  echo "WARNING: The GlobaLeaks software lifecycle includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 and Ubuntu 20.04"
-  echo "WARNING: The currently recommended distribution is: Debian 12 (Bookworm)"
+if echo "$DISTRO_CODENAME" | grep -vqE "^(bookworm)|(noble)$" ; then
+  echo "WARNING: The recommended up-to-date platforms are Debian 12 (Bookworm) and Ubuntu 24.04 (Noble)"
+  echo "WARNING: Use one of these platforms to ensure best stability and security"
 
   prompt_for_continuation
 fi
