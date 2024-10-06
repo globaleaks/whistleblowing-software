@@ -9,7 +9,7 @@ from acme.errors import ValidationError
 from txtorcon.torcontrolprotocol import TorProtocolError
 from sqlalchemy.exc import OperationalError
 from twisted.internet.defer import succeed, AlreadyCalledError, CancelledError
-from twisted.internet.error import ConnectionLost, DNSLookupError, NoRouteError, TimeoutError
+from twisted.internet.error import ConnectionLost, ConnectionRefusedError, DNSLookupError, NoRouteError, TimeoutError
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
@@ -40,6 +40,7 @@ silenced_exceptions = (
   AlreadyCalledError,
   CancelledError,
   ConnectionLost,
+  ConnectionRefusedError,
   DNSLookupError,
   GeneratorExit,
   OperationalError,
