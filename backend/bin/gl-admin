@@ -279,9 +279,9 @@ def get_var(args):
 def set_var(args, silent=False):
     db_path = check_db(args.workdir)
 
-    if args.value == 'True':
+    if args.value.lower() == 'true':
         args.value = True
-    elif args.value == 'False':
+    elif args.value.lower() == 'false':
         args.value = False
     elif is_number(args.value):
         args.value = int(args.value)
