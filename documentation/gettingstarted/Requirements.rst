@@ -6,7 +6,7 @@ Hardware Requirements
 ---------------------
 **Requirements**:
 
-- CPU: Dual-core 2.0GHz
+- CPU: Dual-core 2.0GHz (64-bit)
 - RAM: 1GB
 - Storage: 20GB
 - I/O: 10Mbit/s (shared)
