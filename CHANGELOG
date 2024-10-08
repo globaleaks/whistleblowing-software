@@ -1,3 +1,15 @@
+Changes in version 5.0.13
+    Fix issue #4228
+    Ensure to set html lang attribute when varying language (#4198)
+    Ensure to set html dir attribute depending on the language used
+    Correct logo and favicon removing incorrectly added black border
+    Revise wrong positioning of checkboxes on wizard interface
+    Revise gl-admin tool fixing configuration of intergers variables
+    Revise gl-admin tool making configuration of boolean values case insensitive
+    Bump client dependencies to latest versions
+    Update client dependencies shrinkwrap
+    [doc] Revise documentation informing users that a 64-bit system is required to run GlobaLeaks (#4202)
+
 Changes in version 5.0.12
     Add ConnectionRefusedError to list of silenced exceptions
     Revise implementation of periodic jobs and implement minutely exception notifications limits
