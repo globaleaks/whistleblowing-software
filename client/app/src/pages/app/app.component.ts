@@ -35,6 +35,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   watchLanguage() {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      document.getElementsByTagName("html")[0].setAttribute("lang", this.translate.currentLang);
       this.translationService.handleLTRandRTLStyling(event, this.renderer);
     });
   }
