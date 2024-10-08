@@ -1082,11 +1082,6 @@ i.fa-solid.fa-chevron-right {
   animation: blink 1s infinite;
 }
 
-.form-check{
-  margin-left:0;
-  padding-left:0;
-}
-
 .was-validated .form-check-input:valid ~ .form-check-label, .form-check-input.is-valid ~ .form-check-label {
   color: #2866a2;
 }
