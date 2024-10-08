@@ -1,3 +1,6 @@
+Changes in version 5.0.14
+    Reiplement 'public' on each whistlebler's page
+
 Changes in version 5.0.13
     Fix issue #4228
     Ensure to set html lang attribute when varying language (#4198)
