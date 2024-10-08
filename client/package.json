@@ -49,8 +49,8 @@
     "@types/lodash-es": "4.17.12",
     "@types/marked": "6.0.0",
     "@types/qrcode": "1.5.5",
-    "@typescript-eslint/types": "8.8.0",
-    "@typescript-eslint/utils": "8.8.0",
+    "@typescript-eslint/types": "8.8.1",
+    "@typescript-eslint/utils": "8.8.1",
     "angularx-qrcode": "18.0.2",
     "bootstrap": "5.3.3",
     "chart.js": "4.4.4",
@@ -97,7 +97,7 @@
     "superagent": "10.1.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
-    "typescript-eslint": "8.8.0",
+    "typescript-eslint": "8.8.1",
     "webpack-dev-server": "5.1.0"
   }
 }
