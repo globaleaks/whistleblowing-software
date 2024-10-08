@@ -25,16 +25,13 @@ export class TranslationService {
 
   handleLTRandRTLStyling(event: LangChangeEvent, renderer: Renderer2) {
     let waitForLoader = false;
-
     const newDirection = this.utilsService.getDirection(event.lang);
     if (newDirection !== this.currentDirection) {
       waitForLoader = true;
       this.utilsService.removeStyles(renderer, this.document, "css/styles-" + this.currentDirection + ".css");
 
       const lang = this.translate.currentLang;
-      const RTL = ['ar', 'dv', 'fa', 'fa_AF', 'he', 'ps', 'ug', 'ur'].includes(lang);
-      document.getElementsByTagName("html")[0].setAttribute("dir", RTL ? "rtl" : "ltr");
-      const cssFilename = RTL ? 'styles-rtl.css' : 'styles-ltr.css';
+      const cssFilename = ['ar', 'dv', 'fa', 'fa_AF', 'he', 'ps', 'ug', 'ur'].includes(lang) ? 'styles-rtl.css' : 'styles-ltr.css';
       const cssPath = `css/${cssFilename}`;
       const newLinkElement = renderer.createElement('link');
       renderer.setAttribute(newLinkElement, 'rel', 'stylesheet');
@@ -44,7 +41,6 @@ export class TranslationService {
       renderer.insertBefore(this.document.head, newLinkElement, firstLink);
       this.currentDirection = newDirection;
     }
-
     return waitForLoader;
   }
 
