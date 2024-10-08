@@ -58,7 +58,7 @@ def change_password(session, tid, user_session, password, old_password):
             # The first password change triggers the generation
             # of the user encryption private key and its backup
             user_session.cc, user.crypto_pub_key = GCE.generate_keypair()
-            user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(cc)
+            user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(user_session.cc)
 
         cc = user_session.cc
 
