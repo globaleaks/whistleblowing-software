@@ -86,6 +86,11 @@ body {
   min-height: 20rem;
 }
 
+.block-user-input {
+  pointer-events: none;
+  user-select: none;
+}
+
 th .fa-solid,
 .fa-chevron-up,
 .fa-chevron-down {

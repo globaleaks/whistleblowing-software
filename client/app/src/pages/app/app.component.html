@@ -24,7 +24,7 @@
     <div id="Loader"></div>
 </div>
 <ng-container *ngIf="appDataService.public.node">
-    <div [dir]="utilsService.getDirection(translate.currentLang)" class="reveal">
+    <div [dir]="utilsService.getDirection(translate.currentLang)" class="reveal" [ngClass]="{'public': isWhistleblowerPage(), 'block-user-input': showLoadingPanel}">
         <div *ngIf="authenticationService.session?.properties?.operator_session">
             <src-operation></src-operation>
         </div>
