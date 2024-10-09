@@ -76,7 +76,6 @@ export class AuthenticationService {
   }
 
   login(tid?: number, username?: string, password?: string | undefined, authcode?: string | null, authtoken?: string | null, callback?: () => void) {
-
     if (authcode === undefined) {
       authcode = "";
     }
@@ -145,9 +144,9 @@ export class AuthenticationService {
                 this.reset();
                 redirect = this.activatedRoute.snapshot.queryParams['redirect'] || '/';
                 const redirectURL = decodeURIComponent(redirect);
-                if(redirectURL!=="/"){
-                  this.router.navigate([redirectURL + 'home']);
-                }else {
+                if (redirectURL !== "/") {
+                  this.router.navigate([redirectURL]);
+                } else {
                   this.appDataService.updateShowLoadingPanel(true);
                   this.router.navigate([this.session.homepage], {
                     queryParams: this.activatedRoute.snapshot.queryParams,
@@ -179,6 +178,7 @@ export class AuthenticationService {
         }
       }
     );
+
     return requestObservable;
   }
 
