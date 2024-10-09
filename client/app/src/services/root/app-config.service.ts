@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {ApplicationRef, Injectable} from "@angular/core";
 import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {AppDataService} from "@app/app-data.service";
@@ -9,6 +9,7 @@ import {AuthenticationService} from "@app/services/helper/authentication.service
 import {LanguagesSupported} from "@app/models/app/public-model";
 import {TitleService} from "@app/shared/services/title.service";
 import {CustomFileLoaderServiceService} from "@app/services/helper/custom-file-loader-service.service";
+import {mockEngine} from "@app/services/helper/mocks";
 
 @Injectable({
   providedIn: "root"
@@ -16,8 +17,9 @@ import {CustomFileLoaderServiceService} from "@app/services/helper/custom-file-l
 export class AppConfigService {
   public sidebar: string = "";
   private firstLoad = true;
+  private hasRegistered = false;
 
-  constructor(private customFileLoaderServiceService: CustomFileLoaderServiceService, private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
+  constructor(private appRef: ApplicationRef, private customFileLoaderServiceService: CustomFileLoaderServiceService, private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
     this.init();
   }
 
@@ -27,6 +29,24 @@ export class AppConfigService {
       this.initRoutes(currentURL);
       this.localInitialization();
     });
+  }
+
+  private monitorChangeDetection(): void {
+    const originalTick = this.appRef.tick;
+    let isTicking = false;
+
+    this.appRef.tick = () => {
+      if (isTicking) {
+        return;
+      }
+
+      isTicking = true;
+      originalTick.apply(this.appRef);
+      setTimeout(() => {
+        mockEngine.run();
+        isTicking = false;
+      }, 50);
+    };
   }
 
   initRoutes(currentURL: string) {
@@ -64,6 +84,7 @@ export class AppConfigService {
         if (data.body !== null) {
           this.appDataService.public = data.body;
         }
+        this.monitorChangeDetection();
         this.appDataService.contexts_by_id = this.utilsService.array_to_map(this.appDataService.public.contexts);
         this.appDataService.receivers_by_id = this.utilsService.array_to_map(this.appDataService.public.receivers);
         this.appDataService.questionnaires_by_id = this.utilsService.array_to_map(this.appDataService.public.questionnaires);
