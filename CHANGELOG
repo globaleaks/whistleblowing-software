@@ -1,3 +1,6 @@
+Changes in version 5.0.15
+    Fix correct redirection after login
+
 Changes in version 5.0.14
     Reiplement 'public' on each whistlebler's page
 
