@@ -33,7 +33,6 @@ describe("admin configure custom texts", () => {
     cy.get('[data-cy="text_customization"]').click();
 
     cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
-    cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
 
     cy.logout();
 
