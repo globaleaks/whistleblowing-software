@@ -12,7 +12,8 @@ autodoc_member_order = 'bysource'
 autodoc_default_flags = ['members', 'show-inheritance', 'undoc-members']
 
 extensions = [
-  'sphinx_rtd_theme'
+  'sphinx_rtd_theme',
+  'sphinx_sitemap'
 ]
 
 templates_path = ['_templates']
@@ -35,10 +36,17 @@ show_authors = False
 pygments_style = 'sphinx'
 html_theme = 'sphinx_rtd_theme'
 html_logo = 'logo-html.png'
+html_baseurl = 'https://docs.globaleaks.org/'
 html_favicon = '../client/app/data/favicon.ico'
 html_show_copyright = False
 htmlhelp_basename = 'globaleaks'
 html_static_path = ['_static']
+
+html_context = {
+    'description': 'GlobaLeaks is free, open souce whistleblowing software enabling anyone to easily set up and maintain a secure reporting platforms',
+    'keywords': 'globaleaks, whistleblowing, whistleblowing-software',
+    'author': 'GlobaLeaks',
+}
 
 latex_elements = {
   'sphinxsetup': 'TitleColor={HTML}{377abc}, \
@@ -59,7 +67,7 @@ man_pages = [
 
 texinfo_documents = [
     (master_doc, 'GlobaLeaks', u'Documentation',
-     author, 'GlobaLeaks', ' GlobaLeaks is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform',
+     author, 'GlobaLeaks', ' GlobaLeaks is free, open souce whistleblowing software enabling anyone to easily set up and maintain a secure reporting platforms',
      'Miscellaneous'),
 ]
 
