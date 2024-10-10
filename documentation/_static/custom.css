@@ -30,6 +30,14 @@ legend,
   color: #1d1f2a;
 }
 
+.wy-nav-top a,
+.wy-nav-top a:hover,
+.wy-nav-top a:active,
+.wy-nav-top a:visited,
+.wy-nav-top a:focus {
+  color: #fff;
+}
+
 a,
 a:hover,
 a:active,
@@ -73,6 +81,15 @@ a:focus,
 
 .wy-menu-vertical a {
   color: #fff;
+}
+
+.wy-side-nav-search .icon-home,
+.wy-side-nav-search select,
+.wy-side-nav-search select option,
+.wy-side-nav-search > div.switch-menus > div.language-switch select,
+.wy-side-nav-search > div.switch-menus > div.version-switch select {
+  background-color: white;
+  color: #377abc;
 }
 
 vertical li.current > a {
