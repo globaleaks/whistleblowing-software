@@ -38,6 +38,7 @@ html_logo = 'logo-html.png'
 html_favicon = '../client/app/data/favicon.ico'
 html_show_copyright = False
 htmlhelp_basename = 'globaleaks'
+html_static_path = ['_static']
 
 latex_elements = {
   'sphinxsetup': 'TitleColor={HTML}{377abc}, \
