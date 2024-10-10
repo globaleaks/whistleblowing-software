@@ -50,13 +50,11 @@
           </form>
         </div>
         <div class="text-center" *ngIf="(tenants | filter:'name':search).length > 10">
-            <ngb-pagination [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="(tenants | filter:'name':search).length" [boundaryLinks]="true">
-                <ng-template ngbPaginationPrevious>
-                    < {{'Previous' | translate}} </ng-template>
-                <ng-template ngbPaginationNext>{{'Next' | translate}} ></ng-template>
-                <ng-template ngbPaginationFirst>
-                    << {{'First' | translate}} </ng-template>
-                <ng-template ngbPaginationLast>{{'Last' | translate}} >></ng-template>
+            <ngb-pagination dir="ltr" class="d-flex justify-content-center" [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="(tenants | filter:'name':search).length">
+                <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" title="{{'First' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" data-toggle="tooltip" title="{{'Previous' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" data-toggle="tooltip" title="{{'Next' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" title="{{'Last' | translate}}"></i></ng-template>
             </ngb-pagination>
         </div>
     </div>

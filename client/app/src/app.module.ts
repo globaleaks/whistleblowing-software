@@ -28,7 +28,7 @@ import {MarkdownModule, MarkedOptions, MARKED_OPTIONS} from "ngx-markdown";
 import {ReceiptValidatorDirective} from "@app/shared/directive/receipt-validator.directive";
 import {NgxFlowModule, FlowInjectionToken} from "@flowjs/ngx-flow";
 import * as Flow from "@flowjs/flow.js";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 import {SignupModule} from "@app/pages/signup/signup.module";
 import {WizardModule} from "@app/pages/wizard/wizard.module";
 import {RecipientModule} from "@app/pages/recipient/recipient.module";
@@ -118,6 +118,20 @@ const translationModule = TranslateModule.forRoot({
     {provide: HTTP_INTERCEPTORS, useClass: CompletedInterceptor, multi: true},
     {provide: FlowInjectionToken, useValue: Flow},
     {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {
+      provide: NgbPaginationConfig,
+      useFactory: () => {
+        const config = new NgbPaginationConfig();
+        config.size = 'sm';           // Set pagination size (sm for small, lg for large)
+        config.boundaryLinks = true;  // Display boundary links (first/last)
+        config.directionLinks = true; // Display previous/next buttons
+        config.maxSize = 20;          // Maximum number of pages displayed
+        config.rotate = true;         // Whether to rotate pages when maxSize > number of pages.
+        config.ellipses = true;       // If true, the ellipsis symbols and first/last page numbers
+                                      // will be shown when maxSize > number of pages.
+        return config;
+      }
+    },
     {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}
   ],
   bootstrap: [AppComponent],

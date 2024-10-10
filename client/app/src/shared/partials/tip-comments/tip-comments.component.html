@@ -49,11 +49,11 @@
             </div>
         </div>
         <div class="mt-2 text-center" *ngIf="tipService.tip.comments && ((comments | orderBy:'creation_date': true) | filter : 'visibility' : key ).length > itemsPerPage">
-            <ngb-pagination class="pagination-sm" [collectionSize]="((comments | orderBy:'creation_date': true) | filter : 'visibility' : key ).length" [(page)]="currentCommentsPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
-                <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" [title]="'First' | translate"></i></ng-template>
-                <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward" data-toggle="tooltip" [title]="'Previous' | translate"></i></ng-template>
-                <ng-template ngbPaginationNext><i class="fa-solid fa-forward" data-toggle="tooltip" [title]="'Next' | translate"></i></ng-template>
-                <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" [title]="'Last' | translate"></i></ng-template>
+            <ngb-pagination dir="ltr" class="d-flex justify-content-center" [collectionSize]="((comments | orderBy:'creation_date': true) | filter : 'visibility' : key ).length" [(page)]="currentCommentsPage" [pageSize]="itemsPerPage">
+                <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" title="{{'First' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" data-toggle="tooltip" title="{{'Previous' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" data-toggle="tooltip" title="{{'Next' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" title="{{'Last' | translate}}"></i></ng-template>
             </ngb-pagination>
         </div>
     </div>

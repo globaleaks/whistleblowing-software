@@ -257,17 +257,11 @@
                 </tbody>
             </table>
             <div class="text-center" *ngIf="filteredTips.length > itemsPerPage">
-                <ngb-pagination class="pagination-sm" [collectionSize]="filteredTips.length" [(page)]="currentPage" [pageSize]="itemsPerPage" [maxSize]="10" [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
-                    <ng-template ngbPaginationPrevious> &lt; {{ 'Previous' | translate }}
-                    </ng-template>
-                    <ng-template ngbPaginationNext>
-                        {{ 'Next' | translate }} &gt;
-                    </ng-template>
-                    <ng-template ngbPaginationFirst> &lt;&lt; {{ 'First' | translate }}
-                    </ng-template>
-                    <ng-template ngbPaginationLast>
-                        {{ 'Last' | translate }} &gt;&gt;
-                    </ng-template>
+                <ngb-pagination dir="ltr" class="d-flex justify-content-center" [collectionSize]="filteredTips.length" [(page)]="currentPage" [pageSize]="itemsPerPage">
+                    <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" title="{{'First' | translate}}"></i></ng-template>
+                    <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" data-toggle="tooltip" title="{{'Previous' | translate}}"></i></ng-template>
+                    <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" data-toggle="tooltip" title="{{'Next' | translate}}"></i></ng-template>
+                    <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" title="{{'Last' | translate}}"></i></ng-template>
                 </ngb-pagination>
             </div>
             <div class="float-end">
