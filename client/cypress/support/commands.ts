@@ -36,10 +36,10 @@ Cypress.Commands.add("login_receiver", (username, password, url, firstlogin) => 
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get("[name=\"username\"]").type(username);
+  cy.get('[name="username"]').type(username);
 
   // @ts-ignore
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -68,7 +68,7 @@ Cypress.Commands.add("simple_login_receiver", (username, password, url, firstlog
 
   // @ts-ignore
   
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -93,10 +93,10 @@ Cypress.Commands.add("simple_login_admin", (username, password, url, firstlogin)
 
   cy.visit(url);
 
-  cy.get("[name=\"username\"]").type(username);
+  cy.get('[name="username"]').type(username);
 
   // @ts-ignore
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (firstlogin) {
@@ -121,10 +121,10 @@ Cypress.Commands.add("login_analyst", (username, password, url, firstlogin) => {
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get("[name=\"username\"]").type(username);
+  cy.get('[name="username"]').type(username);
 
   // @ts-ignore
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -148,9 +148,9 @@ Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) =>
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get("[name=\"username\"]").type(username);
+  cy.get('[name="username"]').type(username);
   // @ts-ignore
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -278,10 +278,10 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
 
   cy.visit(url);
 
-  cy.get("[name=\"username\"]").type(username);
+  cy.get('[name="username"]').type(username);
 
   // @ts-ignore
-  cy.get("[name=\"password\"]").type(password);
+  cy.get('[name="password"]').type(password);
   cy.get("#login-button").click();
 
   if (firstlogin) {
