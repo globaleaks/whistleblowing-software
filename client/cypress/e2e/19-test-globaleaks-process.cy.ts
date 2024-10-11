@@ -207,7 +207,9 @@ describe("globaleaks process", function () {
     cy.visit("/#/recipient/reports");
 
     cy.get("#tip-0").first().should('be.visible').click();
+    cy.wait(1000);
     cy.get('[id="tip-action-mask"]').should('be.visible').click();
+    cy.wait(1000);
     cy.get("#edit-question").should('be.visible').first().click();
 
     cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea) => {
@@ -218,6 +220,7 @@ describe("globaleaks process", function () {
 
     cy.wait(1000);
     cy.get("#save_masking").click();
+    cy.wait(1000);
 
     cy.get('[id="tip-action-mask"]').should('exist').should('be.visible').click();
     cy.get("#edit-question").should('be.visible').first().click();
