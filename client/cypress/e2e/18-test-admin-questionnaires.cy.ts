@@ -66,8 +66,6 @@ describe("admin add, configure and delete questionnaires", () => {
     add_step("Step 3");
 
     const fieldTypes = Cypress.env("field_types");
-
-    // Ensure the step is visible and stable before interacting
     cy.contains("Step 2").should('be.visible').click();
 
     fieldTypes.forEach((questionType: string, index: number) => {
@@ -75,7 +73,6 @@ describe("admin add, configure and delete questionnaires", () => {
       add_question(questionType, index);
     });
 
-    // Ensure the step is available after the first interaction
     cy.contains("Step 2").should('exist').click();
 
     cy.get('button[name="delStep"]').eq(2).click();

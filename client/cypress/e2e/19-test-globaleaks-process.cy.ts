@@ -205,25 +205,30 @@ describe("globaleaks process", function () {
   it("should mask reported data", function () {
     cy.login_receiver();
     cy.visit("/#/recipient/reports");
-    cy.get("#tip-0").first().click();
+
+    cy.get("#tip-0").first().should('be.visible').click();
     cy.get('[id="tip-action-mask"]').should('be.visible').click();
     cy.get("#edit-question").should('be.visible').first().click();
 
-    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea: any) => {
-      const val = textarea.val();
-      cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea) => {
+      const val = Cypress.$(textarea).val();
+      cy.wrap(textarea).clear().type(String(val));
       cy.get("#select_content").click();
-      cy.wait(1000);
     });
+
+    cy.wait(1000);
     cy.get("#save_masking").click();
-    cy.get('[id="tip-action-mask"]').should('be.visible').click();
+
+    cy.get('[id="tip-action-mask"]').should('exist').should('be.visible').click();
     cy.get("#edit-question").should('be.visible').first().click();
-    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea: any) => {
-      const val = textarea.val();
-      cy.get('textarea[name="controlElement"]').should('be.visible').clear().type(val);
+
+    cy.get('textarea[name="controlElement"]').should('be.visible').then((textarea) => {
+      const val = Cypress.$(textarea).val();
+      cy.wrap(textarea).clear().type(String(val));
       cy.get("#unselect_content").click();
-      cy.wait(1000);
     });
+
+    cy.wait(1000);
     cy.get("#save_masking").click();
     cy.logout();
   });
