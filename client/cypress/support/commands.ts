@@ -211,28 +211,16 @@ Cypress.Commands.add("waitUntilClickable", (locator: string, timeout?: number) =
 Cypress.Commands.add("waitForLoader", () => {
   cy.intercept("**").as("httpRequests");
 
-  cy.get('[data-cy="page-loader-overlay"]', {timeout: 500, log: false})
-    .should(($overlay) => {
-      return new Cypress.Promise((resolve, _) => {
-        const startTime = Date.now();
-
-        const checkVisibility = () => {
-          if (Cypress.$($overlay).is(":visible")) {
-            cy.get('[data-cy="page-loader-overlay"]', { log: false }).should("not.be.visible").then(() => {
-              resolve();
-            });
-          } else if (Date.now() - startTime > 100) {
-            resolve();
-          } else {
-            setTimeout(checkVisibility, 100);
-          }
-        };
-
-        checkVisibility();
-      });
-    })
+  function ensureLoaderGone() {
+    cy.get('body').then($body => {
+      if ($body.find('[data-cy="page-loader-overlay"]').is(':visible')) {
+        cy.wait(100);
+        ensureLoaderGone();
+      }
+    });
+  }
+  ensureLoaderGone();
 });
-
 
 Cypress.Commands.add("waitForUrl", (url: string, timeout?: number) => {
   const t = timeout === undefined ? Cypress.config().defaultCommandTimeout : timeout;
