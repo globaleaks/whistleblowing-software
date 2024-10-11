@@ -22,7 +22,9 @@ export default (on, config) => {
     }
 
     return new Promise((resolve, reject) => {
-      let newPath = __dirname + "/../../../documentation/images/" + details.path.split('/').slice(-2).join('/')
+      const language = config.env.language;
+
+      let newPath = __dirname + "/../../../documentation/images/" + language + "/" + details.path.split('/').slice(-2).join('/')
 
       fs.copyFile(details.path, newPath, (err) => {
         if (err) return reject(err)

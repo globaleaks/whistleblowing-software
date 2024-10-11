@@ -4,9 +4,9 @@ describe("globaLeaks setup wizard", () => {
 
     cy.get("#PageTitle").should("be.visible");
 
-    if (Cypress.env('default_language')!="en") {
+    if (Cypress.env('language')!="en") {
       cy.get('#language-picker-select').click();
-      cy.get(`[data-cy="${Cypress.env('default_language')}"]`).trigger('click');
+      cy.get(`[data-cy="${Cypress.env('language')}"]`).trigger('click');
     }
 
     cy.takeScreenshot("wizard/1");
