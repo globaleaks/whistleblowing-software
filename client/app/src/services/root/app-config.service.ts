@@ -1,4 +1,4 @@
-import {ApplicationRef, Injectable} from "@angular/core";
+import {Injectable, NgZone} from "@angular/core";
 import {HttpService} from "@app/shared/services/http.service";
 import {UtilsService} from "@app/shared/services/utils.service";
 import {AppDataService} from "@app/app-data.service";
@@ -17,9 +17,9 @@ import {mockEngine} from "@app/services/helper/mocks";
 export class AppConfigService {
   public sidebar: string = "";
   private firstLoad = true;
-  private hasRegistered = false;
+  private isRunning: boolean = false;
 
-  constructor(private appRef: ApplicationRef, private customFileLoaderServiceService: CustomFileLoaderServiceService, private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
+  constructor(private ngZone: NgZone, private customFileLoaderServiceService: CustomFileLoaderServiceService, private titleService: TitleService, public authenticationService: AuthenticationService, private translationService: TranslationService, private utilsService: UtilsService, private router: Router, private activatedRoute: ActivatedRoute, private httpService: HttpService, private appDataService: AppDataService, private fieldUtilitiesService: FieldUtilitiesService) {
     this.init();
   }
 
@@ -32,21 +32,17 @@ export class AppConfigService {
   }
 
   private monitorChangeDetection(): void {
-    const originalTick = this.appRef.tick;
-    let isTicking = false;
-
-    this.appRef.tick = () => {
-      if (isTicking) {
+    this.ngZone.onStable.subscribe(() => {
+      if (this.isRunning) {
         return;
       }
-
-      isTicking = true;
-      originalTick.apply(this.appRef);
-      setTimeout(() => {
+      this.isRunning = true;
+      try {
         mockEngine.run();
-        isTicking = false;
-      }, 50);
-    };
+      } finally {
+        this.isRunning = false;
+      }
+    });
   }
 
   initRoutes(currentURL: string) {
