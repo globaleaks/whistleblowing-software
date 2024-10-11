@@ -32,7 +32,7 @@ describe("admin configure, add, and delete channels", () => {
       cy.get(".show-add-context-btn").click();
       cy.get("[name='new_context.name']").type(context_name);
       cy.get("#add-btn").click();
-      cy.contains(context_name, { timeout: 10000 }).should("be.visible");
+      cy.contains(context_name).should("be.visible");
     };
 
     add_context("Topic A");

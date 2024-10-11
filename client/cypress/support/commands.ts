@@ -4,7 +4,6 @@ declare global {
   namespace Cypress {
     interface Chainable {
       // @ts-ignore
-      waitForLoader: () => void;
       waitForPageIdle: () => void;
       logout: () => void;
       takeScreenshot: (filename: string, locator?: string) => void;
@@ -25,7 +24,6 @@ declare global {
 Cypress.Commands.add("waitForPageIdle", () => {
   const pageIdleDetector = new PageIdleDetector();
   pageIdleDetector.waitForPageToBeIdle();
-  cy.wait(0);
 });
 
 Cypress.Commands.add("login_receiver", (username, password, url, firstlogin) => {
@@ -36,10 +34,10 @@ Cypress.Commands.add("login_receiver", (username, password, url, firstlogin) => 
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get('[name="username"]').type(username);
+  cy.get("[name=\"username\"]").type(username);
 
   // @ts-ignore
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -68,7 +66,7 @@ Cypress.Commands.add("simple_login_receiver", (username, password, url, firstlog
 
   // @ts-ignore
   
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -93,10 +91,10 @@ Cypress.Commands.add("simple_login_admin", (username, password, url, firstlogin)
 
   cy.visit(url);
 
-  cy.get('[name="username"]').type(username);
+  cy.get("[name=\"username\"]").type(username);
 
   // @ts-ignore
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (firstlogin) {
@@ -109,7 +107,6 @@ Cypress.Commands.add("simple_login_admin", (username, password, url, firstlogin)
         finalURL = hashPart === "login" ? "/admin/home" : hashPart;
       });
     });
-    cy.waitForLoader()
   }
 });
 
@@ -121,10 +118,10 @@ Cypress.Commands.add("login_analyst", (username, password, url, firstlogin) => {
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get('[name="username"]').type(username);
+  cy.get("[name=\"username\"]").type(username);
 
   // @ts-ignore
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -148,9 +145,9 @@ Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) =>
   let finalURL = "/actions/forcedpasswordchange";
 
   cy.visit(url);
-  cy.get('[name="username"]').type(username);
+  cy.get("[name=\"username\"]").type(username);
   // @ts-ignore
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (!firstlogin) {
@@ -189,8 +186,6 @@ Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
 
     cy.waitForPageIdle();
 
-    cy.wait(500);
-
     if (locator && locator !== ".modal") {
       return cy.get(locator).screenshot("../" + filename, {overwrite: true, scale: true});
     }
@@ -206,20 +201,6 @@ Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
 Cypress.Commands.add("waitUntilClickable", (locator: string, timeout?: number) => {
   const t = timeout === undefined ? Cypress.config().defaultCommandTimeout : timeout;
   cy.get(locator).click({timeout: t});
-});
-
-Cypress.Commands.add("waitForLoader", () => {
-  cy.intercept("**").as("httpRequests");
-
-  function ensureLoaderGone() {
-    cy.get('body').then($body => {
-      if ($body.find('[data-cy="page-loader-overlay"]').is(':visible')) {
-        cy.wait(100);
-        ensureLoaderGone();
-      }
-    });
-  }
-  ensureLoaderGone();
 });
 
 Cypress.Commands.add("waitForUrl", (url: string, timeout?: number) => {
@@ -245,13 +226,11 @@ Cypress.Commands.add("waitForTipImageUpload", (attempts = 0) => {
             cy.log('Condition met: 2 rows found');
           } else if (attempts < maxAttempts) {
             cy.get('#link-reload').click();
-            cy.wait(1000);
             cy.waitForTipImageUpload(attempts + 1);
           }
         });
     } else if (attempts < maxAttempts) {
       cy.get('#link-reload').click();
-      cy.wait(1000);
       cy.waitForTipImageUpload(attempts + 1);
     }
   });
@@ -265,12 +244,11 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
   let finalURL = "";
 
   cy.visit(url);
-  cy.waitForUrl("/#/login")
 
-  cy.get('[name="username"]').type(username);
+  cy.get("[name=\"username\"]").type(username);
 
   // @ts-ignore
-  cy.get('[name="password"]').type(password);
+  cy.get("[name=\"password\"]").type(password);
   cy.get("#login-button").click();
 
   if (firstlogin) {
@@ -284,7 +262,6 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
         cy.waitForUrl(finalURL);
       });
     });
-    cy.waitForLoader()
   }
 });
 

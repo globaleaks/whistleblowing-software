@@ -119,7 +119,6 @@ describe("recipient admin tip actions", () => {
     cy.get('span#SearchFilter input[type="text"]').clear();
 
     cy.get('th.TipInfoID').click();
-    cy.wait(500);
     cy.get('th.TipInfoID').click();
 
     cy.get('th.TipInfoContext i.fa-solid.fa-filter').click();
@@ -146,11 +145,7 @@ describe("recipient admin tip actions", () => {
     cy.contains('.ng-option', 'Recipient2').click();
     cy.get("#modal-action-ok").click();
 
-    cy.wait(500);
-
     cy.get('#tip-action-reload').click();
-
-    cy.wait(500);
 
     cy.get('#tip-action-select-all').click();
     cy.get("#tip-action-grant-access-selected").click();

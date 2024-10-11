@@ -25,7 +25,7 @@ describe("User Perform Signup", function() {
     cy.get('input[name="mail_address"]').type("test@example.net");
     cy.get('input[name="email"]').type("test@example.net");
     cy.get(".ButtonNext").click();
-    cy.get(".title", { timeout: 10000 }).should("be.visible");
+    cy.get(".title").should("be.visible");
   });
 });
 

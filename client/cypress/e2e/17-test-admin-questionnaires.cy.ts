@@ -13,8 +13,9 @@ describe("admin add, configure and delete questionnaires", () => {
     cy.get("#add-field-btn").first().click();
 
     if (["Checkbox", "Selection box"].indexOf(question_type) === 0) {
-      cy.wait(1500)
-      cy.get('.fieldBox').should('be.visible', { timeout: 10000 }).contains('span', question_type).click();
+      cy.get('.fieldBox').should('be.visible');
+      cy.contains('span', question_type).as('questionType').should('be.visible');
+      cy.get('@questionType').click();
 
       for (let i = 0; i < 3; i++) {
         cy.get('button[name="addOption"]').click();
@@ -69,21 +70,21 @@ describe("admin add, configure and delete questionnaires", () => {
     cy.contains("Step 2").should('be.visible').click();
 
     fieldTypes.forEach((questionType: string, index: number) => {
-      cy.waitForLoader();
       add_question(questionType, index);
     });
 
-    cy.contains("Step 2").should('exist').click();
+    cy.contains("Step 2").click();
 
     cy.get('button[name="delStep"]').eq(2).click();
     cy.get("#modal-action-ok").click();
 
-    cy.contains("Questionnaire 1").should('exist').click();
+    cy.contains("Questionnaire 1").click();
 
     cy.get('button[name="deleteQuestionnaire"]').each(($button) => {
       cy.wrap($button).click();
       cy.get("#modal-action-ok").click();
     });
+
 
     cy.get('[data-cy="question_templates"]').click();
 
@@ -93,7 +94,6 @@ describe("admin add, configure and delete questionnaires", () => {
 
     cy.logout();
   });
-
   it("should import custom questionnaire file", () => {
     cy.login_admin();
 
