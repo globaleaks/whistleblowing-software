@@ -265,6 +265,7 @@ Cypress.Commands.add("login_admin", (username, password, url, firstlogin) => {
   let finalURL = "";
 
   cy.visit(url);
+  cy.waitForUrl("/#/login")
 
   cy.get('[name="username"]').type(username);
 

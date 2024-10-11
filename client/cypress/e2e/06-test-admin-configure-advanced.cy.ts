@@ -114,14 +114,20 @@ describe("admin enable scoring system", () => {
 
 describe("admin add and remove disclaimer", function () {
   it("should add disclaimer", function () {
+    cy.visit("/#/");
     cy.login_admin();
+    cy.waitForUrl("/#/admin/home")
     cy.visit("/#/admin/settings");
     cy.get('textarea[name="nodeResolver.dataModel.disclaimer_text"]').type("disclaimer_text");
     cy.get("#save_settings").click();
     cy.visit("#/");
     cy.get("#WhistleblowingButton").click();
     cy.get('#modal-action-ok').click();
+  });
+  it("should remove disclaimer", function () {
+    cy.visit("/#/");
     cy.login_admin();
+    cy.waitForUrl("/#/admin/home")
     cy.visit("/#/admin/settings");
     cy.get('textarea[name="nodeResolver.dataModel.disclaimer_text"]').clear();
     cy.get("#save_settings").click();
