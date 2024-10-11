@@ -32,8 +32,8 @@ describe("admin configure custom texts", () => {
     cy.visit("/#/admin/settings");
     cy.get('[data-cy="text_customization"]').click();
 
-    cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
-    cy.get(".deleteCustomTextButton",{ timeout: 10000 }).click();
+    cy.get(".deleteCustomTextButton").click();
+    cy.get(".deleteCustomTextButton").click();
 
     cy.logout();
 
@@ -58,6 +58,6 @@ describe("admin enable submissions", () => {
     cy.waitForUrl("/#/login");
 
     cy.visit("/#/");
-    cy.get("#WhistleblowingButton").should("be.visible", { timeout: 10000 });
+    cy.get("#WhistleblowingButton").should("be.visible");
   });
 });
