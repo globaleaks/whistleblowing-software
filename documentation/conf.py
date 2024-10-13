@@ -13,6 +13,7 @@ autodoc_default_flags = ['members', 'show-inheritance', 'undoc-members']
 
 extensions = [
   'sphinx_rtd_theme',
+  'sphinx_copybutton',
   'sphinx_sitemap'
 ]
 
