@@ -1,5 +1,5 @@
 ===============
-Security Audits
+Security audits
 ===============
 
 GlobaLeaks undergoes independent security audits periodically to verify and enhance the security of the system. This page lists the most significant reports available.

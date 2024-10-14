@@ -2,7 +2,7 @@ Requirements
 ============
 Ensure you understand and meet each of the following technical requirements.
 
-Hardware Requirements
+Hardware requirements
 ---------------------
 **Requirements**:
 
@@ -15,7 +15,7 @@ Please note that GlobaLeaks is designed to run on servers with specifications sm
 
 The storage size should be determined based on your data retention policies and the expected use of the platform.
 
-Software Requirements
+Software requirements
 ---------------------
 GlobaLeaks is designed to run on GNU/Linux and is developed and tested specifically for Debian-based systems.
 

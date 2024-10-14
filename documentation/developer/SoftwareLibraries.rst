@@ -1,4 +1,4 @@
-Software Libraries
+Software libraries
 ==================
 The software libraries used by GlobaLeaks are listed in the following files:
 

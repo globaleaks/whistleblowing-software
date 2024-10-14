@@ -1,4 +1,4 @@
-User Interface
+User interface
 ==============
 This section offers you a summary of the user interface offered to Admin users.
 
@@ -181,7 +181,7 @@ This setting should be configured in relation to the risk of the channel in orde
 
 By default a channel is configured with a report expiration of 90 days.
 
-Case Management
+Case management
 ---------------
 This section is intended to host all the main case management feature that will be offered by the software.
 Currently it hosts the possibility to define reports statuses and sub-statuses intended to be used by Recipients while working on the reports.
@@ -305,7 +305,7 @@ When the signup module is enabled the submission module of the main site is auto
 
 .. image:: ../../images/admin/signup_form.png
 
-Audit Log
+Audit log
 ---------
 The software features a privacy precerving audit log enabling administrators of the system to supervise on projects operations.
 

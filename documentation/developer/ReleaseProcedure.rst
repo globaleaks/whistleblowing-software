@@ -1,4 +1,4 @@
-Release Procedure
+Release procedure
 =================
 This is the procedure followed to publish a new GlobaLeaks release.
 
@@ -11,7 +11,7 @@ A release is represented by:
 * An updated package on deb.globaleaks.org;
 * A signed repository.
 
-Release Tagging
+Release tagging
 ===============
 To release is tagger by means of the official version bump script by issuing:
 
@@ -19,7 +19,7 @@ To release is tagger by means of the official version bump script by issuing:
 
   cd GlobaLeaks && ./scripts/bump_version.sh $version
 
-Release Packaging
+Release packaging
 =================
 The package is built by means of the official build script by issuing:
 
@@ -29,7 +29,7 @@ The package is built by means of the official build script by issuing:
 
 This command builds a package for each supported distribution and version.
 
-Package Publishing
+Package publishing
 ==================
 The package is published on https://deb.globaleaks.org by issuing:
 
@@ -37,7 +37,7 @@ The package is published on https://deb.globaleaks.org by issuing:
 
   dput globaleaks ../globaleaks_${version}_all.changes
 
-Repository Signing
+Repository signing
 ==================
 The release is then signed by a core developer by using the official project key via:
 

@@ -1,4 +1,4 @@
-Project Roadmap
+Project roadmap
 ===============
 
 .. NOTE::
@@ -12,7 +12,7 @@ Started in 2011, the software is now widely used worldwide by more than 3000 org
 
 This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2024-2026 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/whistleblowing-software/issues>`_.
 
-Development Areas
+Development areas
 -----------------
 
 Statistics and Reporting
@@ -86,7 +86,7 @@ Reference tickets:
 - https://github.com/globaleaks/whistleblowing-software/issues/2632
 - https://github.com/globaleaks/whistleblowing-software/issues/2631
 
-Multisite Users
+Multisite users
 ---------------
 (To be further researched)
 
