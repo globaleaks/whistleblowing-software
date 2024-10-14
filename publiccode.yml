@@ -231,13 +231,13 @@ description:
       - "Easy integration of the platform with existing websites and intranets"
       - "REST API"
     screenshots:
-      - documentation/images/whistleblower/home.png
-      - documentation/images/whistleblower/submission.png
-      - documentation/images/whistleblower/receipt.png
-      - documentation/images/whistleblower/report.png
-      - documentation/images/user/login.png
-      - documentation/images/recipient/reports.png
-      - documentation/images/recipient/report.png
+      - documentation/images/whistleblower/home.en.png
+      - documentation/images/whistleblower/submission.en.png
+      - documentation/images/whistleblower/receipt.en.png
+      - documentation/images/whistleblower/report.en.png
+      - documentation/images/user/login.en.png
+      - documentation/images/recipient/reports.en.png
+      - documentation/images/recipient/report.en.png
   it:
     genericName: Whistleblowing Software
     shortDescription: >-
@@ -332,13 +332,13 @@ description:
       - "Facile integrazione della piattaforma con siti web e intranet esistenti"
       - "REST API"
     screenshots:
-      - documentation/images/whistleblower/home.png
-      - documentation/images/whistleblower/submission.png
-      - documentation/images/whistleblower/receipt.png
-      - documentation/images/whistleblower/report.png
-      - documentation/images/user/login.png
-      - documentation/images/recipient/reports.png
-      - documentation/images/recipient/report.png
+      - documentation/images/whistleblower/home.it.png
+      - documentation/images/whistleblower/submission.it.png
+      - documentation/images/whistleblower/receipt.it.png
+      - documentation/images/whistleblower/report.it.png
+      - documentation/images/user/login.it.png
+      - documentation/images/recipient/reports.it.png
+      - documentation/images/recipient/report.it.png
 usedBy:
   - Agenzia per l'Italia Digitale (AgID)
   - Agenzia per la cybersicurezza nazionale (ACN)
