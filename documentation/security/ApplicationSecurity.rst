@@ -116,12 +116,13 @@ Cookies are not used intentionally to minimize XSRF attacks and any possible att
 
 HTTP headers
 ------------
-The system implements a large set of HTTP headers specifically configured to improve software security and achieves a `score A+ <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ by `Security Headers <https://securityheaders.com/>`_ and a `score A+ <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by `Mozilla Observatory <https://observatory.mozilla.org/>`_.
+The system implements a large set of HTTP headers specifically configured to improve software security and achieves a `score A+ by Security Headers <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ and a `score A+ by Mozilla Observatory <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_.
 
 Strict-Transport-Security
 +++++++++++++++++++++++++
 The system implements strict transport security by default.
 ::
+
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
 The default configuration of the application sees this feature disabled.
@@ -130,6 +131,7 @@ Content-Security-Policy
 +++++++++++++++++++++++
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with third-party resources and restricting the execution of untrusted user input:
 ::
+
   Content-Security-Policy: base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; sandbox;
 
 Specific policies are implemented in adherence to the principle of least privilege.
@@ -144,48 +146,56 @@ Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Embedder-Policy (COEP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy>`_:
 ::
+
   Cross-Origin-Embedder-Policy: require-corp
 
 Cross-Origin-Opener-Policy
 ++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Opener-Policy (COOP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy>`_:
 ::
+
   Cross-Origin-Opener-Policy: same-origin
 
 Cross-Origin-Resource-Policy
 ++++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Resource-Policy (CORP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy>`_:
 ::
+
   Cross-Origin-Resource-Policy: same-origin
 
 Permissions-Policy
 ++++++++++++++++++
 The backend implements the following Permissions-Policy header configuration to limit the possible de-anonymization of the user by disabling dangerous browser features:
 ::
+
   Permissions-Policy: camera=() display-capture=() document-domain=() fullscreen=() geolocation=() microphone=() serial=() usb=() web-share=()
 
 X-Frame-Options
 +++++++++++++++
 In addition to implementing Content Security Policy level 3 to prevent the application from being included in an iframe, the backend also implements the outdated X-Frame-Options header to ensure that iframes are always prevented in any circumstance, including on outdated browsers:
 ::
+
   X-Frame-Options: deny
 
 Referrer-Policy
 +++++++++++++++
 Web browsers usually attach referrers in their HTTP headers as they browse links. The platform enforces a referrer policy to avoid this behavior.
 ::
+
   Referrer-Policy: no-referrer
 
 X-Content-Type-Options
 ++++++++++++++++++++++
 To avoid automatic MIME type detection by the browser when setting the Content-Type for specific output, the following header is used:
 ::
+
   X-Content-Type-Options: nosniff
 
 Cache-Control
 +++++++++++++
 To prevent or limit forensic traces left on devices used by whistleblowers and in devices involved in communication with the platform, as specified in section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`__, the platform uses the ``Cache-Control`` HTTP header with the configuration ``no-store`` to instruct clients and possible network proxies to disable any form of data caching.
 ::
+
   Cache-Control: no-store
 
 Crawlers Policy
@@ -194,24 +204,28 @@ For security reasons, the backend instructs crawlers to avoid caching and indexi
 
 The implemented configuration is as follows:
 ::
+
   User-agent: *
   Allow: /$
   Disallow: *
 
 The platform also instructs crawlers to avoid caching by injecting the following HTTP header:
 ::
+
   X-Robots-Tag: noarchive
 
 For highly sensitive projects where the platform is intended to remain ``hidden`` and communicated to potential whistleblowers directly, it can be configured to disable indexing completely.
 
 In such cases, the following HTTP header is used:
 ::
+
   X-Robots-Tag: noindex
 
 Anchor tags and external urls
 -----------------------------
 The client opens external URLs in a new tab, independent of the application context, by setting ``rel='noreferrer'`` and ``target='_blank'``` on every anchor tag.
 ::
+
   <a href="url" rel="noreferrer" target="_blank">link title</a>
 
 Input validation
@@ -254,6 +268,7 @@ The configuration enables only ``TLS1.2+`` and is fine-tuned and hardened to ach
 
 In particular, only the following ciphers are enabled:
 ::
+
   TLS13-AES-256-GCM-SHA384
   TLS13-CHACHA20-POLY1305-SHA256
   TLS13-AES-128-GCM-SHA256
@@ -295,18 +310,21 @@ Secure deletion
 ---------------
 The GlobaLeaks backend enables SQLite’s secure deletion capability, which automatically overwrites the database data upon each delete query:
 ::
+
   PRAGMA secure_delete = ON
 
 Auto vacuum
 -----------
 The platform enables SQLite’s auto vacuum capability for automatic cleanup of deleted entries and recall of unused pages:
 ::
+
   PRAGMA auto_vacuum = FULL
 
 Limited database trust
 ----------------------
 The GlobaLeaks backend uses the SQLite `trusted_schema <https://www.sqlite.org/src/doc/latest/doc/trusted-schema.md>`__ pragma to limit trust in the database, mitigating risks of malicious corruption.
 ::
+
   PRAGMA trusted_schema = OFF
 
 Limited database functionalities
@@ -315,6 +333,7 @@ The GlobaLeaks backend restricts SQLite functionalities to only those necessary 
 
 This is implemented using the ```conn.set_authorizer``` API and a strict authorizer callback that authorizes only a limited set of SQL instructions:
 ::
+
   SQLITE_FUNCTION: count, lower, min, max
   SQLITE_INSERT
   SQLITE_READ
@@ -355,6 +374,7 @@ Implemented thresholds are:
 
 In case of necessity, threshold configurations can be adjusted using the `gl-admin` command as follows:
 ::
+
   gl-admin setvar threshold_reports_per_hour 1
 
 Other measures

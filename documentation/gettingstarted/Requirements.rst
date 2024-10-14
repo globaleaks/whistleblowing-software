@@ -25,7 +25,7 @@ The software lifecycle of the platform includes full support for all Debian and 
 
 Support is guaranteed on these platforms according to the official long-term support timelines:
 
-- `Release End of Life Timeline <https://wiki.debian.org/LTS>`_ as defined by Debian;
-- `Release End of Life Timeline <https://www.ubuntu.com/info/release-end-of-life>`_ as defined by Ubuntu.
+- `Debian Release End of Life Timeline <https://wiki.debian.org/LTS>`_
+- `Ubuntu Release End of Life Timeline <https://www.ubuntu.com/info/release-end-of-life>`_
 
 Currently, we do not plan to support additional distributions, as GlobaLeaks adheres to the Unix philosophy of making each program excel in a specific area. By focusing our efforts on mastering one domain, we aim to serve our community most effectively. If you are interested in helping us extend support to additional distributions, please get in touch.

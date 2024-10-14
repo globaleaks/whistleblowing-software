@@ -40,6 +40,7 @@ The security of communication concerning third-party monitoring varies based on 
    "High security", "Tor is used, and communication is encrypted end-to-end with the GlobaLeaks platform, ensuring that no third party can eavesdrop on the communication."
    "Medium security", "HTTPS is used, and communication is encrypted end-to-end with the GlobaLeaks platform. A third party capable of manipulating HTTPS security (e.g., re-issuing TLS certificates) could eavesdrop on the communication. If HTTPS security is maintained, monitoring the user's communication line or the GlobaLeaks platform's communication line is not feasible."
 
+Identity disclosure matrix
 ==========================
 Regardless of the anonymity matrix, users may choose or be required to disclose their identity.
 
