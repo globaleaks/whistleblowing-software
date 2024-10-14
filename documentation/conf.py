@@ -77,7 +77,7 @@ html_theme_options = {
 }
 
 locale_dirs = ['locale/']
-gettext_compact = False
+gettext_compact = 'sphinx'
 
 def setup(app):
     app.add_css_file("custom.css")
