@@ -118,7 +118,7 @@ HTTP headers
 ------------
 The system implements a large set of HTTP headers specifically configured to improve software security and achieves a `score A+ <https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org&followRedirects=on>`_ by `Security Headers <https://securityheaders.com/>`_ and a `score A+ <https://observatory.mozilla.org/analyze/try.globaleaks.org>`_ by `Mozilla Observatory <https://observatory.mozilla.org/>`_.
 
-Strict-transport-security
+Strict-Transport-Security
 +++++++++++++++++++++++++
 The system implements strict transport security by default.
 ::
@@ -146,7 +146,7 @@ The backend implements the following `Cross-Origin-Embedder-Policy (COEP) <https
 ::
   Cross-Origin-Embedder-Policy: require-corp
 
-Cross-origin-opener-policy
+Cross-Origin-Opener-Policy
 ++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Opener-Policy (COOP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy>`_:
 ::
@@ -422,10 +422,10 @@ Entropy sources
 ---------------
 The primary source of entropy for the platform is `/dev/urandom`.
 
-Uuidv4 randomness
+UUIDv4 randomness
 -----------------
 System resources like submissions and files are identified by UUIDv4 to make them unguessable by external users and limit potential attacks.
 
-Tls for smtp notification
+TLS for smtp notification
 -------------------------
 All notifications are sent through an SMTP channel encrypted with TLS, using either SMTP/TLS or SMTPS, depending on the configuration.

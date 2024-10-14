@@ -19,7 +19,7 @@ Tests can be run manually by issuing:
   cd GlobaLeaks/backend
   trial globaleaks
 
-E2e tests
+E2E tests
 =========
 End to end tests are implemented by means of Cypress.
 
