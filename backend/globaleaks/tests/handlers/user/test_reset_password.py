@@ -3,13 +3,13 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers import password_reset
 from globaleaks.state import State
 from globaleaks.tests import helpers
 
 
 class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = password_reset.PasswordResetHandler
+    from globaleaks.handlers.user import reset_password
+    _handler = reset_password.PasswordResetHandler
 
     @inlineCallbacks
     def test_post(self):
