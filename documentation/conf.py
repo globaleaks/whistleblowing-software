@@ -45,7 +45,7 @@ html_static_path = ['_static']
 
 html_context = {
     'description': 'GlobaLeaks is free, open souce whistleblowing software enabling anyone to easily set up and maintain a secure reporting platforms',
-    'keywords': 'globaleaks, whistleblowing, whistleblowing-software',
+    'keywords': 'globaleaks, whistleblowing, globaleaks-whistleblowing-software',
     'author': 'GlobaLeaks',
 }
 

@@ -28,7 +28,7 @@ The repository could be cloned with:
 
 .. code:: sh
 
-  git clone https://github.com/globaleaks/whistleblowing-software.git
+  git clone https://github.com/globaleaks/globaleaks-whistleblowing-software.git
 
 Client dependencies could be installed by issuing:
 

@@ -37,7 +37,7 @@ msgstr ""
 #: ../../developer/ContinuousIntegration.rst:8
 msgid ""
 "performing continous integration testing with `GitHub Actions "
-"<https://github.com/globaleaks/whistleblowing-software/actions>`_;"
+"<https://github.com/globaleaks/globaleaks-whistleblowing-software/actions>`_;"
 msgstr ""
 
 #: ../../developer/ContinuousIntegration.rst:9
@@ -307,14 +307,14 @@ msgstr ""
 #: ../../developer/SoftwareLibraries.rst:5
 msgid ""
 "Backend: `backend/requirements.txt <https://github.com/globaleaks"
-"/whistleblowing-software/blob/main/backend/requirements/requirements-"
+"/globaleaks-whistleblowing-software/blob/main/backend/requirements/requirements-"
 "bullseye.txt>`_"
 msgstr ""
 
 #: ../../developer/SoftwareLibraries.rst:6
 msgid ""
 "Client: `client/package.json <https://github.com/globaleaks"
-"/whistleblowing-software/blob/main/client/package.json>`_"
+"/globaleaks-whistleblowing-software/blob/main/client/package.json>`_"
 msgstr ""
 
 #: ../../developer/SoftwareLibraries.rst:7
@@ -934,7 +934,7 @@ msgid ""
 "find a link that enables you to provide suggestions and corrections. We "
 "remind you that in case of any software issue or bug you may always "
 "report on the `ticketing system <https://github.com/globaleaks"
-"/whistleblowing-software/issues>`_."
+"/globaleaks-whistleblowing-software/issues>`_."
 msgstr ""
 
 #: ../../roadmap/index.rst:2
@@ -946,7 +946,7 @@ msgid ""
 "This tentative roadmap is built by the GlobaLeaks team in order to try to"
 " respond to main users' needs. Please get sure that the needs of your "
 "projects and users are well represented on the project `Ticketing System "
-"<https://github.com/globaleaks/whistleblowing-software/issues>`_. If your"
+"<https://github.com/globaleaks/globaleaks-whistleblowing-software/issues>`_. If your"
 " organization could fund the development of parts of this roadmap please "
 "write us at info@globaleaks.org"
 msgstr ""
@@ -976,7 +976,7 @@ msgid ""
 "represents the actual tentative readmap of consolidation planned for "
 "2024-2026 based on the analysis of the large set of user needs collected "
 "within the official `Ticketing System <https://github.com/globaleaks"
-"/whistleblowing-software/issues>`_."
+"/globaleaks-whistleblowing-software/issues>`_."
 msgstr ""
 
 #: ../../roadmap/index.rst:16
@@ -1039,11 +1039,11 @@ msgid "Reference tickets:"
 msgstr ""
 
 #: ../../roadmap/index.rst:34
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/1959"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/1959"
 msgstr ""
 
 #: ../../roadmap/index.rst:35
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2254"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2254"
 msgstr ""
 
 #: ../../roadmap/index.rst:39
@@ -1068,15 +1068,15 @@ msgid ""
 msgstr ""
 
 #: ../../roadmap/index.rst:49
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2579"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2579"
 msgstr ""
 
 #: ../../roadmap/index.rst:50
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2580"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2580"
 msgstr ""
 
 #: ../../roadmap/index.rst:51
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2651"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2651"
 msgstr ""
 
 #: ../../roadmap/index.rst:54
@@ -1098,27 +1098,27 @@ msgid ""
 msgstr ""
 
 #: ../../roadmap/index.rst:60
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2145"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2145"
 msgstr ""
 
 #: ../../roadmap/index.rst:61
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2658"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2658"
 msgstr ""
 
 #: ../../roadmap/index.rst:62
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2866"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2866"
 msgstr ""
 
 #: ../../roadmap/index.rst:63
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2767"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2767"
 msgstr ""
 
 #: ../../roadmap/index.rst:64
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/3011"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/3011"
 msgstr ""
 
 #: ../../roadmap/index.rst:65
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/3012"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/3012"
 msgstr ""
 
 #: ../../roadmap/index.rst:68
@@ -1137,11 +1137,11 @@ msgid ""
 msgstr ""
 
 #: ../../roadmap/index.rst:73
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/528"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/528"
 msgstr ""
 
 #: ../../roadmap/index.rst:74
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2149"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2149"
 msgstr ""
 
 #: ../../roadmap/index.rst:77
@@ -1168,11 +1168,11 @@ msgid ""
 msgstr ""
 
 #: ../../roadmap/index.rst:86
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2632"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2632"
 msgstr ""
 
 #: ../../roadmap/index.rst:87
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2631"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2631"
 msgstr ""
 
 #: ../../roadmap/index.rst:90
@@ -1204,7 +1204,7 @@ msgid "References tickets:"
 msgstr ""
 
 #: ../../roadmap/index.rst:100
-msgid "https://github.com/globaleaks/whistleblowing-software/issues/2302"
+msgid "https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2302"
 msgstr ""
 
 #: ../../security/ApplicationSecurity.rst:3
@@ -3972,7 +3972,7 @@ msgstr ""
 #: ../../user/admin/TroubleShooting.rst:12
 msgid ""
 "Report the issue on the official software issue tracker: `GlobaLeaks "
-"Issues <https://github.com/globaleaks/whistleblowing-software/issues>`_"
+"Issues <https://github.com/globaleaks/globaleaks-whistleblowing-software/issues>`_"
 msgstr ""
 
 #: ../../user/admin/TroubleShooting.rst:15
