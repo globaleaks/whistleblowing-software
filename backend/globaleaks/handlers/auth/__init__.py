@@ -132,6 +132,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
         State.totp_verify(user.two_factor_secret, authcode)
 
+    crypto_prv_key = ''
     user_key = GCE.derive_key(password.encode(), user.salt)
     if user.crypto_prv_key:
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
