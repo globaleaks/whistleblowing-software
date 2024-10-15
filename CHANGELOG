@@ -1,3 +1,6 @@
+Changes in version 5.0.17
+    Fix logins exceptions on systems still apparently not implementing encryption introduced in 5.0.16
+
 Changes in version 5.0.16
     Remove the content-language header from the http headers preferring to dynamically set the language in HTML
     Revise UI Mock implementation
