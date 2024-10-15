@@ -21,7 +21,7 @@ User features
 - Enables creation and management of multiple whistleblowing sites (e.g., for subsidiaries or third-party clients)
 - Advanced questionnaire builder
 - Provides whistleblowing system statistics
-- Support for `over 90 languages <https://www.transifex.com/otf/globaleaks>`_ and Right-to-Left (RTL) languages
+- Support for `over 50 languages <https://www.transifex.com/otf/globaleaks>`_ and Right-to-Left (RTL) languages
 
 Legal features
 --------------

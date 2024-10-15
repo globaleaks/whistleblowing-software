@@ -6,10 +6,6 @@ Project roadmap
 
 Introduction
 ------------
-`GlobaLeaks <https://www.globaleaks.org>`_ is free, open source software enabling anyone to easily set up and maintain a secure whistleblowing platform.
-
-Started in 2011, the software is now widely used worldwide by more than 3000 organizations working in the fields of anti-corruption activism, human rights violations reporting, investigative journalism, and corporate compliance.
-
 This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2024-2026 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/whistleblowing-software/issues>`_.
 
 Development areas
