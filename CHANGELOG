@@ -1,8 +1,19 @@
+Changes in version 5.0.16
+    Remove the content-language header from the http headers preferring to dynamically set the language in HTML
+    Revise UI Mock implementation
+    Revise implementation of pagination interface improving accessibility and internationalization
+    Bump client dependencies to latest version
+    Add Greenlandic translation
+    Update translations
+    Revise fix for #4228
+    [doc] Enable generation of documentation in ar, it, fr, es, ru, zu-cn
+          These languages now features texts in english but translated images
+
 Changes in version 5.0.15
     Fix correct redirection after login
 
 Changes in version 5.0.14
-    Reiplement 'public' on each whistlebler's page
+    Reiplement 'public' class on each whistleblower's page
 
 Changes in version 5.0.13
     Fix issue #4228
