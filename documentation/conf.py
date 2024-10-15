@@ -7,10 +7,9 @@ import gettext
 import os
 import sys
 
-from globaleaks import __author__,  __copyright__, __version__
-
-
 sys.path.insert(0, os.path.abspath('../backend'))
+
+from globaleaks import __author__,  __copyright__, __version__
 
 autodoc_member_order = 'bysource'
 autodoc_default_flags = ['members', 'show-inheritance', 'undoc-members']
