@@ -61,7 +61,6 @@
         "ngx-clipboard": "16.0.0",
         "ngx-markdown": "18.1.0",
         "rxjs": "7.8.1",
-        "typescript": "5.6.2",
         "zone.js": "0.15.0"
       },
       "devDependencies": {
@@ -96,6 +95,7 @@
         "stylelint-config-standard": "36.0.1",
         "superagent": "10.1.0",
         "ts-node": "10.9.2",
+        "typescript": "5.5.4",
         "typescript-eslint": "8.9.0",
         "webpack-dev-server": "5.1.0"
       }
@@ -19402,9 +19402,10 @@
       }
     },
     "node_modules/typescript": {
-      "version": "5.6.2",
-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.6.2.tgz",
-      "integrity": "sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==",
+      "version": "5.5.4",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz",
+      "integrity": "sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==",
+      "dev": true,
       "license": "Apache-2.0",
       "bin": {
         "tsc": "bin/tsc",
