@@ -1,12 +1,12 @@
 {
   "name": "globaleaks",
-  "version": "5.0.16",
+  "version": "5.0.17",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "globaleaks",
-      "version": "5.0.16",
+      "version": "5.0.17",
       "dependencies": {
         "@angular/animations": "18.2.8",
         "@angular/common": "18.2.8",
