@@ -308,20 +308,19 @@ export class UtilsService {
   }
 
   searchInObject(obj: any, searchTerm: string) {
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        const value = obj[key];
+    try {
+        // Convert object to a string
+        const objString = JSON.stringify(obj);
 
-        if (typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return true;
-        } else if (typeof value === 'object') {
-          if (this.searchInObject(value, searchTerm)) {
-            return true;
-          }
-        }
-      }
+        // Create a regular expression for the search term with 'i' flag for case-insensitive search
+        const regex = new RegExp(searchTerm, 'i');
+
+        // Test if the search term is found in the object string
+        return regex.test(objString);
+    } catch (error) {
+        // Return false in case of any exception (e.g., cyclic reference or BigInt error)
+        return false;
     }
-    return false;
   }
 
   isDatePassed(time: string) {
