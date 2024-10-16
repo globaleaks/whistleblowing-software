@@ -253,7 +253,7 @@ export class TipComponent implements OnInit {
         for (const y of x.substatuses) {
           output.push({
             id: `${x.id}:${y.id}`,
-            label: this.translateService.instant(x.label) + ' \u2013 ' + y.label,
+            label: (x.label ? this.translateService.instant(x.label) : '') + ' \u2013 ' + y.label,
             status: x.id,
             substatus: y.id,
             order: output.length,
