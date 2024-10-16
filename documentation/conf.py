@@ -34,18 +34,14 @@ release = __version__
 
 language = 'en'
 locale_dirs = ['locale/']
+locale_dir = os.path.join(os.path.dirname(__file__), locale_dirs[0])
+gettext.bindtextdomain('sphinx', locale_dir)
+gettext.textdomain('sphinx')
 gettext_compact = 'sphinx'
 
 exclude_patterns = ['_build']
 show_authors = False
 pygments_style = 'sphinx'
-
-# Get the translation of the title of the document
-locale_dir = os.path.join(os.path.dirname(__file__), 'locale')
-gettext.bindtextdomain('sphinx', locale_dir)
-gettext.textdomain('sphinx')
-translation = gettext.translation('sphinx', localedir=locale_dir, languages=[language], fallback=True)
-document_title = translation.gettext('Documentation')
 
 html_theme = 'sphinx_rtd_theme'
 html_logo = 'logo-html.png'
@@ -67,9 +63,7 @@ latex_elements = {
   OuterLinkColor={HTML}{377abc}',
 }
 
-latex_documents = [
-(master_doc, 'GlobaLeaks.tex', document_title, '', 'manual'),
-]
+latex_documents = []
 
 latex_logo = 'logo-latex.png'
 
@@ -89,5 +83,9 @@ html_theme_options = {
 }
 
 def setup(app):
+    translation = gettext.translation('sphinx', localedir=locale_dir, languages=[app.config.language], fallback=True)
+    document_title = translation.gettext('Documentation')
+    app.config.latex_documents = [(master_doc, 'GlobaLeaks.tex', document_title, '', 'manual'),]
+
     app.add_css_file("custom.css")
     app.add_js_file("custom.js")
