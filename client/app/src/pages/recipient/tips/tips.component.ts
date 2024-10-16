@@ -428,6 +428,6 @@ export class TipsComponent implements OnInit {
       'Number of Files',
       'Subscription',
       'Number of Recipients'
-    ].map(header => this.translateService.instant(header));
+    ].map(header => header ? this.translateService.instant(header) : '');
   }
 }

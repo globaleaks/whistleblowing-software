@@ -292,7 +292,7 @@ export class UtilsService {
     let text;
     for (let i = 0; i < submission_statuses.length; i++) {
       if (submission_statuses[i].id === status) {
-        text = this.translateService.instant(submission_statuses[i].label);
+        text = this.translateService.instant(submission_statuses[i].label ? submission_statuses[i].label : '');
 
         const subStatus = submission_statuses[i].substatuses;
         for (let j = 0; j < subStatus.length; j++) {
