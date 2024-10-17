@@ -4,6 +4,8 @@ module.exports = function(grunt) {
       superagent = require("superagent"),
       Gettext = require("node-gettext");
 
+  require('load-grunt-tasks')(grunt);
+
   async function loadGettextParser() {
     return await import('gettext-parser');
   }
@@ -305,12 +307,6 @@ module.exports = function(grunt) {
       }
     },
   });
-
-  grunt.loadNpmTasks("grunt-confirm");
-  grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-shell");
-  grunt.loadNpmTasks("grunt-string-replace");
 
   let readNoTranslateStrings = function() {
     return JSON.parse(grunt.file.read("app/assets/data_src/notranslate_strings.json"));
