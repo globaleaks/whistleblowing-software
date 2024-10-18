@@ -15,18 +15,24 @@
 
 a,
 a:hover,
-a:active,
 .nav-link-custom,
 a:focus {
-  color: #205282;
+  color: #103253;
   outline: 0;
   font-weight: bold;
   text-decoration: none;
 }
 
-a:hover,
+a:hover {
+  color: #3679BB;
+}
+
 .onion-address {
   color: #5797d5;
+}
+
+.onion-address:hover {
+  color: #9FC9F1;
 }
 
 #FooterBox {
@@ -150,7 +156,7 @@ table tr td {
 
 
 .filter-selected {
-  color: #377abc;
+  color: #3679BB;
 }
 
 .full button {
@@ -209,21 +215,15 @@ h6 {
 }
 
 .nav-link {
-  color: #205282;
+  color: #103253;
   font-weight: bold;
 }
 
-.nav-link:hover {
-  color: #103253;
-}
-
-.nav-item.active .nav-link {
-  color: #103253;
-}
-
-.nav-tabs .nav-item.show .nav-link,
+.nav-link .nav-item.active,
+.nav-link:hover,
+.nav-tabs .nav-item.show,
 .nav-tabs .nav-link.active {
-  color: #103253;
+  color: #3679BB;
 }
 
 .table thead th {
@@ -298,8 +298,12 @@ h6 {
 }
 
 .btn-link {
-  color: #205282;
+  color: #103253;
   text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #3679BB;
 }
 
 .context-image,
@@ -709,8 +713,8 @@ p:last-child {
 
 .step-index-selected {
   color: #fff;
-  background-color: #377abc;
-  border-color: #377abc;
+  background-color: #3679BB;
+  border-color: #3679BB;
 }
 
 #SubmissionErrors {
@@ -906,11 +910,11 @@ input[type="email"] {
 .input-group-append span {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border-color: #c8d1e0;
+  border-color: #C8D1E0;
 }
 
 .calendar-active {
-  color: #377abc;
+  color: #3679BB;
 }
 
 .receipt-input {
