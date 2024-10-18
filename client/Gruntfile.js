@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         files: [
           {dest: "tmp/", cwd: "dist", src: ["**"], expand: true},
           {dest: "tmp/css/", cwd: "dist", src: ["fonts.css*"], expand: true, flatten: true},
-          {dest: "tmp/css/", cwd: "dist", src: ["styles-*"], expand: true, flatten: true},
+          {dest: "tmp/css/", cwd: "dist", src: ["styles.css*"], expand: true, flatten: true},
           {dest: "tmp/js/", cwd: "dist", src: ["main.js*"], expand: true, flatten: true},
           {dest: "tmp/js/", cwd: "dist", src: ["polyfills.js*"], expand: true, flatten: true},
           {dest: "tmp/js/", cwd: "dist", src: ["runtime.js*"], expand: true, flatten: true},
@@ -140,6 +140,18 @@ module.exports = function(grunt) {
           input: "_key:y"
         }
       }
+    },
+
+    postcss: {
+      build_css_with_ltr_rtl_combined: {
+        options: {
+          processors: [
+            require('postcss-rtlcss')()
+          ]
+        },
+        src: 'tmp/css/styles.css',
+        dest: 'tmp/css/styles.css'
+      },
     },
 
     shell: {
@@ -765,8 +777,8 @@ module.exports = function(grunt) {
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
-  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
  
-  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
 };
 

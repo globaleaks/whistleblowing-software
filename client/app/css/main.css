@@ -656,12 +656,8 @@ p:last-child {
   background-color: #f2dede;
 }
 
-[dir="ltr"] .select-card  {
+.select-card  {
   text-align: left;
-}
-
-[dir="rtl"] .select-card  {
-  text-align: right;
 }
 
 .field-answer-entry {
@@ -872,12 +868,8 @@ text.axis-worktime {
   opacity: 1;
 }
 
-[dir="ltr"] .image-upload .change-picture-button {
+.image-upload .change-picture-button {
   left: 1rem;
-}
-
-[dir="rtl"] .image-upload .change-picture-button {
-  right: 1rem;
 }
 
 .tip-action-open {
@@ -901,9 +893,11 @@ text.axis-worktime {
 }
 
 input[type="email"] {
+  /* rtl:ignore */
   direction: ltr;
 }
 
+/* rtl:ignore */
 [dir="rtl"] .fa,
 [dir="rtl"] .fa-solid {
   transform: scaleX(-1);
@@ -957,7 +951,7 @@ input[type="email"] {
   box-shadow: none;
 }
 
-[dir] [role='button'] {
+[role='button'] {
   cursor: pointer;
 }
 
@@ -965,15 +959,9 @@ input[type="email"] {
   cursor: pointer;
 }
 
-[dir="ltr"] #Sidebar .fa,
-[dir="ltr"] #Sidebar .fa-solid {
+#Sidebar .fa,
+#Sidebar .fa-solid {
   margin-right: 0.6em;
-  width: 16px;
-}
-
-[dir="rtl"] #Sidebar .fa,
-[dir="rtl"] #Sidebar .fa-solid {
-  margin-left: 0.6em;
   width: 16px;
 }
 
