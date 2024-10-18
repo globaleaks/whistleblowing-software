@@ -144,10 +144,10 @@ module.exports = function(grunt) {
 
     shell: {
       npx_build: {
-        command: "npx ng build --configuration=production --aot --source-map"
+        command: "npx ng build --configuration=production --aot"
       },
       npx_build_and_instrument: {
-        command: "npx ng build --configuration=testing --source-map && nyc instrument dist instrument"
+        command: "npx ng build --configuration=testing && nyc instrument dist instrument"
       },
       serve: {
         command: "ng serve --proxy-config proxy.conf.json"

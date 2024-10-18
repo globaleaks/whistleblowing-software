@@ -100,8 +100,10 @@
           },
           "configurations": {
             "production": {
-              "extractLicenses": false,
+              "optimization": true,
               "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
               "customWebpackConfig": {
                 "path": "./webpack/build.config.ts"
               }
@@ -116,6 +118,7 @@
             "testing": {
               "extractLicenses": false,
               "vendorChunk": true,
+              "sourceMap": true,
               "customWebpackConfig": {
                 "path": "./webpack/test.config.ts"
               },
