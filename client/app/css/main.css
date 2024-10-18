@@ -148,50 +148,12 @@ table tr td {
   vertical-align: middle;
 }
 
-.uib-datepicker-popup {
-  padding: 5px;
-  margin: 0;
-}
-
-.uib-datepicker {
-  padding: 5px;
-}
-
-.uib-button-bar>.btn-group>.btn-info {
-  display: none;
-}
-
-.uib-button-bar>.btn-success {
-  display: none;
-}
-
-.uib-datepicker th,
-.uib-datepicker td {
-  white-space: nowrap;
-  min-width: 0;
-  padding: 2px;
-}
 
 .filter-selected {
   color: #377abc;
 }
 
-.uib-datepicker button {
-  background: #fff;
-  color: grey;
-}
-
 .full button {
-  background: #dde3ed;
-  color: #2866a2;
-}
-
-.uib-datepicker button:active {
-  background: #dde3ed;
-  color: #2866a2;
-}
-
-.uib-datepicker button:hover {
   background: #dde3ed;
   color: #2866a2;
 }
@@ -1147,4 +1109,32 @@ i.fa-solid.fa-chevron-right {
 @keyframes gly-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(359deg); }
+}
+
+body .dropdown-visible > div.multiselect-dropdown > div.dropdown-list {
+  display: block !important;
+  margin-top: 0;
+}
+
+body .dropdown-visible > div.multiselect-dropdown > div > span.dropdown-btn {
+  display: none !important;
+}
+
+.multiselect-dropdown > .dropdown-list {
+  min-width: 200px;
+  border-radius: 5px !important;
+}
+
+.ngb-datepicker-container-inner {
+  box-shadow: 0 0 10px #b3b3b3;
+  border-radius: 6px !important;
+  background: white;
+  padding: 5px 5px 53px;
+}
+
+.tenant-badge a.badge.bg-primary:hover,
+.tenant-badge a.badge.bg-primary:active,
+.tenant-badge a.badge.bg-primary:focus {
+  color: #fff !important;
+  background: #66b0ff !important;
 }
