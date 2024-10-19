@@ -11,7 +11,7 @@ This document details the main areas of research development and represents the 
 Development areas
 -----------------
 
-Statistics and Reporting
+Statistics and reporting
 ........................
 GlobaLeaks still misses the implementation for any generation of statistics and reports. Such features are considered fundamental in order to properly support users in analysis, investigation and reporting.
 
@@ -31,7 +31,7 @@ Reference tickets:
 - https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/2254
 
 
-Audit Log
+Audit log
 .........
 GlobaLeaks still misses the implementation of a complete audit logit. This is considered a fundamental feature in order to achieve full accontability of the whistleblowing process and increase security.
 
@@ -60,7 +60,7 @@ Reference tickets:
 - https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/3011
 - https://github.com/globaleaks/globaleaks-whistleblowing-software/issues/3012
 
-Backup and Restore
+Backup and restore
 ..................
 GlobaLeaks currently misses any feature for performing backup and restoring of its setup. These duties are currently performed by its users following typical best manual practices (e.g. archiving the data directory of the application). This project idea is to research the best practices to be applied in this context and to identify suitable strategies for implementing periodic, secure and encrypted backups to be restored upon necessity.
 
@@ -71,7 +71,7 @@ Reference tickets:
 
 Multitenancy
 ............
-Import and Export of Tenants
+Import and export of tenants
 ............................
 Part of the software is a recent feature of Multitenancy, first implemented in 2018 and stabilized during 2019. Through this feature, GlobaLeaks makes it possible to create multiple setups of itself via virtual sites (similarly to Wordpress multisite feature).
 In order to make it more easy for an administrator to migrate a platform form a system to an other or to enable users to require data portability from a globaleaks provider to an other, for example in relation to GDPR it has been evaluated necessary to improve the multi tenancy implementation by implementing support for import-export of tenants.

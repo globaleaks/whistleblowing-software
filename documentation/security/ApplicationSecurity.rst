@@ -198,7 +198,7 @@ To prevent or limit forensic traces left on devices used by whistleblowers and i
 
   Cache-Control: no-store
 
-Crawlers Policy
+Crawlers policy
 ---------------
 For security reasons, the backend instructs crawlers to avoid caching and indexing of the application and uses the ``robots.txt`` file to allow crawling only of the home page. Indexing the home page is considered best practice to promote the platform's existence and facilitate access for potential whistleblowers.
 

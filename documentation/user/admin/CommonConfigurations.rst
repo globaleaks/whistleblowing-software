@@ -53,7 +53,7 @@ You can have one or multiple Recipients per Context, and also have one Recipient
 
 Customize the graphic layout
 ----------------------------
-Example 1: Custom Background
+Example 1: custom background
 ............................
 This CSS example shows how to customize the Background Color of the application.
 
@@ -64,7 +64,7 @@ This CSS example shows how to customize the Background Color of the application.
       background-color: blue;
    }
 
-Example 2: Custom Font
+Example 2: custom font
 ......................
 This CSS example shows how to customize the font of the application.
 
