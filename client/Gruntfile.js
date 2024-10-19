@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 
     "string-replace": {
       pass1: {
-        src: "./tmp/css/fonts.css",
+        src: "./tmp/css/styles.css",
         dest: "./tmp/css/",
         options: {
           replacements: [
@@ -95,12 +95,6 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /url\(noto/gi,
-              replacement: function () {
-                return "url(../fonts/noto";
-              }
-            },
-            {
               pattern: /url\(inter/gi,
               replacement: function () {
                 return "url(../fonts/inter";
@@ -111,6 +105,21 @@ module.exports = function(grunt) {
       },
 
       pass2: {
+        src: "./tmp/css/fonts.css",
+        dest: "./tmp/css/",
+        options: {
+          replacements: [
+            {
+              pattern: /url\(noto/gi,
+              replacement: function () {
+                return "url(../fonts/noto";
+              }
+            }
+          ]
+        }
+      },
+
+      pass3: {
         files: {
           "tmp/index.html": "tmp/index.html"
         },
