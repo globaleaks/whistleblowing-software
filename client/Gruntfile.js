@@ -83,15 +83,9 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: /'fa-solid-/gi,
+              pattern: /url\(fa/gi,
               replacement: function () {
-                return "'../fonts/fa-solid-";
-              }
-            },
-            {
-              pattern: /url\(fa-/gi,
-              replacement: function () {
-                return "url(../fonts/fa-";
+                return "url(../fonts/fa";
               }
             },
             {

@@ -43,6 +43,7 @@ import {TranslationService} from "@app/services/helper/translation.service";
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import {CustomDatepickerI18n} from '@app/shared/services/custom-datepicker-i18n';
 import {registerLocales} from '@app/services/helper/locale-provider';
+import {ResourceLoaderService} from '@app/services/helper/resource-loader.service';
 
 // Register all the locales
 registerLocales();
@@ -139,8 +140,9 @@ const translationModule = TranslateModule.forRoot({
 })
 export class AppModule implements OnDestroy {
 
-  constructor(private cryptoService:CryptoService, private authenticationService: AuthenticationService, private idle: Idle, private keepalive: Keepalive, private httpService: HttpService) {
+  constructor(private cryptoService:CryptoService, private authenticationService: AuthenticationService, private idle: Idle, private keepalive: Keepalive, private httpService: HttpService, private resourceLoader: ResourceLoaderService) {
     this.initIdleState();
+    this.loadNonCriticalResources();
   }
 
   @HostListener("window:beforeunload")
@@ -178,6 +180,12 @@ export class AppModule implements OnDestroy {
     });
 
     this.reset();
+  }
+
+  // Method to load non-critical resources dynamically
+  loadNonCriticalResources() {
+    // Load CSS file dynamically
+    this.resourceLoader.loadStyle('/css/fonts.css');
   }
 
   reset() {
