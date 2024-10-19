@@ -136,6 +136,10 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
 
 @transact
 def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
+    log_data = {
+        'recipient_id': receiver_id
+    }
+
     user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
@@ -143,17 +147,21 @@ def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     new_receiver, _ = db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
     if new_receiver:
         db_notify_grant_access(session, new_receiver)
-        db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
+        db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
 def revoke_tip_access(session, tid, user_id, itip_id, receiver_id):
+    log_data = {
+        'recipient_id': receiver_id
+    }
+
     user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
     if db_revoke_tip_access(session, tid, user, itip, receiver_id):
-        db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
+        db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
