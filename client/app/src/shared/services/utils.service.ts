@@ -709,12 +709,21 @@ export class UtilsService {
 
     const headers = Object.keys(data[0] || {});
     const newHeader = headerx.join(',');
-    const csvContent = `${newHeader ? `${newHeader}\n` : ""}${data.map(row => headers.map(header => row[header]).join(',')).join('\n')}`;
 
-    if (!csvContent.trim()) {
-      console.warn('No data to export');
-      return;
-    }
+    // Create CSV content with custom headers and stringified objects
+    const csvContent = [
+      headers.join(','), // First line: headers
+      ...data.map(row => headers.map(header => {
+        const value = row[header];
+
+        // Check if the value is an object or an array and stringify it
+        if (typeof value === 'object' && value !== null) {
+          return `"${JSON.stringify(value).replace(/"/g, '""')}"`; // Escape quotes and stringify
+        }
+
+        return `"${value !== undefined ? String(value).replace(/"/g, '""') : ''}"`; // Escape quotes for normal strings
+      }).join(','))
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const link = document.createElement('a');
