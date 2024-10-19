@@ -1,7 +1,7 @@
 <div [hidden]="preferences.dataModel && (preferences.dataModel.password_change_needed || preferences.dataModel.require_two_factor)" class="d-flex justify-content-end">
 	<div id="LanguagePickerBox" *ngIf="appDataService.public.node.languages_enabled.length > 1" class="order-2" [ngClass]="appDataService.public.node.wizard_done ? 'language-box' : 'language-box-extended'">
         <label for="language-picker-select" class="visually-hidden">{{'Select your language' | translate}}</label>
-        <ng-select id="language-picker-select" [clearable]="false" (change)="onChangeLanguage();" [(ngModel)]="translationService.language">
+        <ng-select labelForId="language-picker-select" [clearable]="false" (change)="onChangeLanguage();" [(ngModel)]="translationService.language">
             <ng-option *ngFor="let lang of appDataService.languages_enabled_selector | orderBy: 'native'" [value]="lang.code">
                 <span [attr.data-cy]="lang.code">{{lang.native}}</span>
             </ng-option>
