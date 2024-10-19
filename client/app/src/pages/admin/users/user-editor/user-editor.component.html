@@ -11,7 +11,7 @@
                 </ng-container>
             </span>
             <span class="badge bg-secondary" *ngIf="!user.enabled">{{ 'Disabled' | translate }}</span>
-            <span class="badge bg-default text-dark" *ngIf="nodeData.encryption && !user.encryption" data-toggle="tooltip" title="{{'This user has not performed the first login yet.' | translate}}">
+            <span class="badge bg-default text-dark" *ngIf="nodeData.encryption && !user.encryption" title="{{'This user has not performed the first login yet.' | translate}}">
                 <i class="fa-solid fa-exclamation-circle"></i>
             </span>
         </span>

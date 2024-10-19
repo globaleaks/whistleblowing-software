@@ -5,7 +5,7 @@
                 <div class="float-start">
                     <span class="input-group ms-1">
                         <input id="assignLabelInput" type="text" class="form-control m-0" placeholder="{{'Label' | translate}}" [(ngModel)]="tipService.tip.label" />
-                        <span class="input-group-append" data-toggle="tooltip" title="{{'Label the report' | translate}} ">
+                        <span class="input-group-append" title="{{'Label the report' | translate}} ">
                             <button id="assignLabelButton" class="btn btn-primary rounded-start-0 m-0" name="tip.label" (click)="updateLabel(tipService.tip.label)">
                                 <i class="fa-solid fa-tag"></i>
                             </button>
@@ -91,8 +91,8 @@
                         <i *ngIf="utilsService.isNever(tipService.tip.reminder_date)" class="fa-solid fa-minus"></i>
                     </td>
                     <td class="TipInfoLastAccess" *ngIf="authenticationService.session?.role === 'receiver'">
-                        <i *ngIf="tipService.tip.last_access >= tipService.tip.update_date" class="fa-solid fa-check" data-toggle="tooltip" title="{{'The whistleblower has already read the last update' | translate}} ({{tipService.tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-                        <i *ngIf="tipService.tip.last_access < tipService.tip.update_date" class="fa-solid fa-times" data-toggle="tooltip" title="{{'The whistleblower has not read the last update yet' | translate}}">
+                        <i *ngIf="tipService.tip.last_access >= tipService.tip.update_date" class="fa-solid fa-check" title="{{'The whistleblower has already read the last update' | translate}} ({{tipService.tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+                        <i *ngIf="tipService.tip.last_access < tipService.tip.update_date" class="fa-solid fa-times" title="{{'The whistleblower has not read the last update yet' | translate}}">
                         </i>
                     </td>
                     <td class="TipInfoConnection" *ngIf="authenticationService.session?.role === 'receiver'">

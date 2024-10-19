@@ -19,7 +19,7 @@
         <ol class="selection-list">
             <li *ngFor="let user of arg.trigger_receiver; let i = index">
                 <span class="action-btns">
-                    <span (click)="removeReceiver(i)" data-toggle="tooltip" title="{{'Remove' | translate}}">
+                    <span (click)="removeReceiver(i)" title="{{'Remove' | translate}}">
                         <i class="fa-solid fa-times"></i>
                     </span>
                 </span>

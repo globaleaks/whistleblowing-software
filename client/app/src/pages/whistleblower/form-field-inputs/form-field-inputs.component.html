@@ -1,8 +1,8 @@
 <div *ngIf="(['checkbox', 'fieldgroup', 'multichoice'].indexOf(field.type) === -1) && (['whistleblower_identity'].indexOf(field.template_id) === -1)" id="{{fieldId}}" class="question">
-    <label class="question-label" data-content="field.hint" data-toggle="tooltip" [title]="field.hint" for="{{fieldId + '-input-' + 0}}">
+    <label class="question-label" data-content="field.hint" [title]="field.hint" for="{{fieldId + '-input-' + 0}}">
         <span *ngIf="field.label" class="title">{{field.label|translate}}</span>
         <i *ngIf="field.hint" class="fa-solid fa-question-circle"></i>
-        <span *ngIf="field.required" class="text-danger sup" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
+        <span *ngIf="field.required" class="text-danger sup" title="{{'This field is mandatory' | translate}}">*</span>
     </label>
     <div class="question-body">
         <markdown *ngIf="field.description" class="description" [data]="field.description | stripHtml"></markdown>
@@ -15,7 +15,7 @@
                         </label>
                     </span>
                     <span class="float-end">
-                        <span class="text-danger" data-toggle="tooltip" title="{{'Remove' | translate}}" [attr.aria-label]="'Remove' | translate" (click)="utilsService.deleteFromList(entries, entry)">
+                        <span class="text-danger" title="{{'Remove' | translate}}" [attr.aria-label]="'Remove' | translate" (click)="utilsService.deleteFromList(entries, entry)">
                             <i class="fa-solid fa-times"></i>
                         </span>
                     </span>
@@ -33,7 +33,7 @@
 <fieldset *ngIf="(['checkbox', 'fieldgroup', 'multichoice'].indexOf(field.type) !== -1) || (['whistleblower_identity'].indexOf(field.template_id) !== -1)" id="{{fieldId}}" class="question">
     <legend *ngIf="field.label" class="title">{{field.label|translate}}</legend>
     <i *ngIf="field.hint" class="fa-solid fa-question-circle"></i>
-    <span *ngIf="field.required" class="text-danger sup" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
+    <span *ngIf="field.required" class="text-danger sup" title="{{'This field is mandatory' | translate}}">*</span>
     <div class="question-body">
         <markdown *ngIf="field.description" class="description" [data]="field.description | stripHtml"></markdown>
         <div class="form-group">
@@ -45,7 +45,7 @@
                         </label>
                     </span>
                     <span class="float-end">
-                        <span class="text-danger" data-toggle="tooltip" title="{{'Remove' | translate}}" [attr.aria-label]="'Remove' | translate" (click)="utilsService.deleteFromList(entries, entry)">
+                        <span class="text-danger" title="{{'Remove' | translate}}" [attr.aria-label]="'Remove' | translate" (click)="utilsService.deleteFromList(entries, entry)">
                             <i class="fa-solid fa-times"></i>
                         </span>
                     </span>

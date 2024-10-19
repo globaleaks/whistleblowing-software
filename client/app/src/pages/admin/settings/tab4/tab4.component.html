@@ -42,7 +42,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of customTextsKeys()" [ngClass]="{'bg-danger': !default_texts[item.key]}" data-toggle="tooltip" title="{{!default_texts[item.key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate}}">
+                <tr *ngFor="let item of customTextsKeys()" [ngClass]="{'bg-danger': !default_texts[item.key]}" title="{{!default_texts[item.key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate}}">
                     <td class="preformatted">{{ item.key }}</td>
                     <td class="preformatted">{{ default_texts[item.key] }}</td>
                     <td class="clearfix">

@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label>
                     <span>{{'Name'|translate}}</span>
-                    <span class="text-danger" data-toggle="tooltip" title="{{'This field is mandatory' | translate}}">*</span>
+                    <span class="text-danger" title="{{'This field is mandatory' | translate}}">*</span>
                 </label>
                 <div>
                     <input name="newTenant.name" class="form-control" [(ngModel)]="newTenant.name" maxlength="120" type="text" required />
@@ -51,10 +51,10 @@
         </div>
         <div class="text-center" *ngIf="(tenants | filter:'name':search).length > 10">
             <ngb-pagination dir="ltr" class="d-flex justify-content-center" [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="(tenants | filter:'name':search).length">
-                <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" title="{{'First' | translate}}"></i></ng-template>
-                <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" data-toggle="tooltip" title="{{'Previous' | translate}}"></i></ng-template>
-                <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" data-toggle="tooltip" title="{{'Next' | translate}}"></i></ng-template>
-                <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" title="{{'Last' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" title="{{'First' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" title="{{'Previous' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" title="{{'Next' | translate}}"></i></ng-template>
+                <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" title="{{'Last' | translate}}"></i></ng-template>
             </ngb-pagination>
         </div>
     </div>

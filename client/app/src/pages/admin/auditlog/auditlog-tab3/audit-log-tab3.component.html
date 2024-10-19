@@ -34,10 +34,10 @@
     </table>
     <div class="float-start" *ngIf="tips.length > pageSize">
         <ngb-pagination dir="ltr" class="d-flex justify-content-center" [(page)]="currentPage" [pageSize]="pageSize" [collectionSize]="tips.length">
-            <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" data-toggle="tooltip" title="{{'First' | translate}}"></i></ng-template>
-            <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" data-toggle="tooltip" title="{{'Previous' | translate}}"></i></ng-template>
-            <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" data-toggle="tooltip" title="{{'Next' | translate}}"></i></ng-template>
-            <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" data-toggle="tooltip" title="{{'Last' | translate}}"></i></ng-template>
+            <ng-template ngbPaginationFirst><i class="fa-solid fa-backward-fast" title="{{'First' | translate}}"></i></ng-template>
+            <ng-template ngbPaginationPrevious><i class="fa-solid fa-backward-step" title="{{'Previous' | translate}}"></i></ng-template>
+            <ng-template ngbPaginationNext><i class="fa-solid fa-forward-step" title="{{'Next' | translate}}"></i></ng-template>
+            <ng-template ngbPaginationLast><i class="fa-solid fa-forward-fast" title="{{'Last' | translate}}"></i></ng-template>
         </ngb-pagination>
     </div><div class="float-end"><button class="btn btn-sm btn-link" type="button" (click)="exportAuditLog()"> <i class="fa-solid fa-download"></i> <span>{{ 'Export' | translate }}</span> </button></div>
 </ng-container>
