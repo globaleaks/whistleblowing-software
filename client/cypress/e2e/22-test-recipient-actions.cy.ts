@@ -119,7 +119,6 @@ describe("recipient admin tip actions", () => {
     cy.get('span#SearchFilter input[type="text"]').clear();
 
     cy.get('th.TipInfoID').click();
-    cy.get('th.TipInfoID').click();
 
     cy.get('th.TipInfoContext i.fa-solid.fa-filter').click();
     cy.get('.multiselect-item-checkbox').eq(1).click();
