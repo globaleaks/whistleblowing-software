@@ -66,7 +66,7 @@
       "devDependencies": {
         "@angular-builders/custom-webpack": "18.0.0",
         "@angular-devkit/architect": "0.1802.8",
-        "@angular-devkit/build-angular": "18.2.8",
+        "@angular-devkit/build-angular": "18.2.9",
         "@angular-devkit/core": "18.2.8",
         "@angular/cli": "18.2.8",
         "@angular/compiler": "18.2.8",
@@ -163,17 +163,16 @@
       }
     },
     "node_modules/@angular-devkit/build-angular": {
-      "version": "18.2.8",
-      "resolved": "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-18.2.8.tgz",
-      "integrity": "sha512-qK/iLk7A8vQp1CyiJV4DpwfLjPKoiOlTtFqoO5vD8Tyxmc+R06FQp6GJTsZ7JtrTLYSiH+QAWiY6NgF/Rj/hHg==",
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-18.2.9.tgz",
+      "integrity": "sha512-d4W6t9vBozFUmOP2VvihMcSg/zgr3AvJY6/b7OPuATlK+W3P6tmsqxGIQ6eKc1TxXeu3lWhi14mV2pPykfrwfA==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "@ampproject/remapping": "2.3.0",
-        "@angular-devkit/architect": "0.1802.8",
-        "@angular-devkit/build-webpack": "0.1802.8",
-        "@angular-devkit/core": "18.2.8",
-        "@angular/build": "18.2.8",
+        "@angular-devkit/architect": "0.1802.9",
+        "@angular-devkit/build-webpack": "0.1802.9",
+        "@angular-devkit/core": "18.2.9",
+        "@angular/build": "18.2.9",
         "@babel/core": "7.25.2",
         "@babel/generator": "7.25.0",
         "@babel/helper-annotate-as-pure": "7.24.7",
@@ -184,7 +183,7 @@
         "@babel/preset-env": "7.25.3",
         "@babel/runtime": "7.25.0",
         "@discoveryjs/json-ext": "0.6.1",
-        "@ngtools/webpack": "18.2.8",
+        "@ngtools/webpack": "18.2.9",
         "@vitejs/plugin-basic-ssl": "1.1.0",
         "ansi-colors": "4.1.3",
         "autoprefixer": "10.4.20",
@@ -287,6 +286,65 @@
           "optional": true
         },
         "tailwindcss": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@angular-devkit/build-angular/node_modules/@angular-devkit/architect": {
+      "version": "0.1802.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1802.9.tgz",
+      "integrity": "sha512-fubJf4WC/t3ITy+tyjI4/CKKwUP4XJTmV+Y0nyPcrkcthVyUcIpZB74NlUOvg6WECiPQuIc+CtoAaA9X5+RQ5Q==",
+      "dev": true,
+      "dependencies": {
+        "@angular-devkit/core": "18.2.9",
+        "rxjs": "7.8.1"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular-devkit/build-angular/node_modules/@angular-devkit/core": {
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.9.tgz",
+      "integrity": "sha512-bsVt//5E0ua7FZfO0dCF/qGGY6KQD34/bNGyRu5B6HedimpdU2/0PGDptksU5v3yKEc9gNw0xC6mT0UsY/R9pA==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@angular-devkit/build-angular/node_modules/@angular-devkit/core/node_modules/ajv-formats": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/ajv-formats/-/ajv-formats-3.0.1.tgz",
+      "integrity": "sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "^8.0.0"
+      },
+      "peerDependencies": {
+        "ajv": "^8.0.0"
+      },
+      "peerDependenciesMeta": {
+        "ajv": {
           "optional": true
         }
       }
@@ -488,13 +546,12 @@
       }
     },
     "node_modules/@angular-devkit/build-webpack": {
-      "version": "0.1802.8",
-      "resolved": "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1802.8.tgz",
-      "integrity": "sha512-uPpopkXkO66SSdjtVr7xCyQCPs/x6KUC76xkDc4j0b8EEHifTbi/fNpbkcZ6wBmoAfjKLWXfKvtkh0TqKK5Hkw==",
+      "version": "0.1802.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1802.9.tgz",
+      "integrity": "sha512-p7xNGo5ZTV/Z0Rk+q2/E68QQLw9VT33kauDh6s010jIeBLrOwMo74JpzXMSFttQo5O4bLKP8IORzIM+0q7Uzjg==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
-        "@angular-devkit/architect": "0.1802.8",
+        "@angular-devkit/architect": "0.1802.9",
         "rxjs": "7.8.1"
       },
       "engines": {
@@ -505,6 +562,48 @@
       "peerDependencies": {
         "webpack": "^5.30.0",
         "webpack-dev-server": "^5.0.2"
+      }
+    },
+    "node_modules/@angular-devkit/build-webpack/node_modules/@angular-devkit/architect": {
+      "version": "0.1802.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1802.9.tgz",
+      "integrity": "sha512-fubJf4WC/t3ITy+tyjI4/CKKwUP4XJTmV+Y0nyPcrkcthVyUcIpZB74NlUOvg6WECiPQuIc+CtoAaA9X5+RQ5Q==",
+      "dev": true,
+      "dependencies": {
+        "@angular-devkit/core": "18.2.9",
+        "rxjs": "7.8.1"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular-devkit/build-webpack/node_modules/@angular-devkit/core": {
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.9.tgz",
+      "integrity": "sha512-bsVt//5E0ua7FZfO0dCF/qGGY6KQD34/bNGyRu5B6HedimpdU2/0PGDptksU5v3yKEc9gNw0xC6mT0UsY/R9pA==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
       }
     },
     "node_modules/@angular-devkit/core": {
@@ -663,14 +762,13 @@
       }
     },
     "node_modules/@angular/build": {
-      "version": "18.2.8",
-      "resolved": "https://registry.npmjs.org/@angular/build/-/build-18.2.8.tgz",
-      "integrity": "sha512-ufuA4vHJSrL9SQW7bKV61DOoN1mm0t0ILTHaxSoCG3YF70cZJOX7+HNp3cK2uoldRMwbTOKSvCWBw54KKDRd5Q==",
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular/build/-/build-18.2.9.tgz",
+      "integrity": "sha512-o1hOEM2e6ARy+ck2Pohl0d/RFgbbXTw6/hTLAj3CBKjtqAGStRaVF2UlJjhi+xOxlfsOPuJJc9IpzLBteku+Ag==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "@ampproject/remapping": "2.3.0",
-        "@angular-devkit/architect": "0.1802.8",
+        "@angular-devkit/architect": "0.1802.9",
         "@babel/core": "7.25.2",
         "@babel/helper-annotate-as-pure": "7.24.7",
         "@babel/helper-split-export-declaration": "7.24.7",
@@ -727,6 +825,48 @@
           "optional": true
         },
         "tailwindcss": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@angular/build/node_modules/@angular-devkit/architect": {
+      "version": "0.1802.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1802.9.tgz",
+      "integrity": "sha512-fubJf4WC/t3ITy+tyjI4/CKKwUP4XJTmV+Y0nyPcrkcthVyUcIpZB74NlUOvg6WECiPQuIc+CtoAaA9X5+RQ5Q==",
+      "dev": true,
+      "dependencies": {
+        "@angular-devkit/core": "18.2.9",
+        "rxjs": "7.8.1"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular/build/node_modules/@angular-devkit/core": {
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.9.tgz",
+      "integrity": "sha512-bsVt//5E0ua7FZfO0dCF/qGGY6KQD34/bNGyRu5B6HedimpdU2/0PGDptksU5v3yKEc9gNw0xC6mT0UsY/R9pA==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
           "optional": true
         }
       }
@@ -1300,7 +1440,6 @@
       "resolved": "https://registry.npmjs.org/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.24.7.tgz",
       "integrity": "sha512-oy5V7pD+UvfkEATUKvIjvIAH/xCzfsFVw7ygW2SI6NClZzquT+mwdTfgfdbUiceh6iQO0CHtCPsyze/MZ2YbAA==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "@babel/types": "^7.24.7"
       },
@@ -3309,7 +3448,6 @@
         "ppc64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "aix"
@@ -3326,7 +3464,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -3343,7 +3480,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -3360,7 +3496,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -3377,7 +3512,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -3394,7 +3528,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -3411,7 +3544,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "freebsd"
@@ -3428,7 +3560,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "freebsd"
@@ -3445,7 +3576,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3462,7 +3592,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3479,7 +3608,6 @@
         "ia32"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3496,7 +3624,6 @@
         "loong64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3513,7 +3640,6 @@
         "mips64el"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3530,7 +3656,6 @@
         "ppc64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3547,7 +3672,6 @@
         "riscv64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3564,7 +3688,6 @@
         "s390x"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3581,7 +3704,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -3598,7 +3720,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "netbsd"
@@ -3615,7 +3736,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "openbsd"
@@ -3632,7 +3752,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "openbsd"
@@ -3649,7 +3768,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "sunos"
@@ -3666,7 +3784,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -3683,7 +3800,6 @@
         "ia32"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -3700,7 +3816,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -4686,7 +4801,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -4700,7 +4814,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -4714,7 +4827,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4728,7 +4840,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4742,7 +4853,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4756,7 +4866,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -4770,7 +4879,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -4784,7 +4892,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -4798,7 +4905,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4812,7 +4918,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4826,7 +4931,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -4840,7 +4944,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -4908,11 +5011,10 @@
       }
     },
     "node_modules/@ngtools/webpack": {
-      "version": "18.2.8",
-      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-18.2.8.tgz",
-      "integrity": "sha512-sq0kI8gEen4QlM6X8XqOYy7j4B8iLCYNo+iKxatV36ts4AXH0MuVkP56+oMaoH5oZNoSqd0RlfnotEHfvJAr8A==",
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-18.2.9.tgz",
+      "integrity": "sha512-/apDvs4qevjSWoYw3h3/c/mILFrf2EgCJfBy9f3E7PEgi2tjifOIszBRrLQkVpeHAaFgEH8zKS2ol0hAmOl8sw==",
       "dev": true,
-      "license": "MIT",
       "engines": {
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
         "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
@@ -5260,7 +5362,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -5274,7 +5375,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -5288,7 +5388,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -5302,7 +5401,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -5316,7 +5414,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5330,7 +5427,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5344,7 +5440,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5358,7 +5453,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5372,7 +5466,6 @@
         "ppc64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5386,7 +5479,6 @@
         "riscv64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5400,7 +5492,6 @@
         "s390x"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5414,7 +5505,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5428,7 +5518,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -5442,7 +5531,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -5456,7 +5544,6 @@
         "ia32"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -5470,7 +5557,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -6172,7 +6258,6 @@
       "resolved": "https://registry.npmjs.org/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-1.1.0.tgz",
       "integrity": "sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==",
       "dev": true,
-      "license": "MIT",
       "engines": {
         "node": ">=14.6.0"
       },
@@ -7140,8 +7225,7 @@
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz",
       "integrity": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==",
-      "dev": true,
-      "license": "ISC"
+      "dev": true
     },
     "node_modules/bootstrap": {
       "version": "5.3.3",
@@ -8190,7 +8274,6 @@
       "resolved": "https://registry.npmjs.org/critters/-/critters-0.0.24.tgz",
       "integrity": "sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==",
       "dev": true,
-      "license": "Apache-2.0",
       "dependencies": {
         "chalk": "^4.1.0",
         "css-select": "^5.1.0",
@@ -8206,7 +8289,6 @@
       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
       "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "color-convert": "^2.0.1"
       },
@@ -8222,7 +8304,6 @@
       "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
       "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "ansi-styles": "^4.1.0",
         "supports-color": "^7.1.0"
@@ -8239,7 +8320,6 @@
       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
       "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "color-name": "~1.1.4"
       },
@@ -8251,15 +8331,13 @@
       "version": "1.1.4",
       "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
       "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/critters/node_modules/has-flag": {
       "version": "4.0.0",
       "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",
       "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
       "dev": true,
-      "license": "MIT",
       "engines": {
         "node": ">=8"
       }
@@ -8269,7 +8347,6 @@
       "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
       "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "has-flag": "^4.0.0"
       },
@@ -8341,7 +8418,6 @@
       "resolved": "https://registry.npmjs.org/css-select/-/css-select-5.1.0.tgz",
       "integrity": "sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "dependencies": {
         "boolbase": "^1.0.0",
         "css-what": "^6.1.0",
@@ -8372,7 +8448,6 @@
       "resolved": "https://registry.npmjs.org/css-what/-/css-what-6.1.0.tgz",
       "integrity": "sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "engines": {
         "node": ">= 6"
       },
@@ -9450,7 +9525,6 @@
       "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.0.3.tgz",
       "integrity": "sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==",
       "dev": true,
-      "license": "Apache-2.0",
       "engines": {
         "node": ">=8"
       }
@@ -9514,7 +9588,6 @@
       "resolved": "https://registry.npmjs.org/dom-serializer/-/dom-serializer-2.0.0.tgz",
       "integrity": "sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "domelementtype": "^2.3.0",
         "domhandler": "^5.0.2",
@@ -9534,15 +9607,13 @@
           "type": "github",
           "url": "https://github.com/sponsors/fb55"
         }
-      ],
-      "license": "BSD-2-Clause"
+      ]
     },
     "node_modules/domhandler": {
       "version": "5.0.3",
       "resolved": "https://registry.npmjs.org/domhandler/-/domhandler-5.0.3.tgz",
       "integrity": "sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "dependencies": {
         "domelementtype": "^2.3.0"
       },
@@ -9564,7 +9635,6 @@
       "resolved": "https://registry.npmjs.org/domutils/-/domutils-3.1.0.tgz",
       "integrity": "sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "dependencies": {
         "dom-serializer": "^2.0.0",
         "domelementtype": "^2.3.0",
@@ -9710,7 +9780,6 @@
       "resolved": "https://registry.npmjs.org/entities/-/entities-4.5.0.tgz",
       "integrity": "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "engines": {
         "node": ">=0.12"
       },
@@ -9806,7 +9875,6 @@
       "integrity": "sha512-1lvV17H2bMYda/WaFb2jLPeHU3zml2k4/yagNMG8Q/YtfMjCwEUZa2eXXMgZTVSL5q1n4H7sQ0X6CdJDqqeCFA==",
       "dev": true,
       "hasInstallScript": true,
-      "license": "MIT",
       "bin": {
         "esbuild": "bin/esbuild"
       },
@@ -12019,7 +12087,6 @@
           "url": "https://github.com/sponsors/fb55"
         }
       ],
-      "license": "MIT",
       "dependencies": {
         "domelementtype": "^2.3.0",
         "domhandler": "^5.0.3",
@@ -12233,8 +12300,7 @@
       "version": "4.3.7",
       "resolved": "https://registry.npmjs.org/immutable/-/immutable-4.3.7.tgz",
       "integrity": "sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/import-fresh": {
       "version": "3.3.0",
@@ -13336,7 +13402,6 @@
       "integrity": "sha512-UGe+BbaSUQtAMZobTb4nHvFMrmvuAQKSeaqAX2meTEQjfsbpl5sxdHD8T72OnwD4GU9uwNhYXIVe4QGs8N9Zyw==",
       "dev": true,
       "hasInstallScript": true,
-      "license": "MIT",
       "dependencies": {
         "msgpackr": "^1.10.2",
         "node-addon-api": "^6.1.0",
@@ -14825,7 +14890,6 @@
       "resolved": "https://registry.npmjs.org/mrmime/-/mrmime-2.0.0.tgz",
       "integrity": "sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==",
       "dev": true,
-      "license": "MIT",
       "engines": {
         "node": ">=10"
       }
@@ -14840,7 +14904,6 @@
       "resolved": "https://registry.npmjs.org/msgpackr/-/msgpackr-1.11.0.tgz",
       "integrity": "sha512-I8qXuuALqJe5laEBYoFykChhSXLikZmUhccjGsPuSJ/7uPip2TJ7lwdIQwWSAi0jGZDXv4WOP8Qg65QZRuXxXw==",
       "dev": true,
-      "license": "MIT",
       "optionalDependencies": {
         "msgpackr-extract": "^3.0.2"
       }
@@ -14851,7 +14914,6 @@
       "integrity": "sha512-P0efT1C9jIdVRefqjzOQ9Xml57zpOXnIuS+csaB4MdZbTdmGDLo8XhzBG1N7aO11gKDDkJvBLULeFTo46wwreA==",
       "dev": true,
       "hasInstallScript": true,
-      "license": "MIT",
       "optional": true,
       "dependencies": {
         "node-gyp-build-optional-packages": "5.2.2"
@@ -15089,7 +15151,6 @@
       "integrity": "sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==",
       "dev": true,
       "hasInstallScript": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "!win32"
@@ -15104,15 +15165,13 @@
       "resolved": "https://registry.npmjs.org/node-addon-api/-/node-addon-api-3.2.1.tgz",
       "integrity": "sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==",
       "dev": true,
-      "license": "MIT",
       "optional": true
     },
     "node_modules/node-addon-api": {
       "version": "6.1.0",
       "resolved": "https://registry.npmjs.org/node-addon-api/-/node-addon-api-6.1.0.tgz",
       "integrity": "sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/node-forge": {
       "version": "1.3.1",
@@ -15161,7 +15220,6 @@
       "resolved": "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.2.tgz",
       "integrity": "sha512-IRUxE4BVsHWXkV/SFOut4qTlagw2aM8T5/vnTsmrHJvVoKueJHRc/JaFND7QDDc61kLYUJ6qlZM3sqTSyx2dTw==",
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "bin": {
         "node-gyp-build": "bin.js",
@@ -15174,7 +15232,6 @@
       "resolved": "https://registry.npmjs.org/node-gyp-build-optional-packages/-/node-gyp-build-optional-packages-5.2.2.tgz",
       "integrity": "sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "detect-libc": "^2.0.1"
       },
@@ -15461,7 +15518,6 @@
       "resolved": "https://registry.npmjs.org/nth-check/-/nth-check-2.1.1.tgz",
       "integrity": "sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==",
       "dev": true,
-      "license": "BSD-2-Clause",
       "dependencies": {
         "boolbase": "^1.0.0"
       },
@@ -15964,8 +16020,7 @@
       "version": "1.5.2",
       "resolved": "https://registry.npmjs.org/ordered-binary/-/ordered-binary-1.5.2.tgz",
       "integrity": "sha512-JTo+4+4Fw7FreyAvlSLjb1BBVaxEQAacmjD3jjuyPZclpbEghTvQZbXBb2qPd2LeIMxiHwXBZUcpmG2Gl/mDEA==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/os-homedir": {
       "version": "1.0.2",
@@ -16203,7 +16258,6 @@
       "resolved": "https://registry.npmjs.org/parse5/-/parse5-7.2.0.tgz",
       "integrity": "sha512-ZkDsAOcxsUMZ4Lz5fVciOehNcJ+Gb8gTzcA4yl3wnc273BAybYWrQ+Ks/OjCjSEpjvQkDSeZbybK9qj2VHHdGA==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "entities": "^4.5.0"
       },
@@ -16216,7 +16270,6 @@
       "resolved": "https://registry.npmjs.org/parse5-html-rewriting-stream/-/parse5-html-rewriting-stream-7.0.0.tgz",
       "integrity": "sha512-mazCyGWkmCRWDI15Zp+UiCqMp/0dgEmkZRvhlsqqKYr4SsVm/TvnSpD9fCvqCA2zoWJcfRym846ejWBBHRiYEg==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "entities": "^4.3.0",
         "parse5": "^7.0.0",
@@ -16231,7 +16284,6 @@
       "resolved": "https://registry.npmjs.org/parse5-sax-parser/-/parse5-sax-parser-7.0.0.tgz",
       "integrity": "sha512-5A+v2SNsq8T6/mG3ahcz8ZtQ0OUFTatxPbeidoMB7tkJSGDY3tdfl4MHovtLQHkEn5CGxijNWRQHhRQ6IRpXKg==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "parse5": "^7.0.0"
       },
@@ -16383,7 +16435,6 @@
       "resolved": "https://registry.npmjs.org/piscina/-/piscina-4.6.1.tgz",
       "integrity": "sha512-z30AwWGtQE+Apr+2WBZensP2lIvwoaMcOPkQlIEmSGMJNUvaYACylPYrQM6wSdUNJlnDVMSpLv7xTMJqlVshOA==",
       "dev": true,
-      "license": "MIT",
       "optionalDependencies": {
         "nice-napi": "^1.0.2"
       }
@@ -16629,8 +16680,7 @@
       "version": "0.2.3",
       "resolved": "https://registry.npmjs.org/postcss-media-query-parser/-/postcss-media-query-parser-0.2.3.tgz",
       "integrity": "sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/postcss-modules-extract-imports": {
       "version": "3.1.0",
@@ -17469,7 +17519,6 @@
       "resolved": "https://registry.npmjs.org/rollup/-/rollup-4.22.4.tgz",
       "integrity": "sha512-vD8HJ5raRcWOyymsR6Z3o6+RzfEPCnVLMFJ6vRslO1jt4LO6dUo5Qnpg7y4RkZFM2DMe3WUirkI5c16onjrc6A==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "@types/estree": "1.0.5"
       },
@@ -17591,7 +17640,6 @@
       "resolved": "https://registry.npmjs.org/sass/-/sass-1.77.6.tgz",
       "integrity": "sha512-ByXE1oLD79GVq9Ht1PeHWCPMPB8XHpBuz1r85oByKHjZY6qV6rWnQovQzXJXuQ/XyE1Oj3iPk3lo28uzaRA2/Q==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "chokidar": ">=3.0.0 <4.0.0",
         "immutable": "^4.0.0",
@@ -19748,7 +19796,6 @@
       "resolved": "https://registry.npmjs.org/vite/-/vite-5.4.6.tgz",
       "integrity": "sha512-IeL5f8OO5nylsgzd9tq4qD2QqI0k2CQLGrWD0rCN0EQJZpBK5vJAx0I+GDkMOXxQX/OfFHMuLIx6ddAxGX/k+Q==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "esbuild": "^0.21.3",
         "postcss": "^8.4.43",
@@ -19811,7 +19858,6 @@
         "ppc64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "aix"
@@ -19828,7 +19874,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -19845,7 +19890,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -19862,7 +19906,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "android"
@@ -19879,7 +19922,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -19896,7 +19938,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "darwin"
@@ -19913,7 +19954,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "freebsd"
@@ -19930,7 +19970,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "freebsd"
@@ -19947,7 +19986,6 @@
         "arm"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -19964,7 +20002,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -19981,7 +20018,6 @@
         "ia32"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -19998,7 +20034,6 @@
         "loong64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20015,7 +20050,6 @@
         "mips64el"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20032,7 +20066,6 @@
         "ppc64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20049,7 +20082,6 @@
         "riscv64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20066,7 +20098,6 @@
         "s390x"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20083,7 +20114,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "linux"
@@ -20100,7 +20130,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "netbsd"
@@ -20117,7 +20146,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "openbsd"
@@ -20134,7 +20162,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "sunos"
@@ -20151,7 +20178,6 @@
         "arm64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -20168,7 +20194,6 @@
         "ia32"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -20185,7 +20210,6 @@
         "x64"
       ],
       "dev": true,
-      "license": "MIT",
       "optional": true,
       "os": [
         "win32"
@@ -20200,7 +20224,6 @@
       "integrity": "sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==",
       "dev": true,
       "hasInstallScript": true,
-      "license": "MIT",
       "bin": {
         "esbuild": "bin/esbuild"
       },
@@ -20252,7 +20275,6 @@
           "url": "https://github.com/sponsors/ai"
         }
       ],
-      "license": "MIT",
       "dependencies": {
         "nanoid": "^3.3.7",
         "picocolors": "^1.1.0",
@@ -20297,8 +20319,7 @@
       "version": "1.2.2",
       "resolved": "https://registry.npmjs.org/weak-lru-cache/-/weak-lru-cache-1.2.2.tgz",
       "integrity": "sha512-DEAoo25RfSYMuTGc9vPJzZcZullwIqRDSI9LOy+fkCJPi6hykCnfKaXTuPBDuXAUcqHXyOgFtHNp/kB2FjYHbw==",
-      "dev": true,
-      "license": "MIT"
+      "dev": true
     },
     "node_modules/web-worker": {
       "version": "1.3.0",
