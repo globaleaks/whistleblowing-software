@@ -9,4 +9,4 @@ pyotp==2.3.0
 python_gnupg==0.4.8
 sqlalchemy==1.4.31
 twisted==22.1.0
-txtorcon==20.0.0
+txtorcon==24.8.0
