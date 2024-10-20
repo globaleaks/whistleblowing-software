@@ -1,4 +1,33 @@
 Changes in version 5.0.17
+    Adopt OpenSSF Scorecard and implement most of the recommendations
+    Add OpenSSF Scorecard to README.md
+    Ensure docker images uses pinned dependencies
+    Enable CodeQL action
+    Enable Dependabot action
+    Revise default permission on workflows
+    Strip HTML from Markdown text using DOMPurify
+    Revise login redirect and implement sanitization
+    Correct accessibility of language selector
+    Revise audit logs tracking users target of grant/revoke
+      report operations
+    Revise report search making it possible to make full text search
+      on the entire report
+    Fix audit log exporting correctly the object column (#4248)
+    Correct exceptions in relation to ngx-translate/core/issues/782
+    Fix translation of string:
+      Allow the recipient to edit the reports' expiration date
+    Use postcss-rtlcss to create a single optimized CSS bundle
+      supporting both ltr and rtl
+    Optimize loading of css files including primary fonts in main css
+     and ensuring secondary fonts are lazy-loaded
+    Revise CSS colors in relation to globaleaks visual identity
+    Apply GLBOALEAKS brand colors via SCSS
+    Update GlobaLeaks visual identity document
+    Update translations
+    Bump client dependencies to latest version
+    [doc] Update documentation images
+
+Changes in version 5.0.17
     Fix logins exceptions on systems still apparently not implementing encryption introduced in 5.0.16
 
 Changes in version 5.0.16
