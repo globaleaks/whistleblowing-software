@@ -50,7 +50,7 @@
     "@types/marked": "6.0.0",
     "@types/qrcode": "1.5.5",
     "@typescript-eslint/types": "8.9.0",
-    "@typescript-eslint/utils": "8.9.0",
+    "@typescript-eslint/utils": "8.10.0",
     "angularx-qrcode": "18.0.2",
     "bootstrap": "5.3.3",
     "chart.js": "4.4.4",
