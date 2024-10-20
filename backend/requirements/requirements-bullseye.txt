@@ -3,7 +3,7 @@ cryptography==3.3.2
 h2==4.0.0
 idna==2.10
 priority==1.3.0
-pyopenSSL==20.0.1
+pyopenSSL==24.2.1
 pynacl==1.4.0
 pyotp==2.3.0
 python_gnupg==0.4.6
