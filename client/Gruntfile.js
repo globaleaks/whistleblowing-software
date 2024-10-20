@@ -159,7 +159,7 @@ module.exports = function(grunt) {
 
     shell: {
       npx_build: {
-        command: "npx ng build --configuration=production --aot"
+        command: "npx ng build --configuration=production"
       },
       npx_build_and_instrument: {
         command: "npx ng build --configuration=testing && nyc instrument dist instrument"
