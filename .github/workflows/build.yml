@@ -2,6 +2,9 @@ name: Build
 
 on: [ push, pull_request ]
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   run_build:
     runs-on: "ubuntu-latest"

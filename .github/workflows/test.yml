@@ -2,6 +2,9 @@ name: Test
 
 on: [ push, pull_request ]
 
+# Declare default permissions as read only.
+permissions: read-all
+
 env:
   CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
