@@ -67,7 +67,7 @@
         "@angular-builders/custom-webpack": "18.0.0",
         "@angular-devkit/architect": "0.1802.8",
         "@angular-devkit/build-angular": "18.2.8",
-        "@angular-devkit/core": "18.2.8",
+        "@angular-devkit/core": "18.2.9",
         "@angular/cli": "18.2.8",
         "@angular/compiler": "18.2.8",
         "@angular/compiler-cli": "18.2.8",
@@ -160,6 +160,33 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
         "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
         "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular-devkit/architect/node_modules/@angular-devkit/core": {
+      "version": "18.2.8",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
+      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
       }
     },
     "node_modules/@angular-devkit/build-angular": {
@@ -287,6 +314,50 @@
           "optional": true
         },
         "tailwindcss": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@angular-devkit/build-angular/node_modules/@angular-devkit/core": {
+      "version": "18.2.8",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
+      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@angular-devkit/build-angular/node_modules/@angular-devkit/core/node_modules/ajv-formats": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/ajv-formats/-/ajv-formats-3.0.1.tgz",
+      "integrity": "sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "^8.0.0"
+      },
+      "peerDependencies": {
+        "ajv": "^8.0.0"
+      },
+      "peerDependenciesMeta": {
+        "ajv": {
           "optional": true
         }
       }
@@ -508,11 +579,10 @@
       }
     },
     "node_modules/@angular-devkit/core": {
-      "version": "18.2.8",
-      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
-      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "version": "18.2.9",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.9.tgz",
+      "integrity": "sha512-bsVt//5E0ua7FZfO0dCF/qGGY6KQD34/bNGyRu5B6HedimpdU2/0PGDptksU5v3yKEc9gNw0xC6mT0UsY/R9pA==",
       "dev": true,
-      "license": "MIT",
       "dependencies": {
         "ajv": "8.17.1",
         "ajv-formats": "3.0.1",
@@ -552,6 +622,33 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
         "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
         "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular-devkit/schematics/node_modules/@angular-devkit/core": {
+      "version": "18.2.8",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
+      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
       }
     },
     "node_modules/@angular-eslint/builder": {
@@ -763,6 +860,33 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
         "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
         "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@angular/cli/node_modules/@angular-devkit/core": {
+      "version": "18.2.8",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
+      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
       }
     },
     "node_modules/@angular/common": {
@@ -5491,6 +5615,33 @@
         "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
         "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
         "yarn": ">= 1.13.0"
+      }
+    },
+    "node_modules/@schematics/angular/node_modules/@angular-devkit/core": {
+      "version": "18.2.8",
+      "resolved": "https://registry.npmjs.org/@angular-devkit/core/-/core-18.2.8.tgz",
+      "integrity": "sha512-4o2T6wsmXGE/v53+F8L7kGoN2+qzt03C9rtjLVQpOljzpJVttQ8bhvfWxyYLWwcl04RWqRa+82fpIZtBkOlZJw==",
+      "dev": true,
+      "dependencies": {
+        "ajv": "8.17.1",
+        "ajv-formats": "3.0.1",
+        "jsonc-parser": "3.3.1",
+        "picomatch": "4.0.2",
+        "rxjs": "7.8.1",
+        "source-map": "0.7.4"
+      },
+      "engines": {
+        "node": "^18.19.1 || ^20.11.1 || >=22.0.0",
+        "npm": "^6.11.0 || ^7.5.6 || >=8.0.0",
+        "yarn": ">= 1.13.0"
+      },
+      "peerDependencies": {
+        "chokidar": "^3.5.2"
+      },
+      "peerDependenciesMeta": {
+        "chokidar": {
+          "optional": true
+        }
       }
     },
     "node_modules/@sigstore/bundle": {
