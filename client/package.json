@@ -53,7 +53,7 @@
     "@typescript-eslint/utils": "8.9.0",
     "angularx-qrcode": "18.0.2",
     "bootstrap": "5.3.3",
-    "chart.js": "4.4.4",
+    "chart.js": "4.4.5",
     "lodash-es": "4.17.21",
     "ng-multiselect-dropdown": "1.0.0",
     "ng2-charts": "6.0.1",
