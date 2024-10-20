@@ -12,6 +12,14 @@ updates:
     schedule:
       interval: daily
 
+  - package-ecosystem: pip
+    directory: backend/requirements
+    schedule:
+      interval: "monthly"
+    labels: [ ]
+    ignore:
+      - dependency-name: "*"
+
   - package-ecosystem: npm
     directory: /client
     open-pull-requests-limit: 0
