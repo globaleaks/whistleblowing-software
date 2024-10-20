@@ -1,4 +1,4 @@
-Changes in version 5.0.17
+Changes in version 5.0.18
     Adopt OpenSSF Scorecard and implement most of the recommendations
     Add OpenSSF Scorecard to README.md
     Ensure docker images uses pinned dependencies
