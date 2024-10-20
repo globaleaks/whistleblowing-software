@@ -16,7 +16,7 @@ export class ReceiverGuard {
     if (this.authenticationService.session) {
       if(this.authenticationService.session.role === "receiver"){
         this.appConfigService.setPage(this.router.url);
-      }else {
+      } else {
         this.router.navigateByUrl("/login").then();
       }
       return true;
