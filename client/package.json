@@ -96,7 +96,7 @@
     "superagent": "10.1.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
-    "typescript-eslint": "8.9.0",
+    "typescript-eslint": "8.10.0",
     "webpack-dev-server": "5.1.0"
   }
 }
