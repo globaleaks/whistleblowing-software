@@ -93,7 +93,7 @@
         "nyc": "17.1.0",
         "stylelint": "16.10.0",
         "stylelint-config-standard": "36.0.1",
-        "superagent": "10.1.0",
+        "superagent": "10.1.1",
         "ts-node": "10.9.2",
         "typescript": "5.5.4",
         "typescript-eslint": "8.9.0",
@@ -10794,13 +10794,13 @@
       }
     },
     "node_modules/formidable": {
-      "version": "3.5.1",
-      "resolved": "https://registry.npmjs.org/formidable/-/formidable-3.5.1.tgz",
-      "integrity": "sha512-WJWKelbRHN41m5dumb0/k8TeAx7Id/y3a+Z7QfhxP/htI9Js5zYaEDtG8uMgG0vM0lOlqnmjE99/kfpOYi/0Og==",
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/formidable/-/formidable-3.5.2.tgz",
+      "integrity": "sha512-Jqc1btCy3QzRbJaICGwKcBfGWuLADRerLzDqi2NwSt/UkXLsHJw2TVResiaoBufHVHy9aSgClOHCeJsSsFLTbg==",
       "dev": true,
       "dependencies": {
         "dezalgo": "^1.0.4",
-        "hexoid": "^1.0.0",
+        "hexoid": "^2.0.0",
         "once": "^1.4.0"
       },
       "funding": {
@@ -11884,9 +11884,9 @@
       }
     },
     "node_modules/hexoid": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/hexoid/-/hexoid-1.0.0.tgz",
-      "integrity": "sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==",
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/hexoid/-/hexoid-2.0.0.tgz",
+      "integrity": "sha512-qlspKUK7IlSQv2o+5I7yhUd7TxlOG2Vr5LTa3ve2XSNVKAL/n/u/7KLvKmFNimomDIKvZFXWHv0T12mv7rT8Aw==",
       "dev": true,
       "engines": {
         "node": ">=8"
@@ -18710,9 +18710,9 @@
       "optional": true
     },
     "node_modules/superagent": {
-      "version": "10.1.0",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-10.1.0.tgz",
-      "integrity": "sha512-JMmik7PbnXGlq7g528Gi6apHbVbTz2vrE3du6fuG4kIPSb2PnLoSOPvfjKn8aQYuJcBWAKW6ZG90qPPsE5jZxQ==",
+      "version": "10.1.1",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-10.1.1.tgz",
+      "integrity": "sha512-9pIwrHrOj3uAnqg9gDlW7EA2xv+N5au/dSM0kM22HTqmUu8jBxNT+8uA7tA3UoCnmiqzpSbu8rasIUZvbyamMQ==",
       "dev": true,
       "dependencies": {
         "component-emitter": "^1.3.0",
@@ -18720,7 +18720,7 @@
         "debug": "^4.3.4",
         "fast-safe-stringify": "^2.1.1",
         "form-data": "^4.0.0",
-        "formidable": "^3.5.1",
+        "formidable": "^3.5.2",
         "methods": "^1.1.2",
         "mime": "2.6.0",
         "qs": "^6.11.0"
