@@ -8,5 +8,5 @@ pynacl==1.4.0
 pyotp==2.3.0
 python_gnupg==0.4.6
 sqlalchemy==1.3.22
-twisted==20.3.0
+twisted==24.7.0
 txtorcon==20.0.0
