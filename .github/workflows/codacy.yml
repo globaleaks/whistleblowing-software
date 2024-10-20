@@ -22,8 +22,8 @@ on:
   schedule:
     - cron: '33 6 * * 2'
 
-permissions:
-  contents: read
+# Declare default permissions as read only.
+permissions: read-all
 
 jobs:
   codacy-security-scan:
